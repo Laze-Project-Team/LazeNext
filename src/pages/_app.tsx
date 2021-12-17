@@ -1,4 +1,5 @@
 import 'nprogress/nprogress.css'
+import 'antd/dist/antd.css'
 
 import type { AppProps } from 'next/app'
 import nprogress from 'nprogress'
