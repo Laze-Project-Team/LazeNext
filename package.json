@@ -14,13 +14,14 @@
   },
   "prettier": {
     "trailingComma": "es5",
-    "semi": false,
+    "semi": true,
     "singleQuote": true,
     "printWidth": 120
   },
   "dependencies": {
     "antd": "^4.17.3",
     "next": "12.0.7",
+    "next-i18next": "^10.0.1",
     "nprogress": "0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",

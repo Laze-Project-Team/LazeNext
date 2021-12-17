@@ -1,10 +1,10 @@
-import type { FC, ReactNode, VFC } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
+import type { FC, ReactNode, VFC } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 type ErrorFallbackProps = {
-  error: Error
-  resetErrorBoundary: () => void
-}
+  error: Error;
+  resetErrorBoundary: () => void;
+};
 
 const ErrorFallback: VFC<ErrorFallbackProps> = (props) => {
   return (
@@ -13,12 +13,12 @@ const ErrorFallback: VFC<ErrorFallbackProps> = (props) => {
       <pre>{props.error.message}</pre>
       <button onClick={props.resetErrorBoundary}>Try again</button>
     </div>
-  )
-}
+  );
+};
 
 type LayoutErrorBoundaryProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export const LayoutErrorBoundary: FC<LayoutErrorBoundaryProps> = (props) => {
   return (
@@ -30,5 +30,5 @@ export const LayoutErrorBoundary: FC<LayoutErrorBoundaryProps> = (props) => {
     >
       {props.children}
     </ErrorBoundary>
-  )
-}
+  );
+};

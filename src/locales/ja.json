@@ -1,0 +1,37 @@
+{
+  "translation": {
+    "Editor": "エディタ",
+    "Docs": "ドキュメンテーション",
+    
+    "Made with Monaco Editor": "Made with Monaco Editor",
+    "Switch Language": "言語を変更",
+    "No file is opened": "まだファイルが開かれていません",
+    "You can open file from the file explorer on the left": "左のエクスプローラーからファイルを開けます",
+    "Laze Editor": "Lazeエディタ",
+    "Compile & Run": "コンパイル / 実行",
+    "Samples": "サンプル一覧",
+    "Save": "セーブ",
+    "Output": "出力",
+    "Canvas Area": "描画エリア",
+    "Master": "マスター",
+    "Close": "閉じる",
+    "New File": "新規ファイル",
+    "New Folder": "新規フォルダ",
+    "Rename": "名前を変更",
+    "Delete": "削除",
+    "Load": "ロード",
+    "Settings": "設定",
+    "Loading Sample Selection": "ロードするサンプルを選択",
+    "A file or folder name must be provided.": "ファイルまたはフォルダの名前を指定する必要があります。",
+    "A file or folder with that name already exists. Please choose a different name.": "その名前のファイルまたはフォルダはこの場所に既に存在します。別の名前を指定してください。",
+    "This name is not valid as a file or folder name. Please choose a different name.": "ファイルまたはフォルダ名として無効な名前です。別の名前を指定してください。",
+    "Somehing went wrong while loading sample list. Please try again later.": "サンプル一覧のロード中に何らかの問題が発生しました。時間をおいてもう一度お試しください。",
+    "Cannot run program. Please compile first.": "プログラムの実行に失敗しました。先にコンパイルしてください。",
+    "Enable Dark Mode": "ダークモードを有効にする",
+    "File is not opened. Please open a file first.": "ファイルが開かれていません。先にファイルを開いてください。",
+    "Failed to load the sample.": "サンプル \"{{name}}\" のロードに失敗しました",
+    "Failed to launch the program.": "プログラムの実行に失敗しました",
+    "Failed to compile the program.": "プログラムのコンパイルに失敗しました",
+    "Please check your network connection.": "ネットワーク接続を確認してください"
+  }
+}
