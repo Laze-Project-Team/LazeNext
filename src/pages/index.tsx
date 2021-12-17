@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
-import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
-  const { locale } = useRouter();
   const [t] = useTranslation('layout');
 
   return (
@@ -22,6 +21,17 @@ const Home: NextPage = () => {
       </IndexLayout>
     </>
   );
+};
+
+type contextType = {
+  locale: string;
+};
+export const getStaticProps = async (context: contextType) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(context.locale, ['common', 'layout'])),
+    },
+  };
 };
 
 export default Home;
