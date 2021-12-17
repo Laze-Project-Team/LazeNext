@@ -58,7 +58,7 @@ module.exports = {
     "@typescript-eslint/consistent-type-imports": ["warn", { prefer: "type-imports" }],
     "@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: "^_", argsIgnorePattern: "^_", }], // 未使用変数はエラー
   },
-  overrides: [　// 一部ルールを除外する
+  overrides: [// 一部ルールを除外する
     {
       files: ["src/pages/**/*.tsx"], // pagesのdefault exportは仕方ないので除外
       rules: { "import/no-default-export": "off" },
