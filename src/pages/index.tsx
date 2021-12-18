@@ -1,71 +1,14 @@
-import type { VFC, FC, ReactChild } from 'react';
-import { Children } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Button, Typography } from 'antd';
-import { IconContext } from 'react-icons';
 import { AiOutlineApi, AiOutlineTeam, AiOutlineCloud } from 'react-icons/ai';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
-import { cx } from '@/features/cx';
-import Link from 'next/link';
-
-type classNameProps = {
-  className?: string;
-};
-
-const SectionContainer: FC<classNameProps> = ({ children, className }) => (
-  <>
-    <div className={cx('mx-[-100rem] px-[100rem] pt-6 pb-10', className)}>{children}</div>
-  </>
-);
-
-const SectionTitle: FC<classNameProps> = ({ children, className }) => (
-  <>
-    <h2 className="mb-6">
-      <span className={cx('text-2xl border-b-4 pl-2 pr-10 pb-[0.1rem]', className)}>{children}</span>
-    </h2>
-  </>
-);
-
-type CardProps = {
-  title: string;
-  description: string;
-  textClass?: string;
-  icon?: ReactChild;
-  className?: string;
-};
-
-const CardContainer: FC = ({ children }) => {
-  return (
-    <>
-      <div className="flex flex-wrap md:space-x-4 space-y-4 md:space-y-0">{children}</div>
-    </>
-  );
-};
-
-const Card: VFC<CardProps> = ({ title, description, icon, textClass, className }) => (
-  <>
-    <div
-      className={cx(
-        'w-full md:flex-1 flex space-x-4 md:flex-col items-center bg-black/10 p-4 rounded-md shadow-md',
-        className
-      )}
-    >
-      <div>
-        <IconContext.Provider value={{ size: '4rem', color: 'whitesmoke' }}>{icon}</IconContext.Provider>
-      </div>
-      <div>
-        <Typography.Title level={3} className={cx('font-bold !text-xl md:text-center mt-1 mb-2', textClass)}>
-          {title}
-        </Typography.Title>
-        <Typography.Text className={textClass}>{description}</Typography.Text>
-      </div>
-    </div>
-  </>
-);
+import { SectionContainer, SectionTitle } from '@/components/ui/atoms/section';
+import { Card, CardContainer } from '@/components/ui/atoms/card';
 
 const Home: NextPage = () => {
   const [t] = useTranslation('index');
