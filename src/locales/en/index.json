@@ -1,0 +1,54 @@
+{
+  "title": "Home Page for Laze Programming Language",
+  "motto": "Great Programming Experience For All",
+  "Try Laze": "Try Laze now!",
+
+  "Laze Features": "Why Laze? : Laze Features",
+  "features": {
+    "1": {
+      "title": "Native Language",
+      "description": "Currently, we are developing mainly Japanese language support. But, we will prepare you to program in a variety of languages in the future."
+    },
+    "2": {
+      "title": "Latest Technologies",
+      "description": "It is built using WebAssembly, which makes it faster than other languages running on the web. Furthermore, it uses a drawing method called WebGL2.0, which makes it versatile and fast!"
+    },
+    "3": {
+      "title": "Wherever you are",
+      "description": "You can start right now, right in your browser. Everything you need for Laze is right there in the Playground. You don't need to go through the hassle of setting up your own environment anymore."
+    }
+  },
+
+  "Laze Production": "What can you do with Laze?",
+  "productions": {
+    "1": {
+      "title": "2D Games",
+      "description": "Using the standard library, 2D drawing can be done with very simple code."
+    },
+    
+    "2": {
+      "title": "3D Games",
+      "description": "It uses WebGL2.0, which means that it can perform as well in 3D as it does in 2D. It comes with a standard library to make it easy to get started."
+    },
+    "3": {
+      "title": "GUI apps (in preparation)",
+      "description": "You will be able to easily create GUI applications as good as GUI using HTML and CSS. (In preparation)"
+    },
+
+    "Join Laze": "Join Laze!",
+    "activities": {
+      "1": {
+        "title": "",
+        "description": ""
+      },
+      "2": {
+        "title": "",
+        "description": ""
+      },
+      "3": {
+        "title": "",
+        "description": ""
+      }
+    }
+  }
+}
