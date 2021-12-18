@@ -24,7 +24,7 @@ export const Card: VFC<CardProps> = ({ title, description, icon, textClass, clas
   <>
     <div
       className={cx(
-        'w-full md:flex-1 flex space-x-4 md:flex-col items-center bg-black/10 p-4 rounded-md shadow-md',
+        'w-full md:flex-1 flex space-x-4 md:space-x-0 md:flex-col items-center bg-black/10 p-4 rounded-md shadow-md',
         className
       )}
     >
