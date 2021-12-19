@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { cx } from '@/features/cx';
+import { cx } from '@/features/utils/cx';
 
 export type classNameProps = {
   className?: string;

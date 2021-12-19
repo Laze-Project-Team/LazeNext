@@ -2,7 +2,7 @@ import type { VFC, FC, ReactChild } from 'react';
 import { IconContext } from 'react-icons';
 import { Typography } from 'antd';
 
-import { cx } from '@/features/cx';
+import { cx } from '@/features/utils/cx';
 
 export type CardProps = {
   title: string;

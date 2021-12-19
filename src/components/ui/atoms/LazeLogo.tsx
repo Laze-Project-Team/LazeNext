@@ -2,7 +2,7 @@ import Image from 'next/image';
 import type { VFC } from 'react';
 import React from 'react';
 
-import { cx } from '@/features/cx';
+import { cx } from '@/features/utils/cx';
 
 type logoPotion = 'logo' | 'logo_gray' | 'logo_caption' | 'logo_caption_gray';
 
