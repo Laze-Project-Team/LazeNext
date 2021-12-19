@@ -1,3 +1,5 @@
+import type { FC, ReactNode } from 'react';
+import { forwardRef } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -7,8 +9,41 @@ import { Button, Typography } from 'antd';
 import { AiOutlineApi, AiOutlineTeam, AiOutlineCloud } from 'react-icons/ai';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
-import { SectionContainer, SectionTitle } from '@/components/ui/atoms/section';
-import { Card, CardContainer } from '@/components/ui/atoms/card';
+import { SectionContainer, SectionTitle } from '@/components/ui/atoms/Section';
+import { Card, CardContainer } from '@/components/ui/atoms/Card';
+
+const ActionButton: FC = ({ children }) => (
+  <>
+    <div className="flex justify-center mt-auto pt-4">{children}</div>
+  </>
+);
+
+const actionLinkStyle =
+  'block !text-whitesmoke hover:!text-[#BED7E3] font-bold hover:bg-white/5 transition-colors rounded-sm shadow-sm p-2';
+
+type ActionLinkProps = {
+  href: string;
+  onClick?: () => void;
+  children: ReactNode;
+};
+
+const ActionLink = forwardRef<HTMLAnchorElement, ActionLinkProps>(({ children, onClick, href }, ref) => (
+  <a href={href} className={actionLinkStyle} onClick={onClick} ref={ref}>
+    {children}
+  </a>
+));
+
+type LinkProps = {
+  href: string;
+};
+
+const ExternalActionLink: FC<LinkProps> = ({ children, href }) => (
+  <>
+    <a href={href} className={actionLinkStyle} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  </>
+);
 
 const Home: NextPage = () => {
   const [t] = useTranslation(['index', 'common']);
@@ -73,17 +108,33 @@ const Home: NextPage = () => {
               title={t('activities.1.title')}
               description={t('activities.1.description')}
               textClass="!text-whitesmoke"
-            />
+            >
+              <ActionButton>
+                <Link href="/docs" passHref>
+                  <ActionLink href="/docs">{t('activities.1.action')}</ActionLink>
+                </Link>
+              </ActionButton>
+            </Card>
             <Card
               title={t('activities.2.title')}
               description={t('activities.2.description')}
               textClass="!text-whitesmoke"
-            />
+            >
+              <ActionButton>
+                <ExternalActionLink href="https://discord.gg/K3prMrmS7e">{t('activities.2.action')}</ExternalActionLink>
+              </ActionButton>
+            </Card>
             <Card
               title={t('activities.3.title')}
               description={t('activities.3.description')}
               textClass="!text-whitesmoke"
-            />
+            >
+              <ActionButton>
+                <ExternalActionLink href="https://github.com/Laze-Project-Team">
+                  {t('activities.3.action')}
+                </ExternalActionLink>
+              </ActionButton>
+            </Card>
           </CardContainer>
         </SectionContainer>
       </IndexLayout>

@@ -1,4 +1,22 @@
 {
-  "Editor": "エディタ",
-  "Docs": "ドキュメンテーション"
+  "header": {
+    "Editor": "エディタ",
+    "Docs": "ドキュメンテーション"
+  },
+
+  "footer": {
+    "Guides": "ガイドとヘルプ",
+    "guides": {
+      "Terms": "利用規約",
+      "Guideline": "ガイドライン",
+      "Privacy": "プライバシーポリシー"
+    },
+
+    "Sitemap": "サイトマップ",
+    "sitemap": {
+      "Home": "ホーム",
+      "Editor": "エディタ",
+      "Docs": "ドキュメンテーション"
+    }
+  }
 }

@@ -1,6 +1,5 @@
 {
   "title": "プログラミング言語Lazeのホームページ",
-  "motto": "全ての人に快適なプログラミングを",
   "Try Laze": "今すぐLazeを始める",
 
   "Laze Features": "なぜLazeなのか？",
@@ -36,19 +35,22 @@
     }
   },
 
-  "Join Laze": "",
+  "Join Laze": "Lazeに参加する",
   "activities": {
     "1": {
-      "title": "",
-      "description": ""
+      "title": "ドキュメントを読む",
+      "description": "Lazeのドキュメントを読んでみましょう。オンライン上に無料で公開されていて誰でも読むことができます。",
+      "action": "Lazeのドキュメンテーション"
     },
     "2": {
-      "title": "",
-      "description": ""
+      "title": "コミュニティに参加する",
+      "description": "コミュニティで質問したり、質問に答えたりしてコミュニティを盛り上げていきましょう。コミュニティの活性化は言語そのものの活性化につながります。",
+      "action": "Lazeのコミュニティ"
     },
     "3": {
-      "title": "",
-      "description": ""
+      "title": "Lazeに貢献する",
+      "description": "Lazeの標準ライブラリを書いたり、バグを報告したり、改善案を提案したりとできることはたくさんあります。Lazeはまだまだ発展途上の言語なので、Lazeを皆さんの手でより良いものにして行きましょう。",
+      "action": "LazeのGitHub"
     }
   }
 }

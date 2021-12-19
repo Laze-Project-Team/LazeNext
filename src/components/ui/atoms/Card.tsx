@@ -20,7 +20,7 @@ export const CardContainer: FC = ({ children }) => {
   );
 };
 
-export const Card: VFC<CardProps> = ({ title, description, icon, textClass, className }) => (
+export const Card: FC<CardProps> = ({ children, title, description, icon, textClass, className }) => (
   <>
     <div
       className={cx(
@@ -31,11 +31,12 @@ export const Card: VFC<CardProps> = ({ title, description, icon, textClass, clas
       <div>
         <IconContext.Provider value={{ size: '4rem', color: 'whitesmoke' }}>{icon}</IconContext.Provider>
       </div>
-      <div>
+      <div className="flex-1 flex flex-col">
         <Typography.Title level={3} className={cx('font-bold !text-xl md:text-center mt-1 mb-2', textClass)}>
           {title}
         </Typography.Title>
         <Typography.Text className={textClass}>{description}</Typography.Text>
+        {children}
       </div>
     </div>
   </>

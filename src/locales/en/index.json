@@ -1,6 +1,5 @@
 {
   "title": "Home Page for Laze Programming Language",
-  "motto": "Great Programming Experience For All",
   "Try Laze": "Try Laze now!",
 
   "Laze Features": "Why Laze? : Laze Features",
@@ -39,15 +38,18 @@
     "activities": {
       "1": {
         "title": "",
-        "description": ""
+        "description": "",
+        "action": ""
       },
       "2": {
         "title": "",
-        "description": ""
+        "description": "",
+        "action": ""
       },
       "3": {
         "title": "",
-        "description": ""
+        "description": "",
+        "action": ""
       }
     }
   }
