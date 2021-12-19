@@ -1,22 +1,42 @@
-import { Layout, Menu, Typography } from 'antd';
-import type { FC, ReactNode, VFC } from 'react';
+import { Button, Drawer, Layout, Menu, Typography } from 'antd';
+import { FC, ReactNode, useEffect, useState, VFC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { IconContext } from 'react-icons';
 import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
+import { AiOutlineMenu } from 'react-icons/ai';
 
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
+import { StyledLink } from '@/components/ui/atoms/StyledLink';
+import useMediaQuery from '@/components/functional/useMediaQuery';
 
 export type IndexLayoutProps = {
   children: ReactNode;
 };
 
+const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
+  <StyledLink
+    className="px-4 text-gray-400 hover:text-gray-200 hover:bg-white/10 transition-colors duration-200"
+    href={href}
+  >
+    {children}
+  </StyledLink>
+);
+
+const QUERY_SM_DOWN = '(max-width: 576px)' as const;
+const QUERY_MD_UP = '(min-width: 577px)' as const;
+
 const IndexHeader: VFC = () => {
   const [t] = useTranslation(['layout', 'common']);
+  const query = typeof window !== 'undefined' ? useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP]) : QUERY_MD_UP;
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const onClick = () => setIsDrawerOpen(true);
+  const onClose = () => setIsDrawerOpen(false);
 
   return (
     <>
-      <div className="flex items-center">
+      <div className="max-w-[58rem] mx-auto flex items-center">
         <div className="inline-flex px-4 py-4 cursor-pointer hover:bg-white/10 transition-colors duration-200">
           <Link href="/">
             <div className="inline-flex">
@@ -25,14 +45,28 @@ const IndexHeader: VFC = () => {
             </div>
           </Link>
         </div>
-        <Menu theme="dark" mode="horizontal">
-          <Menu.Item key="editor">
-            <Link href="/editor">{t('header.Editor')}</Link>
-          </Menu.Item>
-          <Menu.Item key="docs">
-            <Link href="/docs">{t('header.Docs')}</Link>
-          </Menu.Item>
-        </Menu>
+        {query === QUERY_SM_DOWN ? (
+          <div className="ml-auto flex items-center">
+            <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
+              <AiOutlineMenu size="1.4rem" />
+            </Button>
+            <Drawer title="サイトマップ" placement="right" onClose={onClose} visible={isDrawerOpen}>
+              <Menu>
+                <Menu.Item>
+                  <Link href="/editor">{t('header.Editor')}</Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link href="/docs">{t('header.Docs')}</Link>
+                </Menu.Item>
+              </Menu>
+            </Drawer>
+          </div>
+        ) : (
+          <div className="flex">
+            <NavLink href="/editor">{t('header.Editor')}</NavLink>
+            <NavLink href="/docs">{t('header.Docs')}</NavLink>
+          </div>
+        )}
       </div>
     </>
   );
@@ -125,7 +159,7 @@ const IndexLayout: FC<IndexLayoutProps> = ({ children }) => {
   return (
     <>
       <Layout className="overflow-x-hidden">
-        <Layout.Header className="z-[1] w-full">
+        <Layout.Header className="z-[1] w-full !px-2">
           <IndexHeader></IndexHeader>
         </Layout.Header>
         <Layout.Content className="w-[60rem] max-w-full mx-auto px-4 pt-4">{children}</Layout.Content>
