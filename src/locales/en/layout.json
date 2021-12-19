@@ -1,0 +1,22 @@
+{
+  "header": {
+    "Editor": "Editor",
+    "Docs": "Documantation"
+  },
+
+  "footer": {
+    "Guides": "Guide & Help",
+    "guides": {
+      "Terms": "Terms of use",
+      "Guideline": "Guideline",
+      "Privacy": "Privacy Policy"
+    },
+
+    "Sitemap": "Sitemap",
+    "sitemap": {
+      "Home": "Home",
+      "Editor": "Editor",
+      "Docs": "Documantation"
+    }
+  }
+}
