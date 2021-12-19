@@ -19,7 +19,7 @@ const ActionButton: FC = ({ children }) => (
 );
 
 const actionLinkStyle =
-  'block !text-whitesmoke hover:!text-[#BED7E3] font-bold hover:bg-white/5 transition-colors rounded-sm shadow-sm p-2';
+  'block w-full text-center mx-2 !text-whitesmoke hover:!text-[#BED7E3] font-bold hover:bg-white/5 transition-colors rounded-sm shadow-sm p-2';
 
 type ActionLinkProps = {
   href: string;
