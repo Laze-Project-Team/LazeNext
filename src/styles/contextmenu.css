@@ -1,0 +1,40 @@
+html:root {
+  --editor-contextmenu-background: #fff;
+  --editor-contextmenu-background-hover: var(--laze-primary-600);
+  --editor-contextmenu-text: #616161;
+  --editor-contextmenu-text-hover: #eee;
+  --editor-contextmenu-separator: #ccc;
+}
+
+html.dark {
+  --editor-contextmenu-background: #3c3c3c;
+  --editor-contextmenu-background-hover: #094771;
+  --editor-contextmenu-text: #d4d4d4;
+  --editor-contextmenu-text-hover: var(--editor-contextmenu-text);
+  --editor-contextmenu-separator: #5b5b5c;
+}
+
+.react-contexify__theme--editor {
+  min-width: 200px;
+  padding: 0.5rem 0.125rem;
+  font-size: 0.8rem;
+  background-color: var(--editor-contextmenu-background);
+  border-radius: 0;
+}
+
+.react-contexify__theme--editor .react-contexify__item__content {
+  padding: 0.125rem 1rem;
+  color: var(--editor-contextmenu-text);
+  cursor: pointer;
+}
+
+.react-contexify__theme--editor .react-contexify__item:hover .react-contexify__item__content {
+  color: var(--editor-contextmenu-text-hover);
+  background-color: var(--editor-contextmenu-background-hover);
+}
+
+.react-contexify__separator {
+  width: auto;
+  margin: 4px 0.5rem;
+  background-color: var(--editor-contextmenu-separator);
+}

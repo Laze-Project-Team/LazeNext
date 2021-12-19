@@ -1,0 +1,54 @@
+html:root {
+  /* メイン */
+  --rct-color-tree-bg: #f3f3f3;
+  --rct-color-tree-focus-outline: transparent;
+
+  /* フォーカス時のアイテム */
+  --rct-color-focustree-item-selected-bg: var(--laze-primary-400);
+  --rct-color-focustree-item-selected-text: #eee;
+  --rct-color-focustree-item-focused-border: #1b749d;
+  --rct-color-focustree-item-draggingover-bg: rgba(0, 0, 0, 0.3);
+  --rct-color-focustree-item-draggingover-color: #eee;
+
+  /* 非フォーカス時のアイテム */
+  --rct-color-nonfocustree-item-selected-bg: #ddd;
+  --rct-color-nonfocustree-item-selected-text: inherit;
+  --rct-color-nonfocustree-item-focused-border: transparent;
+
+  /* その他 */
+  --rct-color-search-highlight-bg: #a2aed2;
+  --rct-color-drag-between-line-bg: #1b749d;
+  --rct-color-arrow: #c5c5c5;
+
+  /* アイテムの高さ */
+  --rct-item-height: 22px;
+}
+
+html.dark {
+  /* メイン */
+  --rct-color-tree-bg: #262526;
+
+  /* フォーカス時のアイテム */
+  --rct-color-focustree-item-selected-bg: #14506e;
+  --rct-color-focustree-item-selected-text: #eee;
+  --rct-color-focustree-item-focused-border: #1b749d;
+  --rct-color-focustree-item-draggingover-bg: rgba(255, 255, 255, 0.1);
+  --rct-color-focustree-item-draggingover-color: #eee;
+
+  /* 非フォーカス時のアイテム */
+  --rct-color-nonfocustree-item-selected-bg: #37373d;
+  --rct-color-nonfocustree-item-selected-text: #eee;
+
+  /* その他 */
+  --rct-color-search-highlight-bg: #a2aed2;
+  --rct-color-drag-between-line-bg: #1b749d;
+  --rct-color-arrow: #c5c5c5;
+}
+
+.rct-tree-item-renaming-input {
+  background-color: var(--rct-color-tree-bg);
+}
+
+.rct-tree-root {
+  padding: 0;
+}

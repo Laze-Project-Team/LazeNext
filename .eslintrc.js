@@ -69,6 +69,13 @@ module.exports = {
       files: ["**/*.tsx"],
       rules: {
         "@typescript-eslint/explicit-module-boundary-types": "off"
+      }
+    },
+    {
+      files: ["src/features/redux/*.ts"],
+      rules: {
+        "no-param-assign": "off"
+      }
     }
-  }],
+  ],
 }
