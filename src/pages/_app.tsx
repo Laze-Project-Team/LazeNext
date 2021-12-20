@@ -1,7 +1,6 @@
 import 'nprogress/nprogress.css';
 import '@/styles/tailwind.css';
 import 'antd/dist/antd.css';
-
 // /editor
 import 'react-complex-tree/lib/style.css';
 import '@/styles/tree.css';
@@ -10,9 +9,9 @@ import '@/styles/contextmenu.css';
 import '@/styles/editor-scrollable.css';
 
 import type { AppProps } from 'next/app';
+import { appWithTranslation } from 'next-i18next';
 import nprogress from 'nprogress';
 import { useEffect } from 'react';
-import { appWithTranslation } from 'next-i18next';
 import { Provider } from 'react-redux';
 
 import { store } from '@/features/redux/root';

@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import type { VFC } from 'react';
-import React from 'react';
 
 import { cx } from '@/features/utils/cx';
 
@@ -12,7 +11,7 @@ type LazeLogoProps = {
   className?: string;
 };
 
-const LazeLogo: VFC<LazeLogoProps> = ({ size, option = 'logo', className }) => {
+export const LazeLogo: VFC<LazeLogoProps> = ({ size, option = 'logo', className }) => {
   return (
     <>
       <div className={cx('inline-flex select-none pointer-events-none', className)}>
@@ -25,5 +24,3 @@ const LazeLogo: VFC<LazeLogoProps> = ({ size, option = 'logo', className }) => {
 LazeLogo.defaultProps = {
   option: 'logo',
 };
-
-export { LazeLogo };

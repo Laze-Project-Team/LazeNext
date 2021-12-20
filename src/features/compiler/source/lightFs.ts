@@ -1,4 +1,4 @@
-export default `#version 300 es
+export const lightFs = `#version 300 es
 
 #ifdef GL_ES
 precision mediump float;

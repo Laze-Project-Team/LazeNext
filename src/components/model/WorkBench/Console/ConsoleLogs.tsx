@@ -1,15 +1,15 @@
-import { VFC } from 'react';
-import { useMemo, useEffect } from 'react';
+import type { VFC } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 import { ConsoleLog } from '@/components/model/WorkBench/Console/ConsoleLog';
 import { ConsoleSeparator } from '@/components/model/WorkBench/Console/ConsoleSeparator';
-
-import { consoleSlice, consoleState } from '@/features/redux/console';
-import { RootState } from '@/features/redux/root';
+import type { consoleState } from '@/features/redux/console';
+import { consoleSlice } from '@/features/redux/console';
+import type { RootState } from '@/features/redux/root';
 import { getHash } from '@/features/utils/hash';
 
-const Console: VFC<consoleState & { consoleRef: React.RefObject<HTMLDivElement> }> = ({
+const UnconnectedConsoleLogs: VFC<consoleState & { consoleRef: React.RefObject<HTMLDivElement> }> = ({
   console,
   active,
   scrolled,
@@ -20,12 +20,12 @@ const Console: VFC<consoleState & { consoleRef: React.RefObject<HTMLDivElement> 
   const dispacher = useDispatch();
   const { setScrolled } = consoleSlice.actions;
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (consoleRef.current) {
       const { scrollHeight, scrollTop, clientHeight } = consoleRef.current;
       dispacher(setScrolled(scrollHeight <= scrollTop + clientHeight + 1));
     }
-  };
+  }, [consoleRef, dispacher, setScrolled]);
 
   useEffect(() => {
     if (consoleRef.current) {
@@ -36,11 +36,11 @@ const Console: VFC<consoleState & { consoleRef: React.RefObject<HTMLDivElement> 
     }
   }, [consoleRef, handleScroll, scrolled, console]);
 
-  const render = useMemo(
-    () => (
+  const render = useMemo(() => {
+    return (
       <>
-        {activeConsole?.log.map((log) =>
-          log.type === 'separator' ? (
+        {activeConsole?.log.map((log) => {
+          return log.type === 'separator' ? (
             <ConsoleSeparator />
           ) : (
             <ConsoleLog
@@ -49,18 +49,19 @@ const Console: VFC<consoleState & { consoleRef: React.RefObject<HTMLDivElement> 
               level={log.level}
               key={`log-${log.timestamp}-${getHash(6)}`}
             />
-          )
-        )}
+          );
+        })}
       </>
-    ),
-    [activeConsole]
-  );
+    );
+  }, [activeConsole]);
 
   return render;
 };
 
-const mapStateToProps = (state: RootState) => ({
-  ...state.console,
-});
+const mapStateToProps = (state: RootState) => {
+  return {
+    ...state.console,
+  };
+};
 
-export default connect(mapStateToProps)(Console);
+export const ConsoleLogs = connect(mapStateToProps)(UnconnectedConsoleLogs);

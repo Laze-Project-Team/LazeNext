@@ -1,44 +1,51 @@
 import { Button, Drawer, Layout, Menu, Typography } from 'antd';
-import { FC, ReactNode, useEffect, useState, VFC } from 'react';
-import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
+import type { FC, ReactNode, VFC } from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IconContext } from 'react-icons';
-import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
 import { AiOutlineMenu } from 'react-icons/ai';
+import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 
+import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
-import useMediaQuery from '@/components/functional/useMediaQuery';
 
 export type IndexLayoutProps = {
   children: ReactNode;
 };
 
-const NavLink = ({ href, children }: { href: string; children: ReactNode }) => (
-  <StyledLink
-    className="px-4 text-gray-400 hover:text-gray-200 hover:bg-white/10 transition-colors duration-200"
-    href={href}
-  >
-    {children}
-  </StyledLink>
-);
+const NavLink = ({ href, children }: { href: string; children: ReactNode }) => {
+  return (
+    <StyledLink
+      className="px-4 text-gray-400 hover:text-gray-200 hover:bg-white/10 transition-colors duration-200"
+      href={href}
+    >
+      {children}
+    </StyledLink>
+  );
+};
 
 const QUERY_SM_DOWN = '(max-width: 576px)' as const;
 const QUERY_MD_UP = '(min-width: 577px)' as const;
 
 const IndexHeader: VFC = () => {
   const [t] = useTranslation(['layout', 'common']);
-  const query = typeof window !== 'undefined' ? useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP]) : QUERY_MD_UP;
+  const query = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP]);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const onClick = () => setIsDrawerOpen(true);
-  const onClose = () => setIsDrawerOpen(false);
+  const onClick = () => {
+    return setIsDrawerOpen(true);
+  };
+  const onClose = () => {
+    return setIsDrawerOpen(false);
+  };
 
   return (
     <>
       <div className="max-w-[58rem] mx-auto flex items-center">
         <div className="inline-flex px-4 py-4 cursor-pointer hover:bg-white/10 transition-colors duration-200">
-          <Link href="/">
+          <Link href="/" passHref>
             <div className="inline-flex">
               <LazeLogo size={32}></LazeLogo>
               <Typography.Text className="!text-laze-primary text-2xl font-bold ml-2 select-none">Laze</Typography.Text>
@@ -77,27 +84,30 @@ type ContentsListProps = {
   children: ReactNode;
 };
 
-const ContentsList: FC<ContentsListProps> = ({ title, children }) => (
-  <div className="flex flex-col space-y-1">
-    <Typography.Text strong className="!text-gray-100">
-      {title}
-    </Typography.Text>
-    {children}
-  </div>
-);
+const ContentsList: FC<ContentsListProps> = ({ title, children }) => {
+  return (
+    <div className="flex flex-col space-y-1">
+      <Typography.Text strong className="!text-gray-100">
+        {title}
+      </Typography.Text>
+      {children}
+    </div>
+  );
+};
 
 type FooterLinkProps = {
   href: string;
-  className?: string;
 };
 
-const FooterLink: FC<FooterLinkProps> = ({ children, href }) => (
-  <>
-    <Link href={href} passHref>
-      <a className="text-gray-400 hover:text-gray-300">{children}</a>
-    </Link>
-  </>
-);
+const FooterLink: FC<FooterLinkProps> = ({ children, href }) => {
+  return (
+    <>
+      <Link href={href} passHref>
+        <a className="text-gray-400 hover:text-gray-300">{children}</a>
+      </Link>
+    </>
+  );
+};
 
 const IndexFooter: VFC = () => {
   const [t] = useTranslation(['layout', 'common']);

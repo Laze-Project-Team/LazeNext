@@ -2,13 +2,15 @@ import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-const Portal: FC = ({ children }) => {
+export const Portal: FC = ({ children }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
 
-    return () => setMounted(false);
+    return () => {
+      return setMounted(false);
+    };
   }, []);
 
   const portal =
@@ -22,5 +24,3 @@ const Portal: FC = ({ children }) => {
 
   return mounted ? createPortal(children, portal) : null;
 };
-
-export default Portal;

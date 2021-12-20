@@ -2,8 +2,8 @@ import type { VFC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import { explorerSlice } from '@/features/redux/explorer';
 import { ContextMenuTemplate } from '@/components/model/Explorer/ContextMenu/ContextMenu';
+import { explorerSlice } from '@/features/redux/explorer';
 
 export const RootContextMenu: VFC = () => {
   const [t] = useTranslation('editor');
@@ -13,11 +13,11 @@ export const RootContextMenu: VFC = () => {
   const RootContextMenuItems = [
     {
       name: t('New File'),
-      callback: (path: string) => dispatcher(createFile({ path })),
+      callback: (path: string) => {return dispatcher(createFile({ path }))},
     },
     {
       name: t('New Folder'),
-      callback: (path: string) => dispatcher(createFolder({ path })),
+      callback: (path: string) => {return dispatcher(createFolder({ path }))},
     },
   ];
 

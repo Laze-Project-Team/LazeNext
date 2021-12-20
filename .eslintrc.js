@@ -57,8 +57,6 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/consistent-type-imports": ["warn", { prefer: "type-imports" }],
     "@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: "^_", argsIgnorePattern: "^_", }], // 未使用変数はエラー
-    // tailwind.config.js などの config ファイル、ESLint の対象外にする
-    "ignorePatterns": ["*.config.js"],
   },
   overrides: [// 一部ルールを除外する
     {

@@ -2,7 +2,7 @@ import type { Dispatch } from 'redux';
 
 import { getImports } from '@/features/compiler/getImports';
 import { initialKeyControl } from '@/features/compiler/keycontrol';
-import { compilerProps, getImportsProps } from '@/typings/compiler';
+import type { compilerProps, getImportsProps } from '@/typings/compiler';
 
 export const getProps = (dispatcher: Dispatch): compilerProps => {
   const canvas = <HTMLCanvasElement>document.getElementById('output-canvas');

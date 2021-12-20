@@ -1,20 +1,17 @@
+import { notification } from 'antd';
 import type { VFC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { notification } from 'antd';
 import { VscRunAll } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
-
-import { getName } from '@/features/utils/path';
-import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 import { useCompiler } from '@/features/compiler';
+import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
+import { getName } from '@/features/utils/path';
 
 export const CompileButton: VFC = () => {
   const [t] = useTranslation('editor');
 
-  if (typeof window !== 'undefined') {
-    useCompiler();
-  }
+  useCompiler();
 
   const onClick = () => {
     const code = getCurrentCode();

@@ -1,16 +1,14 @@
+import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useRef } from 'react';
 import { connect } from 'react-redux';
 
-import ConsoleLogs from '@/components/model/WorkBench/Console/ConsoleLogs';
+import { ConsoleLogs } from '@/components/model/WorkBench/Console/ConsoleLogs';
 import { ConsolePanelListItem } from '@/components/model/WorkBench/Console/ConsolePanelListItem';
+import type { consoleState } from '@/features/redux/console';
+import type { RootState } from '@/features/redux/root';
 
-import { RootState } from '@/features/redux/root';
-
-import { consoleState } from '@/features/redux/console';
-import { useTranslation } from 'next-i18next';
-
-const Console: VFC<Omit<consoleState, 'scrolled'>> = ({ console, active }) => {
+const UnconnectedConsole: VFC<Omit<consoleState, 'scrolled'>> = ({ console, active }) => {
   const [t] = useTranslation('editor');
 
   const consoleRef = useRef<HTMLDivElement>(null);
@@ -21,23 +19,27 @@ const Console: VFC<Omit<consoleState, 'scrolled'>> = ({ console, active }) => {
         <ConsoleLogs consoleRef={consoleRef} />
       </div>
       <div className="w-28 ml-1 border-l-[1px] border-gray-300 dark:border-gray-700">
-        {Object.keys(console).map((key) => (
-          <ConsolePanelListItem
-            id={key}
-            label={key === 'master' ? t('Master') : console[key].label}
-            active={key === active}
-            isMaster={key === 'master'}
-            key={key}
-          />
-        ))}
+        {Object.keys(console).map((key) => {
+          return (
+            <ConsolePanelListItem
+              id={key}
+              label={key === 'master' ? t('Master') : console[key].label}
+              active={key === active}
+              isMaster={key === 'master'}
+              key={key}
+            />
+          );
+        })}
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  console: state.console.console,
-  active: state.console.active,
-});
+const mapStateToProps = (state: RootState) => {
+  return {
+    console: state.console.console,
+    active: state.console.active,
+  };
+};
 
-export default connect(mapStateToProps)(Console);
+export const Console = connect(mapStateToProps)(UnconnectedConsole);

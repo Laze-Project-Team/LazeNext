@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { ContextMenuTemplate } from '@/components/model/Explorer/ContextMenu/ContextMenu';
-
 import { explorerSlice } from '@/features/redux/explorer';
-import { ContextMenuItems } from '@/typings/contextmenu';
+import type { ContextMenuItems } from '@/typings/contextmenu';
 
 export const FileContextMenu: VFC = () => {
   const [t] = useTranslation('editor');

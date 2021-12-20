@@ -1,6 +1,6 @@
 import type { VFC } from 'react';
 
-import { sampleListType } from '@/typings/samplelist';
+import type { sampleListType } from '@/typings/samplelist';
 
 type SampleListProps = {
   samples: sampleListType;
@@ -9,12 +9,12 @@ type SampleListProps = {
 
 export const SampleList: VFC<SampleListProps> = ({ samples, setSelect }) => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e: React.ChangeEvent<HTMLInputElement>) =>
-    void setSelect(e.target.value);
+    {return void setSelect(e.target.value)};
 
   return (
     <>
       <div className="flex flex-col space-y-1 dark:bg-[#3c3c3c] py-1 px-2 text-[#ccc] max-h-40 overflow-auto">
-        {Object.keys(samples).map((key) => (
+        {Object.keys(samples).map((key) => {return (
           <div key={key} className="">
             <input
               id={`samplelist-select-${key}`}
@@ -31,7 +31,7 @@ export const SampleList: VFC<SampleListProps> = ({ samples, setSelect }) => {
               {samples[key].name}
             </label>
           </div>
-        ))}
+        )})}
       </div>
     </>
   );

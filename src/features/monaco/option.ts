@@ -1,17 +1,12 @@
-import { EditorConstructionOptions } from 'react-monaco-editor';
+import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 
-const options: EditorConstructionOptions = {
-  language: 'laze',
-  theme: 'laze-theme',
+export const options: monaco.editor.IEditorConstructionOptions = {
   selectOnLineNumbers: true,
   automaticLayout: true,
   autoClosingBrackets: 'always',
   autoClosingOvertype: 'always',
-  'semanticHighlighting.enabled': true,
-  wordBasedSuggestions: false,
+  // 'semanticHighlighting.enabled': true,
+  // wordBasedSuggestions: false,
   wordSeparators: `()（）[]［］{}｛｝'’"”「」&＆|｜=＝-ー+＋*＊/%％,.:：;；`,
-  fontFamily:
-    "'Consolas', 'Droid Sans Mono', 'Courier New', ui-monospace, 'Droid Sans Fallback'",
+  fontFamily: "'Consolas', 'Droid Sans Mono', 'Courier New', ui-monospace, 'Droid Sans Fallback'",
 };
-
-export default options;

@@ -1,20 +1,25 @@
-import { forwardRef } from 'react';
-import type { ReactNode } from 'react';
 import Link from 'next/link';
+import type { ForwardRefRenderFunction, ReactNode } from 'react';
+import { forwardRef } from 'react';
 
-type StyledLinkProps = {
+export type StyledLinkProps = {
   children: ReactNode;
   href: string;
   className?: string;
   onClick?: () => void;
 };
 
-export const StyledLink = forwardRef<HTMLAnchorElement, StyledLinkProps>(
-  ({ children, onClick, href, className }, ref) => (
+const ForwardedStyledLink: ForwardRefRenderFunction<HTMLAnchorElement, StyledLinkProps> = (
+  { children, onClick, href, className },
+  ref
+) => {
+  return (
     <Link href={href} passHref>
       <a href={href} className={className} onClick={onClick} ref={ref}>
         {children}
       </a>
     </Link>
-  )
-);
+  );
+};
+
+export const StyledLink = forwardRef<HTMLAnchorElement, StyledLinkProps>(ForwardedStyledLink);

@@ -1,16 +1,23 @@
-import { TreeItem, TreeItemIndex } from 'react-complex-tree';
-import { directoryType, direntsType } from '@/typings/directory';
+import type { TreeItem, TreeItemIndex } from 'react-complex-tree';
+
 import { getDirents } from '@/features/utils/dirents2directory';
+import type { directoryType, direntsType } from '@/typings/directory';
 
 type TreeItemType = Record<TreeItemIndex, TreeItem>;
 
 const readDirectory = (dirents: directoryType[], path = ''): TreeItemType => {
   let result: TreeItemType = {};
-  for (const dirent of dirents) {
+  for (let i = 0; i < dirents.length; i++) {
+    const dirent = dirents[i];
     const currentPath = `${path}/${dirent.name}`;
     result[currentPath] = {
       index: currentPath,
-      children: dirent.type === 'folder' ? dirent.children.map((child) => `${currentPath}/${child.name}`) : [],
+      children:
+        dirent.type === 'folder'
+          ? dirent.children.map((child) => {
+              return `${currentPath}/${child.name}`;
+            })
+          : [],
       hasChildren: dirent.type === 'folder',
       canMove: true,
       canRename: true,
@@ -37,7 +44,9 @@ export const getTreeItems = (dirents: direntsType): TreeItemType => {
   const result: TreeItemType = {
     root: {
       index: 'root',
-      children: directory.map((dirent) => `/${dirent.name}`),
+      children: directory.map((dirent) => {
+        return `/${dirent.name}`;
+      }),
       data: {},
     },
     ...readDirectory(directory),

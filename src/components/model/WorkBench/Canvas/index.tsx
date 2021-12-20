@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { useContext } from 'react';
+
 import { ratioRefContext } from '@/pages/editor';
 
 export const CanvasArea: FC = () => {

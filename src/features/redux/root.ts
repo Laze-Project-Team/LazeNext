@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 
-import { explorerSlice } from '@/features/redux/explorer';
 import { consoleSlice } from '@/features/redux/console';
+import { explorerSlice } from '@/features/redux/explorer';
 
 const rootReducer = combineReducers({
   explorer: explorerSlice.reducer,

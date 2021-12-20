@@ -1,34 +1,28 @@
 import type { VFC } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import {
-  ControlledTreeEnvironment,
-  Tree,
-  TreeEnvironmentRef,
-  TreeItem,
-  TreeItemIndex,
-  TreeRef,
-} from 'react-complex-tree';
+import type { TreeEnvironmentRef, TreeItem, TreeItemIndex, TreeRef } from 'react-complex-tree';
+import { ControlledTreeEnvironment, Tree } from 'react-complex-tree';
+import { VscChevronDown, VscChevronRight } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
-import { VscChevronRight, VscChevronDown } from 'react-icons/vsc';
 
-import RenameInput from '@/components/model/Explorer/RenameInput';
-import { FolderContextMenu } from '@/components/model/Explorer/ContextMenu/FolderContextMenu';
-import { FileContextMenu } from '@/components/model/Explorer/ContextMenu/FileContextMenu';
-import { RootContextMenu } from '@/components/model/Explorer/ContextMenu/RootContextMenu';
 import { ContextMenuTrigger } from '@/components/model/Explorer/ContextMenu/ContextMenuTrigger';
-
+import { FileContextMenu } from '@/components/model/Explorer/ContextMenu/FileContextMenu';
+import { FolderContextMenu } from '@/components/model/Explorer/ContextMenu/FolderContextMenu';
+import { RootContextMenu } from '@/components/model/Explorer/ContextMenu/RootContextMenu';
+import { RenameInput } from '@/components/model/Explorer/RenameInput';
+import type { ExplorerState } from '@/features/redux/explorer';
+import { explorerSlice } from '@/features/redux/explorer';
+import type { RootState } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
-import { getBase, getName } from '@/features/utils/path';
 import { getTreeItems } from '@/features/utils/dirents2treeitem';
-import { RootState } from '@/features/redux/root';
-import { explorerSlice, ExplorerState } from '@/features/redux/explorer';
+import { getBase, getName } from '@/features/utils/path';
 
 type DirectoryViewProps = {
   directory: Record<TreeItemIndex, TreeItem>;
   directoryState: ExplorerState['directory'];
 };
 
-const DirectoryView: VFC<DirectoryViewProps> = ({ directory, directoryState }) => {
+const UnconnectedDirectoryView: VFC<DirectoryViewProps> = ({ directory, directoryState }) => {
   const [focusedItem, setFocusedItem] = useState<TreeItemIndex>();
   const [expandedItems, setExpandedItems] = useState<TreeItemIndex[]>([]);
   const [selectedItems, setSelectedItems] = useState<TreeItemIndex[]>([]);
@@ -41,7 +35,8 @@ const DirectoryView: VFC<DirectoryViewProps> = ({ directory, directoryState }) =
   const { openFile, renameDirent, startRenaming, stopRenaming } = explorerSlice.actions;
 
   useEffect(() => {
-    for (const path of Object.keys(directoryState)) {
+    for (let i = 0; i < Object.keys(directoryState).length; i++) {
+      const path = Object.keys(directoryState)[i];
       if (directoryState[path].isRenaming) {
         treeRef.current?.startRenamingItem(path);
         dispatcher(startRenaming({ path }));
@@ -68,7 +63,9 @@ const DirectoryView: VFC<DirectoryViewProps> = ({ directory, directoryState }) =
             <ControlledTreeEnvironment
               ref={environmentRef}
               items={directory}
-              getItemTitle={(item) => item.data.name}
+              getItemTitle={(item) => {
+                return item.data.name;
+              }}
               viewState={{
                 'directory-view': {
                   focusedItem,
@@ -157,21 +154,29 @@ const DirectoryView: VFC<DirectoryViewProps> = ({ directory, directoryState }) =
                 );
               }}
               autoFocus={false}
-              onFocusItem={(item) => setFocusedItem(item.index)}
-              onExpandItem={(item) => setExpandedItems([...expandedItems, item.index])}
-              onCollapseItem={(item) =>
-                setExpandedItems(expandedItems.filter((expandedItemIndex) => expandedItemIndex !== item.index))
-              }
-              onPrimaryAction={(item) =>
-                item.data.type === 'file' && dispatcher(openFile({ path: item.index as string }))
-              }
+              onFocusItem={(item) => {
+                return setFocusedItem(item.index);
+              }}
+              onExpandItem={(item) => {
+                return setExpandedItems([...expandedItems, item.index]);
+              }}
+              onCollapseItem={(item) => {
+                return setExpandedItems(
+                  expandedItems.filter((expandedItemIndex) => {
+                    return expandedItemIndex !== item.index;
+                  })
+                );
+              }}
+              onPrimaryAction={(item) => {
+                return item.data.type === 'file' && dispatcher(openFile({ path: item.index as string }));
+              }}
               onDrop={(items, targetItem) => {
                 const targetBase = targetItem.targetType === 'item' ? targetItem.targetItem : targetItem.parentItem;
 
-                for (const item of items) {
+                for (let i = 0; i < items.length; i++) {
                   const payload = {
-                    oldPath: item.index as string,
-                    newPath: [targetBase, '/', getName(item.index as string)].join(''),
+                    oldPath: items[i].index as string,
+                    newPath: [targetBase, '/', getName(items[i].index as string)].join(''),
                   };
 
                   dispatcher(renameDirent(payload));
@@ -197,9 +202,9 @@ const DirectoryView: VFC<DirectoryViewProps> = ({ directory, directoryState }) =
                 setIsRename(false);
               }}
               onSelectItems={(items) => {
-                const selectItem = items.filter(
-                  (item) => !selectedItems.includes(item) || directory[item]?.data.type === 'folder'
-                );
+                const selectItem = items.filter((item) => {
+                  return !selectedItems.includes(item) || directory[item]?.data.type === 'folder';
+                });
                 setSelectedItems(selectItem);
               }}
               keyboardBindings={{
@@ -227,9 +232,11 @@ const DirectoryView: VFC<DirectoryViewProps> = ({ directory, directoryState }) =
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  directory: getTreeItems(state.explorer.directory),
-  directoryState: state.explorer.directory,
-});
+const mapStateToProps = (state: RootState) => {
+  return {
+    directory: getTreeItems(state.explorer.directory),
+    directoryState: state.explorer.directory,
+  };
+};
 
-export default connect(mapStateToProps)(DirectoryView);
+export const DirectoryView = connect(mapStateToProps)(UnconnectedDirectoryView);

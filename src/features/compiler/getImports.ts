@@ -1,9 +1,9 @@
 import type { Dispatch } from 'redux';
 
-import { consoleSlice } from '@/features/redux/console';
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
 import { updatePosition } from '@/features/compiler/initialize/updatePosition';
-import { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
+import { consoleSlice } from '@/features/redux/console';
+import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
 export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCompleteImportsFunction => {
   const { canvas, gl, webglObjects, variables } = props;
@@ -12,17 +12,17 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
 
   const imports = {
     performance: {
-      now: () => performance.now(),
+      now: () => {return performance.now()},
     },
     js: {
       mem: memory,
-      checkKeyPress: (keyCode: number) => BigInt(variables.keyControl.pressedKeys[keyCode]),
-      checkMousePress: () => BigInt(variables.keyControl.mousePressed),
-      checkRelativeMouseX: () => variables.keyControl.relativeMouseX,
-      checkRelativeMouseY: () => variables.keyControl.relativeMouseY,
-      checkAbsoluteMouseX: () => variables.keyControl.absoluteMouseX,
-      checkAbsoluteMouseY: () => variables.keyControl.absoluteMouseY,
-      rand: () => Math.random(),
+      checkKeyPress: (keyCode: number) => {return BigInt(variables.keyControl.pressedKeys[keyCode])},
+      checkMousePress: () => {return BigInt(variables.keyControl.mousePressed)},
+      checkRelativeMouseX: () => {return variables.keyControl.relativeMouseX},
+      checkRelativeMouseY: () => {return variables.keyControl.relativeMouseY},
+      checkAbsoluteMouseX: () => {return variables.keyControl.absoluteMouseX},
+      checkAbsoluteMouseY: () => {return variables.keyControl.absoluteMouseY},
+      rand: () => {return Math.random()},
       alloc: (size: number) => {
         const oldMemorySize = variables.memorySize;
         variables.memorySize += size;
@@ -30,15 +30,15 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         return oldMemorySize;
       },
       lockPointer: () => {
-        const requestPointerLock = () => canvas.requestPointerLock();
+        const requestPointerLock = () => {return canvas.requestPointerLock()};
         canvas.removeEventListener('click', requestPointerLock, false);
         canvas.addEventListener('click', requestPointerLock, false);
 
         const lockChangeAlert = () => {
           if (document.pointerLockElement === canvas) {
-            document.addEventListener('mousemove', (e) => updatePosition(e, canvas), false);
+            document.addEventListener('mousemove', (e) => {return updatePosition(e, canvas)}, false);
           } else {
-            document.removeEventListener('mousemove', (e) => updatePosition(e, canvas), false);
+            document.removeEventListener('mousemove', (e) => {return updatePosition(e, canvas)}, false);
           }
         };
 
@@ -121,7 +121,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       getAttribLocation: (i: number, offset: number, length: number) => {
         let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
         // bytes.reverse();
-        bytes = bytes.filter((element) => element !== 0);
+        bytes = bytes.filter((element) => {return element !== 0});
         const string = new TextDecoder('utf-8').decode(bytes);
 
         // string = [...string].reverse().join("");
@@ -129,7 +129,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       getUniformLocation: (i: number, offset: number, length: number) => {
         let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
-        bytes = bytes.filter((element) => element !== 0);
+        bytes = bytes.filter((element) => {return element !== 0});
         const string = new TextDecoder('utf-8').decode(bytes);
         const location = gl.getUniformLocation(webglPrograms[i], string);
         if (location) {
@@ -212,7 +212,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       loadTexture: (offset: number, length: number) => {
         let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
-        bytes = bytes.filter((element) => element !== 0);
+        bytes = bytes.filter((element) => {return element !== 0});
         const string = new TextDecoder('utf-8').decode(bytes);
 
         return loadTexture(gl, string);
@@ -245,7 +245,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         },
         logstring: (offset: number, length: number) => {
           let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
-          bytes = bytes.filter((element) => element !== 0);
+          bytes = bytes.filter((element) => {return element !== 0});
           const string = new TextDecoder('utf-8').decode(bytes);
           logConsole(string);
         },

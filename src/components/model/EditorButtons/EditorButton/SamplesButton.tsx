@@ -1,18 +1,17 @@
+import { Modal, notification, Spin } from 'antd';
+import { useRouter } from 'next/router';
 import type { FC } from 'react';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Modal, notification, Spin } from 'antd';
 import { VscFolderOpened } from 'react-icons/vsc';
+import { useDispatch } from 'react-redux';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { SampleList } from '@/components/model/EditorButtons/SampleList';
-
-import { explorerSlice } from '@/features/redux/explorer';
-import { sampleListType } from '@/typings/samplelist';
-import { direntType } from '@/typings/directory';
 import Portal from '@/components/ui/Portal';
+import { explorerSlice } from '@/features/redux/explorer';
+import type { direntType } from '@/typings/directory';
+import type { sampleListType } from '@/typings/samplelist';
 
 export const SamplesButton: FC = () => {
   const { locale } = useRouter();
@@ -32,7 +31,7 @@ export const SamplesButton: FC = () => {
     setError(null);
     setSampleList({});
     fetch(`/api/editor/samplelist/${locale}`)
-      .then((res) => res.json())
+      .then((res) => {return res.json()})
       .then((res: sampleListType) => {
         setError(null);
         setSampleList(res);
@@ -42,23 +41,23 @@ export const SamplesButton: FC = () => {
       });
   };
 
-  const abort = () => void setSelectOpen(false);
+  const abort = () => {return void setSelectOpen(false)};
 
   const load = () => {
     if (select) {
       setSelectOpen(false);
       setLoading(true);
       fetch(`/api/editor/sample/${select}`)
-        .then((res) => res.json())
+        .then((res) => {return res.json()})
         .then((res: Record<string, direntType>) => {
           const directory = Object.keys(res)
-            .map((key) => ({
+            .map((key) => {return {
               [key]: {
                 ...res[key],
                 isRenaming: false,
               },
-            }))
-            .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+            }})
+            .reduce((acc, curr) => {return { ...acc, ...curr }}, {});
           setLoading(false);
           dispatcher(setDirectory(directory));
         })

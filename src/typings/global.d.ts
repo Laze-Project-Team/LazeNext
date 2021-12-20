@@ -1,4 +1,4 @@
-import { compilerType, compilerProps } from '@/typings/compiler';
+import type { compilerProps,compilerType } from '@/typings/compiler';
 
 export type lazeObject = {
   compiler: compilerType;

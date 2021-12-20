@@ -1,10 +1,10 @@
-import type { FC } from 'react';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'next-i18next';
+import type { VFC } from 'react';
 import { VscClose } from 'react-icons/vsc';
+import { useDispatch } from 'react-redux';
 
-import { cx } from '@/features/utils/cx';
 import { consoleSlice } from '@/features/redux/console';
+import { cx } from '@/features/utils/cx';
 
 type ConsolePanelListItemProps = {
   id: string;
@@ -13,15 +13,19 @@ type ConsolePanelListItemProps = {
   isMaster: boolean;
 };
 
-export const ConsolePanelListItem: FC<ConsolePanelListItemProps> = ({ id, children, active, isMaster }) => {
+export const ConsolePanelListItem: VFC<ConsolePanelListItemProps> = ({ id, label, active, isMaster }) => {
   const [t] = useTranslation('editor');
 
   const dispatcher = useDispatch();
   const { setActive, removePanel } = consoleSlice.actions;
 
-  const onClick = (itemId: string) => dispatcher(setActive(itemId));
+  const onClick = (itemId: string) => {
+    return dispatcher(setActive(itemId));
+  };
 
-  const onDelete = (itemId: string) => dispatcher(removePanel(itemId));
+  const onDelete = (itemId: string) => {
+    return dispatcher(removePanel(itemId));
+  };
 
   return (
     <>
@@ -36,10 +40,14 @@ export const ConsolePanelListItem: FC<ConsolePanelListItemProps> = ({ id, childr
           '!bg-opacity-0',
           active ? '!bg-opacity-10' : '!hover:bg-opacity-5'
         )}
-        onClick={() => onClick(id)}
-        onKeyPress={() => void 0}
+        onClick={() => {
+          return onClick(id);
+        }}
+        onKeyPress={() => {
+          return void 0;
+        }}
       >
-        <span>{children}</span>
+        <span>{label}</span>
         {isMaster || (
           <button
             type="button"

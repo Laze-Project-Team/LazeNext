@@ -1,9 +1,13 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 const { i18n } = require('./next-i18next.config');
 
 const localeSubpaths = {};
 
 /** @type {import('next').NextConfig} */
-module.exports = {
+module.exports = withBundleAnalyzer({
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // moment.jsのignore設定
     config.plugins.push(new webpack.IgnorePlugin({
@@ -19,4 +23,4 @@ module.exports = {
     localeSubpaths,
   },
   reactStrictMode: true,
-}
+});

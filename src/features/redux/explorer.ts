@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { direntType } from '@/typings/directory';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+import type { direntType } from '@/typings/directory';
 
 interface explorerDirent extends direntType {
   isRenaming: boolean;
@@ -81,7 +83,8 @@ export const explorerSlice = createSlice({
         }
 
         if (state.directory[oldPath].type === 'folder') {
-          for (const path of Object.keys(state.directory)) {
+          for (let i = 0; i < Object.keys(state.directory).length; i++) {
+            const path = Object.keys(state.directory)[i];
             if (path.startsWith(`${oldPath}/`)) {
               rename(path, path.replace(`${oldPath}/`, newPath));
             }

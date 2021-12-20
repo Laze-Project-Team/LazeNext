@@ -1,4 +1,4 @@
-export default `
+export const fs2DNoTexture = `#version 300 es
 uniform highp vec3 objectColor;
 uniform highp float transparency;
 

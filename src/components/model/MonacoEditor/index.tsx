@@ -1,22 +1,24 @@
-import { useContext, VFC } from 'react';
-import { useRef, useEffect, useState, useMemo } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import type { BeforeMount, OnMount } from '@monaco-editor/react';
+import MonacoEditor, { useMonaco } from '@monaco-editor/react';
 import { useTranslation } from 'next-i18next';
-import MonacoEditor, { useMonaco, BeforeMount, OnMount } from '@monaco-editor/react';
+import type { VFC } from 'react';
+import { useContext } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
-
-import { RootState } from '@/features/redux/root';
-import { explorerSlice, ExplorerState } from '@/features/redux/explorer';
-import { initializeMonaco, updateColorMode } from '@/features/monaco';
-import options from '@/features/monaco/option';
+import { initializeMonaco } from '@/features/monaco';
+import { options } from '@/features/monaco/option';
+import type { ExplorerState } from '@/features/redux/explorer';
+import { explorerSlice } from '@/features/redux/explorer';
+import type { RootState } from '@/features/redux/root';
 import { colorModeContext } from '@/pages/editor';
 
 type EditorProps = {
   state: ExplorerState;
 };
 
-const Editor: VFC<EditorProps> = ({ state }) => {
+const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
   const [t] = useTranslation('editor');
 
   const monaco = useMonaco();
@@ -32,11 +34,13 @@ const Editor: VFC<EditorProps> = ({ state }) => {
         model.setValue(content);
       }
     }
-  }, [current, previousCurrent, state.directory]);
+  }, [current, monaco?.editor, previousCurrent, state.directory]);
 
   const dispatcher = useDispatch();
   const { saveFile } = explorerSlice.actions;
-  const onChange = (value?: string) => value && dispatcher(saveFile({ content: value }));
+  const onChange = (value?: string) => {
+    return value && dispatcher(saveFile({ content: value }));
+  };
 
   const onMount: OnMount = (editor) => {
     editor.focus();
@@ -45,10 +49,7 @@ const Editor: VFC<EditorProps> = ({ state }) => {
   const colorMode = useContext(colorModeContext);
 
   const beforeMount: BeforeMount = (monaco) => {
-    console.log(colorMode);
-
     initializeMonaco(monaco);
-    // updateColorMode(monaco, colorMode ? colorMode[0] : 'light');
   };
 
   const currentTheme = useMemo(() => {
@@ -59,40 +60,33 @@ const Editor: VFC<EditorProps> = ({ state }) => {
     return 'laze';
   }, [colorMode]);
 
-  // useEffect(() => {
-  //   if (monaco && colorMode) {
-  //     updateColorMode(monaco, colorMode[0]);
-  //   }
-  // }, [colorMode]);
-
-  return useMemo(
-    () => (
-      <>
-        {current ? (
-          <MonacoEditor
-            language="laze"
-            options={options}
-            beforeMount={beforeMount}
-            onMount={onMount}
-            keepCurrentModel
-            theme={currentTheme}
-            onChange={onChange}
-          />
-        ) : (
-          <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
-            <LazeLogo size={100} option="logo_gray" />
-            <p>{t('No file is opened')}</p>
-            <p>{t('You can open file from the file explorer on the left')}</p>
-          </div>
-        )}
-      </>
-    ),
-    [current, onMount, beforeMount, onChange]
+  return (
+    <>
+      {current ? (
+        <MonacoEditor
+          language="laze"
+          options={options}
+          beforeMount={beforeMount}
+          onMount={onMount}
+          keepCurrentModel
+          theme={currentTheme}
+          onChange={onChange}
+        />
+      ) : (
+        <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
+          <LazeLogo size={100} option="logo_gray" />
+          <p>{t('No file is opened')}</p>
+          <p>{t('You can open file from the file explorer on the left')}</p>
+        </div>
+      )}
+    </>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  state: state.explorer,
-});
+const mapStateToProps = (state: RootState) => {
+  return {
+    state: state.explorer,
+  };
+};
 
-export default connect(mapStateToProps)(Editor);
+export const Editor = connect(mapStateToProps)(UnconnectedEditor);

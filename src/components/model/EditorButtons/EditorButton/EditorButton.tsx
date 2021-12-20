@@ -6,7 +6,7 @@ type EditorButtonProps = {
   Icon: React.ReactElement;
 };
 
-export const EditorButton: FC<EditorButtonProps> = ({ name, onClick, Icon, children }) => (
+export const EditorButton: FC<EditorButtonProps> = ({ name, onClick, Icon, children }) => {return (
   <>
     <button
       type="button"
@@ -18,4 +18,4 @@ export const EditorButton: FC<EditorButtonProps> = ({ name, onClick, Icon, child
       {children}
     </button>
   </>
-);
+)};

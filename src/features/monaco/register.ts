@@ -1,4 +1,4 @@
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 
 const Language: monaco.languages.ILanguageExtensionPoint = {
   id: 'laze',

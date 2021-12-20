@@ -1,6 +1,7 @@
 import type { VFC } from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import { TreeItem, useTree, useTreeEnvironment } from 'react-complex-tree';
+import type { TreeItem } from 'react-complex-tree';
+import { useTree, useTreeEnvironment } from 'react-complex-tree';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -15,7 +16,7 @@ type RenameInputProps = {
   item: TreeItem;
 };
 
-const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
+export const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
   const [t] = useTranslation('editor');
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
@@ -131,7 +132,9 @@ const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
           onChange={handleChange}
           value={title}
           ref={inputRef}
-          onBlur={() => void submit()}
+          onBlur={() => {
+            return void submit();
+          }}
           onKeyDown={handleKeyDown}
           aria-label={getName(item.index as string)}
           tabIndex={0}
@@ -158,5 +161,3 @@ const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
     </>
   );
 };
-
-export default RenameInput;

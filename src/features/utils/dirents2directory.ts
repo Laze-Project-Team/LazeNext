@@ -1,4 +1,4 @@
-import { directoryType, direntsType } from '@/typings/directory';
+import type { directoryType, direntsType } from '@/typings/directory';
 
 const sortByName = (a: directoryType, b: directoryType): number => {
   if (a.type === b.type) {
@@ -9,7 +9,8 @@ const sortByName = (a: directoryType, b: directoryType): number => {
 };
 
 const recursiveSort = (sortDirents: directoryType[]) => {
-  for (const dirent of sortDirents) {
+  for (let i = 0; i < sortDirents.length; i++) {
+    const dirent = sortDirents[i];
     if (dirent.type === 'folder') {
       recursiveSort(dirent.children);
     }
@@ -19,17 +20,25 @@ const recursiveSort = (sortDirents: directoryType[]) => {
 
 export const getDirents = (srcDirents: direntsType): directoryType[] => {
   const result: directoryType[] = [];
-  for (const key of Object.keys(srcDirents)) {
+  for (let i = 0; i < Object.keys(srcDirents).length; i++) {
+    const key = Object.keys(srcDirents)[i];
     let draftDirectory = result;
-    for (const dir of key.split('/').slice(1, -1)) {
-      if (draftDirectory.filter((dirent) => dirent.name === dir).length === 0) {
+    for (let i = 0; key.split('/').slice(1, -1).length > i; i++) {
+      const dir = key.split('/').slice(1, -1)[i];
+      if (
+        draftDirectory.filter((dirent) => {
+          return dirent.name === dir;
+        }).length === 0
+      ) {
         draftDirectory.push({
           name: dir,
           type: 'folder',
           children: [],
         });
       }
-      draftDirectory = draftDirectory.filter((dirent) => dirent.name === dir)[0].children;
+      draftDirectory = draftDirectory.filter((dirent) => {
+        return dirent.name === dir;
+      })[0].children;
     }
     draftDirectory.push({
       name: key.split('/').slice(-1)[0],

@@ -11,11 +11,11 @@ export const ContextMenuTrigger: FC<ContextMenuTriggerProps> = ({ id, path, clas
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { show } = useContextMenu({ id });
   const handleContextMenu = (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>, index: string) =>
-    show(event, { props: { index } });
+    {return show(event, { props: { index } })};
 
   return (
     <>
-      <div className={className} onContextMenu={(e) => handleContextMenu(e, path)}>
+      <div className={className} onContextMenu={(e) => {return handleContextMenu(e, path)}}>
         {children}
       </div>
     </>

@@ -1,11 +1,11 @@
-import { useContext, VFC } from 'react';
-import { useState } from 'react';
 import { Button, Modal, Switch } from 'antd';
+import type { VFC } from 'react';
+import { useContext } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VscSettingsGear } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
-
 import { colorModeContext } from '@/pages/editor';
 
 type closeButtonProps = {

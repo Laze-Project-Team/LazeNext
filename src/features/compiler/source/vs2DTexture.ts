@@ -1,4 +1,4 @@
-export default `
+export const vs2DTexture = `
 attribute vec3 aVertexPosition;
 attribute vec2 aTexCoord;
 

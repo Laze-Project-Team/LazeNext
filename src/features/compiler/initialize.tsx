@@ -1,24 +1,22 @@
-import moment from 'moment';
 import { notification } from 'antd';
 import type { TFunction } from 'i18next';
+import moment from 'moment';
 import type { Dispatch } from 'redux';
 
-import { getHash } from '@/features/utils/hash';
-import { consoleSlice } from '@/features/redux/console';
-import { compilerType, compileResponse } from '@/typings/compiler';
-
-import { keyControlInitialize } from '@/features/compiler/keycontrol';
 import { initShaderProgram } from '@/features/compiler/initialize/initShaderProgram';
-
-import fsSource from '@/features/compiler/source/fs';
-import vsSource from '@/features/compiler/source/vs';
-import lightFsSource from '@/features/compiler/source/lightFs';
-import pointFsSource from '@/features/compiler/source/pointFs';
-import pointVsSource from '@/features/compiler/source/pointVs';
-import fs2DTextureSource from '@/features/compiler/source/fs2DTexture';
-import vs2DTextureSource from '@/features/compiler/source/vs2DTexture';
-import fs2DNoTextureSource from '@/features/compiler/source/fs2DNoTexture';
-import vs2DNoTextureSource from '@/features/compiler/source/vs2DNoTexture';
+import { keyControlInitialize } from '@/features/compiler/keycontrol';
+import { fs as fsSource } from '@/features/compiler/source/fs';
+import { fs2DNoTexture as fs2DNoTextureSource } from '@/features/compiler/source/fs2DNoTexture';
+import { fs2DTexture as fs2DTextureSource } from '@/features/compiler/source/fs2DTexture';
+import { lightFs as lightFsSource } from '@/features/compiler/source/lightFs';
+import { pointFs as pointFsSource } from '@/features/compiler/source/pointFs';
+import { pointVs as pointVsSource } from '@/features/compiler/source/pointVs';
+import { vs as vsSource } from '@/features/compiler/source/vs';
+import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source/vs2DNoTexture';
+import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
+import { consoleSlice } from '@/features/redux/console';
+import { getHash } from '@/features/utils/hash';
+import type { compileResponse, compilerType } from '@/typings/compiler';
 
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
   keyControlInitialize();
@@ -56,7 +54,9 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
 
         return res.arrayBuffer();
       })
-      .then((bytes) => WebAssembly.instantiate(bytes, importObject(variables.id)))
+      .then((bytes) => {
+        return WebAssembly.instantiate(bytes, importObject(variables.id));
+      })
       .then((results) => {
         if (interval) {
           clearInterval(interval);
@@ -111,7 +111,9 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((res: compileResponse) => {
         const id = moment().unix().toString(36) + getHash(4);
 

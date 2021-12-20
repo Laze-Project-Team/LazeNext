@@ -1,7 +1,8 @@
-import { VFC } from 'react';
-import { Fragment, useEffect } from 'react';
 import moment from 'moment';
-import { consoleLog } from '@/features/redux/console';
+import type { VFC } from 'react';
+import { Fragment } from 'react';
+
+import type { consoleLog } from '@/features/redux/console';
 
 const logColors: Record<consoleLog['level'], string> = {
   log: '#ccc',
@@ -15,12 +16,14 @@ export const ConsoleLog: VFC<Omit<consoleLog, 'type'>> = ({ content, timestamp, 
     <>
       <p className="flex px-4 py-[0.1rem] hover:bg-t hover:bg-gray-100/5 text-sm">
         <span className="flex-1" style={{ color: logColors[level] }}>
-          {content.split('\n').map((line) => (
-            <Fragment key={line}>
-              {line}
-              <br />
-            </Fragment>
-          ))}
+          {content.split('\n').map((line) => {
+            return (
+              <Fragment key={line}>
+                {line}
+                <br />
+              </Fragment>
+            );
+          })}
         </span>
         <time
           className="inline-flex items-center ml-auto select-none text-gray-500"

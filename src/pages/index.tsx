@@ -1,22 +1,24 @@
-import type { FC, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import { Button, Typography } from 'antd';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button, Typography } from 'antd';
-import { AiOutlineApi, AiOutlineTeam, AiOutlineCloud } from 'react-icons/ai';
+import type { FC, ReactNode } from 'react';
+import { AiOutlineApi, AiOutlineCloud, AiOutlineTeam } from 'react-icons/ai';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
-import { SectionContainer, SectionTitle } from '@/components/ui/atoms/Section';
 import { Card, CardContainer } from '@/components/ui/atoms/Card';
+import { SectionContainer, SectionTitle } from '@/components/ui/atoms/Section';
+import { StyledLink } from '@/components/ui/atoms/StyledLink';
 
-const ActionButton: FC = ({ children }) => (
-  <>
-    <div className="flex justify-center mt-auto pt-4">{children}</div>
-  </>
-);
+const ActionButton: FC = ({ children }) => {
+  return (
+    <>
+      <div className="flex justify-center mt-auto pt-4">{children}</div>
+    </>
+  );
+};
 
 const actionLinkStyle =
   'block w-full text-center mx-2 !text-whitesmoke hover:!text-[#BED7E3] font-bold hover:bg-white/5 transition-colors rounded-sm shadow-sm p-2';
@@ -27,23 +29,27 @@ type ActionLinkProps = {
   children: ReactNode;
 };
 
-const ActionLink = forwardRef<HTMLAnchorElement, ActionLinkProps>(({ children, onClick, href }, ref) => (
-  <a href={href} className={actionLinkStyle} onClick={onClick} ref={ref}>
-    {children}
-  </a>
-));
+const ActionLink: FC<ActionLinkProps> = ({ children, href, onClick }) => {
+  return (
+    <StyledLink href={href} className={actionLinkStyle} onClick={onClick}>
+      {children}
+    </StyledLink>
+  );
+};
 
 type LinkProps = {
   href: string;
 };
 
-const ExternalActionLink: FC<LinkProps> = ({ children, href }) => (
-  <>
-    <a href={href} className={actionLinkStyle} target="_blank" rel="noopener noreferrer">
-      {children}
-    </a>
-  </>
-);
+const ExternalActionLink: FC<LinkProps> = ({ children, href }) => {
+  return (
+    <>
+      <a href={href} className={actionLinkStyle} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    </>
+  );
+};
 
 const Home: NextPage = () => {
   const [t] = useTranslation(['index', 'common']);
