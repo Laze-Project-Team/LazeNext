@@ -18,15 +18,26 @@ export const ratioAdjustContext = createContext<() => void>(() => void 0);
 export type colorModeType = 'dark' | 'light';
 export const colorModeContext = createContext<[colorModeType, Dispatch<SetStateAction<colorModeType>>] | null>(null);
 
+const validateColorMode = (colorMode: string): colorModeType => {
+  if (colorMode === 'dark') {
+    return 'dark';
+  }
+  return 'light';
+};
+
 const Home: NextPage = () => {
   const [t] = useTranslation(['editor', 'common']);
 
   const ratioRef = useRef<HTMLDivElement>(null);
   const splitPaneRef = useRef<SplitPane>(null);
-  const [colorMode, setColorMode] = useState<colorModeType>('light');
+  const initialColorMode = typeof window !== 'undefined' ? localStorage.getItem('colorMode') ?? 'light' : 'light';
+  const [colorMode, setColorMode] = useState<colorModeType>(validateColorMode(initialColorMode));
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', colorMode === 'dark');
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('colorMode', colorMode);
+    }
   }, [colorMode]);
 
   const reflectSizeToCanvas = (ref: RefObject<HTMLDivElement>) => {

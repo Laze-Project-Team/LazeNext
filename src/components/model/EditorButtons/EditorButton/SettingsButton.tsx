@@ -46,7 +46,7 @@ export const SettingsButton: VFC = () => {
       <Modal visible={isShown} title={t('Settings')} onCancel={close} footer={<CloseButton onClick={close} />}>
         <div>
           <span>{t('Enable Dark Mode')}</span>
-          <Switch onChange={handleChange} />
+          <Switch onChange={handleChange} checked={colorMode ? colorMode[0] === 'dark' : false} />
         </div>
       </Modal>
 

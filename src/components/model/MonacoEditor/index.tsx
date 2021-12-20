@@ -45,15 +45,25 @@ const Editor: VFC<EditorProps> = ({ state }) => {
   const colorMode = useContext(colorModeContext);
 
   const beforeMount: BeforeMount = (monaco) => {
+    console.log(colorMode);
+
     initializeMonaco(monaco);
-    updateColorMode(monaco, colorMode ? colorMode[0] : 'light');
+    // updateColorMode(monaco, colorMode ? colorMode[0] : 'light');
   };
 
-  useEffect(() => {
-    if (monaco && colorMode) {
-      updateColorMode(monaco, colorMode[0]);
+  const currentTheme = useMemo(() => {
+    if (colorMode && colorMode[0] === 'dark') {
+      return 'laze-dark';
     }
+
+    return 'laze';
   }, [colorMode]);
+
+  // useEffect(() => {
+  //   if (monaco && colorMode) {
+  //     updateColorMode(monaco, colorMode[0]);
+  //   }
+  // }, [colorMode]);
 
   return useMemo(
     () => (
@@ -64,6 +74,8 @@ const Editor: VFC<EditorProps> = ({ state }) => {
             options={options}
             beforeMount={beforeMount}
             onMount={onMount}
+            keepCurrentModel
+            theme={currentTheme}
             onChange={onChange}
           />
         ) : (
