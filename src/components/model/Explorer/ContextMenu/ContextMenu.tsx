@@ -3,9 +3,6 @@ import { Menu, Item, Separator, useContextMenu } from 'react-contexify';
 
 import { ContextMenuItems, ContextMenuItem } from '@/typings/contextmenu';
 
-import 'react-contexify/dist/ReactContexify.min.css';
-import 'styles/contextmenu.css';
-
 type ContextMenuprops = {
   id: string;
   items: ContextMenuItems;

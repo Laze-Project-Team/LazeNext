@@ -1,0 +1,20 @@
+.editor-scrollable::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.editor-scrollable::-webkit-scrollbar-track {
+  background: none;
+}
+
+.editor-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.editor-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.editor-scrollable::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.2);
+}
