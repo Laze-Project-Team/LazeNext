@@ -3,7 +3,7 @@ import type { VFC } from 'react';
 import { VscNewFile, VscNewFolder } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
 
-import DirectoryView from '@/components/model/Explorer/DirectoryView';
+import { DirectoryView } from '@/components/model/Explorer/DirectoryView';
 import { ExplorerButton } from '@/components/model/Explorer/ExplorerButton';
 import { explorerSlice } from '@/features/redux/explorer';
 
@@ -13,8 +13,12 @@ export const Explorer: VFC = () => {
   const dispatcher = useDispatch();
   const { createFile, createFolder } = explorerSlice.actions;
 
-  const newFile = () => {return dispatcher(createFile({ path: '/' }))};
-  const newFolder = () => {return dispatcher(createFolder({ path: '/' }))};
+  const newFile = () => {
+    return dispatcher(createFile({ path: '/' }));
+  };
+  const newFolder = () => {
+    return dispatcher(createFolder({ path: '/' }));
+  };
 
   return (
     <>
