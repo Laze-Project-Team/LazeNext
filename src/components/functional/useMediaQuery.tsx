@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const getCurrentMedia = (mediaList: string[]) => {
+  if (typeof window === 'undefined') {
+    return mediaList[0];
+  }
   let result: null | string = null;
   for (let i = 0; i < mediaList.length; i++) {
     if (window.matchMedia(mediaList[i]).matches) {
