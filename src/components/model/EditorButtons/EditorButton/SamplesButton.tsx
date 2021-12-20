@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { SampleList } from '@/components/model/EditorButtons/SampleList';
-import Portal from '@/components/ui/Portal';
+import { Portal } from '@/components/ui/Portal';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { direntType } from '@/typings/directory';
 import type { sampleListType } from '@/typings/samplelist';
@@ -31,7 +31,9 @@ export const SamplesButton: FC = () => {
     setError(null);
     setSampleList({});
     fetch(`/api/editor/samplelist/${locale}`)
-      .then((res) => {return res.json()})
+      .then((res) => {
+        return res.json();
+      })
       .then((res: sampleListType) => {
         setError(null);
         setSampleList(res);
@@ -41,23 +43,31 @@ export const SamplesButton: FC = () => {
       });
   };
 
-  const abort = () => {return void setSelectOpen(false)};
+  const abort = () => {
+    return void setSelectOpen(false);
+  };
 
   const load = () => {
     if (select) {
       setSelectOpen(false);
       setLoading(true);
       fetch(`/api/editor/sample/${select}`)
-        .then((res) => {return res.json()})
+        .then((res) => {
+          return res.json();
+        })
         .then((res: Record<string, direntType>) => {
           const directory = Object.keys(res)
-            .map((key) => {return {
-              [key]: {
-                ...res[key],
-                isRenaming: false,
-              },
-            }})
-            .reduce((acc, curr) => {return { ...acc, ...curr }}, {});
+            .map((key) => {
+              return {
+                [key]: {
+                  ...res[key],
+                  isRenaming: false,
+                },
+              };
+            })
+            .reduce((acc, curr) => {
+              return { ...acc, ...curr };
+            }, {});
           setLoading(false);
           dispatcher(setDirectory(directory));
         })
