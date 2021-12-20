@@ -1,12 +1,26 @@
 import { useContext, VFC } from 'react';
 import { useState } from 'react';
-import { Modal, Switch } from 'antd';
+import { Button, Modal, Switch } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { VscSettingsGear } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 
 import { colorModeContext } from '@/pages/editor';
+
+type closeButtonProps = {
+  onClick: () => void;
+};
+
+const CloseButton: VFC<closeButtonProps> = ({ onClick }) => {
+  const [t] = useTranslation('editor');
+
+  return (
+    <Button type="primary" onClick={onClick}>
+      {t('close')}
+    </Button>
+  );
+};
 
 export const SettingsButton: VFC = () => {
   const [t] = useTranslation('editor');
@@ -17,6 +31,7 @@ export const SettingsButton: VFC = () => {
   };
 
   const close = () => {
+    console.log('close');
     setIsShown(false);
   };
 
@@ -29,7 +44,7 @@ export const SettingsButton: VFC = () => {
 
   return (
     <>
-      <Modal visible={isShown} title={t('Settings')} closable afterClose={close}>
+      <Modal visible={isShown} title={t('Settings')} onCancel={close} footer={<CloseButton onClick={close} />}>
         <div>
           <span>{t('Enable Dark Mode')}</span>
           <Switch onChange={handleChange} />
