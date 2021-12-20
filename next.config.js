@@ -22,5 +22,6 @@ module.exports = withBundleAnalyzer({
   publicRuntimeConfig: {
     localeSubpaths,
   },
+  staticPageGenerationTimeout: 1000,
   reactStrictMode: true,
 });
