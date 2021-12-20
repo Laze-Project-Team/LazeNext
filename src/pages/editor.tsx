@@ -8,12 +8,14 @@ import SplitPane from 'react-split-pane';
 
 import { EditorButtons } from '@/components/model/EditorButtons';
 import { Explorer } from '@/components/model/Explorer';
-import MonacoEditor from '@/components/model/MonacoEditor';
+import { Editor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
 
 export const ratioRefContext = createContext<RefObject<HTMLDivElement> | null>(null);
 export const splitPaneRefContext = createContext<RefObject<SplitPane> | null>(null);
-export const ratioAdjustContext = createContext<() => void>(() => {return void 0});
+export const ratioAdjustContext = createContext<() => void>(() => {
+  return void 0;
+});
 
 export type colorModeType = 'dark' | 'light';
 export const colorModeContext = createContext<[colorModeType, Dispatch<SetStateAction<colorModeType>>] | null>(null);
@@ -59,7 +61,9 @@ const Home: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {return reflectSizeToCanvas(ratioRef)});
+    window.addEventListener('resize', () => {
+      return reflectSizeToCanvas(ratioRef);
+    });
   }, []);
 
   return (
@@ -98,7 +102,7 @@ const Home: NextPage = () => {
                         <EditorButtons />
                       </div>
                       <div className="flex-1">
-                        <MonacoEditor />
+                        <Editor />
                       </div>
                     </div>
                   </SplitPane>
