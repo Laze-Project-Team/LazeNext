@@ -9,8 +9,8 @@ export const useCompiler = (): void => {
   const dispacher = useDispatch();
   const [t] = useTranslation();
 
-  window.laze = window.laze || {};
   useEffect(() => {
+    window.laze = window.laze || {};
     if (window.laze?.props === undefined) {
       window.laze.props = getProps(dispacher);
     }
