@@ -10,7 +10,7 @@
     "lint:eslint": "eslint --cache .",
     "lint:prettier": "prettier --check .",
     "test": "jest",
-    "component": "scaffdog generate component"
+    "analyze": "ANALYZE=true next build"
   },
   "prettier": {
     "trailingComma": "es5",
