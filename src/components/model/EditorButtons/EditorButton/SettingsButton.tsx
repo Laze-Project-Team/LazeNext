@@ -31,7 +31,6 @@ export const SettingsButton: VFC = () => {
   };
 
   const close = () => {
-    console.log('close');
     setIsShown(false);
   };
 
