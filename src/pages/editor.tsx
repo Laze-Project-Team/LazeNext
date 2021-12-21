@@ -17,7 +17,7 @@ export const ratioAdjustContext = createContext<() => void>(() => {
   return void 0;
 });
 
-const Home: NextPage = () => {
+const Editor: NextPage = () => {
   const [t] = useTranslation(['editor', 'common']);
 
   const ratioRef = useRef<HTMLDivElement>(null);
