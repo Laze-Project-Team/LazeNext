@@ -222,6 +222,7 @@ const UnconnectedDirectoryView: VFC<DirectoryViewProps> = ({ directory, director
                 completeProgrammaticDnd: [],
                 abortProgrammaticDnd: [],
               }}
+              showLiveDescription={false}
             >
               <Tree ref={treeRef} treeId="directory-view" rootItem="root" treeLabel="Directory View" />
             </ControlledTreeEnvironment>

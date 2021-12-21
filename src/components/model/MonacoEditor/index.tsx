@@ -12,7 +12,7 @@ import { options } from '@/features/monaco/option';
 import type { ExplorerState } from '@/features/redux/explorer';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
-import { colorModeContext } from '@/pages/editor';
+import { colorModeContext } from '@/pages/_app';
 
 type EditorProps = {
   state: ExplorerState;

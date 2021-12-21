@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { VscSettingsGear } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
-import { colorModeContext } from '@/pages/editor';
+import { colorModeContext } from '@/pages/_app';
 
 type closeButtonProps = {
   onClick: () => void;
