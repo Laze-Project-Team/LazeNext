@@ -32,6 +32,7 @@
     "react-dom": "17.0.2",
     "react-error-boundary": "3.1.4",
     "react-icons": "^4.3.1",
+    "react-markdown": "^7.1.1",
     "react-redux": "^7.2.6",
     "react-split-pane": "^0.1.92",
     "sharp": "^0.29.3"
@@ -69,5 +70,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "browser": {
+    "fs": false
   }
 }
