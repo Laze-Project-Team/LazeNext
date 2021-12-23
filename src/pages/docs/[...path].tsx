@@ -10,7 +10,7 @@ import type { ReactNode, VFC } from 'react';
 import Markdown from 'react-markdown';
 
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
-import { anchorLink, H1, H2, HR } from '@/components/ui/Markdown';
+import { anchorLink, H1, H2, HR, Paragraph } from '@/components/ui/Markdown';
 import { cx } from '@/features/utils/cx';
 
 type breadcrumb = {
@@ -115,6 +115,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
               h1: H1,
               h2: H2,
               hr: HR,
+              p: Paragraph,
             }}
           >
             {content}
