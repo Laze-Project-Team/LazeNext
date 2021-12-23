@@ -1,0 +1,25 @@
+.indexlist .ant-collapse-arrow {
+  padding-top: 5px!important;
+}
+
+.indexlist .ant-collapse-content-box,
+.indexlist .ant-collapse-header {
+  padding: 0 !important;
+}
+
+.indexlist .ant-collapse-content-box {
+  padding-left: 1rem !important;
+}
+
+.indexlist .ant-collapse-header,
+.indexlist .indexlist-item {
+  padding: 0.35rem 1rem !important;
+  margin: 0 0.5rem 0.2rem 0.5rem;
+  border-radius: 4px !important;
+  transition: background-color 0.2s;
+}
+
+.indexlist .ant-collapse-header:hover,
+.indexlist .indexlist-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}

@@ -8,7 +8,7 @@ import SplitPane from 'react-split-pane';
 
 import { EditorButtons } from '@/components/model/EditorButtons';
 import { Explorer } from '@/components/model/Explorer';
-import { Editor } from '@/components/model/MonacoEditor';
+import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
 
 export const ratioRefContext = createContext<RefObject<HTMLDivElement> | null>(null);
@@ -82,7 +82,7 @@ const Editor: NextPage = () => {
                       <EditorButtons />
                     </div>
                     <div className="flex-1">
-                      <Editor />
+                      <MonacoEditor />
                     </div>
                   </div>
                 </SplitPane>
@@ -111,4 +111,4 @@ export const getStaticProps = async (context: contextType) => {
   };
 };
 
-export default Home;
+export default Editor;

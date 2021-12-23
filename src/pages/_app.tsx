@@ -8,6 +8,7 @@ import 'react-contexify/dist/ReactContexify.min.css';
 import '@/styles/contextmenu.css';
 import '@/styles/editor-scrollable.css';
 import 'monaco-editor/min/vs/editor/editor.main.css';
+import '@/styles/indexlist.css';
 
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';

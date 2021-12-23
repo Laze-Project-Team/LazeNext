@@ -1,13 +1,17 @@
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Collapse } from 'antd';
 import fs from 'fs';
 import type { GetStaticPaths, NextPage } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import type { Components } from 'react-markdown';
+import type { ReactNode, VFC } from 'react';
 import Markdown from 'react-markdown';
 
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
+import { anchorLink, H1, H2, HR } from '@/components/ui/Markdown';
+import { cx } from '@/features/utils/cx';
 
 type breadcrumb = {
   id: string;
@@ -15,31 +19,78 @@ type breadcrumb = {
   href: string;
 };
 
+type directoryObject = {
+  name: string;
+  path: string;
+  children: directoryObject[];
+};
+
 type DocsProps = {
   content: string;
   breadcrumbs: breadcrumb[];
+  indexList: directoryObject[];
 };
 
-const H2: Components['h2'] = ({ node, children }) => {
-  return <h2 id={node.position?.start.line.toString()}>{children}</h2>;
+type IndexListProps = {
+  indexList: directoryObject[];
+  active: string;
+  nest?: number;
 };
 
-const anchorLink: Components['h2'] = ({ node, children }) => {
+const IndexList: VFC<IndexListProps> = ({ indexList, active, nest }) => {
+  const readIndexList = (dir: directoryObject): ReactNode => {
+    const activeClass = cx(
+      active
+        .split('/')
+        .slice(0, (nest ?? 0) + 1)
+        .join('/') === dir.path && 'indexlist-active'
+    );
+    return (
+      <>
+        {dir.children.length === 0 ? (
+          <div key={dir.path} className={cx('indexlist-item', activeClass)}>
+            <Link href={`/docs${dir.path}`} passHref>
+              <a href={`/docs${dir.path}`} className="inline-block w-full h-full text-gray-700 hover:text-gray-700">
+                {dir.name}
+              </a>
+            </Link>
+          </div>
+        ) : (
+          <Collapse bordered={false} ghost expandIconPosition="right" key={dir.path} className={activeClass}>
+            <Collapse.Panel header={dir.name} key={dir.path} showArrow={true}>
+              <IndexList indexList={dir.children} active={active} nest={(nest ?? 0) + 1} />
+            </Collapse.Panel>
+          </Collapse>
+        )}
+      </>
+    );
+  };
+
   return (
-    <p className="my-1">
-      <a href={'#' + node.position?.start.line.toString()} className="text-gray-400 text-xs">
-        {children}
-      </a>
-    </p>
+    <div className="flex flex-col select-none indexlist">
+      {indexList.map((dir) => {
+        return readIndexList(dir);
+      })}
+    </div>
   );
 };
 
-const Docs: NextPage<DocsProps> = ({ content, breadcrumbs }) => {
-  const [t] = useTranslation('docs');
+IndexList.defaultProps = {
+  nest: 0,
+};
+
+const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
+  const router = useRouter();
+  const { path } = router.query as { path: string[] };
+  const [t] = useTranslation(['docs', 'common']);
 
   return (
     <>
-      <div className="flex">
+      <Head>
+        <title>{t('title')} | Laze</title>
+      </Head>
+
+      <div className="w-screen h-screen flex overflow-hidden">
         <div className="w-60 border-r-2">
           <Link href="/" passHref>
             <a className="flex justify-center mt-4">
@@ -47,29 +98,32 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs }) => {
             </a>
           </Link>
           <hr className="bg-gray-300 my-4" />
-          <div></div>
+          <div>
+            <IndexList indexList={indexList} active={'/' + path.join('/')} />
+          </div>
         </div>
-        <div>
-          <Breadcrumb>
-            {breadcrumbs.map((breadcrumb) => {
-              return (
-                <Breadcrumb.Item key={breadcrumb.id}>
-                  <Link href={breadcrumb.href}>{breadcrumb.title}</Link>
-                </Breadcrumb.Item>
-              );
-            })}
-          </Breadcrumb>
-        </div>
-        <div className="flex-1 pl-4 pr-36 pt-4 break-normal">
+        <div className="flex-1 pl-8 pr-36 break-normal overflow-y-scroll">
+          <div className="px-2 py-4">
+            <Breadcrumb>
+              {breadcrumbs.map((breadcrumb) => {
+                return <Breadcrumb.Item key={breadcrumb.id}>{breadcrumb.title}</Breadcrumb.Item>;
+              })}
+            </Breadcrumb>
+          </div>
           <Markdown
             components={{
+              h1: H1,
               h2: H2,
+              hr: HR,
             }}
           >
             {content}
           </Markdown>
+          <div className="border-t-2 mt-8">
+            <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
+          </div>
         </div>
-        <div className="fixed right-4 top-4 w-24">
+        <div className="fixed right-8 top-4 w-24">
           <p className="font-bold text-gray-800 my-0">{t('contents')}</p>
           <Markdown
             allowedElements={['h2']}
@@ -98,6 +152,41 @@ const readDirectoryRecursive = (path: string, subpath = '/'): string[] => {
     }, []);
 };
 
+const getFileName = (path: string): string => {
+  const title = fs.readFileSync(path, { encoding: 'utf-8', flag: 'r' }).match('# (.*)');
+  return title ? title[1] : '';
+};
+
+const getIndexList = (path: string, subpath = '/'): directoryObject[] => {
+  const result: directoryObject[] = [];
+  fs.readdirSync(`${path}${subpath}`, { withFileTypes: true }).forEach((file) => {
+    const filePath = `${subpath}${file.name.split('.')[0]}`;
+    if (file.isDirectory()) {
+      const fileName = getFileName(`${path}${subpath}${file.name}.md`);
+      result.push({
+        name: fileName,
+        path: filePath,
+        children: getIndexList(path, `${subpath}${file.name}/`),
+      });
+    } else {
+      if (
+        !result.find((item) => {
+          return item.path === filePath;
+        })
+      ) {
+        const fileName = getFileName(`${path}${subpath}${file.name}`);
+        result.push({
+          name: fileName,
+          path: filePath,
+          children: [],
+        });
+      }
+    }
+  });
+
+  return result;
+};
+
 const DOCS_DIR = './docs';
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -122,6 +211,7 @@ type contextType = {
     path: string[];
   };
 };
+
 export const getStaticProps = async (context: contextType) => {
   const content = fs.readFileSync(`${DOCS_DIR}/${context.locale}/${context.params.path.join('/')}.md`, {
     encoding: 'utf-8',
@@ -144,10 +234,13 @@ export const getStaticProps = async (context: contextType) => {
     };
   });
 
+  const indexList = getIndexList(`${DOCS_DIR}/${context.locale}`);
+
   return {
     props: {
       content,
       breadcrumbs,
+      indexList,
       ...(await serverSideTranslations(context.locale, ['common', 'docs'])),
     },
   };
