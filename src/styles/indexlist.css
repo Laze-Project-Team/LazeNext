@@ -19,6 +19,13 @@
   transition: background-color 0.2s;
 }
 
+.indexlist .ant-collapse.indexlist-active > .ant-collapse-item > .ant-collapse-header,
+.indexlist .indexlist-item.indexlist-active > a {
+  font-weight: bold;
+  color: #3081A6;
+}
+
+
 .indexlist .ant-collapse-header:hover,
 .indexlist .indexlist-item:hover {
   background-color: rgba(0, 0, 0, 0.05);

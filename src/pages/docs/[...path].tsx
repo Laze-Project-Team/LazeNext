@@ -42,7 +42,7 @@ const IndexList: VFC<IndexListProps> = ({ indexList, active, nest }) => {
     const activeClass = cx(
       active
         .split('/')
-        .slice(0, (nest ?? 0) + 1)
+        .slice(0, (nest ?? 0) + 2)
         .join('/') === dir.path && 'indexlist-active'
     );
     return (
