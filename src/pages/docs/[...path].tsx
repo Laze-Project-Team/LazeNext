@@ -1,4 +1,4 @@
-import { Breadcrumb, Collapse } from 'antd';
+import { Anchor, Breadcrumb, Collapse } from 'antd';
 import fs from 'fs';
 import type { GetStaticPaths, NextPage } from 'next';
 import Head from 'next/head';
@@ -126,14 +126,16 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
         </div>
         <div className="fixed right-8 top-4 w-24">
           <p className="font-bold text-gray-800 my-0">{t('contents')}</p>
-          <Markdown
-            allowedElements={['h2']}
-            components={{
-              h2: anchorLink,
-            }}
-          >
-            {content}
-          </Markdown>
+          <Anchor>
+            <Markdown
+              allowedElements={['h2']}
+              components={{
+                h2: anchorLink,
+              }}
+            >
+              {content}
+            </Markdown>
+          </Anchor>
         </div>
       </div>
     </>

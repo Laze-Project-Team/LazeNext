@@ -1,3 +1,4 @@
+import { Anchor } from 'antd';
 import type { Components } from 'react-markdown';
 
 export const H1: Components['h1'] = ({ children }) => {
@@ -22,10 +23,6 @@ export const HR: Components['hr'] = () => {
 
 export const anchorLink: Components['h2'] = ({ node, children }) => {
   return (
-    <p className="my-1">
-      <a href={'#' + node.position?.start.line.toString()} className="text-gray-400 text-xs">
-        {children}
-      </a>
-    </p>
+    <Anchor.Link href={'#' + node.position?.start.line.toString()} className="text-gray-400 text-xs" title={children} />
   );
 };
