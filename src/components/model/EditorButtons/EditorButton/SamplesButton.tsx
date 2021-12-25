@@ -39,7 +39,7 @@ export const SamplesButton: FC = () => {
         setSampleList(res);
       })
       .catch(() => {
-        setError(t('Somehing went wrong while loading sample list. Please try again later.'));
+        setError(t('samples.error'));
       });
   };
 
@@ -74,10 +74,11 @@ export const SamplesButton: FC = () => {
         .catch(() => {
           setLoading(false);
           notification.open({
+            message: t('errors.LoadingSampleFailed.title', { name: sampleList[select].name }),
+            description: t('errors.LoadingSampleFailed.message'),
+            type: 'error',
             duration: 5,
             placement: 'bottomRight',
-            message: t('Failed to load the sample', { name: sampleList[select].name }),
-            description: t('File is not opened. Please open a file first.'),
           });
         });
     }
@@ -93,13 +94,13 @@ export const SamplesButton: FC = () => {
         </Portal>
       )}
       <Modal
-        title={t('Loading Sample Selection')}
+        title={t('samples.title')}
         visible={isSelectOpen}
         afterClose={abort}
         onOk={load}
         onCancel={abort}
-        cancelText={t('Close')}
-        okText={t('Load')}
+        cancelText={t('samples.cancel')}
+        okText={t('samples.load')}
       >
         {(() => {
           if (error) {
@@ -118,7 +119,7 @@ export const SamplesButton: FC = () => {
         })()}
       </Modal>
 
-      <EditorButton name={t('Samples')} onClick={onClick} Icon={<VscFolderOpened />} />
+      <EditorButton name={t('buttons.samples')} onClick={onClick} Icon={<VscFolderOpened />} />
     </>
   );
 };

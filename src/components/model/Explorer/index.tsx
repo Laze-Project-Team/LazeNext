@@ -26,10 +26,10 @@ export const Explorer: VFC = () => {
         <div className="flex flex-row items-center h-7 dark:bg-primary-default bg-primary-400">
           <div />
           <div className="ml-auto">
-            <ExplorerButton onClick={newFile} title={t('New File')}>
+            <ExplorerButton onClick={newFile} title={t('buttons.newFile')}>
               <VscNewFile />
             </ExplorerButton>
-            <ExplorerButton onClick={newFolder} title={t('New Folder')}>
+            <ExplorerButton onClick={newFolder} title={t('buttons.newFile')}>
               <VscNewFolder />
             </ExplorerButton>
           </div>

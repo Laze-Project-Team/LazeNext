@@ -12,8 +12,8 @@ export const WorkBench: VFC = () => {
   const [t] = useTranslation('editor');
 
   const workBenchPanes: Record<paneType, SwitchPaneObject> = {
-    output: { label: t('Output'), element: <Console /> },
-    canvas: { label: t('Canvas Area'), element: <CanvasArea /> },
+    output: { label: t('workbench.output'), element: <Console /> },
+    canvas: { label: t('workbench.canvas'), element: <CanvasArea /> },
   };
 
   return (

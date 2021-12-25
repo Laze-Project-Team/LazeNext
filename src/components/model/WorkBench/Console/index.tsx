@@ -23,7 +23,7 @@ const UnconnectedConsole: VFC<Omit<consoleState, 'scrolled'>> = ({ console, acti
           return (
             <ConsolePanelListItem
               id={key}
-              label={key === 'master' ? t('Master') : console[key].label}
+              label={key === 'master' ? t('panellist.master') : console[key].label}
               active={key === active}
               isMaster={key === 'master'}
               key={key}

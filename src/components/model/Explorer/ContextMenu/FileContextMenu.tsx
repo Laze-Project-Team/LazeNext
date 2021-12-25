@@ -14,13 +14,13 @@ export const FileContextMenu: VFC = () => {
 
   const menuItems: ContextMenuItems = [
     {
-      name: t('Rename'),
+      name: t('contextmenus.rename'),
       callback: (path: string) => {
         dispatcher(startRenaming({ path }));
       },
     },
     {
-      name: t('Delete'),
+      name: t('contextmenus.delete'),
       callback: (path: string) => {
         dispatcher(deleteDirent({ path }));
       },

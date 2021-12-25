@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
+import { Loading } from '@/components/model/MonacoEditor/Loading';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
 import { initializeMonaco } from '@/features/monaco';
 import { options } from '@/features/monaco/option';
@@ -13,8 +14,6 @@ import type { ExplorerState } from '@/features/redux/explorer';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
 import { colorModeContext } from '@/pages/_app';
-
-import { Loading } from './Loading';
 
 type EditorProps = {
   state: ExplorerState;
@@ -78,8 +77,8 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
       ) : (
         <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
           <LazeLogo size={100} option="logo_gray" />
-          <p>{t('No file is opened')}</p>
-          <p>{t('You can open file from the file explorer on the left')}</p>
+          <p>{t('messages.FileIsNotOpened.1')}</p>
+          <p>{t('messages.FileIsNotOpened.2')}</p>
         </div>
       )}
     </>

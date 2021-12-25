@@ -1,0 +1,72 @@
+{
+  "title": "Laze エディタ",
+  "description": "",
+  "acknowledgement": "Made with Monaco Editor",
+
+  "contextmenus": {
+    "newFile": "ファイルを作成",
+    "newFolder": "フォルダを作成",
+    "compile": "コンパイル",
+    "rename": "名前を変更",
+    "delete": "削除"
+  },
+
+  "panellist": {
+    "master": "マスター",
+    "close": "閉じる"
+  },
+
+  "buttons": {
+    "newFile": "新規ファイル",
+    "newFolder": "新規フォルダ",
+    "compile": "コンパイル＆実行",
+    "samples": "サンプル一覧",
+    "settings": "設定"
+  },
+
+  "settings": {
+    "darkmode": "ダークモードを有効にする",
+    "close": "閉じる"
+  },
+
+  "samples": {
+    "title": "ロードするサンプルを選択",
+    "error": "サンプルの一覧読み込み中に何かしらのエラーが発生しました",
+    "load": "読み込み",
+    "cancel": "キャンセル"
+  },
+
+  "workbench": {
+    "output": "出力",
+    "canvas": "描画エリア"
+  },
+
+  "messages": {
+    "FileIsNotOpened": {
+      "1": "ファイルが開かれていません",
+      "2": "左側のエクスプローラーからファイルを開くことができます"
+    },
+    "NameMustBeProvided": "ファイルまたはフォルダの名前を指定する必要があります",
+    "FileAlreadyExists": "この名前のファイルまたはフォルダは既にこの場所に存在します。別の名前を指定してください。",
+    "NotValidName": "この名前はファイルまたはフォルダ名として無効です。別の名前を指定してください。"
+  },
+
+  "errors": {
+    "FileIsNotOpened": {
+      "title": "コンパイルエラー",
+      "message": "ファイルが開かれていません。ファイルを開いてからもう一度試してみてください。"
+    },
+    "LoadingSampleFailed": {
+      "title": "サンプルロードエラー",
+      "message": "サンプル \"{{name}}\" のロードに失敗しました"
+    },
+    "LaunchProgramFailed": {
+      "title": "プログラムの実行に失敗しました",
+      "message": "ネットワーク接続を確認してください"
+    },
+    "CompileProgramFailed": {
+      "title": "プログラムのコンパイルに失敗しました",
+      "message": "ネットワーク接続を確認してください"
+    }
+  }
+}

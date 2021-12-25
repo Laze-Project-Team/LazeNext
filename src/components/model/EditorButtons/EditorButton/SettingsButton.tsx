@@ -17,7 +17,7 @@ const CloseButton: VFC<closeButtonProps> = ({ onClick }) => {
 
   return (
     <Button type="primary" onClick={onClick}>
-      {t('close')}
+      {t('settings.close')}
     </Button>
   );
 };
@@ -43,14 +43,14 @@ export const SettingsButton: VFC = () => {
 
   return (
     <>
-      <Modal visible={isShown} title={t('Settings')} onCancel={close} footer={<CloseButton onClick={close} />}>
+      <Modal visible={isShown} title={t('buttons.settings')} onCancel={close} footer={<CloseButton onClick={close} />}>
         <div className="flex items-center px-4">
-          <span>{t('Enable Dark Mode')}</span>
+          <span>{t('settings.darkmode')}</span>
           <Switch className="!ml-auto" onChange={handleChange} checked={colorMode ? colorMode[0] === 'dark' : false} />
         </div>
       </Modal>
 
-      <EditorButton name={t('Settings')} onClick={onClick} Icon={<VscSettingsGear />} />
+      <EditorButton name={t('buttons.settings')} onClick={onClick} Icon={<VscSettingsGear />} />
     </>
   );
 };

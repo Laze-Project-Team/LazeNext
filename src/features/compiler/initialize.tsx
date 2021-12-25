@@ -20,20 +20,13 @@ import type { compileResponse, compilerType } from '@/typings/compiler';
 
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
   keyControlInitialize();
-  const { addLog, createPanel, setActive, addSeparator } = consoleSlice.actions;
+  const { addLog, createPanel, addSeparator } = consoleSlice.actions;
 
   const run: compilerType['run'] = () => {
     const { canvas, gl, importObject, variables } = window.laze.props;
 
     if (variables.wasm === '' || variables.id === '') {
-      dispatcher(setActive('master'));
-      dispatcher(
-        addLog({
-          console: 'master',
-          content: t('Cannot run program. Please compile first.'),
-          level: 'error',
-        })
-      );
+      console.error('Cannot run program. Please compile first.');
 
       return;
     }
@@ -88,8 +81,8 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       })
       .catch(() => {
         notification.open({
-          message: t('Failed to launch the program.'),
-          description: t('Please check your network connection.'),
+          message: t('errors.LaunchProgramFailed.title'),
+          description: t('errors.LaunchProgramFailed.message'),
           type: 'error',
           placement: 'bottomRight',
           duration: 5,
@@ -137,8 +130,8 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       })
       .catch(() => {
         notification.open({
-          message: t('Failed to compile the program.'),
-          description: t('Please check your network connection.'),
+          message: t('errors.CompileProgramFailed.title'),
+          description: t('errors.CompileProgramFailed.message'),
           type: 'error',
           placement: 'bottomRight',
           duration: 5,

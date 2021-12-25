@@ -13,26 +13,32 @@ export const FolderContextMenu: VFC = () => {
 
   const FolderContextMenuItems: ContextMenuItems = [
     {
-      name: t('New File'),
-      callback: (path: string) => {return dispatcher(createFile({ path: `${path}/` }))},
+      name: t('contextmenus.newFile'),
+      callback: (path: string) => {
+        return dispatcher(createFile({ path: `${path}/` }));
+      },
     },
     {
-      name: t('New Folder'),
-      callback: (path: string) => {return dispatcher(createFolder({ path: `${path}/` }))},
+      name: t('contextmenus.newFolder'),
+      callback: (path: string) => {
+        return dispatcher(createFolder({ path: `${path}/` }));
+      },
     },
     {
       name: 'separator',
       separator: true,
     },
     {
-      name: t('Rename'),
+      name: t('contextmenus.rename'),
       callback: (path: string) => {
         dispatcher(startRenaming({ path }));
       },
     },
     {
-      name: t('Delete'),
-      callback: (path: string) => {return dispatcher(deleteDirent({ path }))},
+      name: t('contextmenus.delete'),
+      callback: (path: string) => {
+        return dispatcher(deleteDirent({ path }));
+      },
     },
   ];
 

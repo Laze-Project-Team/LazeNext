@@ -18,11 +18,11 @@ export const CompileButton: VFC = () => {
     const file = getCurrentFile();
     if (code === null || file === null) {
       notification.open({
+        message: t('errors.FileIsNotOpened.title'),
+        description: t('errors.FileIsNotOpened.message'),
         type: 'error',
         duration: 5,
         placement: 'bottomRight',
-        message: t('Compile Error'),
-        description: t('File is not opened. Please open a file first.'),
       });
 
       return;
@@ -37,7 +37,7 @@ export const CompileButton: VFC = () => {
 
   return (
     <>
-      <EditorButton name={t('Compile & Run')} onClick={onClick} Icon={<VscRunAll />} />
+      <EditorButton name={t('buttons.compile')} onClick={onClick} Icon={<VscRunAll />} />
     </>
   );
 };

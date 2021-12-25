@@ -52,7 +52,7 @@ export const ConsolePanelListItem: VFC<ConsolePanelListItemProps> = ({ id, label
           <button
             type="button"
             className="ml-auto hover:bg-white/5"
-            title={t('Close')}
+            title={t('panellist.close')}
             onClick={(e) => {
               e.stopPropagation();
               onDelete(id);

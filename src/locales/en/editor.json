@@ -1,0 +1,72 @@
+{
+  "title": "Laze Editor",
+  "description": "",
+  "acknowledgement": "Made with Monaco Editor",
+
+  "contextmenus": {
+    "newFile": "ファイルを作成",
+    "newFolder": "フォルダを作成",
+    "compile": "コンパイル",
+    "rename": "名前を変更",
+    "delete": "削除"
+  },
+  
+  "panellist": {
+    "master": "Master",
+    "close": "Close"
+  },
+
+  "buttons": {
+    "newFile": "New File",
+    "newFolder": "New Folder",
+    "compile": "Compile & Run",
+    "samples": "Sample List",
+    "settings": "Settings"
+  },
+  
+  "settings": {
+    "darkmode": "Enable dark mode",
+    "close": "Close"
+  },
+
+  "samples": {
+    "title": "Loading sample selection",
+    "error": "Somehing went wrong while loading sample list",
+    "load": "Load",
+    "cancel": "Cancel"
+  },
+
+  "workbench": {
+    "output": "Output",
+    "canvas": "Canvas Area"
+  },
+
+  "messages": {
+    "FileIsNotOpened": {
+      "1": "File is not opened",
+      "2": "You can open file from the file explorer on the left"
+    },
+    "NameMustBeProvided": "A file or folder name must be provided.",
+    "FileAlreadyExists": "A file or folder with that name already exists. Please choose a different name.",
+    "NotValidName": "This name is not valid as a file or folder name. Please choose a different name."
+  },
+
+  "errors": {
+    "FileIsNotOpened": {
+      "title": "Compile error",
+      "message": "File is not opened. Please open a file first."
+    },
+    "LoadingSampleFailed": {
+      "title": "Sample loading error",
+      "message": "Failed to load sample \"{{name}}\""
+    },
+    "LaunchProgramFailed": {
+      "title": "Failed to launch program",
+      "message": "Please check your network connection"
+    },
+    "CompileProgramFailed": {
+      "title": "Failed to compile program",
+      "message": "Please check your network connection"
+    }
+  }
+}

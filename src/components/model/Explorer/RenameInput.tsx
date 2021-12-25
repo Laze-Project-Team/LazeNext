@@ -71,22 +71,25 @@ export const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
     });
   }, [environment, item, setRenamingItem, title, treeId, treeInformation.treeId]);
 
+  const MustProvideName = t('messages.NameMustBeProvided');
+  const FileAlreadyExists = t('messages.FileAlreadyExists');
+  const NotValidName = t('messages.NotValidName');
   const validate = useCallback(
     (name: string) => {
       if (name.length === 0) {
-        setWarn('A file or folder name must be provided.');
+        setWarn(MustProvideName);
 
         return false;
       }
 
       if (Object.keys(directoryState).includes(`${getBase(item.index as string)}/${name}`)) {
-        setWarn('A file or folder with that name already exists. Please choose a different name.');
+        setWarn(FileAlreadyExists);
 
         return false;
       }
 
       if (name.endsWith('.')) {
-        setWarn('This name is not valid as a file or folder name. Please choose a different name.');
+        setWarn(NotValidName);
 
         return false;
       }
@@ -95,7 +98,7 @@ export const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
 
       return true;
     },
-    [directoryState, item.index]
+    [FileAlreadyExists, MustProvideName, NotValidName, directoryState, item.index]
   );
 
   const handleChange = useCallback(
@@ -153,7 +156,7 @@ export const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
                 left: `${left}px`,
               }}
             >
-              {t(warn)}
+              {warn}
             </div>,
             tree
           )}

@@ -12,12 +12,16 @@ export const RootContextMenu: VFC = () => {
 
   const RootContextMenuItems = [
     {
-      name: t('New File'),
-      callback: (path: string) => {return dispatcher(createFile({ path }))},
+      name: t('contextmenus.newFile'),
+      callback: (path: string) => {
+        return dispatcher(createFile({ path }));
+      },
     },
     {
-      name: t('New Folder'),
-      callback: (path: string) => {return dispatcher(createFolder({ path }))},
+      name: t('contextmenus.newFolder'),
+      callback: (path: string) => {
+        return dispatcher(createFolder({ path }));
+      },
     },
   ];
 
