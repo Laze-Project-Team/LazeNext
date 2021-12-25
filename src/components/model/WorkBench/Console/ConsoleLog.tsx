@@ -14,7 +14,7 @@ const logColors: Record<consoleLog['level'], string> = {
 export const ConsoleLog: VFC<Omit<consoleLog, 'type'>> = ({ content, timestamp, level }) => {
   return (
     <>
-      <p className="flex px-4 py-[0.1rem] hover:bg-t hover:bg-gray-100/5 text-sm">
+      <p className="flex px-4 py-[0.1rem] hover:bg-gray-100/5 text-sm">
         <span className="flex-1" style={{ color: logColors[level] }}>
           {content.split('\n').map((line) => {
             return (
