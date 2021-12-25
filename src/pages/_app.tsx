@@ -9,6 +9,7 @@ import '@/styles/contextmenu.css';
 import '@/styles/editor-scrollable.css';
 import 'monaco-editor/min/vs/editor/editor.main.css';
 import '@/styles/indexlist.css';
+import '@/styles/resizer.css';
 
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';

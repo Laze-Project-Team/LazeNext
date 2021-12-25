@@ -1,0 +1,30 @@
+.Resizer {
+  z-index: 10;
+  padding: 0;
+  background-color: white;
+  background-clip: padding-box;
+  opacity: 0.2;
+  transition: all 0.2s;
+}
+
+.Resizer.horizontal {
+  width: 100%;
+  height: 9px;
+  margin: -4px 0;
+  cursor: s-resize;
+  border-top: solid transparent 4px;
+  border-bottom: solid transparent 4px;
+}
+
+.Resizer.vertical {
+  width: 9px;
+  height: 100%;
+  margin: 0 -4px;
+  cursor: w-resize;
+  border-right: solid transparent 4px;
+  border-left: solid transparent 4px;
+}
+
+.Resizer:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
