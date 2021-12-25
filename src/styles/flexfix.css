@@ -1,0 +1,13 @@
+* {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.flex.flex-row > * {
+  min-width: 0;
+}
+
+.flex.flex-col > * {
+  max-width: 100%;
+  min-height: 0;
+}

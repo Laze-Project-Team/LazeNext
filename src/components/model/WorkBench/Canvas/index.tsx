@@ -5,10 +5,13 @@ import { ratioRefContext } from '@/pages/editor';
 
 export const CanvasArea: FC = () => {
   const ratioRef = useContext(ratioRefContext);
+
   return (
     <>
-      <div ref={ratioRef} className="mx-auto aspect-video">
-        <canvas id="output-canvas" width="1280" height="720" className="bg-white" />
+      <div className="h-full flex items-center">
+        <div ref={ratioRef} className="mx-auto aspect-video">
+          <canvas id="output-canvas" width="1280" height="720" className="w-full h-full bg-white" />
+        </div>
       </div>
     </>
   );
