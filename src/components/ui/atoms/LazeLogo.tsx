@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 
 import { cx } from '@/features/utils/cx';
@@ -12,10 +13,12 @@ type LazeLogoProps = {
 };
 
 export const LazeLogo: VFC<LazeLogoProps> = ({ size, option = 'logo', className }) => {
+  const [t] = useTranslation('common');
+
   return (
     <>
       <div className={cx('inline-flex select-none pointer-events-none', className)}>
-        <Image src={`/img/${option}.png`} alt="Lazeのロゴ画像" width={size} height={size} />
+        <Image src={`/img/${option}.png`} alt={t('lazelogo')} width={size} height={size} />
       </div>
     </>
   );
