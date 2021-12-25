@@ -14,6 +14,8 @@ import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
 import { colorModeContext } from '@/pages/_app';
 
+import { Loading } from './Loading';
+
 type EditorProps = {
   state: ExplorerState;
 };
@@ -71,6 +73,7 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
           keepCurrentModel
           theme={currentTheme}
           onChange={onChange}
+          loading={Loading}
         />
       ) : (
         <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
