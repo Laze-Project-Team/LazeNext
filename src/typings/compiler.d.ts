@@ -115,11 +115,31 @@ export type getImportsProps = {
   variables: compilerVariable;
 };
 
+export type compileRequest = {
+  code: string;
+  option: {
+    lang: string;
+  };
+};
+
 export type compileResponse = {
   success: boolean;
   message: string;
   wasm: string;
 };
+
+export type successedCompilerResult = {
+  success: true;
+  message: string;
+  wasm: string;
+};
+
+export type failedCompilerResult = {
+  success: false;
+  message: string;
+};
+
+export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
   compile: (code: string, label: string) => void;
