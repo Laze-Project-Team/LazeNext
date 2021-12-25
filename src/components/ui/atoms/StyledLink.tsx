@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-no-target-blank */
 import Link from 'next/link';
-import type { ForwardRefRenderFunction, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import type { FC, ReactNode } from 'react';
+import { BiLinkExternal } from 'react-icons/bi';
 
 export type StyledLinkProps = {
   children: ReactNode;
@@ -9,17 +10,20 @@ export type StyledLinkProps = {
   onClick?: () => void;
 };
 
-const ForwardedStyledLink: ForwardRefRenderFunction<HTMLAnchorElement, StyledLinkProps> = (
-  { children, onClick, href, className },
-  ref
-) => {
+export const StyledLink: FC<StyledLinkProps> = ({ children, onClick, href, className }) => {
+  const isInternal = href.startsWith('/');
   return (
     <Link href={href} passHref>
-      <a href={href} className={className} onClick={onClick} ref={ref}>
+      <a
+        href={href}
+        className={className}
+        onClick={onClick}
+        target={isInternal ? undefined : '_blank'}
+        rel={isInternal ? undefined : 'noopener noreferrer'}
+      >
         {children}
+        {isInternal || <BiLinkExternal className="ml-1 inline" />}
       </a>
     </Link>
   );
 };
-
-export const StyledLink = forwardRef<HTMLAnchorElement, StyledLinkProps>(ForwardedStyledLink);

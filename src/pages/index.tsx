@@ -20,9 +20,6 @@ const ActionButton: FC = ({ children }) => {
   );
 };
 
-const actionLinkStyle =
-  'block w-full text-center mx-2 !text-whitesmoke hover:!text-[#BED7E3] font-bold hover:bg-white/5 transition-colors rounded-sm shadow-sm p-2';
-
 type ActionLinkProps = {
   href: string;
   onClick?: () => void;
@@ -31,23 +28,13 @@ type ActionLinkProps = {
 
 const ActionLink: FC<ActionLinkProps> = ({ children, href, onClick }) => {
   return (
-    <StyledLink href={href} className={actionLinkStyle} onClick={onClick}>
+    <StyledLink
+      href={href}
+      className="block w-full text-center mx-2 !text-whitesmoke hover:!text-[#BED7E3] font-bold hover:bg-white/5 transition-colors rounded-sm shadow-sm p-2"
+      onClick={onClick}
+    >
       {children}
     </StyledLink>
-  );
-};
-
-type LinkProps = {
-  href: string;
-};
-
-const ExternalActionLink: FC<LinkProps> = ({ children, href }) => {
-  return (
-    <>
-      <a href={href} className={actionLinkStyle} target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
-    </>
   );
 };
 
@@ -127,7 +114,7 @@ const Home: NextPage = () => {
               textClass="!text-whitesmoke"
             >
               <ActionButton>
-                <ExternalActionLink href="https://discord.gg/K3prMrmS7e">{t('activities.2.action')}</ExternalActionLink>
+                <ActionLink href="https://discord.gg/K3prMrmS7e">{t('activities.2.action')}</ActionLink>
               </ActionButton>
             </Card>
             <Card
@@ -136,9 +123,7 @@ const Home: NextPage = () => {
               textClass="!text-whitesmoke"
             >
               <ActionButton>
-                <ExternalActionLink href="https://github.com/Laze-Project-Team">
-                  {t('activities.3.action')}
-                </ExternalActionLink>
+                <ActionLink href="https://github.com/Laze-Project-Team">{t('activities.3.action')}</ActionLink>
               </ActionButton>
             </Card>
           </CardContainer>
