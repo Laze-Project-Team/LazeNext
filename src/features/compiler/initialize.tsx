@@ -92,7 +92,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           description: t('Please check your network connection.'),
           type: 'error',
           placement: 'bottomRight',
-          duration: 5000,
+          duration: 5,
         });
       });
   };
@@ -141,7 +141,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           description: t('Please check your network connection.'),
           type: 'error',
           placement: 'bottomRight',
-          duration: 5000,
+          duration: 5,
         });
       });
   };

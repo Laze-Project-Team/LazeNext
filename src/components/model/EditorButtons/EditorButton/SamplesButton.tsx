@@ -74,7 +74,7 @@ export const SamplesButton: FC = () => {
         .catch(() => {
           setLoading(false);
           notification.open({
-            duration: 5000,
+            duration: 5,
             placement: 'bottomRight',
             message: t('Failed to load the sample', { name: sampleList[select].name }),
             description: t('File is not opened. Please open a file first.'),

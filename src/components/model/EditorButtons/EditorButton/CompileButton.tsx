@@ -19,7 +19,7 @@ export const CompileButton: VFC = () => {
     if (code === null || file === null) {
       notification.open({
         type: 'error',
-        duration: 5000,
+        duration: 5,
         placement: 'bottomRight',
         message: t('Compile Error'),
         description: t('File is not opened. Please open a file first.'),
