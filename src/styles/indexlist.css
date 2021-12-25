@@ -25,8 +25,15 @@
   color: #3081A6;
 }
 
+.indexlist .indexlist-item.indexlist-active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 
 .indexlist .ant-collapse-header:hover,
 .indexlist .indexlist-item:hover {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.indexlist .indexlist-item.indexlist-active:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
