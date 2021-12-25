@@ -17,6 +17,8 @@ export const ratioAdjustContext = createContext<() => void>(() => {
   return void 0;
 });
 
+const EDITOR_VERSION = 'v1.0.0';
+
 const Editor: NextPage = () => {
   const [t] = useTranslation(['editor', 'common']);
 
@@ -92,7 +94,10 @@ const Editor: NextPage = () => {
                 </div>
               </SplitPane>
             </div>
-            <div className="h-6"></div>
+            <div className="h-6 flex bg-primary-700 text-gray-100">
+              <div className="px-4">{'Laze Editor ' + EDITOR_VERSION}</div>
+              <div className="px-4">{t('acknowledgement')}</div>
+            </div>
           </div>
         </ratioAdjustContext.Provider>
       </ratioRefContext.Provider>
