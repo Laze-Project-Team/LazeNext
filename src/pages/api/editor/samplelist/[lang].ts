@@ -37,7 +37,7 @@ export const sampleList = async (lang: langId): Promise<Record<string, { name: s
     })
     .reduce((acc, cur) => {
       return { ...acc, ...cur };
-    });
+    }, {});
 
   return sampleList;
 };
