@@ -63,18 +63,18 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
 
   return (
     <>
-      {current ? (
-        <MonacoEditor
-          language="laze"
-          options={options}
-          beforeMount={beforeMount}
-          onMount={onMount}
-          keepCurrentModel
-          theme={currentTheme}
-          onChange={onChange}
-          loading={<Loading />}
-        />
-      ) : (
+      <MonacoEditor
+        language="laze"
+        options={options}
+        beforeMount={beforeMount}
+        onMount={onMount}
+        keepCurrentModel
+        theme={currentTheme}
+        onChange={onChange}
+        loading={<Loading />}
+        wrapperProps={{ className: current ? '' : '!hidden' }}
+      />
+      {current || (
         <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
           <LazeLogo size={100} option="logo_gray" />
           <p>{t('messages.FileIsNotOpened.1')}</p>
