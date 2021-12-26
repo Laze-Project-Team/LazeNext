@@ -41,7 +41,7 @@ const UnconnectedConsoleLogs: VFC<consoleState & { consoleRef: React.RefObject<H
       <>
         {activeConsole?.log.map((log) => {
           return log.type === 'separator' ? (
-            <ConsoleSeparator key={`log-${log.timestamp}-${getHash(6)}`} />
+            <ConsoleSeparator key={`log-separator-${getHash(6)}`} />
           ) : (
             <ConsoleLog
               content={log.content}
