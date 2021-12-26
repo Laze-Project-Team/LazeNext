@@ -1,5 +1,5 @@
 {
-  "name": "next-ts-template",
+  "name": "laze-web",
   "private": true,
   "scripts": {
     "dev": "next dev",
