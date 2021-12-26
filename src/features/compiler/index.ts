@@ -7,7 +7,7 @@ import { getProps } from '@/features/compiler/initialize/getProps';
 
 export const useCompiler = (): void => {
   const dispacher = useDispatch();
-  const [t] = useTranslation();
+  const [t] = useTranslation('editor');
 
   useEffect(() => {
     window.laze = window.laze || {};
