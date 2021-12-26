@@ -1,4 +1,4 @@
-export const fs2DTexture = `#version 300 es
+export const fs2DTexture = `
 varying highp vec2 vTexCoord;
 
 uniform sampler2D uSampler;

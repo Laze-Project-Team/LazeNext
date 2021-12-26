@@ -1,4 +1,4 @@
-export const vs2DNoTexture = `#version 300 es
+export const vs2DNoTexture = `
 attribute vec2 aVertexPosition;
 
 uniform mat4 model;
