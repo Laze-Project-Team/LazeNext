@@ -94,7 +94,7 @@ const Editor: NextPage = () => {
                 </div>
               </SplitPane>
             </div>
-            <div className="h-6 flex bg-primary-600 text-gray-100">
+            <div className="h-6 flex bg-primary-400 dark:bg-primary-600 text-gray-100">
               <div className="px-4">{'Laze Editor ' + EDITOR_VERSION}</div>
               <div className="px-4">{t('acknowledgement')}</div>
             </div>
