@@ -1,7 +1,7 @@
 .Resizer {
   z-index: 10;
   padding: 0;
-  background-color: white;
+  background-color: #555;
   background-clip: padding-box;
   opacity: 0.2;
   transition: all 0.2s;
@@ -26,5 +26,13 @@
 }
 
 .Resizer:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark .Resizer {
+  background-color: #000;
+}
+
+.dark .Resizer:hover {
+  border-color: rgba(255, 255, 255, 0.2);
 }
