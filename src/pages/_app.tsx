@@ -1,6 +1,7 @@
 import 'nprogress/nprogress.css';
 import '@/styles/tailwind.css';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.variable.min.css';
+import '@/styles/antd.css';
 // /editor
 import 'react-complex-tree/lib/style.css';
 import '@/styles/tree.css';

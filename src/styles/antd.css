@@ -1,0 +1,59 @@
+html:root {
+  --ant-primary-color: hsl(199, 100%, 45%);
+  --ant-primary-color-hover: hsl(199, 100%, 55%);
+  --ant-primary-color-active: hsl(199, 100%, 40%);
+  --ant-primary-color-outline: hsla(199, 100%, 45%, 0.2);
+  --ant-primary-1: hsl(199, 40%, 90%);
+  --ant-primary-2: hsl(199, 50%, 85%);
+  --ant-primary-3: hsl(199, 60%, 80%);
+  --ant-primary-4: hsl(199, 70%, 70%);
+  --ant-primary-5: hsl(199, 80%, 60%);
+  --ant-primary-6: hsl(199, 90%, 50%);
+  --ant-primary-7: hsl(199, 100%, 40%);
+  --ant-success-color: #52c41a;
+  --ant-success-color-hover: #73d13d;
+  --ant-success-color-active: #389e0d;
+  --ant-success-color-outline: rgba(82,196,26,0.2);
+  --ant-error-color: #ff4d4f;
+  --ant-error-color-hover: #ff7875;
+  --ant-error-color-active: #d9363e;
+  --ant-error-color-outline: rgba(255,77,79,0.2);
+  --ant-warning-color: #faad14;
+  --ant-warning-color-hover: #ffc53d;
+  --ant-warning-color-active: #d48806;
+  --ant-warning-color-outline: rgba(250,173,20,0.2);
+  --ant-info-color: #1890ff;
+}
+
+html.dark {
+  --ant-primary-1: hsla(199, 100%, 30%, 0.5);
+}
+
+/* モーダル */
+.dark .ant-modal-header {
+  background-color: #262526;
+  border-bottom-color: #444;
+}
+
+.dark .ant-modal-title, .dark .ant-modal-close {
+  color: #ddd;
+}
+
+.dark .ant-modal-content {
+  background-color: #262526;
+  color: #ddd;
+}
+
+.dark .ant-modal-footer {
+  border-top-color: #444;
+}
+
+/* 通知 */
+.dark .ant-notification .ant-notification-notice {
+  background-color: #262526;
+  color: #ddd;
+}
+
+.dark .ant-notification-notice-message, .dark .ant-notification-notice-close-x {
+  color: #ddd;
+}
