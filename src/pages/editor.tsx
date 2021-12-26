@@ -7,6 +7,7 @@ import { createContext, useCallback, useEffect, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
 import { EditorButtons } from '@/components/model/EditorButtons';
+import { EditorFooter } from '@/components/model/EditorFooter';
 import { Explorer } from '@/components/model/Explorer';
 import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
@@ -16,8 +17,6 @@ export const splitPaneRefContext = createContext<RefObject<SplitPane> | null>(nu
 export const ratioAdjustContext = createContext<() => void>(() => {
   return void 0;
 });
-
-const EDITOR_VERSION = 'v1.0.0';
 
 const Editor: NextPage = () => {
   const [t] = useTranslation(['editor', 'common']);
@@ -94,10 +93,7 @@ const Editor: NextPage = () => {
                 </div>
               </SplitPane>
             </div>
-            <div className="h-6 flex bg-primary-400 dark:bg-primary-600 text-gray-100">
-              <div className="px-4">{'Laze Editor ' + EDITOR_VERSION}</div>
-              <div className="px-4">{t('acknowledgement')}</div>
-            </div>
+            <EditorFooter />
           </div>
         </ratioAdjustContext.Provider>
       </ratioRefContext.Provider>
