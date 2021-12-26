@@ -57,3 +57,7 @@ html.dark {
 .dark .ant-notification-notice-message, .dark .ant-notification-notice-close-x {
   color: #ddd;
 }
+
+::selection {
+  background-color: hsl(199, 90%, 50%);
+}
