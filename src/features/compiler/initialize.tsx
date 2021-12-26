@@ -79,7 +79,8 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           interval = setInterval(draw, 1000 / 60);
         }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err);
         notification.open({
           message: t('errors.LaunchProgramFailed.title'),
           description: t('errors.LaunchProgramFailed.message'),
