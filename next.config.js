@@ -20,6 +20,16 @@ module.exports = withBundleAnalyzer({
     return config;
   },
 
+  async redirects() {
+    return [
+      {
+        source: '/docs',
+        destination: '/docs/home',
+        permanent: true,
+      },
+    ];
+  },
+
   i18n,
   publicRuntimeConfig: {
     localeSubpaths,
