@@ -72,7 +72,7 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
           keepCurrentModel
           theme={currentTheme}
           onChange={onChange}
-          loading={Loading}
+          loading={<Loading />}
         />
       ) : (
         <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
