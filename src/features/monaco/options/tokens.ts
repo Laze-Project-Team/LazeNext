@@ -47,22 +47,16 @@ const tokenPatternDefine = {
 const tokenPatterns = {
   function: new RegExp(
     `${tokenPatternDefine.types}?(${jaKeywordList.keywords.function}\\s*${tokens.colon}\\s*)?(${tokenPatternDefine.name})(?=\\s*[\\(（])`,
-    'g',
+    'g'
   ),
   functionWithClass: new RegExp(''),
   template: new RegExp(
     `${jaKeywordList.keywords.template}\\s*([<＜]\\s*(${tokenPatternDefine.name})\\s*[>＞])\\s*${tokens.colon}`,
-    'g',
+    'g'
   ),
-  class: new RegExp(
-    `${jaKeywordList.keywords.class}\\s*${tokens.colon}\\s*(${tokenPatternDefine.name})`,
-    'g',
-  ),
+  class: new RegExp(`${jaKeywordList.keywords.class}\\s*${tokens.colon}\\s*(${tokenPatternDefine.name})`, 'g'),
   keyword: new RegExp(`[${tokens.char}][${tokens.charnum}]*`, 'g'),
-  types: new RegExp(
-    `(${tokens.typeKeywords.join('|')})\\s*(?=${tokens.colon})`,
-    'g',
-  ),
+  types: new RegExp(`(${tokens.typeKeywords.join('|')})\\s*(?=${tokens.colon})`, 'g'),
   typesWithClass: new RegExp(''),
   variable: new RegExp(
     `(${tokenPatternDefine.separator}
@@ -79,31 +73,26 @@ const tokenPatterns = {
 				\\s+[^\\(\\{（｛\\s\\:：\\.] | [^${tokens.charnum}\\(\\{（｛\\s\\:]|\\s*$
 			)
 		)`.replace(/\s/g, ''),
-    'g',
+    'g'
   ),
   variableWithClass: new RegExp(''),
   number: new RegExp(
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     `${tokenPatternDefine.separator}(0b${tokens.binnumber}+|0x${tokens.hexnumber}+|${tokens.number}(?:${tokens.number}|\\.${tokens.number})*)`,
-    'g',
+    'g'
   ),
   operator: new RegExp(`(${tokens.operator})`, 'g'),
   scope: new RegExp('[\\{\\}｛｝]', 'g'),
   bracketsAll: new RegExp('[\\{\\}｛｝\\(\\)（）\\[\\]［］]', 'g'),
   brackets: new RegExp('[\\(\\)（）]', 'g'),
   syntax: {
-    function: new RegExp(
-      '[\\(（](.*)[\\)）](\\s*\\=\\>\\s*)[\\(（](.*?)[\\)）](\\s*[\\=＝].*?(?:;|$))?',
-    ),
+    function: new RegExp('[\\(（](.*)[\\)）](\\s*\\=\\>\\s*)[\\(（](.*?)[\\)）](\\s*[\\=＝].*?(?:;|$))?'),
     for: new RegExp(
       `[\\(（](.*)[）\\)](\\s*${jaKeywordList.control.from}\\s*)[\\(（](.*)[）\\)](\\s*${jaKeywordList.control.until}\\s*)[\\(（](.*)[）\\)](?:\\s*[{｛}])`,
-      'g',
+      'g'
     ),
     repeat: new RegExp(`${jaKeywordList.control.repeat}`, 'g'),
-    include: new RegExp(
-      `(${jaKeywordList.control.include})\\s+(?:"([^"]*)"|「([^」]*)」)`,
-      'g',
-    ),
+    include: new RegExp(`(${jaKeywordList.control.include})\\s+(?:"([^"]*)"|「([^」]*)」)`, 'g'),
   },
   comment: {
     line: new RegExp('\\/\\/.*', 'g'),
@@ -117,4 +106,4 @@ const tokenPatterns = {
   },
 };
 
-export { tokenPatternDefine, tokenPatterns,tokens };
+export { tokenPatternDefine, tokenPatterns, tokens };

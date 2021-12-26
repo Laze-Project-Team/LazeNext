@@ -10,7 +10,7 @@
     "rename": "名前を変更",
     "delete": "削除"
   },
-  
+
   "panellist": {
     "master": "Master",
     "close": "Close"
@@ -23,7 +23,7 @@
     "samples": "Sample List",
     "settings": "Settings"
   },
-  
+
   "settings": {
     "darkmode": "Enable dark mode",
     "close": "Close"

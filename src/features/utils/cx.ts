@@ -1,2 +1,3 @@
-export const cx = (...classNames: (string | undefined | null | boolean)[]): string =>
-  {return classNames.filter(Boolean).join(' ')};
+export const cx = (...classNames: (string | undefined | null | boolean)[]): string => {
+  return classNames.filter(Boolean).join(' ');
+};

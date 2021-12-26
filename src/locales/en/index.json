@@ -24,7 +24,7 @@
       "title": "2D Games",
       "description": "Using the standard library, 2D drawing can be done with very simple code."
     },
-    
+
     "2": {
       "title": "3D Games",
       "description": "It uses WebGL2.0, which means that it can perform as well in 3D as it does in 2D. It comes with a standard library to make it easy to get started."

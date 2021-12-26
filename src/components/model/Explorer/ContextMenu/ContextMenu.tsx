@@ -1,7 +1,7 @@
 import type { VFC } from 'react';
 import { Item, Menu, Separator, useContextMenu } from 'react-contexify';
 
-import type { ContextMenuItem,ContextMenuItems } from '@/typings/contextmenu';
+import type { ContextMenuItem, ContextMenuItems } from '@/typings/contextmenu';
 
 type ContextMenuprops = {
   id: string;

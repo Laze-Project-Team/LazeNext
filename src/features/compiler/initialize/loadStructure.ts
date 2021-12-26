@@ -1,5 +1,7 @@
 // eslint-disable-next-line no-bitwise
-const isPowerOf2 = (value: number) => {return (value & (value - 1)) === 0};
+const isPowerOf2 = (value: number) => {
+  return (value & (value - 1)) === 0;
+};
 
 export const loadTexture = (gl: WebGL2RenderingContext, url: string): WebGLTexture => {
   const texture = gl.createTexture();

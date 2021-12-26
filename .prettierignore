@@ -1,0 +1,15 @@
+# generated files
+/.next
+/out
+/cache
+
+# node modules
+/node_modules
+
+# data files
+/data
+/docs
+
+# other files
+/public
+/test

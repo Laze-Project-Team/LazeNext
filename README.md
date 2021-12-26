@@ -1,4 +1,5 @@
 # Next.js Template Repository
+
 - Next.js
 - eslint
 - prettier
