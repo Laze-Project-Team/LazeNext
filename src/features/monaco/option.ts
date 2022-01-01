@@ -1,6 +1,6 @@
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 
-export const options: monaco.editor.IEditorConstructionOptions = {
+export const options: monaco.editor.IEditorConstructionOptions & { 'semanticHighlighting.enabled': boolean } = {
   selectOnLineNumbers: true,
   automaticLayout: true,
   autoClosingBrackets: 'always',
@@ -9,4 +9,5 @@ export const options: monaco.editor.IEditorConstructionOptions = {
   // wordBasedSuggestions: false,
   wordSeparators: `()（）[]［］{}｛｝'’"”「」&＆|｜=＝-ー+＋*＊/%％,.:：;；`,
   fontFamily: "'Consolas', 'Droid Sans Mono', 'Courier New', ui-monospace, 'Droid Sans Fallback'",
+  'semanticHighlighting.enabled': true,
 };
