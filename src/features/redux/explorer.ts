@@ -15,9 +15,15 @@ export type ExplorerState = {
 };
 
 const initialState: ExplorerState = {
-  current: null,
+  current: '/main.laze',
   updated: false,
-  directory: {},
+  directory: {
+    '/main.laze': {
+      type: 'file',
+      content: '',
+      isRenaming: false,
+    },
+  },
 };
 
 export type direntPayload = {
