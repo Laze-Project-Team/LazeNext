@@ -17,7 +17,7 @@ const FooterNavigation: FC<FooterNavigationProps> = ({ href, children, title }) 
   return (
     <div className="hover:bg-white/5 px-2 transition-colors duration-200">
       <StyledLink href={href} className="h-full flex items-center text-gray-100 hover:text-gray-100" title={title}>
-        <IconContext.Provider value={{ size: '1.3rem' }}>{children}</IconContext.Provider>
+        <IconContext.Provider value={{ size: '1.2rem' }}>{children}</IconContext.Provider>
       </StyledLink>
     </div>
   );
