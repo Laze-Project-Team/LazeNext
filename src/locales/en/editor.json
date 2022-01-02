@@ -21,6 +21,7 @@
     "newFolder": "New Folder",
     "compile": "Compile & Run",
     "samples": "Sample List",
+    "convert": "Conversion of language",
     "settings": "Settings"
   },
 
@@ -34,6 +35,20 @@
     "error": "Somehing went wrong while loading sample list",
     "load": "Load",
     "cancel": "Cancel"
+  },
+
+  "convert": {
+    "convert": "Conversion of language",
+    "cancel": "Cancel",
+
+    "success": {
+      "title": "Conversion completed",
+      "message": "Your language has been changed successfully ({{from}} → {{to}})"
+    },
+    "error": {
+      "title": "Conversion failed",
+      "message": "Something went wrong while changing your language ({{from}} → {{to}})"
+    }
   },
 
   "workbench": {

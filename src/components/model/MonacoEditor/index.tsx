@@ -2,8 +2,9 @@ import type { BeforeMount, OnMount } from '@monaco-editor/react';
 import MonacoEditor, { useMonaco } from '@monaco-editor/react';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
+import { useCallback } from 'react';
 import { useContext } from 'react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 import { Loading } from '@/components/model/MonacoEditor/Loading';
@@ -13,6 +14,7 @@ import { options } from '@/features/monaco/option';
 import type { ExplorerState } from '@/features/redux/explorer';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
+import { getCurrentCode } from '@/features/redux/root';
 import { colorModeContext } from '@/pages/_app';
 
 type EditorProps = {
@@ -24,24 +26,44 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
 
   const monaco = useMonaco();
 
-  const { current } = state;
-  const [previousCurrent, setPreviousCurrent] = useState<string | null>(null);
-  useEffect(() => {
-    if (current && previousCurrent !== current) {
-      setPreviousCurrent(current);
-      const content = state.directory[current]?.content || '';
+  const setValue = useCallback(
+    (content: string) => {
       const model = monaco?.editor.getModels()[0];
       if (model) {
         model.setValue(content);
       }
+    },
+    [monaco?.editor]
+  );
+
+  const { current } = state;
+  useEffect(() => {
+    if (current) {
+      const content = getCurrentCode();
+      if (content !== null) {
+        setValue(content);
+      }
     }
-  }, [current, monaco?.editor, previousCurrent, state.directory]);
+  }, [current, setValue]);
 
   const dispatcher = useDispatch();
-  const { saveFile } = explorerSlice.actions;
+  const { saveFile, update } = explorerSlice.actions;
   const onChange = (value?: string) => {
-    return value && dispatcher(saveFile({ content: value }));
+    const code = getCurrentCode();
+    if (value && code !== value) {
+      dispatcher(saveFile({ content: value }));
+    }
   };
+
+  useEffect(() => {
+    if (state.updated) {
+      dispatcher(update());
+      const code = getCurrentCode();
+      if (code) {
+        setValue(code);
+      }
+    }
+  }, [dispatcher, setValue, state.updated, update]);
 
   const onMount: OnMount = (editor) => {
     editor.focus();

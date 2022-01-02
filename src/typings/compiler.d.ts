@@ -122,11 +122,30 @@ export type compileRequest = {
   };
 };
 
+export type convertRequest = {
+  code: string;
+  option: {
+    from: string;
+    to: string;
+  };
+};
+
 export type compileResponse = {
   success: boolean;
   message: string;
   wasm: string;
 };
+
+export type successConvertResponse = {
+  success: true;
+  code: string;
+};
+
+export type failedConvertResponse = {
+  success: false;
+};
+
+export type convertResponse = successConvertResponse | failedConvertResponse;
 
 export type successedCompilerResult = {
   success: true;
@@ -143,5 +162,6 @@ export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
   compile: (code: string, label: string) => void;
+  convert: (path: string, code: string, lang: string, newLang: string) => Promise<boolean>;
   run: () => void;
 };

@@ -3,6 +3,7 @@ import type { TFunction } from 'i18next';
 import moment from 'moment';
 import type { Dispatch } from 'redux';
 
+import { langList } from '@/const/lang';
 import { initShaderProgram } from '@/features/compiler/initialize/initShaderProgram';
 import { keyControlInitialize } from '@/features/compiler/keycontrol';
 import { fs as fsSource } from '@/features/compiler/source/fs';
@@ -16,11 +17,14 @@ import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source
 import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
 import { consoleSlice } from '@/features/redux/console';
 import { getHash } from '@/features/utils/hash';
-import type { compileResponse, compilerType } from '@/typings/compiler';
+import type { compileResponse, compilerType, convertResponse } from '@/typings/compiler';
+
+import { explorerSlice } from '../redux/explorer';
 
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
   keyControlInitialize();
   const { addLog, createPanel, addSeparator } = consoleSlice.actions;
+  const { saveFile } = explorerSlice.actions;
 
   const run: compilerType['run'] = () => {
     const { canvas, gl, importObject, variables } = window.laze.props;
@@ -140,5 +144,40 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       });
   };
 
-  return { compile, run };
+  const convert = async (path: string, code: string, lang: string, newLang: string) => {
+    const body = JSON.stringify({ code, option: { from: lang, to: newLang } });
+
+    const res = await fetch(`/api/editor/convert`, {
+      method: 'POST',
+      body,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const resJson = (await res.json()) as convertResponse;
+
+    if (resJson.success) {
+      notification.open({
+        message: t('convert.success.title'),
+        description: t('convert.success.message', { from: langList[lang], to: langList[newLang] }),
+        type: 'success',
+        placement: 'bottomRight',
+        duration: 5,
+      });
+      dispatcher(saveFile({ path, content: resJson.code }));
+    } else {
+      notification.open({
+        message: t('convert.error.title'),
+        description: t('convert.error.message', { from: langList[lang], to: langList[newLang] }),
+        type: 'error',
+        placement: 'bottomRight',
+        duration: 5,
+      });
+    }
+
+    return resJson.success;
+  };
+
+  return { compile, run, convert };
 };

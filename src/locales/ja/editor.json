@@ -26,6 +26,7 @@
     "newFolder": "新規フォルダ",
     "compile": "コンパイル＆実行",
     "samples": "サンプル一覧",
+    "convert": "言語の変換",
     "settings": "設定"
   },
 
@@ -39,6 +40,20 @@
     "error": "サンプルの一覧読み込み中に何かしらのエラーが発生しました",
     "load": "読み込み",
     "cancel": "キャンセル"
+  },
+
+  "convert": {
+    "convert": "変換",
+    "cancel": "キャンセル",
+
+    "success": {
+      "title": "変換に成功しました",
+      "message": "言語を変更しました ({{from}} → {{to}})"
+    },
+    "error": {
+      "title": "変換に失敗しました",
+      "message": "言語の変更中に何かしらのエラーが発生しました ({{from}} → {{to}})"
+    }
   },
 
   "workbench": {
@@ -58,7 +73,7 @@
 
   "errors": {
     "FileIsNotOpened": {
-      "title": "コンパイルエラー",
+      "title": "ファイルロードエラー",
       "message": "ファイルが開かれていません。ファイルを開いてからもう一度試してみてください。"
     },
     "LoadingSampleFailed": {

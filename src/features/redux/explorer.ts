@@ -10,13 +10,13 @@ interface explorerDirent extends direntType {
 
 export type ExplorerState = {
   current: string | null;
-  compiled: boolean;
+  updated: boolean;
   directory: Record<string, explorerDirent>;
 };
 
 const initialState: ExplorerState = {
   current: null,
-  compiled: false,
+  updated: false,
   directory: {},
 };
 
@@ -31,6 +31,7 @@ export type renameDirentPayload = {
 
 export type saveFilePayload = {
   content: string;
+  path?: string;
 };
 
 export const explorerSlice = createSlice({
@@ -58,11 +59,21 @@ export const explorerSlice = createSlice({
       state.current = null;
     },
     saveFile: (state, action: PayloadAction<saveFilePayload>) => {
-      if (state.current) {
-        state.directory[state.current].content = action.payload.content;
+      const file = action.payload.path ?? state.current;
+      if (file) {
+        state.directory[file].content = action.payload.content;
 
-        window.laze.props.variables.compiled = false;
+        if (!action.payload.path) {
+          window.laze.props.variables.compiled = false;
+        }
+
+        if (state.current === action.payload.path) {
+          state.updated = true;
+        }
       }
+    },
+    update: (state) => {
+      state.updated = false;
     },
     renameDirent: (state, action: PayloadAction<renameDirentPayload>) => {
       const rename = (oldPath: string, newPath: string) => {
@@ -109,7 +120,6 @@ export const explorerSlice = createSlice({
     },
     setDirectory: (state, action: PayloadAction<ExplorerState['directory']>) => {
       state.current = initialState.current;
-      state.compiled = initialState.compiled;
       state.directory = action.payload;
     },
   },
