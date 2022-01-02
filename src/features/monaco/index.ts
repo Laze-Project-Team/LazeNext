@@ -27,7 +27,5 @@ export const initializeMonaco = (monaco: Monaco): void => {
     // monaco.languages.setMonarchTokensProvider('laze', tokenProvider);
     monaco.languages.registerDocumentSemanticTokensProvider('laze', semanticTokenProvider);
     monaco.languages.registerCompletionItemProvider('laze', completionItemProvider);
-
-    console.log('Monaco initialized');
   }
 };
