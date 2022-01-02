@@ -8,7 +8,7 @@ import SplitPane from 'react-split-pane';
 
 import { EditorButtons } from '@/components/model/EditorButtons';
 import { EditorFooter } from '@/components/model/EditorFooter';
-import { Explorer } from '@/components/model/Explorer';
+// import { Explorer } from '@/components/model/Explorer';
 import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
 
@@ -69,7 +69,7 @@ const Editor: NextPage = () => {
                 ref={splitPaneRef}
                 onChange={handleResize}
               >
-                <SplitPane
+                {/* <SplitPane
                   split="vertical"
                   primary="first"
                   defaultSize="12rem"
@@ -77,16 +77,16 @@ const Editor: NextPage = () => {
                 >
                   <div className="h-full">
                     <Explorer />
+                  </div> */}
+                <div className="h-full flex-1 flex flex-col">
+                  <div className="h-7">
+                    <EditorButtons />
                   </div>
-                  <div className="h-full flex-1 flex flex-col">
-                    <div className="h-7">
-                      <EditorButtons />
-                    </div>
-                    <div className="flex-1">
-                      <MonacoEditor />
-                    </div>
+                  <div className="flex-1">
+                    <MonacoEditor />
                   </div>
-                </SplitPane>
+                </div>
+                {/* </SplitPane> */}
 
                 <div className="w-full h-full">
                   <WorkBench />
