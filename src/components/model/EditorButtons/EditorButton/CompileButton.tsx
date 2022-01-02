@@ -1,9 +1,11 @@
 import { notification } from 'antd';
 import type { VFC } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VscRunAll } from 'react-icons/vsc';
+import { VscLoading, VscRunAll } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
+import { Spin } from '@/components/ui/Spin';
 import { useCompiler } from '@/features/compiler';
 import { getCurrentCode, getCurrentFile, store } from '@/features/redux/root';
 import { getName } from '@/features/utils/path';
@@ -12,6 +14,8 @@ export const CompileButton: VFC = () => {
   const [t] = useTranslation('editor');
 
   useCompiler();
+
+  const [isCompiling, setIsCompiiling] = useState(false);
 
   const onClick = () => {
     const code = getCurrentCode();
@@ -34,13 +38,32 @@ export const CompileButton: VFC = () => {
     ) {
       window.laze.compiler.run();
     } else {
-      window.laze.compiler.compile(code, getName(file));
+      const result = window.laze.compiler.compile(code, getName(file));
+      if (result) {
+        setIsCompiiling(true);
+        result.then(() => {
+          setIsCompiiling(false);
+        });
+      }
     }
   };
 
   return (
     <>
-      <EditorButton name={t('buttons.compile')} onClick={onClick} Icon={<VscRunAll />} />
+      <EditorButton
+        name={t('buttons.compile')}
+        onClick={onClick}
+        disabled={isCompiling}
+        Icon={
+          isCompiling ? (
+            <Spin>
+              <VscLoading />
+            </Spin>
+          ) : (
+            <VscRunAll />
+          )
+        }
+      />
     </>
   );
 };

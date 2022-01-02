@@ -162,7 +162,7 @@ export type failedCompilerResult = {
 export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
-  compile: (code: string, label: string) => void;
+  compile: (code: string, label: string) => void | Promise<void>;
   convert: (path: string, code: string, lang: string, newLang: string) => Promise<boolean>;
   run: () => void;
 };

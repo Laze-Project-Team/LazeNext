@@ -39,7 +39,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
 
     let interval: NodeJS.Timeout | null = null;
 
-    fetch(variables.wasm)
+    return fetch(variables.wasm)
       .then((res) => {
         window.laze.props.webglObjects = {
           webglBuffers: [],
