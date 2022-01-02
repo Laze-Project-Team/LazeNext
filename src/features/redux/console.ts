@@ -57,15 +57,17 @@ export const consoleSlice = createSlice({
   initialState,
   reducers: {
     addLog: (state, action: PayloadAction<consoleLogPayload>) => {
-      state.console[action.payload.console].log.push({
-        type: 'log',
-        content: action.payload.content,
-        level: action.payload.level,
-        timestamp: Date.now(),
-      });
+      if (Object.prototype.hasOwnProperty.call(state.console, action.payload.console)) {
+        state.console[action.payload.console].log.push({
+          type: 'log',
+          content: action.payload.content,
+          level: action.payload.level,
+          timestamp: Date.now(),
+        });
 
-      if (state.console[action.payload.console].log.length > LOG_LIMIT) {
-        state.console[action.payload.console].log.shift();
+        if (state.console[action.payload.console].log.length > LOG_LIMIT) {
+          state.console[action.payload.console].log.shift();
+        }
       }
     },
     addSeparator: (state, action: PayloadAction<string>) => {

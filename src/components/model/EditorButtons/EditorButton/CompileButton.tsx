@@ -5,7 +5,7 @@ import { VscRunAll } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { useCompiler } from '@/features/compiler';
-import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
+import { getCurrentCode, getCurrentFile, store } from '@/features/redux/root';
 import { getName } from '@/features/utils/path';
 
 export const CompileButton: VFC = () => {
@@ -28,7 +28,10 @@ export const CompileButton: VFC = () => {
       return;
     }
 
-    if (window.laze.props.variables.compiled) {
+    if (
+      window.laze.props.variables.compiled &&
+      Object.prototype.hasOwnProperty.call(store.getState().console.console, window.laze.props.variables.id)
+    ) {
       window.laze.compiler.run();
     } else {
       window.laze.compiler.compile(code, getName(file));
