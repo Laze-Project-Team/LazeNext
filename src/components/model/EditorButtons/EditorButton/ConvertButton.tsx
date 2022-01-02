@@ -12,8 +12,7 @@ import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 export const ConvertButton: VFC = () => {
   const [t] = useTranslation('editor');
   const [isOpened, setIsOpened] = useState(false);
-  const [lang, setLang] = useState('ja');
-  const [newLang, setNewLang] = useState(lang);
+  const [newLang, setNewLang] = useState(window.laze.props.variables.lang);
 
   useCompiler();
 
@@ -46,9 +45,9 @@ export const ConvertButton: VFC = () => {
       return;
     }
     setIsOpened(false);
-    window.laze.compiler.convert(file, code, lang, newLang).then((success) => {
+    window.laze.compiler.convert(file, code, window.laze.props.variables.lang, newLang).then((success) => {
       if (success) {
-        setLang(newLang);
+        window.laze.props.variables.lang = newLang;
       }
     });
   };

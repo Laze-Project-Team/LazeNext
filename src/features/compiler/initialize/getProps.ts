@@ -32,6 +32,7 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
       memorySize: 0,
       wasm: '',
       id: '',
+      lang: 'ja',
       keyControl: initialKeyControl,
       compiled: false,
     },

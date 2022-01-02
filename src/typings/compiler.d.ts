@@ -104,6 +104,7 @@ export type compilerVariable = {
   memorySize: number;
   wasm: string;
   id: string;
+  lang: string;
   keyControl: keyControlType;
   compiled: boolean;
 };

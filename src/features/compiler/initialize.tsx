@@ -95,12 +95,11 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       });
   };
 
-  const lang = 'ja';
   const compile: compilerType['compile'] = (code: string, label: string) => {
     window.laze.props.variables.id = '';
     window.laze.props.variables.wasm = '';
 
-    const body = JSON.stringify({ code, option: { lang } });
+    const body = JSON.stringify({ code, option: { lang: window.laze.props.variables.lang } });
 
     fetch(`/api/editor/compile`, {
       method: 'POST',
