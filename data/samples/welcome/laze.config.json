@@ -1,0 +1,30 @@
+{
+  "id": "welcome",
+  "name": {
+    "ja": "ようこそ",
+    "en": "welcome",
+    "de": "willkommen",
+    "ru": "приветствую",
+    "pt": "bem-vindo",
+    "nl": "welkom",
+    "fr": "bienvenue",
+    "it": "benvenuto",
+    "es": "bienvenido",
+    "pl": "witamy",
+    "zh-cn": "欢迎"
+  },
+  "description": {
+    "ja": "Lazeプロジェクトにようこそ。このプログラムを通してLazeの基礎を学んで行きましょう。",
+    "en": "Welcome to the Laze project. This program will help you learn the basics of Laze.",
+    "de": "Willkommen beim Laze-Projekt. Dieses Programm hilft Ihnen, die Grundlagen von Laze zu lernen.",
+    "ru": "Добро пожаловать в проект Laze. Эта программа поможет вам узнать основы Laze.",
+    "pt": "Bem-vindo ao projeto Laze. Este programa irá ajudá-lo a aprender os fundamentos do Laze.",
+    "nl": "Welkom bij het Laze-project. Dit programma helpt u om de basis van Laze te leren.",
+    "fr": "Bienvenue dans le projet Laze. Ce programme vous aidera à apprendre les bases de Laze.",
+    "it": "Benvenuto nel progetto Laze. Questo programma aiuterà a imparare le basi di Laze.",
+    "es": "Bienvenido al proyecto Laze. Este programa le ayudará a aprender los fundamentos de Laze.",
+    "pl": "Witamy w projekcie Laze. Program ten pomoże Ci nauczyć podstaw Laze.",
+    "zh-cn": "欢迎来到Laze项目。这个程序将帮助你学习Laze的基础知识。"
+  },
+  "dependencies": {}
+}
