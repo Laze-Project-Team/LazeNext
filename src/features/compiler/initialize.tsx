@@ -95,52 +95,49 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       });
   };
 
-  const compile: compilerType['compile'] = (code: string, label: string) => {
+  const compile: compilerType['compile'] = async (code: string, label: string) => {
     window.laze.props.variables.id = '';
     window.laze.props.variables.wasm = '';
 
     const body = JSON.stringify({ code, option: { lang: window.laze.props.variables.lang } });
 
-    fetch(`/api/editor/compile`, {
-      method: 'POST',
-      body,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res: compileResponse) => {
-        const id = moment().unix().toString(36) + getHash(4);
-
-        window.laze.props.variables.id = id;
-        window.laze.props.variables.wasm = res.success ? res.wasm : '';
-        window.laze.props.variables.compiled = res.success;
-
-        dispatcher(createPanel({ id, label, active: true }));
-
-        dispatcher(
-          addLog({
-            console: id,
-            content: res.message,
-            level: res.success ? 'log' : 'error',
-          })
-        );
-
-        if (res.success) {
-          run();
-        }
-      })
-      .catch(() => {
-        notification.open({
-          message: t('errors.CompileProgramFailed.title'),
-          description: t('errors.CompileProgramFailed.message'),
-          type: 'error',
-          placement: 'bottomRight',
-          duration: 5,
-        });
+    try {
+      const res = await fetch(`/api/editor/compile`, {
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
+      const resJson = (await res.json()) as compileResponse;
+      const id = moment().unix().toString(36) + getHash(4);
+
+      window.laze.props.variables.id = id;
+      window.laze.props.variables.wasm = resJson.success ? resJson.wasm : '';
+      window.laze.props.variables.compiled = resJson.success;
+
+      dispatcher(createPanel({ id, label, active: true }));
+
+      dispatcher(
+        addLog({
+          console: id,
+          content: resJson.message,
+          level: resJson.success ? 'log' : 'error',
+        })
+      );
+
+      if (resJson.success) {
+        run();
+      }
+    } catch {
+      notification.open({
+        message: t('errors.CompileProgramFailed.title'),
+        description: t('errors.CompileProgramFailed.message'),
+        type: 'error',
+        placement: 'bottomRight',
+        duration: 5,
+      });
+    }
   };
 
   const convert = async (path: string, code: string, lang: string, newLang: string) => {
