@@ -99,7 +99,7 @@ export const ConvertButton: VFC = () => {
                 />
                 <label
                   htmlFor={`convert-lang-${key}`}
-                  className="inline-block px-4 py-1 w-full h-full hover:bg-white/10 transition-colors duration-200 rounded-sm peer-checked:bg-white/10 peer-checked:hover:bg-white/15"
+                  className="inline-block px-4 py-1 w-full h-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors duration-200 rounded-sm peer-checked:bg-black/10 dark:peer-checked:bg-white/10 peer-checked:hover:bg-black/[.15] peer-checked:dark:hover:bg-white/20 cursor-pointer"
                 >
                   {langList[key as keyof typeof langList]}
                 </label>
