@@ -17,6 +17,7 @@ export const ConvertButton: VFC = () => {
 
   const defaultLang = typeof window !== 'undefined' ? window?.laze?.props?.variables?.lang ?? 'ja' : 'ja';
   const [newLang, setNewLang] = useState(defaultLang);
+  const [lang, setLang] = useState(defaultLang);
 
   const FileIsNotOpened = () => {
     notification.open({
@@ -50,6 +51,7 @@ export const ConvertButton: VFC = () => {
     window.laze.compiler.convert(file, code, window.laze.props.variables.lang, newLang).then((success) => {
       if (success) {
         window.laze.props.variables.lang = newLang;
+        setLang(newLang);
       }
     });
   };
@@ -62,7 +64,7 @@ export const ConvertButton: VFC = () => {
     <>
       <div className="flex">
         <EditorButton name={t('buttons.convert')} onClick={onClick} Icon={<VscArrowSwap />} />
-        <div className="inline-flex items-center opacity-80 px-2">{langList[defaultLang]}</div>
+        <div className="inline-flex items-center opacity-80 px-2">{langList[lang]}</div>
       </div>
       <Modal
         title={t('buttons.convert')}
