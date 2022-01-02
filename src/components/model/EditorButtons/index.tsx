@@ -9,10 +9,11 @@ import { SamplesButton } from '@/components/model/EditorButtons/EditorButton/Sam
 import { SettingsButton } from '@/components/model/EditorButtons/EditorButton/SettingsButton';
 import { cx } from '@/features/utils/cx';
 
-const mediaList = ['(max-width: 600px)', '(min-width: 601px)'];
+const QUERY_SM_DOWN = '(max-width: 576px)' as const;
+const QUERY_MD_UP = '(min-width: 577px)' as const;
 
 export const EditorButtons: VFC = () => {
-  const media = useMediaQuery(mediaList);
+  const media = useMediaQuery([QUERY_MD_UP, QUERY_SM_DOWN]);
 
   const [isOpened, setIsOpened] = useState(false);
 
@@ -29,7 +30,7 @@ export const EditorButtons: VFC = () => {
   return (
     <>
       <div className="flex h-full bg-[#f3f3f3] dark:bg-background">
-        {media === mediaList[0] ? (
+        {media === QUERY_SM_DOWN ? (
           <>
             <button className="px-2" onClick={toggleDisplay}>
               <VscMenu />
