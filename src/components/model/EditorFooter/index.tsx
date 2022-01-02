@@ -29,7 +29,7 @@ export const EditorFooter: VFC = () => {
   return (
     <div className="h-6 flex bg-primary-400 dark:bg-primary-600 text-gray-100">
       <div className="px-4">{version}</div>
-      <div className="px-4">{t('footer.acknowledgement')}</div>
+      <div className="px-4 hidden xs:block">{t('footer.acknowledgement')}</div>
       <div className="ml-auto flex">
         <FooterNavigation href="/" title={t('footer.home')}>
           <VscHome />
