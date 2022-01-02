@@ -64,6 +64,7 @@ const Editor: NextPage = () => {
                 split="horizontal"
                 primary="second"
                 defaultSize="max(12rem, 20%)"
+                paneStyle={{ minHeight: '0' }}
                 pane2Style={{ maxHeight: 'calc(100% - 11.75rem)' }}
                 className="!static"
                 ref={splitPaneRef}
