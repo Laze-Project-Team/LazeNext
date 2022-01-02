@@ -12,9 +12,11 @@ import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 export const ConvertButton: VFC = () => {
   const [t] = useTranslation('editor');
   const [isOpened, setIsOpened] = useState(false);
-  const [newLang, setNewLang] = useState(window.laze.props.variables.lang);
 
   useCompiler();
+
+  const defaultLang = typeof window !== 'undefined' ? window?.laze?.props?.variables?.lang ?? 'ja' : 'ja';
+  const [newLang, setNewLang] = useState(defaultLang);
 
   const FileIsNotOpened = () => {
     notification.open({
@@ -58,7 +60,10 @@ export const ConvertButton: VFC = () => {
 
   return (
     <>
-      <EditorButton name={t('buttons.convert')} onClick={onClick} Icon={<VscArrowSwap />} />
+      <div className="flex">
+        <EditorButton name={t('buttons.convert')} onClick={onClick} Icon={<VscArrowSwap />} />
+        <div className="inline-flex items-center opacity-80 px-2">{langList[defaultLang]}</div>
+      </div>
       <Modal
         title={t('buttons.convert')}
         visible={isOpened}
