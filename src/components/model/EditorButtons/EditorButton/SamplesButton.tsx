@@ -1,14 +1,15 @@
-import { Modal, notification, Spin } from 'antd';
+import { Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VscFolderOpened } from 'react-icons/vsc';
+import { VscFolderOpened, VscLoading } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { SampleList } from '@/components/model/EditorButtons/SampleList';
 import { Portal } from '@/components/ui/Portal';
+import { Spin } from '@/components/ui/Spin';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { direntType } from '@/typings/directory';
 import type { sampleListType } from '@/typings/samplelist';
@@ -89,7 +90,9 @@ export const SamplesButton: FC = () => {
       {isLoading && (
         <Portal>
           <div className="fixed top-0 bottom-4 left-0 right-0 flex justify-center items-center bg-black/40">
-            <Spin size="large" />
+            <Spin className="text-6xl">
+              <VscLoading />
+            </Spin>
           </div>
         </Portal>
       )}
@@ -101,6 +104,7 @@ export const SamplesButton: FC = () => {
         onCancel={abort}
         cancelText={t('samples.cancel')}
         okText={t('samples.load')}
+        okButtonProps={{ disabled: Object.keys(sampleList).length === 0 }}
       >
         {(() => {
           if (error) {
@@ -110,7 +114,9 @@ export const SamplesButton: FC = () => {
           if (Object.keys(sampleList).length === 0) {
             return (
               <div className="h-20 flex justify-center items-center">
-                <Spin size="large" />
+                <Spin className="text-3xl">
+                  <VscLoading />
+                </Spin>
               </div>
             );
           }
