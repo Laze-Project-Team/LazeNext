@@ -8,6 +8,8 @@ import { EditorButton } from '@/components/model/EditorButtons/EditorButton/Edit
 import { langList } from '@/const/lang';
 import { useCompiler } from '@/features/compiler';
 import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
+import { cx } from '@/features/utils/cx';
+import styles from '@/styles/loading.module.css';
 
 export const ConvertButton: VFC = () => {
   const [t] = useTranslation('editor');
@@ -18,6 +20,7 @@ export const ConvertButton: VFC = () => {
   const defaultLang = typeof window !== 'undefined' ? window?.laze?.props?.variables?.lang ?? 'ja' : 'ja';
   const [newLang, setNewLang] = useState(defaultLang);
   const [lang, setLang] = useState(defaultLang);
+  const [isConverting, setIsConverting] = useState(false);
 
   const FileIsNotOpened = () => {
     notification.open({
@@ -48,8 +51,10 @@ export const ConvertButton: VFC = () => {
       return;
     }
     setIsOpened(false);
+    setIsConverting(true);
     window.laze.compiler.convert(file, code, window.laze.props.variables.lang, newLang).then((success) => {
       if (success) {
+        setIsConverting(false);
         window.laze.props.variables.lang = newLang;
         setLang(newLang);
       }
@@ -103,6 +108,15 @@ export const ConvertButton: VFC = () => {
           })}
         </div>
       </Modal>
+
+      <div
+        className={cx(
+          'fixed top-0 right-0 bottom-0 left-0 bg-black/60 z-10 flex justify-center items-center',
+          isConverting ? 'opacity-100 visible' : 'opacity-0 invisible'
+        )}
+      >
+        <div className={styles.loader} />
+      </div>
     </>
   );
 };
