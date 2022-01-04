@@ -49,6 +49,10 @@ html.dark {
   border-top-color: #444;
 }
 
+.dark .ant-modal-footer .ant-btn:not(.ant-btn-primary) {
+  border: none;
+}
+
 /* 通知 */
 .dark .ant-notification .ant-notification-notice {
   background-color: #262526;
