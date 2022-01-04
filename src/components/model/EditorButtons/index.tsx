@@ -30,7 +30,7 @@ export const EditorButtons: VFC = () => {
   return (
     <>
       <div className="flex h-full bg-[#f3f3f3] dark:bg-background">
-        {media === QUERY_SM_DOWN ? (
+        {typeof window !== 'undefined' && media === QUERY_SM_DOWN ? (
           <>
             <button className="px-2" onClick={toggleDisplay}>
               <VscMenu />
