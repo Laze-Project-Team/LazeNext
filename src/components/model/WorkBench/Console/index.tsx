@@ -7,6 +7,8 @@ import { ConsoleLogs } from '@/components/model/WorkBench/Console/ConsoleLogs';
 import { ConsolePanelListItem } from '@/components/model/WorkBench/Console/ConsolePanelListItem';
 import type { consoleState } from '@/features/redux/console';
 import type { RootState } from '@/features/redux/root';
+import { cx } from '@/features/utils/cx';
+import styles from '@/styles/editor-scrollable.module.css';
 
 const UnconnectedConsole: VFC<Omit<consoleState, 'scrolled'>> = ({ console, active }) => {
   const [t] = useTranslation('editor');
@@ -15,10 +17,16 @@ const UnconnectedConsole: VFC<Omit<consoleState, 'scrolled'>> = ({ console, acti
 
   return (
     <div className="h-full flex">
-      <div className="flex-1 h-full overflow-y-scroll editor-scrollable" ref={consoleRef}>
+      <div className={cx('flex-1 h-full overflow-y-scroll', styles.scrollable, styles.normal)} ref={consoleRef}>
         <ConsoleLogs consoleRef={consoleRef} />
       </div>
-      <div className="w-28 ml-1 border-l-[1px] border-gray-300 dark:border-gray-700 editor-scrollable overflow-x-hidden overflow-y-auto">
+      <div
+        className={cx(
+          'w-28 ml-1 border-l-[1px] border-gray-300 dark:border-gray-700 editor-scrollable overflow-x-hidden overflow-y-auto',
+          styles.scrollable,
+          styles.thin
+        )}
+      >
         {Object.keys(console).map((key) => {
           return (
             <ConsolePanelListItem

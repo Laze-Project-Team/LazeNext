@@ -7,7 +7,6 @@ import 'react-complex-tree/lib/style.css';
 import '@/styles/tree.css';
 import 'react-contexify/dist/ReactContexify.min.css';
 import '@/styles/contextmenu.css';
-import '@/styles/editor-scrollable.css';
 import 'monaco-editor/min/vs/editor/editor.main.css';
 import '@/styles/indexlist.css';
 import '@/styles/resizer.css';
