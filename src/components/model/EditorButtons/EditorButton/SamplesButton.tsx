@@ -1,14 +1,15 @@
 import { Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { FC } from 'react';
+import { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VscFolderOpened, VscLoading } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
-import { SampleList } from '@/components/model/EditorButtons/SampleList';
 import { Portal } from '@/components/ui/Portal';
+import { SelectableList } from '@/components/ui/SelectableList';
 import { Spin } from '@/components/ui/Spin';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { direntType } from '@/typings/directory';
@@ -19,7 +20,7 @@ export const SamplesButton: FC = () => {
 
   const [t] = useTranslation('editor');
 
-  const [select, setSelect] = useState<string | null>(null);
+  const select = useRef<string | null>(null);
   const [isSelectOpen, setSelectOpen] = useState(false);
   const [sampleList, setSampleList] = useState<sampleListType>({});
   const [error, setError] = useState<string | null>(null);
@@ -49,10 +50,10 @@ export const SamplesButton: FC = () => {
   };
 
   const load = () => {
-    if (select) {
+    if (select.current) {
       setSelectOpen(false);
       setLoading(true);
-      fetch(`/api/editor/sample/${select}`)
+      fetch(`/api/editor/sample/${select.current}`)
         .then((res) => {
           return res.json();
         })
@@ -75,7 +76,9 @@ export const SamplesButton: FC = () => {
         .catch(() => {
           setLoading(false);
           notification.open({
-            message: t('errors.LoadingSampleFailed.title', { name: sampleList[select].name }),
+            message: t('errors.LoadingSampleFailed.title', {
+              name: sampleList[select.current || '']?.name ?? '?????',
+            }),
             description: t('errors.LoadingSampleFailed.message'),
             type: 'error',
             duration: 5,
@@ -121,7 +124,15 @@ export const SamplesButton: FC = () => {
             );
           }
 
-          return <SampleList samples={sampleList} setSelect={setSelect} />;
+          const sampleListItems = Object.keys(sampleList)
+            .map((key) => {
+              return { [key]: sampleList[key].name };
+            })
+            .reduce((acc, curr) => {
+              return { ...acc, ...curr };
+            }, {});
+
+          return <SelectableList id="samplelist" items={sampleListItems} selectedItem={select} />;
         })()}
       </Modal>
 
