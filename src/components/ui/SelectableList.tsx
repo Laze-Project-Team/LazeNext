@@ -19,7 +19,7 @@ export const SelectableList: VFC<SelectableListProps> = ({ id, items, selectedIt
               <input
                 type="radio"
                 id={`${id}-${key}`}
-                checked={selectedItem.current === currentSelectedItem}
+                checked={selectedItem.current ? selectedItem.current === currentSelectedItem : false}
                 hidden
                 className="peer"
                 name={id}
