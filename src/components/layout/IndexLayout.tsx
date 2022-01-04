@@ -52,7 +52,7 @@ const IndexHeader: VFC = () => {
             </div>
           </Link>
         </div>
-        {query === QUERY_SM_DOWN ? (
+        {typeof window !== 'undefined' && query === QUERY_SM_DOWN ? (
           <div className="ml-auto flex items-center">
             <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
               <AiOutlineMenu size="1.4rem" />
