@@ -26,7 +26,7 @@ const handler: NextApiHandler = (req, res) => {
             [key]: contents[key],
           };
         }, {});
-      res.send(filtered);
+      res.json(filtered);
     });
   } else {
     res.status(404).send('404 Not found');
