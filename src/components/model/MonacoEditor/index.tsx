@@ -96,7 +96,9 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
         loading={<Loading />}
         wrapperProps={{ className: current ? '' : '!hidden' }}
       />
-      {current || (
+      {current ? (
+        <></>
+      ) : (
         <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
           <LazeLogo size={100} option="logo_gray" />
           <p>{t('messages.FileIsNotOpened.1')}</p>
