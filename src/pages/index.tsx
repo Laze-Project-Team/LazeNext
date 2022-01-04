@@ -103,9 +103,7 @@ const Home: NextPage = () => {
               textClass="!text-whitesmoke"
             >
               <ActionButton>
-                <Link href="/docs" passHref>
-                  <ActionLink href="/docs">{t('activities.1.action')}</ActionLink>
-                </Link>
+                <ActionLink href="/docs">{t('activities.1.action')}</ActionLink>
               </ActionButton>
             </Card>
             <Card
