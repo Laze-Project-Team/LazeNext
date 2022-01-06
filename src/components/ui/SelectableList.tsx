@@ -25,7 +25,6 @@ export const SelectableList: VFC<SelectableListProps> = ({ id, items, selectedIt
                 name={id}
                 onChange={(e) => {
                   if (e.target.checked) {
-                    console.log(key);
                     selectedItem.current = key;
                     setCurrentSelectedItem(key);
                   }
