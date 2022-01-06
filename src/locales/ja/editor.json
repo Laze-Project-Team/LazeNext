@@ -1,6 +1,6 @@
 {
   "title": "Laze エディタ",
-  "description": "",
+  "description": "プログラミング言語Lazeのオンラインエディターです。好きなサンプルを選んで実行したり、自分で書いたプログラムを実行したりできます。",
 
   "footer": {
     "acknowledgement": "Made with Monaco Editor",

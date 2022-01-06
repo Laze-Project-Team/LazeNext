@@ -85,6 +85,8 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
   const { path } = router.query as { path: string[] };
   const [t] = useTranslation(['docs', 'common']);
 
+  const title = `${t('title')} | Laze`;
+
   const documentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -96,7 +98,16 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
   return (
     <>
       <Head>
-        <title>{t('title')} | Laze</title>
+        <title>{title}</title>
+
+        <meta content={t('description')} name="description" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={t('description')} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://laze.ddns.net/${router.locale + '/' ?? ''}docs/${path.join('/')}`} />
+        <meta property="og:image" content="https://laze.ddns.net/img/logo.png" />
+        <meta property="og:site_name" content={title} />
+        <meta property="og:locale" content={router.locale ?? 'en'} />
       </Head>
 
       <div className="w-screen h-screen flex overflow-hidden">
