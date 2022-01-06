@@ -75,7 +75,9 @@
             {"name":",", "regex": "^(,|、)", "precedence": 20}
         ],
         "main":"main",
-        "stringClass":"string"
+        "stringClass":"string",
+        "stmliststart": "{",
+        "stmlistend":"}"
     },
     "grammar":{
         "exp":{
@@ -224,8 +226,8 @@
     },
     "errors":{
         "keywords":{
-            "lineNum":"行目",
-            "charNum":"文字目"
+            "lineNum":"Line $1",
+            "charNum":"Column $1"
         },
         "parser":{
             "unexpectedtoken":"「$1」の前の単語、もしくは文字が抜けています。"
