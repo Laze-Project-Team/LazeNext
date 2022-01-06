@@ -91,7 +91,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
       </Head>
 
       <div className="w-screen h-screen flex overflow-hidden">
-        <div className="w-60 border-r-2">
+        <div className="w-60 border-r-2 overflow-y-scroll">
           <Link href="/" passHref>
             <a className="flex justify-center mt-4">
               <LazeLogo size={120} option="logo_caption" />
@@ -102,7 +102,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
             <IndexList indexList={indexList} active={'/' + path.join('/')} />
           </div>
         </div>
-        <div className="flex-1 pl-8 pr-36 break-normal overflow-y-scroll">
+        <div className="flex-1 pl-8 pr-44 break-normal overflow-y-scroll">
           <div className="px-2 py-4">
             <Breadcrumb>
               {breadcrumbs.map((breadcrumb) => {
@@ -125,7 +125,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
             <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
           </div>
         </div>
-        <div className="fixed right-8 top-4 w-24">
+        <div className="fixed right-8 top-4 w-32">
           <p className="font-bold text-gray-800 my-0">{t('contents')}</p>
           <Anchor>
             <Markdown
