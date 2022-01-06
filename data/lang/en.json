@@ -1,7 +1,8 @@
 {
     "config":{
         "name":"en",
-        "type":"programming"
+        "type":"programming",
+        "tabsensitive": false
     },
     "tokens":{
         "keywords":
