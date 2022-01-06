@@ -75,7 +75,7 @@
             {"name":",", "regex": "^(,|、)", "precedence": 20}
         ],
         "main":"main",
-        "stringClass":"文字列"
+        "stringClass":"string"
     },
     "grammar":{
         "exp":{
@@ -135,7 +135,9 @@
                 "noexp":"return lineend",
                 "exp":"return ( exp ) lineend"
             },
-            "call":"exp ( explist ) lineend",
+            "call":{
+                "normal":"exp ( explist ) lineend"
+            },
             "loop":"loop stm",
             "break":"break lineend",
             "continue":"continue lineend",
@@ -147,7 +149,7 @@
                 "init":"ty : var = exp lineend",
                 "noinit":"ty : var lineend"
             },
-            "object": "ty : id ( explist ) lineend",
+            "object": "ty : var ( explist ) lineend",
             "class": {
                 "noinherit":"class : id(name) { memlist }",
                 "inherit":"class : id(name) <- id(inherit) { memlist }"
