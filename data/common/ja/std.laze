@@ -1,9 +1,4 @@
 関数:実数表示(実数:x) => () = js読み込み("console", "log");
-関数:Arduino設定(整数:vendorId, 関数:c() => ()) => () = js読み込み("arduino", "setUp");
-関数:Arduinoコマンド送信(文字:コマンド, 整数32:data) => () = js読み込み("arduino", "sendCommand");
-関数:Arduinoデータ受信() => () = js読み込み("arduino", "checkInput");
-関数:Arduinoアナログ入力(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "analogRead");
-関数:Arduinoデジタル入力(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "digitalRead");
 関数:行列表示(実数:offset[4][4])=>()=js読み込み("console", "logMatrix");
 関数:アドレス表示(*無:x)=>()=js読み込み("console", "log");
 関数:_文字列表示(*文字:x, 整数:長さ)=>()=js読み込み("console", "logstring");
@@ -1370,22 +1365,3 @@
   callback();
 }
 js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
-
-関数:Arduino5V送る(整数:ピン番号) => (){
-	Arduinoコマンド送信('H', ピン番号);
-}
-関数:Arduino0V送る(整数:ピン番号) => (){
-	Arduinoコマンド送信('L', ピン番号);
-}
-関数:Arduinoピン入出力設定(整数:ピン番号, 文字:入出力) => (){
-	// Arduinoコマンド送信(入出力, ピン番号);
-	もし(入出力 == '入')ならば{
-		Arduinoコマンド送信('I', ピン番号);
-	}
-	もし(入出力 == '出')ならば{
-		Arduinoコマンド送信('O', ピン番号);
-	}
-}
-関数:Arduinoアナログ入力ピン設定(整数:ピン番号) => (){
-    Arduinoコマンド送信('A', ピン番号);
-}
