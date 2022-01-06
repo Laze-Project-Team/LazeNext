@@ -120,6 +120,7 @@ export type compileRequest = {
   code: string;
   option: {
     lang: string;
+    label: string;
   };
 };
 

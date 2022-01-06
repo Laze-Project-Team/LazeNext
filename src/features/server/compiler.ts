@@ -20,16 +20,21 @@ const commands = {
   compile: (id: string, option: compileRequest['option']) => {
     return [
       process.env.COMPILER_PATH,
-      id,
-      `-c ${CACHE_DIR}`,
+      option.label,
+      `-c ${CACHE_DIR}/${id}`,
       '--mode compile',
       `--parse-json ${LANG_DIR}/${option.lang}.json`,
       `--parser-opt ${PARSER_DIR}/${option.lang}.parser`,
       `--link ${COMMON_DIR}/std.laze`,
     ].join(' ');
   },
-  wat2wasm: (id: string) => {
-    return ['wat2wasm', `${CACHE_DIR}/.${id}.wat`, `-o ${CACHE_DIR}/${id}.wasm`, '--enable-bulk-memory'].join(' ');
+  wat2wasm: (id: string, option: compileRequest['option']) => {
+    return [
+      'wat2wasm',
+      `${CACHE_DIR}/${id}/.${option.label}.wat`,
+      `-o ${CACHE_DIR}/${id}.wasm`,
+      '--enable-bulk-memory',
+    ].join(' ');
   },
 };
 
@@ -43,7 +48,8 @@ export const compileCode = async (code: string, option: compileRequest['option']
     };
   }
 
-  await fs.promises.writeFile(`${CACHE_DIR}/${id}`, code, { encoding: 'utf8', flag: 'w' });
+  await fs.promises.mkdir(`${CACHE_DIR}/${id}`);
+  await fs.promises.writeFile(`${CACHE_DIR}/${id}/${option.label}`, code, { encoding: 'utf8', flag: 'w' });
   const { stdout, stderr } = await exec(commands.compile(id, option), execOption);
 
   if (stderr) {
@@ -52,7 +58,7 @@ export const compileCode = async (code: string, option: compileRequest['option']
       message: stderr,
     };
   } else {
-    await exec(commands.wat2wasm(id), execOption);
+    await exec(commands.wat2wasm(id, option), execOption);
     return {
       success: true,
       message: stdout,
