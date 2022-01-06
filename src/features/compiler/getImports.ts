@@ -114,7 +114,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       createProgram: () => {
         const program = gl.createProgram();
         if (program) {
-          webglPrograms.push();
+          webglPrograms.push(program);
         } else {
           throw new Error('Failed to create program');
         }
