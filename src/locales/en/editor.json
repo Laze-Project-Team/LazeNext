@@ -1,7 +1,12 @@
 {
   "title": "Laze Editor",
   "description": "",
-  "acknowledgement": "Made with Monaco Editor",
+  
+  "footer": {
+    "acknowledgement": "Made with Monaco Editor",
+    "home": "ホーム",
+    "docs": "ドキュメンテーション"
+  },
 
   "contextmenus": {
     "newFile": "ファイルを作成",
