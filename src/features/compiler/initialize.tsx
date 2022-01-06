@@ -70,6 +70,11 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         const memorySizeFunc = instance.exports.memorySize as CallableFunction;
         const mainFunc = instance.exports.main as CallableFunction;
         const loopFunc = instance.exports.loop as CallableFunction;
+        const stringLiterals = instance.exports.__stringLiterals as CallableFunction;
+        const clearMemory = instance.exports.clearMemory as CallableFunction;
+
+        clearMemory();
+        stringLiterals();
 
         window.laze.props.variables.memorySize = memorySizeFunc();
         mainFunc();
