@@ -1,7 +1,7 @@
 {
   "header": {
     "Editor": "Editor",
-    "Docs": "Documantation"
+    "Docs": "Documentation"
   },
 
   "footer": {
@@ -16,7 +16,7 @@
     "sitemap": {
       "Home": "Home",
       "Editor": "Editor",
-      "Docs": "Documantation"
+      "Docs": "Documentation"
     }
   }
 }
