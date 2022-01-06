@@ -55,7 +55,6 @@ const Editor: NextPage = () => {
           <Head>
             <title>{t('title')} | Laze</title>
             <meta name="description" content={t('description')} />
-            <link rel="icon" href="/favicon.ico" />
           </Head>
 
           <div className="flex flex-col w-screen h-screen overflow-hidden dark:bg-background dark:text-[#ccc] text-[0.9rem]">
