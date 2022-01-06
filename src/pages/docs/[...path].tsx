@@ -146,7 +146,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
           </div>
         </div>
         <div className="fixed right-8 top-4 w-32">
-          <p className="font-bold text-gray-800 my-0">{t('contents')}</p>
+          <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
           <Anchor>
             <Markdown
               allowedElements={['h2']}
