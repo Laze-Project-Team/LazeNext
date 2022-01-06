@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { ReactNode, VFC } from 'react';
+import { useEffect, useRef } from 'react';
 import Markdown from 'react-markdown';
 
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
@@ -84,6 +85,14 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
   const { path } = router.query as { path: string[] };
   const [t] = useTranslation(['docs', 'common']);
 
+  const documentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (documentRef.current) {
+      documentRef.current.scrollTo(0, 0);
+    }
+  }, [path]);
+
   return (
     <>
       <Head>
@@ -102,7 +111,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
             <IndexList indexList={indexList} active={'/' + path.join('/')} />
           </div>
         </div>
-        <div className="flex-1 pl-8 pr-44 break-normal overflow-y-scroll">
+        <div ref={documentRef} className="flex-1 pl-8 pr-44 break-normal overflow-y-scroll">
           <div className="px-2 py-4">
             <Breadcrumb>
               {breadcrumbs.map((breadcrumb) => {
