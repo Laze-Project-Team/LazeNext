@@ -19,12 +19,13 @@ export const SelectableList: VFC<SelectableListProps> = ({ id, items, selectedIt
               <input
                 type="radio"
                 id={`${id}-${key}`}
-                checked={selectedItem.current ? selectedItem.current === currentSelectedItem : false}
+                checked={selectedItem.current ? key === currentSelectedItem : false}
                 hidden
                 className="peer"
                 name={id}
                 onChange={(e) => {
                   if (e.target.checked) {
+                    console.log(key);
                     selectedItem.current = key;
                     setCurrentSelectedItem(key);
                   }
