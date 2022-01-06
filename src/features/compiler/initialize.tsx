@@ -44,7 +44,6 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         window.laze.props.webglObjects = {
           webglBuffers: [],
           webglPrograms: [],
-          webglShaders: [],
           webglTextures: [],
           webglUniformLoc: [],
         };
@@ -59,7 +58,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           clearInterval(interval);
         }
         const { instance } = results;
-        window.laze.props.webglObjects.webglShaders.push(
+        window.laze.props.webglObjects.webglPrograms.push(
           initShaderProgram(gl, vsSource, fsSource),
           initShaderProgram(gl, vsSource, lightFsSource),
           initShaderProgram(gl, pointVsSource, pointFsSource),

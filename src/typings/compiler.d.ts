@@ -76,7 +76,6 @@ export type webglObjects = {
   webglPrograms: WebGLProgram[];
   webglUniformLoc: WebGLUniformLocation[];
   webglTextures: WebGLTexture[];
-  webglShaders: WebGLShader[];
 };
 
 export type getCompleteImportsFunction = (id: string) => importObject;
