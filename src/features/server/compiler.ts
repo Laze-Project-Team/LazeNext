@@ -25,7 +25,7 @@ const commands = {
       '--mode compile',
       `--parse-json ${LANG_DIR}/${option.lang}.json`,
       `--parser-opt ${PARSER_DIR}/${option.lang}.parser`,
-      `--link ${COMMON_DIR}/std.laze`,
+      `--link ${COMMON_DIR}/${option.lang}/std.laze`,
     ].join(' ');
   },
   wat2wasm: (id: string, option: compileRequest['option']) => {
