@@ -51,23 +51,15 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         canvas.removeEventListener('click', requestPointerLock, false);
         canvas.addEventListener('click', requestPointerLock, false);
 
+        const handleMouseMove = (e: MouseEvent) => {
+          return updatePosition(e, canvas);
+        };
+
         const lockChangeAlert = () => {
           if (document.pointerLockElement === canvas) {
-            document.addEventListener(
-              'mousemove',
-              (e) => {
-                return updatePosition(e, canvas);
-              },
-              false
-            );
+            document.addEventListener('mousemove', handleMouseMove, false);
           } else {
-            document.removeEventListener(
-              'mousemove',
-              (e) => {
-                return updatePosition(e, canvas);
-              },
-              false
-            );
+            document.removeEventListener('mousemove', handleMouseMove, false);
           }
         };
 
