@@ -24,8 +24,9 @@ export const HR: Components['hr'] = () => {
 };
 
 export const a: Components['a'] = ({ href, children }) => {
+  const address = href?.startsWith('/') ? `/docs${href}` : href;
   return (
-    <StyledLink href={href ? `/docs${href}` : ''} className="">
+    <StyledLink href={address ?? ''} className="">
       {children}
     </StyledLink>
   );
