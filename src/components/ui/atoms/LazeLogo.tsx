@@ -18,7 +18,7 @@ export const LazeLogo: VFC<LazeLogoProps> = ({ size, option = 'logo', className 
   return (
     <>
       <div className={cx('inline-flex select-none pointer-events-none', className)}>
-        <Image src={`/img/${option}.png`} alt={t('lazelogo')} width={size} height={size} />
+        <Image src={`/img/logo/${option}.png`} alt={t('lazelogo')} width={size} height={size} />
       </div>
     </>
   );
