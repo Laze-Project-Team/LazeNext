@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { RefObject } from 'react';
@@ -19,7 +20,10 @@ export const ratioAdjustContext = createContext<() => void>(() => {
 });
 
 const Editor: NextPage = () => {
+  const { locale } = useRouter();
   const [t] = useTranslation(['editor', 'common']);
+
+  const title = `${t('title')} | Laze`;
 
   const ratioRef = useRef<HTMLDivElement>(null);
   const splitPaneRef = useRef<SplitPane>(null);
@@ -53,9 +57,16 @@ const Editor: NextPage = () => {
       <ratioRefContext.Provider value={ratioRef}>
         <ratioAdjustContext.Provider value={handleResize}>
           <Head>
-            <title>{t('title')} | Laze</title>
-            <meta name="description" content={t('description')} />
-            <link rel="icon" href="/favicon.ico" />
+            <title>{title}</title>
+
+            <meta content={t('description')} name="description" />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={t('description')} />
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content={`https://laze.ddns.net/${locale + '/' ?? ''}editor`} />
+            <meta property="og:image" content="https://laze.ddns.net/img/logo.png" />
+            <meta property="og:site_name" content={title} />
+            <meta property="og:locale" content={locale ?? 'en'} />
           </Head>
 
           <div className="flex flex-col w-screen h-screen overflow-hidden dark:bg-background dark:text-[#ccc] text-[0.9rem]">

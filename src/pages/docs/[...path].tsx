@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { ReactNode, VFC } from 'react';
+import { useEffect, useRef } from 'react';
 import Markdown from 'react-markdown';
 
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
@@ -84,14 +85,33 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
   const { path } = router.query as { path: string[] };
   const [t] = useTranslation(['docs', 'common']);
 
+  const title = `${t('title')} | Laze`;
+
+  const documentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (documentRef.current) {
+      documentRef.current.scrollTo(0, 0);
+    }
+  }, [path]);
+
   return (
     <>
       <Head>
-        <title>{t('title')} | Laze</title>
+        <title>{title}</title>
+
+        <meta content={t('description')} name="description" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={t('description')} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://laze.ddns.net/${router.locale + '/' ?? ''}docs/${path.join('/')}`} />
+        <meta property="og:image" content="https://laze.ddns.net/img/logo.png" />
+        <meta property="og:site_name" content={title} />
+        <meta property="og:locale" content={router.locale ?? 'en'} />
       </Head>
 
       <div className="w-screen h-screen flex overflow-hidden">
-        <div className="w-60 border-r-2">
+        <div className="w-60 border-r-2 overflow-y-scroll">
           <Link href="/" passHref>
             <a className="flex justify-center mt-4">
               <LazeLogo size={120} option="logo_caption" />
@@ -102,7 +122,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
             <IndexList indexList={indexList} active={'/' + path.join('/')} />
           </div>
         </div>
-        <div className="flex-1 pl-8 pr-36 break-normal overflow-y-scroll">
+        <div ref={documentRef} className="flex-1 pl-8 pr-44 break-normal overflow-y-scroll">
           <div className="px-2 py-4">
             <Breadcrumb>
               {breadcrumbs.map((breadcrumb) => {
@@ -125,8 +145,8 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
             <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
           </div>
         </div>
-        <div className="fixed right-8 top-4 w-24">
-          <p className="font-bold text-gray-800 my-0">{t('contents')}</p>
+        <div className="fixed right-8 top-4 w-32">
+          <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
           <Anchor>
             <Markdown
               allowedElements={['h2']}

@@ -25,7 +25,6 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
       webglPrograms: [],
       webglTextures: [],
       webglUniformLoc: [],
-      webglShaders: [],
     },
     variables: {
       memory: new WebAssembly.Memory({ initial: 100 }),

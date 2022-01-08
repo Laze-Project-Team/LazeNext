@@ -24,7 +24,7 @@ module.exports = withBundleAnalyzer({
     return [
       {
         source: '/docs',
-        destination: '/docs/home',
+        destination: '/docs/first',
         permanent: true,
       },
     ];

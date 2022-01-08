@@ -6,8 +6,7 @@ import { consoleSlice } from '@/features/redux/console';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
 export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCompleteImportsFunction => {
-  const { canvas, gl, webglObjects, variables } = props;
-  const { webglBuffers, webglPrograms, webglTextures, webglUniformLoc } = webglObjects;
+  const { canvas, gl, variables } = props;
   const { memory } = variables;
 
   const imports = {
@@ -112,9 +111,11 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         gl.disable(i);
       },
       createProgram: () => {
+        const { webglPrograms } = window.laze.props.webglObjects;
+
         const program = gl.createProgram();
         if (program) {
-          webglPrograms.push();
+          webglPrograms.push(program);
         } else {
           throw new Error('Failed to create program');
         }
@@ -122,6 +123,8 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         return webglPrograms.length - 1;
       },
       createBuffer: () => {
+        const { webglBuffers } = window.laze.props.webglObjects;
+
         const buffer = gl.createBuffer();
         if (buffer) {
           webglBuffers.push(buffer);
@@ -132,6 +135,8 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         return webglBuffers.length - 1;
       },
       bindBuffer: (i: number, j: number) => {
+        const { webglBuffers } = window.laze.props.webglObjects;
+
         gl.bindBuffer(i, webglBuffers[j]);
       },
       bufferData: (i: number, offset: number, size: number, j: number) => {
@@ -146,9 +151,13 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         gl.bufferData(i, i16Array, j);
       },
       useProgram: (i: number) => {
+        const { webglPrograms } = window.laze.props.webglObjects;
+
         gl.useProgram(webglPrograms[i]);
       },
       getAttribLocation: (i: number, offset: number, length: number) => {
+        const { webglPrograms } = window.laze.props.webglObjects;
+
         let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
         // bytes.reverse();
         bytes = bytes.filter((element) => {
@@ -160,6 +169,8 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         return gl.getAttribLocation(webglPrograms[i], string);
       },
       getUniformLocation: (i: number, offset: number, length: number) => {
+        const { webglPrograms, webglUniformLoc } = window.laze.props.webglObjects;
+
         let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
         bytes = bytes.filter((element) => {
           return element !== 0;
@@ -177,66 +188,66 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       uniformMatrix2fv: (i: number, transpose: boolean, offset: number) => {
         const f64Array = new Float64Array(memory.buffer, offset, 4);
         const f32Array = Float32Array.from(f64Array);
-        gl.uniformMatrix2fv(webglUniformLoc[i], false, f32Array);
+        gl.uniformMatrix2fv(window.laze.props.webglObjects.webglUniformLoc[i], false, f32Array);
       },
       uniformMatrix3fv: (i: number, transpose: boolean, offset: number) => {
         const f64Array = new Float64Array(memory.buffer, offset, 9);
         const f32Array = Float32Array.from(f64Array);
-        gl.uniformMatrix3fv(webglUniformLoc[i], transpose, f32Array);
+        gl.uniformMatrix3fv(window.laze.props.webglObjects.webglUniformLoc[i], transpose, f32Array);
       },
       uniformMatrix4fv: (i: number, transpose: boolean, offset: number) => {
         const buffer = memory.buffer.slice(offset, 128 + offset);
         const f64Array = new Float64Array(buffer);
         const f32Array = Float32Array.from(f64Array);
-        gl.uniformMatrix4fv(webglUniformLoc[i], transpose, f32Array);
+        gl.uniformMatrix4fv(window.laze.props.webglObjects.webglUniformLoc[i], transpose, f32Array);
       },
       uniform1f: (i: number, v0: number) => {
-        gl.uniform1f(webglUniformLoc[i], v0);
+        gl.uniform1f(window.laze.props.webglObjects.webglUniformLoc[i], v0);
       },
       uniform1fv: (i: number, v: Float32List) => {
-        gl.uniform1fv(webglUniformLoc[i], v);
+        gl.uniform1fv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       uniform1i: (i: number, v0: number) => {
-        gl.uniform1i(webglUniformLoc[i], v0);
+        gl.uniform1i(window.laze.props.webglObjects.webglUniformLoc[i], v0);
       },
       uniform1iv: (i: number, v: Float32List) => {
-        gl.uniform1iv(webglUniformLoc[i], v);
+        gl.uniform1iv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       uniform2f: (i: number, v0: number, v1: number) => {
-        gl.uniform2f(webglUniformLoc[i], v0, v1);
+        gl.uniform2f(window.laze.props.webglObjects.webglUniformLoc[i], v0, v1);
       },
       uniform2fv: (i: number, v: Float32List) => {
-        gl.uniform2fv(webglUniformLoc[i], v);
+        gl.uniform2fv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       uniform2i: (i: number, v0: number, v1: number) => {
-        gl.uniform2i(webglUniformLoc[i], v0, v1);
+        gl.uniform2i(window.laze.props.webglObjects.webglUniformLoc[i], v0, v1);
       },
       uniform2iv: (i: number, v: Float32List) => {
-        gl.uniform2iv(webglUniformLoc[i], v);
+        gl.uniform2iv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       uniform3f: (i: number, v0: number, v1: number, v2: number) => {
-        gl.uniform3f(webglUniformLoc[i], v0, v1, v2);
+        gl.uniform3f(window.laze.props.webglObjects.webglUniformLoc[i], v0, v1, v2);
       },
       uniform3fv: (i: number, v: Float32List) => {
-        gl.uniform3fv(webglUniformLoc[i], v);
+        gl.uniform3fv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       uniform3i: (i: number, v0: number, v1: number, v2: number) => {
-        gl.uniform3i(webglUniformLoc[i], v0, v1, v2);
+        gl.uniform3i(window.laze.props.webglObjects.webglUniformLoc[i], v0, v1, v2);
       },
       uniform3iv: (i: number, v: Float32List) => {
-        gl.uniform3iv(webglUniformLoc[i], v);
+        gl.uniform3iv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       uniform4f: (i: number, v0: number, v1: number, v2: number, v3: number) => {
-        gl.uniform4f(webglUniformLoc[i], v0, v1, v2, v3);
+        gl.uniform4f(window.laze.props.webglObjects.webglUniformLoc[i], v0, v1, v2, v3);
       },
       uniform4fv: (i: number, v: Float32List) => {
-        gl.uniform4fv(webglUniformLoc[i], v);
+        gl.uniform4fv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       uniform4i: (i: number, v0: number, v1: number, v2: number, v3: number) => {
-        gl.uniform4i(webglUniformLoc[i], v0, v1, v2, v3);
+        gl.uniform4i(window.laze.props.webglObjects.webglUniformLoc[i], v0, v1, v2, v3);
       },
       uniform4iv: (i: number, v: Float32List) => {
-        gl.uniform4iv(webglUniformLoc[i], v);
+        gl.uniform4iv(window.laze.props.webglObjects.webglUniformLoc[i], v);
       },
       drawArrays: (i: number, first: number, count: number) => {
         gl.drawArrays(i, first, count);
@@ -257,7 +268,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         gl.activeTexture(i);
       },
       bindTexture: (i: number, j: number) => {
-        gl.bindTexture(i, webglTextures[j]);
+        gl.bindTexture(i, window.laze.props.webglObjects.webglTextures[j]);
       },
     },
   };
