@@ -75,7 +75,9 @@
             {"name":",", "regex": "^(,|、)", "precedence": 20}
         ],
         "main": "実行",
-        "stringClass":"文字列"
+        "stringClass":"文字列",
+        "stmliststart": "{",
+        "stmlistend":"}"
     },
     "grammar":{
         "exp":{
@@ -154,12 +156,16 @@
                 "noinherit":"class : id(name) { memlist }",
                 "inherit":"class : id(name) <- id(inherit) { memlist }"
             },
-            "func": "function : id ( fieldlist(params) ) => ( fieldlist(result) ) stm",
-            "jsload": "function : id ( fieldlist(params) ) => ( fieldlist(result) ) = jsload ( string(module) , string(func) ) lineend",
+            "func": {
+                "normal":"function : id ( fieldlist(params) ) => ( fieldlist(result) ) stm"
+            },
+            "jsload": {
+                "normal":"function : id ( fieldlist(params) ) => ( fieldlist(result) ) = jsload ( string(module) , string(func) ) lineend"
+            },
             "jsexport": "jsexport ( id , string ) lineend",
             "operator": {
                 "normal":"function : operator oper ( fieldlist(params) ) => ( fieldlist(result) ) stm",
-                "assign":"function : operator = ( fieldlist(params) ) => ( fieldlist(result) ) stm"
+                "assignnormal":"function : operator = ( fieldlist(params) ) => ( fieldlist(result) ) stm"
             },
             "template": "type < id > : dec"
         },
@@ -180,7 +186,7 @@
             "short" : "shorttype",
             "pointer" : "* ty",
             "poly" : "id < ty >",
-            "func": "function : ( fieldlist(params) ) => ( fieldlist(result) )"
+            "funcnormal":"function : ( fieldlist(params) ) => ( fieldlist(result) )"
         },
         "mems":{
             "nospecifier": "declist",
@@ -219,8 +225,8 @@
     },
     "errors":{
         "keywords":{
-            "lineNum":"行目",
-            "charNum":"文字目"
+            "lineNum":"$1行目",
+            "charNum":"$1文字目"
         },
         "parser":{
             "unexpectedtoken":"「$1」の前の単語、もしくは文字が抜けています。"
