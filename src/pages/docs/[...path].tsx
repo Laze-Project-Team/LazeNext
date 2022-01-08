@@ -78,7 +78,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
       </Head>
 
       <div className="scroll-p-0 h-screen">
-        <div className="fixed z-10 w-screen h-12 flex bg-white shadow-sm shadow-gray-200">
+        <div className="fixed z-10 w-screen h-16 flex bg-white shadow-sm shadow-gray-200">
           <div className="flex items-center">
             {media && media === QUERY_SM_DOWN && (
               <>
@@ -103,7 +103,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
               </>
             )}
             <Link href="/" passHref>
-              <a className="flex items-center mx-2 px-2 py-1 rounded-sm hover:bg-laze-primary/10 transition-colors duration-200">
+              <a className="flex items-center mx-4 px-2 py-1 rounded-sm hover:bg-laze-primary/10 transition-colors duration-200">
                 <LazeLogo size={32} option="logo" />
                 <span className="ml-1 text-laze-primary text-2xl font-semibold">Laze</span>
               </a>
@@ -112,7 +112,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
         </div>
         <div>
           {media && media !== QUERY_SM_DOWN && (
-            <div className="fixed top-12 w-64 h-[calc(100vh-3rem)] pt-4 border-r-2 overflow-y-scroll z-10">
+            <div className="fixed top-16 w-64 h-[calc(100vh-3rem)] pt-4 border-r-2 overflow-y-scroll z-10">
               <div className="pb-[80vh]">
                 <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
               </div>
@@ -121,7 +121,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
           <div
             ref={documentRef}
             className={cx(
-              'break-normal absolute top-12 w-[calc(100vw-18px)]',
+              'break-normal absolute top-16 w-[calc(100vw-18px)]',
               media && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
               media && media !== QUERY_SM_DOWN ? 'pl-72' : 'pl-8'
             )}
@@ -165,7 +165,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
             </div>
           </div>
           {media && media === QUERY_LG_UP && (
-            <div className="fixed right-8 top-16 w-32 z-10">
+            <div className="fixed right-8 top-20 w-32 z-10">
               <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
               <Anchor>
                 <Markdown
