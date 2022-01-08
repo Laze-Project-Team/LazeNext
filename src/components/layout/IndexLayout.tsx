@@ -57,7 +57,7 @@ const IndexHeader: VFC = () => {
             <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
               <AiOutlineMenu size="1.4rem" />
             </Button>
-            <Drawer title="サイトマップ" placement="right" onClose={onClose} visible={isDrawerOpen}>
+            <Drawer title={t('header.drawer')} placement="right" onClose={onClose} visible={isDrawerOpen}>
               <Menu>
                 <Menu.Item>
                   <Link href="/editor">{t('header.Editor')}</Link>

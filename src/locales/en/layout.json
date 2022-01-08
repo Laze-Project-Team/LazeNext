@@ -1,7 +1,9 @@
 {
   "header": {
     "Editor": "Editor",
-    "Docs": "Documentation"
+    "Docs": "Documentation",
+
+    "drawer": "Sitemap"
   },
 
   "footer": {
