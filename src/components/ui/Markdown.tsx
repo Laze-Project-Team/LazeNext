@@ -57,5 +57,5 @@ export const Pre: Components['pre'] = ({ children }) => {
 };
 
 export const Code: Components['code'] = ({ children }) => {
-  return <code className="bg-gray-300 px-1 py-[.1rem] mx-1 font-mono">{children}</code>;
+  return <code className="bg-gray-200 px-1 py-[.1rem] mx-1 font-editor">{children}</code>;
 };

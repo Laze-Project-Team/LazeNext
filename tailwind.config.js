@@ -48,6 +48,9 @@ module.exports = {
       'xl': '1280px',
       '2xl': '1536px',
     },
+    fontFamily: {
+      editor: ['Consolas', 'Droid Sans Mono', 'Courier New', 'ui-monospace', 'Droid Sans Fallback']
+    },
     extend: {},
   },
   variants: {
