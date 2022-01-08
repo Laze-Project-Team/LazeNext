@@ -179,6 +179,28 @@
               ]
             }
           ]
+        },
+        {
+          "id": "math",
+          "name": "数学ライブラリ",
+          "children": [
+            {
+              "id": "index",
+              "name": "数学ライブラリとは"
+            },
+            {
+              "id": "vec3",
+              "name": "ベクトル3D"
+            },
+            {
+              "id": "matrix4x4",
+              "name": "行列4x4"
+            },
+            {
+              "id": "toRad",
+              "name": "toRad"
+            }
+          ]
         }
       ]
     }
