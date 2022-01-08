@@ -105,7 +105,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
           <div
             ref={documentRef}
             className={cx(
-              'break-normal absolute top-12',
+              'break-normal absolute top-12 w-[calc(100vw-18px)]',
               media && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
               media && media !== QUERY_SM_DOWN ? 'pl-72' : 'pl-8'
             )}
