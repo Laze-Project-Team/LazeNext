@@ -20,6 +20,7 @@ import {
   Code,
   H1,
   H2,
+  H3,
   HR,
   Paragraph,
   Pre,
@@ -144,6 +145,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
               components={{
                 h1: H1,
                 h2: H2,
+                h3: H3,
                 hr: HR,
                 p: Paragraph,
                 a: a,

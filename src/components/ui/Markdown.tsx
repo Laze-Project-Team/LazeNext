@@ -6,7 +6,7 @@ import { cx } from '@/features/utils/cx';
 import styles from '@/styles/pre.module.css';
 
 export const H1: Components['h1'] = ({ children }) => {
-  return <h1 className="text-4xl mb-4">{children}</h1>;
+  return <h1 className="text-4xl mb-8">{children}</h1>;
 };
 
 export const H2: Components['h2'] = ({ node, children }) => {
@@ -17,10 +17,14 @@ export const H2: Components['h2'] = ({ node, children }) => {
   })?.value;
 
   return (
-    <h2 className="text-2xl border-b-2 mt-8" id={id}>
+    <h2 className="text-2xl border-b-2 mt-8 mb-4" id={id}>
       {children}
     </h2>
   );
+};
+
+export const H3: Components['h3'] = ({ children }) => {
+  return <h3 className="text-lg font-bold">{children}</h3>;
 };
 
 export const Paragraph: Components['p'] = ({ children }) => {
