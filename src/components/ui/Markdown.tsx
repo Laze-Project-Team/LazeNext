@@ -10,8 +10,14 @@ export const H1: Components['h1'] = ({ children }) => {
 };
 
 export const H2: Components['h2'] = ({ node, children }) => {
+  const id = node.children.find((child) => {
+    return child.type === 'text';
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+  })?.value;
+
   return (
-    <h2 className="text-2xl border-b-2 mt-8" id={node.position?.start.line.toString()}>
+    <h2 className="text-2xl border-b-2 mt-8" id={id}>
       {children}
     </h2>
   );
