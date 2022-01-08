@@ -11,7 +11,7 @@ import Markdown from 'react-markdown';
 
 import { IndexList } from '@/components/model/IndexList';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
-import { a, anchorLink, H1, H2, HR, Paragraph } from '@/components/ui/Markdown';
+import { a, anchorLink, Code, H1, H2, HR, Paragraph, Pre } from '@/components/ui/Markdown';
 import type { breadcrumb, directoryObject } from '@/features/docs/getProps';
 import { getDocsProps } from '@/features/docs/getProps';
 
@@ -85,6 +85,8 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
               hr: HR,
               p: Paragraph,
               a: a,
+              pre: Pre,
+              code: Code,
             }}
           >
             {content}

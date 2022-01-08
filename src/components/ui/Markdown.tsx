@@ -1,7 +1,9 @@
 import { Anchor } from 'antd';
 import type { Components } from 'react-markdown';
 
-import { StyledLink } from './atoms/StyledLink';
+import { StyledLink } from '@/components/ui/atoms/StyledLink';
+import { cx } from '@/features/utils/cx';
+import styles from '@/styles/pre.module.css';
 
 export const H1: Components['h1'] = ({ children }) => {
   return <h1 className="text-4xl mb-4">{children}</h1>;
@@ -36,4 +38,14 @@ export const anchorLink: Components['h2'] = ({ node, children }) => {
   return (
     <Anchor.Link href={'#' + node.position?.start.line.toString()} className="text-gray-400 text-xs" title={children} />
   );
+};
+
+export const Pre: Components['pre'] = ({ children }) => {
+  return (
+    <pre className={cx('bg-editor px-4 py-2 rounded-md text-[#ccc]', styles.pre, styles.scrollable)}>{children}</pre>
+  );
+};
+
+export const Code: Components['code'] = ({ children }) => {
+  return <code className="bg-gray-300 px-1 py-[.1rem] mx-1 font-mono">{children}</code>;
 };
