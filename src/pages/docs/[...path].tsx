@@ -9,11 +9,27 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { IndexList } from '@/components/model/IndexList';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
-import { a, anchorLink, Code, H1, H2, HR, Paragraph, Pre } from '@/components/ui/Markdown';
+import {
+  a,
+  anchorLink,
+  Code,
+  H1,
+  H2,
+  HR,
+  Paragraph,
+  Pre,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@/components/ui/Markdown';
 import type { breadcrumb, directoryObject } from '@/features/docs/getProps';
 import { getDocsProps } from '@/features/docs/getProps';
 import { cx } from '@/features/utils/cx';
@@ -133,7 +149,14 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
                 a: a,
                 pre: Pre,
                 code: Code,
+                table: Table,
+                thead: Thead,
+                tbody: Tbody,
+                tr: Tr,
+                th: Th,
+                td: Td,
               }}
+              remarkPlugins={[remarkGfm]}
             >
               {content}
             </Markdown>

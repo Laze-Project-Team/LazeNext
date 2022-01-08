@@ -59,3 +59,33 @@ export const Pre: Components['pre'] = ({ children }) => {
 export const Code: Components['code'] = ({ children }) => {
   return <code className="bg-gray-200 px-1 py-[.1rem] mx-1 font-editor">{children}</code>;
 };
+
+export const Table: Components['table'] = ({ children }) => {
+  return <table className="my-2 min-w-[20rem]">{children}</table>;
+};
+
+export const Thead: Components['thead'] = ({ children }) => {
+  return <thead className="border-b-[1px] border-gray-400">{children}</thead>;
+};
+
+export const Tbody: Components['tbody'] = ({ children }) => {
+  return <tbody>{children}</tbody>;
+};
+
+export const Tr: Components['tr'] = ({ children }) => {
+  return <tr>{children}</tr>;
+};
+
+export const Th: Components['th'] = ({ children }) => {
+  return <th className="px-4">{children}</th>;
+};
+
+export const Td: Components['td'] = ({ children, node }) => {
+  return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <td className="px-2 py-1 border-b-[1px] border-gray-200" style={{ textAlign: node.properties?.align }}>
+      {children}
+    </td>
+  );
+};
