@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const getCurrentMedia = (mediaList: string[]) => {
   if (typeof window === 'undefined') {
-    return mediaList[0];
+    return null;
   }
   let result: null | string = null;
   for (let i = 0; i < mediaList.length; i++) {
@@ -15,9 +15,11 @@ const getCurrentMedia = (mediaList: string[]) => {
 };
 
 export const useMediaQuery = (mediaList: string[]) => {
-  const [current, setCurrent] = useState(getCurrentMedia(mediaList));
+  const [current, setCurrent] = useState<string | null>(null);
 
   useEffect(() => {
+    setCurrent(getCurrentMedia(mediaList));
+
     let timeout: null | NodeJS.Timeout = null;
     const onResize = () => {
       if (timeout) return;

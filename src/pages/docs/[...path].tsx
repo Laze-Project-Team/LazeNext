@@ -64,7 +64,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
       <div className="scroll-p-0 h-screen">
         <div className="fixed z-10 w-screen h-12 flex bg-white shadow-sm shadow-gray-200">
           <div className="flex items-center">
-            {typeof window !== 'undefined' && media === QUERY_SM_DOWN && (
+            {media && media === QUERY_SM_DOWN && (
               <>
                 <Button
                   type="text"
@@ -95,7 +95,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
           </div>
         </div>
         <div>
-          {typeof window !== 'undefined' && media !== QUERY_SM_DOWN && (
+          {media && media !== QUERY_SM_DOWN && (
             <div className="fixed top-12 w-64 h-[calc(100vh-3rem)] pt-4 border-r-2 overflow-y-scroll z-10">
               <div className="pb-[80vh]">
                 <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
@@ -106,8 +106,8 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
             ref={documentRef}
             className={cx(
               'break-normal absolute top-12',
-              typeof window !== 'undefined' && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
-              typeof window !== 'undefined' && media !== QUERY_SM_DOWN ? 'pl-72' : 'pl-8'
+              media && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
+              media && media !== QUERY_SM_DOWN ? 'pl-72' : 'pl-8'
             )}
           >
             <div className="px-2 py-4">
@@ -141,7 +141,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
               <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
             </div>
           </div>
-          {typeof window !== 'undefined' && media === QUERY_LG_UP && (
+          {media && media === QUERY_LG_UP && (
             <div className="fixed right-8 top-16 w-32 z-10">
               <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
               <Anchor>
