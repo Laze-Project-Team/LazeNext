@@ -80,8 +80,14 @@ export const Tr: Components['tr'] = ({ children }) => {
   return <tr>{children}</tr>;
 };
 
-export const Th: Components['th'] = ({ children }) => {
-  return <th className="px-4">{children}</th>;
+export const Th: Components['th'] = ({ node, children }) => {
+  return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <th className="px-4" style={{ textAlign: node.properties?.align }}>
+      {children}
+    </th>
+  );
 };
 
 export const Td: Components['td'] = ({ children, node }) => {
