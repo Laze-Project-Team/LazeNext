@@ -41,9 +41,13 @@ export const a: Components['a'] = ({ href, children }) => {
 };
 
 export const anchorLink: Components['h2'] = ({ node, children }) => {
-  return (
-    <Anchor.Link href={'#' + node.position?.start.line.toString()} className="text-gray-400 text-xs" title={children} />
-  );
+  const id = node.children.find((child) => {
+    return child.type === 'text';
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+  })?.value;
+
+  return <Anchor.Link href={`#${id}`} className="text-gray-400 text-xs" title={children} />;
 };
 
 export const Pre: Components['pre'] = ({ children }) => {
