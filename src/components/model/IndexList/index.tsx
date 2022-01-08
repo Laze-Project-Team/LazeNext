@@ -18,8 +18,6 @@ const IndexListTree: VFC<IndexListTreeProps> = ({ dir, active }) => {
 
   const [activeKey, setActiveKey] = useState<string[]>([]);
   const handleChange: CollapseProps['onChange'] = (key) => {
-    console.log('change', key);
-
     setActiveKey(typeof key === 'string' ? [key] : key);
   };
 
