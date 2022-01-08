@@ -1,4 +1,4 @@
-import { Anchor, Breadcrumb } from 'antd';
+import { Anchor, Breadcrumb, Button, Drawer } from 'antd';
 import fs from 'fs';
 import type { GetStaticPaths, NextPage } from 'next';
 import Head from 'next/head';
@@ -6,14 +6,21 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { AiOutlineMenu } from 'react-icons/ai';
 import Markdown from 'react-markdown';
 
+import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { IndexList } from '@/components/model/IndexList';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
 import { a, anchorLink, Code, H1, H2, HR, Paragraph, Pre } from '@/components/ui/Markdown';
 import type { breadcrumb, directoryObject } from '@/features/docs/getProps';
 import { getDocsProps } from '@/features/docs/getProps';
+import { cx } from '@/features/utils/cx';
+
+const QUERY_SM_DOWN = '(max-width: 600px)' as const;
+const QUERY_MD_UP = '(min-width: 601px) and (max-width: 960px)' as const;
+const QUERY_LG_UP = '(min-width: 961px)' as const;
 
 type DocsProps = {
   content: string;
@@ -23,6 +30,7 @@ type DocsProps = {
 
 const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
   const router = useRouter();
+  const media = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP, QUERY_LG_UP]);
   const { path } = router.query as { path: string[] };
   const [t] = useTranslation(['docs', 'common']);
 
@@ -35,6 +43,8 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
       documentRef.current.scrollTo(0, 0);
     }
   }, [path]);
+
+  const [isDrawerVisible, setIsDrawerVisible] = useState(false);
 
   return (
     <>
@@ -51,62 +61,101 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
         <meta property="og:locale" content={router.locale ?? 'en'} />
       </Head>
 
-      <div className="w-screen h-screen flex overflow-hidden">
-        <div className="w-64 border-r-2 overflow-y-scroll">
-          <Link href="/" passHref>
-            <a className="flex justify-center mt-4">
-              <LazeLogo size={120} option="logo_caption" />
-            </a>
-          </Link>
-          <hr className="bg-gray-300 my-4" />
-          <div className="pb-[80vh]">
-            <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
+      <div className="scroll-p-0 h-screen">
+        <div className="fixed z-10 w-screen h-12 flex bg-white shadow-sm shadow-gray-200">
+          <div className="flex items-center">
+            {typeof window !== 'undefined' && media === QUERY_SM_DOWN && (
+              <>
+                <Button
+                  type="text"
+                  className="!text-gray-400 hover:!text-gray-200"
+                  onClick={() => {
+                    return setIsDrawerVisible(true);
+                  }}
+                >
+                  <AiOutlineMenu size="1.4rem" />
+                </Button>
+                <Drawer
+                  placement="left"
+                  visible={isDrawerVisible}
+                  onClose={() => {
+                    return setIsDrawerVisible(false);
+                  }}
+                >
+                  <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
+                </Drawer>
+              </>
+            )}
+            <Link href="/" passHref>
+              <a className="flex items-center mx-2 px-2 py-1 rounded-sm hover:bg-laze-primary/10 transition-colors duration-200">
+                <LazeLogo size={32} option="logo" />
+                <span className="ml-1 text-laze-primary text-2xl font-semibold">Laze</span>
+              </a>
+            </Link>
           </div>
         </div>
-        <div ref={documentRef} className="flex-1 pl-8 pr-44 break-normal overflow-y-scroll">
-          <div className="px-2 py-4">
-            <Breadcrumb>
-              {breadcrumbs.map((breadcrumb, i) => {
-                if (breadcrumbs.length === i + 1) {
-                  return <Breadcrumb.Item key={breadcrumb.href}>{breadcrumb.title}</Breadcrumb.Item>;
-                }
-                return (
-                  <Breadcrumb.Item key={breadcrumb.href}>
-                    <Link href={`/docs${breadcrumb.href}`}>{breadcrumb.title}</Link>
-                  </Breadcrumb.Item>
-                );
-              })}
-            </Breadcrumb>
-          </div>
-          <Markdown
-            components={{
-              h1: H1,
-              h2: H2,
-              hr: HR,
-              p: Paragraph,
-              a: a,
-              pre: Pre,
-              code: Code,
-            }}
+        <div>
+          {typeof window !== 'undefined' && media !== QUERY_SM_DOWN && (
+            <div className="fixed top-12 w-64 h-[calc(100vh-3rem)] pt-4 border-r-2 overflow-y-scroll z-10">
+              <div className="pb-[80vh]">
+                <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
+              </div>
+            </div>
+          )}
+          <div
+            ref={documentRef}
+            className={cx(
+              'break-normal absolute top-12',
+              typeof window !== 'undefined' && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
+              typeof window !== 'undefined' && media !== QUERY_SM_DOWN ? 'pl-72' : 'pl-8'
+            )}
           >
-            {content}
-          </Markdown>
-          <div className="border-t-2 mt-8">
-            <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
-          </div>
-        </div>
-        <div className="fixed right-8 top-4 w-32">
-          <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
-          <Anchor>
+            <div className="px-2 py-4">
+              <Breadcrumb>
+                {breadcrumbs.map((breadcrumb, i) => {
+                  if (breadcrumbs.length === i + 1) {
+                    return <Breadcrumb.Item key={breadcrumb.href}>{breadcrumb.title}</Breadcrumb.Item>;
+                  }
+                  return (
+                    <Breadcrumb.Item key={breadcrumb.href}>
+                      <Link href={`/docs${breadcrumb.href}`}>{breadcrumb.title}</Link>
+                    </Breadcrumb.Item>
+                  );
+                })}
+              </Breadcrumb>
+            </div>
             <Markdown
-              allowedElements={['h2']}
               components={{
-                h2: anchorLink,
+                h1: H1,
+                h2: H2,
+                hr: HR,
+                p: Paragraph,
+                a: a,
+                pre: Pre,
+                code: Code,
               }}
             >
               {content}
             </Markdown>
-          </Anchor>
+            <div className="border-t-2 mt-8">
+              <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
+            </div>
+          </div>
+          {typeof window !== 'undefined' && media === QUERY_LG_UP && (
+            <div className="fixed right-8 top-16 w-32 z-10">
+              <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
+              <Anchor>
+                <Markdown
+                  allowedElements={['h2']}
+                  components={{
+                    h2: anchorLink,
+                  }}
+                >
+                  {content}
+                </Markdown>
+              </Anchor>
+            </div>
+          )}
         </div>
       </div>
     </>
