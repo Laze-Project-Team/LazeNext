@@ -12,7 +12,7 @@ export type StyledLinkProps = {
 };
 
 export const StyledLink: FC<StyledLinkProps> = ({ children, onClick, href, className, title }) => {
-  const isInternal = href.startsWith('/');
+  const isInternal = href.startsWith('/') || href.startsWith('#');
   return (
     <Link href={href} passHref>
       <a
