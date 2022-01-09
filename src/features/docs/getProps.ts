@@ -37,7 +37,7 @@ const getNameFromPath = (tree: TreeType, path: string[]): string | null => {
 const getBreadcrumbs = (tree: TreeType, path: string[]): breadcrumb[] => {
   const breadcrumbs: breadcrumb[] = path
     .map((id, i) => {
-      if (i + 1 === path.length && id === 'index') {
+      if (i + 1 === path.length) {
         return false;
       }
       const title = getNameFromPath(tree, path.slice(0, i + 1));
