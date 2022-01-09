@@ -203,14 +203,20 @@ const readDirectoryRecursive = (path: string, subpath = '/'): string[] => {
 const DOCS_DIR = './docs';
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = readDirectoryRecursive(DOCS_DIR).map((path) => {
-    return {
-      params: {
-        path: path.split('.')[0].split('/').slice(2),
-      },
-      locale: path.split('.')[0].split('/')[1],
-    };
-  });
+  const paths = readDirectoryRecursive(DOCS_DIR)
+    .map((path) => {
+      if (path.split('.')[1] === 'md') {
+        return {
+          params: {
+            path: path.split('.')[0].split('/').slice(2),
+          },
+          locale: path.split('.')[0].split('/')[1],
+        };
+      } else {
+        return false;
+      }
+    })
+    .filter(Boolean) as unknown as string[];
 
   return {
     paths,
