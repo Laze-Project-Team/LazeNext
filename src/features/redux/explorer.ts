@@ -11,12 +11,14 @@ interface explorerDirent extends direntType {
 export type ExplorerState = {
   current: string | null;
   updated: boolean;
+  projectName: string | null;
   directory: Record<string, explorerDirent>;
 };
 
 const initialState: ExplorerState = {
   current: '/main.laze',
   updated: false,
+  projectName: null,
   directory: {
     '/main.laze': {
       type: 'file',
@@ -38,6 +40,11 @@ export type renameDirentPayload = {
 export type saveFilePayload = {
   content: string;
   path?: string;
+};
+
+export type setDirectoryPayload = {
+  projectName: string;
+  directory: ExplorerState['directory'];
 };
 
 export const explorerSlice = createSlice({
@@ -124,10 +131,11 @@ export const explorerSlice = createSlice({
 
       delete state.directory[action.payload.path];
     },
-    setDirectory: (state, action: PayloadAction<ExplorerState['directory']>) => {
+    setDirectory: (state, action: PayloadAction<setDirectoryPayload>) => {
       state.current = initialState.current;
-      state.directory = action.payload;
+      state.directory = action.payload.directory;
       state.updated = true;
+      state.projectName = action.payload.projectName;
     },
   },
 });
