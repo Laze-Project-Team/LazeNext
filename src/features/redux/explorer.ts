@@ -127,6 +127,7 @@ export const explorerSlice = createSlice({
     setDirectory: (state, action: PayloadAction<ExplorerState['directory']>) => {
       state.current = initialState.current;
       state.directory = action.payload;
+      state.updated = true;
     },
   },
 });
