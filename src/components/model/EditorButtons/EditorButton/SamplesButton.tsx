@@ -1,6 +1,8 @@
 import { Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { FC } from 'react';
+import { useCallback } from 'react';
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -49,7 +51,7 @@ export const SamplesButton: FC = () => {
     return void setSelectOpen(false);
   };
 
-  const load = () => {
+  const load = useCallback(() => {
     if (select.current) {
       setSelectOpen(false);
       setLoading(true);
@@ -86,7 +88,14 @@ export const SamplesButton: FC = () => {
           });
         });
     }
-  };
+  }, [dispatcher, sampleList, setDirectory, t]);
+
+  useEffect(() => {
+    // 最初に表示されるサンプル
+    select.current = 'welcome';
+    load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -94,7 +103,7 @@ export const SamplesButton: FC = () => {
         <Portal>
           <div className="fixed top-0 bottom-4 left-0 right-0 flex justify-center items-center bg-black/40">
             <Spin className="text-6xl">
-              <VscLoading />
+              <VscLoading className="text-gray-100" />
             </Spin>
           </div>
         </Portal>
