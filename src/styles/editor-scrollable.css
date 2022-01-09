@@ -1,0 +1,37 @@
+.scrollable-normal::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.scrollable-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.editor-scrollable::-webkit-scrollbar-track {
+  background: none;
+}
+
+html:not(.dark) {
+  --scrollbar-color: rgba(0, 0, 0, 0.05);
+  --scrollbar-color-hover: rgba(0, 0, 0, 0.1);
+  --scrollbar-color-active: rgba(0, 0, 0, 0.15);
+}
+
+html.dark {
+  --scrollbar-color: rgba(255, 255, 255, 0.05);
+  --scrollbar-color-hover: rgba(255, 255, 255, 0.1);
+  --scrollbar-color-active: rgba(255, 255, 255, 0.15);
+}
+
+.editor-scrollable::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+}
+
+.editor-scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-color-hover);
+}
+
+.editor-scrollable::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-color-active);
+}
