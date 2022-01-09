@@ -1,0 +1,12 @@
+{
+  "id": "sin_wave",
+  "name": {
+    "ja": "sin波(3D)",
+    "en": "Sin Wave(3D)"
+  },
+  "description": {
+    "ja": "3Dライブラリを用いて正弦波を生成するサンプルです。",
+    "en": "A program that generates a sin wave using 3D library."
+  },
+  "dependencies": {}
+}

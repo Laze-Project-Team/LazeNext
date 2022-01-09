@@ -1,0 +1,12 @@
+{
+  "id": "fibonacci",
+  "name": {
+    "ja": "フィボナッチ数列",
+    "en": "Fibonacci Sequence"
+  },
+  "description": {
+    "ja": "フィボナッチ数列を出力するプログラムです。フィボナッチ数列は前の項と2つ前の項の和が次の項となるような数列です。初項は0、第2項は1です。",
+    "en": "A program that outputs the Fibonacci sequence. The Fibonacci sequence is a sequence of numbers where each number is the sum of the previous two numbers. The first two numbers are 0 and 1."
+  },
+  "dependencies": {}
+}

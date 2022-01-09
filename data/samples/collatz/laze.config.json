@@ -1,0 +1,12 @@
+{
+  "id": "collatz",
+  "name": {
+    "ja": "コラッツ関数",
+    "en": "Collatz Function"
+  },
+  "description": {
+    "ja": "コラッツ関数を計算するプログラムです。コラッツ関数はある整数に対して偶数なら2で割り、奇数なら3を掛けて1を足します。",
+    "en": "A program that calculates the Collatz function. The Collatz function is defined as follows: if the number is even, divide by 2; if the number is odd, multiply by 3 and add 1."
+  },
+  "dependencies": {}
+}

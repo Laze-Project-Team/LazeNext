@@ -1,0 +1,11 @@
+{
+  "id": "physics_engine",
+  "name": {
+    "ja": "物理エンジン(2D)",
+    "en": "Physics Engine(2D)"
+  },
+  "description": {
+    "ja": "2Dライブラリを用いて物理エンジンを実装したサンプルです。",
+    "en": "Physics engine implemented with 2D library."
+  }
+}

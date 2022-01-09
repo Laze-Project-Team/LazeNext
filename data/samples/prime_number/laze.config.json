@@ -1,0 +1,12 @@
+{
+  "id": "prime_number",
+  "name": {
+    "ja": "素数",
+    "en": "Prime Number"
+  },
+  "description": {
+    "ja": "素数を数えるプログラムです。",
+    "en": "A program to count prime numbers."
+  },
+  "dependencies": {}
+}

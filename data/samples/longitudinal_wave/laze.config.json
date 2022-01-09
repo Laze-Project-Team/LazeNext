@@ -1,0 +1,12 @@
+{
+  "id": "longitudinal_wave",
+  "name": {
+    "ja": "縦波(3D)",
+    "en": "Longitudinal Wave(3D)"
+  },
+  "description": {
+    "ja": "3Dライブラリを用いて、縦波を描画するサンプルです。",
+    "en": "A program that draws longitudinal waves using 3D library."
+  },
+  "dependencies": {}
+}

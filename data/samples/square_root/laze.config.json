@@ -1,0 +1,12 @@
+{
+  "id": "square_root",
+  "name": {
+    "ja": "平方根",
+    "en": "Square Root"
+  },
+  "description": {
+    "ja": "平方根を求めるプログラムです。",
+    "en": "Calculates the square root of a number."
+  },
+  "dependencies": {}
+}
