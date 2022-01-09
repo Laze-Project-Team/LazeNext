@@ -27,6 +27,10 @@ export const H3: Components['h3'] = ({ children }) => {
   return <h3 className="text-lg font-bold">{children}</h3>;
 };
 
+export const H4: Components['h4'] = ({ children }) => {
+  return <h4 className="text font-bold text-gray-600">{children}</h4>;
+};
+
 export const Paragraph: Components['p'] = ({ children }) => {
   return <p className="leading-6">{children}</p>;
 };
