@@ -1,11 +1,27 @@
-import NextDocument from 'next/document';
-import { Head, Html, Main, NextScript } from 'next/document';
+import { randomBytes } from 'crypto';
+import type { DocumentContext } from 'next/document';
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 
-class Document extends NextDocument {
+type WithNonceProp = {
+  nonce: string;
+};
+
+class Document extends NextDocument<WithNonceProp> {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await NextDocument.getInitialProps(ctx);
+    const nonce = randomBytes(128).toString('base64');
+    return {
+      ...initialProps,
+      nonce,
+    };
+  }
   render() {
+    const nonce = this.props.nonce;
+    const csp = `object-src 'none'; base-uri 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: 'nonce-${nonce}' 'strict-dynamic'`;
+
     return (
       <Html>
-        <Head>
+        <Head nonce={nonce}>
           {/* 基本設定 */}
           <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -21,10 +37,13 @@ class Document extends NextDocument {
 
           {/* SEO */}
           <meta property="og:image" content="/img/logo/logo.png" />
+
+          {/* nonce */}
+          <meta httpEquiv="Content-Security-Policy" content={csp} />
         </Head>
         <body>
           <Main />
-          <NextScript />
+          <NextScript nonce={nonce} />
         </body>
       </Html>
     );
