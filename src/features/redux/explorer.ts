@@ -78,12 +78,11 @@ export const explorerSlice = createSlice({
 
         if (!action.payload.path) {
           window.laze.props.variables.compiled = false;
-          window.laze.props.variables.compiled = false;
         }
 
         if (state.current === action.payload.path) {
-          state.updated = true;
           window.laze.props.variables.compiled = false;
+          state.updated = true;
         }
       }
     },
