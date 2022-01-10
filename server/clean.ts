@@ -12,7 +12,7 @@ export const clean = async (): Promise<void> => {
   dirents.forEach(async (dirent) => {
     if (dirent.isDirectory()) {
       try {
-        fs.promises.rmdir(`${CACHE_DIR}/${dirent.name}`, { recursive: true });
+        fs.promises.rm(`${CACHE_DIR}/${dirent.name}`, { recursive: true });
       } catch (err) {
         console.error(err);
       }
