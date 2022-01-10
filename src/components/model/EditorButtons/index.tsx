@@ -9,8 +9,8 @@ import { SamplesButton } from '@/components/model/EditorButtons/EditorButton/Sam
 import { SettingsButton } from '@/components/model/EditorButtons/EditorButton/SettingsButton';
 import { cx } from '@/features/utils/cx';
 
-const QUERY_SM_DOWN = '(max-width: 576px)' as const;
-const QUERY_MD_UP = '(min-width: 577px)' as const;
+const QUERY_SM_DOWN = '(max-width: 700px)' as const;
+const QUERY_MD_UP = '(min-width: 701px)' as const;
 
 export const EditorButtons: VFC = () => {
   const media = useMediaQuery([QUERY_MD_UP, QUERY_SM_DOWN]);
