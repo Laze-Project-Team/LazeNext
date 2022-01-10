@@ -6,6 +6,8 @@ import http from 'http';
 import https from 'https';
 import next from 'next';
 
+import { clean } from './clean';
+
 const CERT_DIR = './certs';
 const PORT = parseInt(process.env.PORT ?? '', 10) || 3000;
 
@@ -72,6 +74,12 @@ app.prepare().then(() => {
       https.createServer(credentials, server).listen(PORT, () => {
         console.log(`> Ready on https://localhost:${PORT} (SSL)`);
       });
+    }
+    // キャッシュ削除
+    {
+      clean();
+      const CHECK_INTERVAL = 1000 * 60 * 60; // 1時間
+      setInterval(clean, CHECK_INTERVAL);
     }
   }
 });
