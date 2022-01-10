@@ -136,6 +136,7 @@ export const explorerSlice = createSlice({
       state.directory = action.payload.directory;
       state.updated = true;
       state.projectName = action.payload.projectName;
+      window.laze.props.variables.compiled = false;
     },
   },
 });
