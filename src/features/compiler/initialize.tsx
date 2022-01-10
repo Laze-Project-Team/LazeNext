@@ -15,6 +15,7 @@ import { pointVs as pointVsSource } from '@/features/compiler/source/pointVs';
 import { vs as vsSource } from '@/features/compiler/source/vs';
 import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source/vs2DNoTexture';
 import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
+import { compileFailed, compileSuccessful, runProgram } from '@/features/gtm';
 import { consoleSlice } from '@/features/redux/console';
 import { getHash } from '@/features/utils/hash';
 import type { compileResponse, compilerType, convertResponse } from '@/typings/compiler';
@@ -27,6 +28,8 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
   const { saveFile } = explorerSlice.actions;
 
   const run: compilerType['run'] = () => {
+    runProgram();
+
     const { canvas, gl, importObject, variables } = window.laze.props;
 
     if (variables.wasm === '' || variables.id === '') {
@@ -131,7 +134,10 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       );
 
       if (resJson.success) {
+        compileSuccessful();
         run();
+      } else {
+        compileFailed();
       }
     } catch {
       notification.open({
