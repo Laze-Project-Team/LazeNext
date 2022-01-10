@@ -40,9 +40,13 @@ yarn-error.log*
 # cache
 cache/
 
+# certs
+certs/
+
 # env
 .env
 
 # gitkeep
 cache/.gitkeep
 dist/.gitkeep
+certs/.gitkeep
