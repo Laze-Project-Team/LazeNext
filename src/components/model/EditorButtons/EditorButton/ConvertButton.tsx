@@ -1,9 +1,9 @@
-import { Modal, notification } from 'antd';
+import { Button, Modal, notification } from 'antd';
 import type { VFC } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VscArrowSwap } from 'react-icons/vsc';
+import { VscArrowSwap, VscRefresh } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { SelectableList } from '@/components/ui/SelectableList';
@@ -45,6 +45,11 @@ export const ConvertButton: VFC = () => {
     setIsOpened(true);
   };
 
+  const change = () => {
+    setLang(newLang.current);
+    setIsOpened(false);
+  };
+
   const convert = () => {
     const code = getCurrentCode();
     const file = getCurrentFile();
@@ -79,10 +84,19 @@ export const ConvertButton: VFC = () => {
         title={t('buttons.convert')}
         visible={isOpened}
         afterClose={abort}
-        onOk={convert}
-        onCancel={abort}
-        cancelText={t('convert.cancel')}
-        okText={t('convert.convert')}
+        footer={[
+          <Button type="text" key="cancel" onClick={abort}>
+            {t('convert.cancel')}
+          </Button>,
+          <Button type="primary" key="change" onClick={change}>
+            <VscRefresh className="inline text-[1.1rem] mr-2" />
+            {t('convert.change')}
+          </Button>,
+          <Button type="primary" key="convert" onClick={convert}>
+            <VscArrowSwap className="inline text-[1.1rem] mr-2" />
+            {t('convert.convert')}
+          </Button>,
+        ]}
       >
         <SelectableList id="convert-lang" items={langList} selectedItem={newLang} />
       </Modal>
