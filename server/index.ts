@@ -8,8 +8,10 @@ import next from 'next';
 
 import { clean } from './clean';
 
-const CERT_DIR = './certs';
+const CERT_DIR = process.env.CERT_DIR ?? './certs';
 const PORT = parseInt(process.env.PORT ?? '', 10) || 3000;
+const KEY_PATH = `${CERT_DIR}/privkey.pem`;
+const CERT_PATH = `${CERT_DIR}/fullchain.pem`;
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -26,8 +28,8 @@ type checkedCredentials = {
 };
 
 const credentials: uncheckedCredentials = {
-  key: fs.existsSync(`${CERT_DIR}/key.pem`) && fs.readFileSync(`${CERT_DIR}/key.pem`, { encoding: 'utf-8' }),
-  cert: fs.existsSync(`${CERT_DIR}/cert.pem`) && fs.readFileSync(`${CERT_DIR}/cert.pem`, { encoding: 'utf-8' }),
+  key: fs.existsSync(KEY_PATH) && fs.readFileSync(KEY_PATH, { encoding: 'utf-8' }),
+  cert: fs.existsSync(CERT_PATH) && fs.readFileSync(CERT_PATH, { encoding: 'utf-8' }),
 };
 
 app.prepare().then(() => {
