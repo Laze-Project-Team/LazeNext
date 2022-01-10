@@ -83,9 +83,9 @@ export const ConvertButton: VFC = () => {
       <Modal
         title={t('buttons.convert')}
         visible={isOpened}
-        afterClose={abort}
+        onCancel={abort}
         footer={[
-          <Button type="text" key="cancel" onClick={abort}>
+          <Button type="default" key="cancel" onClick={abort}>
             {t('convert.cancel')}
           </Button>,
           <Button type="primary" key="change" onClick={change}>
