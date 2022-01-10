@@ -1,6 +1,8 @@
 import type { MutableRefObject, VFC } from 'react';
 import { useState } from 'react';
 
+import { cx } from '@/features/utils/cx';
+
 type SelectableListProps = {
   id: string;
   items: Record<string, string>;
@@ -12,7 +14,7 @@ export const SelectableList: VFC<SelectableListProps> = ({ id, items, selectedIt
 
   return (
     <>
-      <div className="flex flex-col space-y-1">
+      <div className={cx('space-y-1 max-h-[30vh] pr-4 overflow-y-scroll editor-scrollable scrollable-normal')}>
         {Object.keys(items).map((key) => {
           return (
             <div key={key}>

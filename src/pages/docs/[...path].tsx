@@ -1,4 +1,4 @@
-import { Anchor, Breadcrumb, Collapse } from 'antd';
+import { Anchor, Breadcrumb, Button, Drawer } from 'antd';
 import fs from 'fs';
 import type { GetStaticPaths, NextPage } from 'next';
 import Head from 'next/head';
@@ -6,25 +6,39 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import type { ReactNode, VFC } from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { AiOutlineMenu } from 'react-icons/ai';
 import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
+import { useMediaQuery } from '@/components/functional/useMediaQuery';
+import { IndexList } from '@/components/model/IndexList';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
-import { a, anchorLink, H1, H2, HR, Paragraph } from '@/components/ui/Markdown';
+import {
+  a,
+  anchorLink,
+  Code,
+  H1,
+  H2,
+  H3,
+  H4,
+  HR,
+  Paragraph,
+  Pre,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@/components/ui/Markdown';
+import type { breadcrumb, directoryObject } from '@/features/docs/getProps';
+import { getDocsProps } from '@/features/docs/getProps';
 import { cx } from '@/features/utils/cx';
 
-type breadcrumb = {
-  id: string;
-  title: string;
-  href: string;
-};
-
-type directoryObject = {
-  name: string;
-  path: string;
-  children: directoryObject[];
-};
+const QUERY_SM_DOWN = '(max-width: 600px)' as const;
+const QUERY_MD_UP = '(min-width: 601px) and (max-width: 960px)' as const;
+const QUERY_LG_UP = '(min-width: 961px)' as const;
 
 type DocsProps = {
   content: string;
@@ -32,56 +46,9 @@ type DocsProps = {
   indexList: directoryObject[];
 };
 
-type IndexListProps = {
-  indexList: directoryObject[];
-  active: string;
-  nest?: number;
-};
-
-const IndexList: VFC<IndexListProps> = ({ indexList, active, nest }) => {
-  const readIndexList = (dir: directoryObject): ReactNode => {
-    const activeClass = cx(
-      active
-        .split('/')
-        .slice(0, (nest ?? 0) + 2)
-        .join('/') === dir.path && 'indexlist-active'
-    );
-    return (
-      <>
-        {dir.children.length === 0 ? (
-          <div key={dir.path} className={cx('indexlist-item', activeClass)}>
-            <Link href={`/docs${dir.path}`} passHref>
-              <a href={`/docs${dir.path}`} className="inline-block w-full h-full text-gray-700 hover:text-gray-700">
-                {dir.name}
-              </a>
-            </Link>
-          </div>
-        ) : (
-          <Collapse bordered={false} ghost expandIconPosition="right" key={dir.path} className={activeClass}>
-            <Collapse.Panel header={dir.name} key={dir.path} showArrow={true}>
-              <IndexList indexList={dir.children} active={active} nest={(nest ?? 0) + 1} />
-            </Collapse.Panel>
-          </Collapse>
-        )}
-      </>
-    );
-  };
-
-  return (
-    <div className="flex flex-col select-none indexlist">
-      {indexList.map((dir) => {
-        return readIndexList(dir);
-      })}
-    </div>
-  );
-};
-
-IndexList.defaultProps = {
-  nest: 0,
-};
-
 const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
   const router = useRouter();
+  const media = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP, QUERY_LG_UP]);
   const { path } = router.query as { path: string[] };
   const [t] = useTranslation(['docs', 'common']);
 
@@ -95,6 +62,8 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
     }
   }, [path]);
 
+  const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+
   return (
     <>
       <Head>
@@ -105,58 +74,114 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
         <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://laze.ddns.net/${router.locale + '/' ?? ''}docs/${path.join('/')}`} />
-        <meta property="og:image" content="https://laze.ddns.net/img/logo.png" />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={router.locale ?? 'en'} />
       </Head>
 
-      <div className="w-screen h-screen flex overflow-hidden">
-        <div className="w-60 border-r-2 overflow-y-scroll">
-          <Link href="/" passHref>
-            <a className="flex justify-center mt-4">
-              <LazeLogo size={120} option="logo_caption" />
-            </a>
-          </Link>
-          <hr className="bg-gray-300 my-4" />
-          <div>
-            <IndexList indexList={indexList} active={'/' + path.join('/')} />
+      <div className="scroll-p-0 h-screen">
+        <div className="fixed z-10 w-screen h-16 flex bg-white shadow-sm shadow-gray-200">
+          <div className="flex items-center">
+            {media && media === QUERY_SM_DOWN && (
+              <>
+                <Button
+                  type="text"
+                  className="!text-gray-400 hover:!text-gray-200"
+                  onClick={() => {
+                    return setIsDrawerVisible(true);
+                  }}
+                >
+                  <AiOutlineMenu size="1.4rem" />
+                </Button>
+                <Drawer
+                  placement="left"
+                  visible={isDrawerVisible}
+                  onClose={() => {
+                    return setIsDrawerVisible(false);
+                  }}
+                >
+                  <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
+                </Drawer>
+              </>
+            )}
+            <Link href="/" passHref>
+              <a className="flex items-center mx-4 px-2 py-1 rounded-sm hover:bg-laze-primary/10 transition-colors duration-200">
+                <LazeLogo size={32} option="logo" />
+                <span className="ml-1 text-laze-primary text-2xl font-semibold">Laze</span>
+              </a>
+            </Link>
           </div>
         </div>
-        <div ref={documentRef} className="flex-1 pl-8 pr-44 break-normal overflow-y-scroll">
-          <div className="px-2 py-4">
-            <Breadcrumb>
-              {breadcrumbs.map((breadcrumb) => {
-                return <Breadcrumb.Item key={breadcrumb.id}>{breadcrumb.title}</Breadcrumb.Item>;
-              })}
-            </Breadcrumb>
-          </div>
-          <Markdown
-            components={{
-              h1: H1,
-              h2: H2,
-              hr: HR,
-              p: Paragraph,
-              a: a,
-            }}
+        <div>
+          {media && media !== QUERY_SM_DOWN && (
+            <div className="fixed top-16 w-64 h-[calc(100vh-3rem)] pt-4 border-r-2 overflow-y-scroll z-10">
+              <div className="pb-[80vh]">
+                <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
+              </div>
+            </div>
+          )}
+          <div
+            ref={documentRef}
+            className={cx(
+              'break-normal absolute top-16 w-[calc(100vw-18px)]',
+              media && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
+              media && media !== QUERY_SM_DOWN ? 'pl-72' : 'pl-8'
+            )}
           >
-            {content}
-          </Markdown>
-          <div className="border-t-2 mt-8">
-            <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
-          </div>
-        </div>
-        <div className="fixed right-8 top-4 w-32">
-          <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
-          <Anchor>
+            <div className="px-2 py-4">
+              <Breadcrumb>
+                {breadcrumbs.map((breadcrumb, i) => {
+                  if (breadcrumbs.length === i + 1) {
+                    return <Breadcrumb.Item key={breadcrumb.href}>{breadcrumb.title}</Breadcrumb.Item>;
+                  }
+                  return (
+                    <Breadcrumb.Item key={breadcrumb.href}>
+                      <Link href={`/docs${breadcrumb.href}`}>{breadcrumb.title}</Link>
+                    </Breadcrumb.Item>
+                  );
+                })}
+              </Breadcrumb>
+            </div>
             <Markdown
-              allowedElements={['h2']}
               components={{
-                h2: anchorLink,
+                h1: H1,
+                h2: H2,
+                h3: H3,
+                h4: H4,
+                hr: HR,
+                p: Paragraph,
+                a: a,
+                pre: Pre,
+                code: Code,
+                table: Table,
+                thead: Thead,
+                tbody: Tbody,
+                tr: Tr,
+                th: Th,
+                td: Td,
               }}
+              remarkPlugins={[remarkGfm]}
             >
               {content}
             </Markdown>
-          </Anchor>
+            <div className="border-t-2 mt-8">
+              <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
+            </div>
+          </div>
+          {media && media === QUERY_LG_UP && (
+            <div className="fixed right-8 top-20 w-32 z-10">
+              <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
+              <Anchor>
+                <Markdown
+                  allowedElements={['h2']}
+                  components={{
+                    h2: anchorLink,
+                  }}
+                >
+                  {content}
+                </Markdown>
+              </Anchor>
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -176,52 +201,23 @@ const readDirectoryRecursive = (path: string, subpath = '/'): string[] => {
     }, []);
 };
 
-const getFileName = (path: string): string => {
-  const title = fs.readFileSync(path, { encoding: 'utf-8', flag: 'r' }).match('# (.*)');
-  return title ? title[1] : '';
-};
-
-const getIndexList = (path: string, subpath = '/'): directoryObject[] => {
-  const result: directoryObject[] = [];
-  fs.readdirSync(`${path}${subpath}`, { withFileTypes: true }).forEach((file) => {
-    const filePath = `${subpath}${file.name.split('.')[0]}`;
-    if (file.isDirectory()) {
-      const fileName = getFileName(`${path}${subpath}${file.name}.md`);
-      result.push({
-        name: fileName,
-        path: filePath,
-        children: getIndexList(path, `${subpath}${file.name}/`),
-      });
-    } else {
-      if (
-        !result.find((item) => {
-          return item.path === filePath;
-        })
-      ) {
-        const fileName = getFileName(`${path}${subpath}${file.name}`);
-        result.push({
-          name: fileName,
-          path: filePath,
-          children: [],
-        });
-      }
-    }
-  });
-
-  return result;
-};
-
 const DOCS_DIR = './docs';
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = readDirectoryRecursive(DOCS_DIR).map((path) => {
-    return {
-      params: {
-        path: path.split('.')[0].split('/').slice(2),
-      },
-      locale: path.split('.')[0].split('/')[1],
-    };
-  });
+  const paths = readDirectoryRecursive(DOCS_DIR)
+    .map((path) => {
+      if (path.split('.')[1] === 'md') {
+        return {
+          params: {
+            path: path.split('.')[0].split('/').slice(2),
+          },
+          locale: path.split('.')[0].split('/')[1],
+        };
+      } else {
+        return false;
+      }
+    })
+    .filter(Boolean) as unknown as string[];
 
   return {
     paths,
@@ -242,23 +238,7 @@ export const getStaticProps = async (context: contextType) => {
     flag: 'r',
   });
 
-  const breadcrumbs: breadcrumb[] = context.params.path.map((path, i, paths) => {
-    const content = fs.readFileSync(`${DOCS_DIR}/${context.locale}/${paths.slice(0, i + 1).join('/')}.md`, {
-      encoding: 'utf-8',
-      flag: 'r',
-    });
-
-    const id = path.split('.')[0];
-    const title = content.match('# (.*)');
-
-    return {
-      id,
-      title: title ? title[1] : id,
-      href: `/docs/${paths.slice(0, i + 1).join('/')}`,
-    };
-  });
-
-  const indexList = getIndexList(`${DOCS_DIR}/${context.locale}`);
+  const { indexList, breadcrumbs } = getDocsProps(`${DOCS_DIR}/${context.locale}`, context.params.path);
 
   return {
     props: {

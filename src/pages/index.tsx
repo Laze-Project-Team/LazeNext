@@ -54,7 +54,6 @@ const Home: NextPage = () => {
         <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://laze.ddns.net/${locale ?? ''}`} />
-        <meta property="og:image" content="https://laze.ddns.net/img/logo.png" />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'en'} />
       </Head>

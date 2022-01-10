@@ -1,0 +1,208 @@
+{
+  "id": "root",
+  "name": "root",
+  "children": [
+    {
+      "id": "first",
+      "name": "はじめに"
+    },
+    {
+      "id": "tutorial",
+      "name": "チュートリアル",
+      "children": [
+        {
+          "id": "index",
+          "name": "チュートリアル"
+        },
+        {
+          "id": "basic",
+          "name": "最初のチュートリアル"
+        },
+        {
+          "id": "3d",
+          "name": "3Dのチュートリアル"
+        }
+      ]
+    },
+    {
+      "id": "func",
+      "name": "標準機能",
+      "children": [
+        {
+          "id": "index",
+          "name": "標準機能とは"
+        },
+        {
+          "id": "number",
+          "name": "数値"
+        },
+        {
+          "id": "char",
+          "name": "文字"
+        },
+        {
+          "id": "string",
+          "name": "文字列"
+        },
+        {
+          "id": "control",
+          "name": "制御文"
+        },
+        {
+          "id": "function",
+          "name": "関数"
+        },
+        {
+          "id": "operator",
+          "name": "演算子"
+        },
+        {
+          "id": "class",
+          "name": "クラス"
+        },
+        {
+          "id": "functions",
+          "name": "標準関数",
+          "children": [
+            {
+              "id": "show",
+              "name": "表示"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lib",
+      "name": "標準ライブラリ",
+      "children": [
+        {
+          "id": "index",
+          "name": "標準ライブラリとは"
+        },
+        {
+          "id": "3d",
+          "name": "3Dライブラリ",
+          "children": [
+            {
+              "id": "index",
+              "name": "3Dライブラリとは"
+            },
+            {
+              "id": "scene",
+              "name": "シーン",
+              "children": [
+                {
+                  "id": "index",
+                  "name": "シーンクラス"
+                },
+                {
+                  "id": "constructor",
+                  "name": "コンストラクタ"
+                },
+                {
+                  "id": "addcube",
+                  "name": "キューブ追加"
+                },
+                {
+                  "id": "addlight",
+                  "name": "ライト追加"
+                },
+                {
+                  "id": "draw",
+                  "name": "描画"
+                },
+                {
+                  "id": "sprites",
+                  "name": "スプライト"
+                }
+              ]
+            },
+            {
+              "id": "camera",
+              "name": "カメラ",
+              "children": [
+                {
+                  "id": "index",
+                  "name": "カメラクラス"
+                },
+                {
+                  "id": "constructor",
+                  "name": "コンストラクタ"
+                },
+                {
+                  "id": "setsensitivity",
+                  "name": "感度設定"
+                },
+                {
+                  "id": "setspeed",
+                  "name": "速度設定"
+                },
+                {
+                  "id": "update",
+                  "name": "アップデート"
+                }
+              ]
+            },
+            {
+              "id": "model",
+              "name": "モデル",
+              "children": [
+                {
+                  "id": "index",
+                  "name": "モデルクラス"
+                },
+                {
+                  "id": "constructor",
+                  "name": "コンストラクタ"
+                },
+                {
+                  "id": "setpos",
+                  "name": "座標設定"
+                },
+                {
+                  "id": "translate",
+                  "name": "移動"
+                },
+                {
+                  "id": "scale",
+                  "name": "拡大縮小"
+                },
+                {
+                  "id": "rotate",
+                  "name": "回転"
+                },
+                {
+                  "id": "draw",
+                  "name": "描画"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "math",
+          "name": "数学ライブラリ",
+          "children": [
+            {
+              "id": "index",
+              "name": "数学ライブラリとは"
+            },
+            {
+              "id": "vec3",
+              "name": "ベクトル3D"
+            },
+            {
+              "id": "matrix4x4",
+              "name": "行列4x4"
+            },
+            {
+              "id": "toRad",
+              "name": "toRad"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

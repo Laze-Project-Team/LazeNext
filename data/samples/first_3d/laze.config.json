@@ -1,0 +1,12 @@
+{
+  "id": "first_3d",
+  "name": {
+    "ja": "初めての3D",
+    "en": "Getting Started 3D"
+  },
+  "description": {
+    "ja": "Lazeの3Dライブラリの基本的な使い方を紹介します。",
+    "en": "Learn how to use Laze 3D library."
+  },
+  "dependencies": {}
+}

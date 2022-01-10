@@ -31,7 +31,7 @@ const QUERY_MD_UP = '(min-width: 577px)' as const;
 
 const IndexHeader: VFC = () => {
   const [t] = useTranslation(['layout', 'common']);
-  const query = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP]);
+  const media = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP]);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const onClick = () => {
@@ -52,12 +52,12 @@ const IndexHeader: VFC = () => {
             </div>
           </Link>
         </div>
-        {typeof window !== 'undefined' && query === QUERY_SM_DOWN ? (
+        {media && media === QUERY_SM_DOWN ? (
           <div className="ml-auto flex items-center">
             <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
               <AiOutlineMenu size="1.4rem" />
             </Button>
-            <Drawer title="サイトマップ" placement="right" onClose={onClose} visible={isDrawerOpen}>
+            <Drawer title={t('header.drawer')} placement="right" onClose={onClose} visible={isDrawerOpen}>
               <Menu>
                 <Menu.Item>
                   <Link href="/editor">{t('header.Editor')}</Link>

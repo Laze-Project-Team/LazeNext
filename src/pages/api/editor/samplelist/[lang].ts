@@ -4,7 +4,7 @@ import type { NextApiHandler } from 'next';
 import { SAMPLE_DIR } from '@/const/dir';
 import type { langId, lazeConfig } from '@/typings/config';
 
-export const langIds: langId[] = ['ja', 'en', 'de', 'ru', 'pt', 'nl', 'fr', 'it', 'es', 'pl', 'zh-cn'];
+export const langIds: langId[] = ['ja', 'en'];
 
 const isLangId = (id: string): id is langId => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

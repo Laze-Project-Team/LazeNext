@@ -1,0 +1,12 @@
+{
+  "id": "factorial",
+  "name": {
+    "ja": "階乗",
+    "en": "Factorial"
+  },
+  "description": {
+    "ja": "数値を入力して、その数値の階乗を計算します。",
+    "en": "Calculates the factorial of a number."
+  },
+  "dependencies": {}
+}

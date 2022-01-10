@@ -1,6 +1,8 @@
 import { Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { FC } from 'react';
+import { useCallback } from 'react';
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +14,7 @@ import { Portal } from '@/components/ui/Portal';
 import { SelectableList } from '@/components/ui/SelectableList';
 import { Spin } from '@/components/ui/Spin';
 import { explorerSlice } from '@/features/redux/explorer';
+import { store } from '@/features/redux/root';
 import type { direntType } from '@/typings/directory';
 import type { sampleListType } from '@/typings/samplelist';
 
@@ -49,7 +52,7 @@ export const SamplesButton: FC = () => {
     return void setSelectOpen(false);
   };
 
-  const load = () => {
+  const load = useCallback(() => {
     if (select.current) {
       setSelectOpen(false);
       setLoading(true);
@@ -71,13 +74,15 @@ export const SamplesButton: FC = () => {
               return { ...acc, ...curr };
             }, {});
           setLoading(false);
-          dispatcher(setDirectory(directory));
+          dispatcher(setDirectory({ directory, projectName: sampleList[select.current ?? '']?.name ?? '' }));
         })
-        .catch(() => {
+        .catch((e) => {
+          console.error(e);
+
           setLoading(false);
           notification.open({
             message: t('errors.LoadingSampleFailed.title', {
-              name: sampleList[select.current || '']?.name ?? '?????',
+              name: sampleList[select.current ?? '']?.name ?? '?????',
             }),
             description: t('errors.LoadingSampleFailed.message'),
             type: 'error',
@@ -86,7 +91,15 @@ export const SamplesButton: FC = () => {
           });
         });
     }
-  };
+  }, [dispatcher, sampleList, setDirectory, t]);
+
+  useEffect(() => {
+    if (store.getState().explorer.projectName === null) {
+      // 最初に表示されるサンプル
+      select.current = 'welcome';
+      load();
+    }
+  }, [load]);
 
   return (
     <>
@@ -94,7 +107,7 @@ export const SamplesButton: FC = () => {
         <Portal>
           <div className="fixed top-0 bottom-4 left-0 right-0 flex justify-center items-center bg-black/40">
             <Spin className="text-6xl">
-              <VscLoading />
+              <VscLoading className="text-gray-100" />
             </Spin>
           </div>
         </Portal>

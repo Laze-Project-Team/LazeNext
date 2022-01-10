@@ -1,0 +1,10 @@
+{
+  "id": "root",
+  "name": "root",
+  "children": [
+    {
+      "id": "first",
+      "name": "Getting Started"
+    }
+  ]
+}
