@@ -67,6 +67,16 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
 
   const onMount: OnMount = (editor) => {
     editor.focus();
+    editor.addAction({
+      id: 'save-file',
+      label: 'save',
+      // Ctrl+S
+      keybindings: [2097],
+      contextMenuOrder: 1.5,
+      run: () => {
+        return void 0;
+      },
+    });
   };
 
   const colorMode = useContext(colorModeContext);
