@@ -97,12 +97,13 @@ const ContentsList: FC<ContentsListProps> = ({ title, children }) => {
 
 type FooterLinkProps = {
   href: string;
+  locale?: string;
 };
 
-const FooterLink: FC<FooterLinkProps> = ({ children, href }) => {
+const FooterLink: FC<FooterLinkProps> = ({ children, href, locale }) => {
   return (
     <>
-      <Link href={href} passHref>
+      <Link href={href} locale={locale} passHref>
         <a className="text-gray-400 hover:text-gray-300">{children}</a>
       </Link>
     </>
@@ -150,9 +151,15 @@ const IndexFooter: VFC = () => {
         </div>
         <div className="flex space-x-4 sm:ml-auto">
           <ContentsList title={t('footer.Guides')}>
-            <FooterLink href="/terms">{t('footer.guides.Terms')}</FooterLink>
-            <FooterLink href="/guideline">{t('footer.guides.Guideline')}</FooterLink>
-            <FooterLink href="/privacy">{t('footer.guides.Privacy')}</FooterLink>
+            <FooterLink locale="ja" href="/terms">
+              {t('footer.guides.Terms')}
+            </FooterLink>
+            <FooterLink locale="ja" href="/guideline">
+              {t('footer.guides.Guideline')}
+            </FooterLink>
+            <FooterLink locale="ja" href="/privacy">
+              {t('footer.guides.Privacy')}
+            </FooterLink>
           </ContentsList>
           <ContentsList title={t('footer.Sitemap')}>
             <FooterLink href="/">{t('footer.sitemap.Home')}</FooterLink>

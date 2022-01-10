@@ -1,0 +1,42 @@
+{
+  "title": "ガイドライン",
+  "description": "プログラミング言語Lazeのウェブサイトのガイドラインです。",
+
+  "LogoGuideline": {
+    "title": "ロゴガイドライン",
+    "description": "LazeのロゴはLaze Project Teamが所有し、以下の規定のもとに再利用及び改変を許可します。",
+
+    "requirement": {
+      "title": "使用条件",
+      "1": "ロゴの帰属がLaze Project Teamである旨を適切な方法で記載してください。",
+      "2": {
+        "title": "ロゴの改変は以下の場合に限って許可されます。",
+        "1": "アスペクト比を変えないリサイズ（ただし最小サイズは16x16）",
+        "2": "デザインの都合でのLazeのイメージを損なわない範囲での色の変更（例えば白黒にするなど）"
+      },
+      "3": "改変が許可されるかどうか疑問に思った場合には、[discordコミュニティ](https://discord.gg/K3prMrmS7e)またはメール（[lazelang.official@gmail.com](mailto:lazelang.official@gmail.com)）を通してLaze Project Teamにお問い合わせ下さい。"
+    },
+
+    "LogoKinds": {
+      "title": "ロゴの種類",
+      "description": "Lazeのロゴは以下に示すようにLazeの文字が入っているものと入っていないものの2種類があります。状況やデザインに合わせて適宜使い分けてください。"
+    },
+
+    "BrandColor": {
+      "title": "ブランドカラー",
+      "description": "Lazeのブランドカラーはロゴを構成する二つの色です。以下に具体的な色を示します。ブランドカラーはLazeのイメージを形作る上で重要な役割を果たします。",
+
+      "main": "Lazeメインカラー",
+      "spare": "Lazeスペアカラー"
+    },
+
+    "ProhibitedMatters": {
+      "title": "禁止事項",
+      "description": "以下の事項は禁止されています。",
+      "1": "使用条件を守らないでロゴを使用すること",
+      "2": "Lazeのブランドカラーとかけ離れた色のロゴを使用すること",
+      "3": "Lazeと全く関連性のないコンテンツにロゴを使用すること",
+      "4": "その他Lazeのイメージを低下させるようなロゴの使用をすること"
+    }
+  }
+}
