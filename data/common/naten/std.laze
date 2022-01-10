@@ -14,7 +14,7 @@ Load function glBufferData from "bufferData"of "webgl"that takes i as short , of
 Load function glElementBufferData from "elementBufferData"of "webgl"that takes i as short , offset as pointer of short , size as short , j as short . 
 Load function glUseProgram from "useProgram"of "webgl"that takes i as short . 
 Load function glGetAttribLocation from "getAttribLocation"of "webgl"that takes i as short , offset as pointer of char , size as short and returns loc as short . 
-Load function glVertexAttribPointer from "vertexAttribPointer"of "webgl"that takes index as short , size as short , type as short , normalized as short , stride as short , offset as short . 
+Load function glVertexAttribPointer from "vertexAttribPointer"of "webgl"that takes index as short , size as short , ty as short , normalized as short , stride as short , offset as short . 
 Load function glEnableVertexAttribArray from "enableVertexAttribArray"of "webgl"that takes index as short . 
 Load function glDrawArrays from "drawArrays"of "webgl"that takes i as short , first as short , count as short . 
 Load function _glGetUniformLocation from "getUniformLocation"of "webgl"that takes i as short , offset as pointer of char , size as short and returns loc as short . 
@@ -39,7 +39,7 @@ Load function glUniform4i from "uniform4i"of "webgl"that takes loc as short , v0
 Load function glUniform4iv from "uniform4iv"of "webgl"that takes loc as short , v0 as short , v1 as short , v2 as short , v3 as short . 
 Load function glClearColor from "clearColor"of "webgl"that takes r as double , g as double , b as double , a as double . 
 Load function glClear from "clear"of "webgl"that takes color as short . 
-Load function glDrawElements from "drawElements"of "webgl"that takes i as short , count as short , type as short , offset as short . 
+Load function glDrawElements from "drawElements"of "webgl"that takes i as short , count as short , ty as short , offset as short . 
 Load function glBlendFunc from "blendFunc"of "webgl"that takes i as short , j as short . 
 Load function キーチェック from "checkKeyPress"of "js"that takes keyCode as short and returns pressed as int . 
 Load function マウスチェック from "checkMousePress"of "js"that returns pressed as int . 
