@@ -1,0 +1,42 @@
+{
+  "title": "Guideline",
+  "description": "",
+
+  "LogoGuideline": {
+    "title": "",
+    "description": "",
+
+    "requirement": {
+      "title": "",
+      "1": "",
+      "2": {
+        "title": "",
+        "1": "",
+        "2": ""
+      },
+      "3": ""
+    },
+
+    "LogoKinds": {
+      "title": "",
+      "description": ""
+    },
+
+    "BrandColor": {
+      "title": "",
+      "description": "",
+
+      "main": "",
+      "spare": ""
+    },
+
+    "ProhibitedMatters": {
+      "title": "",
+      "description": "",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    }
+  }
+}
