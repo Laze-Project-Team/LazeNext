@@ -27,7 +27,7 @@ export const ConsoleLog: VFC<Omit<consoleLog, 'type'>> = ({ content, timestamp, 
   return (
     <>
       <p className="bg-[#c18a0b]"></p>
-      <p className="flex px-4 py-[0.1rem] hover:bg-black/5 dark:hover:bg-gray-100/5 text-sm">
+      <p className="flex px-4 m-0 py-[0.1rem] hover:bg-black/5 dark:hover:bg-gray-100/5 text-sm">
         <span className="flex-1" style={{ color: colors[level] }}>
           {content.split('\n').map((line) => {
             return (
