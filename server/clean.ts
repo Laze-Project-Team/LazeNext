@@ -6,8 +6,6 @@ const CACHE_DIR = './cache';
 const CLEAN_RANGE = 1000 * 60 * 60 * 24; // 1日
 
 export const clean = async (): Promise<void> => {
-  console.log('clean cache');
-
   const dirents = await fs.promises.readdir(CACHE_DIR, { withFileTypes: true });
   dirents.forEach(async (dirent) => {
     if (dirent.isDirectory()) {
