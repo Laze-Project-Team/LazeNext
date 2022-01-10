@@ -59,6 +59,8 @@ export const ConvertButton: VFC = () => {
         setIsConverting(false);
         window.laze.props.variables.lang = newLang.current;
         setLang(newLang.current);
+      } else {
+        setIsConverting(false);
       }
     });
   };
