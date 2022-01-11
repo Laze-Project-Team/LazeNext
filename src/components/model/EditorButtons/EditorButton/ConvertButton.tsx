@@ -1,5 +1,6 @@
 import { Button, Modal, notification } from 'antd';
 import type { VFC } from 'react';
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -76,6 +77,16 @@ export const ConvertButton: VFC = () => {
   const abort = () => {
     setIsOpened(false);
   };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const lang = localStorage.getItem('compile_lang');
+      if (lang) {
+        window.laze.props.variables.lang = lang;
+        setLang(lang);
+      }
+    }
+  }, []);
 
   return (
     <>

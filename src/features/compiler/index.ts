@@ -18,13 +18,4 @@ export const useCompiler = (): void => {
       window.laze.compiler = initialize(dispacher, t);
     }
   }, [dispacher, t]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const lang = localStorage.getItem('compile_lang');
-      if (lang) {
-        window.laze.props.variables.lang = lang;
-      }
-    }
-  }, []);
 };
