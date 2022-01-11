@@ -38,7 +38,7 @@ export const ConsoleLog: VFC<Omit<consoleLog, 'type'>> = ({ content, timestamp, 
           })}
         </span>
         <time
-          className="inline-flex items-center ml-auto select-none text-gray-800 dark:text-gray-500"
+          className="inline-flex items-center ml-auto select-none text-gray-800 dark:text-gray-200"
           dateTime={moment(timestamp).format()}
         >
           {moment(timestamp).format('HH:mm')}
