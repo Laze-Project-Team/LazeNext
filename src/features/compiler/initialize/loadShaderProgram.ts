@@ -1,4 +1,4 @@
-export const loadShader = (gl: WebGLRenderingContext, type: number, source: string): WebGLShader => {
+export const loadShader = (gl: WebGL2RenderingContext, type: number, source: string): WebGLShader => {
   const shader = gl.createShader(type);
 
   // Send the source to the shader object

@@ -3,7 +3,7 @@ const isPowerOf2 = (value: number) => {
   return (value & (value - 1)) === 0;
 };
 
-export const loadTexture = (gl: WebGLRenderingContext, url: string): WebGLTexture => {
+export const loadTexture = (gl: WebGL2RenderingContext, url: string): WebGLTexture => {
   const texture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, texture);
 

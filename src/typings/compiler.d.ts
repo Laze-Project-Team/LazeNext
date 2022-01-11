@@ -91,7 +91,7 @@ type keyControlType = {
 
 export type compilerProps = {
   canvas: HTMLCanvasElement;
-  gl: WebGLRenderingContext;
+  gl: WebGL2RenderingContext;
   importObject: getCompleteImportsFunction;
   webglObjects: webglObjects;
   variables: compilerVariable;
@@ -110,7 +110,7 @@ export type compilerVariable = {
 
 export type getImportsProps = {
   canvas: HTMLCanvasElement;
-  gl: WebGLRenderingContext;
+  gl: WebGL2RenderingContext;
   webglObjects: webglObjects;
   variables: compilerVariable;
 };
