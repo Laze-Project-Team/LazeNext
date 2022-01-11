@@ -29,7 +29,7 @@
 
     "2": {
       "title": "3D Games",
-      "description": "It uses WebGL2.0, which means that it can perform as well in 3D as it does in 2D. It comes with a standard library to make it easy to get started."
+      "description": "It uses WebGL, which means that it can perform as well in 3D as it does in 2D. It comes with a standard library to make it easy to get started."
     },
     "3": {
       "title": "GUI apps (in preparation)",

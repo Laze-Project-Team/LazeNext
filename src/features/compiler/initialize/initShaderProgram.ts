@@ -1,6 +1,6 @@
 import { loadShader } from '@/features/compiler/initialize/loadShader';
 
-export const initShaderProgram = (gl: WebGL2RenderingContext, vsSource: string, fsSource: string): WebGLProgram => {
+export const initShaderProgram = (gl: WebGLRenderingContext, vsSource: string, fsSource: string): WebGLProgram => {
   const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
   const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
 
