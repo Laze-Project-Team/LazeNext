@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
@@ -13,6 +14,7 @@ const QUERY_SM_DOWN = '(max-width: 800px)' as const;
 const QUERY_MD_UP = '(min-width: 801px)' as const;
 
 export const EditorButtons: VFC = () => {
+  const [t] = useTranslation('editor');
   const media = useMediaQuery([QUERY_MD_UP, QUERY_SM_DOWN]);
 
   const [isOpened, setIsOpened] = useState(false);
@@ -32,7 +34,7 @@ export const EditorButtons: VFC = () => {
       <div className="flex h-full bg-[#f3f3f3] dark:bg-background">
         {media && media === QUERY_SM_DOWN ? (
           <>
-            <button className="px-2" onClick={toggleDisplay}>
+            <button className="px-2" onClick={toggleDisplay} aria-label={t('buttons.menu')}>
               <VscMenu />
             </button>
 

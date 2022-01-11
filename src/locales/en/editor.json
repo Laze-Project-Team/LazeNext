@@ -22,6 +22,7 @@
   },
 
   "buttons": {
+    "menu": "Menu",
     "newFile": "New File",
     "newFolder": "New Folder",
     "compile": "Compile & Run",
