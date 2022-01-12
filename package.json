@@ -44,7 +44,8 @@
     "reconnecting-websocket": "^4.4.0",
     "redux-localstorage-simple": "^2.4.1",
     "remark-gfm": "^3.0.1",
-    "sharp": "^0.29.3"
+    "sharp": "^0.29.3",
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.0.7",

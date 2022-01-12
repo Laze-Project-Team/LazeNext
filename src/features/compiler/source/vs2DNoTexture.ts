@@ -1,4 +1,8 @@
 export const vs2DNoTexture = `
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 attribute vec2 aVertexPosition;
 
 uniform mat4 model;

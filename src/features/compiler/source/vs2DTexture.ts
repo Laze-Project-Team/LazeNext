@@ -1,4 +1,8 @@
 export const vs2DTexture = `
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 attribute vec3 aVertexPosition;
 attribute vec2 aTexCoord;
 
