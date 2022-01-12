@@ -25,7 +25,3 @@ export const GoogleTagManager: React.FC<Props> = ({ googleTagManagerId }) => {
 };
 
 export const googleTagManagerId = process.env.GTM_ID || '';
-
-if (!process.env.GTM_ID) {
-  throw new Error('Google Tag Manager ID is not defined in .env');
-}

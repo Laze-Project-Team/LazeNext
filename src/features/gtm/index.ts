@@ -1,37 +1,36 @@
+import { googleTagManagerId } from '@/components/functional/GoogleTagManager';
+
 declare global {
   interface Window {
     dataLayer: Record<string, unknown>[];
   }
 }
 
+const sendEvent = (event: string, data?: Record<string, unknown>) => {
+  if (googleTagManagerId) {
+    window.dataLayer.push({
+      event,
+      ...data,
+    });
+  }
+};
+
 // プログラム実行時に実行
 export const runProgram = (): void => {
-  window.dataLayer.push({
-    event: 'run_program',
-    run_program_trigger: 'run_program_button',
-  });
+  sendEvent('run_program');
 };
 
 // コンパイル成功時に実行
 export const compileSuccessful = (): void => {
-  window.dataLayer.push({
-    event: 'compile_successful',
-    compile_successful_trigger: 'compile_button',
-  });
+  sendEvent('compile_successful');
 };
 
 // コンパイル成功時に実行
 export const compileFailed = (): void => {
-  window.dataLayer.push({
-    event: 'compile_failed',
-    compile_failed_trigger: 'compile_button',
-  });
+  sendEvent('compile_failed');
 };
 
 // コンパイル成功時に実行
-export const sampleLoad = (sample: string): void => {
-  window.dataLayer.push({
-    event: 'sample_load',
-    loeded_sample: sample,
-  });
+export const sampleLoad = (loaded_sample: string): void => {
+  sendEvent('sample_load', { loaded_sample });
 };
