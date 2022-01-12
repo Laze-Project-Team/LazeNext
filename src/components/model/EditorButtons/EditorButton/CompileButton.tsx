@@ -7,6 +7,7 @@ import { VscLoading, VscRunAll } from 'react-icons/vsc';
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { Spin } from '@/components/ui/Spin';
 import { useCompiler } from '@/features/compiler';
+import { compileFailed } from '@/features/gtm';
 import { getCurrentCode, getCurrentFile, store } from '@/features/redux/root';
 import { getName } from '@/features/utils/path';
 
@@ -44,6 +45,8 @@ export const CompileButton: VFC = () => {
         result.then(() => {
           setIsCompiiling(false);
         });
+      } else {
+        compileFailed();
       }
     }
   };

@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
+import { useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
 
@@ -27,6 +28,12 @@ export const ConsolePanelListItem: VFC<ConsolePanelListItemProps> = ({ id, label
     return dispatcher(removePanel(itemId));
   };
 
+  useEffect(() => {
+    if (active) {
+      dispatcher(setActive(id));
+    }
+  }, [active, dispatcher, id, setActive]);
+
   return (
     <>
       <div
@@ -34,8 +41,8 @@ export const ConsolePanelListItem: VFC<ConsolePanelListItemProps> = ({ id, label
         role="button"
         tabIndex={0}
         className={cx(
-          'flex items-center px-1 py-[0.1rem] bg-gray-800 dark:bg-white !bg-opacity-0 select-none',
-          active ? '!bg-opacity-10' : '!hover:bg-opacity-5'
+          'flex items-center px-1 py-[0.1rem] bg-gray-800 dark:bg-white select-none',
+          active ? '!bg-opacity-10' : '!hover:bg-opacity-5 !bg-opacity-0'
         )}
         onClick={() => {
           return onClick(id);

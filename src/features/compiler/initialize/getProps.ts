@@ -11,10 +11,10 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
     throw new Error('Canvas not found');
   }
 
-  const gl = canvas.getContext('webgl2');
+  const gl = canvas.getContext('webgl');
 
   if (!gl) {
-    throw new Error('WebGL2 not supported');
+    throw new Error('WebGL not supported');
   }
 
   const props: getImportsProps = {

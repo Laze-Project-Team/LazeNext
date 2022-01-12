@@ -36,4 +36,7 @@ module.exports = withBundleAnalyzer({
   },
   staticPageGenerationTimeout: 1000,
   reactStrictMode: true,
+  env: {
+    GTM_ID: process.env.GTM_ID,
+  }
 });

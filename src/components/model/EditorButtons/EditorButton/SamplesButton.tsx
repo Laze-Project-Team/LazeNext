@@ -13,6 +13,7 @@ import { EditorButton } from '@/components/model/EditorButtons/EditorButton/Edit
 import { Portal } from '@/components/ui/Portal';
 import { SelectableList } from '@/components/ui/SelectableList';
 import { Spin } from '@/components/ui/Spin';
+import { sampleLoad } from '@/features/gtm';
 import { explorerSlice } from '@/features/redux/explorer';
 import { store } from '@/features/redux/root';
 import type { direntType } from '@/typings/directory';
@@ -54,6 +55,7 @@ export const SamplesButton: FC = () => {
 
   const load = useCallback(() => {
     if (select.current) {
+      sampleLoad(select.current);
       setSelectOpen(false);
       setLoading(true);
       fetch(`/api/editor/sample/${select.current}`)

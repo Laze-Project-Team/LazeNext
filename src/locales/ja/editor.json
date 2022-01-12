@@ -22,11 +22,12 @@
   },
 
   "buttons": {
+    "menu": "メニュー",
     "newFile": "新規ファイル",
     "newFolder": "新規フォルダ",
     "compile": "コンパイル＆実行",
     "samples": "サンプル一覧",
-    "convert": "言語の変換",
+    "convert": "言語の変換（変更）",
     "settings": "設定"
   },
 
@@ -44,6 +45,7 @@
 
   "convert": {
     "convert": "変換",
+    "change": "変更",
     "cancel": "キャンセル",
 
     "success": {

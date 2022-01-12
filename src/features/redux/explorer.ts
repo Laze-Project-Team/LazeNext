@@ -81,6 +81,7 @@ export const explorerSlice = createSlice({
         }
 
         if (state.current === action.payload.path) {
+          window.laze.props.variables.compiled = false;
           state.updated = true;
         }
       }

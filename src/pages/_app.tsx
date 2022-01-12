@@ -20,6 +20,8 @@ import type { Dispatch, SetStateAction } from 'react';
 import { createContext, useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 
+import type { GoogleTagManagerId } from '@/components/functional/GoogleTagManager';
+import { GoogleTagManager, googleTagManagerId } from '@/components/functional/GoogleTagManager';
 import { ColorMode } from '@/components/layout/ColorMode';
 import { store } from '@/features/redux/root';
 
@@ -56,6 +58,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
+      <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />
       <colorModeContext.Provider value={[colorMode, setColorMode]}>
         <ColorMode colorMode={colorMode}>
           <Provider store={store}>

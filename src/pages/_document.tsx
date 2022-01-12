@@ -2,6 +2,8 @@ import { randomBytes } from 'crypto';
 import type { DocumentContext } from 'next/document';
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 
+import { googleTagManagerId } from '@/components/functional/GoogleTagManager';
+
 type WithNonceProp = {
   nonce: string;
 };
@@ -42,6 +44,14 @@ class Document extends NextDocument<WithNonceProp> {
           <meta httpEquiv="Content-Security-Policy" content={csp} />
         </Head>
         <body>
+          <noscript>
+            <iframe
+              className="hidden invisible"
+              src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+              height="0"
+              width="0"
+            ></iframe>
+          </noscript>
           <Main />
           <NextScript nonce={nonce} />
         </body>

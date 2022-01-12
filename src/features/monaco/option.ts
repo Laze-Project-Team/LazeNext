@@ -10,4 +10,7 @@ export const options: monaco.editor.IEditorConstructionOptions & { 'semanticHigh
   wordSeparators: `()（）[]［］{}｛｝'’"”「」&＆|｜=＝-ー+＋*＊/%％,.:：;；`,
   fontFamily: "'Consolas', 'Droid Sans Mono', 'Courier New', ui-monospace, 'Droid Sans Fallback'",
   'semanticHighlighting.enabled': true,
+  minimap: {
+    enabled: false,
+  },
 };

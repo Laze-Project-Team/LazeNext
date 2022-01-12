@@ -22,11 +22,12 @@
   },
 
   "buttons": {
+    "menu": "Menu",
     "newFile": "New File",
     "newFolder": "New Folder",
     "compile": "Compile & Run",
     "samples": "Sample List",
-    "convert": "Conversion of language",
+    "convert": "Language Conversion(Change)",
     "settings": "Settings"
   },
 
@@ -43,7 +44,8 @@
   },
 
   "convert": {
-    "convert": "Conversion of language",
+    "change": "Change",
+    "convert": "Convert",
     "cancel": "Cancel",
 
     "success": {
