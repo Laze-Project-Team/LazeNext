@@ -1,6 +1,6 @@
 export const fs = `
-varing highp vec3 vNormal;
-varing highp vec3 vPosition;
+varying highp vec3 vNormal;
+varying highp vec3 vPosition;
 
 uniform vec3 lightPos;
 uniform vec3 lightColor;
