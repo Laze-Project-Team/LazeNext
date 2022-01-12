@@ -1,4 +1,8 @@
 export const fs = `
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 varying highp vec3 vNormal;
 varying highp vec3 vPosition;
 

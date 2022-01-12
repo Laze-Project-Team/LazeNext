@@ -1,4 +1,8 @@
 export const vs = `
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
 
