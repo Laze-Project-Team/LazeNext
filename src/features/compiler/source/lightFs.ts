@@ -1,12 +1,5 @@
-export const lightFs = `#version 300 es
-
-#ifdef GL_ES
-precision mediump float;
-#endif
-
-out vec4 FragColor;
-
+export const lightFs = `
 void main(){
-  FragColor = vec4(1.0);
+  gl_FragColor = vec4(1.0);
 }
 `;

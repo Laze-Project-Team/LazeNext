@@ -1,18 +1,11 @@
-export const fs = `#version 300 es
-
-#ifdef GL_ES
-precision mediump float;
-#endif
-
-in vec3 vNormal;
-in vec3 vPosition;
+export const fs = `
+varing highp vec3 vNormal;
+varing highp vec3 vPosition;
 
 uniform vec3 lightPos;
 uniform vec3 lightColor;
 uniform vec3 objectColor;
 uniform vec3 viewPos;
-
-out vec4 FragColor;
 
 void main() {
   float ambientStrength = 1.0;
@@ -31,6 +24,6 @@ void main() {
   vec3 specular = specularStrength * spec * lightColor;
 
   vec3 result = (ambient + diffuse + specular) * objectColor;
-  FragColor = vec4(result, 1.0);
+  gl_FragColor = vec4(result, 1.0);
 }
 `;
