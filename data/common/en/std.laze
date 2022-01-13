@@ -1,59 +1,59 @@
-function: 実数表示(double: x) => () = jsload("console", "log");
-function: 行列表示(double: offset[4][4]) => () = jsload("console", "logMatrix");
-function: アドレス表示(*void: x) => () = jsload("console", "log");
-function: _文字列表示(*char: x, int: 長さ) => () = jsload("console", "logstring");
-function: 時間計測() => (double: 時間) = jsload("performance", "now");
-function: glClearDepth(short: i) => () = jsload("webgl", "clearDepth");
-function: glDepthFunc(short: i) => () = jsload("webgl", "depthFunc");
-function: glEnable(short: i) => () = jsload("webgl", "enable");
-function: glDisable(short: i) => () = jsload("webgl", "disable");
-function: glCreateProgram() => (short: prog) = jsload("webgl", "createProgram");
-function: glCreateBuffer() => (short: buffer) = jsload("webgl", "createBuffer");
-function: glBindBuffer(short: i, short: j) => () = jsload("webgl", "bindBuffer");
-function: glBufferData(short: i, *double: offset, short: size, short: j) => () = jsload("webgl", "bufferData");
-function: glElementBufferData(short: i, *short: offset, short: size, short: j) => () = jsload("webgl", "elementBufferData");
-function: glUseProgram(short: i) => () = jsload("webgl", "useProgram");
-function: glGetAttribLocation(short: i, *char: offset, short: size) => (short: loc) = jsload("webgl", "getAttribLocation");
-function: glVertexAttribPointer(short: index, short: size, short: type, short: normalized, short: stride, short: offset) => () = jsload("webgl", "vertexAttribPointer");
-function: glEnableVertexAttribArray(short: index) => () = jsload("webgl", "enableVertexAttribArray");
-function: glDrawArrays(short: i, short: first, short: count) => () = jsload("webgl", "drawArrays");
-function: _glGetUniformLocation(short: i, *char: offset, short: size) => (short: loc) = jsload("webgl", "getUniformLocation");
-function: glUniformMatrix2fv(short: loc, short: trans, *double: offset) => () = jsload("webgl", "uniformMatrix2fv");
-function: glUniformMatrix3fv(short: loc, short: trans, *double: offset) => () = jsload("webgl", "uniformMatrix3fv");
-function: glUniformMatrix4fv(short: loc, short: trans, double: offset[16]) => () = jsload("webgl", "uniformMatrix4fv");
-function: glUniform1f(short: loc, double: v0) => () = jsload("webgl", "uniform1f");
-function: glUniform1fv(short: loc, double: v0) => () = jsload("webgl", "uniform1fv");
-function: glUniform1i(short: loc, short: v0) => () = jsload("webgl", "uniform1i");
-function: glUniform1iv(short: loc, short: v0) => () = jsload("webgl", "uniform1iv");
-function: glUniform2f(short: loc, double: v0, double: v1) => () = jsload("webgl", "uniform2f");
-function: glUniform2fv(short: loc, double: v0, double: v1) => () = jsload("webgl", "uniform2fv");
-function: glUniform2i(short: loc, short: v0, short: v1) => () = jsload("webgl", "uniform2i");
-function: glUniform2iv(short: loc, short: v0, short: v1) => () = jsload("webgl", "uniform2iv");
-function: glUniform3f(short: loc, double: v0, double: v1, double: v2) => () = jsload("webgl", "uniform3f");
-function: glUniform3fv(short: loc, double: v0, double: v1, double: v2) => () = jsload("webgl", "uniform3fv");
-function: glUniform3i(short: loc, short: v0, short: v1, short: v2) => () = jsload("webgl", "uniform3i");
-function: glUniform3iv(short: loc, short: v0, short: v1, short: v2) => () = jsload("webgl", "uniform3iv");
-function: glUniform4f(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("webgl", "uniform4f");
-function: glUniform4fv(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("webgl", "uniform4fv");
-function: glUniform4i(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("webgl", "uniform4i");
-function: glUniform4iv(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("webgl", "uniform4iv");
-function: glClearColor(double: r, double: g, double: b, double: a) => () = jsload("webgl", "clearColor");
-function: glClear(short: color) => () = jsload("webgl", "clear");
-function: glDrawElements(short: i, short: count, short: type, short: offset) => () = jsload("webgl", "drawElements");
-function: glBlendFunc(short: i, short: j) => () = jsload("webgl", "blendFunc");
-function: キーチェック(short: keyCode) => (int: pressed) = jsload("js", "checkKeyPress");
-function: マウスチェック() => (int: pressed) = jsload("js", "checkMousePress");
-function: マウス相対座標X() => (double: x) = jsload("js", "checkRelativeMouseX");
-function: マウス相対座標Y() => (double: x) = jsload("js", "checkRelativeMouseY");
-function: マウス絶対座標X() => (double: x) = jsload("js", "checkAbsoluteMouseX");
-function: マウス絶対座標Y() => (double: x) = jsload("js", "checkAbsoluteMouseY");
-function: jsRand() => (double: x) = jsload("js", "rand");
-function: メモリ確保(short: size) => (*void: p) = jsload("js", "alloc");
-function: _loadTexture(*char: offset, short: length) => (short: a) = jsload("webgl", "loadTexture");
-function: glActiveTexture(short: i) => () = jsload("webgl", "activeTexture");
-function: glBindTexture(short: i, short: j) => () = jsload("webgl", "bindTexture");
-function: クリックしたら消える() => () = jsload("js", "lockPointer");
-function: sin(double: input) => (double: 結果){
+function: ${"ja":"実数表示", "natja":"実数表示", "en":"printDouble", "naten":"printDouble"}$(double: x) => () = jsload("console", "log");
+function: ${"ja":"行列表示", "natja":"行列表示", "en":"printMatrix", "naten":"printMatrix"}$(double: offset[4][4]) => () = jsload("console", "logMatrix");
+function: ${"ja":"アドレス表示", "natja":"アドレス表示", "en":"printAddress", "naten":"printAddress"}$(*void: x) => () = jsload("console", "log");
+function: ${"ja":"_文字列表示", "natja":"_文字列表示", "en":"_printString", "naten":"_printString"}$(*char: x, int: 長さ) => () = jsload("console", "logstring");
+function: ${"ja":"時間計測", "natja":"時間計測", "en":"getTime", "naten":"getTime"}$() => (double: 時間) = jsload("performance", "now");
+function: ${"ja":"glClearDepth", "natja":"glClearDepth", "en":"glClearDepth", "naten":"glClearDepth"}$(short: i) => () = jsload("webgl", "clearDepth");
+function: ${"ja":"glDepthFunc", "natja":"glDepthFunc", "en":"glDepthFunc", "naten":"glDepthFunc"}$(short: i) => () = jsload("webgl", "depthFunc");
+function: ${"ja":"glEnable", "natja":"glEnable", "en":"glEnable", "naten":"glEnable"}$(short: i) => () = jsload("webgl", "enable");
+function: ${"ja":"glDisable", "natja":"glDisable", "en":"glDisable", "naten":"glDisable"}$(short: i) => () = jsload("webgl", "disable");
+function: ${"ja":"glCreateProgram", "natja":"glCreateProgram", "en":"glCreateProgram", "naten":"glCreateProgram"}$() => (short: prog) = jsload("webgl", "createProgram");
+function: ${"ja":"glCreateBuffer", "natja":"glCreateBuffer", "en":"glCreateBuffer", "naten":"glCreateBuffer"}$() => (short: buffer) = jsload("webgl", "createBuffer");
+function: ${"ja":"glBindBuffer", "natja":"glBindBuffer", "en":"glBindBuffer", "naten":"glBindBuffer"}$(short: i, short: j) => () = jsload("webgl", "bindBuffer");
+function: ${"ja":"glBufferData", "natja":"glBufferData", "en":"glBufferData", "naten":"glBufferData"}$(short: i, *double: offset, short: size, short: j) => () = jsload("webgl", "bufferData");
+function: ${"ja":"glElementBufferData", "natja":"glElementBufferData", "en":"glElementBufferData", "naten":"glElementBufferData"}$(short: i, *short: offset, short: size, short: j) => () = jsload("webgl", "elementBufferData");
+function: ${"ja":"glUseProgram", "natja":"glUseProgram", "en":"glUseProgram", "naten":"glUseProgram"}$(short: i) => () = jsload("webgl", "useProgram");
+function: ${"ja":"glGetAttribLocation", "natja":"glGetAttribLocation", "en":"glGetAttribLocation", "naten":"glGetAttribLocation"}$(short: i, *char: offset, short: size) => (short: loc) = jsload("webgl", "getAttribLocation");
+function: ${"ja":"glVertexAttribPointer", "natja":"glVertexAttribPointer", "en":"glVertexAttribPointer", "naten":"glVertexAttribPointer"}$(short: index, short: size, short: ty, short: normalized, short: stride, short: offset) => () = jsload("webgl", "vertexAttribPointer");
+function: ${"ja":"glEnableVertexAttribArray", "natja":"glEnableVertexAttribArray", "en":"glEnableVertexAttribArray", "naten":"glEnableVertexAttribArray"}$(short: index) => () = jsload("webgl", "enableVertexAttribArray");
+function: ${"ja":"glDrawArrays", "natja":"glDrawArrays", "en":"glDrawArrays", "naten":"glDrawArrays"}$(short: i, short: first, short: count) => () = jsload("webgl", "drawArrays");
+function: ${"ja":"_glGetUniformLocation", "natja":"_glGetUniformLocation", "en":"_glGetUniformLocation", "naten":"_glGetUniformLocation"}$(short: i, *char: offset, short: size) => (short: loc) = jsload("webgl", "getUniformLocation");
+function: ${"ja":"glUniformMatrix2fv", "natja":"glUniformMatrix2fv", "en":"glUniformMatrix2fv", "naten":"glUniformMatrix2fv"}$(short: loc, short: trans, *double: offset) => () = jsload("webgl", "uniformMatrix2fv");
+function: ${"ja":"glUniformMatrix3fv", "natja":"glUniformMatrix3fv", "en":"glUniformMatrix3fv", "naten":"glUniformMatrix3fv"}$(short: loc, short: trans, *double: offset) => () = jsload("webgl", "uniformMatrix3fv");
+function: ${"ja":"glUniformMatrix4fv", "natja":"glUniformMatrix4fv", "en":"glUniformMatrix4fv", "naten":"glUniformMatrix4fv"}$(short: loc, short: trans, double: offset[16]) => () = jsload("webgl", "uniformMatrix4fv");
+function: ${"ja":"glUniform1f", "natja":"glUniform1f", "en":"glUniform1f", "naten":"glUniform1f"}$(short: loc, double: v0) => () = jsload("webgl", "uniform1f");
+function: ${"ja":"glUniform1fv", "natja":"glUniform1fv", "en":"glUniform1fv", "naten":"glUniform1fv"}$(short: loc, double: v0) => () = jsload("webgl", "uniform1fv");
+function: ${"ja":"glUniform1i", "natja":"glUniform1i", "en":"glUniform1i", "naten":"glUniform1i"}$(short: loc, short: v0) => () = jsload("webgl", "uniform1i");
+function: ${"ja":"glUniform1iv", "natja":"glUniform1iv", "en":"glUniform1iv", "naten":"glUniform1iv"}$(short: loc, short: v0) => () = jsload("webgl", "uniform1iv");
+function: ${"ja":"glUniform2f", "natja":"glUniform2f", "en":"glUniform2f", "naten":"glUniform2f"}$(short: loc, double: v0, double: v1) => () = jsload("webgl", "uniform2f");
+function: ${"ja":"glUniform2fv", "natja":"glUniform2fv", "en":"glUniform2fv", "naten":"glUniform2fv"}$(short: loc, double: v0, double: v1) => () = jsload("webgl", "uniform2fv");
+function: ${"ja":"glUniform2i", "natja":"glUniform2i", "en":"glUniform2i", "naten":"glUniform2i"}$(short: loc, short: v0, short: v1) => () = jsload("webgl", "uniform2i");
+function: ${"ja":"glUniform2iv", "natja":"glUniform2iv", "en":"glUniform2iv", "naten":"glUniform2iv"}$(short: loc, short: v0, short: v1) => () = jsload("webgl", "uniform2iv");
+function: ${"ja":"glUniform3f", "natja":"glUniform3f", "en":"glUniform3f", "naten":"glUniform3f"}$(short: loc, double: v0, double: v1, double: v2) => () = jsload("webgl", "uniform3f");
+function: ${"ja":"glUniform3fv", "natja":"glUniform3fv", "en":"glUniform3fv", "naten":"glUniform3fv"}$(short: loc, double: v0, double: v1, double: v2) => () = jsload("webgl", "uniform3fv");
+function: ${"ja":"glUniform3i", "natja":"glUniform3i", "en":"glUniform3i", "naten":"glUniform3i"}$(short: loc, short: v0, short: v1, short: v2) => () = jsload("webgl", "uniform3i");
+function: ${"ja":"glUniform3iv", "natja":"glUniform3iv", "en":"glUniform3iv", "naten":"glUniform3iv"}$(short: loc, short: v0, short: v1, short: v2) => () = jsload("webgl", "uniform3iv");
+function: ${"ja":"glUniform4f", "natja":"glUniform4f", "en":"glUniform4f", "naten":"glUniform4f"}$(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("webgl", "uniform4f");
+function: ${"ja":"glUniform4fv", "natja":"glUniform4fv", "en":"glUniform4fv", "naten":"glUniform4fv"}$(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("webgl", "uniform4fv");
+function: ${"ja":"glUniform4i", "natja":"glUniform4i", "en":"glUniform4i", "naten":"glUniform4i"}$(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("webgl", "uniform4i");
+function: ${"ja":"glUniform4iv", "natja":"glUniform4iv", "en":"glUniform4iv", "naten":"glUniform4iv"}$(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("webgl", "uniform4iv");
+function: ${"ja":"glClearColor", "natja":"glClearColor", "en":"glClearColor", "naten":"glClearColor"}$(double: r, double: g, double: b, double: a) => () = jsload("webgl", "clearColor");
+function: ${"ja":"glClear", "natja":"glClear", "en":"glClear", "naten":"glClear"}$(short: color) => () = jsload("webgl", "clear");
+function: ${"ja":"glDrawElements", "natja":"glDrawElements", "en":"glDrawElements", "naten":"glDrawElements"}$(short: i, short: count, short: ty, short: offset) => () = jsload("webgl", "drawElements");
+function: ${"ja":"glBlendFunc", "natja":"glBlendFunc", "en":"glBlendFunc", "naten":"glBlendFunc"}$(short: i, short: j) => () = jsload("webgl", "blendFunc");
+function: ${"ja":"キーチェック", "natja":"キーチェック", "en":"checkKeyPress", "naten":"checkKeyPress"}$(short: keyCode) => (int: pressed) = jsload("js", "checkKeyPress");
+function: ${"ja":"マウスチェック", "natja":"マウスチェック", "en":"checkMousePress", "naten":"checkMousePress"}$() => (int: pressed) = jsload("js", "checkMousePress");
+function: ${"ja":"マウス相対座標X", "natja":"マウス相対座標X", "en":"checkRelativeMouseX", "naten":"checkRelativeMouseX"}$() => (double: x) = jsload("js", "checkRelativeMouseX");
+function: ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$() => (double: x) = jsload("js", "checkRelativeMouseY");
+function: ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$() => (double: x) = jsload("js", "checkAbsoluteMouseX");
+function: ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$() => (double: x) = jsload("js", "checkAbsoluteMouseY");
+function: ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$() => (double: x) = jsload("js", "rand");
+function: ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$(short: size) => (*void: p) = jsload("js", "alloc");
+function: ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$(*char: offset, short: length) => (short: a) = jsload("webgl", "loadTexture");
+function: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(short: i) => () = jsload("webgl", "activeTexture");
+function: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(short: i, short: j) => () = jsload("webgl", "bindTexture");
+function: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = jsload("js", "lockPointer");
+function: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(double: input) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	int: temp = input / (2.0 * PI);
 	double: rad = input - (2.0 * PI * temp);
@@ -84,7 +84,7 @@ function: sin(double: input) => (double: 結果){
 		結果 = 結果 * plusminus;
 	}
 }
-function: cos(double: input) => (double: 結果){
+function: ${"ja":"cos", "natja":"cos", "en":"cos", "naten":"cos"}$(double: input) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	int: temp = input / (2 * PI);
 	double: rad = input - (2 * PI * temp);
@@ -116,79 +116,44 @@ function: cos(double: input) => (double: 結果){
 		結果 = 結果 * plusminus;
 	}
 }
-function: tan(double: rad) => (double: 結果){
+function: ${"ja":"tan", "natja":"tan", "en":"tan", "naten":"tan"}$(double: rad) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	double: sqRad = rad * rad;
 	結果 = sin(rad) / cos(rad);
 }
-template<T>: function: abs(T: a) => (T: b){
+template<T>: function: ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$(T: a) => (T: b){
 	if(a >= 0){
 		b = a;
 	}else{
 		b = 0 - a;
 	}
 }
-function: toRad(double: deg) => (double: rad){
+function: ${"ja":"ラジアンへ", "natja":"ラジアンへ", "en":"toRad", "naten":"toRad"}$(double: deg) => (double: rad){
 	double: PI = 3.14159265358979312;
 	rad = (deg / 180) * PI;
 }
-function: root(double: x) => (double: y){
+function: ${"ja":"平方根", "natja":"平方根", "en":"root", "naten":"root"}$(double: x) => (double: y){
 	y = 5;
 	(int: i = 0;)from(i == 20)to(i = i + 1;){
 		y = 0.5 * (y + (x / y));
 	}
 }
-function: length3d(double: x, double: y, double: z) => (double: length){
-	length = root(x * x + y * y + z * z);
-}
-function: normalize(double: vector[3]) => (){
-	double: length = length3d(vector[0], vector[1], vector[2]);
-	if(length == 0.0){
-		return;
-	}
-	vector[0] = vector[0] / length;
-	vector[1] = vector[1] / length;
-	vector[2] = vector[2] / length;
-}
-function: dot(double: vec1[3], double: vec2[3]) => (double: 結果){
-	結果 = vec1[0] * vec2[0] + vec1[1] * vec2[1] + vec1[2] * vec2[2];
-}
-function: cross(double: output[3], double: vec1[3], double: vec2[3]) => (){
-	output[0] = vec1[1] * vec2[2] - vec1[2] * vec2[1];
-	output[1] = vec1[2] * vec2[0] - vec1[0] * vec2[2];
-	output[2] = vec1[0] * vec2[1] - vec1[1] * vec2[0];
-}
-function: vecMultiply(double: output[3], double: vec[3], double: x) => (){
-	output[0] = vec[0] * x;
-	output[1] = vec[1] * x;
-	output[2] = vec[2] * x;
-}
-function: vecSub(double: output[3], double: vec1[3], double: vec2[3]) => (){
-	output[0] = vec1[0] - vec2[0];
-	output[1] = vec1[1] - vec2[1];
-	output[2] = vec1[2] - vec2[2];
-}
-function: vecAdd(double: output[3], double: vec1[3], double: vec2[3]) => (){
-	output[0] = vec1[0] + vec2[0];
-	output[1] = vec1[1] + vec2[1];
-	output[2] = vec1[2] + vec2[2];
-}
-template<T>: class: 配列{
+template<T>: class: ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}${
 public: 	*T: content;
 	int: size;
-	function: 配列() => (){
+	function: Array() => (){
 		size = 0;
 		allocated = 2;
-		content = メモリ確保(sizeof(*content) * allocated);
+		content = allocMemory(sizeof(*content) * allocated);
 	}
-	function: 取得(int: index) => (T: result){
+	function: ${"ja":"取得", "natja":"取得", "en":"get", "naten":"get"}$(int: index) => (T: result){
 		return(content[index]);
 	}
-	function: 追加(T: new) => (){
+	function: ${"ja":"追加", "natja":"追加", "en":"push", "naten":"push"}$(T: new) => (){
 		if(size == allocated){
 			allocated = allocated * 2;
 			*T: temp = content;
-			content = メモリ確保(sizeof(*content) * allocated);
+			content = allocMemory(sizeof(*content) * allocated);
 			(int: i = 0;)from(i == allocated)to(i = i + 1;){
 				content[i] = temp[i];
 			}
@@ -196,64 +161,60 @@ public: 	*T: content;
 		content[size] = new;
 		size = size + 1;
 	}
-	function: 長さ() => (int: a){
+	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (int: a){
 		a = size;
 	}
-	function: ポップ() => (){
+	function: ${"ja":"ポップ", "natja":"ポップ", "en":"pop", "naten":"pop"}$() => (){
 		size = size - 1;
 	}
 private: 	int: allocated;
 }
-class: 文字列{
+class: ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}${
 public: 	function: operator = (*char: offset, int: l) => (){
 		content = offset;
 		length = l;
 	}
-	function: 代入(*char: offset, int: l) => (){
-		content = offset;
-		length = l;
-	}
-	function: 文字列(*char: offset, int: l) => (){
+	function: string(*char: offset, int: l) => (){
 		content = offset;
 		length = l;
 	}
 	int: length;
 	*char: content;
 }
-function: 文字列表示(文字列: a) => (){
-	_文字列表示(a.content, a.length);
+function: ${"ja":"文字列表示", "natja":"文字列表示", "en":"printString", "naten":"printString"}$(string: a) => (){
+	_printString(a.content, a.length);
 }
-function: 表示(double: x) => (){
-	実数表示(x);
+function: ${"ja":"表示", "natja":"表示", "en":"print", "naten":"print"}$(double: x) => (){
+	printDouble(x);
 }
-function: 表示(int: n) => (){
-	実数表示(n);
+function: ${"ja":"表示", "natja":"表示", "en":"print", "naten":"print"}$(int: n) => (){
+	printDouble(n);
 }
-function: 表示(short: n) => (){
-	実数表示(n);
+function: ${"ja":"表示", "natja":"表示", "en":"print", "naten":"print"}$(short: n) => (){
+	printDouble(n);
 }
-function: 表示(文字列: a) => (){
-	文字列表示(a);
+function: ${"ja":"表示", "natja":"表示", "en":"print", "naten":"print"}$(string: a) => (){
+	printString(a);
 }
-function: glGetUniformLocation(short: i, 文字列: a) => (short: loc){
+function: ${"ja":"glGetUniformLocation", "natja":"glGetUniformLocation", "en":"glGetUniformLocation", "naten":"glGetUniformLocation"}$(short: i, string: a) => (short: loc){
 	loc = _glGetUniformLocation(i, a.content, a.length);
 }
-class: ベクトル3D{
-public: 	function: operator + (ベクトル3D: a) => (ベクトル3D: b){
+class: ${"ja":"ベクトル3D", "natja":"ベクトル3D", "en":"Vector3D", "naten":"Vector3D"}${
+public: 	function: operator + (Vector3D: a) => (Vector3D: b){
 		b.x = a.x + x;
 		b.y = a.y + y;
 		b.z = a.z + z;
 	}
-	function: 正規化() => (){
+	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$() => (){
 		double: l = root((x * x) + (y * y) + (z * z));
 		x = x / l;
 		y = y / l;
 		z = z / l;
 	}
-	function: 長さ() => (double: l){
+	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
 		l = root(x * x + y * y + z * z);
 	}
-	function: ベクトル3D(double: a, double: b, double: c) => (){
+	function: Vector3D(double: a, double: b, double: c) => (){
 		x = a;
 		y = b;
 		z = c;
@@ -262,39 +223,39 @@ public: 	function: operator + (ベクトル3D: a) => (ベクトル3D: b){
 	double: y;
 	double: x;
 }
-function: ベクトル3Dの和(ベクトル3D: a, ベクトル3D: b) => (ベクトル3D: result){
+function: ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$(Vector3D: a, Vector3D: b) => (Vector3D: result){
 	result.x = a.x + b.x;
 	result.y = a.y + b.y;
 	result.z = a.z + b.z;
 }
-function: ベクトル3Dの差(ベクトル3D: a, ベクトル3D: b) => (ベクトル3D: result){
+function: ${"ja":"ベクトル3Dの差", "natja":"ベクトル3Dの差", "en":"subVector3D", "naten":"subVector3D"}$(Vector3D: a, Vector3D: b) => (Vector3D: result){
 	result.x = a.x - b.x;
 	result.y = a.y - b.y;
 	result.z = a.z - b.z;
 }
-function: ベクトル3Dの内積(ベクトル3D: a, ベクトル3D: b) => (double: x){
+function: ${"ja":"ベクトル3Dの内積", "natja":"ベクトル3Dの内積", "en":"dotVector3D", "naten":"dotVector3D"}$(Vector3D: a, Vector3D: b) => (double: x){
 	x = (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 }
-function: ベクトル3Dの外積(ベクトル3D: a, ベクトル3D: b) => (ベクトル3D: result){
+function: ${"ja":"ベクトル3Dの外積", "natja":"ベクトル3Dの外積", "en":"crossVector3D", "naten":"crossVector3D"}$(Vector3D: a, Vector3D: b) => (Vector3D: result){
 	result.x = (a.y * b.z) - (a.z * b.y);
 	result.y = (a.z * b.x) - (a.x * b.z);
 	result.z = (a.x * b.y) - (a.y * b.x);
 }
-function: ベクトル3D拡大(ベクトル3D: a, double: x) => (ベクトル3D: result){
+function: ${"ja":"ベクトル3D拡大", "natja":"ベクトル3D拡大", "en":"extendVector3D", "naten":"extendVector3D"}$(Vector3D: a, double: x) => (Vector3D: result){
 	result.x = a.x * x;
 	result.y = a.y * x;
 	result.z = a.z * x;
 }
-function: ベクトル3D縮小(ベクトル3D: a, double: x) => (ベクトル3D: result){
+function: ${"ja":"ベクトル3D縮小", "natja":"ベクトル3D縮小", "en":"divVector3D", "naten":"divVector3D"}$(Vector3D: a, double: x) => (Vector3D: result){
 	if(x == 0.0){
-		表示(10000000);
+		print(10000000);
 	}
 	result.x = a.x / x;
 	result.y = a.y / x;
 	result.z = a.z / x;
 }
-class: 行列4x4{
-public: 	function: 拡大縮小(double: x, double: y, double: z) => (){
+class: ${"ja":"行列4x4", "natja":"行列4x4", "en":"Matrix4x4", "naten":"Matrix4x4"}${
+public: 	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(double: x, double: y, double: z) => (){
 		matrix[0] = matrix[0] * x;
 		matrix[1] = matrix[1] * x;
 		matrix[2] = matrix[2] * x;
@@ -308,8 +269,8 @@ public: 	function: 拡大縮小(double: x, double: y, double: z) => (){
 		matrix[10] = matrix[10] * z;
 		matrix[11] = matrix[11] * z;
 	}
-	function: 回転(ベクトル3D: axis, double: theta) => (){
-		axis.正規化();
+	function: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(Vector3D: axis, double: theta) => (){
+		axis.normalize();
 		double: s = sin(theta);
 		double: c = cos(theta);
 		double: t = 1.0 - c;
@@ -347,7 +308,7 @@ public: 	function: 拡大縮小(double: x, double: y, double: z) => (){
 		matrix[10] = a02 * b20 + a12 * b21 + a22 * b22;
 		matrix[11] = a03 * b20 + a13 * b21 + a23 * b22;
 	}
-	function: 移動(ベクトル3D: offset) => (){
+	function: ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$(Vector3D: offset) => (){
 		double: mat12 = matrix[12];
 		double: mat13 = matrix[13];
 		double: mat14 = matrix[14];
@@ -357,26 +318,26 @@ public: 	function: 拡大縮小(double: x, double: y, double: z) => (){
 		matrix[14] = matrix[2] * offset.x + matrix[6] * offset.y + matrix[10] * offset.z + mat13;
 		matrix[15] = matrix[3] * offset.x + matrix[7] * offset.y + matrix[11] * offset.z + mat15;
 	}
-	function: 初期化() => (){
+	function: ${"ja":"単位化", "natja":"単位化", "en":"identity", "naten":"identity"}$() => (){
 		matrix = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
 	}
-	function: 行列4x4() => (){
+	function: Matrix4x4() => (){
 		matrix = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
 	}
 	double: matrix[16];
 }
-function: カメラ行列(行列4x4: m, ベクトル3D: pos, ベクトル3D: lookAt, ベクトル3D: up) => (行列4x4: res){
-	ベクトル3D: newForward(lookAt.x - pos.x, lookAt.y - pos.y, lookAt.z - pos.z);
-	ベクトル3D: a(0.0, 0.0, 0.0);
-	a = ベクトル3D拡大(newForward, ベクトル3Dの内積(up, newForward));
-	ベクトル3D: newUp(up.x - a.x, up.y - a.y, up.z - a.z);
-	newUp.正規化();
-	ベクトル3D: newRight(0, 0, 0);
-	newRight = ベクトル3Dの外積(newUp, newForward);
-	m.matrix = [newRight.x, newUp.x, newForward.x, 0.0, newRight.y, newUp.y, newForward.y, 0.0, newRight.z, newUp.z, newForward.z, 0.0, 0 - ベクトル3Dの内積(newRight, pos), 0 - ベクトル3Dの内積(newUp, pos), 0 - ベクトル3Dの内積(newForward, pos), 1.0];
+function: ${"ja":"カメラ行列", "natja":"カメラ行列", "en":"setCameraMat", "naten":"setCameraMat"}$(Matrix4x4: m, Vector3D: pos, Vector3D: lookAt, Vector3D: up) => (Matrix4x4: res){
+	Vector3D: newForward(lookAt.x - pos.x, lookAt.y - pos.y, lookAt.z - pos.z);
+	Vector3D: a(0.0, 0.0, 0.0);
+	a = extendVector3D(newForward, dotVector3D(up, newForward));
+	Vector3D: newUp(up.x - a.x, up.y - a.y, up.z - a.z);
+	newUp.normalize();
+	Vector3D: newRight(0, 0, 0);
+	newRight = crossVector3D(newUp, newForward);
+	m.matrix = [newRight.x, newUp.x, newForward.x, 0.0, newRight.y, newUp.y, newForward.y, 0.0, newRight.z, newUp.z, newForward.z, 0.0, 0 - dotVector3D(newRight, pos), 0 - dotVector3D(newUp, pos), 0 - dotVector3D(newForward, pos), 1.0];
 	return(m);
 }
-function: 視点行列3D(行列4x4: m, double: fov, double: width, double: height, double: zN, double: zF) => (行列4x4: result){
+function: ${"ja":"視点行列3D", "natja":"視点行列3D", "en":"perspectiveMat3D", "naten":"perspectiveMat3D"}$(Matrix4x4: m, double: fov, double: width, double: height, double: zN, double: zF) => (Matrix4x4: result){
 	double: PI = 3.14159265358979312;
 	double: fov = 1.0 / tan((90.0 / 360.0) * PI);
 	double: aspectRatio = width / height;
@@ -386,11 +347,11 @@ function: 視点行列3D(行列4x4: m, double: fov, double: width, double: heigh
 	m.matrix = [aspectRatio * fov, 0.0, 0.0, 0.0, 0.0, fov, 0.0, 0.0, 0.0, 0.0, zQ, 1.0, 0.0, 0.0, (0 - zFar * zNear) / (zFar - zNear), 0.0];
 	return(m);
 }
-function: 視点行列2D(行列4x4: m, double: left, double: right, double: bottom, double: top, double: near, double: far) => (行列4x4: result){
+function: ${"ja":"視点行列2D", "natja":"視点行列2D", "en":"perspectiveMat2D", "naten":"perspectiveMat2D"}$(Matrix4x4: m, double: left, double: right, double: bottom, double: top, double: near, double: far) => (Matrix4x4: result){
 	m.matrix = [2.0 / (right - left), 0.0, 0.0, 0.0, 0.0, 2.0 / (top - bottom), 0.0, 0.0, 0.0, 0.0, 0 - 2.0 / (near - far), 0.0, 0 - (right + left) / (right - left), 0 - (top + bottom) / (top - bottom), 0 - (far + near) / (far - near), 1.0];
 	return(m);
 }
-function: 行列4x4の積(行列4x4: a, 行列4x4: b) => (行列4x4: out){
+function: ${"ja":"行列4x4の積", "natja":"行列4x4の積", "en":"mulMatrix4x4", "naten":"mulMatrix4x4"}$(Matrix4x4: a, Matrix4x4: b) => (Matrix4x4: out){
 	out.matrix[0] = b.matrix[0] * a.matrix[0] + b.matrix[1] * a.matrix[4] + b.matrix[2] * a.matrix[8] + b.matrix[3] * a.matrix[12];
 	out.matrix[1] = b.matrix[0] * a.matrix[1] + b.matrix[1] * a.matrix[5] + b.matrix[2] * a.matrix[9] + b.matrix[3] * a.matrix[13];
 	out.matrix[2] = b.matrix[0] * a.matrix[2] + b.matrix[1] * a.matrix[6] + b.matrix[2] * a.matrix[10] + b.matrix[3] * a.matrix[14];
@@ -408,19 +369,19 @@ function: 行列4x4の積(行列4x4: a, 行列4x4: b) => (行列4x4: out){
 	out.matrix[14] = b.matrix[12] * a.matrix[2] + b.matrix[13] * a.matrix[6] + b.matrix[14] * a.matrix[10] + b.matrix[15] * a.matrix[14];
 	out.matrix[15] = b.matrix[12] * a.matrix[3] + b.matrix[13] * a.matrix[7] + b.matrix[14] * a.matrix[11] + b.matrix[15] * a.matrix[15];
 }
-class: モデル{
-public: 	ベクトル3D: color;
-	ベクトル3D: pos;
-	function: モデル(*double: data, int: num, ベクトル3D: c, ベクトル3D: p, int: s) => (){
+class: ${"ja":"モデル", "natja":"モデル", "en":"Model", "naten":"Model"}${
+public: 	Vector3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
+	Vector3D: ${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}$;
+	function: Model(*double: data, int: num, Vector3D: c, Vector3D: p, int: s) => (){
 		vertices = data;
 		vertexNum = num;
 		color = c;
 		pos = p;
 		shaderID = s;
-		modelMat.初期化();
-		transMat.初期化();
-		scaleMat.初期化();
-		rotateMat.初期化();
+		modelMat.identity();
+		transMat.identity();
+		scaleMat.identity();
+		rotateMat.identity();
 		char: _lightPosUniform[8] = "lightPos";
 		char: _viewPosUniform[8] = "viewPos";
 		char: _lightColorUniform[10] = "lightColor";
@@ -428,13 +389,13 @@ public: 	ベクトル3D: color;
 		char: _projUniform[8] = "uProjMat";
 		char: _viewUniform[8] = "uViewMat";
 		char: _modelUniform[9] = "uModelMat";
-		文字列: lightPosUniform(&_lightPosUniform, 8);
-		文字列: viewPosUniform(&_viewPosUniform, 7);
-		文字列: lightColorUniform(&_lightColorUniform, 10);
-		文字列: objectColorUniform(&_objectColorUniform, 11);
-		文字列: projUniform(&_projUniform, 8);
-		文字列: viewUniform(&_viewUniform, 8);
-		文字列: modelUniform(&_modelUniform, 9);
+		string: lightPosUniform(&_lightPosUniform, 8);
+		string: viewPosUniform(&_viewPosUniform, 7);
+		string: lightColorUniform(&_lightColorUniform, 10);
+		string: objectColorUniform(&_objectColorUniform, 11);
+		string: projUniform(&_projUniform, 8);
+		string: viewUniform(&_viewUniform, 8);
+		string: modelUniform(&_modelUniform, 9);
 		if(shaderID == 0){
 			viewPosUniLoc = glGetUniformLocation(0, viewPosUniform);
 			lightPosUniLoc = glGetUniformLocation(0, lightPosUniform);
@@ -448,31 +409,31 @@ public: 	ベクトル3D: color;
 		glBindBuffer(34962, buffer);
 		glBufferData(34962, vertices, num * 6, 35044);
 	}
-	function: 座標設定(ベクトル3D: coord) => (){
+	function: ${"ja":"座標設定", "natja":"座標設定", "en":"setPos", "naten":"setPos"}$(Vector3D: coord) => (){
 		pos = coord;
 	}
-	function: 移動(ベクトル3D: offset) => (){
-		pos = ベクトル3Dの和(pos, offset);
+	function: ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$(Vector3D: offset) => (){
+		pos = addVector3D(pos, offset);
 	}
-	function: 拡大縮小(double: x, double: y, double: z) => (){
-		行列4x4: temp();
-		temp.初期化();
-		temp.拡大縮小(x, y, z);
-		scaleMat = 行列4x4の積(temp, scaleMat);
+	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(double: x, double: y, double: z) => (){
+		Matrix4x4: temp();
+		temp.identity();
+		temp.scale(x, y, z);
+		scaleMat = mulMatrix4x4(temp, scaleMat);
 	}
-	function: 回転(ベクトル3D: axis, double: t) => (){
-		行列4x4: temp();
-		temp.初期化();
-		temp.回転(axis, t);
-		rotateMat = 行列4x4の積(temp, rotateMat);
+	function: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(Vector3D: axis, double: t) => (){
+		Matrix4x4: temp();
+		temp.identity();
+		temp.rotate(axis, t);
+		rotateMat = mulMatrix4x4(temp, rotateMat);
 	}
-	function: 描画(行列4x4: projMat, 行列4x4: viewMat, ベクトル3D: camera) => (){
+	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(Matrix4x4: projMat, Matrix4x4: viewMat, Vector3D: camera) => (){
 		double: PI = 3.14159265358979312;
-		transMat.移動(pos);
-		modelMat.初期化();
-		modelMat = 行列4x4の積(scaleMat, modelMat);
-		modelMat = 行列4x4の積(rotateMat, modelMat);
-		modelMat = 行列4x4の積(transMat, modelMat);
+		transMat.translate(pos);
+		modelMat.identity();
+		modelMat = mulMatrix4x4(scaleMat, modelMat);
+		modelMat = mulMatrix4x4(rotateMat, modelMat);
+		modelMat = mulMatrix4x4(transMat, modelMat);
 		glBindBuffer(34962, buffer);
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, 5126, 0, 6 * 4, 0);
@@ -489,9 +450,9 @@ public: 	ベクトル3D: color;
 		glUniformMatrix4fv(viewMatUniformLoc, 0, viewMat.matrix);
 		glUniformMatrix4fv(modelMatUniformLoc, 0, modelMat.matrix);
 		glDrawArrays(4, 0, 36);
-		rotateMat.初期化();
-		transMat.初期化();
-		scaleMat.初期化();
+		rotateMat.identity();
+		transMat.identity();
+		scaleMat.identity();
 	}
 private: 	short: modelMatUniformLoc;
 	short: viewMatUniformLoc;
@@ -501,54 +462,54 @@ private: 	short: modelMatUniformLoc;
 	short: lightPosUniLoc;
 	short: viewPosUniLoc;
 	int: shaderID;
-	行列4x4: rotateMat;
-	行列4x4: scaleMat;
-	行列4x4: transMat;
-	行列4x4: modelMat;
+	Matrix4x4: rotateMat;
+	Matrix4x4: scaleMat;
+	Matrix4x4: transMat;
+	Matrix4x4: modelMat;
 	short: buffer;
 	int: vertexNum;
 	*double: vertices;
 }
-class: カメラ{
-public: 	ベクトル3D: 座標;
-	double: 感度;
-	function: カメラ(ベクトル3D: p) => (){
-		座標 = p;
-		view.ベクトル3D(0.0, 0.0, 1.0);
-		lookDir.ベクトル3D(0.0, 0.0, 1.0);
-		up.ベクトル3D(0.0, 1.0, 0.0);
+class: ${"ja":"カメラ", "natja":"カメラ", "en":"Camera", "naten":"Camera"}${
+public: 	Vector3D: ${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}$;
+	double: ${"ja":"感度", "natja":"感度", "en":"sensitivity", "naten":"sensitivity"}$;
+	function: Camera(Vector3D: p) => (){
+		pos = p;
+		view.Vector3D(0.0, 0.0, 1.0);
+		lookDir.Vector3D(0.0, 0.0, 1.0);
+		up.Vector3D(0.0, 1.0, 0.0);
 		yaw = 90.0;
 		pitch = 0.0;
-		感度 = 0.100000000000000006;
+		sensitivity = 0.100000000000000006;
 	}
-	function: 感度設定(double: s) => (){
-		感度 = s;
+	function: ${"ja":"感度設定", "natja":"感度設定", "en":"setSensitivity", "naten":"setSensitivity"}$(double: s) => (){
+		sensitivity = s;
 	}
-	function: アップデート(double: xOffset, double: yOffset, double: elapsedTime) => (行列4x4: result){
-		if(キーチェック(32) == 1){
-			座標.y = 座標.y + elapsedTime * 5.0;
+	function: ${"ja":"アップデート", "natja":"アップデート", "en":"update", "naten":"update"}$(double: xOffset, double: yOffset, double: elapsedTime) => (Matrix4x4: result){
+		if(checkKeyPress(32) == 1){
+			pos.y = pos.y + elapsedTime * 5.0;
 		}
-		if(キーチェック(16) == 1){
-			座標.y = 座標.y - elapsedTime * 5.0;
+		if(checkKeyPress(16) == 1){
+			pos.y = pos.y - elapsedTime * 5.0;
 		}
-		if(キーチェック(65) == 1){
-			座標.z = 座標.z - elapsedTime * sin(toRad(yaw - 90)) * 5.0;
-			座標.x = 座標.x - elapsedTime * cos(toRad(yaw - 90)) * 5.0;
+		if(checkKeyPress(65) == 1){
+			pos.z = pos.z - elapsedTime * sin(toRad(yaw - 90)) * 5.0;
+			pos.x = pos.x - elapsedTime * cos(toRad(yaw - 90)) * 5.0;
 		}
-		if(キーチェック(68) == 1){
-			座標.z = 座標.z + elapsedTime * sin(toRad(yaw - 90)) * 5.0;
-			座標.x = 座標.x + elapsedTime * cos(toRad(yaw - 90)) * 5.0;
+		if(checkKeyPress(68) == 1){
+			pos.z = pos.z + elapsedTime * sin(toRad(yaw - 90)) * 5.0;
+			pos.x = pos.x + elapsedTime * cos(toRad(yaw - 90)) * 5.0;
 		}
-		if(キーチェック(87) == 1){
-			座標.z = 座標.z + elapsedTime * sin(toRad(yaw)) * 5.0;
-			座標.x = 座標.x + elapsedTime * cos(toRad(yaw)) * 5.0;
+		if(checkKeyPress(87) == 1){
+			pos.z = pos.z + elapsedTime * sin(toRad(yaw)) * 5.0;
+			pos.x = pos.x + elapsedTime * cos(toRad(yaw)) * 5.0;
 		}
-		if(キーチェック(83) == 1){
-			座標.z = 座標.z - elapsedTime * sin(toRad(yaw)) * 5.0;
-			座標.x = 座標.x - elapsedTime * cos(toRad(yaw)) * 5.0;
+		if(checkKeyPress(83) == 1){
+			pos.z = pos.z - elapsedTime * sin(toRad(yaw)) * 5.0;
+			pos.x = pos.x - elapsedTime * cos(toRad(yaw)) * 5.0;
 		}
-		yaw = yaw - xOffset * 感度;
-		pitch = pitch - yOffset * 感度;
+		yaw = yaw - xOffset * sensitivity;
+		pitch = pitch - yOffset * sensitivity;
 		if(pitch < 0 - 89.0){
 			pitch = 0 - 89.0;
 		}
@@ -558,35 +519,35 @@ public: 	ベクトル3D: 座標;
 		lookDir.x = cos(toRad(yaw)) * cos(toRad(pitch));
 		lookDir.y = sin(toRad(pitch));
 		lookDir.z = sin(toRad(yaw)) * cos(toRad(pitch));
-		lookDir.正規化();
-		result.初期化();
-		view = ベクトル3Dの和(lookDir, 座標);
-		result = カメラ行列(result, 座標, view, up);
+		lookDir.normalize();
+		result.identity();
+		view = addVector3D(lookDir, pos);
+		result = setCameraMat(result, pos, view, up);
 	}
 private: 	double: pitch;
 	double: yaw;
-	ベクトル3D: up;
-	ベクトル3D: lookDir;
-	ベクトル3D: view;
+	Vector3D: up;
+	Vector3D: lookDir;
+	Vector3D: view;
 }
-class: シーン{
-public: 	配列<*モデル>: スプライト;
-	カメラ: 目;
-	function: シーン() => (){
-		last = 時間計測() / 1000.0;
+class: ${"ja":"シーン", "natja":"シーン", "en":"Scene", "naten":"Scene"}${
+public: 	Array<*Model>: ${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$;
+	Camera: ${"ja":"目", "natja":"目", "en":"camera", "naten":"camera"}$;
+	function: Scene() => (){
+		last = getTime() / 1000.0;
 		now = 0.0;
 		elapsedTime = 0.0;
-		lastX = マウス絶対座標X();
-		lastY = マウス絶対座標Y();
-		projMat.初期化();
-		viewMat.初期化();
-		projMat = 視点行列3D(projMat, 90.0, 720.0, 1280.0, 0.100000000000000006, 100.0);
-		ベクトル3D: temp(0.0, 0.0, 0 - 4.0);
-		目.カメラ(temp);
-		スプライト.配列();
+		lastX = checkAbsoluteMouseX();
+		lastY = checkAbsoluteMouseY();
+		projMat.identity();
+		viewMat.identity();
+		projMat = perspectiveMat3D(projMat, 90.0, 720.0, 1280.0, 0.100000000000000006, 100.0);
+		Vector3D: temp(0.0, 0.0, 0 - 4.0);
+		camera.Camera(temp);
+		sprites.Array();
 	}
-	function: 描画() => (){
-		now = 時間計測() / 1000.0;
+	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$() => (){
+		now = getTime() / 1000.0;
 		elapsedTime = now - last;
 		last = now;
 		glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -594,97 +555,97 @@ public: 	配列<*モデル>: スプライト;
 		glEnable(2929);
 		glDepthFunc(515);
 		glClear(16640);
-		double: xOffset = マウス絶対座標X() - lastX;
-		double: yOffset = マウス絶対座標Y() - lastY;
-		lastX = マウス絶対座標X();
-		lastY = マウス絶対座標Y();
-		viewMat.初期化();
-		viewMat = 目.アップデート(xOffset, yOffset, elapsedTime);
-		(int: i = 0;)from(i == スプライト.size)to(i = i + 1;){
-			スプライト.取得(i)->描画(projMat, viewMat, 目.座標);
+		double: xOffset = checkAbsoluteMouseX() - lastX;
+		double: yOffset = checkAbsoluteMouseY() - lastY;
+		lastX = checkAbsoluteMouseX();
+		lastY = checkAbsoluteMouseY();
+		viewMat.identity();
+		viewMat = camera.update(xOffset, yOffset, elapsedTime);
+		(int: i = 0;)from(i == sprites.size)to(i = i + 1;){
+			sprites.get(i)->draw(projMat, viewMat, camera.pos);
 		}
 	}
-	function: キューブ追加(double: size, ベクトル3D: color, ベクトル3D: pos) => (int: id){
+	function: ${"ja":"キューブ追加", "natja":"キューブ追加", "en":"addCube", "naten":"addCube"}$(double: size, Vector3D: color, Vector3D: pos) => (int: id){
 		double: vertices[12][3][6] = [[[0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [0 - size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0]], [[0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0]], [[size / 2, 0 - size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, size / 2, 1.0, 0.0, 0.0]], [[size / 2, 0 - size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, size / 2, 1.0, 0.0, 0.0], [size / 2, 0 - size / 2, size / 2, 1.0, 0.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0], [size / 2, size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, size / 2, size / 2, 0.0, 0.0, 1.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0]], [[0 - size / 2, 0 - size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0]], [[0 - size / 2, 0 - size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0]], [[0 - size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0], [0 - size / 2, size / 2, size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, size / 2, 0.0, 1.0, 0.0]], [[0 - size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0], [size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0]]];
-		*モデル: cube = メモリ確保(sizeof(*cube));
-		cube->モデル(&vertices, 36, color, pos, 0);
-		スプライト.追加(cube);
-		id = スプライト.長さ() - 1;
+		*Model: cube = allocMemory(sizeof(*cube));
+		cube->Model(&vertices, 36, color, pos, 0);
+		sprites.push(cube);
+		id = sprites.length() - 1;
 	}
-	function: ライト追加(double: size, ベクトル3D: color, ベクトル3D: pos) => (int: id){
+	function: ${"ja":"ライト追加", "natja":"ライト追加", "en":"addLight", "naten":"addLight"}$(double: size, Vector3D: color, Vector3D: pos) => (int: id){
 		double: vertices[12][3][6] = [[[0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [0 - size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0]], [[0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0]], [[size / 2, 0 - size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, size / 2, 1.0, 0.0, 0.0]], [[size / 2, 0 - size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, size / 2, 1.0, 0.0, 0.0], [size / 2, 0 - size / 2, size / 2, 1.0, 0.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0], [size / 2, size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, size / 2, size / 2, 0.0, 0.0, 1.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0]], [[0 - size / 2, 0 - size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0]], [[0 - size / 2, 0 - size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0]], [[0 - size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0], [0 - size / 2, size / 2, size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, size / 2, 0.0, 1.0, 0.0]], [[0 - size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0], [size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0]]];
-		*モデル: light = メモリ確保(sizeof(*light));
-		light->モデル(&vertices, 36, color, pos, 1);
-		スプライト.追加(light);
-		id = スプライト.長さ() - 1;
+		*Model: light = allocMemory(sizeof(*light));
+		light->Model(&vertices, 36, color, pos, 1);
+		sprites.push(light);
+		id = sprites.length() - 1;
 	}
 private: 	double: lastY;
 	double: lastX;
 	double: elapsedTime;
 	double: now;
 	double: last;
-	行列4x4: viewMat;
-	行列4x4: projMat;
+	Matrix4x4: viewMat;
+	Matrix4x4: projMat;
 }
-class: ベクトル2D{
-public: 	function: 正規化() => (){
+class: ${"ja":"ベクトル2D", "natja":"ベクトル2D", "en":"Vector2D", "naten":"Vector2D"}${
+public: 	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$() => (){
 		double: l = root(x * x + y * y);
 		x = x / l;
 		y = y / l;
 	}
-	function: 長さ() => (double: l){
+	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
 		l = root(x * x + y * y);
 	}
-	function: ベクトル2D(double: a, double: b) => (){
+	function: Vector2D(double: a, double: b) => (){
 		x = a;
 		y = b;
 	}
 	double: y;
 	double: x;
 }
-function: ベクトル2Dの和(ベクトル2D: a, ベクトル2D: b) => (ベクトル2D: result){
+function: ${"ja":"ベクトル2Dの和", "natja":"ベクトル2Dの和", "en":"addVector2D", "naten":"addVector2D"}$(Vector2D: a, Vector2D: b) => (Vector2D: result){
 	result.x = a.x + b.x;
 	result.y = a.y + b.y;
 }
-function: ベクトル2Dの差(ベクトル2D: a, ベクトル2D: b) => (ベクトル2D: result){
+function: ${"ja":"ベクトル2Dの差", "natja":"ベクトル2Dの差", "en":"subVector2D", "naten":"subVector2D"}$(Vector2D: a, Vector2D: b) => (Vector2D: result){
 	result.x = a.x - b.x;
 	result.y = a.y - b.y;
 }
-function: ベクトル2Dの内積(ベクトル2D: a, ベクトル2D: b) => (double: x){
+function: ${"ja":"ベクトル2Dの内積", "natja":"ベクトル2Dの内積", "en":"dotVector2D", "naten":"dotVector2D"}$(Vector2D: a, Vector2D: b) => (double: x){
 	x = a.x * b.x + a.y * b.y;
 }
-function: ベクトル2D拡大(ベクトル2D: a, double: x) => (ベクトル2D: result){
+function: ${"ja":"ベクトル2D拡大", "natja":"ベクトル2D拡大", "en":"extendVector2D", "naten":"extendVector2D"}$(Vector2D: a, double: x) => (Vector2D: result){
 	result.x = a.x * x;
 	result.y = a.y * x;
 }
-function: ベクトル2D縮小(ベクトル2D: a, double: x) => (ベクトル2D: result){
+function: ${"ja":"ベクトル2D縮小", "natja":"ベクトル2D縮小", "en":"divVector2D", "naten":"divVector2D"}$(Vector2D: a, double: x) => (Vector2D: result){
 	if(x == 0.0){
-		表示(10000000);
+		print(10000000);
 	}
 	result.x = a.x / x;
 	result.y = a.y / x;
 }
-class: アニメーション情報{
-public: 	function: アニメーション情報(int: a, double: start, double: d, double: x, double: y) => (){
+class: ${"ja":"アニメーション情報", "natja":"アニメーション情報", "en":"AnimationInfo", "naten":"AnimationInfo"}${
+public: 	function: AnimationInfo(int: a, double: start, double: d, double: x, double: y) => (){
 		id = a;
 		startTime = start;
 		duration = d;
 		info.x = x;
 		info.y = y;
 	}
-	ベクトル2D: info;
+	Vector2D: info;
 	double: duration;
 	double: startTime;
 	int: id;
 }
-class: スプライト{
-public: 	ベクトル3D: color;
-	ベクトル2D: pos;
+class: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
+public: 	Vector3D: color;
+	Vector2D: pos;
 	double: 透明度;
 	double: scaleX;
 	double: scaleY;
 	double: theta;
-	function: スプライト(*double: data, int: pnum, *short: indicesData, int: vnum, ベクトル3D: c, ベクトル2D: p, int: s, double: zI) => (){
+	function: Sprite(*double: data, int: pnum, *short: indicesData, int: vnum, Vector3D: c, Vector2D: p, int: s, double: zI) => (){
 		vertices = data;
 		pointNum = pnum;
 		indices = indicesData;
@@ -697,21 +658,21 @@ public: 	ベクトル3D: color;
 		scaleY = 1.0;
 		theta = 0.0;
 		shaderID = s;
-		animations.配列();
-		modelMat.初期化();
-		transMat.初期化();
-		scaleMat.初期化();
-		rotateMat.初期化();
+		animations.Array();
+		modelMat.identity();
+		transMat.identity();
+		scaleMat.identity();
+		rotateMat.identity();
 		char: _objectColorUniform[11] = "objectColor";
 		char: _projUniform[10] = "projection";
 		char: _modelUniform[5] = "model";
 		char: _samplerUniform[8] = "uSampler";
 		char: _transparencyUniform[12] = "transparency";
-		文字列: objectColorUniform(&_objectColorUniform, 11);
-		文字列: projUniform(&_projUniform, 10);
-		文字列: modelUniform(&_modelUniform, 5);
-		文字列: samplerUniform(&_samplerUniform, 8);
-		文字列: transparencyUniform(&_transparencyUniform, 12);
+		string: objectColorUniform(&_objectColorUniform, 11);
+		string: projUniform(&_projUniform, 10);
+		string: modelUniform(&_modelUniform, 5);
+		string: samplerUniform(&_samplerUniform, 8);
+		string: transparencyUniform(&_transparencyUniform, 12);
 		projMatUniformLoc = glGetUniformLocation(shaderID, projUniform);
 		modelMatUniformLoc = glGetUniformLocation(shaderID, modelUniform);
 		if(shaderID == 4){
@@ -730,16 +691,16 @@ public: 	ベクトル3D: color;
 			glElementBufferData(34963, indices, vnum, 35044);
 		}
 	}
-	function: テクスチャ設定(*double: tex, 文字列: url) => (){
+	function: ${"ja":"テクスチャ設定", "natja":"テクスチャ設定", "en":"setTexture", "naten":"setTexture"}$(*double: tex, string: url) => (){
 		shaderID = 0;
 		texCoords = tex;
 		texture = _loadTexture(url.content, url.length);
-		_文字列表示(url.content, url.length);
+		_printString(url.content, url.length);
 		texCoordBuffer = glCreateBuffer();
 		glBindBuffer(34962, texCoordBuffer);
 		glBufferData(34962, tex, vertexNum * 2, 35044);
 	}
-	function: リピートテクスチャ設定(*double: tex, short: テクスチャ) => (){
+	function: ${"ja":"リピートテクスチャ設定", "natja":"リピートテクスチャ設定", "en":"setRepeatTexture", "naten":"setRepeatTexture"}$(*double: tex, short: テクスチャ) => (){
 		shaderID = 0;
 		texCoords = tex;
 		texture = テクスチャ;
@@ -747,62 +708,62 @@ public: 	ベクトル3D: color;
 		glBindBuffer(34962, texCoordBuffer);
 		glBufferData(34962, tex, vertexNum * 2, 35044);
 	}
-	function: 座標設定(ベクトル2D: coord) => (){
+	function: ${"ja":"座標設定", "natja":"座標設定", "en":"setPos", "naten":"setPos"}$(Vector2D: coord) => (){
 		pos = coord;
 	}
-	function: 移動(ベクトル2D: offset) => (){
-		pos = ベクトル2Dの和(pos, offset);
+	function: ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$(Vector2D: offset) => (){
+		pos = addVector2D(pos, offset);
 	}
-	function: 拡大縮小(double: x, double: y) => (){
+	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(double: x, double: y) => (){
 		scaleX = scaleX * x;
 		scaleY = scaleY * y;
 	}
-	function: 回転(double: t) => (){
+	function: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(double: t) => (){
 		theta = theta + t;
 	}
-	function: 角度設定(double: t) => (){
+	function: ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$(double: t) => (){
 		theta = t;
 	}
-	function: zIndex設定(double: x) => (){
+	function: ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$(double: x) => (){
 		zIndex = x;
 	}
-	function: 透明度設定(double: x) => (){
+	function: ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$(double: x) => (){
 		透明度 = x;
 	}
-	function: 色設定(ベクトル3D: 色) => (){
-		color = 色;
+	function: ${"ja":"色設定", "natja":"色設定", "en":"setColor", "naten":"setColor"}$(Vector3D: color) => (){
+		color = color;
 	}
-	function: 描画(行列4x4: projMat) => (){
+	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(Matrix4x4: projMat) => (){
 		double: PI = 3.14159265358979312;
 		(int: カウンタ = 0;)from(カウンタ == animations.size)to(カウンタ = カウンタ + 1;){
-			アニメーション情報: info = animations.取得(カウンタ);
-			if((info.startTime <= 時間計測()) && ((info.startTime + info.duration) >= 時間計測())){
+			AnimationInfo: info = animations.get(カウンタ);
+			if((info.startTime <= getTime()) && ((info.startTime + info.duration) >= getTime())){
 				if(info.id == 0){
-					double: elapsedTime = 時間計測() - info.startTime;
-					回転(info.info.x * elapsedTime);
+					double: elapsedTime = getTime() - info.startTime;
+					rotate(info.info.x * elapsedTime);
 				}
 				if(info.id == 1){
-					拡大縮小(info.info.x, info.info.y);
+					scale(info.info.x, info.info.y);
 				}
 				if(info.id == 2){
-					double: elapsedTime = 時間計測() - info.startTime;
-					ベクトル2D: offset(info.info.x * elapsedTime, info.info.y * elapsedTime);
-					移動(offset);
+					double: elapsedTime = getTime() - info.startTime;
+					Vector2D: offset(info.info.x * elapsedTime, info.info.y * elapsedTime);
+					translate(offset);
 				}
 			}
 		}
-		ベクトル3D: pos3d(pos.x, pos.y, 0 - zIndex * 0.00100000000000000002);
-		transMat.初期化();
-		transMat.移動(pos3d);
-		scaleMat.初期化();
-		scaleMat.拡大縮小(scaleX, scaleY, 1.0);
-		ベクトル3D: 回転軸(0.0, 0.0, 1.0);
-		rotateMat.初期化();
-		rotateMat.回転(回転軸, theta);
-		modelMat.初期化();
-		modelMat = 行列4x4の積(scaleMat, modelMat);
-		modelMat = 行列4x4の積(rotateMat, modelMat);
-		modelMat = 行列4x4の積(transMat, modelMat);
+		Vector3D: pos3d(pos.x, pos.y, 0 - zIndex * 0.00100000000000000002);
+		transMat.identity();
+		transMat.translate(pos3d);
+		scaleMat.identity();
+		scaleMat.scale(scaleX, scaleY, 1.0);
+		Vector3D: 回転軸(0.0, 0.0, 1.0);
+		rotateMat.identity();
+		rotateMat.rotate(回転軸, theta);
+		modelMat.identity();
+		modelMat = mulMatrix4x4(scaleMat, modelMat);
+		modelMat = mulMatrix4x4(rotateMat, modelMat);
+		modelMat = mulMatrix4x4(transMat, modelMat);
 		glUseProgram(shaderID);
 		glBindBuffer(34962, buffer);
 		glEnableVertexAttribArray(0);
@@ -829,23 +790,23 @@ public: 	ベクトル3D: color;
 			glBindBuffer(34962, buffer);
 			glDrawArrays(5, 0, pointNum);
 		}
-		rotateMat.初期化();
-		transMat.初期化();
-		scaleMat.初期化();
+		rotateMat.identity();
+		transMat.identity();
+		scaleMat.identity();
 	}
-	function: 回転アニメーション(double: theta, double: start, double: duration) => (){
-		アニメーション情報: temp(0, start, duration, theta, 0.0);
-		animations.追加(temp);
+	function: ${"ja":"回転アニメーション", "natja":"回転アニメーション", "en":"rotateAnimation", "naten":"rotateAnimation"}$(double: theta, double: start, double: duration) => (){
+		AnimationInfo: temp(0, start, duration, theta, 0.0);
+		animations.push(temp);
 	}
-	function: 拡大縮小アニメーション(double: x, double: y, double: start, double: duration) => (){
-		アニメーション情報: temp(1, start, duration, x, y);
-		animations.追加(temp);
+	function: ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$(double: x, double: y, double: start, double: duration) => (){
+		AnimationInfo: temp(1, start, duration, x, y);
+		animations.push(temp);
 	}
-	function: 移動アニメーション(ベクトル2D: offset, double: start, double: duration) => (){
-		アニメーション情報: temp(0, start, duration, offset.x, offset.y);
-		animations.追加(temp);
+	function: ${"ja":"移動アニメーション", "natja":"移動アニメーション", "en":"translateAnimation", "naten":"translateAnimation"}$(Vector2D: offset, double: start, double: duration) => (){
+		AnimationInfo: temp(0, start, duration, offset.x, offset.y);
+		animations.push(temp);
 	}
-private: 	配列<アニメーション情報>: animations;
+private: 	Array<AnimationInfo>: animations;
 	short: samplerUniformLoc;
 	short: modelMatUniformLoc;
 	short: projMatUniformLoc;
@@ -853,10 +814,10 @@ private: 	配列<アニメーション情報>: animations;
 	short: objectColorUniLoc;
 	int: shaderID;
 	double: zIndex;
-	行列4x4: rotateMat;
-	行列4x4: scaleMat;
-	行列4x4: transMat;
-	行列4x4: modelMat;
+	Matrix4x4: rotateMat;
+	Matrix4x4: scaleMat;
+	Matrix4x4: transMat;
+	Matrix4x4: modelMat;
 	short: texture;
 	short: elementBuffer;
 	short: texCoordBuffer;
@@ -867,85 +828,85 @@ private: 	配列<アニメーション情報>: animations;
 	*short: indices;
 	*double: vertices;
 }
-class: シーン2D{
-public: 	配列<*スプライト>: スプライト配列;
-	ベクトル3D: 背景色;
-	double: 背景透明度;
-	function: シーン2D(double: 高さ, ベクトル3D: color) => (){
-		last = 時間計測() / 1000.0;
+class: ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}${
+public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$;
+	Vector3D: ${"ja":"背景色", "natja":"背景色", "en":"backgroundColor", "naten":"backgroundColor"}$;
+	double: ${"ja":"背景透明度", "natja":"背景透明度", "en":"backgroundTransparency", "naten":"backgroundTransparency"}$;
+	function: Scene2D(double: 高さ, Vector3D: color) => (){
+		last = getTime() / 1000.0;
 		now = 0.0;
 		elapsedTime = 0.0;
-		projMat.初期化();
-		projMat = 視点行列2D(projMat, 0 - 高さ / 2.0 * 16.0 / 9.0, 高さ / 2.0 * 16.0 / 9.0, 0 - 高さ / 2, 高さ / 2, 0 - 5.0, 5.0);
-		スプライト配列.配列();
-		背景色 = color;
-		背景透明度 = 1.0;
+		projMat.identity();
+		projMat = perspectiveMat2D(projMat, 0 - 高さ / 2.0 * 16.0 / 9.0, 高さ / 2.0 * 16.0 / 9.0, 0 - 高さ / 2, 高さ / 2, 0 - 5.0, 5.0);
+		sprites.Array();
+		backgroundColor = color;
+		backgroundTransparency = 1.0;
 	}
-	function: 背景透明度設定(double: a) => (){
-		背景透明度 = a;
+	function: ${"ja":"背景透明度設定", "natja":"背景透明度設定", "en":"setBackgroundTransparency", "naten":"setBackgroundTransparency"}$(double: a) => (){
+		backgroundTransparency = a;
 	}
-	function: 描画() => (){
-		now = 時間計測() / 1000.0;
+	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$() => (){
+		now = getTime() / 1000.0;
 		elapsedTime = now - last;
 		last = now;
-		glClearColor(背景色.x, 背景色.y, 背景色.z, 背景透明度);
+		glClearColor(backgroundColor.x, backgroundColor.y, backgroundColor.z, backgroundTransparency);
 		glClearDepth(1.0);
 		glEnable(2929);
 		glDepthFunc(515);
 		glEnable(3042);
 		glBlendFunc(770, 771);
 		glClear(16640);
-		(int: i = 0;)from(i == スプライト配列.size)to(i = i + 1;){
-			スプライト配列.取得(i)->描画(projMat);
+		(int: i = 0;)from(i == sprites.size)to(i = i + 1;){
+			sprites.get(i)->draw(projMat);
 		}
 	}
-	function: 正方形追加(double: size, ベクトル2D: pos, ベクトル3D: color, double: zIndex) => (int: id){
+	function: ${"ja":"正方形追加", "natja":"正方形追加", "en":"addSquare", "naten":"addSquare"}$(double: size, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		double: vertices[4][3] = [[size / 2, size / 2, 0 - zIndex * 0.00100000000000000002], [size / 2, 0 - size / 2, 0 - zIndex * 0.00100000000000000002], [0 - size / 2, 0 - size / 2, 0 - zIndex * 0.00100000000000000002], [0 - size / 2, size / 2, 0 - zIndex * 0.00100000000000000002]];
 		double: texCoords[4][2] = [[1.0, 0.0], [1.0, 1.0], [0.0, 1.0], [0.0, 0.0]];
 		short: indices[6] = [0, 1, 3, 1, 2, 3];
-		*スプライト: sprite = メモリ確保(sizeof(*sprite));
-		sprite->スプライト(&vertices, 4, &indices, 6, color, pos, 4, zIndex);
-		スプライト配列.追加(sprite);
-		id = スプライト配列.長さ() - 1;
+		*Sprite: sprite = allocMemory(sizeof(*sprite));
+		sprite->Sprite(&vertices, 4, &indices, 6, color, pos, 4, zIndex);
+		sprites.push(sprite);
+		id = sprites.length() - 1;
 	}
-	function: スプライト追加(double: width, double: height, ベクトル2D: pos, 文字列: url, double: zIndex) => (int: id){
+	function: ${"ja":"スプライト追加", "natja":"スプライト追加", "en":"addSprite", "naten":"addSprite"}$(double: width, double: height, Vector2D: pos, string: url, double: zIndex) => (int: id){
 		double: vertices[4][3] = [[width / 2, height / 2, 0 - zIndex * 0.00100000000000000002], [width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, height / 2, 0 - zIndex * 0.00100000000000000002]];
 		double: texCoords[4][2] = [[1.0, 0.0], [1.0, 1.0], [0.0, 1.0], [0.0, 0.0]];
 		short: indices[6] = [0, 1, 3, 1, 2, 3];
-		ベクトル3D: color(0.0, 0.0, 0.0);
-		*スプライト: sprite = メモリ確保(sizeof(*sprite));
-		sprite->スプライト(&vertices, 4, &indices, 6, color, pos, 3, zIndex);
-		sprite->テクスチャ設定(&texCoords, url);
-		スプライト配列.追加(sprite);
-		id = スプライト配列.長さ() - 1;
+		Vector3D: color(0.0, 0.0, 0.0);
+		*Sprite: sprite = allocMemory(sizeof(*sprite));
+		sprite->Sprite(&vertices, 4, &indices, 6, color, pos, 3, zIndex);
+		sprite->setTexture(&texCoords, url);
+		sprites.push(sprite);
+		id = sprites.length() - 1;
 	}
-	function: リピートスプライト追加(double: width, double: height, ベクトル2D: pos, short: texture, double: zIndex) => (int: id){
+	function: ${"ja":"リピートスプライト追加", "natja":"リピートスプライト追加", "en":"addRepeatSprite", "naten":"addRepeatSprite"}$(double: width, double: height, Vector2D: pos, short: texture, double: zIndex) => (int: id){
 		double: vertices[4][3] = [[width / 2, height / 2, 0 - zIndex * 0.00100000000000000002], [width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, height / 2, 0 - zIndex * 0.00100000000000000002]];
 		double: texCoords[4][2] = [[1.0, 0.0], [1.0, 1.0], [0.0, 1.0], [0.0, 0.0]];
 		short: indices[6] = [0, 1, 3, 1, 2, 3];
-		ベクトル3D: color(0.0, 0.0, 0.0);
-		*スプライト: sprite = メモリ確保(sizeof(*sprite));
-		sprite->スプライト(&vertices, 4, &indices, 6, color, pos, 3, zIndex);
-		sprite->リピートテクスチャ設定(&texCoords, texture);
-		スプライト配列.追加(sprite);
-		id = スプライト配列.長さ() - 1;
+		Vector3D: color(0.0, 0.0, 0.0);
+		*Sprite: sprite = allocMemory(sizeof(*sprite));
+		sprite->Sprite(&vertices, 4, &indices, 6, color, pos, 3, zIndex);
+		sprite->setRepeatTexture(&texCoords, texture);
+		sprites.push(sprite);
+		id = sprites.length() - 1;
 	}
-	function: 四角形追加(double: width, double: height, ベクトル2D: pos, ベクトル3D: color, double: zIndex) => (int: id){
+	function: ${"ja":"四角形追加", "natja":"四角形追加", "en":"addRectangle", "naten":"addRectangle"}$(double: width, double: height, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		double: vertices[4][3] = [[width / 2, height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, height / 2, 0 - zIndex * 0.00100000000000000002], [width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002]];
-		*スプライト: sprite = メモリ確保(sizeof(*sprite));
-		sprite->スプライト(&vertices, 4, メモリ確保(0), 0, color, pos, 4, zIndex);
-		スプライト配列.追加(sprite);
-		id = スプライト配列.長さ() - 1;
+		*Sprite: sprite = allocMemory(sizeof(*sprite));
+		sprite->Sprite(&vertices, 4, allocMemory(0), 0, color, pos, 4, zIndex);
+		sprites.push(sprite);
+		id = sprites.length() - 1;
 	}
-	function: 多角形追加(*void: points, int: size, ベクトル2D: pos, ベクトル3D: color, double: zIndex) => (int: id){
-		*スプライト: sprite = メモリ確保(sizeof(*sprite));
-		sprite->スプライト(points, size, メモリ確保(0), 0, color, pos, 4, zIndex);
-		スプライト配列.追加(sprite);
-		id = スプライト配列.長さ() - 1;
+	function: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(*void: points, int: size, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
+		*Sprite: sprite = allocMemory(sizeof(*sprite));
+		sprite->Sprite(points, size, allocMemory(0), 0, color, pos, 4, zIndex);
+		sprites.push(sprite);
+		id = sprites.length() - 1;
 	}
-	function: 円追加(double: r, ベクトル2D: pos, ベクトル3D: color, double: zIndex) => (int: id){
+	function: ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$(double: r, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		double: PI = 3.14159265358979312;
-		配列<ベクトル3D>: points();
+		Array<Vector3D>: points();
 		int: 頂点数 = 60;
 		(int: i = 0;)from(i == 頂点数)to(i = i + 1;){
 			double: theta = 0;
@@ -955,15 +916,15 @@ public: 	配列<*スプライト>: スプライト配列;
 			if((i % 2) == 1){
 				theta = 0.5 * PI - ((PI * (1.0 + i)) / 頂点数);
 			}
-			ベクトル3D: temp(r * cos(theta), r * sin(theta), 0 - zIndex * 0.00100000000000000002);
-			points.追加(temp);
+			Vector3D: temp(r * cos(theta), r * sin(theta), 0 - zIndex * 0.00100000000000000002);
+			points.push(temp);
 		}
-		id = 多角形追加(points.content, points.size, pos, color, zIndex);
+		id = addPolygon(points.content, points.size, pos, color, zIndex);
 	}
 private: 	double: elapsedTime;
 	double: now;
 	double: last;
-	行列4x4: projMat;
+	Matrix4x4: projMat;
 }
 function: 引数なしjsリスナー呼び出し(function: () => (): callback) => (){
 	callback();
