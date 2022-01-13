@@ -1,8 +1,8 @@
-export const pointVs = `#version 300 es
+export const pointVs = `
 #ifdef GL_ES
 precision mediump float;
 #endif
-layout (location = 0) in vec3 aVertexPosition;
+attribute vec3 aVertexPosition;
 
 uniform mat4 uProjMat;
 uniform mat4 uModelMat;
