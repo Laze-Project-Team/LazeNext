@@ -2,7 +2,7 @@ import child_process from 'child_process';
 import fs from 'fs';
 import { promisify } from 'util';
 
-import { CACHE_DIR, LANG_DIR, PARSER_DIR } from '@/const/dir';
+import { CACHE_DIR, COMMON_DIR, LANG_DIR, PARSER_DIR } from '@/const/dir';
 import type { convertRequest, convertResponse } from '@/typings/compiler';
 
 const exec = promisify(child_process.exec);
@@ -27,6 +27,7 @@ const commands = {
       `--convert-json ${LANG_DIR}/${option.to}.json`,
       `--convert-output ${id}-dist`,
       `--parser-opt ${PARSER_DIR}/${option.from}.parser`,
+      `--convert-link ${COMMON_DIR}/${option.from}/std.laze`,
     ].join(' ');
   },
 };
