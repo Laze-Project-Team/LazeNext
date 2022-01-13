@@ -58,7 +58,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />
+      {googleTagManagerId && <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />}
       <colorModeContext.Provider value={[colorMode, setColorMode]}>
         <ColorMode colorMode={colorMode}>
           <Provider store={store}>
