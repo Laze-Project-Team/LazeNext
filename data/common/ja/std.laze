@@ -200,7 +200,8 @@
 	loc = _glGetUniformLocation(i, a.content, a.長さ);
 }
 クラス: ${"ja":"ベクトル3D", "natja":"ベクトル3D", "en":"Vector3D", "naten":"Vector3D"}${
-公開: 	実数: x;
+公開:
+	実数: x;
 	実数: y;
 	実数: z;
 	関数: ベクトル3D(実数: a, 実数: b, 実数: c) => (){
@@ -221,6 +222,26 @@
 		b.x = a.x + x;
 		b.y = a.y + y;
 		b.z = a.z + z;
+	}
+	関数: 演算子 - (ベクトル3D: a) => (ベクトル3D: b){
+		b.x = a.x - x;
+		b.y = a.y - y;
+		b.z = a.z - z;
+	}
+	関数: 演算子 * (実数: k) => (ベクトル3D: b){
+		b.x = x * k;
+		b.y = y * k;
+		b.z = z * k;
+	}
+	関数: 演算子 * (ベクトル3D: a) => (ベクトル3D: b){
+		b.x = y * a.z - z * a.y;
+		b.y = z * a.x - x * a.z;
+		b.z = x * a.y - y * a.x;
+	}
+	関数: 演算子 / (実数: k) => (ベクトル3D: b){
+		b.x = x / k;
+		b.y = y / k;
+		b.z = z / k;		
 	}
 }
 関数: ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$(ベクトル3D: a, ベクトル3D: b) => (ベクトル3D: result){
