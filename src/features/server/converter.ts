@@ -27,7 +27,8 @@ const commands = {
       `--convert-json ${LANG_DIR}/${option.to}.json`,
       `--convert-output ${id}-dist`,
       `--parser-opt ${PARSER_DIR}/${option.from}.parser`,
-      `--convert-link ${COMMON_DIR}/${option.from}/std.laze`,
+      `--convert-link std.laze`,
+      `--convert-dir ${COMMON_DIR}/${option.from}/`,
     ].join(' ');
   },
 };
