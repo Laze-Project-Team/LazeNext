@@ -84,7 +84,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         };
 
         if (instance.exports.loop) {
-          variables.interval = setInterval(draw, 1000);
+          variables.interval = setInterval(draw, 1000 / 60);
         }
       })
       .catch((err) => {
