@@ -12,6 +12,7 @@ import { langList } from '@/const/lang';
 import { useCompiler } from '@/features/compiler';
 import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
+import { getName } from '@/features/utils/path';
 import styles from '@/styles/loading.module.css';
 
 export const ConvertButton: VFC = () => {
@@ -62,16 +63,18 @@ export const ConvertButton: VFC = () => {
     }
     setIsOpened(false);
     setIsConverting(true);
-    window.laze.compiler.convert(file, code, window.laze.props.variables.lang, newLang.current).then((success) => {
-      if (success) {
-        setIsConverting(false);
-        window.laze.props.variables.lang = newLang.current;
-        setLang(newLang.current);
-        localStorage.setItem('compile_lang', newLang.current);
-      } else {
-        setIsConverting(false);
-      }
-    });
+    window.laze.compiler
+      .convert(file, code, window.laze.props.variables.lang, newLang.current, getName(file))
+      .then((success) => {
+        if (success) {
+          setIsConverting(false);
+          window.laze.props.variables.lang = newLang.current;
+          setLang(newLang.current);
+          localStorage.setItem('compile_lang', newLang.current);
+        } else {
+          setIsConverting(false);
+        }
+      });
   };
 
   const abort = () => {

@@ -18,13 +18,13 @@ import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2
 import { compileFailed, compileSuccessful, runProgram } from '@/features/gtm';
 import { consoleSlice } from '@/features/redux/console';
 import { getHash } from '@/features/utils/hash';
-import type { compileResponse, compilerType, convertResponse } from '@/typings/compiler';
+import type { compileResponse, compilerType, convertRequest, convertResponse } from '@/typings/compiler';
 
 import { explorerSlice } from '../redux/explorer';
 
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
   keyControlInitialize();
-  const { addLog, createPanel, addSeparator } = consoleSlice.actions;
+  const { addLog, createPanel, addSeparator, setActive } = consoleSlice.actions;
   const { saveFile } = explorerSlice.actions;
 
   const run: compilerType['run'] = () => {
@@ -147,8 +147,15 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
     }
   };
 
-  const convert = async (path: string, code: string, lang: string, newLang: string) => {
-    const body = JSON.stringify({ code, option: { from: lang, to: newLang } });
+  const convert: compilerType['convert'] = async (
+    path: string,
+    code: string,
+    lang: string,
+    newLang: string,
+    label: string
+  ) => {
+    const bodyJson: convertRequest = { code, option: { label, from: lang, to: newLang } };
+    const body = JSON.stringify(bodyJson);
 
     const res = await fetch(`/api/editor/convert`, {
       method: 'POST',
@@ -170,6 +177,16 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       });
       dispatcher(saveFile({ path, content: resJson.code }));
     } else {
+      dispatcher(
+        addLog({
+          console: 'master',
+          content: resJson.message,
+          level: 'error',
+        })
+      );
+      dispatcher(addSeparator('master'));
+      dispatcher(setActive('master'));
+
       notification.open({
         message: t('convert.error.title'),
         description: t('convert.error.message', { from: langList[lang], to: langList[newLang] }),
