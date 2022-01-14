@@ -170,16 +170,16 @@ public: 	*T: content;
 private: 	int: allocated;
 }
 class: ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}${
-public: 	function: operator = (*char: offset, int: l) => (){
-		content = offset;
-		length = l;
-	}
+public: 	*char: content;
+	int: length;
 	function: string(*char: offset, int: l) => (){
 		content = offset;
 		length = l;
 	}
-	int: length;
-	*char: content;
+	function: operator = (*char: offset, int: l) => (){
+		content = offset;
+		length = l;
+	}
 }
 function: ${"ja":"文字列表示", "natja":"文字列表示", "en":"printString", "naten":"printString"}$(string: a) => (){
 	_printString(a.content, a.length);
@@ -200,10 +200,16 @@ function: ${"ja":"glGetUniformLocation", "natja":"glGetUniformLocation", "en":"g
 	loc = _glGetUniformLocation(i, a.content, a.length);
 }
 class: ${"ja":"ベクトル3D", "natja":"ベクトル3D", "en":"Vector3D", "naten":"Vector3D"}${
-public: 	function: operator + (Vector3D: a) => (Vector3D: b){
-		b.x = a.x + x;
-		b.y = a.y + y;
-		b.z = a.z + z;
+public: 	double: x;
+	double: y;
+	double: z;
+	function: Vector3D(double: a, double: b, double: c) => (){
+		x = a;
+		y = b;
+		z = c;
+	}
+	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
+		l = root(x * x + y * y + z * z);
 	}
 	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$() => (){
 		double: l = root((x * x) + (y * y) + (z * z));
@@ -211,17 +217,11 @@ public: 	function: operator + (Vector3D: a) => (Vector3D: b){
 		y = y / l;
 		z = z / l;
 	}
-	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
-		l = root(x * x + y * y + z * z);
+	function: operator + (Vector3D: a) => (Vector3D: b){
+		b.x = a.x + x;
+		b.y = a.y + y;
+		b.z = a.z + z;
 	}
-	function: Vector3D(double: a, double: b, double: c) => (){
-		x = a;
-		y = b;
-		z = c;
-	}
-	double: z;
-	double: y;
-	double: x;
 }
 function: ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$(Vector3D: a, Vector3D: b) => (Vector3D: result){
 	result.x = a.x + b.x;
@@ -255,19 +255,22 @@ function: ${"ja":"ベクトル3D縮小", "natja":"ベクトル3D縮小", "en":"d
 	result.z = a.z / x;
 }
 class: ${"ja":"行列4x4", "natja":"行列4x4", "en":"Matrix4x4", "naten":"Matrix4x4"}${
-public: 	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(double: x, double: y, double: z) => (){
-		matrix[0] = matrix[0] * x;
-		matrix[1] = matrix[1] * x;
-		matrix[2] = matrix[2] * x;
-		matrix[3] = matrix[3] * x;
-		matrix[4] = matrix[4] * y;
-		matrix[5] = matrix[5] * y;
-		matrix[6] = matrix[6] * y;
-		matrix[7] = matrix[7] * y;
-		matrix[8] = matrix[8] * z;
-		matrix[9] = matrix[9] * z;
-		matrix[10] = matrix[10] * z;
-		matrix[11] = matrix[11] * z;
+public: 	double: matrix[16];
+	function: Matrix4x4() => (){
+		matrix = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
+	}
+	function: ${"ja":"単位化", "natja":"単位化", "en":"identity", "naten":"identity"}$() => (){
+		matrix = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
+	}
+	function: ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$(Vector3D: offset) => (){
+		double: mat12 = matrix[12];
+		double: mat13 = matrix[13];
+		double: mat14 = matrix[14];
+		double: mat15 = matrix[15];
+		matrix[12] = matrix[0] * offset.x + matrix[4] * offset.y + matrix[8] * offset.z + mat12;
+		matrix[13] = matrix[1] * offset.x + matrix[5] * offset.y + matrix[9] * offset.z + mat13;
+		matrix[14] = matrix[2] * offset.x + matrix[6] * offset.y + matrix[10] * offset.z + mat13;
+		matrix[15] = matrix[3] * offset.x + matrix[7] * offset.y + matrix[11] * offset.z + mat15;
 	}
 	function: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(Vector3D: axis, double: theta) => (){
 		axis.normalize();
@@ -308,23 +311,20 @@ public: 	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", 
 		matrix[10] = a02 * b20 + a12 * b21 + a22 * b22;
 		matrix[11] = a03 * b20 + a13 * b21 + a23 * b22;
 	}
-	function: ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$(Vector3D: offset) => (){
-		double: mat12 = matrix[12];
-		double: mat13 = matrix[13];
-		double: mat14 = matrix[14];
-		double: mat15 = matrix[15];
-		matrix[12] = matrix[0] * offset.x + matrix[4] * offset.y + matrix[8] * offset.z + mat12;
-		matrix[13] = matrix[1] * offset.x + matrix[5] * offset.y + matrix[9] * offset.z + mat13;
-		matrix[14] = matrix[2] * offset.x + matrix[6] * offset.y + matrix[10] * offset.z + mat13;
-		matrix[15] = matrix[3] * offset.x + matrix[7] * offset.y + matrix[11] * offset.z + mat15;
+	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(double: x, double: y, double: z) => (){
+		matrix[0] = matrix[0] * x;
+		matrix[1] = matrix[1] * x;
+		matrix[2] = matrix[2] * x;
+		matrix[3] = matrix[3] * x;
+		matrix[4] = matrix[4] * y;
+		matrix[5] = matrix[5] * y;
+		matrix[6] = matrix[6] * y;
+		matrix[7] = matrix[7] * y;
+		matrix[8] = matrix[8] * z;
+		matrix[9] = matrix[9] * z;
+		matrix[10] = matrix[10] * z;
+		matrix[11] = matrix[11] * z;
 	}
-	function: ${"ja":"単位化", "natja":"単位化", "en":"identity", "naten":"identity"}$() => (){
-		matrix = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
-	}
-	function: Matrix4x4() => (){
-		matrix = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
-	}
-	double: matrix[16];
 }
 function: ${"ja":"カメラ行列", "natja":"カメラ行列", "en":"setCameraMat", "naten":"setCameraMat"}$(Matrix4x4: m, Vector3D: pos, Vector3D: lookAt, Vector3D: up) => (Matrix4x4: res){
 	Vector3D: newForward(lookAt.x - pos.x, lookAt.y - pos.y, lookAt.z - pos.z);
@@ -454,21 +454,21 @@ public: 	Vector3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
 		transMat.identity();
 		scaleMat.identity();
 	}
-private: 	short: modelMatUniformLoc;
-	short: viewMatUniformLoc;
-	short: projMatUniformLoc;
-	short: objectColorUniLoc;
-	short: lightColorUniLoc;
-	short: lightPosUniLoc;
-	short: viewPosUniLoc;
-	int: shaderID;
-	Matrix4x4: rotateMat;
-	Matrix4x4: scaleMat;
-	Matrix4x4: transMat;
-	Matrix4x4: modelMat;
-	short: buffer;
+private: 	*double: vertices;
 	int: vertexNum;
-	*double: vertices;
+	short: buffer;
+	Matrix4x4: modelMat;
+	Matrix4x4: transMat;
+	Matrix4x4: scaleMat;
+	Matrix4x4: rotateMat;
+	int: shaderID;
+	short: viewPosUniLoc;
+	short: lightPosUniLoc;
+	short: lightColorUniLoc;
+	short: objectColorUniLoc;
+	short: projMatUniformLoc;
+	short: viewMatUniformLoc;
+	short: modelMatUniformLoc;
 }
 class: ${"ja":"カメラ", "natja":"カメラ", "en":"Camera", "naten":"Camera"}${
 public: 	Vector3D: ${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}$;
@@ -524,11 +524,11 @@ public: 	Vector3D: ${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}
 		view = addVector3D(lookDir, pos);
 		result = setCameraMat(result, pos, view, up);
 	}
-private: 	double: pitch;
-	double: yaw;
-	Vector3D: up;
+private: 	Vector3D: view;
 	Vector3D: lookDir;
-	Vector3D: view;
+	Vector3D: up;
+	double: yaw;
+	double: pitch;
 }
 class: ${"ja":"シーン", "natja":"シーン", "en":"Scene", "naten":"Scene"}${
 public: 	Array<*Model>: ${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$;
@@ -579,29 +579,29 @@ public: 	Array<*Model>: ${"ja":"スプライト配列", "natja":"スプライト
 		sprites.push(light);
 		id = sprites.length() - 1;
 	}
-private: 	double: lastY;
-	double: lastX;
-	double: elapsedTime;
-	double: now;
-	double: last;
+private: 	Matrix4x4: projMat;
 	Matrix4x4: viewMat;
-	Matrix4x4: projMat;
+	double: last;
+	double: now;
+	double: elapsedTime;
+	double: lastX;
+	double: lastY;
 }
 class: ${"ja":"ベクトル2D", "natja":"ベクトル2D", "en":"Vector2D", "naten":"Vector2D"}${
-public: 	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$() => (){
-		double: l = root(x * x + y * y);
-		x = x / l;
-		y = y / l;
-	}
-	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
-		l = root(x * x + y * y);
-	}
+public: 	double: x;
+	double: y;
 	function: Vector2D(double: a, double: b) => (){
 		x = a;
 		y = b;
 	}
-	double: y;
-	double: x;
+	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
+		l = root(x * x + y * y);
+	}
+	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$() => (){
+		double: l = root(x * x + y * y);
+		x = x / l;
+		y = y / l;
+	}
 }
 function: ${"ja":"ベクトル2Dの和", "natja":"ベクトル2Dの和", "en":"addVector2D", "naten":"addVector2D"}$(Vector2D: a, Vector2D: b) => (Vector2D: result){
 	result.x = a.x + b.x;
@@ -626,17 +626,17 @@ function: ${"ja":"ベクトル2D縮小", "natja":"ベクトル2D縮小", "en":"d
 	result.y = a.y / x;
 }
 class: ${"ja":"アニメーション情報", "natja":"アニメーション情報", "en":"AnimationInfo", "naten":"AnimationInfo"}${
-public: 	function: AnimationInfo(int: a, double: start, double: d, double: x, double: y) => (){
+public: 	int: id;
+	double: startTime;
+	double: duration;
+	Vector2D: info;
+	function: AnimationInfo(int: a, double: start, double: d, double: x, double: y) => (){
 		id = a;
 		startTime = start;
 		duration = d;
 		info.x = x;
 		info.y = y;
 	}
-	Vector2D: info;
-	double: duration;
-	double: startTime;
-	int: id;
 }
 class: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
 public: 	Vector3D: color;
@@ -806,27 +806,27 @@ public: 	Vector3D: color;
 		AnimationInfo: temp(0, start, duration, offset.x, offset.y);
 		animations.push(temp);
 	}
-private: 	Array<AnimationInfo>: animations;
-	short: samplerUniformLoc;
-	short: modelMatUniformLoc;
-	short: projMatUniformLoc;
-	short: transparencyUniLoc;
-	short: objectColorUniLoc;
-	int: shaderID;
-	double: zIndex;
-	Matrix4x4: rotateMat;
-	Matrix4x4: scaleMat;
-	Matrix4x4: transMat;
-	Matrix4x4: modelMat;
-	short: texture;
-	short: elementBuffer;
-	short: texCoordBuffer;
-	short: buffer;
-	int: pointNum;
-	int: vertexNum;
-	*double: texCoords;
+private: 	*double: vertices;
 	*short: indices;
-	*double: vertices;
+	*double: texCoords;
+	int: vertexNum;
+	int: pointNum;
+	short: buffer;
+	short: texCoordBuffer;
+	short: elementBuffer;
+	short: texture;
+	Matrix4x4: modelMat;
+	Matrix4x4: transMat;
+	Matrix4x4: scaleMat;
+	Matrix4x4: rotateMat;
+	double: zIndex;
+	int: shaderID;
+	short: objectColorUniLoc;
+	short: transparencyUniLoc;
+	short: projMatUniformLoc;
+	short: modelMatUniformLoc;
+	short: samplerUniformLoc;
+	Array<AnimationInfo>: animations;
 }
 class: ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}${
 public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$;
@@ -921,10 +921,10 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		}
 		id = addPolygon(points.content, points.size, pos, color, zIndex);
 	}
-private: 	double: elapsedTime;
-	double: now;
+private: 	Matrix4x4: projMat;
 	double: last;
-	Matrix4x4: projMat;
+	double: now;
+	double: elapsedTime;
 }
 function: 引数なしjsリスナー呼び出し(function: () => (): callback) => (){
 	callback();

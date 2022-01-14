@@ -170,16 +170,16 @@
 非公開 : 	allocated という 整数 を おく 。 
 } 
 クラス : ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}$ {
-公開 : 	関数 : 演算子 = ( offset という * 文字 , l という 整数 ) => ( ) ここから
-		content に offset を 代入する 。 
-		長さ に l を 代入する 。 
-	ここまで実行 
+公開 : 	content という * 文字 を おく 。 
+	長さ という 整数 を おく 。 
 	( offset という * 文字 , l という 整数 ) を とり 文字列 という 関数 を おく 。 ここから
 		content に offset を 代入する 。 
 		長さ に l を 代入する 。 
 	ここまで実行 
-	長さ という 整数 を おく 。 
-	content という * 文字 を おく 。 
+	関数 : 演算子 = ( offset という * 文字 , l という 整数 ) => ( ) ここから
+		content に offset を 代入する 。 
+		長さ に l を 代入する 。 
+	ここまで実行 
 } 
 ( a という 文字列 ) を とり ${"ja":"文字列表示", "natja":"文字列表示", "en":"printString", "naten":"printString"}$ という 関数 を おく 。 ここから
 	a の content , a の 長さ _文字列表示 する 。 
@@ -200,10 +200,16 @@
 	loc に _glGetUniformLocation ( i , a の content , a の 長さ ) を 代入する 。 
 ここまで実行 
 クラス : ${"ja":"ベクトル3D", "natja":"ベクトル3D", "en":"Vector3D", "naten":"Vector3D"}$ {
-公開 : 	関数 : 演算子  + ( a という ベクトル3D ) => ( b という ベクトル3D ) ここから
-		b の x に a の x  + x を 代入する 。 
-		b の y に a の y  + y を 代入する 。 
-		b の z に a の z  + z を 代入する 。 
+公開 : 	x という 実数 を おく 。 
+	y という 実数 を おく 。 
+	z という 実数 を おく 。 
+	( a という 実数 , b という 実数 , c という 実数 ) を とり ベクトル3D という 関数 を おく 。 ここから
+		x に a を 代入する 。 
+		y に b を 代入する 。 
+		z に c を 代入する 。 
+	ここまで実行 
+	( l という 実数 ) を 返す ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$ という 関数 を おく 。 ここから
+		l に 平方根 ( x  * x  + y  * y  + z  * z ) を 代入する 。 
 	ここまで実行 
 	関数 ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$ を おく 。 ここから
 		l という 実数 を 平方根 ( ( x  * x )  + ( y  * y )  + ( z  * z ) ) で 初期化 。 
@@ -211,17 +217,11 @@
 		y に y  / l を 代入する 。 
 		z に z  / l を 代入する 。 
 	ここまで実行 
-	( l という 実数 ) を 返す ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$ という 関数 を おく 。 ここから
-		l に 平方根 ( x  * x  + y  * y  + z  * z ) を 代入する 。 
+	関数 : 演算子  + ( a という ベクトル3D ) => ( b という ベクトル3D ) ここから
+		b の x に a の x  + x を 代入する 。 
+		b の y に a の y  + y を 代入する 。 
+		b の z に a の z  + z を 代入する 。 
 	ここまで実行 
-	( a という 実数 , b という 実数 , c という 実数 ) を とり ベクトル3D という 関数 を おく 。 ここから
-		x に a を 代入する 。 
-		y に b を 代入する 。 
-		z に c を 代入する 。 
-	ここまで実行 
-	z という 実数 を おく 。 
-	y という 実数 を おく 。 
-	x という 実数 を おく 。 
 } 
 ( a という ベクトル3D , b という ベクトル3D ) を とり ( result という ベクトル3D ) を 返す ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$ という 関数 を おく 。 ここから
 	result の x に a の x  + b の x を 代入する 。 
@@ -255,19 +255,22 @@
 	result の z に a の z  / x を 代入する 。 
 ここまで実行 
 クラス : ${"ja":"行列4x4", "natja":"行列4x4", "en":"Matrix4x4", "naten":"Matrix4x4"}$ {
-公開 : 	( x という 実数 , y という 実数 , z という 実数 ) を とり ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$ という 関数 を おく 。 ここから
-		matrix [ 0 ] に matrix [ 0 ]  * x を 代入する 。 
-		matrix [ 1 ] に matrix [ 1 ]  * x を 代入する 。 
-		matrix [ 2 ] に matrix [ 2 ]  * x を 代入する 。 
-		matrix [ 3 ] に matrix [ 3 ]  * x を 代入する 。 
-		matrix [ 4 ] に matrix [ 4 ]  * y を 代入する 。 
-		matrix [ 5 ] に matrix [ 5 ]  * y を 代入する 。 
-		matrix [ 6 ] に matrix [ 6 ]  * y を 代入する 。 
-		matrix [ 7 ] に matrix [ 7 ]  * y を 代入する 。 
-		matrix [ 8 ] に matrix [ 8 ]  * z を 代入する 。 
-		matrix [ 9 ] に matrix [ 9 ]  * z を 代入する 。 
-		matrix [ 10 ] に matrix [ 10 ]  * z を 代入する 。 
-		matrix [ 11 ] に matrix [ 11 ]  * z を 代入する 。 
+公開 : 	matrix [ 16 ] という 実数 を おく 。 
+	関数 行列4x4 を おく 。 ここから
+		matrix に [ 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 ] を 代入する 。 
+	ここまで実行 
+	関数 ${"ja":"単位化", "natja":"単位化", "en":"identity", "naten":"identity"}$ を おく 。 ここから
+		matrix に [ 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 ] を 代入する 。 
+	ここまで実行 
+	( offset という ベクトル3D ) を とり ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$ という 関数 を おく 。 ここから
+		mat12 という 実数 を matrix [ 12 ] で 初期化 。 
+		mat13 という 実数 を matrix [ 13 ] で 初期化 。 
+		mat14 という 実数 を matrix [ 14 ] で 初期化 。 
+		mat15 という 実数 を matrix [ 15 ] で 初期化 。 
+		matrix [ 12 ] に matrix [ 0 ]  * offset の x  + matrix [ 4 ]  * offset の y  + matrix [ 8 ]  * offset の z  + mat12 を 代入する 。 
+		matrix [ 13 ] に matrix [ 1 ]  * offset の x  + matrix [ 5 ]  * offset の y  + matrix [ 9 ]  * offset の z  + mat13 を 代入する 。 
+		matrix [ 14 ] に matrix [ 2 ]  * offset の x  + matrix [ 6 ]  * offset の y  + matrix [ 10 ]  * offset の z  + mat13 を 代入する 。 
+		matrix [ 15 ] に matrix [ 3 ]  * offset の x  + matrix [ 7 ]  * offset の y  + matrix [ 11 ]  * offset の z  + mat15 を 代入する 。 
 	ここまで実行 
 	( axis という ベクトル3D , theta という 実数 ) を とり ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$ という 関数 を おく 。 ここから
 		axis の 正規化 する 。 
@@ -308,23 +311,20 @@
 		matrix [ 10 ] に a02  * b20  + a12  * b21  + a22  * b22 を 代入する 。 
 		matrix [ 11 ] に a03  * b20  + a13  * b21  + a23  * b22 を 代入する 。 
 	ここまで実行 
-	( offset という ベクトル3D ) を とり ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$ という 関数 を おく 。 ここから
-		mat12 という 実数 を matrix [ 12 ] で 初期化 。 
-		mat13 という 実数 を matrix [ 13 ] で 初期化 。 
-		mat14 という 実数 を matrix [ 14 ] で 初期化 。 
-		mat15 という 実数 を matrix [ 15 ] で 初期化 。 
-		matrix [ 12 ] に matrix [ 0 ]  * offset の x  + matrix [ 4 ]  * offset の y  + matrix [ 8 ]  * offset の z  + mat12 を 代入する 。 
-		matrix [ 13 ] に matrix [ 1 ]  * offset の x  + matrix [ 5 ]  * offset の y  + matrix [ 9 ]  * offset の z  + mat13 を 代入する 。 
-		matrix [ 14 ] に matrix [ 2 ]  * offset の x  + matrix [ 6 ]  * offset の y  + matrix [ 10 ]  * offset の z  + mat13 を 代入する 。 
-		matrix [ 15 ] に matrix [ 3 ]  * offset の x  + matrix [ 7 ]  * offset の y  + matrix [ 11 ]  * offset の z  + mat15 を 代入する 。 
+	( x という 実数 , y という 実数 , z という 実数 ) を とり ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$ という 関数 を おく 。 ここから
+		matrix [ 0 ] に matrix [ 0 ]  * x を 代入する 。 
+		matrix [ 1 ] に matrix [ 1 ]  * x を 代入する 。 
+		matrix [ 2 ] に matrix [ 2 ]  * x を 代入する 。 
+		matrix [ 3 ] に matrix [ 3 ]  * x を 代入する 。 
+		matrix [ 4 ] に matrix [ 4 ]  * y を 代入する 。 
+		matrix [ 5 ] に matrix [ 5 ]  * y を 代入する 。 
+		matrix [ 6 ] に matrix [ 6 ]  * y を 代入する 。 
+		matrix [ 7 ] に matrix [ 7 ]  * y を 代入する 。 
+		matrix [ 8 ] に matrix [ 8 ]  * z を 代入する 。 
+		matrix [ 9 ] に matrix [ 9 ]  * z を 代入する 。 
+		matrix [ 10 ] に matrix [ 10 ]  * z を 代入する 。 
+		matrix [ 11 ] に matrix [ 11 ]  * z を 代入する 。 
 	ここまで実行 
-	関数 ${"ja":"単位化", "natja":"単位化", "en":"identity", "naten":"identity"}$ を おく 。 ここから
-		matrix に [ 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 ] を 代入する 。 
-	ここまで実行 
-	関数 行列4x4 を おく 。 ここから
-		matrix に [ 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 , 0.0 , 0.0 , 0.0 , 0.0 , 1.0 ] を 代入する 。 
-	ここまで実行 
-	matrix [ 16 ] という 実数 を おく 。 
 } 
 ( m という 行列4x4 , pos という ベクトル3D , lookAt という ベクトル3D , up という ベクトル3D ) を とり ( res という 行列4x4 ) を 返す ${"ja":"カメラ行列", "natja":"カメラ行列", "en":"setCameraMat", "naten":"setCameraMat"}$ という 関数 を おく 。 ここから
 	newForward という ベクトル3D の オブジェクト を lookAt の x  - pos の x , lookAt の y  - pos の y , lookAt の z  - pos の z で 初期化 。 
@@ -454,21 +454,21 @@
 		transMat の 単位化 する 。 
 		scaleMat の 単位化 する 。 
 	ここまで実行 
-非公開 : 	modelMatUniformLoc という 整数32 を おく 。 
-	viewMatUniformLoc という 整数32 を おく 。 
-	projMatUniformLoc という 整数32 を おく 。 
-	objectColorUniLoc という 整数32 を おく 。 
-	lightColorUniLoc という 整数32 を おく 。 
-	lightPosUniLoc という 整数32 を おく 。 
-	viewPosUniLoc という 整数32 を おく 。 
-	shaderID という 整数 を おく 。 
-	rotateMat という 行列4x4 を おく 。 
-	scaleMat という 行列4x4 を おく 。 
-	transMat という 行列4x4 を おく 。 
-	modelMat という 行列4x4 を おく 。 
-	buffer という 整数32 を おく 。 
+非公開 : 	vertices という * 実数 を おく 。 
 	vertexNum という 整数 を おく 。 
-	vertices という * 実数 を おく 。 
+	buffer という 整数32 を おく 。 
+	modelMat という 行列4x4 を おく 。 
+	transMat という 行列4x4 を おく 。 
+	scaleMat という 行列4x4 を おく 。 
+	rotateMat という 行列4x4 を おく 。 
+	shaderID という 整数 を おく 。 
+	viewPosUniLoc という 整数32 を おく 。 
+	lightPosUniLoc という 整数32 を おく 。 
+	lightColorUniLoc という 整数32 を おく 。 
+	objectColorUniLoc という 整数32 を おく 。 
+	projMatUniformLoc という 整数32 を おく 。 
+	viewMatUniformLoc という 整数32 を おく 。 
+	modelMatUniformLoc という 整数32 を おく 。 
 } 
 クラス : ${"ja":"カメラ", "natja":"カメラ", "en":"Camera", "naten":"Camera"}$ {
 公開 : 	${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}$ という ベクトル3D を おく 。 
@@ -524,11 +524,11 @@
 		view に ベクトル3Dの和 ( lookDir , 座標 ) を 代入する 。 
 		result に カメラ行列 ( result , 座標 , view , up ) を 代入する 。 
 	ここまで実行 
-非公開 : 	pitch という 実数 を おく 。 
-	yaw という 実数 を おく 。 
-	up という ベクトル3D を おく 。 
+非公開 : 	view という ベクトル3D を おく 。 
 	lookDir という ベクトル3D を おく 。 
-	view という ベクトル3D を おく 。 
+	up という ベクトル3D を おく 。 
+	yaw という 実数 を おく 。 
+	pitch という 実数 を おく 。 
 } 
 クラス : ${"ja":"シーン", "natja":"シーン", "en":"Scene", "naten":"Scene"}$ {
 公開 : 	${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$ という 配列 < * モデル > を おく 。 
@@ -579,29 +579,29 @@
 		light スプライト配列 の 追加 する 。 
 		id に スプライト配列 の 長さ ( )  - 1 を 代入する 。 
 	ここまで実行 
-非公開 : 	lastY という 実数 を おく 。 
-	lastX という 実数 を おく 。 
-	elapsedTime という 実数 を おく 。 
-	now という 実数 を おく 。 
-	last という 実数 を おく 。 
+非公開 : 	projMat という 行列4x4 を おく 。 
 	viewMat という 行列4x4 を おく 。 
-	projMat という 行列4x4 を おく 。 
+	last という 実数 を おく 。 
+	now という 実数 を おく 。 
+	elapsedTime という 実数 を おく 。 
+	lastX という 実数 を おく 。 
+	lastY という 実数 を おく 。 
 } 
 クラス : ${"ja":"ベクトル2D", "natja":"ベクトル2D", "en":"Vector2D", "naten":"Vector2D"}$ {
-公開 : 	関数 ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$ を おく 。 ここから
-		l という 実数 を 平方根 ( x  * x  + y  * y ) で 初期化 。 
-		x に x  / l を 代入する 。 
-		y に y  / l を 代入する 。 
-	ここまで実行 
-	( l という 実数 ) を 返す ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$ という 関数 を おく 。 ここから
-		l に 平方根 ( x  * x  + y  * y ) を 代入する 。 
-	ここまで実行 
+公開 : 	x という 実数 を おく 。 
+	y という 実数 を おく 。 
 	( a という 実数 , b という 実数 ) を とり ベクトル2D という 関数 を おく 。 ここから
 		x に a を 代入する 。 
 		y に b を 代入する 。 
 	ここまで実行 
-	y という 実数 を おく 。 
-	x という 実数 を おく 。 
+	( l という 実数 ) を 返す ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$ という 関数 を おく 。 ここから
+		l に 平方根 ( x  * x  + y  * y ) を 代入する 。 
+	ここまで実行 
+	関数 ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$ を おく 。 ここから
+		l という 実数 を 平方根 ( x  * x  + y  * y ) で 初期化 。 
+		x に x  / l を 代入する 。 
+		y に y  / l を 代入する 。 
+	ここまで実行 
 } 
 ( a という ベクトル2D , b という ベクトル2D ) を とり ( result という ベクトル2D ) を 返す ${"ja":"ベクトル2Dの和", "natja":"ベクトル2Dの和", "en":"addVector2D", "naten":"addVector2D"}$ という 関数 を おく 。 ここから
 	result の x に a の x  + b の x を 代入する 。 
@@ -626,17 +626,17 @@
 	result の y に a の y  / x を 代入する 。 
 ここまで実行 
 クラス : ${"ja":"アニメーション情報", "natja":"アニメーション情報", "en":"AnimationInfo", "naten":"AnimationInfo"}$ {
-公開 : 	( a という 整数 , start という 実数 , d という 実数 , x という 実数 , y という 実数 ) を とり アニメーション情報 という 関数 を おく 。 ここから
+公開 : 	id という 整数 を おく 。 
+	startTime という 実数 を おく 。 
+	duration という 実数 を おく 。 
+	info という ベクトル2D を おく 。 
+	( a という 整数 , start という 実数 , d という 実数 , x という 実数 , y という 実数 ) を とり アニメーション情報 という 関数 を おく 。 ここから
 		id に a を 代入する 。 
 		startTime に start を 代入する 。 
 		duration に d を 代入する 。 
 		info の x に x を 代入する 。 
 		info の y に y を 代入する 。 
 	ここまで実行 
-	info という ベクトル2D を おく 。 
-	duration という 実数 を おく 。 
-	startTime という 実数 を おく 。 
-	id という 整数 を おく 。 
 } 
 クラス : ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}$ {
 公開 : 	色 という ベクトル3D を おく 。 
@@ -806,27 +806,27 @@
 		temp という アニメーション情報 の オブジェクト を 0 , start , duration , offset の x , offset の y で 初期化 。 
 		temp animations の 追加 する 。 
 	ここまで実行 
-非公開 : 	animations という 配列 < アニメーション情報 > を おく 。 
-	samplerUniformLoc という 整数32 を おく 。 
-	modelMatUniformLoc という 整数32 を おく 。 
-	projMatUniformLoc という 整数32 を おく 。 
-	transparencyUniLoc という 整数32 を おく 。 
-	objectColorUniLoc という 整数32 を おく 。 
-	shaderID という 整数 を おく 。 
-	zIndex という 実数 を おく 。 
-	rotateMat という 行列4x4 を おく 。 
-	scaleMat という 行列4x4 を おく 。 
-	transMat という 行列4x4 を おく 。 
-	modelMat という 行列4x4 を おく 。 
-	texture という 整数32 を おく 。 
-	elementBuffer という 整数32 を おく 。 
-	texCoordBuffer という 整数32 を おく 。 
-	buffer という 整数32 を おく 。 
-	pointNum という 整数 を おく 。 
-	vertexNum という 整数 を おく 。 
-	texCoords という * 実数 を おく 。 
+非公開 : 	vertices という * 実数 を おく 。 
 	indices という * 整数32 を おく 。 
-	vertices という * 実数 を おく 。 
+	texCoords という * 実数 を おく 。 
+	vertexNum という 整数 を おく 。 
+	pointNum という 整数 を おく 。 
+	buffer という 整数32 を おく 。 
+	texCoordBuffer という 整数32 を おく 。 
+	elementBuffer という 整数32 を おく 。 
+	texture という 整数32 を おく 。 
+	modelMat という 行列4x4 を おく 。 
+	transMat という 行列4x4 を おく 。 
+	scaleMat という 行列4x4 を おく 。 
+	rotateMat という 行列4x4 を おく 。 
+	zIndex という 実数 を おく 。 
+	shaderID という 整数 を おく 。 
+	objectColorUniLoc という 整数32 を おく 。 
+	transparencyUniLoc という 整数32 を おく 。 
+	projMatUniformLoc という 整数32 を おく 。 
+	modelMatUniformLoc という 整数32 を おく 。 
+	samplerUniformLoc という 整数32 を おく 。 
+	animations という 配列 < アニメーション情報 > を おく 。 
 } 
 クラス : ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}$ {
 公開 : 	${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$ という 配列 < * スプライト > を おく 。 
@@ -921,10 +921,10 @@
 		ここまで実行 
 		id に 多角形追加 ( points の content , points の size , 座標 , 色 , zIndex ) を 代入する 。 
 	ここまで実行 
-非公開 : 	elapsedTime という 実数 を おく 。 
-	now という 実数 を おく 。 
+非公開 : 	projMat という 行列4x4 を おく 。 
 	last という 実数 を おく 。 
-	projMat という 行列4x4 を おく 。 
+	now という 実数 を おく 。 
+	elapsedTime という 実数 を おく 。 
 } 
 ( callback という 関数 : ( ) => ( ) ) を とり 引数なしjsリスナー呼び出し という 関数 を おく 。 ここから
 	callback する 。 
