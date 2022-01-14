@@ -2,8 +2,8 @@
   "name": "laze-web",
   "private": true,
   "scripts": {
-    "dev": "ts-node -r tsconfig-paths/register --project tsconfig.server.json server/index.ts",
-    "dev-ip": "next dev --hostname 0.0.0.0",
+    "dev:server": "ts-node -r tsconfig-paths/register --project tsconfig.server.json server/index.ts",
+    "dev": "next dev",
     "build:next": "next build",
     "build:server": "tsc --project tsconfig.server.json",
     "build": "yarn build:server & yarn build:next",
@@ -12,7 +12,8 @@
     "lint:eslint": "eslint --cache .",
     "lint:prettier": "prettier --check .",
     "test": "jest",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "prepare": "husky install"
   },
   "prettier": {
     "trailingComma": "es5",
@@ -68,7 +69,7 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "eslint-plugin-tailwindcss": "^1.17.2",
-    "husky": "7.0.4",
+    "husky": "^7.0.0",
     "lint-staged": "12.1.2",
     "postcss": "^8.4.5",
     "prettier": "2.5.1",

@@ -34,6 +34,7 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
       lang: 'ja',
       keyControl: initialKeyControl,
       compiled: false,
+      interval: null,
     },
   };
 

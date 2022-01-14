@@ -20,12 +20,12 @@ const commands = {
   convert: (id: string, option: convertRequest['option']) => {
     return [
       process.env.COMPILER_PATH,
-      id,
-      `-c ${CACHE_DIR}`,
+      option.label,
+      `-c ${CACHE_DIR}/${id}`,
       '--mode convert',
       `--parse-json ${LANG_DIR}/${option.from}.json`,
       `--convert-json ${LANG_DIR}/${option.to}.json`,
-      `--convert-output ${id}-dist`,
+      `--convert-output ${option.label}-dist`,
       `--parser-opt ${PARSER_DIR}/${option.from}.parser`,
       `--convert-link std.laze`,
       `--convert-dir ${COMMON_DIR}/${option.from}/`,
@@ -36,16 +36,18 @@ const commands = {
 export const convertCode = async (code: string, option: convertRequest['option']): Promise<convertResponse> => {
   const id = Date.now().toString(36) + Math.random().toString(36);
 
-  await fs.promises.writeFile(`${CACHE_DIR}/${id}`, code, { encoding: 'utf8', flag: 'w' });
+  await fs.promises.mkdir(`${CACHE_DIR}/${id}`, { recursive: true });
+  await fs.promises.writeFile(`${CACHE_DIR}/${id}/${option.label}`, code, { encoding: 'utf8', flag: 'w' });
   const { stderr } = await exec(commands.convert(id, option), execOption);
 
   if (stderr) {
     console.log(stderr);
     return {
       success: false,
+      message: stderr,
     };
   } else {
-    const code = await fs.promises.readFile(`${CACHE_DIR}/${id}-dist`, { encoding: 'utf8' });
+    const code = await fs.promises.readFile(`${CACHE_DIR}/${id}/${option.label}-dist`, { encoding: 'utf8' });
     return {
       success: true,
       code,
