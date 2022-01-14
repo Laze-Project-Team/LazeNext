@@ -106,6 +106,7 @@ export type compilerVariable = {
   lang: string;
   keyControl: keyControlType;
   compiled: boolean;
+  interval: NodeJS.Timer | null;
 };
 
 export type getImportsProps = {

@@ -40,8 +40,6 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
 
     dispatcher(addSeparator(variables.id));
 
-    let interval: NodeJS.Timeout | null = null;
-
     return fetch(variables.wasm)
       .then((res) => {
         window.laze.props.webglObjects = {
@@ -57,8 +55,8 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         return WebAssembly.instantiate(bytes, importObject(variables.id));
       })
       .then((results) => {
-        if (interval) {
-          clearInterval(interval);
+        if (variables.interval) {
+          clearInterval(variables.interval);
         }
         const { instance } = results;
         window.laze.props.webglObjects.webglPrograms.push(
@@ -87,7 +85,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         };
 
         if (instance.exports.loop) {
-          interval = setInterval(draw, 1000 / 60);
+          variables.interval = setInterval(draw, 1000);
         }
       })
       .catch((err) => {
