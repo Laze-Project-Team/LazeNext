@@ -929,4 +929,4 @@ ending here
 Declare function 引数なしjsリスナー呼び出し that takes callback as function : ( ) => ( ) with code starting here
 	Call callback . 
 ending here 
-Export function 引数なしjsリスナー呼び出し to "jsCallListenerNoParam".
+Export function 引数なしjsリスナー呼び出し to "jsCallListenerNoParam" .
