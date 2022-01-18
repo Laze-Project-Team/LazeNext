@@ -76,7 +76,8 @@
         "main":"main",
         "stringClass":"string",
         "stmliststart": "{",
-        "stmlistend":"}"
+        "stmlistend":"}",
+        "counter":"counter"
     },
     "grammar":{
         "exp":{
@@ -143,7 +144,7 @@
             "break":"break ;",
             "continue":"continue ;",
             "compound":"{ stmlist }",
-            "repeat":"( exp ) repeat stm"
+            "repeat":"repeat ( exp ) stm"
         },
         "dec":{
             "var": {

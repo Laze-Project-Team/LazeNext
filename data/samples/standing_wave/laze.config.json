@@ -2,7 +2,7 @@
   "id": "standing_wave",
   "name": {
     "ja": "定常波(3D)",
-    "en": "Staiding Wave(3D)"
+    "en": "Standing Wave(3D)"
   },
   "description": {
     "ja": "3Dライブラリを用いて定常波を再現するプログラムです。",
