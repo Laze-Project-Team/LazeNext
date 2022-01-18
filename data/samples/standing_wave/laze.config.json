@@ -6,7 +6,7 @@
   },
   "description": {
     "ja": "3Dライブラリを用いて定常波を再現するプログラムです。",
-    "en": "A program using 3D library to reproduce staiding wave."
+    "en": "A program using 3D library to reproduce standing wave."
   },
   "dependencies": {}
 }

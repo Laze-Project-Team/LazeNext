@@ -41,7 +41,6 @@ export const convertCode = async (code: string, option: convertRequest['option']
   const { stderr } = await exec(commands.convert(id, option), execOption);
 
   if (stderr) {
-    console.log(stderr);
     return {
       success: false,
       message: stderr,
