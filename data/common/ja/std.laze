@@ -53,6 +53,12 @@
 関数: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(整数32: i) => () = js読み込み("webgl", "activeTexture");
 関数: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(整数32: i, 整数32: j) => () = js読み込み("webgl", "bindTexture");
 関数: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = js読み込み("js", "lockPointer");
+関数:Arduino設定(整数:vendorId, 関数:c() => ()) => () = js読み込み("arduino", "setUp");
+関数:Arduinoコマンド送信(文字:コマンド, 整数32:data) => () = js読み込み("arduino", "sendCommand");
+関数:Arduinoデータ受信() => () = js読み込み("arduino", "checkInput");
+関数:Arduinoアナログ入力(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "analogRead");
+関数:Arduinoデジタル入力(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "digitalRead");
+
 関数: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(実数: input) => (実数: 結果){
 	実数: PI = 3.14159265358979312;
 	整数: temp = input / (2.0 * PI);
@@ -1008,4 +1014,23 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	実数:${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$;
 	実数:${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$;
 	実数:${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$;
+}
+
+関数:Arduino5V送る(整数:ピン番号) => (){
+	Arduinoコマンド送信('H', ピン番号);
+}
+関数:Arduino0V送る(整数:ピン番号) => (){
+	Arduinoコマンド送信('L', ピン番号);
+}
+関数:Arduinoピン入出力設定(整数:ピン番号, 文字:入出力) => (){
+	// Arduinoコマンド送信(入出力, ピン番号);
+	もし(入出力 == '入')ならば{
+		Arduinoコマンド送信('I', ピン番号);
+	}
+	もし(入出力 == '出')ならば{
+		Arduinoコマンド送信('O', ピン番号);
+	}
+}
+関数:Arduinoアナログ入力ピン設定(整数:ピン番号) => (){
+    Arduinoコマンド送信('A', ピン番号);
 }

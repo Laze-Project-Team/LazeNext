@@ -3,6 +3,7 @@ import type { Dispatch } from 'redux';
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
 import { updatePosition } from '@/features/compiler/initialize/updatePosition';
 import { consoleSlice } from '@/features/redux/console';
+import { sleep } from '@/features/utils/sleep';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
 export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCompleteImportsFunction => {
@@ -261,6 +262,84 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       bindTexture: (i: number, j: number) => {
         gl.bindTexture(i, window.laze.props.webglObjects.webglTextures[j]);
+      },
+    },
+    arduino: {
+      setUp: async (vendorId: BigInt, index: number) => {
+        const executeCallback = () => {
+          if (window.laze.props.variables.lazeCallNoParam) {
+            window.laze.props.variables.lazeCallNoParam(index);
+          }
+        };
+
+        const { arduinoObjects } = window.laze.props;
+        if (!arduinoObjects.port) {
+          arduinoObjects.port = await window.navigator.serial.requestPort({
+            filters: [{ usbVendorId: Number(vendorId) }],
+          });
+          await arduinoObjects.port.open({ baudRate: 9600 });
+          executeCallback();
+          const decoder = new TextDecoderStream();
+          const inputStream = decoder.readable;
+          arduinoObjects.serialReader = inputStream.getReader();
+          arduinoObjects.port.readable?.pipeTo(decoder.writable);
+          await sleep(1000);
+        } else {
+          executeCallback();
+        }
+      },
+      sendCommand: (command: number, data: number) => {
+        const { arduinoObjects } = window.laze.props;
+        if (arduinoObjects.port) {
+          if (arduinoObjects.lastCommand.command !== command || arduinoObjects.lastCommand.data !== data) {
+            const writer = arduinoObjects.port.writable?.getWriter();
+            if (writer) {
+              writer.write(new Uint8Array([command]));
+              writer.write(new Uint8Array([data]));
+              writer.releaseLock();
+            } else {
+              console.error('no writer');
+            }
+          }
+          arduinoObjects.lastCommand.command = command;
+          arduinoObjects.lastCommand.data = data;
+        }
+      },
+      checkInput: async () => {
+        const { arduinoObjects } = window.laze.props;
+        if (arduinoObjects.serialReader) {
+          const { value, done } = await arduinoObjects.serialReader.read();
+          if (done == true && window.laze.props.variables.interval) {
+            clearInterval(window.laze.props.variables.interval);
+          }
+          const val = value?.replaceAll('\r', '');
+          if (val && !val.includes('\n')) {
+            arduinoObjects.receiveText += val;
+          } else if (val?.includes('\n')) {
+            arduinoObjects.receiveText += val;
+            const splitData = arduinoObjects.receiveText.split('\n');
+            arduinoObjects.receiveText = splitData[0];
+
+            if (arduinoObjects.receiveText.length) {
+              const input = parseInt(arduinoObjects.receiveText.substring(2));
+              switch (arduinoObjects.receiveText[0]) {
+                case 'D':
+                  arduinoObjects.digitalInput[parseInt(arduinoObjects.receiveText[1])] = input;
+                  break;
+                case 'A':
+                  arduinoObjects.analogInput[parseInt(arduinoObjects.receiveText[1])] = input;
+                  break;
+              }
+            }
+            arduinoObjects.receiveText = splitData[1];
+          }
+        }
+      },
+      analogRead: (pinNumber: BigInt) => {
+        return window.laze.props.arduinoObjects.analogInput[Number(pinNumber)];
+      },
+      digitalRead: (pinNumber: BigInt) => {
+        return window.laze.props.arduinoObjects.digitalInput[Number(pinNumber)];
       },
     },
   };
