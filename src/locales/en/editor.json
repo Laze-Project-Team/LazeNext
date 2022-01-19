@@ -4,16 +4,16 @@
   
   "footer": {
     "acknowledgement": "Made with Monaco Editor",
-    "home": "ホーム",
-    "docs": "ドキュメンテーション"
+    "home": "Home",
+    "docs": "Documentation"
   },
 
   "contextmenus": {
-    "newFile": "ファイルを作成",
-    "newFolder": "フォルダを作成",
-    "compile": "コンパイル",
-    "rename": "名前を変更",
-    "delete": "削除"
+    "newFile": "New File",
+    "newFolder": "New Folder",
+    "compile": "Compile",
+    "rename": "Rename",
+    "delete": "Delete"
   },
 
   "panellist": {

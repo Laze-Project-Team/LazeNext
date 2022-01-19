@@ -1,25 +1,25 @@
 {
   "title": "Privacy Policy",
-  "description": "",
+  "description": "This is the privacy policy for the Laze programming language website.",
 
   "Administrator": {
-    "title": "",
-    "1": ""
+    "title": "Administrator",
+    "1": "The Laze Project Team is responsible for the management of personal information collected from users."
   },
 
   "CollectingInfomation": {
-    "title": "",
-    "1": ""
+    "title": "Personal information to be collected",
+    "1": "The IP address of the user will be stored in the server log for a certain period of time."
   },
 
   "WhatToUse": {
-    "title": "",
-    "1": ""
+    "title": "Handling of personal information",
+    "1": "The personal information collected is used to prevent unauthorized access and is not passed on in whole or in part to third parties."
   },
 
   "GoogleAnalytics": {
     "title": "Google Analytics",
-    "1": "",
-    "2": ""
+    "1": "Some pages on this site use Google Analytics to help us understand the status of visits. The information collected by Google Analytics does not contain any personally identifiable information and will be managed by Google in accordance with its privacy policy.",
+    "2": "For more information about Google Analytics, including instructions, please see [Google Analytics Terms of Use](http://www.google.com/analytics/terms/en.html) or [Google's Privacy Policy](http://www.google.com/intl/en/policies/privacy/)."
   }
 }

@@ -1,42 +1,42 @@
 {
   "title": "Guideline",
-  "description": "",
+  "description": "Guidelines for the Laze programming language website.",
 
   "LogoGuideline": {
-    "title": "",
-    "description": "",
+    "title": "Logo Guideline",
+    "description": "The Laze logo is the property of the Laze Project Team and may be reused and modified under the following conditions",
 
     "requirement": {
-      "title": "",
-      "1": "",
+      "title": "Requirements",
+      "1": "Please indicate in an appropriate manner that the logo is attributed to the Laze Project Team.",
       "2": {
-        "title": "",
-        "1": "",
-        "2": ""
+        "title": "Modification of the logo is permitted only in the following cases",
+        "1": "Resize without changing the aspect ratio (but minimum size is 16x16)",
+        "2": "Color changes that do not compromise the image of Laze for design reasons (e.g. black and white)"
       },
-      "3": ""
+      "3": "If you have any doubts about whether or not modifications are allowed, please contact the Laze Project Team via [discord community](https://discord.gg/K3prMrmS7e) or email ([lazelang.official@gmail.com](mailto:lazelang.official @gmail.com))"
     },
 
     "LogoKinds": {
-      "title": "",
-      "description": ""
+      "title": "Types of Logo",
+      "description": "There are two types of Laze logos: one with the word Laze and one without, as shown below. Please use one or the other as appropriate for your situation and design."
     },
 
     "BrandColor": {
-      "title": "",
-      "description": "",
+      "title": "Brand Color",
+      "description": "Laze's brand colors are the two colors that make up the logo. The specific colors are shown below. The brand colors play an important role in shaping the image of Laze.",
 
-      "main": "",
-      "spare": ""
+      "main": "Laze Main Color",
+      "spare": "Laze Spare Color"
     },
 
     "ProhibitedMatters": {
-      "title": "",
-      "description": "",
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
+      "title": "Prohibited Matters",
+      "description": "The following are prohibited.",
+      "1": "Using the logo without following the terms of use",
+      "2": "Use of the logo in colors that are not in line with Laze's brand colors",
+      "3": "Use of the logo on content that is not related to Laze at all",
+      "4": "Use of the logo in any other way that may damage the image of Laze"
     }
   }
 }

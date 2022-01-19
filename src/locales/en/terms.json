@@ -1,80 +1,80 @@
 {
   "title": "Terms of Use",
-  "description": "",
+  "description": "Terms of use for the Laze programming language website.",
 
-  "declaration": "This page is now in preparation",
+  "declaration": "These Terms of Use (hereinafter referred to as the \"TheTerms\") apply to the Laze Project Team (hereinafter referred to as the \"Team\"). These Terms of Use (hereinafter referred to as \"Terms of Use\") apply to the services (hereinafter referred to as \"Services\") provided by the Team on this website (hereinafter referred to as the \"Service\") provided by the Team on this website. All users of the service (hereinafter referred to as \"users\") are required to follow these terms and conditions. Users shall use the Service in accordance with these Terms.",
 
   "1": {
-    "title": "",
-    "1": "",
-    "2": "",
-    "3": ""
+    "title": "Article 1 (Application)",
+    "1": "This Agreement shall apply to all relationships between you and the Team in relation to the use of the Service.",
+    "2": "In addition to these Terms of Use, the Team may establish various rules and regulations for use of the Service (hereinafter referred to as the \"Individual Rules\"). These individual rules may be called by any name. These Individual Regulations, regardless of their names, shall constitute a part of these Terms.",
+    "3": "In the event that the provisions of this Agreement are inconsistent with the provisions of the Individual Provisions of the preceding article, the provisions of the Individual Provisions shall take precedence unless otherwise specified in the Individual Provisions."
   },
   "2": {
-    "title": "",
-    "0": "",
-    "1": "",
-    "2": "",
-    "3": "",
-    "4": "",
-    "5": "",
-    "6": "",
-    "7": "",
-    "8": "",
-    "9": "",
-    "10": "",
-    "11": "",
-    "12": "",
-    "13": "",
-    "14": "",
-    "15": ""
+    "title": "Article 2 (Prohibited Matters)",
+    "0": "Users shall not commit any of the following acts when using the Service.",
+    "1": "Acts that violate laws or public order and morals",
+    "2": "Acts related to criminal acts",
+    "3": "Acts that infringe on copyrights, trademarks, or other intellectual property rights contained in the Service, including the contents of the Service.",
+    "4": "Destroy or interfere with the functioning of the server or network of this team, other users, or other third parties",
+    "5": "Use the information obtained through this service for commercial purposes",
+    "6": "Acts that may interfere with the operation of this team's services",
+    "7": "Acts of unauthorized access or attempts to do so",
+    "8": "Acts that collect or accumulate personal information about other users",
+    "9": "Acts of using the Service for illicit purposes",
+    "10": "Actions that cause disadvantage, damage, or discomfort to other users of this service or other third parties.",
+    "11": "Act of impersonating another user",
+    "12": "Advertise, advertise, solicit, or conduct business on the Service that is not authorized by this team",
+    "13": "Any act for the purpose of meeting a person of the opposite sex whom you do not know",
+    "14": "Directly or indirectly providing benefits to antisocial forces in relation to the services of this team",
+    "15": "Any other acts that the Team deems inappropriate."
   },
   "3": {
-    "title": "",
+    "title": "Article 3 (Suspension of Provision of the Service)",
     "1": {
-      "title": "",
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
+      "title": "The Team may suspend or discontinue the provision of all or part of the Services without prior notice to the User in the event that the Team deems any of the following to be the case",
+      "1": "When performing maintenance, inspection, or updating of the computer system for this service",
+      "2": "In the event that the provision of the Service becomes difficult due to force majeure such as earthquakes, lightning, fire, power outages, or natural disasters.",
+      "3": "In the event of a computer or communication line outage due to an accident",
+      "4": "In any other case in which the Team deems it difficult to provide the Service"
     },
-    "2": ""
+    "2": "The Team shall not be liable for any disadvantage or damage incurred by the User or any third party due to the suspension or interruption of the provision of the Service."
   },
   "4": {
-    "title": "",
+    "title": "Article 4 (Restriction of Use)",
     "1": {
-      "title": "",
-      "1": "",
-      "2": ""
+      "title": "The Team may, without prior notice, restrict the User from using all or part of the Services in the event that the User falls under any of the following",
+      "1": "If you violate any of the provisions of these Terms of Use",
+      "2": "In any other cases where the Team deems the use of the Service to be inappropriate."
     },
-    "2": ""
+    "2": "In no event shall the Team be liable for any damages incurred by the User as a result of any action taken by the Team in accordance with this Article."
   },
   "5": {
-    "title": "",
-    "1": "",
-    "2": "",
-    "3": ""
+    "title": "Article 5 (Disclaimer of Warranty and Disclaimer of Liability)",
+    "1": "The Team does not warrant, expressly or impliedly, that the Service is free from defects in fact or in law (including defects in safety, reliability, accuracy, completeness, effectiveness, fitness for a particular purpose, security, errors or bugs, infringement of rights, etc.)",
+    "2": "In no event shall we be liable for any loss or damage arising out of or in connection with this service. However, in the event that any contract between the Team and the User in relation to the Service (including these Terms of Use) However, if the contract between the Team and the User regarding the Service (including the Terms) constitutes a consumer contract as defined in the Consumer Contract Act, this disclaimer shall not apply.",
+    "3": "The Team shall not be liable for any transactions, communications, or disputes that may arise between the User and other users or third parties with respect to the Service."
   },
   "6": {
-    "title": "",
-    "1": ""
+    "title": "Article 6 (Change of Service Contents)",
+    "1": "The Team may change the contents of the Service or discontinue the provision of the Service without notice to the User, and shall not be liable for any damages incurred by the User as a result thereof."
   },
   "7": {
-    "title": "",
-    "1": ""
+    "title": "Article 7 (Changes to the Terms of Use)",
+    "1": "The Team may change the Terms of Use at any time without notice to the User, if the Team deems it necessary. If you start to use the Service after the modification of the Terms, you shall be deemed to have agreed to the modified Terms."
   },
   "8": {
-    "title": "",
-    "1": ""
+    "title": "Article 8 (Handling of Personal Information)",
+    "1": "The Team shall properly handle personal information obtained through the use of the Service in accordance with the Team's privacy policy."
   },
   "9": {
-    "title": "",
-    "1": ""
+    "title": "Article 9 (Prohibition of Transfer of Rights and Obligations)",
+    "1": "The User may not assign or pledge to any third party his/her position under the Service Agreement or any rights or obligations under these Terms of Use without the prior written consent of the Team."
   },
   "10": {
-    "title": "",
-    "1": "",
-    "2": "",
-    "3": ""
+    "title": "Article 10 (Language, Governing Law, and Jurisdiction)",
+    "1": "The Japanese language shall be the official language of this Agreement.",
+    "2": "Notwithstanding any principles of conflicts of laws, these Terms shall be governed by and construed in accordance with the laws of Japan.",
+    "3": "The Tokyo District Court or the Tokyo Summary Court shall have exclusive jurisdiction in the first instance over any dispute arising out of or in connection with the Service between the User and the Team."
   }
 }

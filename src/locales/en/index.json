@@ -1,6 +1,6 @@
 {
   "title": "Home Page for Laze Programming Language",
-  "description": "",
+  "description": "Laze is a programming language that has been developed with the goal of making programming easy for everyone. You can start programming right now in your browser, so let's jump into the world of Laze.",
   
   "Try Laze": "Try Laze now!",
 
@@ -34,25 +34,25 @@
     "3": {
       "title": "GUI apps (in preparation)",
       "description": "You will be able to easily create GUI applications as good as GUI using HTML and CSS. (In preparation)"
+    }
+  },
+  
+  "Join Laze": "Join Laze!",
+  "activities": {
+    "1": {
+      "title": "Read the documentation",
+      "description": "Read the Laze documentation. It is available online for free and anyone can read it.",
+      "action": "Laze Documentation"
     },
-
-    "Join Laze": "Join Laze!",
-    "activities": {
-      "1": {
-        "title": "",
-        "description": "",
-        "action": ""
-      },
-      "2": {
-        "title": "",
-        "description": "",
-        "action": ""
-      },
-      "3": {
-        "title": "",
-        "description": "",
-        "action": ""
-      }
+    "2": {
+      "title": "Join the community",
+      "description": "Ask and answer questions in the community, and make the community more active. The revitalization of the community will lead to the revitalization of the language itself.",
+      "action": "Laze Community"
+    },
+    "3": {
+      "title": "Contribute to Laze",
+      "description": "There are many things you can do, such as writing the standard Laze library, reporting bugs, suggesting improvements, etc. Laze is still a developing language, so let's make it better with your hands.",
+      "action": "GitHub Repository of Laze"
     }
   }
 }
