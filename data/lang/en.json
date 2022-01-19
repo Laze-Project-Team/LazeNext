@@ -5,8 +5,7 @@
         "tabsensitive": false
     },
     "tokens":{
-        "keywords":
-        [
+        "keywords":[
             {"name":"if", "value":"if"},
             {"name":"then", "value":"then"},
             {"name":"else", "value":"else"},

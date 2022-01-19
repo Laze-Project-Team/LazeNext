@@ -164,7 +164,8 @@
             "jsexport": "jsexport ( id , string ) ;",
             "operator": {
                 "normal":"function : operator oper ( fieldlist(params) ) => ( fieldlist(result) ) stm",
-                "assignnormal":"function : operator = ( fieldlist(params) ) => ( fieldlist(result) ) stm"
+                "assignnormal":"function : operator = ( fieldlist(params) ) => ( fieldlist(result) ) stm",
+                "subscriptnormal":"function : operator [ ] ( fieldlist(params) ) => ( fieldlist(result) ) stm"
             },
             "template": "type < id > : dec"
         },
