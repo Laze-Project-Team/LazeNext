@@ -5,7 +5,7 @@
     "dev:server": "ts-node -r tsconfig-paths/register --project tsconfig.server.json server/index.ts",
     "dev": "next dev",
     "build:next": "next build",
-    "build:server": "tsc --project tsconfig.server.json",
+    "build:server": "tsc --project tsconfig.server.json && tsc-alias -p tsconfig.server.json",
     "build": "yarn build:server & yarn build:next",
     "start": "node ./dist/index.js",
     "lint": "next lint",
@@ -46,7 +46,8 @@
     "redux-localstorage-simple": "^2.4.1",
     "remark-gfm": "^3.0.1",
     "sharp": "^0.29.3",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.4.0",
+    "tsc-alias": "^1.5.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.0.7",
