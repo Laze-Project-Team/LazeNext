@@ -282,7 +282,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
           const decoder = new TextDecoderStream();
           const inputStream = decoder.readable;
           arduinoObjects.serialReader = inputStream.getReader();
-          arduinoObjects.port.readable?.pipeTo(decoder.writable);
+          await arduinoObjects.port.readable?.pipeTo(decoder.writable);
           await sleep(1000);
         } else {
           executeCallback();
