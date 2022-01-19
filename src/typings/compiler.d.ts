@@ -78,6 +78,18 @@ export type webglObjects = {
   webglTextures: WebGLTexture[];
 };
 
+export type arduinoObjects = {
+  port: SerialPort | null;
+  serialReader: ReadableStreamDefaultReader<string> | null;
+  lastCommand: {
+    command: number;
+    data: number;
+  };
+  receiveText: string;
+  digitalInput: number[];
+  analogInput: number[];
+};
+
 export type getCompleteImportsFunction = (id: string) => importObject;
 
 type keyControlType = {
@@ -89,12 +101,8 @@ type keyControlType = {
   pressedKeys: boolean[];
 };
 
-export type compilerProps = {
-  canvas: HTMLCanvasElement;
-  gl: WebGLRenderingContext;
+export type compilerProps = getImportsProps & {
   importObject: getCompleteImportsFunction;
-  webglObjects: webglObjects;
-  variables: compilerVariable;
 };
 
 export type compilerVariable = {
@@ -107,12 +115,14 @@ export type compilerVariable = {
   keyControl: keyControlType;
   compiled: boolean;
   interval: NodeJS.Timer | null;
+  lazeCallNoParam: CallableFunction | null;
 };
 
 export type getImportsProps = {
   canvas: HTMLCanvasElement;
   gl: WebGLRenderingContext;
   webglObjects: webglObjects;
+  arduinoObjects: arduinoObjects;
   variables: compilerVariable;
 };
 

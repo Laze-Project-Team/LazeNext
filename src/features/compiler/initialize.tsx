@@ -72,6 +72,11 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         const stringLiterals = instance.exports.__stringLiterals as CallableFunction;
         const clearMemory = instance.exports.clearMemory as CallableFunction;
 
+        if (instance.exports.jsCallListenerNoParam) {
+          window.laze.props.variables.lazeCallNoParam = instance.exports
+            .jsCallListenerNoParam as CallableFunction | null;
+        }
+
         clearMemory();
         stringLiterals();
 

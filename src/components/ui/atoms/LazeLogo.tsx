@@ -3,10 +3,10 @@ import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 
 import { cx } from '@/features/utils/cx';
-import logo from '@/img/logo/logo.png';
-import logo_caption from '@/img/logo/logo_caption.png';
-import logo_caption_gray from '@/img/logo/logo_caption_gray.png';
-import logo_gray from '@/img/logo/logo_gray.png';
+import logo from '~/public/img/logo/logo.png';
+import logo_caption from '~/public/img/logo/logo_caption.png';
+import logo_caption_gray from '~/public/img/logo/logo_caption_gray.png';
+import logo_gray from '~/public/img/logo/logo_gray.png';
 
 type logoPotion = 'logo' | 'logo_gray' | 'logo_caption' | 'logo_caption_gray';
 
