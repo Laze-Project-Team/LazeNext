@@ -6,10 +6,15 @@ import { readDirRecursively } from '@/features/utils/readdir';
 import type { direntType } from '@/typings/directory';
 
 const handler: NextApiHandler = (req, res) => {
-  const { id } = req.query;
+  const { id, lang } = req.query;
 
   if (typeof id !== 'string') {
     res.status(400).send('query "id" is not valid');
+    return;
+  }
+
+  if (typeof lang !== 'string') {
+    res.status(400).send('query "lang" is not valid');
     return;
   }
 

@@ -1,5 +1,5 @@
 const search = __dirname.search(/\.next/);
-export const ROOT_DIR = search > 0 ? __dirname.slice(0, search - 1) : __dirname;
+export const ROOT_DIR = search > 0 ? __dirname.slice(0, search - 1) : __dirname.split('/').slice(0, -2).join('/');
 
 export const SAMPLE_DIR = ROOT_DIR + '/data/samples';
 export const CACHE_DIR = ROOT_DIR + '/cache';
