@@ -139,7 +139,8 @@ function: ${"ja":"平方根", "natja":"平方根", "en":"root", "naten":"root"}$
 	}
 }
 template<T>: class: ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}${
-public: 	*T: content;
+public: 	
+	*T: content;
 	int: size;
 	function: Array() => (){
 		size = 0;
@@ -587,17 +588,18 @@ private: 	Matrix4x4: projMat;
 	double: lastX;
 	double: lastY;
 }
-class: ${"ja":"ベクトル2D", "natja":"ベクトル2D", "en":"Vector2D", "naten":"Vector2D"}${
-public: 	double: x;
+class: ${"ja":"ベクトル2D", "natja":"ベクトル2D", "en":"Vector2D", "naten":"Vector2D", "default":"Vector2D"}${
+public: 	
+	double: x;
 	double: y;
 	function: Vector2D(double: a, double: b) => (){
 		x = a;
 		y = b;
 	}
-	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
+	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length", "default":"length"}$() => (double: l){
 		l = root(x * x + y * y);
 	}
-	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$() => (){
+	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize", "default":"normalize"}$() => (){
 		double: l = root(x * x + y * y);
 		x = x / l;
 		y = y / l;

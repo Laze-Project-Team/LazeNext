@@ -35,6 +35,18 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
       keyControl: initialKeyControl,
       compiled: false,
       interval: null,
+      lazeCallNoParam: null,
+    },
+    arduinoObjects: {
+      port: null,
+      serialReader: null,
+      lastCommand: {
+        command: -1,
+        data: -1,
+      },
+      receiveText: '',
+      digitalInput: new Array(100).fill(0),
+      analogInput: new Array(100).fill(0),
     },
   };
 
