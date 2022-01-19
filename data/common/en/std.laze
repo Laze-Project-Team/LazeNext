@@ -53,6 +53,11 @@ function: ${"ja":"テクスチャロード", "natja":"テクスチャロード",
 function: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(short: i) => () = jsload("webgl", "activeTexture");
 function: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(short: i, short: j) => () = jsload("webgl", "bindTexture");
 function: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = jsload("js", "lockPointer");
+function: Arduino設定(int: vendorId, function: () => (): c) => () = jsload("arduino", "setUp");
+function: Arduinoコマンド送信(char: コマンド, short: data) => () = jsload("arduino", "sendCommand");
+function: Arduinoデータ受信() => () = jsload("arduino", "checkInput");
+function: Arduinoアナログ入力(int: ピン番号) => (short: データ) = jsload("arduino", "analogRead");
+function: Arduinoデジタル入力(int: ピン番号) => (short: データ) = jsload("arduino", "digitalRead");
 function: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(double: input) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	int: temp = input / (2.0 * PI);
@@ -139,8 +144,7 @@ function: ${"ja":"平方根", "natja":"平方根", "en":"root", "naten":"root"}$
 	}
 }
 template<T>: class: ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}${
-public: 	
-	*T: content;
+public: 	*T: content;
 	int: size;
 	function: Array() => (){
 		size = 0;
@@ -222,6 +226,26 @@ public: 	double: x;
 		b.x = a.x + x;
 		b.y = a.y + y;
 		b.z = a.z + z;
+	}
+	function: operator - (Vector3D: a) => (Vector3D: b){
+		b.x = a.x - x;
+		b.y = a.y - y;
+		b.z = a.z - z;
+	}
+	function: operator * (double: k) => (Vector3D: b){
+		b.x = x * k;
+		b.y = y * k;
+		b.z = z * k;
+	}
+	function: operator * (Vector3D: a) => (Vector3D: b){
+		b.x = y * a.z - z * a.y;
+		b.y = z * a.x - x * a.z;
+		b.z = x * a.y - y * a.x;
+	}
+	function: operator / (double: k) => (Vector3D: b){
+		b.x = x / k;
+		b.y = y / k;
+		b.z = z / k;
 	}
 }
 function: ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$(Vector3D: a, Vector3D: b) => (Vector3D: result){
@@ -417,13 +441,13 @@ public: 	Vector3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
 		pos = addVector3D(pos, offset);
 	}
 	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(double: x, double: y, double: z) => (){
-		Matrix4x4: temp();
+		Matrix4x4: temp;
 		temp.identity();
 		temp.scale(x, y, z);
 		scaleMat = mulMatrix4x4(temp, scaleMat);
 	}
 	function: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(Vector3D: axis, double: t) => (){
-		Matrix4x4: temp();
+		Matrix4x4: temp;
 		temp.identity();
 		temp.rotate(axis, t);
 		rotateMat = mulMatrix4x4(temp, rotateMat);
@@ -588,18 +612,17 @@ private: 	Matrix4x4: projMat;
 	double: lastX;
 	double: lastY;
 }
-class: ${"ja":"ベクトル2D", "natja":"ベクトル2D", "en":"Vector2D", "naten":"Vector2D", "default":"Vector2D"}${
-public: 	
-	double: x;
+class: ${"ja":"ベクトル2D", "natja":"ベクトル2D", "en":"Vector2D", "naten":"Vector2D"}${
+public: 	double: x;
 	double: y;
 	function: Vector2D(double: a, double: b) => (){
 		x = a;
 		y = b;
 	}
-	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length", "default":"length"}$() => (double: l){
+	function: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (double: l){
 		l = root(x * x + y * y);
 	}
-	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize", "default":"normalize"}$() => (){
+	function: ${"ja":"正規化", "natja":"正規化", "en":"normalize", "naten":"normalize"}$() => (){
 		double: l = root(x * x + y * y);
 		x = x / l;
 		y = y / l;
@@ -737,8 +760,8 @@ public: 	Vector3D: color;
 	}
 	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(Matrix4x4: projMat) => (){
 		double: PI = 3.14159265358979312;
-		(int: カウンタ = 0;)from(カウンタ == animations.size)to(カウンタ = カウンタ + 1;){
-			AnimationInfo: info = animations.get(カウンタ);
+		(int: counter = 0;)from(counter == animations.size)to(counter = counter + 1;){
+			AnimationInfo: info = animations.get(counter);
 			if((info.startTime <= getTime()) && ((info.startTime + info.duration) >= getTime())){
 				if(info.id == 0){
 					double: elapsedTime = getTime() - info.startTime;
@@ -754,7 +777,7 @@ public: 	Vector3D: color;
 				}
 			}
 		}
-		Vector3D: pos3d(pos.x, pos.y, 0 - zIndex * 0.00100000000000000002);
+		Vector3D: pos3d(pos.x * 16.0 / 9.0, pos.y, 0 - zIndex * 0.00100000000000000002);
 		transMat.identity();
 		transMat.translate(pos3d);
 		scaleMat.identity();
@@ -839,7 +862,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		now = 0.0;
 		elapsedTime = 0.0;
 		projMat.identity();
-		projMat = perspectiveMat2D(projMat, 0 - 高さ / 2.0 * 16.0 / 9.0, 高さ / 2.0 * 16.0 / 9.0, 0 - 高さ / 2, 高さ / 2, 0 - 5.0, 5.0);
+		projMat = perspectiveMat2D(projMat, (0 - 高さ) * (16.0 / 9.0), (高さ) * (16.0 / 9.0), 0 - 高さ, 高さ, 0.0 - 5.0, 5.0);
 		sprites.Array();
 		backgroundColor = color;
 		backgroundTransparency = 1.0;
@@ -908,7 +931,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 	}
 	function: ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$(double: r, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		double: PI = 3.14159265358979312;
-		Array<Vector3D>: points();
+		Array<Vector3D>: points;
 		int: 頂点数 = 60;
 		(int: i = 0;)from(i == 頂点数)to(i = i + 1;){
 			double: theta = 0;
@@ -985,4 +1008,21 @@ function: __setUpVariableNamesForSamples() => (){
 	double: ${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$;
 	double: ${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$;
 	double: ${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$;
+}
+function: Arduino5V送る(int: ピン番号) => (){
+	Arduinoコマンド送信('H', ピン番号);
+}
+function: Arduino0V送る(int: ピン番号) => (){
+	Arduinoコマンド送信('L', ピン番号);
+}
+function: Arduinoピン入出力設定(int: ピン番号, char: 入出力) => (){
+	if(入出力 == '入'){
+		Arduinoコマンド送信('I', ピン番号);
+	}
+	if(入出力 == '出'){
+		Arduinoコマンド送信('O', ピン番号);
+	}
+}
+function: Arduinoアナログ入力ピン設定(int: ピン番号) => (){
+	Arduinoコマンド送信('A', ピン番号);
 }
