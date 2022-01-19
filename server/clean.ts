@@ -1,7 +1,7 @@
 // キャッシュ削除
 import fs from 'fs';
 
-const CACHE_DIR = './cache';
+import { CACHE_DIR } from '@/const/dir';
 
 const CLEAN_RANGE = 1000 * 60 * 60 * 24; // 1日
 
