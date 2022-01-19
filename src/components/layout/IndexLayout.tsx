@@ -86,7 +86,7 @@ type ContentsListProps = {
 
 const ContentsList: FC<ContentsListProps> = ({ title, children }) => {
   return (
-    <div className="flex flex-col space-y-1">
+    <div className="flex flex-col space-y-1 mr-4 mb-4">
       <Typography.Text strong className="!text-gray-100">
         {title}
       </Typography.Text>
@@ -149,7 +149,7 @@ const IndexFooter: VFC = () => {
             <Typography.Text className="!text-gray-400">{t('common:copyright')}</Typography.Text>
           </div>
         </div>
-        <div className="flex space-x-4 sm:ml-auto">
+        <div className="flex flex-wrap sm:ml-auto">
           <ContentsList title={t('footer.Guides')}>
             <FooterLink href="/terms">{t('footer.guides.Terms')}</FooterLink>
             <FooterLink href="/guideline">{t('footer.guides.Guideline')}</FooterLink>
