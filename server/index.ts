@@ -12,6 +12,7 @@ const CERT_DIR = process.env.CERT_DIR ?? './certs';
 const PORT = parseInt(process.env.PORT ?? '', 10) || 3000;
 const KEY_PATH = `${CERT_DIR}/privkey.pem`;
 const CERT_PATH = `${CERT_DIR}/fullchain.pem`;
+const useSSL = process.env.SSL === 'true';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -45,27 +46,40 @@ app.prepare().then(() => {
       console.log(`> Ready on http://localhost:${PORT}`);
     });
   } else {
-    if (!checkCert(credentials)) {
-      throw new Error('Missing SSL certificate');
-    }
+    if (useSSL) {
+      if (!checkCert(credentials)) {
+        throw new Error('Missing SSL certificate');
+      }
 
-    if (PORT !== 443) {
-      throw new Error('SSL port must be 443');
-    }
+      if (PORT !== 443) {
+        throw new Error('SSL port must be 443');
+      }
 
-    // http
-    {
-      const server = express();
+      // http
+      {
+        const server = express();
 
-      server.all('*', (req, res) => {
-        // 全てhttpsにリダイレクト
-        res.redirect(`https://${req.hostname}${req.url}`);
-      });
+        server.all('*', (req, res) => {
+          // 全てhttpsにリダイレクト
+          res.redirect(`https://${req.hostname}${req.url}`);
+        });
 
-      http.createServer(server).listen(80);
-    }
-    // https
-    {
+        http.createServer(server).listen(80);
+      }
+      // https
+      {
+        const server = express();
+        server.use(compression({ level: 9, memLevel: 9 }));
+
+        server.all('*', (req, res) => {
+          return handle(req, res);
+        });
+
+        https.createServer(credentials, server).listen(PORT, () => {
+          console.log(`> Ready on https://localhost:${PORT} (SSL)`);
+        });
+      }
+    } else {
       const server = express();
       server.use(compression({ level: 9, memLevel: 9 }));
 
@@ -73,8 +87,8 @@ app.prepare().then(() => {
         return handle(req, res);
       });
 
-      https.createServer(credentials, server).listen(PORT, () => {
-        console.log(`> Ready on https://localhost:${PORT} (SSL)`);
+      server.listen(PORT, () => {
+        console.log(`> Ready on http://localhost:${PORT}`);
       });
     }
     // キャッシュ削除
