@@ -64,6 +64,10 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
 
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
 
+  useEffect(() => {
+    setIsDrawerVisible(false);
+  }, [path]);
+
   return (
     <>
       <Head>
