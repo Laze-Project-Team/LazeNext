@@ -22,9 +22,9 @@ Lazeは母国語でプログラミングできるように設計されていて�
 
 Lazeはブラウザ上で実行できる言語のため、環境構築を全くすることなくプログラミングを始めることができます。
 
-[公式ウェブサイト](http://laze.ddns.net)
-[オンラインエディタ](https://laze.ddns.net/editor)
-[オンラインドキュメンテーション](https://laze.ddns.net/docs)
+* [公式ウェブサイト](http://laze.ddns.net)
+* [オンラインエディタ](https://laze.ddns.net/editor)
+* [オンラインドキュメンテーション](https://laze.ddns.net/docs)
 
 ## Lazeに参加する
 
