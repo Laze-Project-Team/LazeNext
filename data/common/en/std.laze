@@ -127,7 +127,7 @@ function: ${"ja":"tan", "natja":"tan", "en":"tan", "naten":"tan"}$(double: rad) 
 	double: sqRad = rad * rad;
 	結果 = sin(rad) / cos(rad);
 }
-template<T>: function: ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$(T: a) => (T: b){
+function: ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$(double: a) => (double: b){
 	if(a >= 0){
 		b = a;
 	}else{

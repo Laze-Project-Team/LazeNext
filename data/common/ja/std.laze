@@ -128,11 +128,11 @@
 	実数: sqRad = rad * rad;
 	結果 = sin(rad) / cos(rad);
 }
-型<T>: 関数: ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$(T: a) => (T: b){
+関数: ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$(実数: a) => (実数: b){
 	もし(a >= 0)ならば{
 		b = a;
 	}でなければ{
-		b = 0 - a;
+		b = - a;
 	}
 }
 関数: ${"ja":"ラジアンへ", "natja":"ラジアンへ", "en":"toRad", "naten":"toRad"}$(実数: deg) => (実数: rad){

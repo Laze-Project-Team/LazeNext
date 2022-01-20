@@ -127,7 +127,7 @@ Declare function ${"ja":"tan", "natja":"tan", "en":"tan", "naten":"tan"}$ that t
 	Initialize variable sqRad as double with rad  * rad . 
 	Assign sin ( rad )  / cos ( rad ) to 結果 . 
 ending here 
-Declare template that takes T . Declare function ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$ that takes a as T and returns b as T with code starting here
+Declare function ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$ that takes a as double and returns b as double with code starting here
 	If a  >= 0 then execute code starting here
 		Assign a to b . 
 	ending here Otherwise execute code starting here
