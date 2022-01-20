@@ -91,6 +91,9 @@ yarn
 コンパイラを入手してその絶対パスを`.env`(`.env.template`をコピーして作成する)内の`COMPILER_PATH`に書く。
 
 **各コマンドの解説**
+
 `yarn dev`で開発サーバーを建てます
+
 `yarn build`でビルドを行います
+
 `yarn start`でサーバーを実行します(要ビルド)
