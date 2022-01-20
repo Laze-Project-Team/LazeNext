@@ -53,11 +53,12 @@ Load function ${"ja":"テクスチャロード", "natja":"テクスチャロー�
 Load function ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$ from "activeTexture"of "webgl"that takes i as short . 
 Load function ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$ from "bindTexture"of "webgl"that takes i as short , j as short . 
 Load function ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$ from "lockPointer"of "js". 
-Load function Arduino設定 from "setUp"of "arduino"that takes vendorId as int , c as function : ( ) => ( ) . 
-Load function Arduinoコマンド送信 from "sendCommand"of "arduino"that takes コマンド as char , data as short . 
-Load function Arduinoデータ受信 from "checkInput"of "arduino". 
-Load function Arduinoアナログ入力 from "analogRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
-Load function Arduinoデジタル入力 from "digitalRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
+Load function ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$ from "setUp"of "arduino"that takes vendorId as int , c as function : ( ) => ( ) . 
+Load function ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$ from "sendCommand"of "arduino"that takes コマンド as char , data as short . 
+Load function ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$ from "checkInput"of "arduino". 
+Load function ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$ from "analogRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
+Load function ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$ from "digitalRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
+Load function ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$ from "distanceRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
 Declare function ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$ that takes input as double and returns 結果 as double with code starting here
 	Initialize variable PI as double with 3.14159265358979312 . 
 	Initialize variable temp as int with input  / ( 2.0  * PI ) . 
@@ -762,7 +763,7 @@ public : 	Declare variable color as Vector3D .
 		Initialize variable PI as double with 3.14159265358979312 . 
 		( Initialize variable counter as int with 0 . ) from ( counter  is size of animations ) to ( Assign counter  + 1 to counter . ) starting here
 			Initialize variable info as AnimationInfo with get of animations ( counter ) . 
-			If ( startTime of info  <= getTime ( ) )  && ( ( startTime of info  + duration of info )  >= getTime ( ) ) then execute code starting here
+			If ( startTime of info  <= getTime ( ) )  and ( ( startTime of info  + duration of info )  >= getTime ( ) ) then execute code starting here
 				If id of info  is 0 then execute code starting here
 					Initialize variable elapsedTime as double with getTime ( )  - startTime of info . 
 					Call rotate with value x of info of info  * elapsedTime . 
@@ -811,7 +812,7 @@ public : 	Declare variable color as Vector3D .
 			Call glBindBuffer with value 34963 , elementBuffer . 
 			Call glDrawElements with value 4 , vertexNum , 5123 , 0 . 
 		ending here 
-		If ( vertexNum  is 0 )  && ( shaderID  is 4 ) then execute code starting here
+		If ( vertexNum  is 0 )  and ( shaderID  is 4 ) then execute code starting here
 			Call glBindBuffer with value 34962 , buffer . 
 			Call glDrawArrays with value 5 , 0 , pointNum . 
 		ending here 
@@ -1009,20 +1010,31 @@ Declare function __setUpVariableNamesForSamples with code starting here
 	Declare variable ${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$ as double . 
 	Declare variable ${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$ as double . 
 ending here 
-Declare function Arduino5V送る that takes ピン番号 as int with code starting here
-	Call Arduinoコマンド送信 with value 'H', ピン番号 . 
+Declare class ArduinoClass with members starting here
+public : 	Declare variable ${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$ as char . 
+	Declare variable ${"ja":"入力ピン", "natja":"入力ピン", "en":"INPUT", "naten":"INPUT"}$ as char . 
+	Declare function ArduinoClass with code starting here
+		Assign '出'to OUTPUT . 
+		Assign '入'to INPUT . 
+	ending here 
 ending here 
-Declare function Arduino0V送る that takes ピン番号 as int with code starting here
-	Call Arduinoコマンド送信 with value 'L', ピン番号 . 
+Declare function ${"ja":"Arduino5V送る", "natja":"Arduino5V送る", "en":"ArduinoOutput5V", "naten":"ArduinoOutput5V"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'H', ピン番号 . 
 ending here 
-Declare function Arduinoピン入出力設定 that takes ピン番号 as int , 入出力 as char with code starting here
+Declare function ${"ja":"Arduino0V送る", "natja":"Arduino0V送る", "en":"ArduinoOutput0V", "naten":"ArduinoOutput0V"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'L', ピン番号 . 
+ending here 
+Declare function ${"ja":"Arduinoピン入出力設定", "natja":"Arduinoピン入出力設定", "en":"ArduinoSetPinmode", "naten":"ArduinoSetPinmode"}$ that takes ピン番号 as int , 入出力 as char with code starting here
 	If 入出力  is '入'then execute code starting here
-		Call Arduinoコマンド送信 with value 'I', ピン番号 . 
+		Call ArduinoSendCommand with value 'I', ピン番号 . 
 	ending here 
 	If 入出力  is '出'then execute code starting here
-		Call Arduinoコマンド送信 with value 'O', ピン番号 . 
+		Call ArduinoSendCommand with value 'O', ピン番号 . 
 	ending here 
 ending here 
-Declare function Arduinoアナログ入力ピン設定 that takes ピン番号 as int with code starting here
-	Call Arduinoコマンド送信 with value 'A', ピン番号 . 
+Declare function ${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナログ入力ピン設定", "en":"ArduinoSetAnalogInputPin", "naten":"ArduinoSetAnalogInputPin"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'A', ピン番号 . 
+ending here 
+Declare function ${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'T', ピン番号 . 
 ending here 

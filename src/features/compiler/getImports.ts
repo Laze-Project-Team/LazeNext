@@ -295,6 +295,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
               writer.write(new Uint8Array([command]));
               writer.write(new Uint8Array([data]));
               writer.releaseLock();
+              // console.log(command, data);
             } else {
               console.error('no writer');
             }
@@ -318,13 +319,16 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
               const receiveText = splitData[i];
               if (receiveText.length) {
                 const input = parseInt(receiveText.substring(2));
-                // console.log(receiveText);
+                console.log(receiveText);
                 switch (receiveText[0]) {
                   case 'D':
                     arduinoObjects.digitalInput[parseInt(receiveText[1])] = input;
                     break;
                   case 'A':
                     arduinoObjects.analogInput[parseInt(receiveText[1])] = input;
+                    break;
+                  case 'P':
+                    arduinoObjects.pulseInput[parseInt(receiveText[1])] = input;
                     break;
                 }
               }
@@ -339,6 +343,9 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       digitalRead: (pinNumber: BigInt) => {
         return window.laze.props.arduinoObjects.digitalInput[Number(pinNumber)];
+      },
+      distanceRead: (pinNumber: BigInt) => {
+        return window.laze.props.arduinoObjects.pulseInput[Number(pinNumber)];
       },
     },
   };

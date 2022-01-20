@@ -53,11 +53,12 @@
 ( i という 整数32 ) を とり ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$ という 関数 を ( "webgl", "activeTexture") から 読み込む 。 
 ( i という 整数32 , j という 整数32 ) を とり ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$ という 関数 を ( "webgl", "bindTexture") から 読み込む 。 
 関数 ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$ を ( "js", "lockPointer") から 読み込む 。 
-( vendorId という 整数 , c という 関数 : ( ) => ( ) ) を とり Arduino設定 という 関数 を ( "arduino", "setUp") から 読み込む 。 
-( コマンド という 文字 , data という 整数32 ) を とり Arduinoコマンド送信 という 関数 を ( "arduino", "sendCommand") から 読み込む 。 
-関数 Arduinoデータ受信 を ( "arduino", "checkInput") から 読み込む 。 
-( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す Arduinoアナログ入力 という 関数 を ( "arduino", "analogRead") から 読み込む 。 
-( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す Arduinoデジタル入力 という 関数 を ( "arduino", "digitalRead") から 読み込む 。 
+( vendorId という 整数 , c という 関数 : ( ) => ( ) ) を とり ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$ という 関数 を ( "arduino", "setUp") から 読み込む 。 
+( コマンド という 文字 , data という 整数32 ) を とり ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$ という 関数 を ( "arduino", "sendCommand") から 読み込む 。 
+関数 ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$ を ( "arduino", "checkInput") から 読み込む 。 
+( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$ という 関数 を ( "arduino", "analogRead") から 読み込む 。 
+( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$ という 関数 を ( "arduino", "digitalRead") から 読み込む 。 
+( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$ という 関数 を ( "arduino", "distanceRead") から 読み込む 。 
 ( input という 実数 ) を とり ( 結果 という 実数 ) を 返す ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$ という 関数 を おく 。 ここから
 	PI という 実数 を 3.14159265358979312 で 初期化 。 
 	temp という 整数 を input  / ( 2.0  * PI ) で 初期化 。 
@@ -1009,13 +1010,21 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 	${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$ という 実数 を おく 。 
 	${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$ という 実数 を おく 。 
 ここまで実行 
-( ピン番号 という 整数 ) を とり Arduino5V送る という 関数 を おく 。 ここから
+クラス : ArduinoClass {
+公開 : 	${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$ という 文字 を おく 。 
+	${"ja":"入力ピン", "natja":"入力ピン", "en":"INPUT", "naten":"INPUT"}$ という 文字 を おく 。 
+	関数 ArduinoClass を おく 。 ここから
+		出力ピン に '出'を 代入する 。 
+		入力ピン に '入'を 代入する 。 
+	ここまで実行 
+} 
+( ピン番号 という 整数 ) を とり ${"ja":"Arduino5V送る", "natja":"Arduino5V送る", "en":"ArduinoOutput5V", "naten":"ArduinoOutput5V"}$ という 関数 を おく 。 ここから
 	'H', ピン番号 Arduinoコマンド送信 する 。 
 ここまで実行 
-( ピン番号 という 整数 ) を とり Arduino0V送る という 関数 を おく 。 ここから
+( ピン番号 という 整数 ) を とり ${"ja":"Arduino0V送る", "natja":"Arduino0V送る", "en":"ArduinoOutput0V", "naten":"ArduinoOutput0V"}$ という 関数 を おく 。 ここから
 	'L', ピン番号 Arduinoコマンド送信 する 。 
 ここまで実行 
-( ピン番号 という 整数 , 入出力 という 文字 ) を とり Arduinoピン入出力設定 という 関数 を おく 。 ここから
+( ピン番号 という 整数 , 入出力 という 文字 ) を とり ${"ja":"Arduinoピン入出力設定", "natja":"Arduinoピン入出力設定", "en":"ArduinoSetPinmode", "naten":"ArduinoSetPinmode"}$ という 関数 を おく 。 ここから
 	もし 入出力  は '入'ならば ここから
 		'I', ピン番号 Arduinoコマンド送信 する 。 
 	ここまで実行 
@@ -1023,6 +1032,9 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 		'O', ピン番号 Arduinoコマンド送信 する 。 
 	ここまで実行 
 ここまで実行 
-( ピン番号 という 整数 ) を とり Arduinoアナログ入力ピン設定 という 関数 を おく 。 ここから
+( ピン番号 という 整数 ) を とり ${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナログ入力ピン設定", "en":"ArduinoSetAnalogInputPin", "naten":"ArduinoSetAnalogInputPin"}$ という 関数 を おく 。 ここから
 	'A', ピン番号 Arduinoコマンド送信 する 。 
+ここまで実行 
+( ピン番号 という 整数 ) を とり ${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$ という 関数 を おく 。 ここから
+	'T', ピン番号 Arduinoコマンド送信 する 。 
 ここまで実行 

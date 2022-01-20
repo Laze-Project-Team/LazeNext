@@ -53,11 +53,12 @@ function: ${"ja":"テクスチャロード", "natja":"テクスチャロード",
 function: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(short: i) => () = jsload("webgl", "activeTexture");
 function: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(short: i, short: j) => () = jsload("webgl", "bindTexture");
 function: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = jsload("js", "lockPointer");
-function: Arduino設定(int: vendorId, function: () => (): c) => () = jsload("arduino", "setUp");
-function: Arduinoコマンド送信(char: コマンド, short: data) => () = jsload("arduino", "sendCommand");
-function: Arduinoデータ受信() => () = jsload("arduino", "checkInput");
-function: Arduinoアナログ入力(int: ピン番号) => (short: データ) = jsload("arduino", "analogRead");
-function: Arduinoデジタル入力(int: ピン番号) => (short: データ) = jsload("arduino", "digitalRead");
+function: ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$(int: vendorId, function: () => (): c) => () = jsload("arduino", "setUp");
+function: ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$(char: コマンド, short: data) => () = jsload("arduino", "sendCommand");
+function: ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$() => () = jsload("arduino", "checkInput");
+function: ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "analogRead");
+function: ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "digitalRead");
+function: ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "distanceRead");
 function: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(double: input) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	int: temp = input / (2.0 * PI);
@@ -1009,20 +1010,31 @@ function: __setUpVariableNamesForSamples() => (){
 	double: ${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$;
 	double: ${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$;
 }
-function: Arduino5V送る(int: ピン番号) => (){
-	Arduinoコマンド送信('H', ピン番号);
+class: ArduinoClass{
+public: 	char: ${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$;
+	char: ${"ja":"入力ピン", "natja":"入力ピン", "en":"INPUT", "naten":"INPUT"}$;
+	function: ArduinoClass() => (){
+		OUTPUT = '出';
+		INPUT = '入';
+	}
 }
-function: Arduino0V送る(int: ピン番号) => (){
-	Arduinoコマンド送信('L', ピン番号);
+function: ${"ja":"Arduino5V送る", "natja":"Arduino5V送る", "en":"ArduinoOutput5V", "naten":"ArduinoOutput5V"}$(int: ピン番号) => (){
+	ArduinoSendCommand('H', ピン番号);
 }
-function: Arduinoピン入出力設定(int: ピン番号, char: 入出力) => (){
+function: ${"ja":"Arduino0V送る", "natja":"Arduino0V送る", "en":"ArduinoOutput0V", "naten":"ArduinoOutput0V"}$(int: ピン番号) => (){
+	ArduinoSendCommand('L', ピン番号);
+}
+function: ${"ja":"Arduinoピン入出力設定", "natja":"Arduinoピン入出力設定", "en":"ArduinoSetPinmode", "naten":"ArduinoSetPinmode"}$(int: ピン番号, char: 入出力) => (){
 	if(入出力 == '入'){
-		Arduinoコマンド送信('I', ピン番号);
+		ArduinoSendCommand('I', ピン番号);
 	}
 	if(入出力 == '出'){
-		Arduinoコマンド送信('O', ピン番号);
+		ArduinoSendCommand('O', ピン番号);
 	}
 }
-function: Arduinoアナログ入力ピン設定(int: ピン番号) => (){
-	Arduinoコマンド送信('A', ピン番号);
+function: ${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナログ入力ピン設定", "en":"ArduinoSetAnalogInputPin", "naten":"ArduinoSetAnalogInputPin"}$(int: ピン番号) => (){
+	ArduinoSendCommand('A', ピン番号);
+}
+function: ${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$(int: ピン番号) => (){
+	ArduinoSendCommand('T', ピン番号);
 }
