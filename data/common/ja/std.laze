@@ -672,10 +672,6 @@
 クラス: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
 公開: 	ベクトル3D: 色;
 	ベクトル2D: 座標;
-	実数: 透明度;
-	実数: scaleX;
-	実数: scaleY;
-	実数: theta;
 	関数: スプライト(*実数: data, 整数: pnum, *整数32: indicesData, 整数: vnum, ベクトル3D: c, ベクトル2D: p, 整数: s, 実数: zI) => (){
 		vertices = data;
 		pointNum = pnum;
@@ -858,6 +854,10 @@
 	整数32: modelMatUniformLoc;
 	整数32: samplerUniformLoc;
 	配列<アニメーション情報>: animations;
+	実数: 透明度;
+	実数: scaleX;
+	実数: scaleY;
+	実数: theta;
 }
 クラス: ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}${
 公開:

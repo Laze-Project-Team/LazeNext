@@ -667,10 +667,6 @@
 クラス : ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}$ {
 公開 : 	色 という ベクトル3D を おく 。 
 	座標 という ベクトル2D を おく 。 
-	透明度 という 実数 を おく 。 
-	scaleX という 実数 を おく 。 
-	scaleY という 実数 を おく 。 
-	theta という 実数 を おく 。 
 	( data という * 実数 , pnum という 整数 , indicesData という * 整数32 , vnum という 整数 , c という ベクトル3D , p という ベクトル2D , s という 整数 , zI という 実数 ) を とり スプライト という 関数 を おく 。 ここから
 		vertices に data を 代入する 。 
 		pointNum に pnum を 代入する 。 
@@ -853,6 +849,10 @@
 	modelMatUniformLoc という 整数32 を おく 。 
 	samplerUniformLoc という 整数32 を おく 。 
 	animations という 配列 < アニメーション情報 > を おく 。 
+	透明度 という 実数 を おく 。 
+	scaleX という 実数 を おく 。 
+	scaleY という 実数 を おく 。 
+	theta という 実数 を おく 。 
 } 
 クラス : ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}$ {
 公開 : 	${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$ という 配列 < * スプライト > を おく 。 
