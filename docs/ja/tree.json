@@ -199,6 +199,18 @@
             {
               "id": "toRad",
               "name": "toRad"
+            },
+            {
+              "id": "abs",
+              "name": "絶対値"
+            },
+            {
+              "id": "sqrt",
+              "name": "平方根"
+            },
+            {
+              "id": "trig_function",
+              "name": "三角関数"
             }
           ]
         }
