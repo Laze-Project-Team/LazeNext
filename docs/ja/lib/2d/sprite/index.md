@@ -2,44 +2,72 @@
 
 シーン2Dで使われる図形を表現するためのクラスです
 
-## メソッド
+## メンバー
 
-### [スプライト.スプライト](/lib/2d/sprite/constructor)
+### メソッド
 
-### [スプライト.座標設定](/lib/2d/sprite/setPos)
+#### [スプライト.スプライト](/lib/2d/sprite/constructor)
 
-### [スプライト.移動](/lib/2d/sprite/move)
+スプライトが初期化された時に呼ばれるコンストラクタです
 
-### [スプライト.拡大縮小](/lib/2d/sprite/scale)
+#### [スプライト.座標設定](/lib/2d/sprite/setPos)
 
-### [スプライト.回転](/lib/2d/sprite/rotate)
+座標を設定するメソッドです
 
-### [スプライト.角度設定](/lib/2d/sprite/setAngle)
+#### [スプライト.移動](/lib/2d/sprite/move)
 
-### [スプライト.重なり順設定](/lib/2d/sprite/setZIndex)
+移動させるメソッドです
 
-### [スプライト.透明度設定](/lib/2d/sprite/setTransparency)
+#### [スプライト.拡大縮小](/lib/2d/sprite/scale)
 
-### [スプライト.色設定](/lib/2d/sprite/setColor)
+拡大縮小させるメソッドです
 
-### [スプライト.描画](/lib/2d/sprite/draw)
+#### [スプライト.回転](/lib/2d/sprite/rotate)
 
-### [スプライト.回転アニメーション](/lib/2d/sprite/rotateAnimation)
+回転させるメソッドです
 
-### [スプライト.拡大縮小アニメーション](/lib/2d/sprite/scaleAnimation)
+#### [スプライト.角度設定](/lib/2d/sprite/setAngle)
 
-### [スプライト.移動アニメーション](/lib/2d/sprite/translateAnimation)
+回転角を設定するメソッドです
 
-## プロパティ
+#### [スプライト.重なり順設定](/lib/2d/sprite/setZIndex)
 
-### 色
+重なり順を設定するメソッドです
+
+#### [スプライト.透明度設定](/lib/2d/sprite/setTransparency)
+
+透明度を設定するメソッドです
+
+#### [スプライト.色設定](/lib/2d/sprite/setColor)
+
+色を設定するメソッドです
+
+#### [スプライト.描画](/lib/2d/sprite/draw)
+
+スプライトを描画するメソッドです
+
+#### [スプライト.回転アニメーション](/lib/2d/sprite/rotateAnimation)
+
+回転のアニメーションを付けるメソッドです
+
+#### [スプライト.拡大縮小アニメーション](/lib/2d/sprite/scaleAnimation)
+
+拡大縮小のアニメーションを付けるメソッドです
+
+#### [スプライト.移動アニメーション](/lib/2d/sprite/translateAnimation)
+
+移動のアニメーションを付けるメソッドです
+
+### プロパティ
+
+#### 色
 
 スプライトの色を表す[ベクトル3D](/lib/math/vec3)です
 
-### 座標
+#### 座標
 
 スプライトの座標を表す[ベクトル2D](/lib/math/vec2)です
 
-### 透明度
+#### 透明度
 
 スプライトの透明度を表す
