@@ -3385,10 +3385,10 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-next-i18next@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-10.0.1.tgz#f42239f276b3c7a3e62b9fd83ac5c21607c2f938"
-  integrity sha512-wcpZDip4Vt89dCHgN2EKeNyA5Ckz6NenPUVpzQMphmuXyTPMqmFkWyWbpMDdg4QuMiYiX98eTeY4RLGhUXzHmQ==
+next-i18next@^10.2.0:
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-10.2.0.tgz#188ba9fb805804227cb36ed59d333d14c2a0adbd"
+  integrity sha512-HTdXy8U8Ko8oxs+VAog0CQC7Ap/XyvRzwm/g5tF/CzqJ4dSCyWuLmvPjA9BpQ3VEIkxzCA43w1W75CnARRn1lw==
   dependencies:
     "@babel/runtime" "^7.13.17"
     "@types/hoist-non-react-statics" "^3.3.1"
@@ -3713,7 +3713,7 @@ postcss-selector-parser@^6.0.6, postcss-selector-parser@^6.0.8:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
 
-postcss-value-parser@^4.1.0, postcss-value-parser@^4.2.0:
+postcss-value-parser@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
