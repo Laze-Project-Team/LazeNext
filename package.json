@@ -7,7 +7,7 @@
     "build:next": "next build",
     "build:server": "tsc --project tsconfig.server.json && tsc-alias -p tsconfig.server.json",
     "build": "yarn build:server & yarn build:next",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/server/index.js",
     "lint": "next lint",
     "lint:eslint": "eslint --cache .",
     "lint:prettier": "prettier --check .",
