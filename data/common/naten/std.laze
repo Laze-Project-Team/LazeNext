@@ -53,6 +53,12 @@ Load function ${"ja":"テクスチャロード", "natja":"テクスチャロー�
 Load function ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$ from "activeTexture"of "webgl"that takes i as short . 
 Load function ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$ from "bindTexture"of "webgl"that takes i as short , j as short . 
 Load function ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$ from "lockPointer"of "js". 
+Load function ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$ from "setUp"of "arduino"that takes vendorId as int , c as function : ( ) => ( ) . 
+Load function ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$ from "sendCommand"of "arduino"that takes コマンド as char , data as short . 
+Load function ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$ from "checkInput"of "arduino". 
+Load function ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$ from "analogRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
+Load function ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$ from "digitalRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
+Load function ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$ from "distanceRead"of "arduino"that takes ピン番号 as int and returns データ as short . 
 Declare function ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$ that takes input as double and returns 結果 as double with code starting here
 	Initialize variable PI as double with 3.14159265358979312 . 
 	Initialize variable temp as int with input  / ( 2.0  * PI ) . 
@@ -121,7 +127,7 @@ Declare function ${"ja":"tan", "natja":"tan", "en":"tan", "naten":"tan"}$ that t
 	Initialize variable sqRad as double with rad  * rad . 
 	Assign sin ( rad )  / cos ( rad ) to 結果 . 
 ending here 
-Declare template that takes T . Declare function ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$ that takes a as T and returns b as T with code starting here
+Declare function ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$ that takes a as double and returns b as double with code starting here
 	If a  >= 0 then execute code starting here
 		Assign a to b . 
 	ending here Otherwise execute code starting here
@@ -221,6 +227,26 @@ public : 	Declare variable x as double .
 		Assign x of a  + x to x of b . 
 		Assign y of a  + y to y of b . 
 		Assign z of a  + z to z of b . 
+	ending here 
+	function : operator  - ( a as Vector3D ) => ( b as Vector3D ) starting here
+		Assign x of a  - x to x of b . 
+		Assign y of a  - y to y of b . 
+		Assign z of a  - z to z of b . 
+	ending here 
+	function : operator  * ( k as double ) => ( b as Vector3D ) starting here
+		Assign x  * k to x of b . 
+		Assign y  * k to y of b . 
+		Assign z  * k to z of b . 
+	ending here 
+	function : operator  * ( a as Vector3D ) => ( b as Vector3D ) starting here
+		Assign y  * z of a  - z  * y of a to x of b . 
+		Assign z  * x of a  - x  * z of a to y of b . 
+		Assign x  * y of a  - y  * x of a to z of b . 
+	ending here 
+	function : operator  / ( k as double ) => ( b as Vector3D ) starting here
+		Assign x  / k to x of b . 
+		Assign y  / k to y of b . 
+		Assign z  / k to z of b . 
 	ending here 
 ending here 
 Declare function ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$ that takes a as Vector3D , b as Vector3D and returns result as Vector3D with code starting here
@@ -416,13 +442,13 @@ public : 	Declare variable ${"ja":"色", "natja":"色", "en":"color", "naten":"c
 		Assign addVector3D ( pos , offset ) to pos . 
 	ending here 
 	Declare function ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$ that takes x as double , y as double , z as double with code starting here
-		Initialize object temp as Matrix4x4 with . 
+		Declare variable temp as Matrix4x4 . 
 		Call identity of temp . 
 		Call scale of temp with value x , y , z . 
 		Assign mulMatrix4x4 ( temp , scaleMat ) to scaleMat . 
 	ending here 
 	Declare function ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$ that takes axis as Vector3D , t as double with code starting here
-		Initialize object temp as Matrix4x4 with . 
+		Declare variable temp as Matrix4x4 . 
 		Call identity of temp . 
 		Call rotate of temp with value axis , t . 
 		Assign mulMatrix4x4 ( temp , rotateMat ) to rotateMat . 
@@ -724,7 +750,7 @@ public : 	Declare variable color as Vector3D .
 	Declare function ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$ that takes t as double with code starting here
 		Assign t to theta . 
 	ending here 
-	Declare function ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$ that takes x as double with code starting here
+	Declare function ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$ that takes x as double with code starting here
 		Assign x to zIndex . 
 	ending here 
 	Declare function ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$ that takes x as double with code starting here
@@ -735,9 +761,9 @@ public : 	Declare variable color as Vector3D .
 	ending here 
 	Declare function ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$ that takes projMat as Matrix4x4 with code starting here
 		Initialize variable PI as double with 3.14159265358979312 . 
-		( Initialize variable カウンタ as int with 0 . ) from ( カウンタ  is size of animations ) to ( Assign カウンタ  + 1 to カウンタ . ) starting here
-			Initialize variable info as AnimationInfo with get of animations ( カウンタ ) . 
-			If ( startTime of info  <= getTime ( ) )  && ( ( startTime of info  + duration of info )  >= getTime ( ) ) then execute code starting here
+		( Initialize variable counter as int with 0 . ) from ( counter  is size of animations ) to ( Assign counter  + 1 to counter . ) starting here
+			Initialize variable info as AnimationInfo with get of animations ( counter ) . 
+			If ( startTime of info  <= getTime ( ) )  and ( ( startTime of info  + duration of info )  >= getTime ( ) ) then execute code starting here
 				If id of info  is 0 then execute code starting here
 					Initialize variable elapsedTime as double with getTime ( )  - startTime of info . 
 					Call rotate with value x of info of info  * elapsedTime . 
@@ -752,7 +778,7 @@ public : 	Declare variable color as Vector3D .
 				ending here 
 			ending here 
 		ending here 
-		Initialize object pos3d as Vector3D with x of pos , y of pos , 0  - zIndex  * 0.00100000000000000002 . 
+		Initialize object pos3d as Vector3D with x of pos  * 16.0  / 9.0 , y of pos , 0  - zIndex  * 0.00100000000000000002 . 
 		Call identity of transMat . 
 		Call translate of transMat with value pos3d . 
 		Call identity of scaleMat . 
@@ -786,7 +812,7 @@ public : 	Declare variable color as Vector3D .
 			Call glBindBuffer with value 34963 , elementBuffer . 
 			Call glDrawElements with value 4 , vertexNum , 5123 , 0 . 
 		ending here 
-		If ( vertexNum  is 0 )  && ( shaderID  is 4 ) then execute code starting here
+		If ( vertexNum  is 0 )  and ( shaderID  is 4 ) then execute code starting here
 			Call glBindBuffer with value 34962 , buffer . 
 			Call glDrawArrays with value 5 , 0 , pointNum . 
 		ending here 
@@ -798,7 +824,7 @@ public : 	Declare variable color as Vector3D .
 		Initialize object temp as AnimationInfo with 0 , start , duration , theta , 0.0 . 
 		Call push of animations with value temp . 
 	ending here 
-	Declare function ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$ that takes x as double , y as double , start as double , duration as double with code starting here
+	Declare function ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$ that takes x as double , y as double , start as double , duration as double with code starting here
 		Initialize object temp as AnimationInfo with 1 , start , duration , x , y . 
 		Call push of animations with value temp . 
 	ending here 
@@ -837,7 +863,7 @@ public : 	Declare variable ${"ja":"スプライト配列", "natja":"スプライ
 		Assign 0.0 to now . 
 		Assign 0.0 to elapsedTime . 
 		Call identity of projMat . 
-		Assign perspectiveMat2D ( projMat , 0  - 高さ  / 2.0  * 16.0  / 9.0 , 高さ  / 2.0  * 16.0  / 9.0 , 0  - 高さ  / 2 , 高さ  / 2 , 0  - 5.0 , 5.0 ) to projMat . 
+		Assign perspectiveMat2D ( projMat , ( 0  - 高さ )  * ( 16.0  / 9.0 ) , ( 高さ )  * ( 16.0  / 9.0 ) , 0  - 高さ , 高さ , 0.0  - 5.0 , 5.0 ) to projMat . 
 		Call Array of sprites . 
 		Assign color to backgroundColor . 
 		Assign 1.0 to backgroundTransparency . 
@@ -906,7 +932,7 @@ public : 	Declare variable ${"ja":"スプライト配列", "natja":"スプライ
 	ending here 
 	Declare function ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$ that takes r as double , pos as Vector2D , color as Vector3D , zIndex as double and returns id as int with code starting here
 		Initialize variable PI as double with 3.14159265358979312 . 
-		Initialize object points as Array < Vector3D > with . 
+		Declare variable points as Array < Vector3D > . 
 		Initialize variable 頂点数 as int with 60 . 
 		( Initialize variable i as int with 0 . ) from ( i  is 頂点数 ) to ( Assign i  + 1 to i . ) starting here
 			Initialize variable theta as double with 0 . 
@@ -929,7 +955,7 @@ ending here
 Declare function 引数なしjsリスナー呼び出し that takes callback as function : ( ) => ( ) with code starting here
 	Call callback . 
 ending here 
-Export function 引数なしjsリスナー呼び出し to "jsCallListenerNoParam" .
+Export function 引数なしjsリスナー呼び出し to "jsCallListenerNoParam". 
 Declare function __setUpVariableNamesForSamples with code starting here
 	Declare variable ${"ja":"前の数", "natja":"前の数", "en":"numberBefore", "naten":"numberBefore"}$ as double . 
 	Declare variable ${"ja":"数", "natja":"数", "en":"number", "naten":"number"}$ as double . 
@@ -983,4 +1009,32 @@ Declare function __setUpVariableNamesForSamples with code starting here
 	Declare variable ${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$ as double . 
 	Declare variable ${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$ as double . 
 	Declare variable ${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$ as double . 
+ending here 
+Declare class ArduinoClass with members starting here
+public : 	Declare variable ${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$ as char . 
+	Declare variable ${"ja":"入力ピン", "natja":"入力ピン", "en":"INPUT", "naten":"INPUT"}$ as char . 
+	Declare function ArduinoClass with code starting here
+		Assign '出'to OUTPUT . 
+		Assign '入'to INPUT . 
+	ending here 
+ending here 
+Declare function ${"ja":"Arduino5V送る", "natja":"Arduino5V送る", "en":"ArduinoOutput5V", "naten":"ArduinoOutput5V"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'H', ピン番号 . 
+ending here 
+Declare function ${"ja":"Arduino0V送る", "natja":"Arduino0V送る", "en":"ArduinoOutput0V", "naten":"ArduinoOutput0V"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'L', ピン番号 . 
+ending here 
+Declare function ${"ja":"Arduinoピン入出力設定", "natja":"Arduinoピン入出力設定", "en":"ArduinoSetPinmode", "naten":"ArduinoSetPinmode"}$ that takes ピン番号 as int , 入出力 as char with code starting here
+	If 入出力  is '入'then execute code starting here
+		Call ArduinoSendCommand with value 'I', ピン番号 . 
+	ending here 
+	If 入出力  is '出'then execute code starting here
+		Call ArduinoSendCommand with value 'O', ピン番号 . 
+	ending here 
+ending here 
+Declare function ${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナログ入力ピン設定", "en":"ArduinoSetAnalogInputPin", "naten":"ArduinoSetAnalogInputPin"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'A', ピン番号 . 
+ending here 
+Declare function ${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$ that takes ピン番号 as int with code starting here
+	Call ArduinoSendCommand with value 'T', ピン番号 . 
 ending here 

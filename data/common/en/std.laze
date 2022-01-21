@@ -53,6 +53,12 @@ function: ${"ja":"テクスチャロード", "natja":"テクスチャロード",
 function: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(short: i) => () = jsload("webgl", "activeTexture");
 function: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(short: i, short: j) => () = jsload("webgl", "bindTexture");
 function: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = jsload("js", "lockPointer");
+function: ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$(int: vendorId, function: () => (): c) => () = jsload("arduino", "setUp");
+function: ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$(char: コマンド, short: data) => () = jsload("arduino", "sendCommand");
+function: ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$() => () = jsload("arduino", "checkInput");
+function: ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "analogRead");
+function: ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "digitalRead");
+function: ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "distanceRead");
 function: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(double: input) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	int: temp = input / (2.0 * PI);
@@ -121,7 +127,7 @@ function: ${"ja":"tan", "natja":"tan", "en":"tan", "naten":"tan"}$(double: rad) 
 	double: sqRad = rad * rad;
 	結果 = sin(rad) / cos(rad);
 }
-template<T>: function: ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$(T: a) => (T: b){
+function: ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$(double: a) => (double: b){
 	if(a >= 0){
 		b = a;
 	}else{
@@ -221,6 +227,26 @@ public: 	double: x;
 		b.x = a.x + x;
 		b.y = a.y + y;
 		b.z = a.z + z;
+	}
+	function: operator - (Vector3D: a) => (Vector3D: b){
+		b.x = a.x - x;
+		b.y = a.y - y;
+		b.z = a.z - z;
+	}
+	function: operator * (double: k) => (Vector3D: b){
+		b.x = x * k;
+		b.y = y * k;
+		b.z = z * k;
+	}
+	function: operator * (Vector3D: a) => (Vector3D: b){
+		b.x = y * a.z - z * a.y;
+		b.y = z * a.x - x * a.z;
+		b.z = x * a.y - y * a.x;
+	}
+	function: operator / (double: k) => (Vector3D: b){
+		b.x = x / k;
+		b.y = y / k;
+		b.z = z / k;
 	}
 }
 function: ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$(Vector3D: a, Vector3D: b) => (Vector3D: result){
@@ -416,13 +442,13 @@ public: 	Vector3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
 		pos = addVector3D(pos, offset);
 	}
 	function: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(double: x, double: y, double: z) => (){
-		Matrix4x4: temp();
+		Matrix4x4: temp;
 		temp.identity();
 		temp.scale(x, y, z);
 		scaleMat = mulMatrix4x4(temp, scaleMat);
 	}
 	function: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(Vector3D: axis, double: t) => (){
-		Matrix4x4: temp();
+		Matrix4x4: temp;
 		temp.identity();
 		temp.rotate(axis, t);
 		rotateMat = mulMatrix4x4(temp, rotateMat);
@@ -724,7 +750,7 @@ public: 	Vector3D: color;
 	function: ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$(double: t) => (){
 		theta = t;
 	}
-	function: ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$(double: x) => (){
+	function: ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$(double: x) => (){
 		zIndex = x;
 	}
 	function: ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$(double: x) => (){
@@ -735,8 +761,8 @@ public: 	Vector3D: color;
 	}
 	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(Matrix4x4: projMat) => (){
 		double: PI = 3.14159265358979312;
-		(int: カウンタ = 0;)from(カウンタ == animations.size)to(カウンタ = カウンタ + 1;){
-			AnimationInfo: info = animations.get(カウンタ);
+		(int: counter = 0;)from(counter == animations.size)to(counter = counter + 1;){
+			AnimationInfo: info = animations.get(counter);
 			if((info.startTime <= getTime()) && ((info.startTime + info.duration) >= getTime())){
 				if(info.id == 0){
 					double: elapsedTime = getTime() - info.startTime;
@@ -752,7 +778,7 @@ public: 	Vector3D: color;
 				}
 			}
 		}
-		Vector3D: pos3d(pos.x, pos.y, 0 - zIndex * 0.00100000000000000002);
+		Vector3D: pos3d(pos.x * 16.0 / 9.0, pos.y, 0 - zIndex * 0.00100000000000000002);
 		transMat.identity();
 		transMat.translate(pos3d);
 		scaleMat.identity();
@@ -798,7 +824,7 @@ public: 	Vector3D: color;
 		AnimationInfo: temp(0, start, duration, theta, 0.0);
 		animations.push(temp);
 	}
-	function: ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$(double: x, double: y, double: start, double: duration) => (){
+	function: ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$(double: x, double: y, double: start, double: duration) => (){
 		AnimationInfo: temp(1, start, duration, x, y);
 		animations.push(temp);
 	}
@@ -837,7 +863,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		now = 0.0;
 		elapsedTime = 0.0;
 		projMat.identity();
-		projMat = perspectiveMat2D(projMat, 0 - 高さ / 2.0 * 16.0 / 9.0, 高さ / 2.0 * 16.0 / 9.0, 0 - 高さ / 2, 高さ / 2, 0 - 5.0, 5.0);
+		projMat = perspectiveMat2D(projMat, (0 - 高さ) * (16.0 / 9.0), (高さ) * (16.0 / 9.0), 0 - 高さ, 高さ, 0.0 - 5.0, 5.0);
 		sprites.Array();
 		backgroundColor = color;
 		backgroundTransparency = 1.0;
@@ -906,7 +932,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 	}
 	function: ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$(double: r, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		double: PI = 3.14159265358979312;
-		Array<Vector3D>: points();
+		Array<Vector3D>: points;
 		int: 頂点数 = 60;
 		(int: i = 0;)from(i == 頂点数)to(i = i + 1;){
 			double: theta = 0;
@@ -983,4 +1009,32 @@ function: __setUpVariableNamesForSamples() => (){
 	double: ${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$;
 	double: ${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$;
 	double: ${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$;
+}
+class: ArduinoClass{
+public: 	char: ${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$;
+	char: ${"ja":"入力ピン", "natja":"入力ピン", "en":"INPUT", "naten":"INPUT"}$;
+	function: ArduinoClass() => (){
+		OUTPUT = '出';
+		INPUT = '入';
+	}
+}
+function: ${"ja":"Arduino5V送る", "natja":"Arduino5V送る", "en":"ArduinoOutput5V", "naten":"ArduinoOutput5V"}$(int: ピン番号) => (){
+	ArduinoSendCommand('H', ピン番号);
+}
+function: ${"ja":"Arduino0V送る", "natja":"Arduino0V送る", "en":"ArduinoOutput0V", "naten":"ArduinoOutput0V"}$(int: ピン番号) => (){
+	ArduinoSendCommand('L', ピン番号);
+}
+function: ${"ja":"Arduinoピン入出力設定", "natja":"Arduinoピン入出力設定", "en":"ArduinoSetPinmode", "naten":"ArduinoSetPinmode"}$(int: ピン番号, char: 入出力) => (){
+	if(入出力 == '入'){
+		ArduinoSendCommand('I', ピン番号);
+	}
+	if(入出力 == '出'){
+		ArduinoSendCommand('O', ピン番号);
+	}
+}
+function: ${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナログ入力ピン設定", "en":"ArduinoSetAnalogInputPin", "naten":"ArduinoSetAnalogInputPin"}$(int: ピン番号) => (){
+	ArduinoSendCommand('A', ピン番号);
+}
+function: ${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$(int: ピン番号) => (){
+	ArduinoSendCommand('T', ピン番号);
 }
