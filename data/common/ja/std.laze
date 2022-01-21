@@ -755,7 +755,7 @@
 	関数: ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$(実数: t) => (){
 		theta = t;
 	}
-	関数: ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$(実数: x) => (){
+	関数: ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$(実数: x) => (){
 		zIndex = x;
 	}
 	関数: ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$(実数: x) => (){
@@ -829,7 +829,7 @@
 		アニメーション情報: temp(0, start, duration, theta, 0.0);
 		animations.追加(temp);
 	}
-	関数: ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$(実数: x, 実数: y, 実数: start, 実数: duration) => (){
+	関数: ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$(実数: x, 実数: y, 実数: start, 実数: duration) => (){
 		アニメーション情報: temp(1, start, duration, x, y);
 		animations.追加(temp);
 	}

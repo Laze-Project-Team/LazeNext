@@ -750,7 +750,7 @@ public : 	Declare variable color as Vector3D .
 	Declare function ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$ that takes t as double with code starting here
 		Assign t to theta . 
 	ending here 
-	Declare function ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$ that takes x as double with code starting here
+	Declare function ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$ that takes x as double with code starting here
 		Assign x to zIndex . 
 	ending here 
 	Declare function ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$ that takes x as double with code starting here
@@ -824,7 +824,7 @@ public : 	Declare variable color as Vector3D .
 		Initialize object temp as AnimationInfo with 0 , start , duration , theta , 0.0 . 
 		Call push of animations with value temp . 
 	ending here 
-	Declare function ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$ that takes x as double , y as double , start as double , duration as double with code starting here
+	Declare function ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$ that takes x as double , y as double , start as double , duration as double with code starting here
 		Initialize object temp as AnimationInfo with 1 , start , duration , x , y . 
 		Call push of animations with value temp . 
 	ending here 

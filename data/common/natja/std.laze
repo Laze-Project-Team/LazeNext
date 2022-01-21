@@ -750,7 +750,7 @@
 	( t という 実数 ) を とり ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$ という 関数 を おく 。 ここから
 		theta に t を 代入する 。 
 	ここまで実行 
-	( x という 実数 ) を とり ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$ という 関数 を おく 。 ここから
+	( x という 実数 ) を とり ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$ という 関数 を おく 。 ここから
 		zIndex に x を 代入する 。 
 	ここまで実行 
 	( x という 実数 ) を とり ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$ という 関数 を おく 。 ここから
@@ -824,7 +824,7 @@
 		temp という アニメーション情報 の オブジェクト を 0 , start , duration , theta , 0.0 で 初期化 。 
 		temp animations の 追加 する 。 
 	ここまで実行 
-	( x という 実数 , y という 実数 , start という 実数 , duration という 実数 ) を とり ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$ という 関数 を おく 。 ここから
+	( x という 実数 , y という 実数 , start という 実数 , duration という 実数 ) を とり ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$ という 関数 を おく 。 ここから
 		temp という アニメーション情報 の オブジェクト を 1 , start , duration , x , y で 初期化 。 
 		temp animations の 追加 する 。 
 	ここまで実行 

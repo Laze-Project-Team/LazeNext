@@ -750,7 +750,7 @@ public: 	Vector3D: color;
 	function: ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$(double: t) => (){
 		theta = t;
 	}
-	function: ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$(double: x) => (){
+	function: ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$(double: x) => (){
 		zIndex = x;
 	}
 	function: ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$(double: x) => (){
@@ -824,7 +824,7 @@ public: 	Vector3D: color;
 		AnimationInfo: temp(0, start, duration, theta, 0.0);
 		animations.push(temp);
 	}
-	function: ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$(double: x, double: y, double: start, double: duration) => (){
+	function: ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$(double: x, double: y, double: start, double: duration) => (){
 		AnimationInfo: temp(1, start, duration, x, y);
 		animations.push(temp);
 	}
