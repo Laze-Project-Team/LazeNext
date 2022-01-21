@@ -667,10 +667,6 @@ public: 	int: id;
 class: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
 public: 	Vector3D: color;
 	Vector2D: pos;
-	double: 透明度;
-	double: scaleX;
-	double: scaleY;
-	double: theta;
 	function: Sprite(*double: data, int: pnum, *short: indicesData, int: vnum, Vector3D: c, Vector2D: p, int: s, double: zI) => (){
 		vertices = data;
 		pointNum = pnum;
@@ -853,6 +849,10 @@ private: 	*double: vertices;
 	short: modelMatUniformLoc;
 	short: samplerUniformLoc;
 	Array<AnimationInfo>: animations;
+	double: 透明度;
+	double: scaleX;
+	double: scaleY;
+	double: theta;
 }
 class: ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}${
 public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$;
