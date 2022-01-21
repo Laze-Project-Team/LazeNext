@@ -81,6 +81,116 @@
           "name": "標準ライブラリとは"
         },
         {
+          "id": "2d",
+          "name": "2Dライブラリ",
+          "children": [
+            {
+              "id": "index",
+              "name": "2Dライブラリとは"
+            },
+            {
+              "id": "scene",
+              "name": "シーン2D",
+              "children": [
+                {
+                  "id": "index",
+                  "name": "シーン2D"
+                },
+                {
+                  "id": "constructor",
+                  "name": "コンストラクタ"
+                },
+                {
+                  "id": "setBackgroundTransparency",
+                  "name": "背景透明度設定"
+                },
+                {
+                  "id": "draw",
+                  "name": "描画"
+                },
+                {
+                  "id": "addSquare",
+                  "name": "正方形追加"
+                },
+                {
+                  "id": "addRect",
+                  "name": "四角形追加"
+                },
+                {
+                  "id": "addPolygon",
+                  "name": "多角形追加"
+                },
+                {
+                  "id": "addCircle",
+                  "name": "円追加"
+                }
+              ]
+            },
+            {
+              "id": "sprite",
+              "name": "スプライト",
+              "children": [
+                {
+                  "id": "index",
+                  "name": "スプライト"
+                },
+                {
+                  "id": "constructor",
+                  "name": "コンストラクタ"
+                },
+                {
+                  "id": "setPos",
+                  "name": "座標設定"
+                },
+                {
+                  "id": "move",
+                  "name": "移動"
+                },
+                {
+                  "id": "scale",
+                  "name": "拡大縮小"
+                },
+                {
+                  "id": "rotate",
+                  "name": "回転"
+                },
+                {
+                  "id": "setAngle",
+                  "name": "角度設定"
+                },
+                {
+                  "id": "setZIndex",
+                  "name": "重なり順設定"
+                },
+                {
+                  "id": "setTransparency",
+                  "name": "透明度設定"
+                },
+                {
+                  "id": "setColor",
+                  "name": "色設定"
+                },
+                {
+                  "id": "draw",
+                  "name": "描画"
+                },
+                {
+                  "id": "rotateAnimation",
+                  "name": "回転アニメーション"
+                },
+                {
+                  "id": "scaleAnimation",
+                  "name": "拡大縮小アニメーション"
+                },
+                {
+                  "id": "moveAnimation",
+                  "name": "移動アニメーション"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "id": "3d",
           "name": "3Dライブラリ",
           "children": [
