@@ -138,5 +138,6 @@ docsTest().then((success) => {
     console.log('docs test success');
   } else {
     console.error('docs test failed');
+    process.exit(1);
   }
 });
