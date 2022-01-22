@@ -87,9 +87,14 @@ const docsTest = async () => {
         if (!fs.existsSync(`${DOCS_DIR}/${locale}/tree.json`)) {
           throw new Error(`${locale}/tree.json not found`);
         }
-        const tree = JSON.parse(await fs.promises.readFile(`${DOCS_DIR}/${locale}/tree.json`, { encoding: 'utf-8' }));
-        if (!validateTree(tree) || tree.children === undefined) {
-          throw new Error('tree.json is not valid format');
+        try {
+          const tree = JSON.parse(await fs.promises.readFile(`${DOCS_DIR}/${locale}/tree.json`, { encoding: 'utf-8' }));
+          if (!validateTree(tree) || tree.children === undefined) {
+            throw new Error('tree.json is not valid format');
+          }
+        } catch (err) {
+          console.error(err);
+          return false;
         }
 
         const isTreeValid = await validateTreeChild(tree, locale);
