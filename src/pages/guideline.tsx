@@ -72,12 +72,14 @@ const GuideLine: NextPage = () => {
 
         <H3>{t('LogoGuideline.ProhibitedMatters.title')}</H3>
         <P>{t('LogoGuideline.ProhibitedMatters.description')}</P>
-        <UL className="mb-16">
+        <UL>
           <LI>{t('LogoGuideline.ProhibitedMatters.1')}</LI>
           <LI>{t('LogoGuideline.ProhibitedMatters.2')}</LI>
           <LI>{t('LogoGuideline.ProhibitedMatters.3')}</LI>
           <LI>{t('LogoGuideline.ProhibitedMatters.4')}</LI>
         </UL>
+
+        <P className="mt-8 mb-16">{locale !== 'ja' && t('common:deepL')}</P>
       </IndexLayout>
     </>
   );
