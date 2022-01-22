@@ -12,6 +12,7 @@
     "lint:eslint": "eslint --cache .",
     "lint:prettier": "prettier --check .",
     "test": "jest",
+    "test:docs": "ts-node -r tsconfig-paths/register --project tsconfig.server.json test/docs.ts",
     "analyze": "ANALYZE=true next build",
     "prepare": "husky install"
   },
