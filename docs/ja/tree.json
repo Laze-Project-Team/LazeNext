@@ -183,7 +183,7 @@
                   "name": "拡大縮小アニメーション"
                 },
                 {
-                  "id": "moveAnimation",
+                  "id": "translateAnimation",
                   "name": "移動アニメーション"
                 }
               ]
@@ -297,6 +297,10 @@
             {
               "id": "index",
               "name": "数学ライブラリとは"
+            },
+            {
+              "id": "vec2",
+              "name": "ベクトル2D"
             },
             {
               "id": "vec3",
