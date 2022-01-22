@@ -11,6 +11,8 @@ import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
 
+import { ChangeLanguage } from '../model/ChangeLanguage';
+
 export type IndexLayoutProps = {
   children: ReactNode;
 };
@@ -69,9 +71,12 @@ const IndexHeader: VFC = () => {
             </Drawer>
           </div>
         ) : (
-          <div className="flex">
+          <div className="flex flex-1">
             <NavLink href="/editor">{t('header.Editor')}</NavLink>
             <NavLink href="/docs">{t('header.Docs')}</NavLink>
+            <div className="ml-auto">
+              <ChangeLanguage />
+            </div>
           </div>
         )}
       </div>
