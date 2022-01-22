@@ -32,6 +32,7 @@ import {
   Thead,
   Tr,
 } from '@/components/ui/Markdown';
+import { DOCS_DIR } from '@/const/dir';
 import type { breadcrumb, directoryObject } from '@/features/docs/getProps';
 import { getDocsProps } from '@/features/docs/getProps';
 import { cx } from '@/features/utils/cx';
@@ -204,8 +205,6 @@ const readDirectoryRecursive = (path: string, subpath = '/'): string[] => {
       return acc.concat(cur);
     }, []);
 };
-
-const DOCS_DIR = './docs';
 
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = readDirectoryRecursive(DOCS_DIR)
