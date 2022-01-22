@@ -87,8 +87,9 @@ const docsTest = async () => {
         if (!fs.existsSync(`${DOCS_DIR}/${locale}/tree.json`)) {
           throw new Error(`${locale}/tree.json not found`);
         }
+        let tree: TreeType;
         try {
-          const tree = JSON.parse(await fs.promises.readFile(`${DOCS_DIR}/${locale}/tree.json`, { encoding: 'utf-8' }));
+          tree = JSON.parse(await fs.promises.readFile(`${DOCS_DIR}/${locale}/tree.json`, { encoding: 'utf-8' }));
           if (!validateTree(tree) || tree.children === undefined) {
             throw new Error('tree.json is not valid format');
           }
