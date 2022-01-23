@@ -44,3 +44,5 @@ Assigning to a means replacing the value of variable a with the value to be assi
 |`! `|Negation|`!A`|False unless true if not A|!
 
 A or B here refers to a conditional expression such as `a == 1`.
+
+Translated with DeepL

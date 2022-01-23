@@ -16,3 +16,4 @@ Specifies what will be displayed on the console.
 
 None
 
+Translated with DeepL

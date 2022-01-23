@@ -141,3 +141,5 @@ loop {
 	counter++.
 }
 ```
+
+Translated with DeepL

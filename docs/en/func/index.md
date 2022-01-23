@@ -24,3 +24,5 @@ This section describes the [logical operators](/func/operator#Logical operators)
 ### [class](/func/class)
 
 This section describes classes, a useful feature that is also used in the Laze standard library. It is not mandatory, but it may help you to write more understandable code.
+
+Translated with DeepL

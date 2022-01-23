@@ -134,3 +134,5 @@ function: main () => () {
 ```
 
 In line 21, class inheritance occurs. In line 21, we declare a class called "truck" by inheriting from a class called "car". By inheriting, it inherits the properties "position", "speed", and "key", and the method "authentication", which are all members of "car"." The function "car" is not inherited because it is a [constructor](#Constructor).
+
+Translated with DeepL
