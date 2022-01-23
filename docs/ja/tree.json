@@ -65,7 +65,7 @@
           "name": "標準関数",
           "children": [
             {
-              "id": "show",
+              "id": "print",
               "name": "表示"
             }
           ]
