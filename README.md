@@ -65,6 +65,8 @@ Lazeの開発をお手伝いしたいですか？
   - ESLint(コードのチェック)
   - Tailwind CSS(スタイル)
 
+※このリポジトリは[s-kawabe/next-ts-template](https://github.com/s-kawabe/next-ts-template)をベースにして作られています
+
 ### 開発者クイックスタート
 
 前提として[Node.js](https://nodejs.org/ja/)、[Git](https://git-scm.com/)
