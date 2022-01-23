@@ -1,12 +1,12 @@
-# 三角関数
+# Trigonometric Functions
 
-数学の三角関数です。
+Trigonometric functions in mathematics.
 
-```
-実数:PI = 3.141592653589793238;
-表示(sin(PI)); // 0
-表示(cos(PI/2)); // 0
-表示(tan(PI/4)); // 1
-```
+````
+double: PI = 3.141592653589793238;
+print(sin(PI)); // 0
+print(cos(PI/2)); // 0
+print(tan(PI/4)); // 1
+````
 
-引数は全て単位がラジアンであることに注意してください。[ラジアンへ](/lib/math/toRad)を使うことで度をラジアンに変換することができます。
+Note that all arguments are in radians. You can use [To Radian](/lib/math/toRad) to convert degrees to radians.

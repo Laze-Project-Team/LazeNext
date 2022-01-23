@@ -1,16 +1,16 @@
-# 平方根
+# Square Root
 
-引数の平方根を返す関数です。
+Function to return the square root of an argument.
 
-```
+````
 // 2.23606797749979
-表示(平方根(5));
+print(sqrt(5));
 ```
 
-## 引数
+## Arguments
 
-平方根を取りたい値を引数に取ります
+Takes as argument the value for which you want to get the square root.
 
-## 戻り値
+## Return value
 
-引数の平方根を返します
+Returns the square root of the argument.

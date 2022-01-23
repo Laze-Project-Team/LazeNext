@@ -1,16 +1,16 @@
-# 絶対値
+# Absolute Value
 
-引数の絶対値を返す関数です
+Function to return the absolute value of an argument
 
-```
+````
 // 1
-表示(絶対値(-1));
+print(abs(-1));
 ```
 
-## 引数
+## Argument
 
-絶対値を取りたい値を引数に取ります
+Takes as argument the value you want to take as absolute value.
 
-## 返り値
+## Return value
 
-引数の絶対値を返します
+Returns the absolute value of the argument.

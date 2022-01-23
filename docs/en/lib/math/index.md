@@ -1,39 +1,41 @@
-# 数学ライブラリ
+# Math Library
 
-このライブラリはLazeで数学的処理をできるようにします。
+This library allows you to do mathematical operations in Laze.
 
-## クラス
+## Classes
 
-このライブラリにあるクラスの一覧:
+List of classes in this library:
 
-### [ベクトル2D](/lib/math/vec2)
+### [Vector 2D](/lib/math/vec2)
 
-2次元上の座標など表すために使います。
+This class is used to represent coordinates in two dimensions.
 
-このクラスは2Dのグラフィックスで使われています。
+This class is used for 2D graphics.
 
-### [ベクトル3D](/lib/math/vec3)
+### [Vector 3D](/lib/math/vec3)
 
-3次元上の座標や色のRGBを表すために使います。
+Used to represent coordinates and color RGB in 3D.
 
-このクラスは主に3Dのグラフィックスで使われています。
+This class is mainly used for 3D graphics.
 
-### [行列4x4](/lib/math/matrix4x4)
+### [Matrix 4x4](/lib/math/matrix4x4)
 
-4x4の行列です。3Dライブラリの内部に使われています。
+A 4x4 matrix, used inside 3D libraries.
 
-### [三角関数](/lib/math/trig_function)
+### [Trigonometric Functions](/lib/math/trig_function)
 
-数学的な三角関数です。3Dライブラリの内部に使われています。
+Mathematical trigonometric functions, used inside the 3D library.
 
-### [絶対値](/lib/math/abs)
+### [Absolute Value](/lib/math/abs)
 
-絶対値を返す関数です。
+A function that returns an absolute value.
 
-### [ラジアンへ](/lib/math/toRad)
+### [To Radian](/lib/math/toRad)
 
-360度法から弧度法に変換する関数です。
+Function to convert from 360 degrees to arc degrees.
 
-### [平方根](/lib/math/sqrt)
+### [Square Root](/lib/math/sqrt)
 
-平方根を返す関数です。
+Function to return the square root.
+
+Translated with DeepL

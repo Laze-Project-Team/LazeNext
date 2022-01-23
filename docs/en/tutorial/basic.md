@@ -1,4 +1,4 @@
-# Basics
+# Basic Tutorials
 
 Let's learn the basic usage of Laze.
 

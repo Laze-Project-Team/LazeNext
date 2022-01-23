@@ -1,24 +1,24 @@
-# ラジアンへ
+# To Radian
 
-度をラジアンに変換する関数です
+Function to convert degrees to radians.
 
-```
+````
 // 1.5707963267948966
-表示(ラジアンへ(90));
+print(toRad(90));
 ```
 
-## 引数
+## Arguments
 
-変換元の値[度]を引数に取ります
+Takes the source value [degrees] as an argument.
 
-## 戻り値
+## Return value
 
-変換先の値[ラジアン]を返します
+Returns the value of the conversion destination [radians].
 
-## 変換
+## Conversion Fomula
 
-計算式は以下の通りです
+The formula is as follows
 
-```
-ラジアン = 度 / 180 * π
+````
+radians = degrees / 180 * π
 ```

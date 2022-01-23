@@ -1,33 +1,36 @@
-# 行列4x4
+# Matrix 4x4
 
-4x4の行列を表し、3Dライブラリの内部で使われています。
+Represents a 4x4 matrix and is used internally in the 3D library.
 
-## 初期化
+## Initialization.
 
+````
+Matrix4x4: The matrix;
 ```
-行列4x4: 行列;
-```
 
-## プロパティ
+## Properties
 
-### matrix
+## matrix
 
-長さ16の実数型の配列で、行列を保管しています。
+Array of 16 real numbers of length to store the matrix.
 
-初期値は`[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]`です
+Initial value is `[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]`.
 
-## メソッド
+## Method
 
-### 単位化
+## Unitization.
 
-プロパティ`matrix`を初期値に戻します。
+Reset the property `matrix` to its initial value.
 
-### 移動
+### Move.
 
 
 
-### 回転
+### rotate.
 
 
 
-### 拡大縮小
+### scale
+
+
+Translated with www.DeepL.com/Translator (free version)

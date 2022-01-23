@@ -1,61 +1,60 @@
-# ベクトル3D
+# Vector 3D
 
-3次元のベクトルを表し、3D座標、色などを表すのに用いられます。
+Represents a three-dimensional vector, used to represent 3D coordinates, colors, etc.
 
-## 初期化
+## Initialization
 
 ```
-実数: x = 0.0;
-実数: y = 0.0;
-実数: z = 0.0;
-ベクトル3D: ベクトル(x, y, z);
+double: x = 0.0;
+double: y = 0.0;
+double: z = 0.0;
+Vector3D: vector(x, y);
 ```
 
 ### x
 
-定義するベクトルのx成分を実数で指定します
+y component of the vector to define as double.
 
 ### y
 
-定義するベクトルのy成分を実数で指定します
+y component of the vector to define as double.
 
 ### z
 
-定義するベクトルのz成分を実数で指定します
+z component of the vector to define as double.
 
-
-## メンバー
+## Properties
 
 ### x
 
-ベクトルのx成分
+x component of the vector.
 
 ### y
 
-ベクトルのy成分
+y component of the vector.
 
 ### z
 
-ベクトルのz成分
+z component of the vector.
 
-## メソッド
+## Method
 
-### 長さ
-
-```
-実数:長さ = ベクトル.長さ();
-```
-
-#### 戻り値
-
-3Dベクトルの長さ(x²+y²+z²の正の平方根)
-
-### 正規化
+### length
 
 ```
-ベクトル3D: 単位ベクトル = ベクトル.正規化();
+double: length = vector.length();
 ```
 
-#### 戻り値
+#### Return values
 
-正規化されたベクトル3D(長さ1)
+Length of vector3D (positive square root of x²+y²+z²).
+
+### Normalization
+
+```
+Vector3D: unitVector = vector.normalize();
+```
+
+#### Return values
+
+Normalized vector3D (length 1).

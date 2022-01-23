@@ -1,51 +1,51 @@
-# ベクトル2D
+# Vector 2D
 
-2次元のベクトルを表し、2D座標などを表すのに用いられます。
+Represents a two-dimensional vector and is used to represent 2D coordinates, etc.
 
-## 初期化
+## Initialization
 
 ```
-実数: x = 0.0;
-実数: y = 0.0;
-ベクトル2D: ベクトル(x, y);
+double: x = 0.0;
+double: y = 0.0;
+Vector2D: vector(x, y);
 ```
 
 ### x
 
-定義するベクトルのx成分を実数で指定します
+y component of the vector to define as double.
 
 ### y
 
-定義するベクトルのy成分を実数で指定します
+y component of the vector to define as double.
 
-## メンバー
+## Properties
 
 ### x
 
-ベクトルのx成分
+x component of the vector.
 
 ### y
 
-ベクトルのy成分
+y component of the vector.
 
-## メソッド
+## Method
 
-### 長さ
-
-```
-実数:長さ = ベクトル.長さ();
-```
-
-#### 戻り値
-
-2Dベクトルの長さ(x²+y²の正の平方根)
-
-### 正規化
+### length
 
 ```
-ベクトル2D: 単位ベクトル = ベクトル.正規化();
+double: length = vector.length();
 ```
 
-#### 戻り値
+#### Return values
 
-正規化されたベクトル2D(長さ1)
+Length of vector2D (positive square root of x²+y²).
+
+### Normalization
+
+```
+Vector2D: unitVector = vector.normalize();
+```
+
+#### Return values
+
+Normalized vector2D (length 1).
