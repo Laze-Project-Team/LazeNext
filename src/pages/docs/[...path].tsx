@@ -118,7 +118,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
         </div>
         <div>
           {media && media !== QUERY_SM_DOWN && (
-            <div className="fixed top-16 w-64 h-[calc(100vh-3rem)] pt-4 border-r-2 overflow-y-scroll z-10">
+            <div className="fixed top-16 w-64 h-[calc(100vh-4rem)] pt-4 border-r-2 overflow-y-scroll z-10">
               <div className="pb-[80vh]">
                 <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
               </div>
