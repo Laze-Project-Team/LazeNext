@@ -16,7 +16,7 @@ double: magnitude = 1.0;
 Vector2D: coordinates(1.0, 2.0);
 Vector3D: color (0.2, 0.5, 0.7);
 double numbers: zindex = 10;
-Scene.addPolygon(vertices, size, coordinates, color, zindex);
+double: id = Scene.addPolygon(vertices, size, coordinates, color, zindex);
 ```
 
 ### Arguments

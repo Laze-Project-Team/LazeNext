@@ -9,7 +9,7 @@ double: radius = 5;
 Vector2D: coordinates(1.0, 2.0);
 Vector3D: color(0.2, 0.5, 0.7);
 doubles: zindex = 10;
-Scene.addCircle(radius, coordinates, color, zindex);
+double: id = Scene.addCircle(radius, coordinates, color, zindex);
 ```
 
 ### Arguments

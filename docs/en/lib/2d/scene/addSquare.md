@@ -9,7 +9,7 @@ double: size = 1.0;
 vector2D: coordinates(1.0, 2.0);
 Vector3D: color(0.2, 0.5, 0.7);
 doubles: zindex = 10;
-Scene.addSquare(size, coordinates, color, zindex);
+double: id = Scene.addSquare(size, coordinates, color, zindex);
 ```
 
 ### Arguments
