@@ -1,17 +1,17 @@
-# シーン.シーン()
+# Scene.Scene()
 
-この関数はシーンクラスのコンストラクタです。
+This function is the constructor for the scene class.
 
-## 使い方
+## Usage
 
+````
+scene:world();
 ```
-シーン:ワールド();
-```
 
-### 引数
+## Arguments
 
-なし
+None
 
-### 返り値
+### Return values
 
-なし
+None

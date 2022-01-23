@@ -58,3 +58,5 @@ Vector3D: unitVector = vector.normalize();
 #### Return values
 
 Normalized vector3D (length 1).
+
+Translated by DeepL

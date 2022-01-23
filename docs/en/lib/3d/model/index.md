@@ -1,43 +1,43 @@
-# モデル
+# Model
 
- モデルクラスはワールド内の物体を管理するクラスです。
+ Model class is a class that manages objects in the world.
 
-## メソッド一覧
+## Methods
 
-これらのメソッドでモデルを制御できます:
+You can control the model with these methods:
 
-### [モデル.モデル()](/lib/3d/model/constructor) (クラスコンストラクタ)
+### [Model.Model()](/lib/3d/model/constructor) (class constructor)
 
-モデルオブジェクトを作った時に呼ばれる関数です。
+This function is called when you create a model object.
 
-### [モデル.座標設定()](/lib/3d/model/setpos)
+### [Model.setCoordinates()](/lib/3d/model/setpos)
 
-モデルの座標を設定できます。
+You can set the coordinates of the model.
 
-### [モデル.移動()](/lib/3d/model/translate)
+### [Model.move()](/lib/3d/model/translate)
 
-モデルを平行移動できます。
+You can translate the model.
 
-### [モデル.拡大縮小()](/lib/3d/model/scale)
+### [Model.scale()](/lib/3d/model/scale)
 
-モデルをx, y, z向きにそれぞれ拡大縮小できます。
+Scale the model in the x, y, and z directions.
 
-### [モデル.回転()](/lib/3d/model/rotate)
+### [Model.rotate()](/lib/3d/model/rotate)
 
-モデルをある回転軸に対して回転できます。
+Rotate the model around a certain axis of rotation.
 
-### [モデル.描画()](/lib/3d/model/draw)
+### [Model.draw()](/lib/3d/model/draw)
 
-モデルを描画できます。普段は[シーン.描画()](/lib/3d/scene/draw)で呼び出されるので、ユーザーがこの関数を使う必要はありません.
+Draws the Model. Normally it is used in [Scene.draw()](/lib/3d/scene/draw). 
 
-## 公開プロパティ
+## Properties
 
-これらのメンバーはモデルのデータを表しています:
+These members represent the data of the model:
 
-### モデル.座標
+### Model.coordinates
 
-モデルの座標を表す[ベクトル3D](/lib/math/vec3)。
+Vector3D](/lib/math/vec3), which represents the coordinates of the Model.
 
-### モデル.色
+### Model.color
 
-モデルの色を表す[ベクトル3D](/lib/math/vec3)。
+The color of the model [Vector3D](/lib/math/vec3).

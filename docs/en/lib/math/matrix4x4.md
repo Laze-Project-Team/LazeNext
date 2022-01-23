@@ -4,7 +4,7 @@ Represents a 4x4 matrix and is used internally in the 3D library.
 
 ## Initialization.
 
-````
+```
 Matrix4x4: The matrix;
 ```
 
@@ -22,15 +22,15 @@ Initial value is `[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0
 
 Reset the property `matrix` to its initial value.
 
-### Move.
+### move
 
 
 
-### rotate.
+### rotate
 
 
 
 ### scale
 
 
-Translated with www.DeepL.com/Translator (free version)
+Translated by DeepL

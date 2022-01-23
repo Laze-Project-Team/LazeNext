@@ -1,37 +1,38 @@
-# シーン.ライト追加()
+# Scene.addLight()
 
-この関数でワールドに光源を追加できます。
+This function allows you to add a light source to the world.
 
-## 使い方
+## Usage
 
 ```
-実数:大きさ = 1.0;
-ベクトル3D:色(1.0, 0.0, 0.0);
-ベクトル3D:座標(0.0, 0.0, 0.0);
-整数:id = ワールド.ライト追加(大きさ,  色, 座標);
+double: magnitude = 1.0;
+vector3D: color(1.0, 0.0, 0.0);
+Vector3D: coordinates(0.0, 0.0, 0.0);
+int: id = world.addLight(size, color, coordinates);
 ```
 
-### 引数
+### Arguments
 
-#### 大きさ
+#### size
 
-一辺の長さを表す実数。
+A real number representing the length of a side.
 
-#### 色
+#### color
 
-光源の色を表す[ベクトル3D](/lib/math/vec3)。x, y, zプロパティがそれぞれ赤、緑、青の強さを0.0~1.0の実数で表しています。
+Color of the light source [vector3D](/lib/math/vec3). x, y, and z properties represent the intensity of red, green, and blue, respectively, as real numbers from 0.0~1.0.
 
-#### 座標
+#### Coordinates
 
-光源の座標を表す[ベクトル3D](/lib/math/vec3)。
+Coordinates of the light source [vector3D](/lib/math/vec3).
 
-### 返り値
+### Return Values
 
-この関数はワールド内でのこのオブジェクトの整数のIDを返します。このIDはシーンクラスのスプライト配列におけるこのオブジェクトに当てはまる要素を取得するために使えます。
+This function returns the integer ID of this object in the world. This ID can be used to retrieve the element in the scene class sprite array that corresponds to this object.
 
-例
+Example
+
 ```
-// 上記のプログラムの続き
-整数:id = ワールド.ライト追加(大きさ,  色, 座標);
-ワールド.プロパティ.取得(id) -> 描画();
+// Continuation of the above program
+int: id = world.addLight(size, color, coordinates);
+world.sprites.get(id) -> draw();
 ```

@@ -1,32 +1,32 @@
-# モデル.描画()
+# Model.draw()
 
-モデルを描画できます。普段は[シーン.描画()](/lib/3d/scene/draw)で呼び出されるので、ユーザーがこの関数を使う必要はありません(推奨されない).
+Allows you to draw the model. Usually called by [Scene.draw()](/lib/3d/scene/draw), so it is not necessary (and not recommended) for the user to use this function.
 
-## 使い方
+## Usage
 
 ```
-行列4x4:プロジェクション行列();
-プロジェクション行列 = 視点行列3D(プロジェクション行列, 75.0, 1280.0, 720.0, 0.1, 100.0);
-行列4x4:ビュー行列();
-ビュー行列 = 目.アップデート(xOffset, yOffset, elapsedTime);
-ベクトル3D:カメラの座標(1.0, 0.0, 0.0);
-キューブ.描画(プロジェクション行列, ビュー行列, カメラの座標);
+matrix4x4: projectionMatrix();
+projectionMatrix = perspectiveMat3D(projectionMatrix, 75.0, 1280.0, 720.0, 0.1, 100.0);
+matrix4x4:viewMatrix();
+viewMatrix = Eye.Update(xOffset, yOffset, elapsedTime);
+Vector3D: cameraCoordinates(1.0, 0.0, 0.0);
+cube.draw(projection matrix, view matrix, camera coordinates);
 ```
 
-### 引数
+### Arguments
 
-#### プロジェクション行列
+#### projectionMatrix
 
-ワールドのプロジェクション行列を示す[行列4x4](/lib/3d/matrix4x4)。詳しくは[こちらのウェブサイト](http://www.sousakuba.com/Programming/d3d_camera.html)で読んでください。
+A [Matrix 4x4](/lib/3d/matrix4x4) showing the projection matrix of the world. You can read more about it at [this website](http://www.sousakuba.com/Programming/d3d_camera.html).
 
-#### ビュー行列
+#### viewMatrix
 
-カメラのビュー行列を示す[行列4x4](/lib/3d/matrix4x4)。詳しくは[こちらのウェブサイト](http://www.sousakuba.com/Programming/d3d_camera.html)で読んでください。
+A [Matrix 4x4](/lib/3d/matrix4x4) that shows the view matrix of the camera. Read more about it at [this website](http://www.sousakuba.com/Programming/d3d_camera.html).
 
-#### カメラの座標
+#### Camera coordinates
 
-ワールドのカメラの座標を示す[ベクトル3D](/lib/math/vec3)。
+The coordinates of the camera in the world [Vector3D](/lib/math/vec3).
 
-### 返り値
+### Return Values
 
-なし
+None

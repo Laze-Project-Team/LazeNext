@@ -1,30 +1,30 @@
-# モデル.拡大縮小()
+# Model.scale()
 
-モデルをx, y, z向きにそれぞれ拡大縮小できます。
+Allows you to scale the model in the x, y, and z directions respectively.
 
-## 使い方
+## Usage
 
 ```
-実数:x = 0.5;
-実数:y = 0.5;
-実数:z = 0.5;
-キューブ.拡大縮小(x, y, z);
+double: x = 0.5;
+double: y = 0.5;
+double: z = 0.5;
+cube.scale(x, y, z);
 ```
 
-### 引数
+### Arguments
 
 #### x
 
-モデルのx方向に何倍拡大するか示す実数。
+A real number indicating how many times to scale the model in the x direction.
 
 #### y
 
-モデルのy方向に何倍拡大するか示す実数。
+A real number indicating how many times the model should be scaled in the y direction.
 
 #### z
 
-モデルのz方向に何倍拡大するか示す実数。
+A real number indicating how many times the model will be scaled in the z direction.
 
-### 返り値
+### Return values
 
-なし
+None

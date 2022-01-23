@@ -1,24 +1,24 @@
-# 3Dライブラリ
+# 3D Graphics Library
 
-Lazeではこのライブラリを使うと簡単に3Dグラフィックスのプログラミングができます。
+In Laze, you can easily program 3D graphics using this library.
 
-詳しいチュートリアルは[3Dのチュートリアル](/tutorial/3d)を参照して下さい。
+For a detailed tutorial, please refer to [3D Tutorials](/tutorial/3d).
 
-## クラス
+## Classes
 
-このライブラリにあるクラスの一覧:
+List of classes in this library:
 
-### [シーン](/lib/3d/scene/index)
+### [Scene](/lib/3d/scene/index)
 
-このクラスのオブジェクトでこのライブラリの機能すべてを使えます。
+An object of this class can use all the features of this library.
 
-### [カメラ](/lib/3d/camera/index)
+### [Camera](/lib/3d/camera/index)
 
-このクラスでワールド内を動くカメラの制御ができます。
+This class allows you to control a camera that moves around the world.
 
-### [モデル](/lib/3d/model/index)
+### [Model](/lib/3d/model/index)
 
-このクラスはワールド内の物体を制御したり描画することができます。
+This class can be used to control and draw objects in the world.
 
-
+Translated by DeepL
 

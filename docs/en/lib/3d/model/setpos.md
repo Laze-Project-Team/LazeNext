@@ -1,20 +1,20 @@
-# モデル.座標設定()
+# Model.setCoordinates()
 
-モデルの座標を設定できます。
+Allows you to set the coordinates of the model.
 
-## 使い方
+## Usage
 
 ```
-ベクトル3D:座標(5.0, 0.0, 0.0);
-キューブ.座標設定(座標);
+Vector3D: coordinates(5.0, 0.0, 0.0);
+cube.setCoordinates(coordinates);
 ```
 
-### 引数
+### Arguments
 
-#### 座標
+#### coordinates
 
-モデルの座標を表す[ベクトル3D](/lib/math/vec3)。
+The coordinates of the model [Vector3D](/lib/math/vec3).
 
-### 返り値
+### Return values
 
-なし
+None

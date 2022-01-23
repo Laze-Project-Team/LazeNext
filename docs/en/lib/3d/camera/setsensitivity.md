@@ -1,20 +1,20 @@
-# カメラ.感度設定()
+# Camera.setSensitivity()
 
-カメラの感度を設定できます。(デフォルトは0.1)
+Allows you to set the sensitivity of the camera. (Default is 0.1)
 
-## 使い方
+## Usage
 
 ```
-実数:感度=10.0;
-目.感度設定(座標);
+double: sensitivity = 10.0;
+Eye.setSensitivity(sensitivity);
 ```
 
-### 引数
+### Arguments
 
-#### 感度
+#### sensitivity
 
-カメラの感度を表す実数。
+A real number representing the sensitivity of the camera.
 
-### 返り値
+### Return Values
 
-なし
+None

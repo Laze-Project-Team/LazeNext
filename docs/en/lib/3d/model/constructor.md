@@ -1,45 +1,45 @@
-# モデル.モデル()
+# Model.Model()
 
-この関数はモデルクラスのコンストラクタです。
+This function is the constructor for the model class.
 
-## 使い方
+## Usage
 
 ```
-実数:頂点データ[12][3][6] = [...];
-整数:頂点の数=36;
-ベクトル3D:色(0.2, 0.5, 0.7);
-ベクトル3D:座標(0.0, 0.0, 0.0);
-整数:シェーダーID = 0;
-モデル:キューブ(&頂点データ, 頂点の数, 色, 座標, シェーダーID);
+double: vertexData[12][3][6] = [...]. ;
+int: vertexCount = 36;
+vector3D: color(0.2, 0.5, 0.7);
+Vector3D: coordinates(0.0, 0.0, 0.0);
+int: shaderID = 0;
+Model: cube(&vertexData, vertexCount, color, coordinates, shaderID);
 ```
 
-### 引数
+### Arguments
 
-#### 頂点データ
+#### vertexData
 
-モデルの頂点データを表す実数の配列をさすポインタ。
+Pointer to an array of real numbers representing the vertex data of the model.
 
-### 頂点の数
+### vertexCount
 
-モデルに頂点が何個あるか示す整数。
+An integer indicating how many vertices are in the model.
 
-### 色
+### color
 
-モデルの色を示す[ベクトル3D](/lib/math/vec3)。
+The color of the model [Vector3D](/lib/math/vec3).
 
-### 座標
+### coordinates
 
-モデルの座標を表す[ベクトル3D](/lib/math/vec3)。
+The coordinates of the model [Vector3D](/lib/math/vec3).
 
-### シェーダーID
+### shaderID
 
-モデルを描画するときに使うシェーダーのID。
+The ID of the shader to use when drawing the model.
 
-| 物体の種類 | ID |
-|-----------|----|
-| 普通の物体 |  0 |
-| 光源 | 1 |
+|  object type  | ID |.
+|---------------|----|
+| normal object | 0 |
+| Light source  | 1 |
 
-### 返り値
+### Return Values
 
-なし
+None

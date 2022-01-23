@@ -1,20 +1,20 @@
-# カメラ.カメラ()
+# Camera.Camera()
 
-この関数はカメラクラスのコンストラクタです。
+This function is the constructor of the camera class.
 
-## 使い方
+## Usage
 
 ```
-ベクトル3D:座標(0.0, 0.0, 0.0);
-カメラ:目(座標);
+Vector3D: coordinates(0.0, 0.0, 0.0);
+Camera: Eye(coordinate);
 ```
 
-### 引数
+## Arguments
 
-#### 座標
+#### coordinates
 
-カメラの初期位置を表す[ベクトル3D](/lib/math/vec3)。
+The initial position of the camera [Vector3D](/lib/math/vec3).
 
-### 返り値
+### Return values
 
-なし
+None

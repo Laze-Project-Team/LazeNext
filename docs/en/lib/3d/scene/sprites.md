@@ -1,17 +1,17 @@
-# シーン.スプライト
+# Scene.sprites
 
-シーン.スプライトはワールドにある物体を保管してる配列<*[モデル](/lib/3d/model/index)>です。
+Scene.sprites is an array <*[Model](/lib/3d/model/index)> that stores the objects in the world.
 
-## 使い方
+## Usage
 
-シーン.スプライトの要素を取得するためにはシーン.キューブ追加で取得したIDを使います。
+Scene.sprites To get the elements of a sprite, use the scene. Use the ID you got from add cube.
 
-```
-実数:大きさ = 1.0;
-ベクトル3D:色(1.0, 0.0, 0.0); 
-ベクトル3D:座標(0.0, 0.0, 0.0);
-整数:id = ワールド.キューブ追加(大きさ,  色, 座標);
-ワールド.スプライト.取得(id) -> 拡大縮小(0.5, 0.5, 0.5);
-```
+````
+double: size = 1.0;
+vector3D: color(1.0, 0.0, 0.0); 
+Vector3D: coordinates(0.0, 0.0, 0.0);
+int: id = world.addCube(size, color, coordinates);
+world.sprites.get(id) -> scale(0.5, 0.5, 0.5);
+````
 
-シーン.スプライトの要素はポインターなので`->`という記号を用いてオブジェクトのメンバーにアクセスします。
+Scene.sprites elements are pointers, so we use the `->` symbol to access the object members.

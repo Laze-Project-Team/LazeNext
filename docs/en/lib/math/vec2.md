@@ -49,3 +49,5 @@ Vector2D: unitVector = vector.normalize();
 #### Return values
 
 Normalized vector2D (length 1).
+
+Translated by DeepL

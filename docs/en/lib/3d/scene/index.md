@@ -1,35 +1,35 @@
-# シーン
+# Scene
 
-シーンクラスはLazeでグラフィックスをすべて制御するクラスです。
+The scene class is the class that controls all graphics in Laze.
 
-## メソッド
+## Methods
 
-これらのメソッドでワールド内で起きることを制御できます:
+With these methods you can control what happens in the world:
 
-### [シーン.シーン()](/lib/3d/scene/constructor) (クラスコンストラクタ)
+### [Scene.Scene()](/lib/3d/scene/constructor) (class constructor)
 
-シーンオブジェクトを作った時に呼ばれる関数です。
+This function is called when you create a scene object.
 
-### [シーン. キューブ追加()](/lib/3d/scene/addcube)
+### [Scene.addCube()](/lib/3d/scene/addcube)
 
-この関数でワールドに動かして描画できる立方体を追加できます。
+This function allows you to add a cube that can be moved and drawn in the world.
 
-### [シーン.ライト追加()](/lib/3d/scene/addlight)
+### [Scene.addLight()](/lib/3d/scene/addlight)
 
-この関数でワールドに光源を追加できます。
+This function allows you to add a light to the world.
 
-### [シーン.描画()](/lib/3d/scene/draw)
+### [Scene.draw()](/lib/3d/scene/draw)
 
-この関数でワールドにある物体をすべて描画します.
+With this function you can draw all objects in the world.
 
-## プロパティ
+## Properties
 
-これらのメンバーはワールドのデータを表しています:
+These members represent the data of the world:
 
-### [シーン.スプライト](/lib/3d/scene/sprites)
+### [Scene.sprites](/lib/3d/scene/sprites)
 
-このプロパティでワールド内にある物体を管理できます。
+This property allows you to manage the objects in the world.
 
-### シーン.目
+### Scene.eye
 
-このプロパティはワールド内の[カメラ](/lib/3d/camera/index)です。
+This property is the [camera](/lib/3d/camera/index) in the world.

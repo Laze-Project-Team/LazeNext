@@ -1,25 +1,25 @@
-# モデル.回転()
+# Model.rotate()
 
-モデルをある回転軸に対して回転できます。
+Allows you to rotate the model about a certain rotation axis.
 
-## 使い方
+## Usage
 
 ```
-ベクトル3D:軸(1.0, 0.0, 0.0);
-実数:角度 = toRad(90.0);
-キューブ.回転(軸, ラジアン);
+Vector3D: axis(1.0, 0.0, 0.0);
+double: angle = toRad(90.0);
+cube.rotate(axis, angle);
 ```
 
-### 引数
+### Arguments
 
-#### 軸
+#### axis
 
-モデルを回転させる軸[ベクトル3D](/lib/math/vec3)。
+Axis to rotate the model [Vector3D](/lib/math/vec3).
 
-#### ラジアン
+#### angle
 
-モデルを回転させる角度を示す実数。度数法の角度を入れないように気を付けること(360度法を[toRad](/lib/math/toRad)を使って変換することもできる)。
+A real number indicating the angle at which to rotate the model. Be careful not to include angles in the degree system (you can also convert the 360 degree system using [toRad](/lib/math/toRad)).
 
-### 返り値
+### Return values
 
-なし
+None.

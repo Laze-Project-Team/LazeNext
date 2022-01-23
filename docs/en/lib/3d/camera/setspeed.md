@@ -1,20 +1,20 @@
-# カメラ.速度設定()
+# Camera.setSpeed()
 
-カメラの速度を設定できます。(デフォルトは5.0)
+Allows you to set the speed of the camera. (Default is 5.0)
 
-## 使い方
+## Usage
 
 ```
-実数:速度=10.0;
-目.速度設定(座標);
+double: speed = 10.0;
+Eye.setSpeed(speed);
 ```
 
-### 引数
+### Arguments
 
-#### 速度
+#### speed
 
-カメラの速度を表す実数。
+A real number representing the speed of the camera.
 
-### 返り値
+### Return Values
 
-なし
+None

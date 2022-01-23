@@ -2,7 +2,7 @@
 
 Function to convert degrees to radians.
 
-````
+```
 // 1.5707963267948966
 print(toRad(90));
 ```
@@ -22,3 +22,5 @@ The formula is as follows
 ````
 radians = degrees / 180 * π
 ```
+
+Translated by DeepL

@@ -1,20 +1,20 @@
-# モデル.移動()
+# Model.move()
 
-モデルを一定の距離分移動できます。
+Allows you to move the model by a certain distance.
 
-## 使い方
+## Usage
 
 ```
-ベクトル3D:座標(5.0, 0.0, 0.0);
-キューブ.移動(座標);
+Vector3D: coordinates(5.0, 0.0, 0.0);
+cube.move(coordinates);
 ```
 
-### 引数
+### Arguments
 
-#### 座標
+#### Coordinates
 
-モデルが移動する距離を表す[ベクトル3D](/lib/math/vec3)。
+The distance the model will move [Vector3D](/lib/math/vec3).
 
-### 返り値
+### Return values
 
-なし
+None.

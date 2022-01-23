@@ -1,17 +1,17 @@
-# シーン.描画()
+# Scene.draw()
 
-この関数でワールドにある物体をすべて描画します.また、[カメラ.アップデート()](/lib/3d/camera/update)も呼び出しています。
+This function draws all objects in the world. It also calls [Camera. Update()](/lib/3d/camera/update) is also called.
 
-## 使い方
+## Usage
 
+````
+world.draw();
 ```
-ワールド.描画();
-```
 
-### 引数
+## Arguments
 
-なし
+None
 
-### 返り値
+### Return values
 
-なし
+None

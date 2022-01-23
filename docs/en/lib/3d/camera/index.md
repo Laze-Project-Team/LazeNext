@@ -1,41 +1,39 @@
-# カメラ
+# Camera
 
-[3Dライブラリ](/lib/3d/3d) > カメラ
+The camera class is a class that controls the viewpoint in the world.
 
-カメラクラスはワールド内の視点を制御するクラスです。
+## Methods
 
-## メソッド一覧
+You can control the camera with these methods:
 
-これらのメソッドでカメラのの制御ができます:
+### [Camera.Camera()](/lib/3d/constructor) (class constructor)
 
-### [カメラ.カメラ()](/lib/3d/cameraconstructor) (クラスコンストラクタ)
+This function is called when you create a camera object.
 
-カメラオブジェクトを作った時に呼ばれる関数です。
+### [camera.setSensitivity()](/lib/3d/camera/setsensitivity)
 
-### [カメラ.感度設定()](/lib/3d/camera/setsensitivity)
+Allows you to set the sensitivity of the camera. (Default is 0.1).
 
-カメラの感度を設定できます。(デフォルトは0.1)
+### [Camera.setSpeed](/lib/3d/camera/setspeed)
 
-### [カメラ.速度設定()](/lib/3d/camera/setspeed)
+Allows you to set the camera speed. (Default is 5.0).
 
-カメラの速度を設定できます。(デフォルトは5.0)
+### [Camera.update()](/lib/3d/camera/update)
 
-### [カメラ.アップデート()](/lib/3d/camera/update)
+Moves the camera in response to user input. (Not recommended to use. You can no longer use [scene.draw()](/lib/3d/scene/draw))
 
-カメラをユーザーの入力に応じて動かします。(使うことは推奨されない。もう[シーン.描画()](/lib/3d/scene/draw)に含まれている。)
+## Properties
 
-## 公開プロパティ
+These members represent the data of the camera:
 
-これらのメンバーはカメラのデータを表しています:
+### Camera.coordinates
 
-### カメラ.座標
+This property is the coordinates of the camera.
 
-このプロパティはカメラの座標です。
+### Camera.sensitivity
 
-### カメラ.感度
+This property is the sensitivity of the camera. It can be changed in [Camera.setSensitivity()](/lib/3d/camera/setsensitivity).
 
-このプロパティはカメラの感度です。[カメラ.感度設定()](/lib/3d/camera/setsensitivity)で変えることができます。
+### Camera.speed
 
-### カメラ.速度
-
-このプロパティはカメラの速度です。[カメラ.速度設定()](/lib/3d/camera/setspeed)で変えることができます。
+This property is the speed of the camera. It can be changed in [Camera. setSpeed()](/lib/3d/camera/setspeed).

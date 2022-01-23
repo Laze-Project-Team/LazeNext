@@ -1,17 +1,17 @@
-# カメラ.アップデート()
+# Camera.update()
 
-カメラをユーザーの入力に応じて動かします。(使うことは推奨されない。もう[シーン.描画()](/lib/3d/scene/draw)に含まれている。)
+Makes the camera move in response to user input. (Not recommended to use. It is already included in [scene.draw()](/lib/3d/scene/draw))
 
-## 使い方
+## Usage
 
 ```
-目.アップデート();
+Eye.update();
 ```
 
-### 引数
+## Arguments
 
-なし
+None
 
-### 返り値
+### Return Values
 
-なし
+None
