@@ -18,3 +18,5 @@ The initial position of the camera [Vector3D](/lib/math/vec3).
 ### Return values
 
 None
+
+Translated by DeepL

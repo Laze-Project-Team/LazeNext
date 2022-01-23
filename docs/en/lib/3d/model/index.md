@@ -41,3 +41,5 @@ Vector3D](/lib/math/vec3), which represents the coordinates of the Model.
 ### Model.color
 
 The color of the model [Vector3D](/lib/math/vec3).
+
+Translated by DeepL

@@ -1,20 +1,22 @@
-# シーン2D.背景透明度設定
+# Scene2D.setBackgroundTransparency
 
-シーンの背景の透明度を設定するために使用するメソッドです
+Method used to set the transparency of the scene background.
 
-## 使い方
+## Usage
 
 ```
-実数: 透明度 = 0.7;
-シーン.背景透明度設定(透明度);
+double: transparency = 0.7;
+Scene2D.setBackgroundTransparency(transparency);
 ```
 
-### 引数
+### Arguments
 
-#### 透明度
+#### transparency
 
-背景の透明度を実数で指定します
+Set the transparency of the background as a real number.
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

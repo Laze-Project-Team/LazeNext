@@ -1,43 +1,45 @@
-# シーン2D.正方形追加
+# Scene2D.AddSquare
 
-シーンに正方形を追加するメソッドです
+Method to add a square to the scene.
 
-## 使い方
+## Usage
 
 ```
-実数: 大きさ = 1.0;
-ベクトル2D: 座標(1.0, 2.0);
-ベクトル3D: 色(0.2, 0.5, 0.7);
-実数: 重なり順 = 10;
-シーン.正方形追加(大きさ, 座標, 色, 重なり順);
+double: size = 1.0;
+vector2D: coordinates(1.0, 2.0);
+Vector3D: color(0.2, 0.5, 0.7);
+doubles: zindex = 10;
+Scene.addSquare(size, coordinates, color, zindex);
 ```
 
-### 引数
+### Arguments
 
-#### 大きさ
+#### size
 
-追加する正方形の大きさを実数で指定します
+The size of the square to add, as a real number.
 
-#### 座標
+#### coordinates
 
-追加する正方形のxy座標を[ベクトル2D](/lib/math/vec2)で指定します
+The xy coordinates of the square to add, in [Vector2D](/lib/math/vec2)
 
-#### 色
+#### color
 
-追加する正方形の色を[ベクトル3D](/lib/math/vec3)で指定します
+Specify the color of the added square using [Vector3D](/lib/math/vec3)
 
-指定はRGBの順です
+Colors are specified in RGB order
 
-#### 重なり順
+#### zindex
 
-追加する正方形の重なり順を実数で指定します
+Specifies the overlap order of the squares to be added as a real number.
 
-重なり順が大きいほど手前に描画されます
+The higher the overlap order, the closer the squares will be drawn.
 
-### 戻り値
+### Return value
 
 #### id
 
-追加された正方形のidを返します
+Returns the id of the added square.
 
-回転や移動といった[スプライト](/lib/2d/sprite/index)の処理を行う際に使用します
+It is used when processing [Sprite](/lib/2d/sprite/index) such as rotation and movement.
+
+Translated by DeepL

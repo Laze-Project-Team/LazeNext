@@ -4,8 +4,8 @@ This function is the constructor for the scene class.
 
 ## Usage
 
-````
-scene:world();
+```
+Scene:world();
 ```
 
 ## Arguments
@@ -15,3 +15,5 @@ None
 ### Return values
 
 None
+
+Translated by DeepL

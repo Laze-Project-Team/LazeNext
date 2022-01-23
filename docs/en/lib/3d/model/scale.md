@@ -28,3 +28,5 @@ A real number indicating how many times the model will be scaled in the z direct
 ### Return values
 
 None
+
+Translated by DeepL

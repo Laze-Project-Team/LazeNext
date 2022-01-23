@@ -1,54 +1,56 @@
-# 多角形追加
+# Scene2D.addPolygon
 
-シーンに多角形を追加するメソッドです
+Method to add a polygon to the scene.
 
-## 使い方
+## Usage
 
 ```
-配列<*ベクトル2D>: 頂点;
-ベクトル2D: 頂点A(0.0, 0.0);
-頂点.追加(頂点A);
-ベクトル2D: 頂点B(0.0, 5.0);
-頂点.追加(頂点B);
-ベクトル2D: 頂点C(5.0, 0.0);
-頂点.追加(頂点C);
-実数: 大きさ = 1.0;
-ベクトル2D: 座標(1.0, 2.0);
-ベクトル3D: 色(0.2, 0.5, 0.7);
-実数: 重なり順 = 10;
-シーン.多角形追加(頂点, 大きさ, 座標, 色, 重なり順);
+Array<*Vector2D>: vertices;
+Vector2D: VertexA(0.0, 0.0);
+Vertex.push(vertex A);
+Vector2D: vertexB(0.0, 5.0);
+Vertex.push(vertexB);
+Vector2D: vertexC(5.0, 0.0);
+Vertex.push(vertexC);
+double: magnitude = 1.0;
+Vector2D: coordinates(1.0, 2.0);
+Vector3D: color (0.2, 0.5, 0.7);
+double numbers: zindex = 10;
+Scene.addPolygon(vertices, size, coordinates, color, zindex);
 ```
 
-### 引数
+### Arguments
 
-#### 頂点
+#### vertices
 
-追加する多角形の頂点の座標を[ベクトル2D](/lib/math/vec2)の配列で指定します
+An array of [Vector2d](/lib/math/vec2) coordinates of the polygon vertices to add.
 
-#### 大きさ
+#### size
 
-追加する多角形の大きさを実数で指定します
+The size of the polygon to add, as a real number
 
-#### 座標
+#### coordinates
 
-追加する多角形のxy座標を[ベクトル2D](/lib/math/vec2)で指定します
+Specify xy coordinates of the polygon to be added in [Vector2D](/lib/math/vec2)
 
-#### 色
+#### Color
 
-追加する多角形の色を[ベクトル3D](/lib/math/vec3)で指定します
+Specify the color of the added polygon with [Vector3D](/lib/math/vec3).
 
-指定はRGBの順です
+Colors are specified in RGB order
 
-#### 重なり順
+#### zindex
 
-追加する多角形の重なり順を実数で指定します
+Specify the order of overlapping polygons by real number.
 
-重なり順が大きいほど手前に描画されます
+The higher the overlap order, the closer the polygons will be drawn.
 
-### 戻り値
+### Return values
 
 #### id
 
-追加された多角形のidが返ってきます
+Returns the id of the added polygon.
 
-回転や移動など[スプライト](/lib/2d/sprite/index)に対して処理を行う際に使用します
+This is used when processing [Sprite](/lib/2d/sprite/index), such as rotation and movement.
+
+Translated by DeepL

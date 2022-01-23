@@ -1,43 +1,45 @@
-# 円追加
+# Scene2D.addCircle
 
-シーンに円を追加するメソッドです
+Method to add a circle to the scene.
 
-## 使い方
+## Usage
 
 ```
-実数: 半径 = 5;
-ベクトル2D: 座標(1.0, 2.0);
-ベクトル3D: 色(0.2, 0.5, 0.7);
-実数: 重なり順 = 10;
-シーン.円追加(半径, 大きさ, 座標, 色, 重なり順);
+double: radius = 5;
+Vector2D: coordinates(1.0, 2.0);
+Vector3D: color(0.2, 0.5, 0.7);
+doubles: zindex = 10;
+Scene.addCircle(radius, coordinates, color, zindex);
 ```
 
-### 引数
+### Arguments
 
-#### 半径
+#### radius
 
-円の半径を実数で指定します
+The radius of the circle as a real number.
 
-#### 座標
+#### coordinates
 
-円の中心の座標を[ベクトル2D](/lib/math/vec2)で指定します
+Coordinates of the center of the circle in [Vector2D](/lib/math/vec2)
 
-#### 色
+#### color
 
-円の色を[ベクトル3D](/lib/math/vec3)で指定します
+Specify the color of the circle using [Vector3D](/lib/math/vec3).
 
-指定はRGBの順です
+Colors are specified in RGB order
 
-#### 重なり順
+#### zindex
 
-円の重なり順を実数で指定します
+Specify the overlapping order of circles by real number.
 
-重なり順が大きいほど手前に描画されます
+The higher the order of overlap, the closer the circles will be drawn.
 
-### 戻り値
+### Return values
 
 #### id
 
-追加された円のidが返ってきます
+Returns the id of the added circle.
 
-回転や移動など[スプライト](/lib/2d/sprite/index)に対して処理を行う際に使用します
+This is used when processing [Sprite](/lib/2d/sprite/index), such as rotation and movement.
+
+Translated by DeepL

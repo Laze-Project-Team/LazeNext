@@ -36,3 +36,5 @@ Example
 int: id = world.addLight(size, color, coordinates);
 world.sprites.get(id) -> draw();
 ```
+
+Translated by DeepL

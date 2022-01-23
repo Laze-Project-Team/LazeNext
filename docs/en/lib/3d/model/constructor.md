@@ -43,3 +43,5 @@ The ID of the shader to use when drawing the model.
 ### Return Values
 
 None
+
+Translated by DeepL

@@ -18,3 +18,5 @@ A real number representing the speed of the camera.
 ### Return Values
 
 None
+
+Translated by DeepL

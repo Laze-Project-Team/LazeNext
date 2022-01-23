@@ -33,3 +33,5 @@ This property allows you to manage the objects in the world.
 ### Scene.eye
 
 This property is the [camera](/lib/3d/camera/index) in the world.
+
+Translated by DeepL

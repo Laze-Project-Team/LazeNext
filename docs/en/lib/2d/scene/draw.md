@@ -1,17 +1,19 @@
-# シーン2D.描画
+# Scene2D.draw
 
-シーンにあるものを描画する関数です
+Function to draw something in the scene.
 
-## 使い方
+## Usage
 
 ```
-シーン.描画();
+Scene.draw();
 ```
 
-### 引数
+## Arguments
 
-なし
+None
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

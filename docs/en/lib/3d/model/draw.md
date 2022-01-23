@@ -30,3 +30,5 @@ The coordinates of the camera in the world [Vector3D](/lib/math/vec3).
 ### Return Values
 
 None
+
+Translated by DeepL

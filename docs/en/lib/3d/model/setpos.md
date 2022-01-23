@@ -18,3 +18,5 @@ The coordinates of the model [Vector3D](/lib/math/vec3).
 ### Return values
 
 None
+
+Translated by DeepL

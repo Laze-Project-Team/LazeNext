@@ -4,7 +4,7 @@ This function draws all objects in the world. It also calls [Camera. Update()](/
 
 ## Usage
 
-````
+```
 world.draw();
 ```
 
@@ -15,3 +15,5 @@ None
 ### Return values
 
 None
+
+Translated by DeepL

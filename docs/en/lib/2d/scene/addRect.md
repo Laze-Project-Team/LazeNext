@@ -1,48 +1,50 @@
-# シーン2D.四角形追加
+# Scene2D.addRect
 
-シーンに四角形(長方形)を追加するためのメソッドです
+Method to add a rectangle to the scene.
 
-## 使い方
+## Usage
 
 ```
-実数: 横幅 = 30;
-実数: 縦幅 = 20;
-ベクトル2D: 座標(1.0, 2.0);
-ベクトル3D: 色(0.2, 0.5, 0.7);
-実数: 重なり順 = 10;
-シーン.四角形追加(横幅, 縦幅, 座標, 色, 重なり順);
+double: width = 30;
+double: height = 20;
+Vector2D: coordinates(1.0, 2.0);
+Vector3D: color(0.2, 0.5, 0.7);
+double: zindex = 10;
+Scene.addRect(width, height, coordinates, color, zindex);
 ```
 
-### 引数
+### Arguments
 
-#### 横幅
+#### width
 
-四角形の横幅を実数で指定します
+The width of the rectangle as a real number.
 
-#### 縦幅
+#### height
 
-四角形の縦幅を実数で指定します
+The height of the rectangle as a real number.
 
-#### 座標
+#### coordinates
 
-四角形の座標を[ベクトル2D](/lib/math/vec2)で指定します
+Specify the coordinates of the rectangle in [Vector2d](/lib/math/vec2).
 
-#### 色
+#### color
 
-四角形の色を[ベクトル3D](/lib/math/vec3)で指定します
+Specify the color of the rectangle using [Vector3D](/lib/math/vec3).
 
-指定はRGBの順です
+Colors are specified in RGB order
 
-#### 重なり順
+#### zindex
 
-四角形の重なり順を実数で指定します
+Overlap order of quadrilaterals as a real number.
 
-重なり順が大きいほど手前に描画されます
+The higher the overlap order, the closer the rectangle will be drawn.
 
-### 戻り値
+### Return value
 
 #### id
 
-追加された四角形のidが返ってきます
+Returns the id of the added rectangle.
 
-回転や移動など[スプライト](/lib/2d/sprite/index)に対して処理を行う際に使用します
+This is used when processing [Sprite](/lib/2d/sprite/index), such as rotation and movement.
+
+Translated by DeepL

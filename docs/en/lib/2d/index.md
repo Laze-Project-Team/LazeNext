@@ -1,15 +1,17 @@
-# 2Dライブラリ
+# 2D Library
 
-2Dグラフィックスを実現するのに使用します。
+Used to implement 2D graphics.
 
-## クラス
+## Classes
 
-2Dライブラリに含まれているクラスの一覧です
+List of classes included in the 2D library.
 
-### [シーン2D](/lib/2d/scene/index)
+### [Scene2D](/lib/2d/scene/index)
 
-3Dライブラリとほぼ同様の機能を備えています
+It has almost the same functionality as the 3D library.
 
-### [スプライト](/lib/2d/sprite/index)
+### [Sprite](/lib/2d/sprite/index)
 
-シーン2Dの中で追加される図形のクラスです
+Class for shapes added in scene 2D.
+
+Translated by DeepL

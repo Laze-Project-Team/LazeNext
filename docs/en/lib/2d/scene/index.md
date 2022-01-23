@@ -1,49 +1,51 @@
-# シーン2D
+# Scene2D
 
-2Dグラフィックスを使用するために使うクラスです
+Class used to use 2D graphics.
 
-## メンバー
+## Members
 
-### メソッド
+### Methods
 
-#### [シーン2D.シーン2D](/lib/2d/scene/constructor) (クラスコンストラクタ)
+#### [Scene2D.Scene2D](/lib/2d/scene/constructor) (class constructor)
 
-シーン2Dが初期化された時に呼ばれるコンストラクタです
+Constructor called when the scene 2D is initialized.
 
-#### [シーン2D.背景透明度設定](/lib/2d/scene/setBackgroundTransparency)
+#### [Scene2D.setBackgroundTransparency](/lib/2d/scene/setBackgroundTransparency)
 
-背景の透明度を設定するメソッドです
+Method to set the background transparency.
 
-#### [シーン2D.描画](/lib/2d/scene/draw)
+#### [Scene2D.draw](/lib/2d/scene/draw)
 
-追加されたスプライトを描画するメソッドです
+The method that draws the added sprite.
 
-#### [シーン2D.正方形追加](/lib/2d/scene/addSquare)
+#### [Scene2D.addSquare](/lib/2d/scene/addSquare)
 
-シーンに正方形を追加するメソッドです
+Method to add a square to the scene.
 
-#### [シーン2D.四角形追加](/lib/2d/scene/addRect)
+#### [Scene2D.addRect](/lib/2d/scene/addRect)
 
-シーンに四角形を追加するメソッドです
+Method to add a rectangle to the scene.
 
-#### [シーン2D.多角形追加](/lib/2d/scene/addPolygon)
+#### [Scene2D.addPolygon](/lib/2d/scene/addPolygon)
 
-シーンに多角形を追加するメソッドです
+Method to add a polygon to the scene.
 
-#### [シーン2D.円追加](/lib/2d/scene/addCircle)
+#### [Scene2D.addCircle](/lib/2d/scene/addCircle)
 
-シーンに円を追加するメソッドです
+Method to add a circle to the scene.
 
-### プロパティ
+### Properties
 
-#### シーン2D.スプライト配列
+#### Scene2D.sprites
 
-シーンに保管されている[スプライト](/lib/2d/sprite/index)の参照の配列です
+An array of references to [Sprite](/lib/2d/sprite/index) stored in the scene.
 
-#### シーン2D.背景色
+#### Scene2D.backgroundColor
 
-シーンの背景色の[ベクトル3D](/lib/math/vec3)です
+The [Vector3D](/lib/math/vec3) background color of the scene.
 
-#### シーン2D.背景透明度
+#### Scene2D.backgroundTransparency
 
-シーンの背景透明度の実数です
+The real number of the scene's background transparency
+
+Translated by DeepL

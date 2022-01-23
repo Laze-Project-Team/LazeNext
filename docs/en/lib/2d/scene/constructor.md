@@ -1,31 +1,33 @@
-# シーン2D.シーン2D
+# Scene2D.Scene2D
 
-シーン2Dが初期化された時に呼ばれるクラスコンストラクタです
+Class constructor to be called when scene 2D is initialized.
 
-## 使い方
+## Usage
 
 ```
-実数: 高さ = 100;
-ベクトル3D: 背景色(0.2, 0.2, 0.2);
-シーン2D: シーン(高さ, 背景色);
+double: height = 100;
+Vector3D: backgroundColor(0.2, 0.2, 0.2);
+Scene2D: scene(height, backgroundColor);
 ```
 
-### 引数
+### Arguments
 
-#### 高さ
+#### height
 
-シーンの高さを実数で指定します
+Height of the scene as a real number.
 
-正方形や円などを追加する際の基準になります
+This is the standard for adding squares, circles, etc.
 
-横幅はアスペクト比16:9になるように自動で設定されます
+The width will be automatically set to 16:9 aspect ratio.
 
-#### 背景色
+#### BackgroundCobor
 
-シーンの背景色を[ベクトル3D](/lib/math/vec3)で指定します
+Specify the background color of the scene using [Vector3D](/lib/math/vec3)
 
-指定はRGBの順です
+The colors are specified in RGB order.
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL
