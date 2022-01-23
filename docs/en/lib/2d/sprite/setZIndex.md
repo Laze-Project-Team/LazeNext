@@ -1,20 +1,22 @@
-# 重なり順設定
+# Sprite.setZIndex
 
-スプライトの重なり順を設定します
+Set the overlapping order of sprites.
 
-## 使い方
+## Usage
 
 ```
-実数: 重なり順 = 5;
-スプライト.重なり順設定(重なり順);
+double: zindex = 5;
+Sprites.setZIndex(zindex);
 ```
 
-### 引数
+### Arguments
 
-#### 重なり順
+#### zindex
 
-スプライトの重なり順を実数で指定します
+Real number to specify the order of the sprites.
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

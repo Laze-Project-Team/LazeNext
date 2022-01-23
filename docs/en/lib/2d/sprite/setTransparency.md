@@ -1,20 +1,22 @@
-# スプライト.透明度設定
+# Sprite.setTransparency
 
-スプライトの透明度を設定するメソッドです
+Method to set the transparency of a sprite.
 
-## 使い方
+## Usage
 
 ```
-実数: 透明度 = 0.5;
-スプライト.透明度設定(透明度);
+double: transparency = 0.5;
+sprite.setTransparency(transparency);
 ```
 
-### 引数
+### Arguments
 
-#### 透明度
+#### transparency
 
-スプライトの透明度を実数で指定します
+The transparency of the sprite as a real number.
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

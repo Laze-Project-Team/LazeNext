@@ -1,20 +1,22 @@
-# スプライト.移動
+# Sprites.move
 
-スプライトを移動させるために使用するメソッドです
+Method used to move a sprite.
 
-## 使い方
+## Usage
 
 ```
-ベクトル2D: 移動量(2.0, -2.0);
-スプライト.移動(移動量);
+Vector2D: offset(2.0, -2.0);
+sprite.move(offset);
 ```
 
-### 引数
+### Arguments
 
-#### 移動量
+#### offset
 
-スプライトの移動する量を[ベクトル2D](/lib/math/vec2)で指定します
+The amount to move the sprite by [Vector2D](/lib/math/vec2).
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

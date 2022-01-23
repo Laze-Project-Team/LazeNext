@@ -1,22 +1,24 @@
-# 色設定
+# Sprite.setColor
 
-スプライトの色を設定するメソッドです
+Method to set the sprite's color.
 
-## 使い方
+## Usage
 
 ```
-ベクトル3D: 色(0.6, 0.7, 0.8);
-スプライト.色設定(色);
+Vector3D: color(0.6, 0.7, 0.8);
+Sprite.setColor(color);
 ```
 
-### 引数
+### Arguments
 
-#### 色
+#### color
 
-スプライトの色をベクトル3Dで指定します
+Sets the sprite's color in vector 3D.
 
-指定はRGBの順です
+The colors are specified in RGB order.
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

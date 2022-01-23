@@ -1,21 +1,23 @@
-# スプライト.描画
+# Sprite.draw
 
-スプライトを描画するメソッドです
+Method to draw the sprite.
 
-## 使い方
+## Usage.
 
-```
-行列4x4:プロジェクション行列();
-プロジェクション行列 = 視点行列2D(プロジェクション行列, 0, 0, 0, 0, 0, 100);
-スプライト.描画(プロジェクション行列);
-```
+````
+Matrix4x4:ProjectionMatrix();
+ProjectionMatrix = perspectiveMat2D(ProjectionMatrix, 0, 0, 0, 0, 0, 0, 100);
+sprite.draw(projectionMatrix);
+````
 
-### 引数
+### Arguments
 
-#### プロジェクション行列
+#### projectionMatrix
 
-ワールドのプロジェクション行列を示す[行列4x4](/lib/3d/matrix4x4)。詳しくは[こちらのウェブサイト](http://www.sousakuba.com/Programming/d3d_camera.html)で読んでください。
+A [Matrix 4x4](/lib/3d/matrix4x4) showing the projection matrix of the world. You can read more about it at [this website](http://www.sousakuba.com/Programming/d3d_camera.html).
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

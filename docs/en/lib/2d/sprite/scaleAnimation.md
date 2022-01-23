@@ -1,40 +1,42 @@
-# スプライト.拡大縮小アニメーション
+# Sprites.scaleAnimation
 
-スプライトに拡大縮小させるアニメーションを付けるために使用するメソッドです
+Method used to animate a sprite to scale.
 
-## 使い方
+## Usage
 
 ```
-実数: 拡大率X = 2.0;
-実数: 拡大率Y = 2.0;
-実数: 開始時間 = 1000;
-実数: 継続時間 = 200;
-スプライト.拡大縮小アニメーション(拡大率X, 拡大率Y, 開始時間, 継続時間);
+double: factorX = 2.0;
+double: factorY = 2.0;
+double: startTime = 1000;
+Real: duration = 200;
+sprite.scaleAnimation(factorX, factorY, startTime, duration);
 ```
 
-### 引数
+### Arguments
 
-#### 拡大率X
+#### factorX
 
-アニメーションでX方向に拡大縮小させる倍率を実数で指定します
+Real number of magnification to scale the animation in the X direction.
 
-#### 拡大率Y
+#### factorY
 
-アニメーションでY方向に拡大縮小させる倍率を実数で指定します
+Scaling factor for the animation in the Y direction, as a real number.
 
-#### 開始時間
+#### startTime
 
-アニメーションが開始する時間(プログラムが実行してからの時間)を実数で指定します
+Specifies the start time of the animation (the time after the program is executed) as a real number.
 
-単位はms(ミリ秒)です
+The unit is ms (milliseconds).
 
-#### 継続時間
+#### duration
 
 
-アニメーションが継続する時間を実数で指定します
+Specifies the duration of the animation as a real number.
 
-単位はms(ミリ秒)です
+The unit is ms (milliseconds).
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

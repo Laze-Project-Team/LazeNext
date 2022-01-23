@@ -1,24 +1,26 @@
-# スプライト.回転
+# Sprite.rotate
 
-スプライトを回転させるメソッドです
+Method to rotate a sprite.
 
-## 使い方
+## Usage
 
 ```
-実数: 回転角 = 3.1415;
-スプライト.回転(回転角);
+double: rotationAngle = 3.1415;
+sprite.rotate(rotationAngle);
 ```
 
-### 引数
+### Arguments
 
-#### 回転角
+#### rotationAngle
 
-回転させる角度を実数で指定します
+The angle to rotate, in real numbers.
 
-単位はラジアンであることに注意してください
+Note that the unit is radians.
 
-度からラジアンへの変換は[ラジアンへ](/lib/math/toRad)を使う
+To convert from degrees to radians, use [To Radian](/lib/math/toRad).
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

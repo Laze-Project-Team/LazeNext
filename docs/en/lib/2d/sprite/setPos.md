@@ -1,20 +1,22 @@
-# スプライト.座標設定
+# Sprite.setCoordinates
 
-スプライトの座標を設定するために用いるメソッドです
+Method used to set the coordinates of the sprite.
 
-## 使い方
+## Usage
 
 ```
-ベクトル2D: 座標(2.0, 5.0);
-スプライト.座標設定(座標);
+Vector2D: coordinates(2.0, 5.0);
+sprite.setCoordinates(coordinates);
 ```
 
-### 引数
+### Arguments
 
-#### 座標
+#### coordinates
 
-設定する座標を[ベクトル2D](/lib/math/vec2)で指定します
+Coordinates to set in [Vector2D](/lib/math/vec2).
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

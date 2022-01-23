@@ -1,25 +1,27 @@
-# スプライト.拡大縮小
+# Sprites.scale
 
-スプライトを拡大縮小するメソッドです
+Method for scaling a sprite.
 
-## 使い方
+## Usage
 
 ```
-実数: 拡大率X = 2;
-実数: 拡大率Y = 2;
-スプライト.拡大縮小(拡大率X, 拡大率Y);
+double: factorX = 2;
+double: factorY = 2;
+sprite.scale(factorX, factorY);
 ```
 
-### 引数
+### Arguments
 
-#### 拡大率X
+#### factorX
 
-X方向への拡大率を実数で指定します
+Scaling factor in the X direction as a real number.
 
-#### 拡大率Y
+#### factorY
 
-Y方向への拡大率を実数で指定します
+Scaling factor in Y direction as a real number.
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

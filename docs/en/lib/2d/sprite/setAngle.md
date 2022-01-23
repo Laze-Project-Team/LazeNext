@@ -1,22 +1,24 @@
-# スプライト.角度設定
+# Sprite.setAngle
 
-スプライトの回転角を設定するためのメソッドです
+This method is used to set the rotation angle of the sprite.
 
-[回転](/lib/2d/sprite/rotate)は回転させる=回転角を足すのに対して角度設定は回転角を設定します
+While [rotate](/lib/2d/sprite/rotate) rotates the sprite = adds the rotation angle, angle setting sets the rotation angle.
 
-## 使い方
+## Usage
 
 ```
-実数: 回転角 = 3.141592;
-スプライト.角度設定(回転角);
+double: rotationAngle = 3.141592;
+sprite.setAngle(rotationAngle);
 ```
 
-### 引数
+### Arguments
 
-#### 回転角
+#### Rotation angle
 
-スプライトの回転角を実数で指定します
+Rotation angle of the sprite as a real number.
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

@@ -1,51 +1,53 @@
-# スプライト.スプライト
+# Sprite.Sprite
 
-スプライトが初期化されたときに呼ばれるクラスコンストラクタです
+Class constructor called when a sprite is initialized.
 
-通常は[シーン](/lib/2d/scene/index)から[正方形追加](/lib/2d/scene/addSquare)、[四角形追加](/lib/2d/scene/addRect)、[円追加](/lib/2d/scene/addCircle)などから呼び出されるため直接使うことはあまりないかもしれません
+It is usually called from [Scene2D](/lib/2d/scene/index), [addSquare](/lib/2d/scene/addSquare), [addRect](/lib/2d/scene/addRect), [addCircle](/lib/2d/scene/addCircle).
 
-## 使い方
+## Usage
 
 ```
-実数:data = 1;
-整数: pnum = 2;
-整数32: indices = 3;
-整数: vnum = 4;
-ベクトル3D: 色(0.2, 0.5, 0.7);
-ベクトル2D: 座標(1.0, 2.0);
-整数: シェーダーID = 1;
-実数: 重なり順 = 10;
-スプライト: 四角形(data, pnum, indicies, vnum, 色, 座標, シェーダーID, 重なり順);
+double: data = 1;
+int: pnum = 2;
+int32: index = 3;
+int: vnum = 4;
+Vector3D: color(0.2, 0.5, 0.7);
+vector2D: coordinates(1.0, 2.0);
+int: shaderID = 1;
+Real: zindex = 10;
+Sprite: Rectangle(data, pnum, index, vnum, color, coordinates, shaderID, zindex);
 ```
 
-### 引数
+### Arguments
 
 #### data
 
 #### pnum
 
-#### indices
+#### index
 
 #### vnum
 
-#### 色
+#### color
 
-四角形の色を[ベクトル3D](/lib/math/vec3)で指定します
+Specify the color of the rectangle with [Vector3D](/lib/math/vec3).
 
-指定はRGBの順です
+Colors are specified in RGB order
 
-#### 座標
+#### coordinates
 
-四角形の座標を[ベクトル2D](/lib/math/vec2)で指定します
+Specify the coordinates of the rectangle in [Vector2D](/lib/math/vec2).
 
-#### シェーダーID
+#### shaderID
 
-#### 重なり順
+#### zindex
 
-四角形の重なり順を実数で指定します
+Specifies the overlap order of the quadrangles as a real number.
 
-重なり順が大きいほど手前に描画されます
+The higher the overlap order, the closer the rectangle will be drawn.
 
-### 返り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

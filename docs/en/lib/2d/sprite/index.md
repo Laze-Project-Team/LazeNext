@@ -1,73 +1,75 @@
-# スプライト
+# Sprite
 
-シーン2Dで使われる図形を表現するためのクラスです
+Class for representing shapes used in scene 2D.
 
-## メンバー
+## Members
 
-### メソッド
+## Methods
 
-#### [スプライト.スプライト](/lib/2d/sprite/constructor)
+#### [Sprite.Sprite](/lib/2d/sprite/constructor)
 
-スプライトが初期化された時に呼ばれるコンストラクタです
+Constructor called when the sprite is initialized.
 
-#### [スプライト.座標設定](/lib/2d/sprite/setPos)
+#### [Sprite.setPos](/lib/2d/sprite/setPos)
 
-座標を設定するメソッドです
+Method to set the coordinates.
 
-#### [スプライト.移動](/lib/2d/sprite/move)
+#### [Sprite.move](/lib/2d/sprite/move)
 
-移動させるメソッドです
+Method to move the sprite.
 
-#### [スプライト.拡大縮小](/lib/2d/sprite/scale)
+#### [Sprite.scale](/lib/2d/sprite/scale)
 
-拡大縮小させるメソッドです
+Method for scaling.
 
-#### [スプライト.回転](/lib/2d/sprite/rotate)
+#### [Sprite.rotate](/lib/2d/sprite/rotate)
 
-回転させるメソッドです
+Method to rotate the sprite.
 
-#### [スプライト.角度設定](/lib/2d/sprite/setAngle)
+#### [Sprite.setAngle](/lib/2d/sprite/setAngle)
 
-回転角を設定するメソッドです
+Method to set the angle of rotation.
 
-#### [スプライト.重なり順設定](/lib/2d/sprite/setZIndex)
+#### [Sprite.setZIndex](/lib/2d/sprite/setZIndex)
 
-重なり順を設定するメソッドです
+This method sets the order of the sprites.
 
-#### [スプライト.透明度設定](/lib/2d/sprite/setTransparency)
+#### [Sprite.setTransparency](/lib/2d/sprite/setTransparency)
 
-透明度を設定するメソッドです
+Method to set the transparency.
 
-#### [スプライト.色設定](/lib/2d/sprite/setColor)
+#### [Sprite.setColor](/lib/2d/sprite/setColor)
 
-色を設定するメソッドです
+Method to set the color.
 
-#### [スプライト.描画](/lib/2d/sprite/draw)
+#### [Sprite.draw](/lib/2d/sprite/draw)
 
-スプライトを描画するメソッドです
+Method for drawing a sprite.
 
-#### [スプライト.回転アニメーション](/lib/2d/sprite/rotateAnimation)
+#### [Sprite.rotateAnimation](/lib/2d/sprite/rotateAnimation)
 
-回転のアニメーションを付けるメソッドです
+Method to animate the rotation.
 
-#### [スプライト.拡大縮小アニメーション](/lib/2d/sprite/scaleAnimation)
+#### [Sprite.scaleAnimation](/lib/2d/sprite/scaleAnimation)
 
-拡大縮小のアニメーションを付けるメソッドです
+Method to animate the scaling.
 
-#### [スプライト.移動アニメーション](/lib/2d/sprite/translateAnimation)
+#### [Sprite.translateAnimation](/lib/2d/sprite/translateAnimation)
 
-移動のアニメーションを付けるメソッドです
+Method to animate the translation.
 
-### プロパティ
+### Properties
 
-#### スプライト.色
+#### Sprite.color
 
-スプライトの色を表す[ベクトル3D](/lib/math/vec3)です
+[Vector3D](/lib/math/vec3) for the sprite's color.
 
-#### スプライト.座標
+#### Sprite.coordinates
 
-スプライトの座標を表す[ベクトル2D](/lib/math/vec2)です
+Coordinates of the sprite in [Vector2D](/lib/math/vec2).
 
-#### スプライト.透明度
+#### sprite.transparency
 
-スプライトの透明度を表す
+Indicates the transparency of the sprite
+
+Translated by DeepL

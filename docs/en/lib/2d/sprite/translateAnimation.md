@@ -1,35 +1,37 @@
-# スプライト.移動アニメーション
+# Sprite.moveAnimation
 
-スプライトに移動のアニメーションを付けるために使用するメソッドです
+Method used to animate a sprite for movement.
 
-## 使い方
+## Usage
 
 ```
-ベクトル2D: 移動量(5.0, -5.0);
-実数: 開始時間 = 1000;
-実数: 継続時間 = 200;
-スプライト.移動アニメーション(移動量, 開始時間, 継続時間);
+Vector2D: offset(5.0, -5.0);
+double: startTime = 1000;
+double: Duration = 200;
+Sprite.moveAnimation(offset, startTime, duration);
 ```
 
-### 引数
+### Arguments
 
-#### 移動量
+#### offset
 
-アニメーションで移動させる量を[ベクトル2D](/lib/math/vec2)で指定します
+The amount to move in the animation in [Vector2D](/lib/math/vec2).
 
-#### 開始時間
+#### startTime
 
-アニメーションが開始する時間(プログラムが実行してからの時間)を実数で指定します
+The time when the animation starts (the time after the program is executed), specified as a real number.
 
-単位はms(ミリ秒)です
+The unit is ms (milliseconds).
 
-#### 継続時間
+#### startTime
 
 
-アニメーションが継続する時間を実数で指定します
+Specifies the duration of the animation as a real number.
 
-単位はms(ミリ秒)です
+The unit is ms (milliseconds).
 
-### 戻り値
+### Return values
 
-なし
+None
+
+Translated by DeepL

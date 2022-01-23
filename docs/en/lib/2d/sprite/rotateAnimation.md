@@ -1,35 +1,36 @@
-# スプライト.回転アニメーション
+# Sprite.rotateAnimation
 
-スプライトに回転のアニメーション効果を付けるのに使用するメソッドです
+Method used to apply a rotation animation effect to a sprite.
 
-## 使い方
+## Usage
 
 ```
-実数: 回転角 = 3.141592;
-実数: 開始時間 = 1000;
-実数: 継続時間 = 200;
-スプライト.回転アニメーション(回転角, 開始時間, 継続時間);
+double: rotationAngle = 3.141592;
+double: startTime = 1000;
+double: duration = 200;
+sprite.rotateAnimation(rotationAngle, startTime, duration);
 ```
 
-### 引数
+### Arguments
 
-#### 回転角
+#### rotationAngle
 
-アニメーションで回転させる角度を実数で指定します
+The angle to rotate the animation, specified as a real number.
 
-#### 開始時間
+#### startTime
 
-アニメーションが開始する時間(プログラムが実行してからの時間)を実数で指定します
+The time the animation will start (the time after the program is executed), specified as a real number.
 
-単位はms(ミリ秒)です
+The unit is ms (milliseconds).
 
-#### 継続時間
+#### duration
 
+Specifies the duration of the animation as a real number.
 
-アニメーションが継続する時間を実数で指定します
+The unit is ms (milliseconds).
 
-単位はms(ミリ秒)です
+### Return values
 
-### 戻り値
+None
 
-なし
+Translated by DeepL
