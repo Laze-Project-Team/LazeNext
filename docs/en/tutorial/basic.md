@@ -126,9 +126,9 @@ The conditional branch [also](/func/control#if), the repetitions [from to](/func
 
 The comment part is ignored when executing the program, so you can use it to insert explanatory text or other information in the program. Commenting is called commenting out, and in an editor you can comment out a selected line by pressing `Ctrl + /`. There are two types of comments: "line comments" and "block comments".
 
-### Line comments
+### line comments
 
-````
+```
 // You can comment out one line
 
 Integer:variable; // can be done in the middle of a line
@@ -136,7 +136,7 @@ Integer:variable; // can be done in the middle of a line
 function: main() => () { // you can do this
 	print("Welcome to Laze!");
 } // You can do this!
-````
+```
 
 line, i.e. a line, so you can comment out a line. It is also possible to start in the middle of a line.
 
@@ -153,7 +153,7 @@ can be commented out ^^.
 */
 
 print("This is not displayed -> "/* You can also comment out only a part of a line */);
-````
+```
 
 You can comment out multiple lines at once. If you use the comment-out function of the editor, all lines will be commented out, so you may not have many opportunities to use it.
 

@@ -33,7 +33,7 @@ If ( variable < 10 ) {
 ```
 from ( <initial condition> ) to ( <end condition> ) ( <loop process> ) {
 	// Process to be repeated
-	<process> }
+	<process>
 }
 ```
 
@@ -89,8 +89,10 @@ Can be used in a loop to exit the loop.
 
 ```
 (Integer: counter = 0;) to (counter == 10) (counter++;) {
-  If (counter > 5), exit;
-	Display(counter);
+  If (counter > 5){
+		break;
+	}
+	print(counter);
 }
 ```
 

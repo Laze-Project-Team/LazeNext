@@ -23,7 +23,7 @@ Scene.addPolygon(vertices, size, coordinates, color, zindex);
 
 #### vertices
 
-An array of [Vector2d](/lib/math/vec2) coordinates of the polygon vertices to add.
+An array of [Vector2D](/lib/math/vec2) coordinates of the polygon vertices to add.
 
 #### size
 

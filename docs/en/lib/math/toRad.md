@@ -19,7 +19,7 @@ Returns the value of the conversion destination [radians].
 
 The formula is as follows
 
-````
+```
 radians = degrees / 180 * π
 ```
 

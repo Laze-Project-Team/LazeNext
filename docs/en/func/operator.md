@@ -31,7 +31,7 @@ Assigning to a means replacing the value of variable a with the value to be assi
 |---|---|---|
 |`<`|`a < b`|if b is greater than a, it is true, otherwise it is false|
 |`<=`|`a <= b`|if b is greater than a, or a and b are equal, then it is false unless true|
-|``>`|a > b`|b is less than a, otherwise false|
+|`>`|`a > b`|b is less than a, otherwise false|
 |`>=`|`a >= b`|false if b is less than a, or a and b are equal|
 |`==`|`a == b`|false if not true if a and b are equal|
 

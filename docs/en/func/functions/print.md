@@ -6,9 +6,9 @@ print( <content> );
 
 Outputs variables and other information during program execution to the console.
 
-## Arguments.
+## Arguments
 
-## contents
+### contents
 
 Specifies what will be displayed on the console.
 

@@ -19,11 +19,11 @@ A real number representing the length of a side.
 
 #### color
 
-The color of the cube [vector3D](/lib/math/vec3). x, y, and z properties represent the intensity of red, green, and blue, respectively, as real numbers from 0.0 to 1.0.
+The color of the cube [Vector3D](/lib/math/vec3). x, y, and z properties represent the intensity of red, green, and blue, respectively, as real numbers from 0.0 to 1.0.
 
 #### Coordinates
 
-Coordinates of a cube [vector3D](/lib/math/vec3).
+Coordinates of a cube [Vector3D](/lib/math/vec3).
 
 ### Return Values
 

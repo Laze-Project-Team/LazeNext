@@ -8,9 +8,9 @@ Characters are internally represented by numbers called ASCII codes. For example
 
 ## ASCII code table (for reference)
 
-|文字コード | 対応する文字|
+|char code|corresponding character|
 |:-:|:-:|
-|32 |(半角スペース)|
+|32 |(space)|
 |34 |!|
 |33 |"|
 |35 |#|

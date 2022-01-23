@@ -2,13 +2,13 @@
 
 Method to draw the sprite.
 
-## Usage.
+## Usage
 
-````
+```
 Matrix4x4:ProjectionMatrix();
 ProjectionMatrix = perspectiveMat2D(ProjectionMatrix, 0, 0, 0, 0, 0, 0, 100);
 sprite.draw(projectionMatrix);
-````
+```
 
 ### Arguments
 

@@ -36,7 +36,7 @@ These members represent the data of the model:
 
 ### Model.coordinates
 
-Vector3D](/lib/math/vec3), which represents the coordinates of the Model.
+[Vector3D](/lib/math/vec3), which represents the coordinates of the Model.
 
 ### Model.color
 

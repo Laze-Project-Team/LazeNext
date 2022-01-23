@@ -25,7 +25,7 @@ The height of the rectangle as a real number.
 
 #### coordinates
 
-Specify the coordinates of the rectangle in [Vector2d](/lib/math/vec2).
+Specify the coordinates of the rectangle in [Vector2D](/lib/math/vec2).
 
 #### color
 
