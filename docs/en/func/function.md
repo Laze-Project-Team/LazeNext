@@ -1,53 +1,53 @@
-# 関数
+# Functions
 
-Lazeは関数を宣言して呼び出すことで様々な処理を行うため、関数の理解は非常に重要です。	
+Understanding functions is very important because Laze performs various operations by declaring and calling functions.	
 
-## 宣言
+## Declaration
 
-以下の形で関数の宣言を行います。
+You can declare a function in the following form
 
 ```
-関数:<関数名> ( <引数> ) => ( <戻り値> ) {
-	<処理>
+function: <function name> ( <argument> ) => ( <return value> ) {
+	<process>
 }
 ```
 
-`<関数名>`にはその関数の関数名が入ります。
+`<function name>` is the function name of the function.
 
-`<引数>`にはその関数の引数が入ります（省略可能）。引数とはその関数の処理に必要な値を関数の呼び出しの時に要求するものです。詳しくは[引数](#引数)をご覧ください。
+`<argument>` is the argument of the function (optional). Arguments are the values required to process the function when the function is called. See [Arguments](#Arguments) for details.
 
-`<戻り値>`にはその関数の戻り値が入ります（省略可能）。戻り値にはその関数の処理を終えた後に返ってくる値が入ります。詳しくは[戻り値](#戻り値)をご覧ください。
+`<return value>` is the return value of the function (optional). The return value contains the value that will be returned after the function finishes processing. For details, see [Return Values](#Return Values).
 
-※現在は戻り値を複数指定することはできません
+For details, see [Return Value](#Return Value).
 
-`<処理>`にはその関数で行う具体的な処理が入ります。
+The `<process>` field contains the specific process to be performed by the function.
 
-## 呼び出し
+## Calling
 
-以下の形で関数の呼び出しを行います。
-
-```
-<関数名>( <引数> );
-```
-
-`<関数名>`にはその関数の関数名が入ります。
-
-`<引数>`にはその関数を呼び出す際に指定する引数が入ります（省略可能）。
-
-戻り値を受け取る場合は変数に入れるか、そのまま他の関数の引数として入力してください。
-
-## 引数
-
-関数には`引数`と呼ばれる値を渡すことができます。以下の例を見てみましょう。
+A function call is made in the following form.
 
 ```
-関数:足し算 (整数:変数A, 整数:変数B) => (整数:結果) {
-	結果 = 整数A + 整数B;
+<function name>( <argument> );
+```
+
+where `<function name>` is the function name of the function.
+
+`<argument>` is the argument to be specified when calling the function (optional).
+
+If you want to receive the return value, put it in a variable or enter it as it is as an argument of another function.
+
+## Arguments
+
+You can pass values, called `arguments`, to a function. Let's look at the following example.
+
+```
+function: addition (int: variableA, int: variableB) => (int: result) {
+	result = variableA + variableB;
 }
 ```
 
-引数に`整数A`と`整数B`を取ってその和を返す関数`足し算`を宣言しています。引数は変数の宣言と同じ`<型>:<名前>`の形で左側の括弧内で宣言します。引数は何個でも持つことができます。
+Declares a function `add` that takes `integer A` and `integer B` as arguments and returns their sum. Arguments are declared in the same way as variables, as `<type>:<name>`, in the left parenthesis. You can have as many arguments as you like.
 
-## 戻り値
+## Return value
 
-引数と同じく`<型>:<名前>`の形で右側の括弧内に宣言します。引数とは異なり、戻り値は1つしか宣言することはできません。上のコードにあるように、変数の代入と同じ形で値を返します。
+Declared in the right parenthesis in the form of `<type>:<name>`, same as arguments. Unlike arguments, only one return value can be declared. As shown in the code above, it returns a value in the same form as a variable assignment.

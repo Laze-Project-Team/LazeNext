@@ -1,8 +1,8 @@
-# 文字列
+# string
 
 ```
-文字列:りんご = 「りんご」;
-文字列:apple = "apple";
+String: apple = "apple";
+String: apple = "apple";
 ```
 
-`apple`や`りんご`といった通常私たちが文字と呼ぶものを指します。[文字](/func/char)とは異なります。
+Refers to what we usually call a character, such as `'apple'` or `'orange'`. It is different from [character](/func/char).

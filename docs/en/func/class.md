@@ -1,135 +1,136 @@
-# クラス
+# Class
 
-クラスは自ら型を定義することができる機能で、普通の型とは違った機能を持たせることができます。まずはこちらのコードをご覧ください。
+A class is a feature that allows you to define your own type, and it can have different functions from ordinary types. Take a look at this code first.
 
 ```
-クラス:車 {
-	整数:位置;
-	整数:スピード;
+class: Car {
+	int:position;
+	int:speed;
 
-	関数:車 (整数:初期位置, 整数:初期キー) => () {
-		位置 = 初期位置;
-		スピード = 0;
-		キー = 初期キー;
+	function: Car (int:Initial position, int:Initial key) => () {
+		position = initial position;
+		speed = 0;
+		key = initial key;
 	}
 
-	関数:移動 () => () {
-		位置 += スピード;
+	function: move () => () {
+		position += speed;
 	}
 
-	関数:アクセル (整数:強度) => () {
-		スピード += 強度;
+	function: accelerate (int: intensity) => () {
+		speed += intensity;
 	}
 
-	関数:ブレーキ (整数:強度) => () {
-		スピード -= 強度;
+	function: brake (int: intensity) => () {
+		speed -= intensity;
 	}
 
-	関数:認証 (整数:認証キー) => (真偽:成功) {
-		成功 = (認証キー == キー);
+	function: authentication (int: authKey) => (boolean: success) {
+		success = (authKey == key);
 	}
 
-	非公開:
-		整数:キー;
+	Private :
+		int: Key;
 }
 
-車:セダン(0, 10294);
+function: main () => () {
+	Car: Sedan(0, 10294);
 
-セダン.アクセル(10);
-セダン.移動();
-セダン.ブレーキ(5);
+	Sedan.accelerate(10);
+	Sedan.move();
+	Sedan.brake(5);
 
-表示(セダン.位置);
+	print(Sedan.position);
 
-// 表示(セダン.キー);
-```
-
-少し長いコードですが、どのような働きをしているのかを上から見ていきましょう。
-
-## クラスの宣言
-
-1行目で`クラス`というキーワードで"車"という名前のクラスを宣言しています。
-
-2行目から変数や関数の宣言が行われていますが、これらを全てクラスの「メンバー」と呼びます。
-
-## コンストラクタ
-
-クラス名と同じ名前の関数をメンバーに宣言するとその関数は「コンストラクタ」という関数になります。コンストラクタとはクラスの利用時に最初に呼び出される関数のことです。ここでは31行目で"車"型の"セダン"という名前の変数を宣言していて、そこでコンストラクタを呼び出しています。この場合だと初期位置が`0`、初期キーが`10294`といった形です。また、このクラス型の変数のことを「オブジェクト」と呼びます。
-
-## メンバーへのアクセス
-
-オブジェクトのメンバーへのアクセスは`.`のようなピリオドでつなげて表します。例えば`車.位置`と書けば"車"というオブジェクトの"位置"というメンバーにアクセスしていることになります。また、変数など値を持つメンバーを「[プロパティ](#プロパティ)」、関数のメンバーを「[メソッド](#メソッド)」と呼びます。
-
-また、`公開`、`非公開`のキーワードによってアクセスを制限することができます。`公開`はどこからでもアクセス可能、`非公開`はそのクラス内からのみアクセス可能になります。何もキーワードを付けなければ自動的に`公開`になります。これらの機能は安全性を高めるためのもので、慣れないうちは無理に使う必要はありません。
-
-ここでは`キー`というプロパティが非公開になっています。そのためコメントアウトされている39行目のようにオブジェクト外からアクセスを試みるとエラーになってしまいます。
-
-## プロパティ
-
-クラスのメンバーの内、変数などの値を持つものをプロパティと呼びます。プロパティは
-
-```
-<変数名>.<プロパティ名>
-```
-
-でアクセスすることができ、オブジェクト内の値を参照することができます。ただしオブジェクト内から呼び出す場合は`<変数名>.`の部分は必要ありません。
-
-移動、アクセル、ブレーキなどの関数でオブジェクトのプロパティを参照・変更しているのがわかるかと思います。
-
-## メソッド
-
-クラスのメンバーの内、コンストラクタ以外の関数をメソッドと呼びます。メソッドは
-
-```
-<変数名>.<メソッド名>( <引数> );
-```
-
-で呼び出すことができ、オブジェクトに対して様々な操作を行うことができます。ただしオブジェクト内から呼び出す場合は`<変数名>.`の部分は必要ありません。
-
-33行目からの部分ではアクセルでスピードを上げてから移動を行って、ブレーキでスピードを落としています。その後の車の位置を表示させているので、ここでの位置は`10`であることがわかるかと思います。
-
-## 継承
-
-クラスは継承という機能を用いることによって型を拡張することができます。以下のコードをご覧ください。
-
-```
-クラス:車 {
-	整数:位置;
-	整数:スピード;
-
-	関数:車 (整数:初期位置, 整数:初期キー) => () {
-		位置 = 初期位置;
-		スピード = 0;
-		キー = 初期キー;
-	}
-
-	関数:認証 (整数:認証キー) => (真偽:成功) {
-		成功 = (認証キー == キー);
-	}
-
-	非公開:
-		整数:キー;
-}
-
-クラス:トラック <- 車 {
-	整数:荷物;
-
-	関数:トラック (実数:積み荷, 整数:初期キー) => () {
-		位置 = 0;
-		スピード = 3;
-		荷物 = 積み荷;
-		キー = 初期キー;
-	}
-
-	非公開:
-		整数:キー;
-}
-
-関数:実行 () => () {
-	トラック:日野(10, 10294);
-	日野.位置=5;
-	表示(日野.認証(10294));
+	// print(Sedan.key);
 }
 ```
 
-21行目でクラスの継承が起きています。"車"というクラスを継承して"トラック"というクラスを宣言しています。継承することによって"車"が持つメンバーである"位置"、"スピード"、"キー"というプロパティと"認証"というメソッドが継承されます。"車"という関数は[コンストラクタ](#コンストラクタ)のため継承されません。
+This is a bit long code, but let's see how it works from above.
+
+## Declaration
+
+The first line declares a class named "car" with the keyword `class`.
+
+From the second line, variables and functions are declared, all of which are called "members" of the class.
+
+## Constructor
+
+When a function with the same name as the class name is declared as a member, the function becomes a "constructor". A constructor is the first function called when a class is used. In this example, a variable named "sedan" of type "car" is declared in line 31, and the constructor is called there. In this case, the initial position is `0` and the initial key is `10294`. Variables of this class type are called objects.
+
+## Accessing members of an object
+
+To access the members of an object, use a period like `. `. For example, `car. Position` means that you are accessing the member "position" of the object "car". Also, members with values such as variables are called "[properties](#Properties)", and members of functions are called "[methods](#Methods)".
+
+In addition, access can be restricted by the keywords `public` and `private`. The `public` keyword allows access from anywhere, while the `private` keyword allows access only from within the class. If you don't add any keywords, it will automatically be `public`. These features are for safety, and you don't need to use them if you are not familiar with them.
+
+Here, the property `key` is set to private. Therefore, if you try to access it from outside the object, as in line 39, which is commented out, you will get an error.
+
+## Properties
+
+Members of a class that have values, such as variables, are called properties. Properties are defined as
+
+```
+<variable name>.<property name>.
+```
+A property can be accessed with `<variable name>` and can refer to values in an object. However, when calling from within an object, the `<variable name>` part is not necessary.
+
+You can see that the object's properties are referenced and changed in functions such as move, accelerate, and brake.
+
+## Methods
+
+Among the members of a class, functions other than the constructor are called methods. Methods are defined as
+
+```
+<variable name>.<method name>( <argument> );
+```
+
+and can perform various operations on objects. However, when calling from within an object, the `<variable name>`. However, if you call it from within an object, you don't need the `<variable name>`.
+
+In the part starting from line 33, the gas pedal is used to speed up the car, then it is moved, and the brake is used to slow it down. We are displaying the position of the car after that, so you can see that the position here is `10`.
+
+## Inheritance
+
+Classes can be extended in type by using a feature called inheritance. See the following code.
+
+```
+class: Car {
+	int: position;
+	int: speed;
+
+	function: Car (int: initialPosition, int: initialKey) => () {
+		position = initialPosition;
+		speed = 0;
+		key = initialKey;
+	}
+
+	function: Authentication (int: authKey) => (boolean: success) {
+		success = (authKey == key);
+	}
+
+	Private:
+		int: Key;
+}
+
+class: Truck <- Car {
+	int: cargo;
+
+	function: Truck (double: cargo, int: initialKey) => () {
+		position = 0;
+		speed = 3;
+		Luggage = load;
+		key = initialKey;
+	}
+
+	private:
+		int: key;
+}
+
+function: main () => () {
+	Track: Hino(10, 10294);
+	Hino.position = 5;
+	print(Hino.Authentication(10294));
+}
+```
+
+In line 21, class inheritance occurs. In line 21, we declare a class called "truck" by inheriting from a class called "car". By inheriting, it inherits the properties "position", "speed", and "key", and the method "authentication", which are all members of "car"." The function "car" is not inherited because it is a [constructor](#Constructor).

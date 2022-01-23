@@ -48,11 +48,11 @@ Next, let's look at the part enclosed in `{}`. The `{}` forms a "scope", which s
 
 ## Standard functions
 
-````
+```
 print("Welcome to Laze!");
 ```
 
-Let's take a look at the above program. The `print()` means to execute a function named print. Show is a standard function, see [print](/func/functions/show) for details.
+Let's take a look at the above program. The `print()` means to execute a function named print. Show is a standard function, see [print](/func/functions/print) for details.
 
 ## string
 
@@ -66,12 +66,12 @@ Did you notice that there is a `;` at the end of the line? A semicolon, usually 
 
 Next, let's look at this program.
 
-````
+```
 function: main() => () {
 	int: result = (2 + 3) * (6 - 4) / (9 % 7);
 	print(result);
 } 
-``
+```
 
 In the `int: result` section, we declare a "variable" named result. A variable is, as you can read, a number that changes. A variable is a number that changes. You can imagine it like the following figure.
 
@@ -108,7 +108,7 @@ Operators are symbols such as `+`, `-`, `=`, and `>`. Among them, those used for
 
 For a list of specific operators, please see [operator](/func/operator).
 
-If you know the arithmetic operators, you may be able to understand what is displayed in a [variable](#variable) program.
+If you know the arithmetic operators, you may be able to understand what is displayed in a [variable](#Variables) program.
 
 ```
 (2 + 3) * (6 - 4) / (9 % 7)
@@ -120,7 +120,7 @@ means that `2 + 3 = 5`, `6 - 4 = 2`, and `9 % 7 = 2`, which means that the whole
 
 There are times when conditional branching is necessary in the middle of a program. Also, there are times when you want to repeat the same process many times. The [control statement](/func/control) is used in such cases.
 
-The conditional branch [also](/func/control#moshi), the repetitions [from to](/func/control#to), [times](/func/control#times), [infinite loop](/func/control#infinite loop), and the loop control [exit ](/func/control#exit), and [next](/func/control#next) of loop control.
+The conditional branch [also](/func/control#if), the repetitions [from to](/func/control#from to), [repeat](/func/control#repeat), [loop](/func/control#loop), and the loop control [exit ](/func/control#exit), and [next](/func/control#next) of loop control.
 
 ## comment
 

@@ -1,12 +1,12 @@
-# 文字
+# Character
 
 ```
-文字:A = 'A';
+char: A = 'A';
 ```
 
-文字は内部的にはASCIIコードという数字で表されています。例えば`A`という文字は`65`という数字と対応しています。[文字列](/func/string)とは大きく異なるということを理解しておいてください。
+Characters are internally represented by numbers called ASCII codes. For example, the letter `A` corresponds to the number `65`. It is important to understand that this is very different from [string](/func/string).
 
-## ASCIIコード表(参考)
+## ASCII code table (for reference)
 
 |文字コード | 対応する文字|
 |:-:|:-:|

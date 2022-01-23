@@ -1,26 +1,26 @@
-# 標準機能
+# Standard Features
 
-標準機能とはLazeに標準で備わっている機能のことです。
+Standard features are features that come as standard in Laze.
 
-現在は以下のような機能を実装しています。
+Currently, the following features are implemented.
 
-基本的なプログラムの書き方などは[最初のチュートリアル](/tutorial/basic)を参照してください。
+Please refer to the [first tutorial](/tutorial/basic) for basic programming instructions.
 
-### [数値](/func/number)・[文字](/func/char)・[文字列](/func/string)
+### [number](/func/number), [character](/func/char), [string](/func/string)
 
-基本的な値の扱い方について触れています。
+This section discusses basic value handling.
 
-### [関数](/func/function)
+### [function](/func/function)
 
-Lazeを学ぶ上で特に重要な概念の1つである関数について詳しく説明しています。
+One of the most important concepts in learning Laze, functions are explained in detail.
 
-### [制御文](/func/control)
+### [Control statements](/func/control)
 
-プログラムを書く上で避けては通れない制御文の書き方やその機能について触れています。
-### [演算子](/func/operator)
+A detailed explanation of one of the most important concepts in learning Laze, functions.
+### [operator](/func/operator)
 
-[もし文](/func/control#もし)で使われる[論理演算子](/func/operator#論理演算子)や基本的な計算に使われる[算術演算子](/func/operator#算術演算子)について説明しています。
+This section describes the [logical operators](/func/operator#Logical operators) used in [if statements](/func/control#if) and the [arithmetic operators](/func/operator#Arithmetic operators) used in basic calculations.
 
-### [クラス](/func/class)
+### [class](/func/class)
 
-Lazeの標準ライブラリでも使われている便利な機能であるクラスについて説明しています。必須ではありませんがこの機能を使うことでより分かりやすいコードが書けることもあります。
+This section describes classes, a useful feature that is also used in the Laze standard library. It is not mandatory, but it may help you to write more understandable code.

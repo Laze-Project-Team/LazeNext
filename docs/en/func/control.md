@@ -1,140 +1,143 @@
-# 制御文
+# Control statements
 
-プログラムを条件によって処理を変えたり、同様の処理を繰り返すために用いる構文。
+A syntax used to make a program change its processing depending on a condition or to repeat a similar process.
 
-## もし
+## if
 
-### 構文
+### Syntax
 
 ```
-もし ( <条件式> ) {
-	// <条件式> が真のときのみ実行
-	<処理>
-} でなければ {
-	// <条件式> が偽のときのみ実行
-	<処理>
+if ( <condition expression> ) {
+	// Execute only if <condition expression> is true
+	<process>
+} else {
+	// execute only if <condition> is false
+	<process>
 }
 ```
 
-最も基本的な制御文。条件によって行う処理を変更することができます。`でなければ`以下の部分は省略できます。
+The most basic control statement. The process to be performed can be changed depending on the condition. The following part from `else` can be omitted.
 
-### 使用例
+### Usage examples
 
 ```
-もし ( 変数 < 10 ) {
-	表示("変数は10未満です");
+If ( variable < 10 ) {
+	display("Variable is less than 10");
 }
 ```
 
-## からまで
+## from to
 
-### 構文
+## Syntax
 
 ```
-( <初期条件> ) から ( <終了条件> ) まで ( <ループ処理> ) {
-	// 繰り返される処理
-	<処理>
+from ( <initial condition> ) to ( <end condition> ) ( <loop process> ) {
+	// Process to be repeated
+	<process> }
 }
 ```
 
-`<初期条件>`でループで用いる変数を宣言します。
+Declare variables to be used in the loop with `<initial condition>`.
 
-`<終了条件>`で終わる条件を指定します。この条件が真になった時にループが終了します。
+The `<end condition>` specifies the end condition. The loop will be terminated when this condition becomes true.
 
-`<ループ処理>`で終了しなかった時に実行される処理を書きます。よくカウンタとなる変数を増やすのに使われます。
+`<loop process>` specifies the process to be executed when the loop does not end. It is often used to increase a variable that is a counter.
 
-### 使用例
+### Usage example
 
 ```
-(整数:カウンタ = 0;) から (カウンタ == 10) まで (カウンタ++;) {
-	表示(カウンタ);
+(int: counter = 0;) to (counter == 10) (counter++;) {
+	print(counter);
 }
 ```
 
-## 回繰り返し
+## repeat
 
-### 構文
+## Syntax
 
 ```
-( <ループ回数> )回繰り返し {
-	// 繰り返される処理
-	<処理>
+repeat ( <loop count> ) times {
+	// Process to be repeated
+	<process>
 }
 ```
 
-指定した回数繰り返す構文。
+Syntax to repeat a specified number of times.
 
-### 使用例
+### Usage example
 
 ```
-(5)回繰り返し {
-	表示("5回繰り返されます");
+repeat (5) times {
+	print("It is repeated 5 times");
 }
 ```
 
-## 抜ける
+## break
 
-### 構文
+## Syntax
 
 ```
 {
-	// 何らかのループ中
-	抜ける;
+	// In some kind of loop
+	break;
 }
 ```
 
-ループ中に使うことでそのループを抜ける事ができます。
+Can be used in a loop to exit the loop.
 
-### 使用例
+### Usage example
 
 ```
-(整数:カウンタ = 0;) から (カウンタ == 10) まで (カウンタ++;) {
-  もし (カウンタ > 5) 抜ける;
-	表示(カウンタ);
+(Integer: counter = 0;) to (counter == 10) (counter++;) {
+  If (counter > 5), exit;
+	Display(counter);
 }
 ```
 
-## 次へ
+## continue
 
-### 構文
+## Syntax
 
 ```
 {
-	// 何らかのループ中
-	次へ;
+	// In some kind of loop
+	continue;
 }
 ```
 
-`抜ける`とは違い、ループの途中でそのループのその回を終了させ、次の回へと移らせます。この説明がよくわからない場合は使用例を実行してみるとよいでしょう。
+Unlike `exit`, this will terminate the loop in the middle of a loop and move on to the next one. If you don't understand this explanation, you may want to run the usage example.
 
-### 使用例
+### Usage example
 
 ```
-(整数:カウンタ = 0;) から (カウンタ == 10) まで (カウンタ++;) {
-	もし (カウンタ % 3 == 0) 次へ;
-	表示(カウンタ);
+from (int: counter = 0;) to (counter == 10) (counter++;) {
+	if (counter % 3 == 0) {
+		continue;
+	}
+		
+	print(counter);
 }
 ```
 
-## 無限ループ
+## loop
 
-### 構文
+## Syntax
 
 ```
-無限ループ {
-	// 無限ループさせる処理
-	<処理>
+loop {
+	// Process to infinite loop.
+	<process>
 }
 ```
 
-無限ループはゲームなどの描画で用いる関数で1秒間に60回呼び出されます。
+The infinite loop is a function used for drawing in games and is called 60 times per second.
 
-### 使用例
+### Usage examples
 
 ```
-整数:カウンタ = 0;
-無限ループ {
-	表示(カウンタ);
-	カウンタ++
+int: counter = 0;
+loop {
+	print(counter);
+	counter++.
 }
 ```

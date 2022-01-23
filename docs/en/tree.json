@@ -65,7 +65,7 @@
           "name": "Standard Functions",
           "children": [
             {
-              "id": "show",
+              "id": "print",
               "name": "print"
             }
           ]

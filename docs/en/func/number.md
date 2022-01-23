@@ -1,36 +1,36 @@
-# 数値
+# Numbers
 
-プログラムを書く上で欠かせない数値について説明しています。
+Describes numbers, which are essential for writing programs.
 
-## 数値の型
+## Types of numbers
 
-変数の型のうち、数値を表すものには`整数`、`整数32`、`実数`、`文字`の4つがあります。
+There are four types of variables that represent numbers: `int`, `int32`, `double`, and `char`.
 
-それぞれの特徴をまとめた表がこちらです。
+Here is a table that summarizes the characteristics of each.
 
-|型名|正式名|扱える値の範囲|
-|:--|:--|:--|
-|整数32|符号付き32bit整数|-2147483648～2147483647(-2^31～2^31-1)|
-|整数  |符号付き64bit整数|-9223372036854775808～9223372036854775807(-2^63～2^63-1)|
-|実数  |符号付き64bit浮動小数点数|仮数部が-2251799813685248～2251799813685247(-2^51～2^51-1)、指数部が-1024～1023(-2^10～2^10-1)|
-|文字  |符号付き32bit整数|-2147483648～2147483647(-2^31～2^31-1)|
+|Type name|Formal name|Range of values that can be handled|
+|:-------|:------------------------------------|:--|
+| int32  | Signed 32bit integer                | -2147483648 to 2147483647 (-2^31 to 2^31-1)|
+| int    | Signed 64bit integer                |-9223372036854775808～9223372036854775807(-2^63～2^63-1)|
+| double | Signed 64-bit floating point number | -2251799813685248～2251799813685247(-2^51～2^51-1) for mantissa part, -1024～1023(-2^10～2^10-1)for exponent part
+| char   | Signed 32-bit integer               | -2147483648 to 2147483647 (-2^31 to 2^31-1)|
 
-少し踏み込んだ情報まで記載しましたが、基本的なことだけで言うと小数点以下のない値なら`整数`、小数点以下もとる値なら`実数`、文字を扱いたいなら`文字`といった具合です。
+I've included a bit of in-depth information, but just the basics: `integers` for values without a decimal point, `real numbers` for values with a decimal point, and `characters` if you want to handle characters.
 
-## 型変換
+## Type conversion
 
-Lazeは異なる型同士でも演算ができるように設計されていて、その際は型の変換が自動的(暗黙的)に行われています。以下の例を見て下さい。
-
-```
-表示(5.0 / 3); // 1.666...
-```
-
-`5.0`という実数を`3`という整数で割っています。この時前にある`5.0`の型が優先されて全体としては`1.666...`という実数になります。
-
-次の例を見てみましょう。
+Laze is designed to operate on different types, and type conversion is automatically (implicitly) performed. Look at the following example.
 
 ```
-表示(5 / 3.0); // 1
+print(5.0 / 3); // 1.666...
 ```
 
-`5`という整数を`3.0`という実数で割っています。この時は前の`5`の型が優先されて全体としては`1`という整数になります。
+We are dividing the real number `5.0` by the integer `3`. In this case, the previous type of `5.0` takes precedence, and the overall result is `1.666...`. In this case, the previous type of `5.0` takes precedence and the overall number is `1.666...`.
+
+Let's look at the following example.
+
+```
+print(5 / 3.0); // 1
+```
+
+We are dividing the integer `5` by the real number `3.0`. In this case, the previous type of `5` takes precedence, and the overall result is the integer `1`.

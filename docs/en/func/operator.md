@@ -1,46 +1,46 @@
-# 演算子
+# Operators
 
-`+`や`-`、`=`、`>`などの記号で表されるものを総称して「演算子」と呼びます。その中でも計算に用いるものを「算術演算子」、数値の比較や一致・不一致に用いるものを「比較演算子」、複数の条件式を組み合わせることでより複雑な条件式を作るものを「論理演算子」と呼びます。（名前を無理に覚える必要はありませんが）
+Items represented by symbols such as `+`, `-`, `=`, and `>` are collectively called "operators". Among them, those used for calculations are called "arithmetic operators," those used for comparing, matching, or disagreeing numerical values are called "comparison operators," and those used to create more complex conditional expressions by combining multiple conditional expressions are called "logical operators. (There is no need to force yourself to remember the names, though.)
 
-## 算術演算子
+## Arithmetic operators
 
-|演算子|名前|記述例|その演算子の機能|
+|operator|name|example|function of the operator|
 |---|---|---|---|
-|`+`|加算|`a + b`|aにbを加える|
-|`-`|減算|`a - b`|aからbを引く|
-|`*`|乗算|`a * b`|aにbを掛ける|
-|`/`|除算|`a / b`|aをbで割る|
-|`%`|剰余|`a % b`|aをbで割った余り|
+|`+`|addition|`a + b`|add b to a|
+|`-`|subtraction|`a - b`|subtract b from a|
+|`*`|multiplication|`a * b`|multiply a by b||`/`|divide
+|`*`|multiplication|`a * b`|multiply a by b| |`/`|division|`a / b`|divide a by b
+|`%`|surplus|`a % b`|a divided by b| remainder|
 
-## 代入演算子
+## Assignment Operators
 
-|演算子|名前|記述例|その演算子の機能|
+|operator|name|example|function of the operator|
 |---|---|---|---|
-|`=`|代入|`a = b`|bをaに代入|
-|`+=`|加算代入|`a += b`|aにbを加えてaに代入|
-|`-=`|減算代入|`a -= b`|aからbを引いてaに代入|
-|`*=`|乗算代入|`a *= b`|aにbを掛けてaに代入|
-|`/=`|除算代入|`a /= b`|aをbで割ってaに代入|
-|`%=`|剰余代入|`a %= b`|aをbで割った余りをaに代入|
+|`=`|substitution|`a = b`|substitution of b into a|
+|`+=`|additive assignment|`a += b`|add b to a and assign it to a|
+|`-=`|subtraction assignment|`a -= b`|subtract b from a and assign to a|
+|`*=`|multiplication assignment|`a *= b`|multiply a by b and assign to a|
+|`*=`|multiplication assignment|`a *= b`|multiply a by b and assign to a| |`/=`|division assignment|`a /= b`|divide a by b and assign to a|
+|`/=`|division assignment|`a /= b`|divide a by b and assign to a| |`%=`|surplus assignment|`a %= b`|divide a by b and assign to a
 
-※aに代入とは変数aの値を代入する値で置き換えるという意味です。
+Assigning to a means replacing the value of variable a with the value to be assigned.
 
-## 比較演算子
+## Comparison operators
 
-|演算子|記述例|その演算子の機能|
+|operator|example|function of the operator|
 |---|---|---|
-|`<`|`a < b`|aよりbが大きければ真でなければ偽|
-|`<=`|`a <= b`|aよりbが大きい、またはaとbが等しければ真でなければ偽|
-|`>`|`a > b`|aよりbが小さければ真でなければ偽|
-|`>=`|`a >= b`|aよりbが小さい、またはaとbが等しければ真でなければ偽|
-|`==`|`a == b`|aとbが等しければ真でなければ偽|
+|`<`|`a < b`|if b is greater than a, it is true, otherwise it is false|
+|`<=`|`a <= b`|if b is greater than a, or a and b are equal, then it is false unless true|
+|``>`|a > b`|b is less than a, otherwise false|
+|`>=`|`a >= b`|false if b is less than a, or a and b are equal|
+|`==`|`a == b`|false if not true if a and b are equal|
 
-## 論理演算子
+## Logical operators
 
-|演算子|名前|記述例|その演算子の機能|
-|---|---|---|---|
-|`&&`|論理積|`A && B`|AかつBなら真でなければ偽|
-|`\|\|`|論理和|`A \|\| B`|AまたはBなら真でなければ偽|
-|`!`|否定|`!A`|Aでなければ真でなければ偽|
+|operator|name|example|function of the operator|
 
-※ここでのAやBは`a == 1`のような条件式を指す
+|`&&`|logical product|`A && B`|false if A and B are not true|
+|`\|\|`|Logical OR|`A \|\| B`|False unless true if A or B||!
+|`! `|Negation|`!A`|False unless true if not A|!
+
+A or B here refers to a conditional expression such as `a == 1`.
