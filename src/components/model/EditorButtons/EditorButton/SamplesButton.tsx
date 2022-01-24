@@ -58,7 +58,7 @@ export const SamplesButton: FC = () => {
       sampleLoad(select.current);
       setSelectOpen(false);
       setLoading(true);
-      fetch(`/api/editor/sample/${select.current}?lang=${locale}`)
+      fetch(`/api/editor/sample/${select.current}?lang=${window.laze.props.variables.lang ?? locale}`)
         .then((res) => {
           return res.json();
         })

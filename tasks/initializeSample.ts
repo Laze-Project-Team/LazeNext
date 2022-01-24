@@ -13,20 +13,21 @@ const initializeSample = async (): Promise<void> => {
     .map((dirent) => {
       return dirent.name;
     });
-  samples.forEach(async (sample) => {
+  for (let i = 0; i < samples.length; i++) {
+    const sample = samples[i];
     const content = await fs.promises.readFile(`${SAMPLE_DIR}/${sample}/main.laze`, { encoding: 'utf8' });
-    Object.keys(langList).forEach(async (lang) => {
-      if (lang === 'ja') {
-        return;
-      }
+    const langs = Object.keys(langList);
+    for (let j = 0; j < langs.length; j++) {
+      const lang = langs[j];
+      console.log(`converting ${sample} to ${lang}`);
 
       const convertResult = await convertCode(content, { from: 'ja', to: lang, label: 'main.laze' });
       if (convertResult.success) {
         await fs.promises.mkdir(`${SAMPLE_DIR}/${sample}/${lang}`, { recursive: true });
         await fs.promises.writeFile(`${SAMPLE_DIR}/${sample}/${lang}/main.laze`, convertResult.code);
       }
-    });
-  });
+    }
+  }
 };
 
 initializeSample();

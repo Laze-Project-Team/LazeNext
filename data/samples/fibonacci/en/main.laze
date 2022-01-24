@@ -1,0 +1,9 @@
+function: main() => (){
+	int: numberBefore = 0;
+	int: number = 1;
+	repeat(50){
+		print(numberBefore);
+		number = number + numberBefore;
+		numberBefore = number - numberBefore;
+	}
+}

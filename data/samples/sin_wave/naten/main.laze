@@ -1,0 +1,23 @@
+Declare function main with code starting here
+	Call captureMouse . 
+	Declare variable world as Scene . 
+	Initialize object color as Vector3D with 1.0 , 1.0 , 1.0 . 
+	Initialize variable PI as double with 3.14159265398979315 . 
+	Declare variable cubeIDlist as Array < int > . 
+	Initialize variable numberOfTimes as int with 100 . 
+	Initialize object initialPosition as Vector3D with 0.0 , 0.0 , 0.0 . 
+	repeat numberOfTimes times starting here
+		Call push of cubeIDlist with value addCube of world ( 0.100000000000000006 , color , initialPosition ) . 
+	ending here 
+	loop starting here
+		Initialize variable w as double with 0.100000000000000006 . 
+		repeat length of cubeIDlist ( ) times starting here
+			Initialize variable x as double with w  * counter . 
+			Initialize variable y as double with sin ( x  + getTime ( )  / 300.0 ) . 
+			Initialize object position as Vector3D with x , y , 0.0 . 
+			Initialize variable id as int with get of cubeIDlist ( counter ) . 
+			Call get of sprites of world ( id ) -> setPos with value position . 
+		ending here 
+		Call draw of world . 
+	ending here 
+ending here 

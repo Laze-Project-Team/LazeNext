@@ -20,17 +20,13 @@ const handler: NextApiHandler = (req, res) => {
 
   const sample = `${SAMPLE_DIR}/${id}`;
   if (fs.existsSync(sample)) {
-    readDirRecursively(sample).then((contents) => {
-      const filtered: Record<string, direntType> = Object.keys(contents)
-        .filter((key) => {
-          return key !== 'laze.config.json';
-        })
-        .reduce((acc, key) => {
-          return {
-            ...acc,
-            [key]: contents[key],
-          };
-        }, {});
+    readDirRecursively(`${sample}/${lang}`).then((contents) => {
+      const filtered: Record<string, direntType> = Object.keys(contents).reduce((acc, key) => {
+        return {
+          ...acc,
+          [key]: contents[key],
+        };
+      }, {});
       res.json(filtered);
     });
   } else {

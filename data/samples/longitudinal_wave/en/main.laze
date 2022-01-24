@@ -1,0 +1,24 @@
+function: main() => (){
+	captureMouse();
+	Scene: world;
+	Vector3D: color(1.0, 1.0, 1.0);
+	double: PI = 3.14159265398979315;
+	Array<int>: cubeIDlist;
+	int: numberOfTimes = 100;
+	Vector3D: initialPosition(0.0, 0.0, 0.0);
+	repeat(numberOfTimes){
+		cubeIDlist.push(world.addCube(0.100000000000000006, color, initialPosition));
+	}
+	loop{
+		double: w = 0.200000000000000011;
+		repeat(cubeIDlist.length()){
+			double: x = w * counter;
+			x = x + sin(x + getTime() / 300.0) * w;
+			double: y = 0.0;
+			Vector3D: position(x, y, 0.0);
+			int: id = cubeIDlist.get(counter);
+			world.sprites.get(id)->setPos(position);
+		}
+		world.draw();
+	}
+}
