@@ -1,0 +1,18 @@
+Declare function main with code starting here
+	Declare variable primeNumbers as Array < int > . 
+	Call push of primeNumbers with value 2 . 
+	( Initialize variable number as int with 3 . ) from ( number  > 100 ) to ( Assign number  + 2 to number . ) starting here
+		Initialize variable flag as int with 0 . 
+		repeat length of primeNumbers ( ) times starting here
+			If ( number  % get of primeNumbers ( counter ) )  is 0 then execute code starting here
+				Assign 1 to flag . 
+			ending here 
+		ending here 
+		If flag  is 0 then execute code starting here
+			Call push of primeNumbers with value number . 
+		ending here 
+	ending here 
+	repeat length of primeNumbers ( ) times starting here
+		Call print with value get of primeNumbers ( counter ) . 
+	ending here 
+ending here 

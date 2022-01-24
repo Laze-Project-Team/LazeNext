@@ -778,7 +778,7 @@ public : 	Declare variable color as Vector3D .
 				ending here 
 			ending here 
 		ending here 
-		Initialize object pos3d as Vector3D with x of pos  * 16.0  / 9.0 , y of pos , 0  - zIndex  * 0.00100000000000000002 . 
+		Initialize object pos3d as Vector3D with x of pos , y of pos , 0  - zIndex  * 0.00100000000000000002 . 
 		Call identity of transMat . 
 		Call translate of transMat with value pos3d . 
 		Call identity of scaleMat . 

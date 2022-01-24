@@ -8,3 +8,4 @@ export const CACHE_DIR = ROOT_DIR + '/cache';
 export const COMMON_DIR = ROOT_DIR + '/data/common';
 export const LANG_DIR = ROOT_DIR + '/data/lang';
 export const PARSER_DIR = ROOT_DIR + '/data/parser';
+export const DOCS_DIR = ROOT_DIR + '/docs';

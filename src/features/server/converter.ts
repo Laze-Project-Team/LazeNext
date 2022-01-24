@@ -47,6 +47,7 @@ export const convertCode = async (code: string, option: convertRequest['option']
     };
   } else {
     const code = await fs.promises.readFile(`${CACHE_DIR}/${id}/${option.label}-dist`, { encoding: 'utf8' });
+    fs.promises.rm(`${CACHE_DIR}/${id}/${option.label}-dist`);
     return {
       success: true,
       code,

@@ -37,11 +37,11 @@ const getNameFromPath = (tree: TreeType, path: string[]): string | null => {
 const getBreadcrumbs = (tree: TreeType, path: string[]): breadcrumb[] => {
   const breadcrumbs: breadcrumb[] = path
     .map((id, i) => {
-      if (i + 1 === path.length) {
+      if (i + 1 === path.length && id === 'index') {
         return false;
       }
       const title = getNameFromPath(tree, path.slice(0, i + 1));
-      const href = '/' + path.slice(0, i + 1).join('/') + '/index';
+      const href = '/' + path.slice(0, i + 1).join('/') + (i + 1 === path.length ? '' : '/index');
 
       if (!title) {
         throw new Error(`Could not find title for path ${href}`);
