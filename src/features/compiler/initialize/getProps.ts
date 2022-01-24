@@ -47,6 +47,7 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
       receiveText: '',
       digitalInput: new Array(100).fill(0),
       analogInput: new Array(100).fill(0),
+      pulseInput: new Array(100).fill(0),
     },
   };
 

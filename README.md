@@ -22,9 +22,9 @@ Lazeは母国語でプログラミングできるように設計されていて�
 
 Lazeはブラウザ上で実行できる言語のため、環境構築を全くすることなくプログラミングを始めることができます。
 
-[公式ウェブサイト](http://laze.ddns.net)
-[オンラインエディタ](https://laze.ddns.net/editor)
-[オンラインドキュメンテーション](https://laze.ddns.net/docs)
+* [公式ウェブサイト](http://laze.ddns.net)
+* [オンラインエディタ](https://laze.ddns.net/editor)
+* [オンラインドキュメンテーション](https://laze.ddns.net/docs)
 
 ## Lazeに参加する
 
@@ -65,6 +65,8 @@ Lazeの開発をお手伝いしたいですか？
   - ESLint(コードのチェック)
   - Tailwind CSS(スタイル)
 
+※このリポジトリは[s-kawabe/next-ts-template](https://github.com/s-kawabe/next-ts-template)をベースにして作られています
+
 ### 開発者クイックスタート
 
 前提として[Node.js](https://nodejs.org/ja/)、[Git](https://git-scm.com/)
@@ -91,6 +93,9 @@ yarn
 コンパイラを入手してその絶対パスを`.env`(`.env.template`をコピーして作成する)内の`COMPILER_PATH`に書く。
 
 **各コマンドの解説**
+
 `yarn dev`で開発サーバーを建てます
+
 `yarn build`でビルドを行います
+
 `yarn start`でサーバーを実行します(要ビルド)

@@ -88,6 +88,7 @@ export type arduinoObjects = {
   receiveText: string;
   digitalInput: number[];
   analogInput: number[];
+  pulseInput: number[];
 };
 
 export type getCompleteImportsFunction = (id: string) => importObject;
