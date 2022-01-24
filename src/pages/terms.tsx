@@ -10,7 +10,7 @@ import { WithLink } from '@/components/ui/WithLink';
 
 const Terms: NextPage = () => {
   const { locale } = useRouter();
-  const [t] = useTranslation('terms');
+  const [t] = useTranslation(['terms', 'common']);
   const title = `${t('title')} | Laze`;
 
   return (
@@ -110,11 +110,13 @@ const Terms: NextPage = () => {
         </OL>
 
         <H2>{t('10.title')}</H2>
-        <OL className="mb-16">
+        <OL>
           <LI>{t('10.1')}</LI>
           <LI>{t('10.2')}</LI>
           <LI>{t('10.3')}</LI>
         </OL>
+
+        <P className="mt-8 mb-16">{locale !== 'ja' && t('common:deepL')}</P>
       </IndexLayout>
     </>
   );

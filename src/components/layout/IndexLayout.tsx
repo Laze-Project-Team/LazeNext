@@ -8,7 +8,9 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
+import { ChangeLanguage } from '@/components/model/ChangeLanguage';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
+import { QiitaIcon } from '@/components/ui/atoms/QiitaIcon';
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
 
 export type IndexLayoutProps = {
@@ -69,9 +71,12 @@ const IndexHeader: VFC = () => {
             </Drawer>
           </div>
         ) : (
-          <div className="flex">
+          <div className="flex flex-1">
             <NavLink href="/editor">{t('header.Editor')}</NavLink>
             <NavLink href="/docs">{t('header.Docs')}</NavLink>
+            <div className="ml-auto">
+              <ChangeLanguage />
+            </div>
           </div>
         )}
       </div>
@@ -130,6 +135,8 @@ const IndexFooter: VFC = () => {
                 href="https://github.com/Laze-Project-Team"
                 title="GitHub"
                 className="text-gray-400 hover:text-gray-300"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaGithub />
               </a>
@@ -137,11 +144,28 @@ const IndexFooter: VFC = () => {
                 href="https://twitter.com/LazeProjectTeam"
                 title="Twitter"
                 className="text-gray-400 hover:text-gray-300"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaTwitter />
               </a>
-              <a href="https://discord.gg/K3prMrmS7e" title="Discord" className="text-gray-400 hover:text-gray-300">
+              <a
+                href="https://discord.gg/K3prMrmS7e"
+                title="Discord"
+                className="text-gray-400 hover:text-gray-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaDiscord />
+              </a>
+              <a
+                href="https://qiita.com/tags/laze"
+                title="Qiita"
+                className="text-gray-400 hover:text-gray-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <QiitaIcon className="w-6 h-6" />
               </a>
             </IconContext.Provider>
           </div>
