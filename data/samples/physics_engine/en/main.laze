@@ -1,0 +1,80 @@
+class: 箱{
+public: 	double: width;
+	double: height;
+	double: mass;
+	double: momentOfInertia;
+	function: 箱(double: w, double: h, double: m) => (){
+		width = w;
+		height = h;
+		mass = m;
+		momentOfInertia = m * (w * w + h * h) / 12;
+	}
+}
+class: 物体{
+public: 	Vector2D: pos;
+	Vector2D: velocity;
+	double: angle;
+	double: angularVelocity;
+	Vector2D: force;
+	double: torque;
+	箱: shape;
+	function: 物体(Vector2D: p, Vector2D: v, double: a, double: av, Vector2D: f, double: t, 箱: b) => (){
+		pos = p;
+		velocity = v;
+		angle = a;
+		angularVelocity = av;
+		force = f;
+		torque = t;
+		shape = b;
+	}
+}
+class: physicsWorld2D{
+public: 	Array<*物体>: bodyArray;
+	function: physicsWorld2D(double: height, double: g) => (){
+		gravitationalAccelaration = g;
+		Vector3D: backgroundColor(0.0, 0.0, 0.0);
+		world.Scene2D(height, backgroundColor);
+		bodyArray.Array();
+		timeBefore = getTime() / 1000.0;
+	}
+	function: addBody(double: w, double: h, double: m, Vector3D: color, Vector2D: initPos, Vector2D: initVec, double: initAngle, double: initAngVec) => (){
+		箱: shape(w, h, m);
+		Vector2D: gravity(0.0, 0 - m * gravitationalAccelaration);
+		*物体: body = allocMemory(sizeof(*body));
+		body->物体(initPos, initVec, initAngle, initAngVec, gravity, 0, shape);
+		bodyArray.push(body);
+		int: id = world.addRectangle(w, h, initPos, color, 1.0);
+	}
+	function: update() => (){
+		double: timePassed = getTime() / 1000.0 - timeBefore;
+		timeBefore = getTime() / 1000.0;
+		repeat(bodyArray.length()){
+			*物体: rigidBody = bodyArray.get(counter);
+			Vector2D: 加速度(rigidBody->force.x / rigidBody->shape.mass, rigidBody->force.y / rigidBody->shape.mass);
+			rigidBody->velocity.x = rigidBody->velocity.x + 加速度.x * timePassed;
+			rigidBody->velocity.y = rigidBody->velocity.y + 加速度.y * timePassed;
+			rigidBody->pos.x = rigidBody->pos.x + rigidBody->velocity.x * timePassed;
+			rigidBody->pos.y = rigidBody->pos.y + rigidBody->velocity.y * timePassed;
+			double: angularAccelaration = rigidBody->torque / rigidBody->shape.momentOfInertia;
+			rigidBody->angularVelocity = rigidBody->angularVelocity + angularAccelaration * timePassed;
+			rigidBody->angle = rigidBody->angle + rigidBody->angularVelocity * timePassed;
+			world.sprites.get(counter)->setPos(rigidBody->pos);
+			world.sprites.get(counter)->setAngle(rigidBody->angle);
+		}
+		world.draw();
+	}
+private: 	double: gravitationalAccelaration;
+	double: timeBefore;
+	Scene2D: world;
+}
+function: main() => (){
+	double: PI = 3.14159265358979312;
+	physicsWorld2D: physicsWorld(1.0, 9.8100000000000005);
+	Vector3D: 青(0.200000000000000011, 0.5, 0.699999999999999956);
+	Vector2D: initialPosition(0.0, 1.0);
+	Vector2D: initialVelocity(0.0, 0.0);
+	physicsWorld.addBody(0.149999999999999994, 0.149999999999999994, 1.0, 青, initialPosition, initialVelocity, 0.0, 0.0);
+	loop{
+		physicsWorld.update();
+	}
+}

@@ -1,0 +1,8 @@
+function: main() => (){
+	double: number = 5.0;
+	double: recursion = number;
+	repeat(5){
+		recursion = (recursion + number / recursion) / 2.0;
+	}
+	print(recursion);
+}
