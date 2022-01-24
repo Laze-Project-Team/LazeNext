@@ -8,7 +8,7 @@ Laze is a compilation language that compiles to WebAssembly. It has been develop
 
 ## Philosophy and Goals
 
-We are developing Laze with the goal of "Great Programming Experience for All"!
+We are developing Laze with the goal of "A Great Programming Experience for All"!
 
 In order to achieve this goal, here are three things we are trying our best to achieve: "native language programming", "easy environment construction", and "simple and multifunctional". Please let us explain each of them in detail.
 
