@@ -53,6 +53,12 @@
 ( i という 整数32 ) を とり ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$ という 関数 を ( "webgl", "activeTexture") から 読み込む 。 
 ( i という 整数32 , j という 整数32 ) を とり ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$ という 関数 を ( "webgl", "bindTexture") から 読み込む 。 
 関数 ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$ を ( "js", "lockPointer") から 読み込む 。 
+( vendorId という 整数 , c という 関数 : ( ) => ( ) ) を とり ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$ という 関数 を ( "arduino", "setUp") から 読み込む 。 
+( コマンド という 文字 , data という 整数32 ) を とり ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$ という 関数 を ( "arduino", "sendCommand") から 読み込む 。 
+関数 ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$ を ( "arduino", "checkInput") から 読み込む 。 
+( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$ という 関数 を ( "arduino", "analogRead") から 読み込む 。 
+( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$ という 関数 を ( "arduino", "digitalRead") から 読み込む 。 
+( ピン番号 という 整数 ) を とり ( データ という 整数32 ) を 返す ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$ という 関数 を ( "arduino", "distanceRead") から 読み込む 。 
 ( input という 実数 ) を とり ( 結果 という 実数 ) を 返す ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$ という 関数 を おく 。 ここから
 	PI という 実数 を 3.14159265358979312 で 初期化 。 
 	temp という 整数 を input  / ( 2.0  * PI ) で 初期化 。 
@@ -121,7 +127,7 @@
 	sqRad という 実数 を rad  * rad で 初期化 。 
 	結果 に sin ( rad )  / cos ( rad ) を 代入する 。 
 ここまで実行 
-型 < T > : ( a という T ) を とり ( b という T ) を 返す ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$ という 関数 を おく 。 ここから
+( a という 実数 ) を とり ( b という 実数 ) を 返す ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$ という 関数 を おく 。 ここから
 	もし a  >= 0 ならば ここから
 		b に a を 代入する 。 
 	ここまで実行 でなければ ここから
@@ -166,6 +172,10 @@
 	ここまで実行 
 	関数 ${"ja":"ポップ", "natja":"ポップ", "en":"pop", "naten":"pop"}$ を おく 。 ここから
 		size に size  - 1 を 代入する 。 
+	ここまで実行 
+	関数 : 演算子 = ( offset という * T , l という 整数 ) => ( ) ここから
+		content に offset を 代入する 。 
+		size に l を 代入する 。 
 	ここまで実行 
 非公開 : 	allocated という 整数 を おく 。 
 } 
@@ -221,6 +231,26 @@
 		b の x に a の x  + x を 代入する 。 
 		b の y に a の y  + y を 代入する 。 
 		b の z に a の z  + z を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  - ( a という ベクトル3D ) => ( b という ベクトル3D ) ここから
+		b の x に a の x  - x を 代入する 。 
+		b の y に a の y  - y を 代入する 。 
+		b の z に a の z  - z を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  * ( k という 実数 ) => ( b という ベクトル3D ) ここから
+		b の x に x  * k を 代入する 。 
+		b の y に y  * k を 代入する 。 
+		b の z に z  * k を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  * ( a という ベクトル3D ) => ( b という ベクトル3D ) ここから
+		b の x に y  * a の z  - z  * a の y を 代入する 。 
+		b の y に z  * a の x  - x  * a の z を 代入する 。 
+		b の z に x  * a の y  - y  * a の x を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  / ( k という 実数 ) => ( b という ベクトル3D ) ここから
+		b の x に x  / k を 代入する 。 
+		b の y に y  / k を 代入する 。 
+		b の z に z  / k を 代入する 。 
 	ここまで実行 
 } 
 ( a という ベクトル3D , b という ベクトル3D ) を とり ( result という ベクトル3D ) を 返す ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$ という 関数 を おく 。 ここから
@@ -416,13 +446,13 @@
 		座標 に ベクトル3Dの和 ( 座標 , offset ) を 代入する 。 
 	ここまで実行 
 	( x という 実数 , y という 実数 , z という 実数 ) を とり ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$ という 関数 を おく 。 ここから
-		temp という 行列4x4 の オブジェクト を で 初期化 。 
+		temp という 行列4x4 を おく 。 
 		temp の 単位化 する 。 
 		x , y , z temp の 拡大縮小 する 。 
 		scaleMat に 行列4x4の積 ( temp , scaleMat ) を 代入する 。 
 	ここまで実行 
 	( axis という ベクトル3D , t という 実数 ) を とり ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$ という 関数 を おく 。 ここから
-		temp という 行列4x4 の オブジェクト を で 初期化 。 
+		temp という 行列4x4 を おく 。 
 		temp の 単位化 する 。 
 		axis , t temp の 回転 する 。 
 		rotateMat に 行列4x4の積 ( temp , rotateMat ) を 代入する 。 
@@ -641,10 +671,6 @@
 クラス : ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}$ {
 公開 : 	色 という ベクトル3D を おく 。 
 	座標 という ベクトル2D を おく 。 
-	透明度 という 実数 を おく 。 
-	scaleX という 実数 を おく 。 
-	scaleY という 実数 を おく 。 
-	theta という 実数 を おく 。 
 	( data という * 実数 , pnum という 整数 , indicesData という * 整数32 , vnum という 整数 , c という ベクトル3D , p という ベクトル2D , s という 整数 , zI という 実数 ) を とり スプライト という 関数 を おく 。 ここから
 		vertices に data を 代入する 。 
 		pointNum に pnum を 代入する 。 
@@ -724,7 +750,7 @@
 	( t という 実数 ) を とり ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$ という 関数 を おく 。 ここから
 		theta に t を 代入する 。 
 	ここまで実行 
-	( x という 実数 ) を とり ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$ という 関数 を おく 。 ここから
+	( x という 実数 ) を とり ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$ という 関数 を おく 。 ここから
 		zIndex に x を 代入する 。 
 	ここまで実行 
 	( x という 実数 ) を とり ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$ という 関数 を おく 。 ここから
@@ -798,7 +824,7 @@
 		temp という アニメーション情報 の オブジェクト を 0 , start , duration , theta , 0.0 で 初期化 。 
 		temp animations の 追加 する 。 
 	ここまで実行 
-	( x という 実数 , y という 実数 , start という 実数 , duration という 実数 ) を とり ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$ という 関数 を おく 。 ここから
+	( x という 実数 , y という 実数 , start という 実数 , duration という 実数 ) を とり ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$ という 関数 を おく 。 ここから
 		temp という アニメーション情報 の オブジェクト を 1 , start , duration , x , y で 初期化 。 
 		temp animations の 追加 する 。 
 	ここまで実行 
@@ -827,6 +853,10 @@
 	modelMatUniformLoc という 整数32 を おく 。 
 	samplerUniformLoc という 整数32 を おく 。 
 	animations という 配列 < アニメーション情報 > を おく 。 
+	透明度 という 実数 を おく 。 
+	scaleX という 実数 を おく 。 
+	scaleY という 実数 を おく 。 
+	theta という 実数 を おく 。 
 } 
 クラス : ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}$ {
 公開 : 	${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$ という 配列 < * スプライト > を おく 。 
@@ -837,7 +867,7 @@
 		now に 0.0 を 代入する 。 
 		elapsedTime に 0.0 を 代入する 。 
 		projMat の 単位化 する 。 
-		projMat に 視点行列2D ( projMat , 0  - 高さ  / 2.0  * 16.0  / 9.0 , 高さ  / 2.0  * 16.0  / 9.0 , 0  - 高さ  / 2 , 高さ  / 2 , 0  - 5.0 , 5.0 ) を 代入する 。 
+		projMat に 視点行列2D ( projMat , ( 0  - 高さ )  * ( 16.0  / 9.0 ) , ( 高さ )  * ( 16.0  / 9.0 ) , 0  - 高さ , 高さ , 0.0  - 5.0 , 5.0 ) を 代入する 。 
 		スプライト配列 の 配列 する 。 
 		背景色 に 色 を 代入する 。 
 		背景透明度 に 1.0 を 代入する 。 
@@ -898,15 +928,21 @@
 		sprite スプライト配列 の 追加 する 。 
 		id に スプライト配列 の 長さ ( )  - 1 を 代入する 。 
 	ここまで実行 
-	( points という * 無 , size という 整数 , 座標 という ベクトル2D , 色 という ベクトル3D , zIndex という 実数 ) を とり ( id という 整数 ) を 返す ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$ という 関数 を おく 。 ここから
+	( points という 配列 < ベクトル2D > , 座標 という ベクトル2D , 色 という ベクトル3D , zIndex という 実数 ) を とり ( id という 整数 ) を 返す ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$ という 関数 を おく 。 ここから
+		temp という 配列 < 実数 > を おく 。 
+		points の 長さ ( ) 回繰り返す ここから
+			points の 取得 ( カウンタ ) の x temp の 追加 する 。 
+			points の 取得 ( カウンタ ) の y temp の 追加 する 。 
+			0  - zIndex  * 0.00100000000000000002 temp の 追加 する 。 
+		ここまで実行 
 		sprite という * スプライト を メモリ確保 ( バイト数 ( sprite に ある オブジェクト ) ) で 初期化 。 
-		points , size , メモリ確保 ( 0 ) , 0 , 色 , 座標 , 4 , zIndex sprite -> スプライト する 。 
+		temp の content , temp の 長さ ( )  / 3 , メモリ確保 ( 0 ) , 0 , 色 , 座標 , 4 , zIndex sprite -> スプライト する 。 
 		sprite スプライト配列 の 追加 する 。 
 		id に スプライト配列 の 長さ ( )  - 1 を 代入する 。 
 	ここまで実行 
 	( r という 実数 , 座標 という ベクトル2D , 色 という ベクトル3D , zIndex という 実数 ) を とり ( id という 整数 ) を 返す ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$ という 関数 を おく 。 ここから
 		PI という 実数 を 3.14159265358979312 で 初期化 。 
-		points という 配列 < ベクトル3D > の オブジェクト を で 初期化 。 
+		points という 配列 < ベクトル2D > を おく 。 
 		頂点数 という 整数 を 60 で 初期化 。 
 		( i という 整数 を 0 で 初期化 。 ) から ( i  は 頂点数 ) まで ( i に i  + 1 を 代入する 。 ) 繰り返し ここから
 			theta という 実数 を 0 で 初期化 。 
@@ -916,10 +952,10 @@
 			もし ( i  % 2 )  は 1 ならば ここから
 				theta に 0.5  * PI  - ( ( PI  * ( 1.0  + i ) )  / 頂点数 ) を 代入する 。 
 			ここまで実行 
-			temp という ベクトル3D の オブジェクト を r  * cos ( theta ) , r  * sin ( theta ) , 0  - zIndex  * 0.00100000000000000002 で 初期化 。 
+			temp という ベクトル2D の オブジェクト を r  * cos ( theta ) , r  * sin ( theta ) で 初期化 。 
 			temp points の 追加 する 。 
 		ここまで実行 
-		id に 多角形追加 ( points の content , points の size , 座標 , 色 , zIndex ) を 代入する 。 
+		id に 多角形追加 ( points , 座標 , 色 , zIndex ) を 代入する 。 
 	ここまで実行 
 非公開 : 	projMat という 行列4x4 を おく 。 
 	last という 実数 を おく 。 
@@ -983,4 +1019,32 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 	${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$ という 実数 を おく 。 
 	${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$ という 実数 を おく 。 
 	${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$ という 実数 を おく 。 
+ここまで実行 
+クラス : ArduinoClass {
+公開 : 	${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$ という 文字 を おく 。 
+	${"ja":"入力ピン", "natja":"入力ピン", "en":"INPUT", "naten":"INPUT"}$ という 文字 を おく 。 
+	関数 ArduinoClass を おく 。 ここから
+		出力ピン に '出'を 代入する 。 
+		入力ピン に '入'を 代入する 。 
+	ここまで実行 
+} 
+( ピン番号 という 整数 ) を とり ${"ja":"Arduino5V送る", "natja":"Arduino5V送る", "en":"ArduinoOutput5V", "naten":"ArduinoOutput5V"}$ という 関数 を おく 。 ここから
+	'H', ピン番号 Arduinoコマンド送信 する 。 
+ここまで実行 
+( ピン番号 という 整数 ) を とり ${"ja":"Arduino0V送る", "natja":"Arduino0V送る", "en":"ArduinoOutput0V", "naten":"ArduinoOutput0V"}$ という 関数 を おく 。 ここから
+	'L', ピン番号 Arduinoコマンド送信 する 。 
+ここまで実行 
+( ピン番号 という 整数 , 入出力 という 文字 ) を とり ${"ja":"Arduinoピン入出力設定", "natja":"Arduinoピン入出力設定", "en":"ArduinoSetPinmode", "naten":"ArduinoSetPinmode"}$ という 関数 を おく 。 ここから
+	もし 入出力  は '入'ならば ここから
+		'I', ピン番号 Arduinoコマンド送信 する 。 
+	ここまで実行 
+	もし 入出力  は '出'ならば ここから
+		'O', ピン番号 Arduinoコマンド送信 する 。 
+	ここまで実行 
+ここまで実行 
+( ピン番号 という 整数 ) を とり ${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナログ入力ピン設定", "en":"ArduinoSetAnalogInputPin", "naten":"ArduinoSetAnalogInputPin"}$ という 関数 を おく 。 ここから
+	'A', ピン番号 Arduinoコマンド送信 する 。 
+ここまで実行 
+( ピン番号 という 整数 ) を とり ${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$ という 関数 を おく 。 ここから
+	'T', ピン番号 Arduinoコマンド送信 する 。 
 ここまで実行 

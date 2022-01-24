@@ -3,7 +3,6 @@ import type { Dispatch } from 'redux';
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
 import { updatePosition } from '@/features/compiler/initialize/updatePosition';
 import { consoleSlice } from '@/features/redux/console';
-import { sleep } from '@/features/utils/sleep';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
 export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCompleteImportsFunction => {
@@ -280,10 +279,9 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
           await arduinoObjects.port.open({ baudRate: 9600 });
           executeCallback();
           const decoder = new TextDecoderStream();
+          arduinoObjects.port.readable?.pipeTo(decoder.writable);
           const inputStream = decoder.readable;
           arduinoObjects.serialReader = inputStream.getReader();
-          arduinoObjects.port.readable?.pipeTo(decoder.writable);
-          await sleep(1000);
         } else {
           executeCallback();
         }
@@ -297,6 +295,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
               writer.write(new Uint8Array([command]));
               writer.write(new Uint8Array([data]));
               writer.releaseLock();
+              // console.log(command, data);
             } else {
               console.error('no writer');
             }
@@ -308,30 +307,34 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       checkInput: async () => {
         const { arduinoObjects } = window.laze.props;
         if (arduinoObjects.serialReader) {
-          const { value, done } = await arduinoObjects.serialReader.read();
-          if (done == true && window.laze.props.variables.interval) {
-            clearInterval(window.laze.props.variables.interval);
-          }
+          const { value } = await arduinoObjects.serialReader.read();
           const val = value?.replaceAll('\r', '');
           if (val && !val.includes('\n')) {
             arduinoObjects.receiveText += val;
           } else if (val?.includes('\n')) {
             arduinoObjects.receiveText += val;
             const splitData = arduinoObjects.receiveText.split('\n');
-            arduinoObjects.receiveText = splitData[0];
 
-            if (arduinoObjects.receiveText.length) {
-              const input = parseInt(arduinoObjects.receiveText.substring(2));
-              switch (arduinoObjects.receiveText[0]) {
-                case 'D':
-                  arduinoObjects.digitalInput[parseInt(arduinoObjects.receiveText[1])] = input;
-                  break;
-                case 'A':
-                  arduinoObjects.analogInput[parseInt(arduinoObjects.receiveText[1])] = input;
-                  break;
+            for (let i = 0; i < splitData.length - 1; i++) {
+              const receiveText = splitData[i];
+              if (receiveText.length) {
+                const input = parseInt(receiveText.substring(2));
+                console.log(receiveText);
+                switch (receiveText[0]) {
+                  case 'D':
+                    arduinoObjects.digitalInput[parseInt(receiveText[1])] = input;
+                    break;
+                  case 'A':
+                    arduinoObjects.analogInput[parseInt(receiveText[1])] = input;
+                    break;
+                  case 'P':
+                    arduinoObjects.pulseInput[parseInt(receiveText[1])] = input;
+                    break;
+                }
               }
             }
-            arduinoObjects.receiveText = splitData[1];
+
+            arduinoObjects.receiveText = splitData.slice(-1)[0];
           }
         }
       },
@@ -340,6 +343,9 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       digitalRead: (pinNumber: BigInt) => {
         return window.laze.props.arduinoObjects.digitalInput[Number(pinNumber)];
+      },
+      distanceRead: (pinNumber: BigInt) => {
+        return window.laze.props.arduinoObjects.pulseInput[Number(pinNumber)];
       },
     },
   };

@@ -12,7 +12,7 @@ uniform vec3 objectColor;
 uniform vec3 viewPos;
 
 void main() {
-  float ambientStrength = 1.0;
+  float ambientStrength = 0.7;
   vec3 ambient = ambientStrength * lightColor;
 
   vec3 norm = normalize(vNormal);
@@ -24,7 +24,7 @@ void main() {
   float specularStrength = 0.5;
   vec3 viewDir = normalize(viewPos - vPosition);
   vec3 reflectDir = reflect(-lightDir, norm);
-  float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32.0);
+  float spec = pow(max(dot(viewDir, reflectDir), 0.0), 256.0);
   vec3 specular = specularStrength * spec * lightColor;
 
   vec3 result = (ambient + diffuse + specular) * objectColor;

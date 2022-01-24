@@ -22,9 +22,9 @@ Lazeは母国語でプログラミングできるように設計されていて�
 
 Lazeはブラウザ上で実行できる言語のため、環境構築を全くすることなくプログラミングを始めることができます。
 
-[公式ウェブサイト](http://laze.ddns.net)
-[オンラインエディタ](https://laze.ddns.net/editor)
-[オンラインドキュメンテーション](https://laze.ddns.net/docs)
+* [公式ウェブサイト](http://laze.ddns.net)
+* [オンラインエディタ](https://laze.ddns.net/editor)
+* [オンラインドキュメンテーション](https://laze.ddns.net/docs)
 
 ## Lazeに参加する
 
@@ -91,6 +91,9 @@ yarn
 コンパイラを入手してその絶対パスを`.env`(`.env.template`をコピーして作成する)内の`COMPILER_PATH`に書く。
 
 **各コマンドの解説**
+
 `yarn dev`で開発サーバーを建てます
+
 `yarn build`でビルドを行います
+
 `yarn start`でサーバーを実行します(要ビルド)

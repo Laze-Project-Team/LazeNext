@@ -53,11 +53,12 @@
 関数: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(整数32: i) => () = js読み込み("webgl", "activeTexture");
 関数: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(整数32: i, 整数32: j) => () = js読み込み("webgl", "bindTexture");
 関数: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = js読み込み("js", "lockPointer");
-関数:Arduino設定(整数:vendorId, 関数:c() => ()) => () = js読み込み("arduino", "setUp");
-関数:Arduinoコマンド送信(文字:コマンド, 整数32:data) => () = js読み込み("arduino", "sendCommand");
-関数:Arduinoデータ受信() => () = js読み込み("arduino", "checkInput");
-関数:Arduinoアナログ入力(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "analogRead");
-関数:Arduinoデジタル入力(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "digitalRead");
+関数:${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$(整数:vendorId, 関数:c() => ()) => () = js読み込み("arduino", "setUp");
+関数:${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$(文字:コマンド, 整数32:data) => () = js読み込み("arduino", "sendCommand");
+関数:${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$() => () = js読み込み("arduino", "checkInput");
+関数:${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "analogRead");
+関数:${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "digitalRead");
+関数:${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "distanceRead");
 
 関数: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(実数: input) => (実数: 結果){
 	実数: PI = 3.14159265358979312;
@@ -127,11 +128,11 @@
 	実数: sqRad = rad * rad;
 	結果 = sin(rad) / cos(rad);
 }
-型<T>: 関数: ${"ja":"abs", "natja":"abs", "en":"abs", "naten":"abs"}$(T: a) => (T: b){
+関数: ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$(実数: a) => (実数: b){
 	もし(a >= 0)ならば{
 		b = a;
 	}でなければ{
-		b = 0 - a;
+		b = - a;
 	}
 }
 関数: ${"ja":"ラジアンへ", "natja":"ラジアンへ", "en":"toRad", "naten":"toRad"}$(実数: deg) => (実数: rad){
@@ -172,6 +173,10 @@
 	}
 	関数: ${"ja":"ポップ", "natja":"ポップ", "en":"pop", "naten":"pop"}$() => (){
 		size = size - 1;
+	}
+    関数: 演算子 = (*T: offset, 整数: l) => (){
+		content = offset;
+		size = l;
 	}
 非公開: 	整数: allocated;
 }
@@ -671,10 +676,6 @@
 クラス: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
 公開: 	ベクトル3D: 色;
 	ベクトル2D: 座標;
-	実数: 透明度;
-	実数: scaleX;
-	実数: scaleY;
-	実数: theta;
 	関数: スプライト(*実数: data, 整数: pnum, *整数32: indicesData, 整数: vnum, ベクトル3D: c, ベクトル2D: p, 整数: s, 実数: zI) => (){
 		vertices = data;
 		pointNum = pnum;
@@ -754,7 +755,7 @@
 	関数: ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$(実数: t) => (){
 		theta = t;
 	}
-	関数: ${"ja":"zIndex設定", "natja":"zIndex設定", "en":"setZIndex", "naten":"setZIndex"}$(実数: x) => (){
+	関数: ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$(実数: x) => (){
 		zIndex = x;
 	}
 	関数: ${"ja":"透明度設定", "natja":"透明度設定", "en":"setTransparency", "naten":"setTransparency"}$(実数: x) => (){
@@ -828,7 +829,7 @@
 		アニメーション情報: temp(0, start, duration, theta, 0.0);
 		animations.追加(temp);
 	}
-	関数: ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"scaleAnimation", "naten":"scaleAnimation"}$(実数: x, 実数: y, 実数: start, 実数: duration) => (){
+	関数: ${"ja":"拡大縮小アニメーション", "natja":"拡大縮小アニメーション", "en":"scaleAnimation", "naten":"scaleAnimation"}$(実数: x, 実数: y, 実数: start, 実数: duration) => (){
 		アニメーション情報: temp(1, start, duration, x, y);
 		animations.追加(temp);
 	}
@@ -857,6 +858,10 @@
 	整数32: modelMatUniformLoc;
 	整数32: samplerUniformLoc;
 	配列<アニメーション情報>: animations;
+	実数: 透明度;
+	実数: scaleX;
+	実数: scaleY;
+	実数: theta;
 }
 クラス: ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}${
 公開:
@@ -868,7 +873,7 @@
 		now = 0.0;
 		elapsedTime = 0.0;
 		projMat.単位化();
-		projMat = 視点行列2D(projMat, 0 - 高さ / 2.0 * 16.0 / 9.0, 高さ / 2.0 * 16.0 / 9.0, 0 - 高さ / 2, 高さ / 2, 0 - 5.0, 5.0);
+		projMat = 視点行列2D(projMat, (-高さ) * (16.0 / 9.0), (高さ) * (16.0 / 9.0), -高さ, 高さ, 0.0 - 5.0, 5.0);
 		スプライト配列.配列();
 		背景色 = 色;
 		背景透明度 = 1.0;
@@ -929,15 +934,21 @@
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
 	}
-	関数: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(*無: points, 整数: size, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
+	関数: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(配列<ベクトル2D>:points, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
+		配列<実数>:temp();
+		(points.長さ())回繰り返す{
+			temp.追加(points.取得(カウンタ).x);
+			temp.追加(points.取得(カウンタ).y);
+			temp.追加( -zIndex * 0.001);
+		}
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
-		sprite->スプライト(points, size, メモリ確保(0), 0, 色, 座標, 4, zIndex);
+		sprite->スプライト(temp.content, temp.長さ()/3, メモリ確保(0), 0, 色, 座標, 4, zIndex);
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
 	}
 	関数: ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$(実数: r, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
 		実数: PI = 3.14159265358979312;
-		配列<ベクトル3D>: points();
+		配列<ベクトル2D>: points();
 		整数: 頂点数 = 60;
 		(整数: i = 0;)から(i == 頂点数)まで(i = i + 1;){
 			実数: theta = 0;
@@ -947,10 +958,10 @@
 			もし((i % 2) == 1)ならば{
 				theta = 0.5 * PI - ((PI * (1.0 + i)) / 頂点数);
 			}
-			ベクトル3D: temp(r * cos(theta), r * sin(theta), 0 - zIndex * 0.00100000000000000002);
+			ベクトル2D: temp(r * cos(theta), r * sin(theta));
 			points.追加(temp);
 		}
-		id = 多角形追加(points.content, points.size, 座標, 色, zIndex);
+		id = 多角形追加(points, 座標, 色, zIndex);
 	}
 非公開: 	行列4x4: projMat;
 	実数: last;
@@ -1015,14 +1026,21 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	実数:${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$;
 	実数:${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$;
 }
-
-関数:Arduino5V送る(整数:ピン番号) => (){
+クラス:ArduinoClass{
+	文字:${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$;
+	文字:${"ja":"入力ピン", "natja":"入力ピン", "en":"INPUT", "naten":"INPUT"}$;
+	関数:ArduinoClass()=>(){
+		出力ピン = '出';
+		入力ピン = '入';
+	}
+}
+関数:${"ja":"Arduino5V送る", "natja":"Arduino5V送る", "en":"ArduinoOutput5V", "naten":"ArduinoOutput5V"}$(整数:ピン番号) => (){
 	Arduinoコマンド送信('H', ピン番号);
 }
-関数:Arduino0V送る(整数:ピン番号) => (){
+関数:${"ja":"Arduino0V送る", "natja":"Arduino0V送る", "en":"ArduinoOutput0V", "naten":"ArduinoOutput0V"}$(整数:ピン番号) => (){
 	Arduinoコマンド送信('L', ピン番号);
 }
-関数:Arduinoピン入出力設定(整数:ピン番号, 文字:入出力) => (){
+関数:${"ja":"Arduinoピン入出力設定", "natja":"Arduinoピン入出力設定", "en":"ArduinoSetPinmode", "naten":"ArduinoSetPinmode"}$(整数:ピン番号, 文字:入出力) => (){
 	// Arduinoコマンド送信(入出力, ピン番号);
 	もし(入出力 == '入')ならば{
 		Arduinoコマンド送信('I', ピン番号);
@@ -1031,6 +1049,9 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 		Arduinoコマンド送信('O', ピン番号);
 	}
 }
-関数:Arduinoアナログ入力ピン設定(整数:ピン番号) => (){
+関数:${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナログ入力ピン設定", "en":"ArduinoSetAnalogInputPin", "naten":"ArduinoSetAnalogInputPin"}$(整数:ピン番号) => (){
     Arduinoコマンド送信('A', ピン番号);
+}
+関数:${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$(整数:ピン番号) => (){
+    Arduinoコマンド送信('T', ピン番号);
 }
