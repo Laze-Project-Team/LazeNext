@@ -1,4 +1,5 @@
 import { Button, Modal, notification } from 'antd';
+import { useRouter } from 'next/router';
 import type { VFC } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -16,12 +17,14 @@ import { getName } from '@/features/utils/path';
 import styles from '@/styles/loading.module.css';
 
 export const ConvertButton: VFC = () => {
+  const { locale } = useRouter();
   const [t] = useTranslation('editor');
   const [isOpened, setIsOpened] = useState(false);
 
   useCompiler();
 
-  const defaultLang = typeof window !== 'undefined' ? window?.laze?.props?.variables?.lang ?? 'ja' : 'ja';
+  const defaultLang =
+    typeof window !== 'undefined' ? window?.laze?.props?.variables?.lang ?? locale ?? 'en' : locale ?? 'en';
   const newLang = useRef(defaultLang);
   const [lang, setLang] = useState(defaultLang);
   const [isConverting, setIsConverting] = useState(false);
