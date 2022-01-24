@@ -167,6 +167,10 @@
 	関数 ${"ja":"ポップ", "natja":"ポップ", "en":"pop", "naten":"pop"}$ を おく 。 ここから
 		size に size  - 1 を 代入する 。 
 	ここまで実行 
+	関数 : 演算子 = ( offset という * T , l という 整数 ) => ( ) ここから
+		content に offset を 代入する 。 
+		size に l を 代入する 。 
+	ここまで実行 
 非公開 : 	allocated という 整数 を おく 。 
 } 
 クラス : ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}$ {
@@ -898,15 +902,21 @@
 		sprite スプライト配列 の 追加 する 。 
 		id に スプライト配列 の 長さ ( )  - 1 を 代入する 。 
 	ここまで実行 
-	( points という * 無 , size という 整数 , 座標 という ベクトル2D , 色 という ベクトル3D , zIndex という 実数 ) を とり ( id という 整数 ) を 返す ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$ という 関数 を おく 。 ここから
+	( points という 配列 < ベクトル2D > , 座標 という ベクトル2D , 色 という ベクトル3D , zIndex という 実数 ) を とり ( id という 整数 ) を 返す ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$ という 関数 を おく 。 ここから
+		temp という 配列 < 実数 > を おく 。 
+		points の 長さ ( ) 回繰り返す ここから
+			points の 取得 ( カウンタ ) の x temp の 追加 する 。 
+			points の 取得 ( カウンタ ) の y temp の 追加 する 。 
+			0  - zIndex  * 0.00100000000000000002 temp の 追加 する 。 
+		ここまで実行 
 		sprite という * スプライト を メモリ確保 ( バイト数 ( sprite に ある オブジェクト ) ) で 初期化 。 
-		points , size , メモリ確保 ( 0 ) , 0 , 色 , 座標 , 4 , zIndex sprite -> スプライト する 。 
+		temp の content , temp の 長さ ( )  / 3 , メモリ確保 ( 0 ) , 0 , 色 , 座標 , 4 , zIndex sprite -> スプライト する 。 
 		sprite スプライト配列 の 追加 する 。 
 		id に スプライト配列 の 長さ ( )  - 1 を 代入する 。 
 	ここまで実行 
 	( r という 実数 , 座標 という ベクトル2D , 色 という ベクトル3D , zIndex という 実数 ) を とり ( id という 整数 ) を 返す ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$ という 関数 を おく 。 ここから
 		PI という 実数 を 3.14159265358979312 で 初期化 。 
-		points という 配列 < ベクトル3D > の オブジェクト を で 初期化 。 
+		points という 配列 < ベクトル2D > を おく 。 
 		頂点数 という 整数 を 60 で 初期化 。 
 		( i という 整数 を 0 で 初期化 。 ) から ( i  は 頂点数 ) まで ( i に i  + 1 を 代入する 。 ) 繰り返し ここから
 			theta という 実数 を 0 で 初期化 。 
@@ -916,10 +926,10 @@
 			もし ( i  % 2 )  は 1 ならば ここから
 				theta に 0.5  * PI  - ( ( PI  * ( 1.0  + i ) )  / 頂点数 ) を 代入する 。 
 			ここまで実行 
-			temp という ベクトル3D の オブジェクト を r  * cos ( theta ) , r  * sin ( theta ) , 0  - zIndex  * 0.00100000000000000002 で 初期化 。 
+			temp という ベクトル2D の オブジェクト を r  * cos ( theta ) , r  * sin ( theta ) で 初期化 。 
 			temp points の 追加 する 。 
 		ここまで実行 
-		id に 多角形追加 ( points の content , points の size , 座標 , 色 , zIndex ) を 代入する 。 
+		id に 多角形追加 ( points , 座標 , 色 , zIndex ) を 代入する 。 
 	ここまで実行 
 非公開 : 	projMat という 行列4x4 を おく 。 
 	last という 実数 を おく 。 

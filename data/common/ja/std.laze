@@ -173,6 +173,10 @@
 	関数: ${"ja":"ポップ", "natja":"ポップ", "en":"pop", "naten":"pop"}$() => (){
 		size = size - 1;
 	}
+    関数: 演算子 = (*T: offset, 整数: l) => (){
+		content = offset;
+		size = l;
+	}
 非公開: 	整数: allocated;
 }
 クラス: ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}${
@@ -929,15 +933,21 @@
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
 	}
-	関数: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(*無: points, 整数: size, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
+	関数: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(配列<ベクトル2D>:points, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
+		配列<実数>:temp();
+		(points.長さ())回繰り返す{
+			temp.追加(points.取得(カウンタ).x);
+			temp.追加(points.取得(カウンタ).y);
+			temp.追加( -zIndex * 0.001);
+		}
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
-		sprite->スプライト(points, size, メモリ確保(0), 0, 色, 座標, 4, zIndex);
+		sprite->スプライト(temp.content, temp.長さ()/3, メモリ確保(0), 0, 色, 座標, 4, zIndex);
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
 	}
 	関数: ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$(実数: r, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
 		実数: PI = 3.14159265358979312;
-		配列<ベクトル3D>: points();
+		配列<ベクトル2D>: points();
 		整数: 頂点数 = 60;
 		(整数: i = 0;)から(i == 頂点数)まで(i = i + 1;){
 			実数: theta = 0;
@@ -947,10 +957,10 @@
 			もし((i % 2) == 1)ならば{
 				theta = 0.5 * PI - ((PI * (1.0 + i)) / 頂点数);
 			}
-			ベクトル3D: temp(r * cos(theta), r * sin(theta), 0 - zIndex * 0.00100000000000000002);
+			ベクトル2D: temp(r * cos(theta), r * sin(theta));
 			points.追加(temp);
 		}
-		id = 多角形追加(points.content, points.size, 座標, 色, zIndex);
+		id = 多角形追加(points, 座標, 色, zIndex);
 	}
 非公開: 	行列4x4: projMat;
 	実数: last;
@@ -1033,4 +1043,7 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 }
 関数:Arduinoアナログ入力ピン設定(整数:ピン番号) => (){
     Arduinoコマンド送信('A', ピン番号);
+}
+関数:${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$(整数:ピン番号) => (){
+    Arduinoコマンド送信('T', ピン番号);
 }

@@ -116,6 +116,7 @@
         ],
         "main":"main",
         "stringClass":"string",
+        "arrayTemplate":"Array",
         "stmliststart": "fromhere",
         "stmlistend":"tohere",
         "counter":"counter"

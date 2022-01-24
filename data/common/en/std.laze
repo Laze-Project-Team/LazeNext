@@ -167,6 +167,10 @@ public: 	*T: content;
 	function: ${"ja":"ポップ", "natja":"ポップ", "en":"pop", "naten":"pop"}$() => (){
 		size = size - 1;
 	}
+	function: operator = (*T: offset, int: l) => (){
+		content = offset;
+		size = l;
+	}
 private: 	int: allocated;
 }
 class: ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}${
@@ -898,15 +902,21 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		sprites.push(sprite);
 		id = sprites.length() - 1;
 	}
-	function: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(*void: points, int: size, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
+	function: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(Array<Vector2D>: points, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
+		Array<double>: temp;
+		repeat(points.length()){
+			temp.push(points.get(counter).x);
+			temp.push(points.get(counter).y);
+			temp.push(0 - zIndex * 0.00100000000000000002);
+		}
 		*Sprite: sprite = allocMemory(sizeof(*sprite));
-		sprite->Sprite(points, size, allocMemory(0), 0, color, pos, 4, zIndex);
+		sprite->Sprite(temp.content, temp.length() / 3, allocMemory(0), 0, color, pos, 4, zIndex);
 		sprites.push(sprite);
 		id = sprites.length() - 1;
 	}
 	function: ${"ja":"円追加", "natja":"円追加", "en":"addCircle", "naten":"addCircle"}$(double: r, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		double: PI = 3.14159265358979312;
-		Array<Vector3D>: points();
+		Array<Vector2D>: points;
 		int: 頂点数 = 60;
 		(int: i = 0;)from(i == 頂点数)to(i = i + 1;){
 			double: theta = 0;
@@ -916,10 +926,10 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 			if((i % 2) == 1){
 				theta = 0.5 * PI - ((PI * (1.0 + i)) / 頂点数);
 			}
-			Vector3D: temp(r * cos(theta), r * sin(theta), 0 - zIndex * 0.00100000000000000002);
+			Vector2D: temp(r * cos(theta), r * sin(theta));
 			points.push(temp);
 		}
-		id = addPolygon(points.content, points.size, pos, color, zIndex);
+		id = addPolygon(points, pos, color, zIndex);
 	}
 private: 	Matrix4x4: projMat;
 	double: last;
