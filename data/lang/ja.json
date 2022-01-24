@@ -99,7 +99,8 @@
             "real": "real",
             "true": "true",
             "false": "false",
-            "typeeq": "typeComp ( ty(1) , ty(2) )"
+            "typeeq": "typeComp ( ty(1) , ty(2) )",
+            "record": "{ explist }"
         },
         "oper": {
             "add":"+",
