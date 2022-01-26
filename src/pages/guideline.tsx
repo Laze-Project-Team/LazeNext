@@ -79,7 +79,7 @@ const GuideLine: NextPage = () => {
           <LI>{t('LogoGuideline.ProhibitedMatters.4')}</LI>
         </UL>
 
-        <P className="mt-8 mb-16">{locale !== 'ja' && <WithLink title={t('common:deepL')} />}</P>
+        <P className="mt-8 mb-16">{locale !== 'ja' && <WithLink title={t('common:DeepL')} />}</P>
       </IndexLayout>
     </>
   );
