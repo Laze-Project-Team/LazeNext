@@ -24,4 +24,4 @@ Scaling factor in Y direction as a real number.
 
 None
 
-Translated by DeepL
+Translated with DeepL

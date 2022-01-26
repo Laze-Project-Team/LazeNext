@@ -16,4 +16,4 @@ world.sprites.get(id) -> scale(0.5, 0.5, 0.5);
 
 Scene.sprites elements are pointers, so we use the `->` symbol to access the object members.
 
-Translated by DeepL
+Translated with DeepL

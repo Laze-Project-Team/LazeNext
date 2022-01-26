@@ -11,4 +11,4 @@ print(tan(PI/4)); // 1
 
 Note that all arguments are in radians. You can use [To Radian](/lib/math/toRad) to convert degrees to radians.
 
-Translated by DeepL
+Translated with DeepL

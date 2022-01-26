@@ -42,4 +42,4 @@ These members represent the data of the model:
 
 The color of the model [Vector3D](/lib/math/vec3).
 
-Translated by DeepL
+Translated with DeepL

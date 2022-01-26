@@ -50,4 +50,4 @@ Vector2D: unitVector = vector.normalize();
 
 Normalized vector2D (length 1).
 
-Translated by DeepL
+Translated with DeepL

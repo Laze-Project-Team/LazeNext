@@ -15,4 +15,4 @@ Takes as argument the value you want to take as absolute value.
 
 Returns the absolute value of the argument.
 
-Translated by DeepL
+Translated with DeepL

@@ -19,4 +19,4 @@ The distance the model will move [Vector3D](/lib/math/vec3).
 
 None
 
-Translated by DeepL
+Translated with DeepL

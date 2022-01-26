@@ -50,4 +50,4 @@ The higher the overlap order, the closer the rectangle will be drawn.
 
 None
 
-Translated by DeepL
+Translated with DeepL

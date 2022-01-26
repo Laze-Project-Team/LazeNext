@@ -19,4 +19,4 @@ The amount to move the sprite by [Vector2D](/lib/math/vec2).
 
 None
 
-Translated by DeepL
+Translated with DeepL

@@ -14,4 +14,4 @@ It has almost the same functionality as the 3D library.
 
 Class for shapes added in scene 2D.
 
-Translated by DeepL
+Translated with DeepL

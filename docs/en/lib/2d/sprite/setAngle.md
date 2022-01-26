@@ -21,4 +21,4 @@ Rotation angle of the sprite as a real number.
 
 None
 
-Translated by DeepL
+Translated with DeepL

@@ -42,4 +42,4 @@ Returns the id of the added square.
 
 It is used when processing [Sprite](/lib/2d/sprite/index) such as rotation and movement.
 
-Translated by DeepL
+Translated with DeepL

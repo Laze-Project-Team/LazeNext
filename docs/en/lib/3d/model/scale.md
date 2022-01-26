@@ -29,4 +29,4 @@ A real number indicating how many times the model will be scaled in the z direct
 
 None
 
-Translated by DeepL
+Translated with DeepL

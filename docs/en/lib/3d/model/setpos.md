@@ -19,4 +19,4 @@ The coordinates of the model [Vector3D](/lib/math/vec3).
 
 None
 
-Translated by DeepL
+Translated with DeepL

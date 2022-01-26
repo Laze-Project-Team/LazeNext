@@ -14,4 +14,4 @@ Laze implements the following libraries by default. By using the standard librar
 
 You are able to handle mathematical calculations and functions with this library.
 
-Translated by DeepL
+Translated with DeepL
