@@ -85,7 +85,7 @@
               "name": "乱数生成"
             },
             {
-              "id": "mouseCapture",
+              "id": "captureMouse",
               "name": "マウスキャプチャ"
             }
           ]
