@@ -1,0 +1,8 @@
+Declare function main with code starting here
+	Initialize variable number as double with 5.0 . 
+	Initialize variable recursion as double with number . 
+	repeat 5 times starting here
+		Assign ( recursion  + number  / recursion )  / 2.0 to recursion . 
+	ending here 
+	Call print with value recursion . 
+ending here 

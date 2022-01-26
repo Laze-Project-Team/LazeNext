@@ -1,0 +1,51 @@
+function: main() => (){
+	captureMouse();
+	Scene: world;
+	Vector3D: 左からの波の色(1.0, 0.5, 0.200000000000000011);
+	Vector3D: 右からの波の色(0.200000000000000011, 0.5, 1.0);
+	Vector3D: 合成波の色(1.0, 1.0, 1.0);
+	double: PI = 3.14159265398979315;
+	Array<int>: cubeIDlist;
+	int: numberOfTimes = 300;
+	Vector3D: initialPosition(0.0, 0.0, 0.0);
+	repeat(numberOfTimes){
+		Vector3D: color(0.0, 0.0, 0.0);
+		double: 大きさ;
+		if((counter % 3) == 0){
+			color = 合成波の色;
+			大きさ = 0.149999999999999994;
+		}else{
+			大きさ = 0.100000000000000006;
+			if((counter % 3) == 1){
+				color = 左からの波の色;
+			}else{
+				color = 右からの波の色;
+			}
+		}
+		int: cubeID = world.addCube(大きさ, color, initialPosition);
+		cubeIDlist.push(cubeID);
+	}
+	loop{
+		double: w = 0.100000000000000006;
+		repeat(cubeIDlist.length()){
+			double: x = w * counter;
+			double: y;
+			double: 周期 = 0.299999999999999989;
+			double: 波長 = 1.0;
+			double: t = getTime() / 1000.0;
+			if((counter % 3) == 0){
+				y = sin((t / 周期) - (x / 波長)) + sin((0 - t / 周期) - (x / 波長));
+			}else{
+				if((counter % 3) == 1){
+					y = sin((t / 周期) - (x / 波長));
+				}else{
+					y = sin((0 - t / 周期) - (x / 波長));
+				}
+			}
+			Vector3D: position(x, y, 0.0);
+			int: id = cubeIDlist.get(counter);
+			world.sprites.get(id)->setPos(position);
+		}
+		world.draw();
+	}
+}
