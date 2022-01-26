@@ -144,4 +144,4 @@ loop {
 }
 ```
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

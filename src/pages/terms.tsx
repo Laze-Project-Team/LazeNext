@@ -116,7 +116,7 @@ const Terms: NextPage = () => {
           <LI>{t('10.3')}</LI>
         </OL>
 
-        <P className="mt-8 mb-16">{locale !== 'ja' && t('common:deepL')}</P>
+        <P className="mt-8 mb-16">{locale !== 'ja' && <WithLink title={t('common:deepL')} />}</P>
       </IndexLayout>
     </>
   );

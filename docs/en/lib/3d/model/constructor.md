@@ -44,4 +44,4 @@ The ID of the shader to use when drawing the model.
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

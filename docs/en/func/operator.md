@@ -45,4 +45,4 @@ Assigning to a means replacing the value of variable a with the value to be assi
 
 A or B here refers to a conditional expression such as `a == 1`.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

@@ -72,4 +72,4 @@ Coordinates of the sprite in [Vector2D](/lib/math/vec2).
 
 Indicates the transparency of the sprite
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

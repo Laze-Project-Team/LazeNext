@@ -19,4 +19,4 @@ A real number representing the sensitivity of the camera.
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

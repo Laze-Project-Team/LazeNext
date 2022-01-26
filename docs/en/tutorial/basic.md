@@ -157,4 +157,4 @@ print("This is not displayed -> "/* You can also comment out only a part of a li
 
 You can comment out multiple lines at once. If you use the comment-out function of the editor, all lines will be commented out, so you may not have many opportunities to use it.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

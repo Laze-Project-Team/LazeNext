@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { ReactNode, VFC } from 'react';
 import { Fragment } from 'react';
 
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
@@ -9,7 +9,7 @@ type WithLinkProps = {
 
 const regex = /\[(.*?)\]\((.*?)\)/;
 
-export const WithLink: FC<WithLinkProps> = ({ title }) => {
+export const WithLink: VFC<WithLinkProps> = ({ title }) => {
   let content = title;
   const contents: ReactNode[] = [];
   // eslint-disable-next-line no-cond-assign

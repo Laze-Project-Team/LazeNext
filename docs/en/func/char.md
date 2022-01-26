@@ -106,4 +106,4 @@ Characters are internally represented by numbers called ASCII codes. For example
 |125|}|
 |126|~|
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

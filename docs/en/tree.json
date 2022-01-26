@@ -19,6 +19,10 @@
           "name": "Basic Tutorials"
         },
         {
+          "id": "2d",
+          "name": "2D Tutorials"
+        },
+        {
           "id": "3d",
           "name": "3D Tutorials"
         }
@@ -67,6 +71,22 @@
             {
               "id": "print",
               "name": "print"
+            },
+            {
+              "id": "time",
+              "name": "getTime"
+            },
+            {
+              "id": "keyCheck",
+              "name": "keyCheck"
+            },
+            {
+              "id": "rand",
+              "name": "rand"
+            },
+            {
+              "id": "captureMouse",
+              "name": "captureMouse"
             }
           ]
         }

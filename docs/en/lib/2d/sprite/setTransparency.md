@@ -19,4 +19,4 @@ The transparency of the sprite as a real number.
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

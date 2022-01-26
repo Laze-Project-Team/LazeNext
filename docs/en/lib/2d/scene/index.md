@@ -48,4 +48,4 @@ The [Vector3D](/lib/math/vec3) background color of the scene.
 
 The real number of the scene's background transparency
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

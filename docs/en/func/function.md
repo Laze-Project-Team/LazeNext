@@ -52,4 +52,4 @@ Declares a function `add` that takes `integer A` and `integer B` as arguments an
 
 Declared in the right parenthesis in the form of `<type>:<name>`, same as arguments. Unlike arguments, only one return value can be declared. As shown in the code above, it returns a value in the same form as a variable assignment.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)
