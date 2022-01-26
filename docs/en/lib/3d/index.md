@@ -20,4 +20,4 @@ This class allows you to control a camera that moves around the world.
 
 This class can be used to control and draw objects in the world.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

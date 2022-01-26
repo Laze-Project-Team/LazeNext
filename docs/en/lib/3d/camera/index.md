@@ -38,4 +38,4 @@ This property is the sensitivity of the camera. It can be changed in [Camera.set
 
 This property is the speed of the camera. It can be changed in [Camera. setSpeed()](/lib/3d/camera/setspeed).
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

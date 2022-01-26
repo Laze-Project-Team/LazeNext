@@ -19,4 +19,4 @@ The initial position of the camera [Vector3D](/lib/math/vec3).
 
 None
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

@@ -19,4 +19,4 @@ Real number to specify the order of the sprites.
 
 None
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

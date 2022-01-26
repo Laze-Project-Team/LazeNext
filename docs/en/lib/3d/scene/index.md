@@ -34,4 +34,4 @@ This property allows you to manage the objects in the world.
 
 This property is the [camera](/lib/3d/camera/index) in the world.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

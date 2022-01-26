@@ -16,4 +16,4 @@ Specifies what will be displayed on the console.
 
 None
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

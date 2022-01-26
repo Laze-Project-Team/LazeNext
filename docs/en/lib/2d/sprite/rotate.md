@@ -23,4 +23,4 @@ To convert from degrees to radians, use [To Radian](/lib/math/toRad).
 
 None
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

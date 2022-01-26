@@ -19,4 +19,4 @@ A real number representing the speed of the camera.
 
 None
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

@@ -15,4 +15,4 @@ Takes as argument the value for which you want to get the square root.
 
 Returns the square root of the argument.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

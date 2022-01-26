@@ -37,4 +37,4 @@ int: id = world.addCube(size, color, coordinates);
 world.sprites.get(id) -> draw();
 ```
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)
