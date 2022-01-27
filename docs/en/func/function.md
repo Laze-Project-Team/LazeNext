@@ -46,10 +46,10 @@ function: addition (int: variableA, int: variableB) => (int: result) {
 }
 ```
 
-Declares a function `add` that takes `integer A` and `integer B` as arguments and returns their sum. Arguments are declared in the same way as variables, as `<type>:<name>`, in the left parenthesis. You can have as many arguments as you like.
+Declares a function `add` that takes `variableA` and `variableB` as arguments and returns their sum. Arguments are declared in the same way as variables, as `<type>:<name>`, in the left parenthesis. You can have as many arguments as you like.
 
 ## Return value
 
 Declared in the right parenthesis in the form of `<type>:<name>`, same as arguments. Unlike arguments, only one return value can be declared. As shown in the code above, it returns a value in the same form as a variable assignment.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

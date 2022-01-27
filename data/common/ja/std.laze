@@ -415,29 +415,15 @@
 		transMat.単位化();
 		scaleMat.単位化();
 		rotateMat.単位化();
-		文字: _lightPosUniform[8] = "lightPos";
-		文字: _viewPosUniform[8] = "viewPos";
-		文字: _lightColorUniform[10] = "lightColor";
-		文字: _objectColorUniform[11] = "objectColor";
-		文字: _projUniform[8] = "uProjMat";
-		文字: _viewUniform[8] = "uViewMat";
-		文字: _modelUniform[9] = "uModelMat";
-		文字列: lightPosUniform(&_lightPosUniform, 8);
-		文字列: viewPosUniform(&_viewPosUniform, 7);
-		文字列: lightColorUniform(&_lightColorUniform, 10);
-		文字列: objectColorUniform(&_objectColorUniform, 11);
-		文字列: projUniform(&_projUniform, 8);
-		文字列: viewUniform(&_viewUniform, 8);
-		文字列: modelUniform(&_modelUniform, 9);
 		もし(shaderID == 0)ならば{
-			viewPosUniLoc = glGetUniformLocation(0, viewPosUniform);
-			lightPosUniLoc = glGetUniformLocation(0, lightPosUniform);
-			lightColorUniLoc = glGetUniformLocation(0, lightColorUniform);
-			objectColorUniLoc = glGetUniformLocation(0, objectColorUniform);
+			viewPosUniLoc = glGetUniformLocation(0, "viewPos");
+			lightPosUniLoc = glGetUniformLocation(0, "lightPos");
+			lightColorUniLoc = glGetUniformLocation(0, "lightColor");
+			objectColorUniLoc = glGetUniformLocation(0, "objectColor");
 		}
-		projMatUniformLoc = glGetUniformLocation(shaderID, projUniform);
-		viewMatUniformLoc = glGetUniformLocation(shaderID, viewUniform);
-		modelMatUniformLoc = glGetUniformLocation(shaderID, modelUniform);
+		projMatUniformLoc = glGetUniformLocation(shaderID, "uProjMat");
+		viewMatUniformLoc = glGetUniformLocation(shaderID, "uViewMat");
+		modelMatUniformLoc = glGetUniformLocation(shaderID, "uModelMat");
 		buffer = glCreateBuffer();
 		glBindBuffer(34962, buffer);
 		glBufferData(34962, vertices, num * 6, 35044);

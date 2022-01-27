@@ -41,7 +41,7 @@ const Privacy: NextPage = () => {
           <WithLink title={t('GoogleAnalytics.2')} />
         </P>
 
-        <P className="mt-8 mb-16">{locale !== 'ja' && t('common:deepL')}</P>
+        <P className="mt-8 mb-16">{locale !== 'ja' && <WithLink title={t('common:DeepL')} />}</P>
       </IndexLayout>
     </>
   );

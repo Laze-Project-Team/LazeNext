@@ -22,6 +22,10 @@ This class is mainly used for 3D graphics.
 
 A 4x4 matrix, used inside 3D libraries.
 
+## Functions
+
+List of functions in this library:
+
 ### [Trigonometric Functions](/lib/math/trig_function)
 
 Mathematical trigonometric functions, used inside the 3D library.
@@ -38,4 +42,4 @@ Function to convert from 360 degrees to arc degrees.
 
 Function to return the square root.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

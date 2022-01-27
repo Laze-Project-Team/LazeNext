@@ -34,4 +34,4 @@ The unit is ms (milliseconds).
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

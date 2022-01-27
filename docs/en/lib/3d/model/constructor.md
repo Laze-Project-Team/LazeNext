@@ -35,7 +35,7 @@ The coordinates of the model [Vector3D](/lib/math/vec3).
 
 The ID of the shader to use when drawing the model.
 
-|  object type  | ID |.
+|  object type  | ID |
 |---------------|----|
 | normal object | 0 |
 | Light source  | 1 |
@@ -44,4 +44,4 @@ The ID of the shader to use when drawing the model.
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

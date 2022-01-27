@@ -8,7 +8,7 @@ Function to draw something in the scene.
 Scene.draw();
 ```
 
-## Arguments
+### Arguments
 
 None
 
@@ -16,4 +16,4 @@ None
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

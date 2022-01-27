@@ -56,7 +56,7 @@ Let's take a look at the above program. The `print()` means to execute a functio
 
 ## string
 
-`""` is a double quotation mark, and the part enclosed by two double quotation marks is called a "string". `""` can also represent a string, but with `'"` (single quotation marks), it is not a "string" but a "character". See [character](/func/char) and [stirng](/func/string) for more information here.
+`""` is a double quotation mark, and the part enclosed by two double quotation marks is called a "string". `''` (single quotation marks), it is not a "string" but a "character". See [character](/func/char) and [stirng](/func/string) for more information here.
 
 ## Semicolon
 
@@ -157,4 +157,4 @@ print("This is not displayed -> "/* You can also comment out only a part of a li
 
 You can comment out multiple lines at once. If you use the comment-out function of the editor, all lines will be commented out, so you may not have many opportunities to use it.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

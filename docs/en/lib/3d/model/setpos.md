@@ -1,4 +1,4 @@
-# Model.setCoordinates()
+# Model.setPos()
 
 Allows you to set the coordinates of the model.
 
@@ -6,7 +6,7 @@ Allows you to set the coordinates of the model.
 
 ```
 Vector3D: coordinates(5.0, 0.0, 0.0);
-cube.setCoordinates(coordinates);
+cube.setPos(coordinates);
 ```
 
 ### Arguments
@@ -19,4 +19,4 @@ The coordinates of the model [Vector3D](/lib/math/vec3).
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

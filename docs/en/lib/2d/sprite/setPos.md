@@ -19,4 +19,4 @@ Coordinates to set in [Vector2D](/lib/math/vec2).
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

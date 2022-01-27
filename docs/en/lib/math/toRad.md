@@ -23,4 +23,4 @@ The formula is as follows
 radians = degrees / 180 * π
 ```
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

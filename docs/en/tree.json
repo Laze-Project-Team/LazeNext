@@ -19,6 +19,10 @@
           "name": "Basic Tutorials"
         },
         {
+          "id": "2d",
+          "name": "2D Tutorials"
+        },
+        {
           "id": "3d",
           "name": "3D Tutorials"
         }
@@ -67,6 +71,22 @@
             {
               "id": "print",
               "name": "print"
+            },
+            {
+              "id": "time",
+              "name": "getTime"
+            },
+            {
+              "id": "keyCheck",
+              "name": "keyCheck"
+            },
+            {
+              "id": "rand",
+              "name": "rand"
+            },
+            {
+              "id": "captureMouse",
+              "name": "captureMouse"
             }
           ]
         }
@@ -312,7 +332,7 @@
             },
             {
               "id": "toRad",
-              "name": "toRad"
+              "name": "To Radian"
             },
             {
               "id": "abs",
@@ -325,6 +345,60 @@
             {
               "id": "trig_function",
               "name": "Trigonometric Function"
+            }
+          ]
+        },
+        {
+          "id": "arduino",
+          "name": "Arduino Library",
+          "children": [
+            {
+              "id": "index",
+              "name": "Arduino Library"
+            },
+            {
+              "id": "arduinoanaloginput",
+              "name": "ArduinoAnalogInput"
+            },
+            {
+              "id": "arduinoclass",
+              "name": "ArduinoClass"
+            },
+            {
+              "id": "arduinodigitalinput",
+              "name": "ArduinoDigitalInput"
+            },
+            {
+              "id": "arduinohcsr04distanceinput",
+              "name": "ArduinoHCSR04DistanceInput"
+            },
+            {
+              "id": "arduinohcsr04trigger",
+              "name": "ArduinoHCSR04Trigger"
+            },
+            {
+              "id": "arduinooutput5v",
+              "name": "ArduinoOutput5V"
+            },
+            {
+              "id": "arduinooutput0v",
+              "name": "ArduinoOutput0V"
+            },
+            {
+              "id": "arduinoreceivedata",
+              "name": "ArduinoReceiveData"
+            },
+            {
+              "id": "arduinosetanaloginputpin",
+              "name": "ArduinoSetAnalogInputPin"
+            },
+            {
+              "id": "arduinosetpinmode",
+              "name": "ArduinoSetPimode"
+            },
+            {
+              "id": "arduinosetup",
+              "name": "ArduinoSetup"
             }
           ]
         }
