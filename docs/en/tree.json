@@ -327,6 +327,60 @@
               "name": "Trigonometric Function"
             }
           ]
+        },
+        {
+          "id": "arduino",
+          "name": "Arduino Library",
+          "children": [
+            {
+              "id": "index",
+              "name": "Arduino Library"
+            },
+            {
+              "id": "arduinoanaloginput",
+              "name": "ArduinoAnalogInput"
+            },
+            {
+              "id": "arduinoclass",
+              "name": "ArduinoClass"
+            },
+            {
+              "id": "arduinodigitalinput",
+              "name": "ArduinoDigitalInput"
+            },
+            {
+              "id": "arduinohcsr04distanceinput",
+              "name": "ArduinoHCSR04DistanceInput"
+            },
+            {
+              "id": "arduinohcsr04trigger",
+              "name": "ArduinoHCSR04Trigger"
+            },
+            {
+              "id": "arduinooutput5v",
+              "name": "ArduinoOutput5V"
+            },
+            {
+              "id": "arduinooutput0v",
+              "name": "ArduinoOutput0V"
+            },
+            {
+              "id": "arduinoreceivedata",
+              "name": "ArduinoReceiveData"
+            },
+            {
+              "id": "arduinosetanaloginputpin",
+              "name": "ArduinoSetAnalogInputPin"
+            },
+            {
+              "id": "arduinosetpinmode",
+              "name": "ArduinoSetPimode"
+            },
+            {
+              "id": "arduinosetup",
+              "name": "ArduinoSetup"
+            }
+          ]
         }
       ]
     }
