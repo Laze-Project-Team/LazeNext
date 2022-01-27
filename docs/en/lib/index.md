@@ -14,4 +14,8 @@ Laze implements the following libraries by default. By using the standard librar
 
 You are able to handle mathematical calculations and functions with this library.
 
+### [Arduino Library](/lib/arduino/index)
+
+You can control an Arduino with this library.
+
 Translated with [DeepL](https://www.deepl.com/translator)
