@@ -21,7 +21,7 @@ A real number representing the length of a side.
 
 Color of the light source [Vector3D](/lib/math/vec3). x, y, and z properties represent the intensity of red, green, and blue, respectively, as real numbers from 0.0~1.0.
 
-#### Coordinates
+#### coordinates
 
 Coordinates of the light source [Vector3D](/lib/math/vec3).
 

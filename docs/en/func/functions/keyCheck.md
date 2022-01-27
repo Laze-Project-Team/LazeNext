@@ -75,21 +75,21 @@ In some cases, the codes listed here are not correct.
 |:|58|
 |.|190|
 |/|191|
-|Numeric keypad 1|97|
-|Numeric keypad 2|98|
-|Numeric keypad 3|99|
-|Numeric keypad 4|100|
-|Numeric keypad 5|101|
-|Numeric Keypad 6|102|
-|Numeric Keypad 7|103|
-|Numeric Keypad 8|104|
-|Numeric Keypad 9|105|
-|Numeric keypad 0|96|
-|Numeric keypad /|111|
-|Numeric keypad *|106|
-|Numeric keypad -|109|
-|Numeric keypad +|107|
-|Numeric keypad. |110|
+|numpad 1|97|
+|numpad 2|98|
+|numpad 3|99|
+|numpad 4|100|
+|numpad 5|101|
+|numpad 6|102|
+|numpad 7|103|
+|numpad 8|104|
+|numpad 9|105|
+|numpad 0|96|
+|numpad /|111|
+|numpad *|106|
+|numpad -|109|
+|numpad +|107|
+|numpad .|110|
 |F1|112|
 |F1|112|
 |F2|113|

@@ -1,7 +1,7 @@
 # string
 
 ```
-String: apple = "apple";
+string: apple = "apple";
 ```
 
 Refers to what we usually call a character, such as `'apple'` or `'orange'`. It is different from [character](/func/char).

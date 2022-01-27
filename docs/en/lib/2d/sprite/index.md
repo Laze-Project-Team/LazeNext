@@ -4,7 +4,7 @@ Class for representing shapes used in scene 2D.
 
 ## Members
 
-## Methods
+### Methods
 
 #### [Sprite.Sprite](/lib/2d/sprite/constructor)
 

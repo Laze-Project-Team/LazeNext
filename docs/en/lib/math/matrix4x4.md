@@ -18,7 +18,7 @@ Initial value is `[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0
 
 ## Method
 
-## Unitization.
+### identity
 
 Reset the property `matrix` to its initial value.
 

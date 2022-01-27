@@ -56,7 +56,7 @@ Let's take a look at the above program. The `print()` means to execute a functio
 
 ## string
 
-`""` is a double quotation mark, and the part enclosed by two double quotation marks is called a "string". `""` can also represent a string, but with `'"` (single quotation marks), it is not a "string" but a "character". See [character](/func/char) and [stirng](/func/string) for more information here.
+`""` is a double quotation mark, and the part enclosed by two double quotation marks is called a "string". `''` (single quotation marks), it is not a "string" but a "character". See [character](/func/char) and [stirng](/func/string) for more information here.
 
 ## Semicolon
 

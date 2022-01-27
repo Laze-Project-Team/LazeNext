@@ -8,15 +8,15 @@ Items represented by symbols such as `+`, `-`, `=`, and `>` are collectively cal
 |---|---|---|---|
 |`+`|addition|`a + b`|add b to a|
 |`-`|subtraction|`a - b`|subtract b from a|
-|`*`|multiplication|`a * b`|multiply a by b||`/`|divide
-|`*`|multiplication|`a * b`|multiply a by b| |`/`|division|`a / b`|divide a by b
+|`*`|multiplication|`a * b`|multiply a by b|
+|`/`|division|`a / b`|divide a by b|
 |`%`|surplus|`a % b`|a divided by b| remainder|
 
 ## Assignment Operators
 
 |operator|name|example|function of the operator|
 |---|---|---|---|
-|`=`|substitution|`a = b`|substitution of b into a|
+|`=`|assignment|`a = b`|assignment of b into a|
 |`+=`|additive assignment|`a += b`|add b to a and assign it to a|
 |`-=`|subtraction assignment|`a -= b`|subtract b from a and assign to a|
 |`*=`|multiplication assignment|`a *= b`|multiply a by b and assign to a|
@@ -38,10 +38,10 @@ Assigning to a means replacing the value of variable a with the value to be assi
 ## Logical operators
 
 |operator|name|example|function of the operator|
-
-|`&&`|logical product|`A && B`|false if A and B are not true|
-|`\|\|`|Logical OR|`A \|\| B`|False unless true if A or B||!
-|`! `|Negation|`!A`|False unless true if not A|!
+|---|---|---|---|
+|`&&`|AND|`A && B`|false if A and B are not true|
+|`\|\|`|OR|`A \|\| B`|False unless true if A or B|
+|`! `|NOT|`!A`|False unless true if not A|
 
 A or B here refers to a conditional expression such as `a == 1`.
 

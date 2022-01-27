@@ -46,7 +46,7 @@ function: addition (int: variableA, int: variableB) => (int: result) {
 }
 ```
 
-Declares a function `add` that takes `integer A` and `integer B` as arguments and returns their sum. Arguments are declared in the same way as variables, as `<type>:<name>`, in the left parenthesis. You can have as many arguments as you like.
+Declares a function `add` that takes `variableA` and `variableB` as arguments and returns their sum. Arguments are declared in the same way as variables, as `<type>:<name>`, in the left parenthesis. You can have as many arguments as you like.
 
 ## Return value
 

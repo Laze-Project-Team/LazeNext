@@ -7,8 +7,8 @@ class: Car {
 	int:position;
 	int:speed;
 
-	function: Car (int:Initial position, int:Initial key) => () {
-		position = initial position;
+	function: Car (int: initialPos, int:Initial key) => () {
+		position = initialPos;
 		speed = 0;
 		key = initial key;
 	}
@@ -29,7 +29,7 @@ class: Car {
 		success = (authKey == key);
 	}
 
-	Private :
+	Private:
 		int: Key;
 }
 
@@ -60,7 +60,7 @@ When a function with the same name as the class name is declared as a member, th
 
 ## Accessing members of an object
 
-To access the members of an object, use a period like `. `. For example, `car. Position` means that you are accessing the member "position" of the object "car". Also, members with values such as variables are called "[properties](#Properties)", and members of functions are called "[methods](#Methods)".
+To access the members of an object, use a period like `.`. For example, `car.position` means that you are accessing the member "position" of the object "car". Also, members with values such as variables are called "[properties](#Properties)", and members of functions are called "[methods](#Methods)".
 
 In addition, access can be restricted by the keywords `public` and `private`. The `public` keyword allows access from anywhere, while the `private` keyword allows access only from within the class. If you don't add any keywords, it will automatically be `public`. These features are for safety, and you don't need to use them if you are not familiar with them.
 
