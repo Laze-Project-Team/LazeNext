@@ -1,0 +1,16 @@
+function: collatz(int: input) => (int: output){
+	if((input % 2) == 0){
+		output = input / 2;
+	}else{
+		output = input * 3 + 1;
+	}
+	print(output);
+	if(output > 1){
+		int: returnValue = collatz(output);
+	}
+}
+function: main() => (){
+	int: initialNumber = 20;
+	print(initialNumber);
+	int: returnValue = collatz(initialNumber);
+}

@@ -1,0 +1,10 @@
+function: main() => (){
+	int: number = 10;
+	int: numberToMultiply = number;
+	int: result = 1;
+	repeat(number){
+		result = numberToMultiply * result;
+		numberToMultiply = numberToMultiply - 1;
+	}
+	print(result);
+}

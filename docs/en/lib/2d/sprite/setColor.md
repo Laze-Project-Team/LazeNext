@@ -21,4 +21,4 @@ The colors are specified in RGB order.
 
 None
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

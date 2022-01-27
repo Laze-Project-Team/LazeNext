@@ -31,7 +31,7 @@ If ( variable < 10 ) {
 ## Syntax
 
 ```
-from ( <initial condition> ) to ( <end condition> ) ( <loop process> ) {
+( <initial condition> ) from ( <end condition> ) to ( <loop process> ) {
 	// Process to be repeated
 	<process>
 }
@@ -56,7 +56,7 @@ The `<end condition>` specifies the end condition. The loop will be terminated w
 ## Syntax
 
 ```
-repeat ( <loop count> ) times {
+repeat ( <loop count> ) {
 	// Process to be repeated
 	<process>
 }
@@ -67,7 +67,7 @@ Syntax to repeat a specified number of times.
 ### Usage example
 
 ```
-repeat (5) times {
+repeat (5) {
 	print("It is repeated 5 times");
 }
 ```
@@ -88,7 +88,7 @@ Can be used in a loop to exit the loop.
 ### Usage example
 
 ```
-(Integer: counter = 0;) to (counter == 10) (counter++;) {
+(int: counter = 0;) to (counter == 10) (counter++;) {
   If (counter > 5){
 		break;
 	}
@@ -144,4 +144,4 @@ loop {
 }
 ```
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

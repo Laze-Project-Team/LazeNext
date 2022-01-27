@@ -42,4 +42,4 @@ Function to convert from 360 degrees to arc degrees.
 
 Function to return the square root.
 
-Translated with DeepL
+Translated with [DeepL](https://www.deepl.com/translator)

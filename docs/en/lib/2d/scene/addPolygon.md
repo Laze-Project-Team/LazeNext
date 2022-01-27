@@ -33,7 +33,7 @@ The size of the polygon to add, as a real number
 
 Specify xy coordinates of the polygon to be added in [Vector2D](/lib/math/vec2)
 
-#### Color
+#### color
 
 Specify the color of the added polygon with [Vector3D](/lib/math/vec3).
 
@@ -53,4 +53,4 @@ Returns the id of the added polygon.
 
 This is used when processing [Sprite](/lib/2d/sprite/index), such as rotation and movement.
 
-Translated by DeepL
+Translated with [DeepL](https://www.deepl.com/translator)
