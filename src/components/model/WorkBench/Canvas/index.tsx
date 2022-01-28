@@ -8,9 +8,9 @@ export const CanvasArea: FC = () => {
 
   return (
     <>
-      <div className="h-full flex items-center">
+      <div className="flex h-full items-center">
         <div ref={ratioRef} className="mx-auto aspect-video">
-          <canvas id="output-canvas" width="1280" height="720" className="w-full h-full bg-white" />
+          <canvas id="output-canvas" width="1280" height="720" className="h-full w-full bg-white" />
         </div>
       </div>
     </>

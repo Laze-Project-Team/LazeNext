@@ -8,11 +8,11 @@ type IndexLayoutComponentProps = {
 };
 
 export const H1: FC<IndexLayoutComponentProps> = ({ children, className }) => {
-  return <h1 className={cx('text-3xl mt-4 mb-8 pb-2 border-b-[1px] border-gray-400', className)}>{children}</h1>;
+  return <h1 className={cx('mt-4 mb-8 border-b-[1px] border-gray-400 pb-2 text-3xl', className)}>{children}</h1>;
 };
 
 export const H2: FC<IndexLayoutComponentProps> = ({ children, className }) => {
-  return <h2 className={cx('text-xl mb-4 mt-8 font-normal', className)}>{children}</h2>;
+  return <h2 className={cx('mb-4 mt-8 text-xl font-normal', className)}>{children}</h2>;
 };
 
 export const H3: FC<IndexLayoutComponentProps> = ({ children, className }) => {
@@ -28,7 +28,7 @@ export const P: FC<IndexLayoutComponentProps> = ({ children, className }) => {
 };
 
 export const OL: FC<IndexLayoutComponentProps> = ({ children, className }) => {
-  return <ol className={cx('pb-4 pl-8 list-decimal space-y-1', className)}>{children}</ol>;
+  return <ol className={cx('list-decimal space-y-1 pb-4 pl-8', className)}>{children}</ol>;
 };
 
 export const LI: FC<IndexLayoutComponentProps> = ({ children, className }) => {
@@ -36,5 +36,5 @@ export const LI: FC<IndexLayoutComponentProps> = ({ children, className }) => {
 };
 
 export const UL: FC<IndexLayoutComponentProps> = ({ children, className }) => {
-  return <ul className={cx('pl-8 list-disc space-y-2', className)}>{children}</ul>;
+  return <ul className={cx('list-disc space-y-2 pl-8', className)}>{children}</ul>;
 };

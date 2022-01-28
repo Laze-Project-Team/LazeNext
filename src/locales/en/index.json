@@ -1,7 +1,7 @@
 {
   "title": "Home Page for Laze Programming Language",
   "description": "Laze is a programming language that has been developed with the goal of making programming easy for everyone. You can start programming right now in your browser, so let's jump into the world of Laze.",
-  
+
   "Try Laze": "Try Laze now!",
 
   "Laze Features": "Why Laze? : Laze Features",
@@ -36,7 +36,7 @@
       "description": "You will be able to easily create GUI applications as good as GUI using HTML and CSS. (In preparation)"
     }
   },
-  
+
   "Join Laze": "Join Laze!",
   "activities": {
     "1": {
