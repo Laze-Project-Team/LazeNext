@@ -67,3 +67,10 @@ html.dark {
 ::selection {
   background-color: hsl(199, 90%, 50%);
 }
+
+/* 画像プレビュー */
+.ant-image-preview-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

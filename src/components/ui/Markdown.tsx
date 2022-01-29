@@ -1,4 +1,4 @@
-import { Anchor } from 'antd';
+import { Anchor, Image } from 'antd';
 import type { Components } from 'react-markdown';
 
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
@@ -104,4 +104,8 @@ export const Td: Components['td'] = ({ children, node }) => {
       {children}
     </td>
   );
+};
+
+export const Img: Components['img'] = ({ src, alt, title }) => {
+  return <>{src && <Image src={src} alt={alt} title={title} />}</>;
 };

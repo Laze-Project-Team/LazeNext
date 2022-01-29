@@ -23,6 +23,7 @@ import {
   H3,
   H4,
   HR,
+  Img,
   Paragraph,
   Pre,
   Table,
@@ -163,6 +164,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
                 tr: Tr,
                 th: Th,
                 td: Td,
+                img: Img,
               }}
               remarkPlugins={[remarkGfm]}
             >
