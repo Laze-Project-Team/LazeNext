@@ -13,8 +13,9 @@ import next from 'next';
 import { clean } from './clean';
 
 dotenv.config();
-
-appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING).start();
+if (process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
+  appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING).start();
+}
 
 const CERT_DIR = process.env.CERT_DIR ?? './certs';
 const PORT = parseInt(process.env.PORT ?? '', 10) || 3000;
