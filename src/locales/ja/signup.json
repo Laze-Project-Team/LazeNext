@@ -1,4 +1,37 @@
 {
   "title": "アカウント登録",
-  "description": ""
+  "description": "",
+
+  "or": "または",
+
+  "form": {
+    "label": {
+      "username": "ユーザー名",
+      "display_name": "表示名",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "password_confirm": "パスワード(確認)"
+    },
+    "message": {
+      "username": {
+        "required": "ユーザー名は必須です。",
+        "minlength": "ユーザー名は3文字以上です。",
+        "maxlength": "ユーザー名は32文字以下です。",
+        "pattern": "ユーザー名には半角英数字とアンダーバー以外使用できません。"
+      },
+      "email": {
+        "required": "メールアドレスは必須です。",
+        "invalid": "メールアドレスが不正です。"
+      },
+      "password": {
+        "required": "パスワードは必須です。",
+        "minLength": "パスワードは8文字以上です。",
+        "pattern": "パスワードには半角英数字とアンダーバー以外使用できません。"
+      },
+      "password_confirm": {
+        "required": "パスワード(確認)は必須です。",
+        "notMatch": "パスワードとパスワード(確認)が一致しません。"
+      }
+    }
+  }
 }

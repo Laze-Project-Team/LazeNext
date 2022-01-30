@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { H1 } from '@/components/ui/IndexLayout';
+import { SignInScreen } from '@/components/ui/SignInScreen';
 
 const Privacy: NextPage = () => {
   const { locale } = useRouter();
@@ -28,6 +29,8 @@ const Privacy: NextPage = () => {
 
       <IndexLayout>
         <H1>{t('title')}</H1>
+
+        <SignInScreen />
       </IndexLayout>
     </>
   );

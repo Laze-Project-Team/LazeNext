@@ -11,14 +11,11 @@ import https from 'https';
 import next from 'next';
 
 import { clean } from './clean';
-import { initialize } from './firebase';
 
 dotenv.config();
 if (process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
   appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING).start();
 }
-
-initialize();
 
 const CERT_DIR = process.env.CERT_DIR ?? './certs';
 const PORT = parseInt(process.env.PORT ?? '', 10) || 3000;
