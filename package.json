@@ -44,6 +44,7 @@
     "react-error-boundary": "3.1.4",
     "react-firebaseui": "^6.0.0",
     "react-icons": "^4.3.1",
+    "react-jdenticon": "^0.0.9",
     "react-markdown": "^8.0.0",
     "react-redux": "^7.2.6",
     "react-split-pane": "^0.1.92",
