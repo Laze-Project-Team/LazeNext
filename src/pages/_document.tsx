@@ -50,7 +50,7 @@ class Document extends NextDocument<WithNonceProp> {
               src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
               height="0"
               width="0"
-            ></iframe>
+            />
           </noscript>
           <Main />
           <NextScript nonce={nonce} />

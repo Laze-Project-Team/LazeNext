@@ -49,7 +49,7 @@ const IndexHeader: VFC = () => {
         <div className="inline-flex cursor-pointer px-4 py-4 transition-colors duration-200 hover:bg-white/10">
           <Link href="/" passHref>
             <div className="inline-flex">
-              <LazeLogo size={32}></LazeLogo>
+              <LazeLogo size={32} />
               <Typography.Text className="ml-2 select-none text-2xl font-bold !text-laze-primary">Laze</Typography.Text>
             </div>
           </Link>
@@ -195,11 +195,11 @@ const IndexLayout: FC<IndexLayoutProps> = ({ children }) => {
     <>
       <Layout className="overflow-x-hidden">
         <Layout.Header className="z-[1] w-full !px-2">
-          <IndexHeader></IndexHeader>
+          <IndexHeader />
         </Layout.Header>
         <Layout.Content className="mx-auto w-[60rem] max-w-full px-4 pt-4">{children}</Layout.Content>
         <Layout.Footer className="!bg-[#333344]">
-          <IndexFooter></IndexFooter>
+          <IndexFooter />
         </Layout.Footer>
       </Layout>
     </>
