@@ -9,6 +9,7 @@ import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { ChangeLanguage } from '@/components/model/ChangeLanguage';
+import { useAuthContext } from '@/components/model/Context/AuthContext';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
 import { QiitaIcon } from '@/components/ui/atoms/QiitaIcon';
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
@@ -28,11 +29,25 @@ const NavLink = ({ href, children }: { href: string; children: ReactNode }) => {
   );
 };
 
+const AccountLink = ({ href, children }: { href: string; children: ReactNode }) => {
+  return (
+    <Button
+      type="text"
+      className="inline-flex h-[2rem] items-center rounded-sm !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
+    >
+      <StyledLink href={href} className="duration-200">
+        {children}
+      </StyledLink>
+    </Button>
+  );
+};
+
 const QUERY_SM_DOWN = '(max-width: 576px)' as const;
 const QUERY_MD_UP = '(min-width: 577px)' as const;
 
 const IndexHeader: VFC = () => {
   const [t] = useTranslation(['layout', 'common']);
+  const { user } = useAuthContext();
   const media = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP]);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -75,6 +90,16 @@ const IndexHeader: VFC = () => {
             <NavLink href="/editor">{t('header.Editor')}</NavLink>
             <NavLink href="/docs">{t('header.Docs')}</NavLink>
             <div className="ml-auto">
+              {user ? (
+                <>
+                  <AccountLink href="/profile">{t('header.Profile')}</AccountLink>
+                  <AccountLink href="/logout">{t('header.Logout')}</AccountLink>
+                </>
+              ) : (
+                <>
+                  <AccountLink href="/signup">{t('header.SignUp')}</AccountLink>
+                </>
+              )}
               <ChangeLanguage />
             </div>
           </div>
