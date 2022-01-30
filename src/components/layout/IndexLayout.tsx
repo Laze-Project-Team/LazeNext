@@ -193,7 +193,7 @@ const IndexFooter: VFC = () => {
 const IndexLayout: FC<IndexLayoutProps> = ({ children }) => {
   return (
     <>
-      <Layout className="flex min-h-screen flex-col overflow-x-hidden">
+      <Layout className="flex !min-h-screen flex-col overflow-x-hidden">
         <Layout.Header className="z-[1] w-full !px-2">
           <IndexHeader></IndexHeader>
         </Layout.Header>
