@@ -26,7 +26,7 @@ export const ConsoleLog: VFC<Omit<consoleLog, 'type'>> = ({ content, timestamp, 
 
   return (
     <>
-      <p className="flex px-4 m-0 py-[0.1rem] hover:bg-black/5 dark:hover:bg-gray-100/5 text-sm">
+      <p className="m-0 flex px-4 py-[0.1rem] text-sm hover:bg-black/5 dark:hover:bg-gray-100/5">
         <span className="flex-1" style={{ color: colors[level] }}>
           {content.split('\n').map((line) => {
             return (
@@ -38,7 +38,7 @@ export const ConsoleLog: VFC<Omit<consoleLog, 'type'>> = ({ content, timestamp, 
           })}
         </span>
         <time
-          className="inline-flex items-center ml-auto select-none text-gray-800 dark:text-gray-200"
+          className="ml-auto inline-flex select-none items-center text-gray-800 dark:text-gray-200"
           dateTime={moment(timestamp).format()}
         >
           {moment(timestamp).format('HH:mm')}

@@ -16,7 +16,7 @@ import { StyledLink } from '@/components/ui/atoms/StyledLink';
 const ActionButton: FC = ({ children }) => {
   return (
     <>
-      <div className="flex justify-center mt-auto pt-4">{children}</div>
+      <div className="mt-auto flex justify-center pt-4">{children}</div>
     </>
   );
 };
@@ -31,7 +31,7 @@ const ActionLink: FC<ActionLinkProps> = ({ children, href, onClick }) => {
   return (
     <StyledLink
       href={href}
-      className="block w-full text-center mx-2 !text-whitesmoke hover:!text-[#BED7E3] font-bold hover:bg-white/5 transition-colors rounded-sm shadow-sm p-2"
+      className="mx-2 block w-full rounded-sm p-2 text-center font-bold !text-whitesmoke shadow-sm transition-colors hover:bg-white/5 hover:!text-[#BED7E3]"
       onClick={onClick}
     >
       {children}
@@ -61,13 +61,16 @@ const Home: NextPage = () => {
       <IndexLayout>
         <h1 className="hidden">{t('title')}</h1>
         <Typography.Text className="block !text-8xl font-semibold">Laze</Typography.Text>
-        <Typography.Text className="block text-xl mt-4">{t('common:motto')}</Typography.Text>
-        <Button type="primary" size="large" className="mt-8 ml-4 mb-8">
+        <Typography.Text className="mt-4 block text-xl">{t('common:motto')}</Typography.Text>
+        <Button type="primary" size="large" className="mt-8 ml-4 mb-4">
           <Link href="/editor">{t('Try Laze')}</Link>
         </Button>
+        <StyledLink className="ml-4 mb-8 inline-block text-lg" href="https://forms.gle/arQwxAY8NuuT1zfi8">
+          {t('requests')}
+        </StyledLink>
 
         <SectionContainer className="bg-[#2b5b84]">
-          <SectionTitle className="!text-whitesmoke border-[#1e405e]">{t('Laze Features')}</SectionTitle>
+          <SectionTitle className="border-[#1e405e] !text-whitesmoke">{t('Laze Features')}</SectionTitle>
           <CardContainer>
             <Card
               title={t('features.1.title')}

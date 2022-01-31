@@ -81,7 +81,7 @@ const UnconnectedDirectoryView: VFC<DirectoryViewProps> = ({ directory, director
               canSearch={false}
               renderItemArrow={(item) => {
                 return (
-                  <div className="inline-block w-4 h-4">
+                  <div className="inline-block h-4 w-4">
                     {item.item.data.type === 'folder' &&
                       (item.context.isExpanded ? <VscChevronDown size={16} /> : <VscChevronRight size={16} />)}
                   </div>
@@ -121,8 +121,8 @@ const UnconnectedDirectoryView: VFC<DirectoryViewProps> = ({ directory, director
                         context.isFocused && 'rct-tree-item-title-container-focused',
                         context.isDraggingOver && 'rct-tree-item-title-container-dragging-over',
                         context.isSearchMatching && 'rct-tree-item-title-container-search-match',
-                        info.isRenaming && !context.isRenaming && 'opacity-30 dark:opacity-20 dark:bg-gray-300/10',
-                        'dark:hover:bg-gray-300/5 hover:bg-gray-300/10'
+                        info.isRenaming && !context.isRenaming && 'opacity-30 dark:bg-gray-300/10 dark:opacity-20',
+                        'hover:bg-gray-300/10 dark:hover:bg-gray-300/5'
                       )}
                     >
                       {arrow}
@@ -145,7 +145,7 @@ const UnconnectedDirectoryView: VFC<DirectoryViewProps> = ({ directory, director
                             context.isSearchMatching && 'rct-tree-item-button-search-match'
                           )}
                         >
-                          <div className="overflow-ellipsis whitespace-nowrap overflow-hidden">{title}</div>
+                          <div className="overflow-hidden overflow-ellipsis whitespace-nowrap">{title}</div>
                         </InteractiveComponent>
                       </ContextMenuTrigger>
                     </div>

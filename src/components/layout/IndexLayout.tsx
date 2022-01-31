@@ -20,7 +20,7 @@ export type IndexLayoutProps = {
 const NavLink = ({ href, children }: { href: string; children: ReactNode }) => {
   return (
     <StyledLink
-      className="px-4 text-gray-400 hover:text-gray-200 hover:bg-white/10 transition-colors duration-200"
+      className="px-4 text-gray-400 transition-colors duration-200 hover:bg-white/10 hover:text-gray-200"
       href={href}
     >
       {children}
@@ -45,17 +45,18 @@ const IndexHeader: VFC = () => {
 
   return (
     <>
-      <div className="max-w-[58rem] mx-auto flex items-center">
-        <div className="inline-flex px-4 py-4 cursor-pointer hover:bg-white/10 transition-colors duration-200">
+      <div className="mx-auto flex max-w-[58rem] items-center">
+        <div className="inline-flex cursor-pointer px-4 py-4 transition-colors duration-200 hover:bg-white/10">
           <Link href="/" passHref>
             <div className="inline-flex">
-              <LazeLogo size={32}></LazeLogo>
-              <Typography.Text className="!text-laze-primary text-2xl font-bold ml-2 select-none">Laze</Typography.Text>
+              <LazeLogo size={32} />
+              <Typography.Text className="ml-2 select-none text-2xl font-bold !text-laze-primary">Laze</Typography.Text>
             </div>
           </Link>
         </div>
         {media && media === QUERY_SM_DOWN ? (
           <div className="ml-auto flex items-center">
+            <ChangeLanguage />
             <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
               <AiOutlineMenu size="1.4rem" />
             </Button>
@@ -91,7 +92,7 @@ type ContentsListProps = {
 
 const ContentsList: FC<ContentsListProps> = ({ title, children }) => {
   return (
-    <div className="flex flex-col space-y-1 mr-4 mb-4">
+    <div className="mr-4 mb-4 flex flex-col space-y-1">
       <Typography.Text strong className="!text-gray-100">
         {title}
       </Typography.Text>
@@ -120,7 +121,7 @@ const IndexFooter: VFC = () => {
 
   return (
     <>
-      <div className="flex sm:flex-nowrap flex-wrap space-y-4 sm:space-y-0 max-w-[58rem] mx-auto">
+      <div className="mx-auto flex max-w-[58rem] flex-wrap space-y-4 sm:flex-nowrap sm:space-y-0">
         <div className="w-full sm:w-auto">
           <div className="flex items-center space-x-2">
             <LazeLogo size={40} option="logo_gray" className="relative top-1" />
@@ -129,7 +130,7 @@ const IndexFooter: VFC = () => {
           <div className="mt-2">
             <Typography.Text className="!text-whitesmoke">{t('common:motto')}</Typography.Text>
           </div>
-          <div className="flex space-x-2 mt-6">
+          <div className="mt-6 flex space-x-2">
             <IconContext.Provider value={{ size: '1.5rem' }}>
               <a
                 href="https://github.com/Laze-Project-Team"
@@ -165,7 +166,7 @@ const IndexFooter: VFC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <QiitaIcon className="w-6 h-6" />
+                <QiitaIcon className="h-6 w-6" />
               </a>
             </IconContext.Provider>
           </div>
@@ -195,11 +196,11 @@ const IndexLayout: FC<IndexLayoutProps> = ({ children }) => {
     <>
       <Layout className="overflow-x-hidden">
         <Layout.Header className="z-[1] w-full !px-2">
-          <IndexHeader></IndexHeader>
+          <IndexHeader />
         </Layout.Header>
-        <Layout.Content className="w-[60rem] max-w-full mx-auto px-4 pt-4">{children}</Layout.Content>
+        <Layout.Content className="mx-auto w-[60rem] max-w-full px-4 pt-4">{children}</Layout.Content>
         <Layout.Footer className="!bg-[#333344]">
-          <IndexFooter></IndexFooter>
+          <IndexFooter />
         </Layout.Footer>
       </Layout>
     </>

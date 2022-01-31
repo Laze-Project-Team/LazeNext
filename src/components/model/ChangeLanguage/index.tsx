@@ -38,7 +38,7 @@ export const ChangeLanguage: FC = () => {
           onClick={(e) => {
             return e.preventDefault();
           }}
-          className="inline-flex items-center !text-gray-400 hover:!text-gray-200 hover:!bg-white/5"
+          className="inline-flex items-center !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
         >
           <IoLanguageOutline className="inline text-xl" />
           <span className="">{t('changeLanguage')}</span>

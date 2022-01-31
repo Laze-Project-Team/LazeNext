@@ -44,7 +44,7 @@ In other words, in your first program, you have defined a function named "main".
 
 Next, let's look at the part enclosed in `{}`. The `{}` forms a "scope", which simply means that you can access the outside from the inside of the scope, but not the inside from the outside.
 
-![scope.jpg](/img/docs/en/scope.jpg)
+![scope image picture](/img/docs/en/scope.jpg)
 
 ## Standard functions
 
@@ -75,7 +75,7 @@ function: main() => () {
 
 In the `int: result` section, we declare a "variable" named result. A variable is, as you can read, a number that changes. A variable is a number that changes. You can imagine it like the following figure.
 
-![variable.jpg](/img/docs/en/variable.jpg)
+![variable image picture](/img/docs/en/variable.jpg)
 
 Also, in Laze, there is a concept of "types" for variables.
 

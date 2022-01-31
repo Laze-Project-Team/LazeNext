@@ -6,7 +6,7 @@ import { Spin } from '@/components/ui/Spin';
 export const Loading: VFC = () => {
   return (
     <>
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="flex h-full w-full items-center justify-center">
         <Spin className="text-6xl">
           <VscLoading />
         </Spin>

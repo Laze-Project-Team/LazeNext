@@ -38,10 +38,10 @@ export const EditorButtons: VFC = () => {
               <VscMenu />
             </button>
 
-            {isOpened && <div className="fixed top-0 left-0 bottom-0 right-0 z-10" onClick={close}></div>}
+            {isOpened && <div className="fixed top-0 left-0 bottom-0 right-0 z-10" onClick={close} />}
             <div
               className={cx(
-                'fixed space-y-1 top-7 left-0 px-2 bg-gray-100 dark:bg-[#333] shadow-md flex flex-col z-10 min-h-0 overflow-hidden transition-all duration-300',
+                'fixed top-7 left-0 z-10 flex min-h-0 flex-col space-y-1 overflow-hidden bg-gray-100 px-2 shadow-md transition-all duration-300 dark:bg-[#333]',
                 isOpened ? 'h-24 py-2' : 'h-0 py-0'
               )}
             >

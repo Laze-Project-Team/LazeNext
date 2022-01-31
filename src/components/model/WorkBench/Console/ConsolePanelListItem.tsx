@@ -41,7 +41,7 @@ export const ConsolePanelListItem: VFC<ConsolePanelListItemProps> = ({ id, label
         role="button"
         tabIndex={0}
         className={cx(
-          'flex items-center px-1 py-[0.1rem] bg-gray-800 dark:bg-white select-none',
+          'flex select-none items-center bg-gray-800 px-1 py-[0.1rem] dark:bg-white',
           active ? '!bg-opacity-10' : '!hover:bg-opacity-5 !bg-opacity-0'
         )}
         onClick={() => {

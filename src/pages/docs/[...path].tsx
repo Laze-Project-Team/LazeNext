@@ -23,6 +23,7 @@ import {
   H3,
   H4,
   HR,
+  Img,
   Paragraph,
   Pre,
   Table,
@@ -83,8 +84,8 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
         <meta property="og:locale" content={router.locale ?? 'en'} />
       </Head>
 
-      <div className="scroll-p-0 h-screen">
-        <div className="fixed z-10 w-screen h-16 flex bg-white shadow-sm shadow-gray-200">
+      <div className="h-screen scroll-p-0">
+        <div className="fixed z-10 flex h-16 w-screen bg-white shadow-sm shadow-gray-200">
           <div className="flex items-center">
             {media && media === QUERY_SM_DOWN && (
               <>
@@ -109,16 +110,16 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
               </>
             )}
             <Link href="/" passHref>
-              <a className="flex items-center mx-4 px-2 py-1 rounded-sm hover:bg-laze-primary/10 transition-colors duration-200">
+              <a className="mx-4 flex items-center rounded-sm px-2 py-1 transition-colors duration-200 hover:bg-laze-primary/10">
                 <LazeLogo size={32} option="logo" />
-                <span className="ml-1 text-laze-primary text-2xl font-semibold">Laze</span>
+                <span className="ml-1 text-2xl font-semibold text-laze-primary">Laze</span>
               </a>
             </Link>
           </div>
         </div>
         <div>
           {media && media !== QUERY_SM_DOWN && (
-            <div className="fixed top-16 w-64 h-[calc(100vh-4rem)] pt-4 border-r-2 overflow-y-scroll z-10">
+            <div className="fixed top-16 z-10 h-[calc(100vh-4rem)] w-64 overflow-y-scroll border-r-2 pt-4">
               <div className="pb-[80vh]">
                 <IndexList indexList={indexList} active={`/${path.join('/')}/`} />
               </div>
@@ -127,7 +128,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
           <div
             ref={documentRef}
             className={cx(
-              'break-normal absolute top-16 w-[calc(100vw-18px)]',
+              'absolute top-16 w-[calc(100vw-18px)] break-normal',
               media && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
               media && media !== QUERY_SM_DOWN ? 'pl-72' : 'pl-8'
             )}
@@ -163,18 +164,19 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
                 tr: Tr,
                 th: Th,
                 td: Td,
+                img: Img,
               }}
               remarkPlugins={[remarkGfm]}
             >
               {content}
             </Markdown>
-            <div className="border-t-2 mt-8">
-              <p className="m-0 text-center py-4 text-sm text-gray-500">{t('common:copyright')}</p>
+            <div className="mt-8 border-t-2">
+              <p className="m-0 py-4 text-center text-sm text-gray-500">{t('common:copyright')}</p>
             </div>
           </div>
           {media && media === QUERY_LG_UP && (
-            <div className="fixed right-8 top-20 w-32 z-10">
-              <p className="font-bold text-gray-800 mt-0 mb-1">{t('contents')}</p>
+            <div className="fixed right-8 top-20 z-10 w-32">
+              <p className="mt-0 mb-1 font-bold text-gray-800">{t('contents')}</p>
               <Anchor>
                 <Markdown
                   allowedElements={['h2']}
