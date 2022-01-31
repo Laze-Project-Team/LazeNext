@@ -35,7 +35,7 @@ const AccountLink = ({ href, children }: { href: string; children: ReactNode }) 
       type="text"
       className="inline-flex h-[2rem] items-center rounded-sm !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
     >
-      <StyledLink href={href} className="duration-200">
+      <StyledLink href={href} className="!transition-none">
         {children}
       </StyledLink>
     </Button>
