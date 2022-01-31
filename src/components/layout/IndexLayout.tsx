@@ -10,8 +10,8 @@ import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { ChangeLanguage } from '@/components/model/ChangeLanguage';
 import { useAuthContext } from '@/components/model/Context/AuthContext';
+import { QiitaIcon } from '@/components/ui/atoms/icons/QiitaIcon';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
-import { QiitaIcon } from '@/components/ui/atoms/QiitaIcon';
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
 
 export type IndexLayoutProps = {
