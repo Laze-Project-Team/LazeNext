@@ -3,15 +3,25 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useEffect } from 'react';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
+import { useAuthContext } from '@/components/model/Context/AuthContext';
+import { SignInScreen } from '@/components/model/SignInScreen';
 import { H1 } from '@/components/ui/IndexLayout';
-import { SignInScreen } from '@/components/ui/SignInScreen';
 
 const Privacy: NextPage = () => {
-  const { locale } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
+  const { user } = useAuthContext();
   const [t] = useTranslation('signup');
   const title = `${t('title')} | Laze`;
+
+  useEffect(() => {
+    if (user) {
+      router.push('/profile', undefined, { locale });
+    }
+  }, [locale, router, user]);
 
   return (
     <>
