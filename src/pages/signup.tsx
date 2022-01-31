@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { useAuthContext } from '@/components/model/Context/AuthContext';
-import { SignInScreen } from '@/components/model/SignInScreen';
+import { SignInScreen } from '@/components/model/SignUpScreen';
 import { H1 } from '@/components/ui/IndexLayout';
 
 const Privacy: NextPage = () => {
