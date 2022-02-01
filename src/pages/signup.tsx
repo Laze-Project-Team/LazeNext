@@ -1,3 +1,4 @@
+import { Divider } from 'antd';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -6,7 +7,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
 
 import { useAuthContext } from '@/components/model/Context/AuthContext';
-import { SignInScreen } from '@/components/model/SignUpScreen';
+import { AuthButtons } from '@/components/model/SignUpScreen/AuthButtons';
+import { SignUpForm } from '@/components/model/SignUpScreen/SignUpForm';
 
 const Privacy: NextPage = () => {
   const router = useRouter();
@@ -38,7 +40,15 @@ const Privacy: NextPage = () => {
       <div className="mx-auto max-w-[30rem] px-4 pt-8">
         <h1 className="mb-8 text-center text-2xl">{t('title')}</h1>
 
-        <SignInScreen />
+        <div className="flex flex-col items-center">
+          <AuthButtons />
+
+          <Divider>{t('or')}</Divider>
+
+          <div className="!max-w-[30rem]">
+            <SignUpForm />
+          </div>
+        </div>
       </div>
     </>
   );
