@@ -13,7 +13,6 @@ import { GitHubIcon } from '@/components/ui/atoms/icons/GitHubIcon';
 import { GoogleIcon } from '@/components/ui/atoms/icons/GoogleIcon';
 import { TwitterIcon } from '@/components/ui/atoms/icons/TwitterIcon';
 import { auth } from '@/features/firebase';
-import { getProviderForProviderId } from '@/features/firebase/provider';
 
 const GoogleProvider = new GoogleAuthProvider();
 const TwitterProvider = new TwitterAuthProvider();
@@ -25,10 +24,8 @@ export const SignInScreen: VFC = () => {
 
   const authWith = (provider: AuthProvider) => {
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = getProviderForProviderId(provider.providerId).credentialFromResult(result);
-        const token = credential?.accessToken;
-        console.log(token);
+      .then(() => {
+        router.push('/profile');
       })
       .catch((error) => {
         if (error.code === 'auth/account-exists-with-different-credential') {
