@@ -79,7 +79,10 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://laze.ddns.net/${router.locale + '/' ?? ''}docs/${path.join('/')}`} />
+        <meta
+          property="og:url"
+          content={`https://laze.ddns.net/${router.locale ? `${locale}/` : ''}docs/${path.join('/')}`}
+        />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={router.locale ?? 'en'} />
       </Head>
