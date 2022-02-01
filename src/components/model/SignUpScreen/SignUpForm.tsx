@@ -2,6 +2,7 @@ import type { FormItemProps, FormProps } from 'antd';
 import { Button } from 'antd';
 import { Form, Input } from 'antd';
 import { sendSignInLinkToEmail } from 'firebase/auth';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useState } from 'react';
@@ -30,6 +31,7 @@ const tailFormItemLayout: FormItemProps = {
 };
 
 export const SignUpForm: VFC = () => {
+  const { locale } = useRouter();
   const [t] = useTranslation('signup');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -38,7 +40,7 @@ export const SignUpForm: VFC = () => {
   const submit = (values: formValues) => {
     setIsSubmitting(true);
     const actionCodeSettings = {
-      url: `${location.protocol}//${location.host}/signup_complete`,
+      url: `${location.protocol}//${location.host}/${locale ? `${locale}/` : ''}signup_complete`,
       handleCodeInApp: true,
     };
     sendSignInLinkToEmail(auth, values.email, actionCodeSettings)
