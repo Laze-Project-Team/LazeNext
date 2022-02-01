@@ -62,9 +62,9 @@ const SignupComplete: NextPage = () => {
         {success ? (
           <>
             <div>
-              <p className="text-lg">{t('success')}</p>
+              <p className="text-lg">{t('success.title')}</p>
               <p>
-                <WithLink title={t('success_description')} />
+                <WithLink title={t('success.message')} />
               </p>
             </div>
           </>
@@ -78,9 +78,9 @@ const SignupComplete: NextPage = () => {
           <>
             <div className="space-y-4">
               <Spin size="large" />
-              <p className="text-lg">{t('loading')}</p>
+              <p className="text-lg">{t('loading.title')}</p>
               <div>
-                <WithLink title={t('loading_description')} />
+                <WithLink title={t('loading.message')} />
               </div>
             </div>
           </>
