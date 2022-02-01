@@ -5,10 +5,8 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
 
-import { IndexLayout } from '@/components/layout/IndexLayout';
 import { useAuthContext } from '@/components/model/Context/AuthContext';
 import { SignInScreen } from '@/components/model/SignUpScreen';
-import { H1 } from '@/components/ui/IndexLayout';
 
 const Privacy: NextPage = () => {
   const router = useRouter();
@@ -37,11 +35,11 @@ const Privacy: NextPage = () => {
         <meta property="og:locale" content={locale ?? 'en'} />
       </Head>
 
-      <IndexLayout>
-        <H1>{t('title')}</H1>
+      <div className="mx-auto max-w-[30rem] px-4 pt-8">
+        <h1 className="mb-8 text-center text-2xl">{t('title')}</h1>
 
         <SignInScreen />
-      </IndexLayout>
+      </div>
     </>
   );
 };

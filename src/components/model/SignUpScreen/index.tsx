@@ -42,7 +42,7 @@ export const SignInScreen: VFC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col space-y-4 px-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+      <div className="flex flex-col space-y-4 px-4">
         <AuthButton
           onClick={() => {
             authWith(GoogleProvider);

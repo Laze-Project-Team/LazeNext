@@ -16,7 +16,7 @@ export const AuthButton: VFC<AuthButtonProps> = ({ icon, title, className, onCli
       <Button
         type="text"
         icon={<div className="inline-block h-6 w-6">{icon}</div>}
-        className={cx('!flex items-center space-x-2 !p-4 !shadow-sm hover:!opacity-80', className)}
+        className={cx('!flex items-center space-x-2 !border-gray-300  !p-4 hover:!opacity-80', className)}
         onClick={onClick}
       >
         {title}
