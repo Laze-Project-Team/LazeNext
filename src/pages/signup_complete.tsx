@@ -15,6 +15,7 @@ const SignupComplete: NextPage = () => {
   const { locale } = router;
   const [t] = useTranslation('signup_complete');
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const title = `${t('title')} | Laze`;
 
@@ -31,10 +32,10 @@ const SignupComplete: NextPage = () => {
       signInWithEmailLink(auth, email, window.location.href)
         .then(() => {
           window.localStorage.removeItem('emailForSignIn');
-          router.push('/profile', undefined, { locale });
+          setSuccess(true);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          setError(true);
         });
     } else {
       router.push('/', undefined, { locale });
@@ -58,7 +59,16 @@ const SignupComplete: NextPage = () => {
       <h1 className="hidden">{t('title')}</h1>
 
       <div className="flex h-screen w-screen flex-col items-center justify-center space-y-4">
-        {error ? (
+        {success ? (
+          <>
+            <div>
+              <p className="text-lg">{t('success')}</p>
+              <p>
+                <WithLink title={t('success_description')} />
+              </p>
+            </div>
+          </>
+        ) : error ? (
           <>
             <div className="red-[#ff4d4f]">
               <WithLink title={t('error')} />
@@ -66,12 +76,12 @@ const SignupComplete: NextPage = () => {
           </>
         ) : (
           <>
-            <div className="space-x-4">
-              <span>{t('loading')}</span>
+            <div className="space-y-4">
               <Spin size="large" />
-            </div>
-            <div>
-              <WithLink title={t('loading_description')} />
+              <p className="text-lg">{t('loading')}</p>
+              <div>
+                <WithLink title={t('loading_description')} />
+              </div>
             </div>
           </>
         )}
