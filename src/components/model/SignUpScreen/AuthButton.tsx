@@ -7,15 +7,17 @@ type AuthButtonProps = {
   className?: string;
   icon: ReactNode;
   title: string;
+  onClick: () => void;
 };
 
-export const AuthButton: VFC<AuthButtonProps> = ({ icon, title, className }) => {
+export const AuthButton: VFC<AuthButtonProps> = ({ icon, title, className, onClick }) => {
   return (
     <>
       <Button
         type="text"
         icon={<div className="inline-block h-6 w-6">{icon}</div>}
         className={cx('!flex items-center space-x-2 !p-4 !shadow-sm hover:!opacity-80', className)}
+        onClick={onClick}
       >
         {title}
       </Button>

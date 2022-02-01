@@ -1,4 +1,7 @@
-import { Divider } from 'antd';
+import { Divider, message } from 'antd';
+import type { AuthProvider } from 'firebase/auth';
+import { TwitterAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
@@ -10,10 +13,31 @@ import { GitHubIcon } from '@/components/ui/atoms/icons/GitHubIcon';
 import { GoogleIcon } from '@/components/ui/atoms/icons/GoogleIcon';
 import { TwitterIcon } from '@/components/ui/atoms/icons/TwitterIcon';
 import { auth } from '@/features/firebase';
+import { getProviderForProviderId } from '@/features/firebase/provider';
+
+const GoogleProvider = new GoogleAuthProvider();
+const TwitterProvider = new TwitterAuthProvider();
+const GitHubProvider = new GithubAuthProvider();
 
 export const SignInScreen: VFC = () => {
   const router = useRouter();
   const [t] = useTranslation('signup');
+
+  const authWith = (provider: AuthProvider) => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = getProviderForProviderId(provider.providerId).credentialFromResult(result);
+        const token = credential?.accessToken;
+        console.log(token);
+      })
+      .catch((error) => {
+        if (error.code === 'auth/account-exists-with-different-credential') {
+          message.error(t('error.account-exists-with-different-credential'));
+        } else {
+          message.error(t('error.authwith-unknown'));
+        }
+      });
+  };
 
   useEffect(() => {
     auth.languageCode = router.locale ?? 'en';
@@ -22,9 +46,30 @@ export const SignInScreen: VFC = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col space-y-4 px-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-        <AuthButton className="!bg-white" icon={<GoogleIcon />} title={t('auth.signup.google')} />
-        <AuthButton className="!bg-[#03A9F4] !text-white" icon={<TwitterIcon />} title={t('auth.signup.twitter')} />
-        <AuthButton className="!bg-gray-700 !text-white" icon={<GitHubIcon />} title={t('auth.signup.github')} />
+        <AuthButton
+          onClick={() => {
+            authWith(GoogleProvider);
+          }}
+          className="!bg-white"
+          icon={<GoogleIcon />}
+          title={t('auth.signup.google')}
+        />
+        <AuthButton
+          onClick={() => {
+            authWith(TwitterProvider);
+          }}
+          className="!bg-[#03A9F4] !text-white"
+          icon={<TwitterIcon />}
+          title={t('auth.signup.twitter')}
+        />
+        <AuthButton
+          onClick={() => {
+            authWith(GitHubProvider);
+          }}
+          className="!bg-gray-700 !text-white"
+          icon={<GitHubIcon />}
+          title={t('auth.signup.github')}
+        />
       </div>
 
       <Divider>{t('or')}</Divider>
