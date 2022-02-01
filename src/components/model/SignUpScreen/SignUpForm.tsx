@@ -59,7 +59,8 @@ export const SignUpForm: VFC = () => {
     <>
       {isSuccess ? (
         <div>
-          <p>{t('success')}</p>
+          <p className="font-bold">{t('success.title')}</p>
+          <p>{t('success.message')}</p>
         </div>
       ) : (
         <Form onFinish={submit} {...formItemLayout}>
