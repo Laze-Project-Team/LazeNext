@@ -74,7 +74,7 @@ export const SignUpForm: VFC = () => {
             <Input />
           </Form.Item>
           {error && (
-            <p className="my-4 text-[#ff4d4f]">
+            <p className="my-4 text-sm text-[#ff4d4f]">
               <WithLink title={error} />
             </p>
           )}
