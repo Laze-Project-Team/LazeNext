@@ -3,12 +3,13 @@ import { useTranslation } from 'next-i18next';
 import type { FC, ReactNode } from 'react';
 
 type SignUpLayoutProps = {
-  title: string;
+  title: ReactNode;
   authWith: ReactNode;
   form: ReactNode;
+  footer: ReactNode;
 };
 
-export const SignUpLayout: FC<SignUpLayoutProps> = ({ title, authWith, form }) => {
+export const SignUpLayout: FC<SignUpLayoutProps> = ({ title, authWith, form, footer }) => {
   const [t] = useTranslation('signup');
 
   return (
@@ -21,6 +22,9 @@ export const SignUpLayout: FC<SignUpLayoutProps> = ({ title, authWith, form }) =
         <Divider>{t('or')}</Divider>
 
         <div className="w-full !max-w-[20rem]">{form}</div>
+        <div className="mt-8 flex w-full !max-w-[20rem] justify-center">
+          <div className="sm:ml-auto">{footer}</div>
+        </div>
       </div>
     </div>
   );

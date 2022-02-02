@@ -9,6 +9,7 @@ import { SignUpLayout } from '@/components/layout/SignUpLayout';
 import { useAuthContext } from '@/components/model/Context/AuthContext';
 import { AuthButtons } from '@/components/model/SignUpScreen/AuthButtons';
 import { SignUpForm } from '@/components/model/SignUpScreen/SignUpForm';
+import { WithLink } from '@/components/ui/WithLink';
 
 const Privacy: NextPage = () => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const Privacy: NextPage = () => {
           />
         }
         form={<SignUpForm />}
+        footer={<WithLink title={t('footer')} />}
       />
     </>
   );

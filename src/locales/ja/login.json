@@ -23,6 +23,7 @@
     }
   },
 
+  "footer": "[アカウント登録](/signup)はこちら",
 
   "error": {
     "account-exists-with-different-credential": "そのアカウントは別の方法で登録されています。別の認証方法を選択してください。",
