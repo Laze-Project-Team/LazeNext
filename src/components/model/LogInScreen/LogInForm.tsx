@@ -31,6 +31,7 @@ export const LogInForm: VFC = () => {
       <Form onFinish={submit} labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
         <Form.Item
           label={t('form.label.email')}
+          name="email"
           rules={[
             { required: true, message: t('form.message.email') },
             { type: 'email', message: 'error' },
@@ -38,11 +39,15 @@ export const LogInForm: VFC = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item label={t('form.label.password')} rules={[{ required: true, message: t('form.message.password') }]}>
-          <PasswordInput />
+        <Form.Item
+          label={t('form.label.password')}
+          name="password"
+          rules={[{ required: true, message: t('form.message.password') }]}
+        >
+          {PasswordInput}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isSubmitting}>
+          <Button className="mt-4" type="primary" htmlType="submit" loading={isSubmitting}>
             {t('form.label.submit')}
           </Button>
         </Form.Item>

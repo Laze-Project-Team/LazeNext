@@ -129,7 +129,7 @@ export const SignupCompleteScreen: FC = () => {
                 },
               ]}
             >
-              <PasswordInput />
+              {PasswordInput}
             </Form.Item>
             <SubmitButton isLoading={isSubmitting}> {t('require_password.submit')}</SubmitButton>
           </Form>

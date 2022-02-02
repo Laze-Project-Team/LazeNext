@@ -1,4 +1,3 @@
-import { Divider } from 'antd';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -6,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
 
+import { SignUpLayout } from '@/components/layout/SignUpLayout';
 import { useAuthContext } from '@/components/model/Context/AuthContext';
 import { LogInForm } from '@/components/model/LogInScreen/LogInForm';
 import { AuthButtons } from '@/components/model/SignUpScreen/AuthButtons';
@@ -37,19 +37,18 @@ const Privacy: NextPage = () => {
         <meta property="og:locale" content={locale ?? 'en'} />
       </Head>
 
-      <div className="mx-auto max-w-[30rem] px-4 pt-8">
-        <h1 className="mb-8 text-center text-2xl">{t('title')}</h1>
-
-        <div className="flex flex-col items-center">
-          <AuthButtons title={{ google: t('auth.google'), twitter: t('auth.twitter'), github: t('auth.github') }} />
-
-          <Divider>{t('signup:or')}</Divider>
-
-          <div className="!max-w-[30rem]">
-            <LogInForm />
-          </div>
-        </div>
-      </div>
+      <SignUpLayout
+        authWith={
+          <AuthButtons
+            title={{ google: t('auth.google'), twitter: t('auth.twitter'), github: t('auth.github') }}
+            error={{
+              'account-exists-with-different-credential': t('error.account-exists-with-different-credential'),
+              unknown: t('error.unknown'),
+            }}
+          />
+        }
+        form={<LogInForm />}
+      />
     </>
   );
 };

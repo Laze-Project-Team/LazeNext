@@ -3,7 +3,6 @@ import type { AuthProvider } from 'firebase/auth';
 import { TwitterAuthProvider } from 'firebase/auth';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useEffect } from 'react';
 
@@ -11,6 +10,7 @@ import { AuthButton } from '@/components/model/SignUpScreen/AuthButton';
 import { GitHubIcon } from '@/components/ui/atoms/icons/GitHubIcon';
 import { GoogleIcon } from '@/components/ui/atoms/icons/GoogleIcon';
 import { TwitterIcon } from '@/components/ui/atoms/icons/TwitterIcon';
+import { WithLink } from '@/components/ui/WithLink';
 import { auth } from '@/features/firebase';
 
 const GoogleProvider = new GoogleAuthProvider();
@@ -23,26 +23,37 @@ type AuthButtonsProps = {
     twitter: string;
     github: string;
   };
+  error: Record<string, string | null> & { unknown: string };
 };
 
-export const AuthButtons: VFC<AuthButtonsProps> = ({ title }) => {
+export const AuthButtons: VFC<AuthButtonsProps> = ({ title, error }) => {
   const router = useRouter();
-  const [t] = useTranslation('signup');
+  const enhancedError: Record<string, string | null> & { unknown: string } = {
+    ...error,
+    'popup-closed-by-user': null,
+    'cancelled-popup-request': null,
+  };
 
   const authWith = (provider: AuthProvider) => {
     signInWithPopup(auth, provider)
       .then(() => {
         router.push('/profile');
       })
-      .catch((error) => {
-        switch (error.code) {
-          case 'auth/account-exists-with-different-credential':
-            message.error(t('error.account-exists-with-different-credential'));
-            break;
-          case 'auth/popup-closed-by-user':
-            return;
-          default:
-            message.error(t('error.authwith-unknown'));
+      .catch((err) => {
+        console.log(err.code);
+
+        let unknown = true;
+        Object.keys(enhancedError).forEach((key) => {
+          if (key !== 'unknown' && err.code === `auth/${key}`) {
+            unknown = false;
+            const errorMessage = enhancedError[key];
+            if (errorMessage !== null) {
+              message.error(<WithLink title={errorMessage} />);
+            }
+          }
+        });
+        if (unknown) {
+          message.error(enhancedError.unknown);
         }
       });
   };
