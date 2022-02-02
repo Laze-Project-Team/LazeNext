@@ -27,10 +27,14 @@ export const AuthButtons: VFC = () => {
         router.push('/profile');
       })
       .catch((error) => {
-        if (error.code === 'auth/account-exists-with-different-credential') {
-          message.error(t('error.account-exists-with-different-credential'));
-        } else {
-          message.error(t('error.authwith-unknown'));
+        switch (error.code) {
+          case 'auth/account-exists-with-different-credential':
+            message.error(t('error.account-exists-with-different-credential'));
+            break;
+          case 'auth/popup-closed-by-user':
+            return;
+          default:
+            message.error(t('error.authwith-unknown'));
         }
       });
   };

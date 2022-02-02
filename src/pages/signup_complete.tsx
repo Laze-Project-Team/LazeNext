@@ -1,46 +1,15 @@
-import { Spin } from 'antd';
-import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useEffect, useState } from 'react';
 
-import { WithLink } from '@/components/ui/WithLink';
-import { auth } from '@/features/firebase';
+import { SignupCompleteScreen } from '@/components/model/SignUpCompleteScreen';
 
 const SignupComplete: NextPage = () => {
-  const router = useRouter();
-  const { locale } = router;
+  const { locale } = useRouter();
   const [t] = useTranslation('signup_complete');
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-
   const title = `${t('title')} | Laze`;
-
-  useEffect(() => {
-    if (isSignInWithEmailLink(auth, window.location.href)) {
-      let email = window.localStorage.getItem('emailForSignIn');
-      if (email === null) {
-        email = window.prompt(t('prompt'));
-      }
-      if (email === null) {
-        setError(true);
-        return;
-      }
-      signInWithEmailLink(auth, email, window.location.href)
-        .then(() => {
-          window.localStorage.removeItem('emailForSignIn');
-          setSuccess(true);
-        })
-        .catch(() => {
-          setError(true);
-        });
-    } else {
-      router.push('/', undefined, { locale });
-    }
-  }, [locale, router, t]);
 
   return (
     <>
@@ -58,33 +27,8 @@ const SignupComplete: NextPage = () => {
 
       <h1 className="hidden">{t('title')}</h1>
 
-      <div className="flex h-screen w-screen flex-col items-center justify-center space-y-4">
-        {success ? (
-          <>
-            <div>
-              <p className="text-lg">{t('success.title')}</p>
-              <p>
-                <WithLink title={t('success.message')} />
-              </p>
-            </div>
-          </>
-        ) : error ? (
-          <>
-            <div className="red-[#ff4d4f]">
-              <WithLink title={t('error')} />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="space-y-4">
-              <Spin size="large" />
-              <p className="text-lg">{t('loading.title')}</p>
-              <div>
-                <WithLink title={t('loading.message')} />
-              </div>
-            </div>
-          </>
-        )}
+      <div className="mx-auto flex max-w-[30rem] flex-col items-center justify-center space-y-4 px-4 pt-8">
+        <SignupCompleteScreen />
       </div>
     </>
   );
