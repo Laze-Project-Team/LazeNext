@@ -27,7 +27,7 @@ const Profile: NextPage = () => {
 
   useEffect(() => {
     if (user === null) {
-      router.push('/signup', undefined, { locale });
+      router.push('/', undefined, { locale });
     }
   }, [router, locale, user]);
 
