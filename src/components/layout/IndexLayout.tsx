@@ -97,7 +97,7 @@ const IndexHeader: VFC = () => {
                 </>
               ) : (
                 <>
-                  <AccountLink href="/signup">{t('header.SignUp')}</AccountLink>
+                  <AccountLink href="/login">{t('header.SignUp')}</AccountLink>
                 </>
               )}
               <ChangeLanguage />
