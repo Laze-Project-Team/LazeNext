@@ -43,6 +43,7 @@ const Privacy: NextPage = () => {
             title={{ google: t('auth.google'), twitter: t('auth.twitter'), github: t('auth.github') }}
             error={{
               'account-exists-with-different-credential': t('error.account-exists-with-different-credential'),
+              'too-many-requests': t('error.too-many-requests'),
               unknown: t('error.unknown'),
             }}
           />

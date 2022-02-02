@@ -1,4 +1,4 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -7,6 +7,13 @@ import { useState } from 'react';
 
 import { PasswordInput } from '@/components/ui/atoms/PasswordInput';
 import { auth } from '@/features/firebase';
+
+const handleCode = [
+  'user-not-found',
+  'wrong-password',
+  'too-many-requests',
+  'account-exists-with-different-credential',
+];
 
 export const LogInForm: VFC = () => {
   const router = useRouter();
@@ -21,8 +28,12 @@ export const LogInForm: VFC = () => {
       })
       .catch((error) => {
         setIsSubmitting(false);
-        // message.error(t('error'));
-        console.log(error.code);
+        const errorCode = error.code.slice(error.code.lastIndexOf('/') + 1);
+        if (handleCode.includes(errorCode)) {
+          message.error(t(`error.${errorCode}`));
+        } else {
+          message.error(t('error.unknown'));
+        }
       });
   };
 
@@ -34,7 +45,7 @@ export const LogInForm: VFC = () => {
           name="email"
           rules={[
             { required: true, message: t('form.message.email') },
-            { type: 'email', message: 'error' },
+            { type: 'email', message: t('form.message.email.invalid') },
           ]}
         >
           <Input />
