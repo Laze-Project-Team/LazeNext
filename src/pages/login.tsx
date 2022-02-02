@@ -14,7 +14,7 @@ const Privacy: NextPage = () => {
   const router = useRouter();
   const { locale } = router;
   const { user } = useAuthContext();
-  const [t] = useTranslation(['login', 'signup']);
+  const [t] = useTranslation('login');
   const title = `${t('title')} | Laze`;
 
   useEffect(() => {
@@ -38,6 +38,7 @@ const Privacy: NextPage = () => {
       </Head>
 
       <SignUpLayout
+        title={t('title')}
         authWith={
           <AuthButtons
             title={{ google: t('auth.google'), twitter: t('auth.twitter'), github: t('auth.github') }}
@@ -60,7 +61,7 @@ type contextType = {
 export const getStaticProps = async (context: contextType) => {
   return {
     props: {
-      ...(await serverSideTranslations(context.locale, ['common', 'login', 'signup', 'layout'])),
+      ...(await serverSideTranslations(context.locale, ['common', 'login', 'layout'])),
     },
   };
 };

@@ -40,8 +40,6 @@ export const AuthButtons: VFC<AuthButtonsProps> = ({ title, error }) => {
         router.push('/profile');
       })
       .catch((err) => {
-        console.log(err.code);
-
         let unknown = true;
         Object.keys(enhancedError).forEach((key) => {
           if (key !== 'unknown' && err.code === `auth/${key}`) {

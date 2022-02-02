@@ -38,6 +38,7 @@ const Privacy: NextPage = () => {
       </Head>
 
       <SignUpLayout
+        title={t('title')}
         authWith={
           <AuthButtons
             title={{ google: t('auth.google'), twitter: t('auth.twitter'), github: t('auth.github') }}
