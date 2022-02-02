@@ -17,7 +17,15 @@ const GoogleProvider = new GoogleAuthProvider();
 const TwitterProvider = new TwitterAuthProvider();
 const GitHubProvider = new GithubAuthProvider();
 
-export const AuthButtons: VFC = () => {
+type AuthButtonsProps = {
+  title: {
+    google: string;
+    twitter: string;
+    github: string;
+  };
+};
+
+export const AuthButtons: VFC<AuthButtonsProps> = ({ title }) => {
   const router = useRouter();
   const [t] = useTranslation('signup');
 
@@ -51,7 +59,7 @@ export const AuthButtons: VFC = () => {
         }}
         className="!bg-white"
         icon={<GoogleIcon />}
-        title={t('auth.signup.google')}
+        title={title.google}
       />
       <AuthButton
         onClick={() => {
@@ -59,7 +67,7 @@ export const AuthButtons: VFC = () => {
         }}
         className="!bg-[#03A9F4] !text-white"
         icon={<TwitterIcon />}
-        title={t('auth.signup.twitter')}
+        title={title.twitter}
       />
       <AuthButton
         onClick={() => {
@@ -67,7 +75,7 @@ export const AuthButtons: VFC = () => {
         }}
         className="!bg-gray-700 !text-white"
         icon={<GitHubIcon />}
-        title={t('auth.signup.github')}
+        title={title.github}
       />
     </div>
   );

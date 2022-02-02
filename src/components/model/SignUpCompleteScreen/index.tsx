@@ -5,8 +5,8 @@ import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
+import { PasswordInput } from '@/components/ui/atoms/PasswordInput';
 import { WithLink } from '@/components/ui/WithLink';
 import { auth } from '@/features/firebase';
 
@@ -129,11 +129,7 @@ export const SignupCompleteScreen: FC = () => {
                 },
               ]}
             >
-              <Input.Password
-                iconRender={(visible) => {
-                  return visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />;
-                }}
-              />
+              <PasswordInput />
             </Form.Item>
             <SubmitButton isLoading={isSubmitting}> {t('require_password.submit')}</SubmitButton>
           </Form>

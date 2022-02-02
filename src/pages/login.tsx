@@ -7,14 +7,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
 
 import { useAuthContext } from '@/components/model/Context/AuthContext';
+import { LogInForm } from '@/components/model/LogInScreen/LogInForm';
 import { AuthButtons } from '@/components/model/SignUpScreen/AuthButtons';
-import { SignUpForm } from '@/components/model/SignUpScreen/SignUpForm';
 
 const Privacy: NextPage = () => {
   const router = useRouter();
   const { locale } = router;
   const { user } = useAuthContext();
-  const [t] = useTranslation('signup');
+  const [t] = useTranslation(['login', 'signup']);
   const title = `${t('title')} | Laze`;
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Privacy: NextPage = () => {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}signup`} />
+        <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}login`} />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'en'} />
       </Head>
@@ -43,10 +43,10 @@ const Privacy: NextPage = () => {
         <div className="flex flex-col items-center">
           <AuthButtons title={{ google: t('auth.google'), twitter: t('auth.twitter'), github: t('auth.github') }} />
 
-          <Divider>{t('or')}</Divider>
+          <Divider>{t('signup:or')}</Divider>
 
           <div className="!max-w-[30rem]">
-            <SignUpForm />
+            <LogInForm />
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ type contextType = {
 export const getStaticProps = async (context: contextType) => {
   return {
     props: {
-      ...(await serverSideTranslations(context.locale, ['common', 'signup', 'layout'])),
+      ...(await serverSideTranslations(context.locale, ['common', 'login', 'signup', 'layout'])),
     },
   };
 };

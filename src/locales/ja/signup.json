@@ -5,16 +5,9 @@
   "or": "または",
 
   "auth": {
-    "login": {
-      "google": "Googleでログイン",
-      "twitter": "Twitterでログイン",
-      "github": "GitHubでログイン"
-    },
-    "signup": {
-      "google": "Googleで新規登録",
-      "twitter": "Twitterで新規登録",
-      "github": "GitHubで新規登録"
-    }
+    "google": "Googleで新規登録",
+    "twitter": "Twitterで新規登録",
+    "github": "GitHubで新規登録"
   },
 
   "form": {

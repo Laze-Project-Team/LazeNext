@@ -1,0 +1,25 @@
+{
+  "title": "ログイン",
+  "description": "",
+
+  "auth": {
+    "google": "Googleでログイン",
+    "twitter": "Twitterでログイン",
+    "github": "GitHubでログイン"
+  },
+
+  "form": {
+    "label": {
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "submit": "ログイン"
+    },
+    "message": {
+      "email": "メールアドレスを入力してください",
+      "password": "パスワードを入力してください"
+    }
+  },
+
+
+  "error": {}
+}
