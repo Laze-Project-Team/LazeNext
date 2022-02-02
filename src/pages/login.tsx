@@ -61,7 +61,7 @@ type contextType = {
 export const getStaticProps = async (context: contextType) => {
   return {
     props: {
-      ...(await serverSideTranslations(context.locale, ['common', 'login', 'layout'])),
+      ...(await serverSideTranslations(context.locale, ['common', 'login', 'signup', 'layout'])),
     },
   };
 };
