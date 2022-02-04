@@ -22,7 +22,7 @@ const Privacy: NextPage = () => {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://laze.ddns.net/${locale + '/' ?? ''}privacy`} />
+        <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}privacy`} />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'en'} />
       </Head>

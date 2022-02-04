@@ -1,0 +1,35 @@
+{
+  "title": "ログイン",
+  "description": "",
+
+  "auth": {
+    "google": "Googleでログイン",
+    "twitter": "Twitterでログイン",
+    "github": "GitHubでログイン"
+  },
+
+  "form": {
+    "label": {
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "submit": "ログイン"
+    },
+    "message": {
+      "email": {
+        "required": "メールアドレスを入力してください",
+        "invalid": "メールアドレスの形式が正しくありません"
+      },
+      "password": "パスワードを入力してください"
+    }
+  },
+
+  "footer": "[アカウント登録](/signup)はこちら",
+
+  "error": {
+    "account-exists-with-different-credential": "そのアカウントは別の方法で登録されています。別の認証方法を選択してください。",
+    "user-not-found": "メールアドレスまたはパスワードが間違っています",
+    "wrong-password": "メールアドレスまたはパスワードが間違っています",
+    "too-many-requests": "リクエスト制限を受けています。しばらく時間をおいてから再度お試しください。",
+    "unknown": "ログインに失敗しました。時間をおいてもう一度試すが、別の方法でのログインをお試しください。"
+  }
+}

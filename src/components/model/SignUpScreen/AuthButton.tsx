@@ -1,0 +1,26 @@
+import { Button } from 'antd';
+import type { ReactNode, VFC } from 'react';
+
+import { cx } from '@/features/utils/cx';
+
+type AuthButtonProps = {
+  className?: string;
+  icon: ReactNode;
+  title: string;
+  onClick: () => void;
+};
+
+export const AuthButton: VFC<AuthButtonProps> = ({ icon, title, className, onClick }) => {
+  return (
+    <>
+      <Button
+        type="text"
+        icon={<div className="inline-block h-6 w-6">{icon}</div>}
+        className={cx('!flex items-center space-x-2 !border-gray-300  !p-4 hover:!opacity-80', className)}
+        onClick={onClick}
+      >
+        {title}
+      </Button>
+    </>
+  );
+};
