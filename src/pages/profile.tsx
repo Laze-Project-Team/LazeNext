@@ -1,4 +1,3 @@
-import { Avatar } from 'antd';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -8,8 +7,8 @@ import { useEffect, useMemo } from 'react';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { useAuthContext } from '@/components/model/Context/AuthContext';
-import { UserName } from '@/components/model/ProfileComponents/UserName';
 import { UserAvatar } from '@/components/model/Profiles/UserAvatar';
+import { UserName } from '@/components/model/Profiles/UserName';
 
 const Profile: NextPage = () => {
   const router = useRouter();
@@ -49,12 +48,8 @@ const Profile: NextPage = () => {
       <IndexLayout>
         <div className="flex">
           <div>
-            <div className="my-4">
-              <Avatar className="!h-[20vw] max-h-[12rem] !w-[20vw] max-w-[12rem]" icon={<UserAvatar />} />
-            </div>
-            <div>
-              <UserName />
-            </div>
+            <UserAvatar />
+            <UserName />
           </div>
         </div>
       </IndexLayout>
