@@ -16,7 +16,7 @@ export const UserAvatar: VFC = () => {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={user.photoURL}
-            alt={t('profile.avatar')}
+            alt={t('profile.avatar.title')}
             className="h-full w-full select-none rounded-[50%] bg-white"
           />
         ) : (
