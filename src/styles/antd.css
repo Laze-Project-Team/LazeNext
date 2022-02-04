@@ -75,6 +75,11 @@ html.dark {
   align-items: center;
 }
 
+/* ドロワー */
+.ant-drawer-content-wrapper {
+  max-width: 100vw;
+}
+
 /* アバターのスケルトン */
 .ant-skeleton .ant-skeleton-avatar {
   width: 100%;

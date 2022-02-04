@@ -62,9 +62,15 @@ const Home: NextPage = () => {
         <h1 className="hidden">{t('title')}</h1>
         <Typography.Text className="block !text-8xl font-semibold">Laze</Typography.Text>
         <Typography.Text className="mt-4 block text-xl">{t('common:motto')}</Typography.Text>
-        <Button type="primary" size="large" className="mt-8 ml-4 mb-8">
+        <Button type="primary" size="large" className="mt-8 ml-4 mb-4">
           <Link href="/editor">{t('Try Laze')}</Link>
         </Button>
+        <StyledLink
+          className="ml-4 mb-8 inline-block text-lg"
+          href={locale === 'en' ? 'https://forms.gle/FH4XYbnvgSMTEyX66' : 'https://forms.gle/arQwxAY8NuuT1zfi8'}
+        >
+          {t('requests')}
+        </StyledLink>
 
         <SectionContainer className="bg-[#2b5b84]">
           <SectionTitle className="border-[#1e405e] !text-whitesmoke">{t('Laze Features')}</SectionTitle>

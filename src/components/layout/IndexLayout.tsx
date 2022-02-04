@@ -64,13 +64,14 @@ const IndexHeader: VFC = () => {
         <div className="inline-flex cursor-pointer px-4 py-4 transition-colors duration-200 hover:bg-white/10">
           <Link href="/" passHref>
             <div className="inline-flex">
-              <LazeLogo size={32}></LazeLogo>
+              <LazeLogo size={32} />
               <Typography.Text className="ml-2 select-none text-2xl font-bold !text-laze-primary">Laze</Typography.Text>
             </div>
           </Link>
         </div>
         {media && media === QUERY_SM_DOWN ? (
           <div className="ml-auto flex items-center">
+            <ChangeLanguage />
             <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
               <AiOutlineMenu size="1.4rem" />
             </Button>
@@ -220,11 +221,11 @@ const IndexLayout: FC<IndexLayoutProps> = ({ children }) => {
     <>
       <Layout className="flex !min-h-screen flex-col overflow-x-hidden">
         <Layout.Header className="z-[1] w-full !px-2">
-          <IndexHeader></IndexHeader>
+          <IndexHeader />
         </Layout.Header>
         <Layout.Content className="mx-auto w-[60rem] max-w-full flex-1 px-4 pt-4">{children}</Layout.Content>
         <Layout.Footer className="!bg-[#333344]">
-          <IndexFooter></IndexFooter>
+          <IndexFooter />
         </Layout.Footer>
       </Layout>
     </>

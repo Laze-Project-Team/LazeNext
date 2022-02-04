@@ -96,7 +96,7 @@ const BrandColor: FC<BrandColorProps> = ({ title, hex, rgb, cmyk }) => {
   return (
     <>
       <div className="flex items-center space-x-8">
-        <div className="h-20 w-40" style={{ backgroundColor: hex }}></div>
+        <div className="h-20 w-40" style={{ backgroundColor: hex }} />
         <div>
           <H4 className="mb-4 border-b-[1px] border-gray-400 px-2 pb-1">{title}</H4>
           <P>

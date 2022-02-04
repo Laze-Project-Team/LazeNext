@@ -47,10 +47,11 @@ const Editor: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      return reflectSizeToCanvas(ratioRef);
-    });
-  }, []);
+    window.addEventListener('resize', handleResize, false);
+    return () => {
+      return window.removeEventListener('resize', handleResize, false);
+    };
+  }, [handleResize]);
 
   return (
     <>
