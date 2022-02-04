@@ -18,57 +18,60 @@ export const UserName: FC = () => {
   return (
     <>
       {user ? (
-        <p className="text-xl text-gray-700">
-          {isEditting ? (
-            <Input.Search
-              placeholder={t('profile.displayName.placeholder')}
-              enterButton={isLoading || <AiOutlineCheck title={t('profile.displayName.submit')} />}
-              allowClear
-              loading={isLoading}
-              defaultValue={user.displayName ?? undefined}
-              onSearch={(value) => {
-                if (value.length === 0) {
-                  setIsEditting(false);
-                  return;
-                }
-
-                if (value.length > 32) {
-                  message.error(t('profile.displayName.validation.max'));
-                  setIsLoading(false);
-                  return;
-                }
-
-                setIsLoading(true);
-                updateProfile(user, {
-                  displayName: value,
-                })
-                  .then(() => {
-                    return auth.updateCurrentUser(user);
-                  })
-                  .then(() => {
+        <>
+          <p className="mb-1 text-sm text-gray-500">{t('profile.displayName.label')}</p>
+          <p>
+            {isEditting ? (
+              <Input.Search
+                placeholder={t('profile.displayName.placeholder')}
+                enterButton={isLoading || <AiOutlineCheck title={t('profile.displayName.submit')} />}
+                allowClear
+                loading={isLoading}
+                defaultValue={user.displayName ?? undefined}
+                onSearch={(value) => {
+                  if (value.length === 0) {
                     setIsEditting(false);
+                    return;
+                  }
+
+                  if (value.length > 32) {
+                    message.error(t('profile.displayName.validation.max'));
+                    setIsLoading(false);
+                    return;
+                  }
+
+                  setIsLoading(true);
+                  updateProfile(user, {
+                    displayName: value,
                   })
-                  .catch(() => {
-                    setIsEditting(false);
-                    message.error(t('profile.displayName.error'), 3);
-                  });
-              }}
-            />
-          ) : (
-            <>
-              <span className="text-lg">{user.displayName ?? t('profile.displayName.undefined')}</span>
-              <Button
-                type="text"
-                icon={<AiOutlineEdit />}
-                title={t('profile.displayName.edit')}
-                onClick={() => {
-                  setIsEditting(true);
-                  setIsLoading(false);
+                    .then(() => {
+                      return auth.updateCurrentUser(user);
+                    })
+                    .then(() => {
+                      setIsEditting(false);
+                    })
+                    .catch(() => {
+                      setIsEditting(false);
+                      message.error(t('profile.displayName.error'), 3);
+                    });
                 }}
               />
-            </>
-          )}
-        </p>
+            ) : (
+              <>
+                <span className="text-lg text-gray-700">{user.displayName ?? t('profile.displayName.undefined')}</span>
+                <Button
+                  type="text"
+                  icon={<AiOutlineEdit />}
+                  title={t('profile.displayName.edit')}
+                  onClick={() => {
+                    setIsEditting(true);
+                    setIsLoading(false);
+                  }}
+                />
+              </>
+            )}
+          </p>
+        </>
       ) : (
         <Skeleton active />
       )}
