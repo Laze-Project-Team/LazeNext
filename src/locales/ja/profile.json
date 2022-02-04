@@ -3,6 +3,21 @@
   "description": "",
 
   "profile": {
-    "avatar": "アバター画像"
-  }
+    "avatar": {
+      "title": "アバター画像",
+      "edit": "アバター画像をアップロード"
+    },
+    "displayName": {
+      "undefined": "ユーザー名未設定",
+      "edit": "ユーザー名を編集",
+      "submit": "ユーザー名を更新",
+      "placeholder": "ユーザー名を入力",
+      "validation": {
+        "max": "ユーザー名は32文字以下である必要があります"
+      },
+      "error": "ユーザー名の変更に失敗しました"
+    }
+  },
+
+  "undefined": {}
 }

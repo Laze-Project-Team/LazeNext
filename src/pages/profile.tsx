@@ -1,4 +1,4 @@
-import { Avatar, Skeleton } from 'antd';
+import { Avatar } from 'antd';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -8,6 +8,7 @@ import { useEffect, useMemo } from 'react';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { useAuthContext } from '@/components/model/Context/AuthContext';
+import { UserName } from '@/components/model/ProfileComponents/UserName';
 import { UserAvatar } from '@/components/model/Profiles/UserAvatar';
 
 const Profile: NextPage = () => {
@@ -19,7 +20,7 @@ const Profile: NextPage = () => {
 
   const title = useMemo(() => {
     if (user) {
-      return `${t('title', { name: user?.displayName })} | Laze`;
+      return `${t('title', { name: user?.displayName ?? t('profile.displayName.undefined') })} | Laze`;
     } else {
       return `${t('loading')} | Laze`;
     }
@@ -51,7 +52,9 @@ const Profile: NextPage = () => {
             <div className="my-4">
               <Avatar className="!h-[20vw] max-h-[12rem] !w-[20vw] max-w-[12rem]" icon={<UserAvatar />} />
             </div>
-            <div>{user ? <p className="text-xl">{user.displayName}</p> : <Skeleton active />}</div>
+            <div>
+              <UserName />
+            </div>
           </div>
         </div>
       </IndexLayout>
