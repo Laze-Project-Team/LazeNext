@@ -25,11 +25,15 @@ export const AuthProvider: FC = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribed = auth.onAuthStateChanged((user) => {
+    const unsubscribeToken = auth.onIdTokenChanged((user) => {
+      setUser(user);
+    });
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
       setUser(user);
     });
     return () => {
-      unsubscribed();
+      unsubscribeToken();
+      unsubscribeAuth();
     };
   }, []);
 
