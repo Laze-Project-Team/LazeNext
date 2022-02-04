@@ -46,11 +46,9 @@ const Profile: NextPage = () => {
       </Head>
 
       <IndexLayout>
-        <div className="flex">
-          <div>
-            <UserAvatar />
-            <UserName />
-          </div>
+        <div className="flex flex-row space-x-4 xs:flex-col xs:space-x-0 xs:space-y-4">
+          <UserAvatar />
+          <UserName />
         </div>
       </IndexLayout>
     </>

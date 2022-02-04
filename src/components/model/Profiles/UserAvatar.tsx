@@ -26,7 +26,7 @@ export const UserAvatar: VFC = () => {
 
   return (
     <>
-      <div className="relative my-4 max-w-[12rem]">
+      <div className="relative !h-[max(20vw,4rem)] max-h-[12rem] !w-[max(20vw,4rem)] max-w-[12rem]">
         <Avatar
           className="!h-[max(20vw,4rem)] max-h-[12rem] !w-[max(20vw,4rem)] max-w-[12rem]"
           icon={<UserAvatarIcon />}

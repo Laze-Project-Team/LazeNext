@@ -18,9 +18,9 @@ export const UserName: FC = () => {
   return (
     <>
       {user ? (
-        <>
+        <div className="flex flex-col justify-center">
           <p className="mb-1 text-sm text-gray-500">{t('profile.displayName.label')}</p>
-          <p>
+          <p className="mb-0">
             {isEditting ? (
               <Input.Search
                 placeholder={t('profile.displayName.placeholder')}
@@ -71,7 +71,7 @@ export const UserName: FC = () => {
               </>
             )}
           </p>
-        </>
+        </div>
       ) : (
         <Skeleton active />
       )}
