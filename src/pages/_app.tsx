@@ -23,6 +23,7 @@ import { Provider } from 'react-redux';
 import type { GoogleTagManagerId } from '@/components/functional/GoogleTagManager';
 import { GoogleTagManager, googleTagManagerId } from '@/components/functional/GoogleTagManager';
 import { ColorMode } from '@/components/layout/ColorMode';
+import { AuthProvider } from '@/components/model/Context/AuthContext';
 import { store } from '@/features/redux/root';
 
 nprogress.configure({ showSpinner: false, speed: 400, minimum: 0.25 });
@@ -62,7 +63,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <colorModeContext.Provider value={[colorMode, setColorMode]}>
         <ColorMode colorMode={colorMode}>
           <Provider store={store}>
-            <Component {...pageProps} />
+            <AuthProvider>
+              <Component {...pageProps} />
+            </AuthProvider>
           </Provider>
         </ColorMode>
       </colorModeContext.Provider>

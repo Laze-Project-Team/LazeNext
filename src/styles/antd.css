@@ -79,3 +79,9 @@ html.dark {
 .ant-drawer-content-wrapper {
   max-width: 100vw;
 }
+
+/* アバターのスケルトン */
+.ant-skeleton .ant-skeleton-avatar {
+  width: 100%;
+  height: 100%;
+}

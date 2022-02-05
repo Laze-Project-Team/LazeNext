@@ -24,7 +24,7 @@ const GuideLine: NextPage = () => {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://laze.ddns.net/${locale + '/' ?? ''}guideline`} />
+        <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}guideline`} />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'en'} />
       </Head>

@@ -47,10 +47,11 @@ const Editor: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      return reflectSizeToCanvas(ratioRef);
-    });
-  }, []);
+    window.addEventListener('resize', handleResize, false);
+    return () => {
+      return window.removeEventListener('resize', handleResize, false);
+    };
+  }, [handleResize]);
 
   return (
     <>
@@ -63,7 +64,7 @@ const Editor: NextPage = () => {
             <meta property="og:title" content={title} />
             <meta property="og:description" content={t('description')} />
             <meta property="og:type" content="article" />
-            <meta property="og:url" content={`https://laze.ddns.net/${locale + '/' ?? ''}editor`} />
+            <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}editor`} />
             <meta property="og:site_name" content={title} />
             <meta property="og:locale" content={locale ?? 'en'} />
           </Head>
