@@ -3669,12 +3669,7 @@ mylas@^2.1.6:
   resolved "https://registry.yarnpkg.com/mylas/-/mylas-2.1.7.tgz#b287e9a6d4b9b0c46dc223cfdd17d0d1675c76d5"
   integrity sha512-bSsErQQnYdNE/qa0u2WBjZbTgngELOPgfEs+pgHEsHPNHo/CfVg2cZyc3VcCWtgEcdgxpa+IYec1ah04FlW3Gw==
 
-nanoid@^3.1.23:
-  version "3.1.30"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.1.30.tgz"
-  integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
-
-nanoid@^3.1.30:
+nanoid@^3.1.23, nanoid@^3.1.30:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.2.0.tgz#62667522da6673971cca916a6d3eff3f415ff80c"
   integrity sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==
