@@ -1,5 +1,9 @@
 /* eslint-disable no-console */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const appInsights = require('applicationinsights');
+
 import compression from 'compression';
+import dotenv from 'dotenv';
 import express from 'express';
 import fs from 'fs';
 import http from 'http';
@@ -7,6 +11,11 @@ import https from 'https';
 import next from 'next';
 
 import { clean } from './clean';
+
+dotenv.config();
+if (process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
+  appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING).start();
+}
 
 const CERT_DIR = process.env.CERT_DIR ?? './certs';
 const PORT = parseInt(process.env.PORT ?? '', 10) || 3000;

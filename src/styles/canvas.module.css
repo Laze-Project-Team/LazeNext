@@ -1,0 +1,18 @@
+.canvas {
+  animation: canvas-animation 0.01s forwards;
+}
+
+@keyframes canvas-animation {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  99% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -107,7 +107,7 @@ export const SamplesButton: FC = () => {
     <>
       {isLoading && (
         <Portal>
-          <div className="fixed top-0 bottom-4 left-0 right-0 flex justify-center items-center bg-black/40">
+          <div className="fixed top-0 bottom-4 left-0 right-0 flex items-center justify-center bg-black/40">
             <Spin className="text-6xl">
               <VscLoading className="text-gray-100" />
             </Spin>
@@ -131,7 +131,7 @@ export const SamplesButton: FC = () => {
 
           if (Object.keys(sampleList).length === 0) {
             return (
-              <div className="h-20 flex justify-center items-center">
+              <div className="flex h-20 items-center justify-center">
                 <Spin className="text-3xl">
                   <VscLoading />
                 </Spin>

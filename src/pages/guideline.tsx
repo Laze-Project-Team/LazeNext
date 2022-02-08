@@ -24,7 +24,7 @@ const GuideLine: NextPage = () => {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://laze.ddns.net/${locale + '/' ?? ''}guideline`} />
+        <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}guideline`} />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'en'} />
       </Head>
@@ -48,14 +48,14 @@ const GuideLine: NextPage = () => {
 
         <H3>{t('LogoGuideline.LogoKinds.title')}</H3>
         <P>{t('LogoGuideline.LogoKinds.description')}</P>
-        <div className="flex flex-wrap mb-8">
+        <div className="mb-8 flex flex-wrap">
           <LazeLogo size={160} option="logo" />
           <LazeLogo size={160} option="logo_caption" />
         </div>
 
         <H3>{t('LogoGuideline.BrandColor.title')}</H3>
         <P>{t('LogoGuideline.BrandColor.description')}</P>
-        <div className="flex flex-wrap space-x-8 mb-8">
+        <div className="mb-8 flex flex-wrap space-x-8">
           <BrandColor
             title={t('LogoGuideline.BrandColor.main')}
             hex="#EBA059"
@@ -96,9 +96,9 @@ const BrandColor: FC<BrandColorProps> = ({ title, hex, rgb, cmyk }) => {
   return (
     <>
       <div className="flex items-center space-x-8">
-        <div className="w-40 h-20" style={{ backgroundColor: hex }}></div>
+        <div className="h-20 w-40" style={{ backgroundColor: hex }} />
         <div>
-          <H4 className="pb-1 mb-4 border-b-[1px] border-gray-400 px-2">{title}</H4>
+          <H4 className="mb-4 border-b-[1px] border-gray-400 px-2 pb-1">{title}</H4>
           <P>
             <strong>HEX</strong> ― {hex}
           </P>

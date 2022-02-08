@@ -47,10 +47,11 @@ const Editor: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      return reflectSizeToCanvas(ratioRef);
-    });
-  }, []);
+    window.addEventListener('resize', handleResize, false);
+    return () => {
+      return window.removeEventListener('resize', handleResize, false);
+    };
+  }, [handleResize]);
 
   return (
     <>
@@ -63,13 +64,13 @@ const Editor: NextPage = () => {
             <meta property="og:title" content={title} />
             <meta property="og:description" content={t('description')} />
             <meta property="og:type" content="article" />
-            <meta property="og:url" content={`https://laze.ddns.net/${locale + '/' ?? ''}editor`} />
+            <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}editor`} />
             <meta property="og:site_name" content={title} />
             <meta property="og:locale" content={locale ?? 'en'} />
           </Head>
 
-          <div className="flex flex-col w-screen h-screen overflow-hidden dark:bg-background dark:text-[#ccc] text-[0.9rem]">
-            <div className="flex-1 min-h-0">
+          <div className="flex h-screen w-screen flex-col overflow-hidden text-[0.9rem] dark:bg-background dark:text-[#ccc]">
+            <div className="min-h-0 flex-1">
               <SplitPane
                 split="horizontal"
                 primary="second"
@@ -89,7 +90,7 @@ const Editor: NextPage = () => {
                   <div className="h-full">
                     <Explorer />
                   </div> */}
-                <div className="h-full flex-1 flex flex-col">
+                <div className="flex h-full flex-1 flex-col">
                   <div className="h-7">
                     <EditorButtons />
                   </div>
@@ -99,7 +100,7 @@ const Editor: NextPage = () => {
                 </div>
                 {/* </SplitPane> */}
 
-                <div className="w-full h-full">
+                <div className="h-full w-full">
                   <WorkBench />
                 </div>
               </SplitPane>

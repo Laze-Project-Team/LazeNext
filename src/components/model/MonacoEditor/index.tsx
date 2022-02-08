@@ -109,7 +109,7 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
       {current ? (
         <></>
       ) : (
-        <div className="h-full flex flex-col space-y-2 justify-center items-center dark:bg-editor dark:text-[#888] text-[#777]">
+        <div className="flex h-full flex-col items-center justify-center space-y-2 text-[#777] dark:bg-editor dark:text-[#888]">
           <LazeLogo size={100} option="logo_gray" />
           <p>{t('messages.FileIsNotOpened.1')}</p>
           <p>{t('messages.FileIsNotOpened.2')}</p>

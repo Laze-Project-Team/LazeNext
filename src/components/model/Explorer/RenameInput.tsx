@@ -143,14 +143,14 @@ export const RenameInput: VFC<RenameInputProps> = ({ inputRef, item }) => {
           tabIndex={0}
           className={cx(
             'rct-tree-item-renaming-input bg-none',
-            warn && '!border-[1px] !border-[#be1100] !border-solid'
+            warn && '!border-[1px] !border-solid !border-[#be1100]'
           )}
         />
         {warn &&
           tree &&
           ReactDOM.createPortal(
             <div
-              className="absolute z-20 text-xs p-[0.1rem] text-[#ccc] bg-[#5a1d1d] border-[1px] border-[#be1100]"
+              className="absolute z-20 border-[1px] border-[#be1100] bg-[#5a1d1d] p-[0.1rem] text-xs text-[#ccc]"
               style={{
                 top: `${top}px`,
                 left: `${left}px`,
