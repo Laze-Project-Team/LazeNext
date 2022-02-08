@@ -147,9 +147,10 @@
 型 < T > : クラス : ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}$ {
 公開 : 	content という * T を おく 。 
 	size という 整数 を おく 。 
+	allocated という 整数 を おく 。 
 	関数 配列 を おく 。 ここから
 		size に 0 を 代入する 。 
-		allocated に 2 を 代入する 。 
+		allocated に 4 を 代入する 。 
 		content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * allocated ) を 代入する 。 
 	ここまで実行 
 	( index という 整数 ) を とり ( result という T ) を 返す ${"ja":"取得", "natja":"取得", "en":"get", "naten":"get"}$ という 関数 を おく 。 ここから
@@ -160,7 +161,7 @@
 			allocated に allocated  * 2 を 代入する 。 
 			temp という * T を content で 初期化 。 
 			content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * allocated ) を 代入する 。 
-			( i という 整数 を 0 で 初期化 。 ) から ( i  は allocated ) まで ( i に i  + 1 を 代入する 。 ) 繰り返し ここから
+			( i という 整数 を 0 で 初期化 。 ) から ( i  は ( allocated  - 1 ) ) まで ( i に i  + 1 を 代入する 。 ) 繰り返し ここから
 				content [ i ] に temp [ i ] を 代入する 。 
 			ここまで実行 
 		ここまで実行 
@@ -177,7 +178,197 @@
 		content に offset を 代入する 。 
 		size に l を 代入する 。 
 	ここまで実行 
-非公開 : 	allocated という 整数 を おく 。 
+	関数 : 演算子 = ( a という 配列 < T > ) => ( ) ここから
+		content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * ( a の allocated ) ) を 代入する 。 
+		size に a の size を 代入する 。 
+		allocated に a の allocated を 代入する 。 
+		size 回繰り返す ここから
+			content [ カウンタ ] に a の content [ カウンタ ] を 代入する 。 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  は ( a という 配列 < T > ) => ( b という 真偽 ) ここから
+		b に 真 を 代入する 。 
+		もし size  != a の size ならば ここから
+			偽 を 終了 。 
+		ここまで実行 
+		size 回繰り返す ここから
+			もし content [ カウンタ ]  != a の content [ カウンタ ] ならば ここから
+				偽 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  は ( offset という * T , l という 整数 ) => ( b という 真偽 ) ここから
+		b に 真 を 代入する 。 
+		もし size  != l ならば ここから
+			偽 を 終了 。 
+		ここまで実行 
+		size 回繰り返す ここから
+			もし content [ カウンタ ]  != offset [ カウンタ ] ならば ここから
+				偽 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  != ( a という 配列 < T > ) => ( b という 真偽 ) ここから
+		b に 偽 を 代入する 。 
+		もし size  != a の size ならば ここから
+			真 を 終了 。 
+		ここまで実行 
+		size 回繰り返す ここから
+			もし content [ カウンタ ]  != a の content [ カウンタ ] ならば ここから
+				真 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  != ( offset という * T , l という 整数 ) => ( b という 真偽 ) ここから
+		b に 偽 を 代入する 。 
+		もし size  != l ならば ここから
+			真 を 終了 。 
+		ここまで実行 
+		size 回繰り返す ここから
+			もし content [ カウンタ ]  != offset [ カウンタ ] ならば ここから
+				真 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  + ( a という 配列 < T > ) => ( b という 配列 < T > ) ここから
+		結果 という 配列 < T > を おく 。 
+		size 回繰り返す ここから
+			content [ カウンタ ] 結果 の 追加 する 。 
+		ここまで実行 
+		a の size 回繰り返す ここから
+			a の 取得 ( カウンタ ) 結果 の 追加 する 。 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	関数 : 演算子  + ( offset という * T , l という 整数 ) => ( b という 配列 < T > ) ここから
+		結果 という 配列 < T > を おく 。 
+		size 回繰り返す ここから
+			content [ カウンタ ] 結果 の 追加 する 。 
+		ここまで実行 
+		l 回繰り返す ここから
+			offset [ カウンタ ] 結果 の 追加 する 。 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	( c という 関数 : ( a という T ) => ( ) ) を とり ${"ja":"全要素操作", "natja":"全要素操作", "en":"forEach", "naten":"forEach"}$ という 関数 を おく 。 ここから
+		size 回繰り返す ここから
+			content [ カウンタ ] c する 。 
+		ここまで実行 
+	ここまで実行 
+	( c という 関数 : ( a という T ) => ( b という T ) ) を とり ${"ja":"全要素変更", "natja":"全要素変更", "en":"map", "naten":"map"}$ という 関数 を おく 。 ここから
+		結果 という 配列 < T > を おく 。 
+		結果 の content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * ( allocated ) ) を 代入する 。 
+		結果 の size に size を 代入する 。 
+		結果 の allocated に allocated を 代入する 。 
+		size 回繰り返す ここから
+			結果 の content [ カウンタ ] に c ( content [ カウンタ ] ) を 代入する 。 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	( s という 整数 , e という 整数 , c という 関数 : ( a という T , b という T ) => ( r という 整数 ) ) を とり __ソート という 関数 を おく 。 ここから
+		もし s  < e ならば ここから
+			loc という 整数 を e で 初期化 。 
+			pivot という T を content [ loc ] で 初期化 。 
+			i という 整数 を s  - 1 で 初期化 。 
+			l という 整数 を e  - s で 初期化 。 
+			l 回繰り返す ここから
+				もし c ( content [ カウンタ  + s ] , pivot )  < 0 ならば ここから
+					i に i  + 1 を 代入する 。 
+					temp という T を content [ カウンタ  + s ] で 初期化 。 
+					content [ カウンタ  + s ] に content [ i ] を 代入する 。 
+					content [ i ] に temp を 代入する 。 
+				ここまで実行 
+			ここまで実行 
+			temp という T を content [ loc ] で 初期化 。 
+			content [ loc ] に content [ i  + 1 ] を 代入する 。 
+			content [ i  + 1 ] に temp を 代入する 。 
+			s , i , c __ソート する 。 
+			i  + 2 , e , c __ソート する 。 
+		ここまで実行 
+	ここまで実行 
+	( c という 関数 : ( a という T , b という T ) => ( r という 整数 ) ) を とり ${"ja":"ソート", "natja":"ソート", "en":"sort", "naten":"sort"}$ という 関数 を おく 。 ここから
+		0 , size  - 1 , c __ソート する 。 
+	ここまで実行 
+	( c という 関数 : ( a という T ) => ( r という 真偽 ) ) を とり ( b という 配列 < T > ) を 返す ${"ja":"フィルター", "natja":"フィルター", "en":"filter", "naten":"filter"}$ という 関数 を おく 。 ここから
+		結果 という 配列 < T > を おく 。 
+		size 回繰り返す ここから
+			もし c ( content [ カウンタ ] ) ならば ここから
+				content [ カウンタ ] 結果 の 追加 する 。 
+			ここまで実行 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	( i という 整数 ) を とり ( b という 配列 < T > ) を 返す ${"ja":"削除", "natja":"削除", "en":"remove", "naten":"remove"}$ という 関数 を おく 。 ここから
+		結果 という 配列 < T > を おく 。 
+		size 回繰り返す ここから
+			もし カウンタ  != i ならば ここから
+				content [ カウンタ ] 結果 の 追加 する 。 
+			ここまで実行 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	( i という 整数 , r という 整数 ) を とり ( b という 配列 < T > ) を 返す ${"ja":"範囲削除", "natja":"範囲削除", "en":"removeRange", "naten":"removeRange"}$ という 関数 を おく 。 ここから
+		結果 という 配列 < T > を おく 。 
+		size 回繰り返す ここから
+			もし ( カウンタ  < i )  || ( カウンタ  >= ( i  + r ) ) ならば ここから
+				content [ カウンタ ] 結果 の 追加 する 。 
+			ここまで実行 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	( s という 整数 , e という 整数 ) を とり ( b という 配列 < T > ) を 返す ${"ja":"部分列", "natja":"部分列", "en":"subseq", "naten":"subseq"}$ という 関数 を おく 。 ここから
+		結果 という 配列 < T > を おく 。 
+		もし s  >= e ならば ここから
+			結果 を 終了 。 
+		ここまで実行 
+		size 回繰り返す ここから
+			もし ( s  <= カウンタ )  && ( カウンタ  < e ) ならば ここから
+				content [ カウンタ ] 結果 の 追加 する 。 
+			ここまで実行 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	( s という 整数 , l という 整数 ) を とり ( b という 配列 < T > ) を 返す ${"ja":"範囲部分列", "natja":"範囲部分列", "en":"subseqRange", "naten":"subseqRange"}$ という 関数 を おく 。 ここから
+		結果 という 配列 < T > を おく 。 
+		もし s  >= size ならば ここから
+			結果 を 終了 。 
+		ここまで実行 
+		size 回繰り返す ここから
+			もし ( s  <= カウンタ )  && ( カウンタ  < ( s  + l ) ) ならば ここから
+				content [ カウンタ ] 結果 の 追加 する 。 
+			ここまで実行 
+		ここまで実行 
+		結果 を 終了 。 
+	ここまで実行 
+	( a という T , b という T ) を とり ${"ja":"置換", "natja":"置換", "en":"replace", "naten":"replace"}$ という 関数 を おく 。 ここから
+		size 回繰り返す ここから
+			もし content [ カウンタ ]  は a ならば ここから
+				content [ カウンタ ] に b を 代入する 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	( s という 整数 , l という 整数 , a という T ) を とり ${"ja":"範囲置換", "natja":"範囲置換", "en":"replaceRange", "naten":"replaceRange"}$ という 関数 を おく 。 ここから
+		size 回繰り返す ここから
+			もし ( s  <= カウンタ )  && ( カウンタ  < ( s  + l ) ) ならば ここから
+				content [ カウンタ ] に a を 代入する 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	( s という 整数 , l という 整数 , a という 配列 < T > ) を とり ${"ja":"範囲置換", "natja":"範囲置換", "en":"replaceRange", "naten":"replaceRange"}$ という 関数 を おく 。 ここから
+		size 回繰り返す ここから
+			もし ( s  <= カウンタ )  && ( カウンタ  < ( s  + l ) ) ならば ここから
+				content [ カウンタ ] に a の content [ カウンタ  - s ] を 代入する 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	( b という T ) を とり ( i という 整数 ) を 返す ${"ja":"探索", "natja":"探索", "en":"find", "naten":"find"}$ という 関数 を おく 。 ここから
+		size 回繰り返す ここから
+			もし content [ カウンタ ]  は b ならば ここから
+				カウンタ を 終了 。 
+			ここまで実行 
+		ここまで実行 
+		size を 終了 。 
+	ここまで実行 
 } 
 クラス : ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}$ {
 公開 : 	content という * 文字 を おく 。 
@@ -186,9 +377,198 @@
 		content に offset を 代入する 。 
 		長さ に l を 代入する 。 
 	ここまで実行 
+	関数 文字列 を おく 。 ここから
+		content に メモリ確保 ( 0 ) を 代入する 。 
+		長さ に 0 を 代入する 。 
+	ここまで実行 
 	関数 : 演算子 = ( offset という * 文字 , l という 整数 ) => ( ) ここから
 		content に offset を 代入する 。 
 		長さ に l を 代入する 。 
+	ここまで実行 
+	関数 : 演算子 = ( a という 文字列 ) => ( ) ここから
+		content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * ( a の 長さ ) ) を 代入する 。 
+		長さ に a の 長さ を 代入する 。 
+		長さ 回繰り返す ここから
+			content [ カウンタ ] に a の content [ カウンタ ] を 代入する 。 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  + ( a という 文字 ) => ( b という 文字列 ) ここから
+		b の content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * ( 長さ  + 1 ) ) を 代入する 。 
+		長さ 回繰り返す ここから
+			b の content [ カウンタ ] に content [ カウンタ ] を 代入する 。 
+		ここまで実行 
+		b の content [ 長さ ] に a を 代入する 。 
+		b の 長さ に 長さ  + 1 を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  + ( offset という * 文字 , l という 整数 ) => ( b という 文字列 ) ここから
+		b の content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * ( 長さ  + l ) ) を 代入する 。 
+		長さ 回繰り返す ここから
+			b の content [ カウンタ ] に content [ カウンタ ] を 代入する 。 
+		ここまで実行 
+		l 回繰り返す ここから
+			b の content [ 長さ  + カウンタ ] に offset [ カウンタ ] を 代入する 。 
+		ここまで実行 
+		b の 長さ に 長さ  + l を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  + ( a という 文字列 ) => ( b という 文字列 ) ここから
+		b の content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * ( 長さ  + a の 長さ ) ) を 代入する 。 
+		長さ 回繰り返す ここから
+			b の content [ カウンタ ] に content [ カウンタ ] を 代入する 。 
+		ここまで実行 
+		a の 長さ 回繰り返す ここから
+			b の content [ 長さ  + カウンタ ] に a の content [ カウンタ ] を 代入する 。 
+		ここまで実行 
+		b の 長さ に 長さ  + a の 長さ を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  は ( a という 文字列 ) => ( b という 真偽 ) ここから
+		b に 真 を 代入する 。 
+		もし 長さ  != a の 長さ ならば ここから
+			偽 を 終了 。 
+		ここまで実行 
+		長さ 回繰り返す ここから
+			もし content [ カウンタ ]  != a の content [ カウンタ ] ならば ここから
+				偽 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  は ( offset という * 文字 , l という 整数 ) => ( b という 真偽 ) ここから
+		b に 真 を 代入する 。 
+		もし 長さ  != l ならば ここから
+			偽 を 終了 。 
+		ここまで実行 
+		長さ 回繰り返す ここから
+			もし content [ カウンタ ]  != offset [ カウンタ ] ならば ここから
+				偽 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  != ( a という 文字列 ) => ( b という 真偽 ) ここから
+		b に 偽 を 代入する 。 
+		もし 長さ  != a の 長さ ならば ここから
+			真 を 終了 。 
+		ここまで実行 
+		長さ 回繰り返す ここから
+			もし content [ カウンタ ]  != a の content [ カウンタ ] ならば ここから
+				真 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	関数 : 演算子  != ( offset という * 文字 , l という 整数 ) => ( b という 真偽 ) ここから
+		b に 偽 を 代入する 。 
+		もし 長さ  != l ならば ここから
+			真 を 終了 。 
+		ここまで実行 
+		長さ 回繰り返す ここから
+			もし content [ カウンタ ]  != offset [ カウンタ ] ならば ここから
+				真 を 終了 。 
+			ここまで実行 
+		ここまで実行 
+	ここまで実行 
+	( s という 整数 , e という 整数 ) を とり ( b という 文字列 ) を 返す ${"ja":"切り取り", "natja":"切り取り", "en":"substr", "naten":"substr"}$ という 関数 を おく 。 ここから
+		もし s  > 長さ ならば ここから
+			s に 長さ を 代入する 。 
+		ここまで実行 
+		もし e  > 長さ ならば ここから
+			e に 長さ を 代入する 。 
+		ここまで実行 
+		b の content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * ( e  - s ) ) を 代入する 。 
+		b の 長さ に e  - s を 代入する 。 
+		( i という 整数 を s で 初期化 。 ) から ( i  は e ) まで ( i に i  + 1 を 代入する 。 ) 繰り返し ここから
+			b の content [ i  - s ] に content [ i ] を 代入する 。 
+		ここまで実行 
+	ここまで実行 
+	( s という 整数 , l という 整数 ) を とり ( b という 文字列 ) を 返す ${"ja":"範囲切り取り", "natja":"範囲切り取り", "en":"substrRange", "naten":"substrRange"}$ という 関数 を おく 。 ここから
+		もし s  > 長さ ならば ここから
+			s に 長さ を 代入する 。 
+		ここまで実行 
+		もし s  + l  > 長さ ならば ここから
+			l に 長さ  - s を 代入する 。 
+		ここまで実行 
+		b の content に メモリ確保 ( バイト数 ( content に ある オブジェクト )  * l ) を 代入する 。 
+		b の 長さ に l を 代入する 。 
+		( i という 整数 を s で 初期化 。 ) から ( i  は ( s  + l ) ) まで ( i に i  + 1 を 代入する 。 ) 繰り返し ここから
+			b の content [ i  - s ] に content [ i ] を 代入する 。 
+		ここまで実行 
+	ここまで実行 
+	( a という 文字 ) を とり ( b という 配列 < 文字列 > ) を 返す ${"ja":"分割", "natja":"分割", "en":"separate", "naten":"separate"}$ という 関数 を おく 。 ここから
+		結果 という 配列 < 文字列 > を おく 。 
+		開始 という 整数 を 0 で 初期化 。 
+		長さ 回繰り返す ここから
+			もし content [ カウンタ ]  は a ならば ここから
+				切り取り ( 開始 , カウンタ ) 結果 の 追加 する 。 
+				開始 に カウンタ  + 1 を 代入する 。 
+			ここまで実行 
+		ここまで実行 
+		切り取り ( 開始 , 長さ ) 結果 の 追加 する 。 
+		結果 を 終了 。 
+	ここまで実行 
+	( a という 整数 ) を 返す ${"ja":"整数変換", "natja":"整数変換", "en":"toInteger", "naten":"toInteger"}$ という 関数 を おく 。 ここから
+		a に 0 を 代入する 。 
+		長さ 回繰り返す ここから
+			c という 文字 を content [ カウンタ ] で 初期化 。 
+			もし c  != '-'ならば ここから
+				a に a  * 10 を 代入する 。 
+			ここまで実行 
+			もし c  は '1'ならば ここから
+				a に a  + 1 を 代入する 。 
+			ここまで実行 
+			もし c  は '2'ならば ここから
+				a に a  + 2 を 代入する 。 
+			ここまで実行 
+			もし c  は '3'ならば ここから
+				a に a  + 3 を 代入する 。 
+			ここまで実行 
+			もし c  は '4'ならば ここから
+				a に a  + 4 を 代入する 。 
+			ここまで実行 
+			もし c  は '5'ならば ここから
+				a に a  + 5 を 代入する 。 
+			ここまで実行 
+			もし c  は '6'ならば ここから
+				a に a  + 6 を 代入する 。 
+			ここまで実行 
+			もし c  は '7'ならば ここから
+				a に a  + 7 を 代入する 。 
+			ここまで実行 
+			もし c  は '8'ならば ここから
+				a に a  + 8 を 代入する 。 
+			ここまで実行 
+			もし c  は '9'ならば ここから
+				a に a  + 9 を 代入する 。 
+			ここまで実行 
+		ここまで実行 
+		もし content [ 0 ]  は '-'ならば ここから
+			a に a  * 0  - 1.0 を 代入する 。 
+		ここまで実行 
+	ここまで実行 
+	( a という 実数 ) を 返す ${"ja":"実数変換", "natja":"実数変換", "en":"toDouble", "naten":"toDouble"}$ という 関数 を おく 。 ここから
+		a に 0 を 代入する 。 
+		b という 配列 < 文字列 > を 分割 ( '.') で 初期化 。 
+		もし b の 長さ ( )  != 2 ならば ここから
+			0.0 を 終了 。 
+		ここまで実行 
+		a に a  + b の content [ 0 ] の 整数変換 ( ) を 代入する 。 
+		temp という 実数 を b の content [ 1 ] の 整数変換 ( ) で 初期化 。 
+		b の content [ 1 ] の 長さ 回繰り返す ここから
+			temp に temp  * 0.100000000000000006 を 代入する 。 
+		ここまで実行 
+		a に a  + temp を 代入する 。 
+	ここまで実行 
+	( a という 文字列 , b という 文字列 ) を とり ( c という 文字列 ) を 返す ${"ja":"置換", "natja":"置換", "en":"replace", "naten":"replace"}$ という 関数 を おく 。 ここから
+		結果 という 文字列 を おく 。 
+		開始 という 整数 を 0 で 初期化 。 
+		長さ 回繰り返す ここから
+			もし content [ カウンタ ]  は a の content [ 0 ] ならば ここから
+				もし 範囲切り取り ( カウンタ , a の 長さ )  は a ならば ここから
+					結果 に 結果  + 切り取り ( 開始 , カウンタ ) を 代入する 。 
+					結果 に 結果  + b を 代入する 。 
+					カウンタ に カウンタ  + a の 長さ を 代入する 。 
+					開始 に カウンタ を 代入する 。 
+				ここまで実行 
+			ここまで実行 
+		ここまで実行 
+		結果 に 結果  + 切り取り ( 開始 , 長さ ) を 代入する 。 
+		結果 を 終了 。 
 	ここまで実行 
 } 
 ( a という 文字列 ) を とり ${"ja":"文字列表示", "natja":"文字列表示", "en":"printString", "naten":"printString"}$ という 関数 を おく 。 ここから
@@ -251,6 +631,12 @@
 		b の x に x  / k を 代入する 。 
 		b の y に y  / k を 代入する 。 
 		b の z に z  / k を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  は ( a という ベクトル3D ) => ( b という 真偽 ) ここから
+		b に ( ( a の x  は x )  && ( a の y  は y )  && ( a の z  は z ) ) を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  != ( a という ベクトル3D ) => ( b という 真偽 ) ここから
+		b に ( ( a の x  != x )  || ( a の y  != y )  || ( a の z  != z ) ) を 代入する 。 
 	ここまで実行 
 } 
 ( a という ベクトル3D , b という ベクトル3D ) を とり ( result という ベクトル3D ) を 返す ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$ という 関数 を おく 。 ここから
@@ -355,6 +741,24 @@
 		matrix [ 10 ] に matrix [ 10 ]  * z を 代入する 。 
 		matrix [ 11 ] に matrix [ 11 ]  * z を 代入する 。 
 	ここまで実行 
+	関数 : 演算子  * ( a という 行列4x4 ) => ( b という 行列4x4 ) ここから
+		b の matrix [ 0 ] に a の matrix [ 0 ]  * matrix [ 0 ]  + a の matrix [ 1 ]  * matrix [ 4 ]  + a の matrix [ 2 ]  * matrix [ 8 ]  + a の matrix [ 3 ]  * matrix [ 12 ] を 代入する 。 
+		b の matrix [ 1 ] に a の matrix [ 0 ]  * matrix [ 1 ]  + a の matrix [ 1 ]  * matrix [ 5 ]  + a の matrix [ 2 ]  * matrix [ 9 ]  + a の matrix [ 3 ]  * matrix [ 13 ] を 代入する 。 
+		b の matrix [ 2 ] に a の matrix [ 0 ]  * matrix [ 2 ]  + a の matrix [ 1 ]  * matrix [ 6 ]  + a の matrix [ 2 ]  * matrix [ 10 ]  + a の matrix [ 3 ]  * matrix [ 14 ] を 代入する 。 
+		b の matrix [ 3 ] に a の matrix [ 0 ]  * matrix [ 3 ]  + a の matrix [ 1 ]  * matrix [ 7 ]  + a の matrix [ 2 ]  * matrix [ 11 ]  + a の matrix [ 3 ]  * matrix [ 15 ] を 代入する 。 
+		b の matrix [ 4 ] に a の matrix [ 4 ]  * matrix [ 0 ]  + a の matrix [ 5 ]  * matrix [ 4 ]  + a の matrix [ 6 ]  * matrix [ 8 ]  + a の matrix [ 7 ]  * matrix [ 12 ] を 代入する 。 
+		b の matrix [ 5 ] に a の matrix [ 4 ]  * matrix [ 1 ]  + a の matrix [ 5 ]  * matrix [ 5 ]  + a の matrix [ 6 ]  * matrix [ 9 ]  + a の matrix [ 7 ]  * matrix [ 13 ] を 代入する 。 
+		b の matrix [ 6 ] に a の matrix [ 4 ]  * matrix [ 2 ]  + a の matrix [ 5 ]  * matrix [ 6 ]  + a の matrix [ 6 ]  * matrix [ 10 ]  + a の matrix [ 7 ]  * matrix [ 14 ] を 代入する 。 
+		b の matrix [ 7 ] に a の matrix [ 4 ]  * matrix [ 3 ]  + a の matrix [ 5 ]  * matrix [ 7 ]  + a の matrix [ 6 ]  * matrix [ 11 ]  + a の matrix [ 7 ]  * matrix [ 15 ] を 代入する 。 
+		b の matrix [ 8 ] に a の matrix [ 8 ]  * matrix [ 0 ]  + a の matrix [ 9 ]  * matrix [ 4 ]  + a の matrix [ 10 ]  * matrix [ 8 ]  + a の matrix [ 11 ]  * matrix [ 12 ] を 代入する 。 
+		b の matrix [ 9 ] に a の matrix [ 8 ]  * matrix [ 1 ]  + a の matrix [ 9 ]  * matrix [ 5 ]  + a の matrix [ 10 ]  * matrix [ 9 ]  + a の matrix [ 11 ]  * matrix [ 13 ] を 代入する 。 
+		b の matrix [ 10 ] に a の matrix [ 8 ]  * matrix [ 2 ]  + a の matrix [ 9 ]  * matrix [ 6 ]  + a の matrix [ 10 ]  * matrix [ 10 ]  + a の matrix [ 11 ]  * matrix [ 14 ] を 代入する 。 
+		b の matrix [ 11 ] に a の matrix [ 8 ]  * matrix [ 3 ]  + a の matrix [ 9 ]  * matrix [ 7 ]  + a の matrix [ 10 ]  * matrix [ 11 ]  + a の matrix [ 11 ]  * matrix [ 15 ] を 代入する 。 
+		b の matrix [ 12 ] に a の matrix [ 12 ]  * matrix [ 0 ]  + a の matrix [ 13 ]  * matrix [ 4 ]  + a の matrix [ 14 ]  * matrix [ 8 ]  + a の matrix [ 15 ]  * matrix [ 12 ] を 代入する 。 
+		b の matrix [ 13 ] に a の matrix [ 12 ]  * matrix [ 1 ]  + a の matrix [ 13 ]  * matrix [ 5 ]  + a の matrix [ 14 ]  * matrix [ 9 ]  + a の matrix [ 15 ]  * matrix [ 13 ] を 代入する 。 
+		b の matrix [ 14 ] に a の matrix [ 12 ]  * matrix [ 2 ]  + a の matrix [ 13 ]  * matrix [ 6 ]  + a の matrix [ 14 ]  * matrix [ 10 ]  + a の matrix [ 15 ]  * matrix [ 14 ] を 代入する 。 
+		b の matrix [ 15 ] に a の matrix [ 12 ]  * matrix [ 3 ]  + a の matrix [ 13 ]  * matrix [ 7 ]  + a の matrix [ 14 ]  * matrix [ 11 ]  + a の matrix [ 15 ]  * matrix [ 15 ] を 代入する 。 
+	ここまで実行 
 } 
 ( m という 行列4x4 , pos という ベクトル3D , lookAt という ベクトル3D , up という ベクトル3D ) を とり ( res という 行列4x4 ) を 返す ${"ja":"カメラ行列", "natja":"カメラ行列", "en":"setCameraMat", "naten":"setCameraMat"}$ という 関数 を おく 。 ここから
 	newForward という ベクトル3D の オブジェクト を lookAt の x  - pos の x , lookAt の y  - pos の y , lookAt の z  - pos の z で 初期化 。 
@@ -412,29 +816,15 @@
 		transMat の 単位化 する 。 
 		scaleMat の 単位化 する 。 
 		rotateMat の 単位化 する 。 
-		_lightPosUniform [ 8 ] という 文字 を "lightPos"で 初期化 。 
-		_viewPosUniform [ 8 ] という 文字 を "viewPos"で 初期化 。 
-		_lightColorUniform [ 10 ] という 文字 を "lightColor"で 初期化 。 
-		_objectColorUniform [ 11 ] という 文字 を "objectColor"で 初期化 。 
-		_projUniform [ 8 ] という 文字 を "uProjMat"で 初期化 。 
-		_viewUniform [ 8 ] という 文字 を "uViewMat"で 初期化 。 
-		_modelUniform [ 9 ] という 文字 を "uModelMat"で 初期化 。 
-		lightPosUniform という 文字列 の オブジェクト を & _lightPosUniform , 8 で 初期化 。 
-		viewPosUniform という 文字列 の オブジェクト を & _viewPosUniform , 7 で 初期化 。 
-		lightColorUniform という 文字列 の オブジェクト を & _lightColorUniform , 10 で 初期化 。 
-		objectColorUniform という 文字列 の オブジェクト を & _objectColorUniform , 11 で 初期化 。 
-		projUniform という 文字列 の オブジェクト を & _projUniform , 8 で 初期化 。 
-		viewUniform という 文字列 の オブジェクト を & _viewUniform , 8 で 初期化 。 
-		modelUniform という 文字列 の オブジェクト を & _modelUniform , 9 で 初期化 。 
 		もし shaderID  は 0 ならば ここから
-			viewPosUniLoc に glGetUniformLocation ( 0 , viewPosUniform ) を 代入する 。 
-			lightPosUniLoc に glGetUniformLocation ( 0 , lightPosUniform ) を 代入する 。 
-			lightColorUniLoc に glGetUniformLocation ( 0 , lightColorUniform ) を 代入する 。 
-			objectColorUniLoc に glGetUniformLocation ( 0 , objectColorUniform ) を 代入する 。 
+			viewPosUniLoc に glGetUniformLocation ( 0 , "viewPos") を 代入する 。 
+			lightPosUniLoc に glGetUniformLocation ( 0 , "lightPos") を 代入する 。 
+			lightColorUniLoc に glGetUniformLocation ( 0 , "lightColor") を 代入する 。 
+			objectColorUniLoc に glGetUniformLocation ( 0 , "objectColor") を 代入する 。 
 		ここまで実行 
-		projMatUniformLoc に glGetUniformLocation ( shaderID , projUniform ) を 代入する 。 
-		viewMatUniformLoc に glGetUniformLocation ( shaderID , viewUniform ) を 代入する 。 
-		modelMatUniformLoc に glGetUniformLocation ( shaderID , modelUniform ) を 代入する 。 
+		projMatUniformLoc に glGetUniformLocation ( shaderID , "uProjMat") を 代入する 。 
+		viewMatUniformLoc に glGetUniformLocation ( shaderID , "uViewMat") を 代入する 。 
+		modelMatUniformLoc に glGetUniformLocation ( shaderID , "uModelMat") を 代入する 。 
 		buffer に glCreateBuffer ( ) を 代入する 。 
 		34962 , buffer glBindBuffer する 。 
 		34962 , vertices , num  * 6 , 35044 glBufferData する 。 
@@ -632,6 +1022,12 @@
 		x に x  / l を 代入する 。 
 		y に y  / l を 代入する 。 
 	ここまで実行 
+	関数 : 演算子  は ( a という ベクトル2D ) => ( b という 真偽 ) ここから
+		b に ( ( a の x  は x )  && ( a の y  は y ) ) を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  != ( a という ベクトル2D ) => ( b という 真偽 ) ここから
+		b に ( ( a の x  != x )  || ( a の y  != y ) ) を 代入する 。 
+	ここまで実行 
 } 
 ( a という ベクトル2D , b という ベクトル2D ) を とり ( result という ベクトル2D ) を 返す ${"ja":"ベクトル2Dの和", "natja":"ベクトル2Dの和", "en":"addVector2D", "naten":"addVector2D"}$ という 関数 を おく 。 ここから
 	result の x に a の x  + b の x を 代入する 。 
@@ -666,6 +1062,19 @@
 		duration に d を 代入する 。 
 		info の x に x を 代入する 。 
 		info の y に y を 代入する 。 
+	ここまで実行 
+	関数 アニメーション情報 を おく 。 ここから
+		id に 0 を 代入する 。 
+		startTime に 0 を 代入する 。 
+		duration に 0 を 代入する 。 
+		info の x に 0 を 代入する 。 
+		info の y に 0 を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  は ( a という アニメーション情報 ) => ( b という 真偽 ) ここから
+		b に ( ( a の id  は id )  && ( a の startTime  は startTime )  && ( a の duration  は duration )  && ( a の info  は info )  && ( a の info  は info ) ) を 代入する 。 
+	ここまで実行 
+	関数 : 演算子  != ( a という アニメーション情報 ) => ( b という 真偽 ) ここから
+		b に ( ( a の id  != id )  || ( a の startTime  != startTime )  || ( a の duration  != duration )  || ( a の info  != info )  || ( a の info  != info ) ) を 代入する 。 
 	ここまで実行 
 } 
 クラス : ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}$ {
@@ -931,8 +1340,8 @@
 	( points という 配列 < ベクトル2D > , 座標 という ベクトル2D , 色 という ベクトル3D , zIndex という 実数 ) を とり ( id という 整数 ) を 返す ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$ という 関数 を おく 。 ここから
 		temp という 配列 < 実数 > を おく 。 
 		points の 長さ ( ) 回繰り返す ここから
-			points の 取得 ( カウンタ ) の x temp の 追加 する 。 
-			points の 取得 ( カウンタ ) の y temp の 追加 する 。 
+			points の content [ カウンタ ] の x temp の 追加 する 。 
+			points の content [ カウンタ ] の y temp の 追加 する 。 
 			0  - zIndex  * 0.00100000000000000002 temp の 追加 する 。 
 		ここまで実行 
 		sprite という * スプライト を メモリ確保 ( バイト数 ( sprite に ある オブジェクト ) ) で 初期化 。 
