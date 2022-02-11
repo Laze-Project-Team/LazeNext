@@ -148,9 +148,10 @@
 型<T>: クラス: ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}${
 公開: 	*T: content;
 	整数: size;
+	整数: allocated;
 	関数: 配列() => (){
 		size = 0;
-		allocated = 2;
+		allocated = 4;
 		content = メモリ確保(バイト数(*content) * allocated);
 	}
 	関数: ${"ja":"取得", "natja":"取得", "en":"get", "naten":"get"}$(整数: index) => (T: result){
@@ -161,12 +162,12 @@
 			allocated = allocated * 2;
 			*T: temp = content;
 			content = メモリ確保(バイト数(*content) * allocated);
-			(整数: i = 0;)から(i == allocated)まで(i = i + 1;){
+			(整数: i = 0;)から(i == (allocated - 1))まで(i = i + 1;){
 				content[i] = temp[i];
 			}
 		}
 		content[size] = new;
-		size = size + 1;
+		size += 1;
 	}
 	関数: ${"ja":"長さ", "natja":"長さ", "en":"length", "naten":"length"}$() => (整数: a){
 		a = size;
@@ -178,8 +179,199 @@
 		content = offset;
 		size = l;
 	}
-非公開: 	整数: allocated;
+	関数: 演算子 = (配列<T>:a) => (){
+		content = メモリ確保(バイト数(*content) * (a.allocated));
+		size = a.size;
+		allocated = a.allocated;
+		(size)回繰り返す{
+			content[カウンタ] = a.content[カウンタ];
+		}
+	}
+	関数: 演算子 == (配列<T>:a) => (真偽:b){
+		b = 真;
+		もし(size != a.size)ならば{
+			終了(偽);
+		}
+		(size)回繰り返す{
+			もし(content[カウンタ] != a.content[カウンタ])ならば{
+				終了(偽);
+			}
+		}
+	}
+	関数: 演算子 == (*T:offset, 整数:l) => (真偽:b){
+		b = 真;
+		もし(size != l)ならば{
+			終了(偽);
+		}
+		(size)回繰り返す{
+			もし(content[カウンタ] != offset[カウンタ])ならば{
+				終了(偽);
+			}
+		}
+	}
+	関数: 演算子 != (配列<T>:a) => (真偽:b){
+		b = 偽;
+		もし(size != a.size)ならば{
+			終了(真);
+		}
+		(size)回繰り返す{
+			もし(content[カウンタ] != a.content[カウンタ])ならば{
+				終了(真);
+			}
+		}
+	}
+	関数: 演算子 != (*T:offset, 整数:l) => (真偽:b){
+		b = 偽;
+		もし(size != l)ならば{
+			終了(真);
+		}
+		(size)回繰り返す{
+			もし(content[カウンタ] != offset[カウンタ])ならば{
+				終了(真);
+			}
+		}
+	}
+	関数: 演算子 + (配列<T>:a) => (配列<T>:b){
+		配列<T>:結果();
+		(size)回繰り返す{
+			結果.追加(content[カウンタ]);
+		}
+		(a.size)回繰り返す{
+			結果.追加(a.取得(カウンタ));
+		}
+		終了(結果);
+	}
+	関数: 演算子 + (*T:offset, 整数:l) => (配列<T>:b){
+		配列<T>:結果();
+		(size)回繰り返す{
+			結果.追加(content[カウンタ]);
+		}
+		(l)回繰り返す{
+			結果.追加(offset[カウンタ]);
+		}
+		終了(結果);
+	}
+	関数: ${"ja":"全要素操作", "natja":"全要素操作", "en":"forEach", "naten":"forEach"}$(関数:c(T:a) => ()) => (){
+		(size)回繰り返す{
+			c(content[カウンタ]);
+		}
+	}
+	関数: ${"ja":"全要素変更", "natja":"全要素変更", "en":"map", "naten":"map"}$(関数:c(T:a) => (T:b)) => (){
+		配列<T>:結果();
+		結果.content = メモリ確保(バイト数(*content) * (allocated));
+		結果.size = size;
+		結果.allocated = allocated;
+		(size)回繰り返す{
+			結果.content[カウンタ] = c(content[カウンタ]);
+		}
+		終了(結果);
+	}
+	関数:__ソート(整数: s, 整数: e, 関数:c(T:a, T:b) => (整数:r)) => (){
+		もし(s < e)ならば{
+			整数:loc = e;
+			T:pivot = content[loc];
+			整数:i = s - 1;
+			整数:l = e - s;
+			(l)回繰り返す{
+				もし(c(content[カウンタ + s], pivot) < 0)ならば{
+					i += 1;
+					T:temp = content[カウンタ + s];
+					content[カウンタ + s] = content[i];
+					content[i] = temp;
+				}
+			}
+			T:temp = content[loc];
+			content[loc] = content[i + 1];
+			content[i + 1] = temp;
+			__ソート(s, i, c);
+			__ソート(i + 2, e, c);
+		}
+	}
+	関数: ${"ja":"ソート", "natja":"ソート", "en":"sort", "naten":"sort"}$(関数:c(T:a, T:b) => (整数:r)) => (){
+		__ソート(0, size - 1, c);
+	}
+	関数: ${"ja":"フィルター", "natja":"フィルター", "en":"filter", "naten":"filter"}$(関数:c(T:a) => (真偽:r)) => (配列<T>:b){
+		配列<T>:結果();
+		(size)回繰り返す{
+			もし(c(content[カウンタ]))ならば{
+				結果.追加(content[カウンタ]);
+			}
+		}
+		終了(結果);
+	}
+	関数: ${"ja":"削除", "natja":"削除", "en":"remove", "naten":"remove"}$(整数:i) => (配列<T>:b){
+		配列<T>:結果();
+		(size)回繰り返す{
+			もし(カウンタ != i)ならば{
+				結果.追加(content[カウンタ]);
+			}
+		}
+		終了(結果);
+	}
+	関数: ${"ja":"範囲削除", "natja":"範囲削除", "en":"removeRange", "naten":"removeRange"}$(整数:i, 整数:r) => (配列<T>:b){
+		配列<T>:結果();
+		(size)回繰り返す{
+			もし((カウンタ < i) || (カウンタ >= (i + r)))ならば{
+				結果.追加(content[カウンタ]);
+			}
+		}
+		終了(結果);
+	}
+	関数: ${"ja":"部分列", "natja":"部分列", "en":"subseq", "naten":"subseq"}$(整数:s, 整数: e) => (配列<T>:b){
+		配列<T>:結果();
+		もし(s >= e)ならば{
+			終了(結果);
+		}
+		(size)回繰り返す{
+			もし((s <= カウンタ) && (カウンタ < e))ならば{
+				結果.追加(content[カウンタ]);
+			}
+		}
+		終了(結果);
+	}
+	関数: ${"ja":"範囲部分列", "natja":"範囲部分列", "en":"subseqRange", "naten":"subseqRange"}$(整数:s, 整数: l) => (配列<T>:b){
+		配列<T>:結果();
+		もし(s >= size)ならば{
+			終了(結果);
+		}
+		(size)回繰り返す{
+			もし((s <= カウンタ) && (カウンタ < (s + l)))ならば{
+				結果.追加(content[カウンタ]);
+			}
+		}
+		終了(結果);
+	}
+	関数: ${"ja":"置換", "natja":"置換", "en":"replace", "naten":"replace"}$(T:a, T:b) => (){
+		(size)回繰り返す{
+			もし(content[カウンタ] == a)ならば{
+				content[カウンタ] = b;
+			}
+		}
+	}
+	関数: ${"ja":"範囲置換", "natja":"範囲置換", "en":"replaceRange", "naten":"replaceRange"}$(整数:s, 整数:l, T:a) => (){
+		(size)回繰り返す{
+			もし((s <= カウンタ) && (カウンタ < (s + l)))ならば{
+				content[カウンタ] = a;
+			}
+		}
+	}
+	関数: ${"ja":"範囲置換", "natja":"範囲置換", "en":"replaceRange", "naten":"replaceRange"}$(整数:s, 整数:l, 配列<T>:a) => (){
+		(size)回繰り返す{
+			もし((s <= カウンタ) && (カウンタ < (s + l)))ならば{
+				content[カウンタ] = a.content[カウンタ - s];
+			}
+		}
+	}
+	関数: ${"ja":"探索", "natja":"探索", "en":"find", "naten":"find"}$(T:b) => (整数:i){
+		(size)回繰り返す{
+			もし(content[カウンタ] == b)ならば{
+				終了(カウンタ);
+			}
+		}
+		終了(size);
+	}
 }
+
 クラス: ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}${
 公開: 	*文字: content;
 	整数: 長さ;
@@ -187,9 +379,198 @@
 		content = offset;
 		長さ = l;
 	}
+	関数:文字列() => (){
+		content = メモリ確保(0);
+		長さ = 0;
+	}
 	関数: 演算子 = (*文字: offset, 整数: l) => (){
 		content = offset;
 		長さ = l;
+	}
+	関数:演算子 = (文字列:a) => (){
+		content = メモリ確保(バイト数(*content) * (a.長さ));
+		長さ = a.長さ;
+		(長さ)回繰り返す{
+			content[カウンタ] = a.content[カウンタ];
+		}
+	}
+	関数: 演算子 + (文字:a) => (文字列:b){
+		b.content = メモリ確保(バイト数(*content) * (長さ + 1));
+		(長さ)回繰り返す{
+			b.content[カウンタ] = content[カウンタ];
+		}
+		b.content[長さ] = a;
+		b.長さ = 長さ + 1;
+	}
+	関数: 演算子 + (*文字:offset, 整数:l) =>(文字列:b){
+		b.content = メモリ確保(バイト数(*content) * (長さ + l));
+		(長さ)回繰り返す{
+			b.content[カウンタ] = content[カウンタ];
+		}
+		(l)回繰り返す{
+			b.content[長さ + カウンタ] = offset[カウンタ];
+		}
+		b.長さ = 長さ + l;
+	}
+	関数: 演算子 + (文字列:a) => (文字列:b){
+		b.content = メモリ確保(バイト数(*content) * (長さ + a.長さ));
+		(長さ)回繰り返す{
+			b.content[カウンタ] = content[カウンタ];
+		}
+		(a.長さ)回繰り返す{
+			b.content[長さ + カウンタ] = a.content[カウンタ];
+		}
+		b.長さ = 長さ + a.長さ;
+	}
+	関数: 演算子 == (文字列:a) => (真偽:b){
+		b = 真;
+		もし(長さ != a.長さ)ならば{
+			終了(偽);
+		}
+		(長さ)回繰り返す{
+			もし(content[カウンタ] != a.content[カウンタ])ならば{
+				終了(偽);
+			}
+		}
+	}
+	関数: 演算子 == (*文字:offset, 整数:l) => (真偽:b){
+		b = 真;
+		もし(長さ != l)ならば{
+			終了(偽);
+		}
+		(長さ)回繰り返す{
+			もし(content[カウンタ] != offset[カウンタ])ならば{
+				終了(偽);
+			}
+		}
+	}
+	関数: 演算子 != (文字列:a) => (真偽:b){
+		b = 偽;
+		もし(長さ != a.長さ)ならば{
+			終了(真);
+		}
+		(長さ)回繰り返す{
+			もし(content[カウンタ] != a.content[カウンタ])ならば{
+				終了(真);
+			}
+		}
+	}
+	関数: 演算子 != (*文字:offset, 整数:l) => (真偽:b){
+		b = 偽;
+		もし(長さ != l)ならば{
+			終了(真);
+		}
+		(長さ)回繰り返す{
+			もし(content[カウンタ] != offset[カウンタ])ならば{
+				終了(真);
+			}
+		}
+	}
+	関数:${"ja":"切り取り", "natja":"切り取り", "en":"substr", "naten":"substr"}$(整数:s, 整数:e) => (文字列:b){
+		もし(s > 長さ)ならば{
+			s = 長さ;
+		}
+		もし(e > 長さ)ならば{
+			e = 長さ;
+		}
+		b.content = メモリ確保(バイト数(*content) * (e - s));
+		b.長さ = e - s;
+		(整数:i = s;)から(i == e)まで(i+=1;){
+			b.content[i - s] = content[i];
+		}
+	}
+	関数:${"ja":"範囲切り取り", "natja":"範囲切り取り", "en":"substrRange", "naten":"substrRange"}$(整数:s, 整数:l) => (文字列:b){
+		もし(s > 長さ)ならば{
+			s = 長さ;
+		}
+		もし(s + l > 長さ)ならば{
+			l = 長さ - s;
+		}
+		b.content = メモリ確保(バイト数(*content) * l);
+		b.長さ = l;
+		(整数:i = s;)から(i == (s + l))まで(i+=1;){
+			b.content[i - s] = content[i];
+		}
+	}
+	関数:${"ja":"分割", "natja":"分割", "en":"separate", "naten":"separate"}$(文字:a) => (配列<文字列>:b){
+		配列<文字列>:結果();
+		整数:開始 = 0;
+		(長さ)回繰り返す{
+			もし(content[カウンタ] == a)ならば{
+				結果.追加(切り取り(開始, カウンタ));
+				開始 = カウンタ + 1;
+			}
+		}
+		結果.追加(切り取り(開始, 長さ));
+		終了(結果);
+	}
+	関数:${"ja":"整数変換", "natja":"整数変換", "en":"toInteger", "naten":"toInteger"}$() => (整数:a){
+		a = 0;
+		(長さ)回繰り返す{
+			文字:c = content[カウンタ];
+			もし(c != '-')ならば{
+				a *= 10;
+			}
+			もし(c == '1')ならば{
+				a += 1;	
+			}
+			もし(c == '2')ならば{
+				a += 2;	
+			}
+			もし(c == '3')ならば{
+				a += 3;	
+			}
+			もし(c == '4')ならば{
+				a += 4;	
+			}
+			もし(c == '5')ならば{
+				a += 5;	
+			}
+			もし(c == '6')ならば{
+				a += 6;	
+			}
+			もし(c == '7')ならば{
+				a += 7;	
+			}
+			もし(c == '8')ならば{
+				a += 8;
+			}
+			もし(c == '9')ならば{
+				a += 9;
+			}
+		}
+		もし(content[0] == '-')ならば{
+			a *= -1.0;
+		}
+	}
+	関数:${"ja":"実数変換", "natja":"実数変換", "en":"toDouble", "naten":"toDouble"}$() => (実数:a){
+		a = 0;
+		配列<文字列>:b = 分割('.');
+		もし(b.長さ() != 2)ならば{
+			終了(0.0);
+		}
+		a += b.content[0].整数変換();
+		実数:temp = b.content[1].整数変換();
+		(b.content[1].長さ)回繰り返す{
+			temp *= 0.1;
+		}
+		a += temp;
+	}
+	関数:${"ja":"置換", "natja":"置換", "en":"replace", "naten":"replace"}$(文字列:a, 文字列:b) => (文字列:c){
+		文字列:結果();
+		整数:開始 = 0;
+		(長さ)回繰り返す{
+			もし(content[カウンタ] == a.content[0])ならば{
+				もし(範囲切り取り(カウンタ, a.長さ) == a)ならば{
+					結果 += 切り取り(開始, カウンタ);
+					結果 += b;
+					カウンタ += a.長さ;
+					開始 = カウンタ;
+				}
+			}
+		}
+		結果 += 切り取り(開始, 長さ);
+		終了(結果);
 	}
 }
 関数: ${"ja":"文字列表示", "natja":"文字列表示", "en":"printString", "naten":"printString"}$(文字列: a) => (){
@@ -253,6 +634,12 @@
 		b.x = x / k;
 		b.y = y / k;
 		b.z = z / k;		
+	}
+	関数: 演算子 == (ベクトル3D:a) => (真偽:b){
+		b = ((a.x == x) && (a.y == y) && (a.z == z));
+	}
+	関数: 演算子 != (ベクトル3D:a) => (真偽:b){
+		b = ((a.x != x) || (a.y != y) || (a.z != z));
 	}
 }
 関数: ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$(ベクトル3D: a, ベクトル3D: b) => (ベクトル3D: result){
@@ -356,6 +743,24 @@
 		matrix[9] = matrix[9] * z;
 		matrix[10] = matrix[10] * z;
 		matrix[11] = matrix[11] * z;
+	}
+	関数: 演算子 *(行列4x4:a) => (行列4x4:b){
+		b.matrix[0] = a.matrix[0] * matrix[0] + a.matrix[1] * matrix[4] + a.matrix[2] * matrix[8] + a.matrix[3] * matrix[12];
+		b.matrix[1] = a.matrix[0] * matrix[1] + a.matrix[1] * matrix[5] + a.matrix[2] * matrix[9] + a.matrix[3] * matrix[13];
+		b.matrix[2] = a.matrix[0] * matrix[2] + a.matrix[1] * matrix[6] + a.matrix[2] * matrix[10] + a.matrix[3] * matrix[14];
+		b.matrix[3] = a.matrix[0] * matrix[3] + a.matrix[1] * matrix[7] + a.matrix[2] * matrix[11] + a.matrix[3] * matrix[15];
+		b.matrix[4] = a.matrix[4] * matrix[0] + a.matrix[5] * matrix[4] + a.matrix[6] * matrix[8] + a.matrix[7] * matrix[12];
+		b.matrix[5] = a.matrix[4] * matrix[1] + a.matrix[5] * matrix[5] + a.matrix[6] * matrix[9] + a.matrix[7] * matrix[13];
+		b.matrix[6] = a.matrix[4] * matrix[2] + a.matrix[5] * matrix[6] + a.matrix[6] * matrix[10] + a.matrix[7] * matrix[14];
+		b.matrix[7] = a.matrix[4] * matrix[3] + a.matrix[5] * matrix[7] + a.matrix[6] * matrix[11] + a.matrix[7] * matrix[15];
+		b.matrix[8] = a.matrix[8] * matrix[0] + a.matrix[9] * matrix[4] + a.matrix[10] * matrix[8] + a.matrix[11] * matrix[12];
+		b.matrix[9] = a.matrix[8] * matrix[1] + a.matrix[9] * matrix[5] + a.matrix[10] * matrix[9] + a.matrix[11] * matrix[13];
+		b.matrix[10] = a.matrix[8] * matrix[2] + a.matrix[9] * matrix[6] + a.matrix[10] * matrix[10] + a.matrix[11] * matrix[14];
+		b.matrix[11] = a.matrix[8] * matrix[3] + a.matrix[9] * matrix[7] + a.matrix[10] * matrix[11] + a.matrix[11] * matrix[15];
+		b.matrix[12] = a.matrix[12] * matrix[0] + a.matrix[13] * matrix[4] + a.matrix[14] * matrix[8] + a.matrix[15] * matrix[12];
+		b.matrix[13] = a.matrix[12] * matrix[1] + a.matrix[13] * matrix[5] + a.matrix[14] * matrix[9] + a.matrix[15] * matrix[13];
+		b.matrix[14] = a.matrix[12] * matrix[2] + a.matrix[13] * matrix[6] + a.matrix[14] * matrix[10] + a.matrix[15] * matrix[14];
+		b.matrix[15] = a.matrix[12] * matrix[3] + a.matrix[13] * matrix[7] + a.matrix[14] * matrix[11] + a.matrix[15] * matrix[15];
 	}
 }
 関数: ${"ja":"カメラ行列", "natja":"カメラ行列", "en":"setCameraMat", "naten":"setCameraMat"}$(行列4x4: m, ベクトル3D: pos, ベクトル3D: lookAt, ベクトル3D: up) => (行列4x4: res){
@@ -623,6 +1028,12 @@
 		x = x / l;
 		y = y / l;
 	}
+	関数: 演算子 == (ベクトル2D:a) => (真偽: b){
+		b = ((a.x == x) && (a.y == y));
+	}
+	関数: 演算子 != (ベクトル2D:a) => (真偽:b){
+		b = ((a.x != x) || (a.y != y));
+	}
 }
 関数: ${"ja":"ベクトル2Dの和", "natja":"ベクトル2Dの和", "en":"addVector2D", "naten":"addVector2D"}$(ベクトル2D: a, ベクトル2D: b) => (ベクトル2D: result){
 	result.x = a.x + b.x;
@@ -657,6 +1068,19 @@
 		duration = d;
 		info.x = x;
 		info.y = y;
+	}
+	関数: アニメーション情報() => (){
+		id = 0;
+		startTime = 0;
+		duration = 0;
+		info.x = 0;
+		info.y = 0;
+	}
+	関数: 演算子 == (アニメーション情報: a) => (真偽:b){
+		b = ((a.id == id) && (a.startTime == startTime) && (a.duration == duration) && (a.info == info) && (a.info == info));
+	}
+	関数: 演算子 != (アニメーション情報: a) => (真偽:b){
+		b = ((a.id != id) || (a.startTime != startTime) || (a.duration != duration) || (a.info != info) || (a.info != info));
 	}
 }
 クラス: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
@@ -923,8 +1347,8 @@
 	関数: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(配列<ベクトル2D>:points, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
 		配列<実数>:temp();
 		(points.長さ())回繰り返す{
-			temp.追加(points.取得(カウンタ).x);
-			temp.追加(points.取得(カウンタ).y);
+			temp.追加(points.content[カウンタ].x);
+			temp.追加(points.content[カウンタ].y);
 			temp.追加( -zIndex * 0.001);
 		}
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));

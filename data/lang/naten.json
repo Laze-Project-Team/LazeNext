@@ -105,6 +105,7 @@
             {"name":"-", "regex": "(\\-)", "precedence": 5},
             {"name":"==", "regex": "(==|＝＝)", "precedence": 7},
             {"name":"!=", "regex": "(!=|！＝)", "precedence": 7},
+            {"name":"!", "regex": "(!|！)", "precedence": 10},
             {"name":"<=", "regex": "(\\<=|＜＝)", "precedence": 6},
             {"name":">=", "regex": "(\\>=|＞＝)", "precedence": 6},
             {"name":"<", "regex": "(\\<|＜)", "precedence": 6},
@@ -142,7 +143,8 @@
             "real": "real",
             "true": "true",
             "false": "false",
-            "typeeq": "typeComp ( ty(1) , ty(2) )"
+            "typeeq": "typeComp ( ty(1) , ty(2) )",
+            "notbool": "! exp"
         },
         "oper": {
             "add":"+",
@@ -166,13 +168,11 @@
                 "sub":"Substract exp from var .",
                 "mul":"Multiply var by exp .",
                 "div":"Divide var by exp .",
+                "mod":"var % = exp ;",
                 "increment":"Increment var .",
                 "decrement":"Decrement var ."
             },
-            "if":{
-                "if":"If exp then execute code stm(then)",
-                "ifelse":"If exp then execute code stm(then) Otherwise execute code stm(else)"
-            },
+            "if":"ifelselist",
             "while":"Until exp stm",
             "dec": "dec(stm)",
             "for":"( stm(init) ) from ( exp ) to ( stm(incr) ) stm",
@@ -190,6 +190,17 @@
             "compound":"fromhere stmlist tohere",
             "repeat":"repeat exp times stm"
         },
+        "ifelse":{
+            "ifelse":"Otherwise If exp then execute code stm",
+            "else":"Otherwise execute code stm"
+        },
+        "ifelselist":{
+            "null":"",
+            "if":"If exp then execute code stm",
+            "ifelse":"ifelse",
+            "ififelselist":"If exp then execute code stm ifelse",
+            "ifelselist":"ifelse ifelselist"
+        },
         "dec":{
             "var": {
                 "init":"Initialize variable var as ty with exp .",
@@ -204,7 +215,11 @@
                 "normal":"Declare function id that takes fieldlist(params) and returns fieldlist(result) with code stm",
                 "noparam":"Declare function id that returns fieldlist(result) with code stm",
                 "noresult":"Declare function id that takes fieldlist(params) with code stm",
-                "noparamnoresult":"Declare function id with code stm"
+                "noparamnoresult":"Declare function id with code stm",
+                "prototype":"Declare function id that takes fieldlist(params) and returns fieldlist(result) .",
+                "prototypenoparam":"Declare function id that returns fieldlist(result) .",
+                "prototypenoresult":"Declare function id that takes fieldlist(params) .",
+                "prototypenoparamnoresult":"Declare function id ."
             },
             "jsload": {
                 "normal":"Load function id from string(func) of string(module) that takes fieldlist(params) and returns fieldlist(result) .",
@@ -283,6 +298,7 @@
             "declist":"dec declist"
         },
         "fieldlist":{
+            "null":"",
             "field":"field",
             "fieldlist":"field , fieldlist"
         }
@@ -358,7 +374,8 @@
             "few":"This function call lacks arguments.",
             "many":"There are too many arguments in this function call.",
             "cannotcall":"This function cannot be called.",
-            "unknownfield":"Change this argument into a variable or an array."
+            "unknownfield":"Change this argument into a variable or an array.",
+            "notdefined":"Function $1 is declared but not defined."
         },
         "class":{
             "private":"Since $1 is a private member, you cannot access it outside the class.",

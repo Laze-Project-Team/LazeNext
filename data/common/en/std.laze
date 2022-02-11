@@ -147,9 +147,10 @@ function: ${"ja":"平方根", "natja":"平方根", "en":"root", "naten":"root"}$
 template<T>: class: ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}${
 public: 	*T: content;
 	int: size;
+	int: allocated;
 	function: Array() => (){
 		size = 0;
-		allocated = 2;
+		allocated = 4;
 		content = allocMemory(sizeof(*content) * allocated);
 	}
 	function: ${"ja":"取得", "natja":"取得", "en":"get", "naten":"get"}$(int: index) => (T: result){
@@ -160,7 +161,7 @@ public: 	*T: content;
 			allocated = allocated * 2;
 			*T: temp = content;
 			content = allocMemory(sizeof(*content) * allocated);
-			(int: i = 0;)from(i == allocated)to(i = i + 1;){
+			(int: i = 0;)from(i == (allocated - 1))to(i = i + 1;){
 				content[i] = temp[i];
 			}
 		}
@@ -177,7 +178,197 @@ public: 	*T: content;
 		content = offset;
 		size = l;
 	}
-private: 	int: allocated;
+	function: operator = (Array<T>: a) => (){
+		content = allocMemory(sizeof(*content) * (a.allocated));
+		size = a.size;
+		allocated = a.allocated;
+		repeat(size){
+			content[counter] = a.content[counter];
+		}
+	}
+	function: operator == (Array<T>: a) => (bool: b){
+		b = true;
+		if(size != a.size){
+			return(false);
+		}
+		repeat(size){
+			if(content[counter] != a.content[counter]){
+				return(false);
+			}
+		}
+	}
+	function: operator == (*T: offset, int: l) => (bool: b){
+		b = true;
+		if(size != l){
+			return(false);
+		}
+		repeat(size){
+			if(content[counter] != offset[counter]){
+				return(false);
+			}
+		}
+	}
+	function: operator != (Array<T>: a) => (bool: b){
+		b = false;
+		if(size != a.size){
+			return(true);
+		}
+		repeat(size){
+			if(content[counter] != a.content[counter]){
+				return(true);
+			}
+		}
+	}
+	function: operator != (*T: offset, int: l) => (bool: b){
+		b = false;
+		if(size != l){
+			return(true);
+		}
+		repeat(size){
+			if(content[counter] != offset[counter]){
+				return(true);
+			}
+		}
+	}
+	function: operator + (Array<T>: a) => (Array<T>: b){
+		Array<T>: 結果;
+		repeat(size){
+			結果.push(content[counter]);
+		}
+		repeat(a.size){
+			結果.push(a.get(counter));
+		}
+		return(結果);
+	}
+	function: operator + (*T: offset, int: l) => (Array<T>: b){
+		Array<T>: 結果;
+		repeat(size){
+			結果.push(content[counter]);
+		}
+		repeat(l){
+			結果.push(offset[counter]);
+		}
+		return(結果);
+	}
+	function: ${"ja":"全要素操作", "natja":"全要素操作", "en":"forEach", "naten":"forEach"}$(function: (T: a) => (): c) => (){
+		repeat(size){
+			c(content[counter]);
+		}
+	}
+	function: ${"ja":"全要素変更", "natja":"全要素変更", "en":"map", "naten":"map"}$(function: (T: a) => (T: b): c) => (){
+		Array<T>: 結果;
+		結果.content = allocMemory(sizeof(*content) * (allocated));
+		結果.size = size;
+		結果.allocated = allocated;
+		repeat(size){
+			結果.content[counter] = c(content[counter]);
+		}
+		return(結果);
+	}
+	function: __ソート(int: s, int: e, function: (T: a, T: b) => (int: r): c) => (){
+		if(s < e){
+			int: loc = e;
+			T: pivot = content[loc];
+			int: i = s - 1;
+			int: l = e - s;
+			repeat(l){
+				if(c(content[counter + s], pivot) < 0){
+					i = i + 1;
+					T: temp = content[counter + s];
+					content[counter + s] = content[i];
+					content[i] = temp;
+				}
+			}
+			T: temp = content[loc];
+			content[loc] = content[i + 1];
+			content[i + 1] = temp;
+			__ソート(s, i, c);
+			__ソート(i + 2, e, c);
+		}
+	}
+	function: ${"ja":"ソート", "natja":"ソート", "en":"sort", "naten":"sort"}$(function: (T: a, T: b) => (int: r): c) => (){
+		__ソート(0, size - 1, c);
+	}
+	function: ${"ja":"フィルター", "natja":"フィルター", "en":"filter", "naten":"filter"}$(function: (T: a) => (bool: r): c) => (Array<T>: b){
+		Array<T>: 結果;
+		repeat(size){
+			if(c(content[counter])){
+				結果.push(content[counter]);
+			}
+		}
+		return(結果);
+	}
+	function: ${"ja":"削除", "natja":"削除", "en":"remove", "naten":"remove"}$(int: i) => (Array<T>: b){
+		Array<T>: 結果;
+		repeat(size){
+			if(counter != i){
+				結果.push(content[counter]);
+			}
+		}
+		return(結果);
+	}
+	function: ${"ja":"範囲削除", "natja":"範囲削除", "en":"removeRange", "naten":"removeRange"}$(int: i, int: r) => (Array<T>: b){
+		Array<T>: 結果;
+		repeat(size){
+			if((counter < i) || (counter >= (i + r))){
+				結果.push(content[counter]);
+			}
+		}
+		return(結果);
+	}
+	function: ${"ja":"部分列", "natja":"部分列", "en":"subseq", "naten":"subseq"}$(int: s, int: e) => (Array<T>: b){
+		Array<T>: 結果;
+		if(s >= e){
+			return(結果);
+		}
+		repeat(size){
+			if((s <= counter) && (counter < e)){
+				結果.push(content[counter]);
+			}
+		}
+		return(結果);
+	}
+	function: ${"ja":"範囲部分列", "natja":"範囲部分列", "en":"subseqRange", "naten":"subseqRange"}$(int: s, int: l) => (Array<T>: b){
+		Array<T>: 結果;
+		if(s >= size){
+			return(結果);
+		}
+		repeat(size){
+			if((s <= counter) && (counter < (s + l))){
+				結果.push(content[counter]);
+			}
+		}
+		return(結果);
+	}
+	function: ${"ja":"置換", "natja":"置換", "en":"replace", "naten":"replace"}$(T: a, T: b) => (){
+		repeat(size){
+			if(content[counter] == a){
+				content[counter] = b;
+			}
+		}
+	}
+	function: ${"ja":"範囲置換", "natja":"範囲置換", "en":"replaceRange", "naten":"replaceRange"}$(int: s, int: l, T: a) => (){
+		repeat(size){
+			if((s <= counter) && (counter < (s + l))){
+				content[counter] = a;
+			}
+		}
+	}
+	function: ${"ja":"範囲置換", "natja":"範囲置換", "en":"replaceRange", "naten":"replaceRange"}$(int: s, int: l, Array<T>: a) => (){
+		repeat(size){
+			if((s <= counter) && (counter < (s + l))){
+				content[counter] = a.content[counter - s];
+			}
+		}
+	}
+	function: ${"ja":"探索", "natja":"探索", "en":"find", "naten":"find"}$(T: b) => (int: i){
+		repeat(size){
+			if(content[counter] == b){
+				return(counter);
+			}
+		}
+		return(size);
+	}
 }
 class: ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}${
 public: 	*char: content;
@@ -186,9 +377,198 @@ public: 	*char: content;
 		content = offset;
 		length = l;
 	}
+	function: string() => (){
+		content = allocMemory(0);
+		length = 0;
+	}
 	function: operator = (*char: offset, int: l) => (){
 		content = offset;
 		length = l;
+	}
+	function: operator = (string: a) => (){
+		content = allocMemory(sizeof(*content) * (a.length));
+		length = a.length;
+		repeat(length){
+			content[counter] = a.content[counter];
+		}
+	}
+	function: operator + (char: a) => (string: b){
+		b.content = allocMemory(sizeof(*content) * (length + 1));
+		repeat(length){
+			b.content[counter] = content[counter];
+		}
+		b.content[length] = a;
+		b.length = length + 1;
+	}
+	function: operator + (*char: offset, int: l) => (string: b){
+		b.content = allocMemory(sizeof(*content) * (length + l));
+		repeat(length){
+			b.content[counter] = content[counter];
+		}
+		repeat(l){
+			b.content[length + counter] = offset[counter];
+		}
+		b.length = length + l;
+	}
+	function: operator + (string: a) => (string: b){
+		b.content = allocMemory(sizeof(*content) * (length + a.length));
+		repeat(length){
+			b.content[counter] = content[counter];
+		}
+		repeat(a.length){
+			b.content[length + counter] = a.content[counter];
+		}
+		b.length = length + a.length;
+	}
+	function: operator == (string: a) => (bool: b){
+		b = true;
+		if(length != a.length){
+			return(false);
+		}
+		repeat(length){
+			if(content[counter] != a.content[counter]){
+				return(false);
+			}
+		}
+	}
+	function: operator == (*char: offset, int: l) => (bool: b){
+		b = true;
+		if(length != l){
+			return(false);
+		}
+		repeat(length){
+			if(content[counter] != offset[counter]){
+				return(false);
+			}
+		}
+	}
+	function: operator != (string: a) => (bool: b){
+		b = false;
+		if(length != a.length){
+			return(true);
+		}
+		repeat(length){
+			if(content[counter] != a.content[counter]){
+				return(true);
+			}
+		}
+	}
+	function: operator != (*char: offset, int: l) => (bool: b){
+		b = false;
+		if(length != l){
+			return(true);
+		}
+		repeat(length){
+			if(content[counter] != offset[counter]){
+				return(true);
+			}
+		}
+	}
+	function: ${"ja":"切り取り", "natja":"切り取り", "en":"substr", "naten":"substr"}$(int: s, int: e) => (string: b){
+		if(s > length){
+			s = length;
+		}
+		if(e > length){
+			e = length;
+		}
+		b.content = allocMemory(sizeof(*content) * (e - s));
+		b.length = e - s;
+		(int: i = s;)from(i == e)to(i = i + 1;){
+			b.content[i - s] = content[i];
+		}
+	}
+	function: ${"ja":"範囲切り取り", "natja":"範囲切り取り", "en":"substrRange", "naten":"substrRange"}$(int: s, int: l) => (string: b){
+		if(s > length){
+			s = length;
+		}
+		if(s + l > length){
+			l = length - s;
+		}
+		b.content = allocMemory(sizeof(*content) * l);
+		b.length = l;
+		(int: i = s;)from(i == (s + l))to(i = i + 1;){
+			b.content[i - s] = content[i];
+		}
+	}
+	function: ${"ja":"分割", "natja":"分割", "en":"separate", "naten":"separate"}$(char: a) => (Array<string>: b){
+		Array<string>: 結果;
+		int: 開始 = 0;
+		repeat(length){
+			if(content[counter] == a){
+				結果.push(substr(開始, counter));
+				開始 = counter + 1;
+			}
+		}
+		結果.push(substr(開始, length));
+		return(結果);
+	}
+	function: ${"ja":"整数変換", "natja":"整数変換", "en":"toInteger", "naten":"toInteger"}$() => (int: a){
+		a = 0;
+		repeat(length){
+			char: c = content[counter];
+			if(c != '-'){
+				a = a * 10;
+			}
+			if(c == '1'){
+				a = a + 1;
+			}
+			if(c == '2'){
+				a = a + 2;
+			}
+			if(c == '3'){
+				a = a + 3;
+			}
+			if(c == '4'){
+				a = a + 4;
+			}
+			if(c == '5'){
+				a = a + 5;
+			}
+			if(c == '6'){
+				a = a + 6;
+			}
+			if(c == '7'){
+				a = a + 7;
+			}
+			if(c == '8'){
+				a = a + 8;
+			}
+			if(c == '9'){
+				a = a + 9;
+			}
+		}
+		if(content[0] == '-'){
+			a = a * 0 - 1.0;
+		}
+	}
+	function: ${"ja":"実数変換", "natja":"実数変換", "en":"toDouble", "naten":"toDouble"}$() => (double: a){
+		a = 0;
+		Array<string>: b = separate('.');
+		if(b.length() != 2){
+			return(0.0);
+		}
+		a = a + b.content[0].toInteger();
+		double: temp = b.content[1].toInteger();
+		repeat(b.content[1].length){
+			temp = temp * 0.100000000000000006;
+		}
+		a = a + temp;
+	}
+	function: ${"ja":"置換", "natja":"置換", "en":"replace", "naten":"replace"}$(string: a, string: b) => (string: c){
+		string: 結果;
+		int: 開始 = 0;
+		repeat(length){
+			if(content[counter] == a.content[0]){
+				if(substrRange(counter, a.length) == a){
+					結果 = 結果 + substr(開始, counter);
+					結果 = 結果 + b;
+					counter = counter + a.length;
+					開始 = counter;
+				}
+			}
+		}
+		結果 = 結果 + substr(開始, length);
+		return(結果);
 	}
 }
 function: ${"ja":"文字列表示", "natja":"文字列表示", "en":"printString", "naten":"printString"}$(string: a) => (){
@@ -251,6 +631,12 @@ public: 	double: x;
 		b.x = x / k;
 		b.y = y / k;
 		b.z = z / k;
+	}
+	function: operator == (Vector3D: a) => (bool: b){
+		b = ((a.x == x) && (a.y == y) && (a.z == z));
+	}
+	function: operator != (Vector3D: a) => (bool: b){
+		b = ((a.x != x) || (a.y != y) || (a.z != z));
 	}
 }
 function: ${"ja":"ベクトル3Dの和", "natja":"ベクトル3Dの和", "en":"addVector3D", "naten":"addVector3D"}$(Vector3D: a, Vector3D: b) => (Vector3D: result){
@@ -355,6 +741,24 @@ public: 	double: matrix[16];
 		matrix[10] = matrix[10] * z;
 		matrix[11] = matrix[11] * z;
 	}
+	function: operator * (Matrix4x4: a) => (Matrix4x4: b){
+		b.matrix[0] = a.matrix[0] * matrix[0] + a.matrix[1] * matrix[4] + a.matrix[2] * matrix[8] + a.matrix[3] * matrix[12];
+		b.matrix[1] = a.matrix[0] * matrix[1] + a.matrix[1] * matrix[5] + a.matrix[2] * matrix[9] + a.matrix[3] * matrix[13];
+		b.matrix[2] = a.matrix[0] * matrix[2] + a.matrix[1] * matrix[6] + a.matrix[2] * matrix[10] + a.matrix[3] * matrix[14];
+		b.matrix[3] = a.matrix[0] * matrix[3] + a.matrix[1] * matrix[7] + a.matrix[2] * matrix[11] + a.matrix[3] * matrix[15];
+		b.matrix[4] = a.matrix[4] * matrix[0] + a.matrix[5] * matrix[4] + a.matrix[6] * matrix[8] + a.matrix[7] * matrix[12];
+		b.matrix[5] = a.matrix[4] * matrix[1] + a.matrix[5] * matrix[5] + a.matrix[6] * matrix[9] + a.matrix[7] * matrix[13];
+		b.matrix[6] = a.matrix[4] * matrix[2] + a.matrix[5] * matrix[6] + a.matrix[6] * matrix[10] + a.matrix[7] * matrix[14];
+		b.matrix[7] = a.matrix[4] * matrix[3] + a.matrix[5] * matrix[7] + a.matrix[6] * matrix[11] + a.matrix[7] * matrix[15];
+		b.matrix[8] = a.matrix[8] * matrix[0] + a.matrix[9] * matrix[4] + a.matrix[10] * matrix[8] + a.matrix[11] * matrix[12];
+		b.matrix[9] = a.matrix[8] * matrix[1] + a.matrix[9] * matrix[5] + a.matrix[10] * matrix[9] + a.matrix[11] * matrix[13];
+		b.matrix[10] = a.matrix[8] * matrix[2] + a.matrix[9] * matrix[6] + a.matrix[10] * matrix[10] + a.matrix[11] * matrix[14];
+		b.matrix[11] = a.matrix[8] * matrix[3] + a.matrix[9] * matrix[7] + a.matrix[10] * matrix[11] + a.matrix[11] * matrix[15];
+		b.matrix[12] = a.matrix[12] * matrix[0] + a.matrix[13] * matrix[4] + a.matrix[14] * matrix[8] + a.matrix[15] * matrix[12];
+		b.matrix[13] = a.matrix[12] * matrix[1] + a.matrix[13] * matrix[5] + a.matrix[14] * matrix[9] + a.matrix[15] * matrix[13];
+		b.matrix[14] = a.matrix[12] * matrix[2] + a.matrix[13] * matrix[6] + a.matrix[14] * matrix[10] + a.matrix[15] * matrix[14];
+		b.matrix[15] = a.matrix[12] * matrix[3] + a.matrix[13] * matrix[7] + a.matrix[14] * matrix[11] + a.matrix[15] * matrix[15];
+	}
 }
 function: ${"ja":"カメラ行列", "natja":"カメラ行列", "en":"setCameraMat", "naten":"setCameraMat"}$(Matrix4x4: m, Vector3D: pos, Vector3D: lookAt, Vector3D: up) => (Matrix4x4: res){
 	Vector3D: newForward(lookAt.x - pos.x, lookAt.y - pos.y, lookAt.z - pos.z);
@@ -412,29 +816,15 @@ public: 	Vector3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
 		transMat.identity();
 		scaleMat.identity();
 		rotateMat.identity();
-		char: _lightPosUniform[8] = "lightPos";
-		char: _viewPosUniform[8] = "viewPos";
-		char: _lightColorUniform[10] = "lightColor";
-		char: _objectColorUniform[11] = "objectColor";
-		char: _projUniform[8] = "uProjMat";
-		char: _viewUniform[8] = "uViewMat";
-		char: _modelUniform[9] = "uModelMat";
-		string: lightPosUniform(&_lightPosUniform, 8);
-		string: viewPosUniform(&_viewPosUniform, 7);
-		string: lightColorUniform(&_lightColorUniform, 10);
-		string: objectColorUniform(&_objectColorUniform, 11);
-		string: projUniform(&_projUniform, 8);
-		string: viewUniform(&_viewUniform, 8);
-		string: modelUniform(&_modelUniform, 9);
 		if(shaderID == 0){
-			viewPosUniLoc = glGetUniformLocation(0, viewPosUniform);
-			lightPosUniLoc = glGetUniformLocation(0, lightPosUniform);
-			lightColorUniLoc = glGetUniformLocation(0, lightColorUniform);
-			objectColorUniLoc = glGetUniformLocation(0, objectColorUniform);
+			viewPosUniLoc = glGetUniformLocation(0, "viewPos");
+			lightPosUniLoc = glGetUniformLocation(0, "lightPos");
+			lightColorUniLoc = glGetUniformLocation(0, "lightColor");
+			objectColorUniLoc = glGetUniformLocation(0, "objectColor");
 		}
-		projMatUniformLoc = glGetUniformLocation(shaderID, projUniform);
-		viewMatUniformLoc = glGetUniformLocation(shaderID, viewUniform);
-		modelMatUniformLoc = glGetUniformLocation(shaderID, modelUniform);
+		projMatUniformLoc = glGetUniformLocation(shaderID, "uProjMat");
+		viewMatUniformLoc = glGetUniformLocation(shaderID, "uViewMat");
+		modelMatUniformLoc = glGetUniformLocation(shaderID, "uModelMat");
 		buffer = glCreateBuffer();
 		glBindBuffer(34962, buffer);
 		glBufferData(34962, vertices, num * 6, 35044);
@@ -632,6 +1022,12 @@ public: 	double: x;
 		x = x / l;
 		y = y / l;
 	}
+	function: operator == (Vector2D: a) => (bool: b){
+		b = ((a.x == x) && (a.y == y));
+	}
+	function: operator != (Vector2D: a) => (bool: b){
+		b = ((a.x != x) || (a.y != y));
+	}
 }
 function: ${"ja":"ベクトル2Dの和", "natja":"ベクトル2Dの和", "en":"addVector2D", "naten":"addVector2D"}$(Vector2D: a, Vector2D: b) => (Vector2D: result){
 	result.x = a.x + b.x;
@@ -666,6 +1062,19 @@ public: 	int: id;
 		duration = d;
 		info.x = x;
 		info.y = y;
+	}
+	function: AnimationInfo() => (){
+		id = 0;
+		startTime = 0;
+		duration = 0;
+		info.x = 0;
+		info.y = 0;
+	}
+	function: operator == (AnimationInfo: a) => (bool: b){
+		b = ((a.id == id) && (a.startTime == startTime) && (a.duration == duration) && (a.info == info) && (a.info == info));
+	}
+	function: operator != (AnimationInfo: a) => (bool: b){
+		b = ((a.id != id) || (a.startTime != startTime) || (a.duration != duration) || (a.info != info) || (a.info != info));
 	}
 }
 class: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
@@ -778,7 +1187,7 @@ public: 	Vector3D: color;
 				}
 			}
 		}
-		Vector3D: pos3d(pos.x * 16.0 / 9.0, pos.y, 0 - zIndex * 0.00100000000000000002);
+		Vector3D: pos3d(pos.x, pos.y, 0 - zIndex * 0.00100000000000000002);
 		transMat.identity();
 		transMat.translate(pos3d);
 		scaleMat.identity();
@@ -931,8 +1340,8 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 	function: ${"ja":"多角形追加", "natja":"多角形追加", "en":"addPolygon", "naten":"addPolygon"}$(Array<Vector2D>: points, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		Array<double>: temp;
 		repeat(points.length()){
-			temp.push(points.get(counter).x);
-			temp.push(points.get(counter).y);
+			temp.push(points.content[counter].x);
+			temp.push(points.content[counter].y);
 			temp.push(0 - zIndex * 0.00100000000000000002);
 		}
 		*Sprite: sprite = allocMemory(sizeof(*sprite));

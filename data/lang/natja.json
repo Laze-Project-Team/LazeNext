@@ -46,6 +46,7 @@
       {"name":"という", "value": "という"},
       {"name":"おく", "value": "おく"},
       {"name":"代入する", "value": "代入する"},
+      {"name":"宣言する", "value": "宣言する"},
       {"name":"足す", "value": "足す"},
       {"name":"引く", "value": "引く"},
       {"name":"かける", "value": "かける"},
@@ -90,6 +91,7 @@
       {"name":"-", "regex": "(\\-)", "precedence": 5},
       {"name":"==", "regex": "(==|＝＝)", "precedence": 7},
       {"name":"!=", "regex": "(!=|！＝)", "precedence": 7},
+      {"name":"!", "regex": "(!|！)", "precedence": 10},
       {"name":"<=", "regex": "(\\<=|＜＝)", "precedence": 6},
       {"name":">=", "regex": "(\\>=|＞＝)", "precedence": 6},
       {"name":"<", "regex": "(\\<|＜)", "precedence": 6},
@@ -127,7 +129,8 @@
       "real": "real",
       "true": "true",
       "false": "false",
-      "typeeq": "typeComp ( ty(1) , ty(2) )"
+      "typeeq": "typeComp ( ty(1) , ty(2) )",
+      "notbool": "! exp"
     },
     "oper": {
       "add": "+",
@@ -150,12 +153,10 @@
         "add": "var に exp を 足す 。",
         "sub": "var から exp を 引く 。",
         "mul": "var に exp を かける 。",
-        "div": "var を exp で 割る 。"
+        "div": "var を exp で 割る 。",
+        "mod":"var % = exp ;"
       },
-      "if": {
-        "if": "if exp then stm(then)",
-        "ifelse": "if exp then stm(then) else stm(else)"
-      },
+      "if": "ifelselist",
       "while": "exp まで stm",
       "dec": "dec(stm)",
       "for": "( stm(init) ) から ( exp ) まで ( stm(incr) ) 繰り返し stm",
@@ -174,6 +175,17 @@
       "compound": "ここから stmlist ここまで実行",
       "repeat": "exp repeat stm"
     },
+    "ifelse":{
+      "ifelse":"else if exp then stm",
+      "else":"else stm"
+    },
+    "ifelselist":{
+        "null":"",
+        "if":"if exp then stm",
+        "ifelse":"ifelse",
+        "ififelselist":"if exp then stm ifelse",
+        "ifelselist":"ifelse ifelselist"
+    },
     "dec": {
       "var": {
         "init": "var という ty を exp で 初期化 。",
@@ -188,7 +200,11 @@
         "normal":"( fieldlist(params) ) を とり ( fieldlist(result) ) を 返す id という function を おく 。 stm",
         "noparam":"( fieldlist(result) ) を 返す id という function を おく 。 stm",
         "noresult":"( fieldlist(params) ) を とり id という function を おく 。 stm",
-        "noparamnoresult":"function id を おく 。 stm"
+        "noparamnoresult":"function id を おく 。 stm",
+        "prototype":"( fieldlist(params) ) を とり ( fieldlist(result) ) を 返す id という function を 宣言する 。",
+        "prototypenoparam":"( fieldlist(result) ) を 返す id という function を 宣言する 。",
+        "prototypenoresult":"( fieldlist(params) ) を とり id という function を 宣言する 。",
+        "prototypenoparamnoresult":"function id を 宣言する 。"
       },
       "jsload": {
         "normal":"( fieldlist(params) ) を とり ( fieldlist(result) ) を 返す id という function を ( string(module) , string(func) ) から 読み込む 。",
@@ -343,7 +359,8 @@
           "few":"関数の引数が足りません。",
           "many":"関数の引数が多いです。",
           "cannotcall":"この関数は呼べません。",
-          "unknownfield":"この引数は変数か配列の形に直してください。"
+          "unknownfield":"この引数は変数か配列の形に直してください。",
+          "notdefined":"$1という関数は宣言されただけで定義されていません。"
       },
       "class":{
           "private":"$1は非公開メンバーなので、クラス外からアクセスできません。",

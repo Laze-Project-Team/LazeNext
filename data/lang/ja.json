@@ -62,6 +62,7 @@
             {"name":"-", "regex": "(\\-)", "precedence": 5},
             {"name":"==", "regex": "(==|＝＝)", "precedence": 7},
             {"name":"!=", "regex": "(!=|！＝)", "precedence": 7},
+            {"name":"!", "regex": "(!|！)", "precedence": 10},
             {"name":"<=", "regex": "(\\<=|＜＝)", "precedence": 6},
             {"name":">=", "regex": "(\\>=|＞＝)", "precedence": 6},
             {"name":"<", "regex": "(\\<|＜)", "precedence": 6},
@@ -100,7 +101,8 @@
             "true": "true",
             "false": "false",
             "typeeq": "typeComp ( ty(1) , ty(2) )",
-            "record": "{ explist }"
+            "record": "{ explist }",
+            "notbool": "! exp"
         },
         "oper": {
             "add":"+",
@@ -124,13 +126,11 @@
                 "sub":"var - = exp ;",
                 "mul":"var * = exp ;",
                 "div":"var / = exp ;",
+                "mod":"var % = exp ;",
                 "increment":"var + + ;",
                 "decrement":"var - - ;"
             },
-            "if":{
-                "if":"if ( exp ) then stm(then)",
-                "ifelse":"if ( exp ) then stm(then) else stm(else)"
-            },
+            "if":"ifelselist",
             "while":"( exp ) to stm",
             "dec": "dec(stm)",
             "for":"( stm(init) ) from ( exp ) to ( stm(incr) ) stm",
@@ -147,6 +147,17 @@
             "compound":"{ stmlist }",
             "repeat":"( exp ) repeat stm"
         },
+        "ifelse":{
+            "ifelse":"else if ( exp ) then stm",
+            "else":"else stm"
+        },
+        "ifelselist":{
+            "null":"",
+            "if":"if ( exp ) then stm",
+            "ifelse":"ifelse",
+            "ififelselist":"if ( exp ) then stm ifelse",
+            "ifelselist":"ifelse ifelselist"
+        },
         "dec":{
             "var": {
                 "init":"ty : var = exp ;",
@@ -158,7 +169,8 @@
                 "inherit":"class : id(name) <- id(inherit) { memlist }"
             },
             "func": {
-                "normal":"function : id ( fieldlist(params) ) => ( fieldlist(result) ) stm"
+                "normal":"function : id ( fieldlist(params) ) => ( fieldlist(result) ) stm",
+                "prototype":"function : id ( fieldlist(params) ) => ( fieldlist(result) ) ;"
             },
             "jsload": {
                 "normal":"function : id ( fieldlist(params) ) => ( fieldlist(result) ) = jsload ( string(module) , string(func) ) ;"
@@ -296,7 +308,8 @@
             "few":"関数の引数が足りません。",
             "many":"関数の引数が多いです。",
             "cannotcall":"この関数は呼べません。",
-            "unknownfield":"この引数は変数か配列の形に直してください。"
+            "unknownfield":"この引数は変数か配列の形に直してください。",
+            "notdefined":"$1という関数は宣言されただけで定義されていません。"
         },
         "class":{
             "private":"$1は非公開メンバーなので、クラス外からアクセスできません。",
