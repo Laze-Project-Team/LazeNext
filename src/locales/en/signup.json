@@ -1,4 +1,42 @@
 {
   "title": "",
-  "description": ""
+  "description": "",
+  "or": "!!! translation value has not been set !!!",
+  "auth": {
+    "google": "!!! translation value has not been set !!!",
+    "twitter": "!!! translation value has not been set !!!",
+    "github": "!!! translation value has not been set !!!"
+  },
+  "form": {
+    "label": {
+      "email": "!!! translation value has not been set !!!",
+      "password": "!!! translation value has not been set !!!",
+      "agreement": "!!! translation value has not been set !!!",
+      "agreement_text": "!!! translation value has not been set !!!",
+      "submit": "!!! translation value has not been set !!!"
+    },
+    "message": {
+      "email": {
+        "required": "!!! translation value has not been set !!!",
+        "invalid": "!!! translation value has not been set !!!"
+      },
+      "password": {
+        "required": "!!! translation value has not been set !!!",
+        "minLength": "!!! translation value has not been set !!!",
+        "pattern": "!!! translation value has not been set !!!"
+      }
+    }
+  },
+  "footer": "!!! translation value has not been set !!!",
+  "success": {
+    "title": "!!! translation value has not been set !!!",
+    "message": "!!! translation value has not been set !!!"
+  },
+  "error": {
+    "email-already-in-use": "!!! translation value has not been set !!!",
+    "account-exists-with-different-credential": "!!! translation value has not been set !!!",
+    "user-not-found": "!!! translation value has not been set !!!",
+    "authwith-unknown": "!!! translation value has not been set !!!",
+    "unknown": "!!! translation value has not been set !!!"
+  }
 }

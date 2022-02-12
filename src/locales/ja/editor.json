@@ -1,13 +1,11 @@
 {
   "title": "Laze エディタ",
   "description": "プログラミング言語Lazeのオンラインエディターです。好きなサンプルを選んで実行したり、自分で書いたプログラムを実行したりできます。",
-
   "footer": {
     "acknowledgement": "Made with Monaco Editor",
     "home": "ホーム",
     "docs": "ドキュメンテーション"
   },
-
   "contextmenus": {
     "newFile": "ファイルを作成",
     "newFolder": "フォルダを作成",
@@ -15,12 +13,10 @@
     "rename": "名前を変更",
     "delete": "削除"
   },
-
   "panellist": {
     "master": "マスター",
     "close": "閉じる"
   },
-
   "buttons": {
     "menu": "メニュー",
     "newFile": "新規ファイル",
@@ -30,24 +26,20 @@
     "convert": "言語の変換（変更）",
     "settings": "設定"
   },
-
   "settings": {
     "darkmode": "ダークモードを有効にする",
     "close": "閉じる"
   },
-
   "samples": {
     "title": "ロードするサンプルを選択",
     "error": "サンプルの一覧読み込み中に何かしらのエラーが発生しました",
     "load": "読み込み",
     "cancel": "キャンセル"
   },
-
   "convert": {
     "convert": "変換",
     "change": "変更",
     "cancel": "キャンセル",
-
     "success": {
       "title": "変換に成功しました",
       "message": "言語を変更しました ({{from}} → {{to}})"
@@ -57,12 +49,10 @@
       "message": "言語の変更中に何かしらのエラーが発生しました ({{from}} → {{to}})"
     }
   },
-
   "workbench": {
     "output": "出力",
     "canvas": "描画エリア"
   },
-
   "messages": {
     "FileIsNotOpened": {
       "1": "ファイルが開かれていません",
@@ -72,7 +62,6 @@
     "FileAlreadyExists": "この名前のファイルまたはフォルダは既にこの場所に存在します。別の名前を指定してください。",
     "NotValidName": "この名前はファイルまたはフォルダ名として無効です。別の名前を指定してください。"
   },
-
   "errors": {
     "FileIsNotOpened": {
       "title": "ファイルロードエラー",

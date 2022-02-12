@@ -1,15 +1,12 @@
 {
   "title": "アカウント登録",
   "description": "",
-
   "or": "または",
-
   "auth": {
     "google": "Googleで新規登録",
     "twitter": "Twitterで新規登録",
     "github": "GitHubで新規登録"
   },
-
   "form": {
     "label": {
       "email": "メールアドレス",
@@ -30,14 +27,11 @@
       }
     }
   },
-
   "footer": "[ログイン](/login)はこちら",
-
   "success": {
     "title": "確認メールの送信に成功しました！",
     "message": "メールに記載されているURLにアクセスしてアカウントを有効化してください。"
   },
-
   "error": {
     "email-already-in-use": "このメールアドレスは既に登録されています。すでにアカウントを作成している場合は[ログイン](/login)してください。",
     "account-exists-with-different-credential": "このアカウントは別の認証方法で登録されています。[ログイン](/login)から正しい認証方法でのログインをお試しください。",

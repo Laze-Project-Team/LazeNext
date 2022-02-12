@@ -1,13 +1,11 @@
 {
   "title": "ログイン",
   "description": "",
-
   "auth": {
     "google": "Googleでログイン",
     "twitter": "Twitterでログイン",
     "github": "GitHubでログイン"
   },
-
   "form": {
     "label": {
       "email": "メールアドレス",
@@ -22,9 +20,7 @@
       "password": "パスワードを入力してください"
     }
   },
-
   "footer": "[アカウント登録](/signup)はこちら",
-
   "error": {
     "account-exists-with-different-credential": "そのアカウントは別の方法で登録されています。別の認証方法を選択してください。",
     "user-not-found": "メールアドレスまたはパスワードが間違っています",

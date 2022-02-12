@@ -1,4 +1,27 @@
 {
   "title": "{{name}}",
-  "description": ""
+  "description": "",
+  "loading": "!!! translation value has not been set !!!",
+  "profile": {
+    "avatar": {
+      "title": "!!! translation value has not been set !!!",
+      "edit": {
+        "title": "!!! translation value has not been set !!!",
+        "invalid": "!!! translation value has not been set !!!",
+        "success": "!!! translation value has not been set !!!",
+        "error": "!!! translation value has not been set !!!"
+      }
+    },
+    "displayName": {
+      "label": "!!! translation value has not been set !!!",
+      "undefined": "!!! translation value has not been set !!!",
+      "edit": "!!! translation value has not been set !!!",
+      "submit": "!!! translation value has not been set !!!",
+      "placeholder": "!!! translation value has not been set !!!",
+      "validation": {
+        "max": "!!! translation value has not been set !!!"
+      },
+      "error": "!!! translation value has not been set !!!"
+    }
+  }
 }
