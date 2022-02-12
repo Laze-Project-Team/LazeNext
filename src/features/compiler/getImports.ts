@@ -1,7 +1,9 @@
 import type { Dispatch } from 'redux';
 
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
+import { strToMem } from '@/features/compiler/initialize/strToMem';
 import { updatePosition } from '@/features/compiler/initialize/updatePosition';
+import { cow, fox, mountains, teapot, teddybear } from '@/features/compiler/source/model';
 import { consoleSlice } from '@/features/redux/console';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
@@ -40,9 +42,26 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       alloc: (size: number) => {
         const oldMemorySize = variables.memorySize;
+        if (variables.memorySize + size >= variables.memory.buffer.byteLength) {
+          variables.memory.grow(1);
+        }
         variables.memorySize += size;
-
         return oldMemorySize;
+      },
+      getTeapot: () => {
+        return strToMem(teapot);
+      },
+      getMountains: () => {
+        return strToMem(mountains);
+      },
+      getTeddybear: () => {
+        return strToMem(teddybear);
+      },
+      getCow: () => {
+        return strToMem(cow);
+      },
+      getFox: () => {
+        return strToMem(fox);
       },
       lockPointer: () => {
         const requestPointerLock = () => {
@@ -366,6 +385,9 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       console: {
         log: (arg: number) => {
           logConsole(`${arg}`);
+        },
+        debug: (arg: number) => {
+          console.log(`${arg}`);
         },
         logstring: (offset: number, length: number) => {
           let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
