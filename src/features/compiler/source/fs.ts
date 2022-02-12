@@ -15,7 +15,7 @@ struct PointLight {
   vec3 diffuse;
   vec3 specular;
 };  
-#define NUM_POINT_LIGHTS 64
+#define NUM_POINT_LIGHTS 16
 uniform PointLight pointLights[NUM_POINT_LIGHTS];
 
 struct DirLight {
