@@ -18,6 +18,11 @@ const ignorePaths: ignorePattern[] = [
     file: 'common.json',
     path: 'copyright',
   },
+  {
+    lang: null,
+    file: 'profile.json',
+    path: 'title',
+  },
 ];
 
 const connectObject = <T>(acc: T, cur: T) => {
