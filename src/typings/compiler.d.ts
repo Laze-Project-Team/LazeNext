@@ -1,6 +1,7 @@
 export type importObject = {
   console: {
     log: (arg: number) => void;
+    debug: (arg: number) => void;
     logstring: (offset: number, length: number) => void;
     logMatrix: (offset: number) => void;
   };
@@ -16,6 +17,10 @@ export type importObject = {
     checkAbsoluteMouseX: () => number;
     checkAbsoluteMouseY: () => number;
     rand: () => number;
+    getTeapot: () => number;
+    getMountains: () => number;
+    getTeddybear: () => number;
+    getCow: () => number;
     alloc: (size: number) => number;
     lockPointer: () => void;
   };

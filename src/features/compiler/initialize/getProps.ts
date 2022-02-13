@@ -27,7 +27,7 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
       webglUniformLoc: [],
     },
     variables: {
-      memory: new WebAssembly.Memory({ initial: 100 }),
+      memory: new WebAssembly.Memory({ initial: 1000 }),
       memorySize: 0,
       wasm: '',
       id: '',
