@@ -127,20 +127,22 @@ const localeTest = async (isFix: boolean) => {
     return {
       [file]: Object.keys(localeKeys[file]).map((lang) => {
         const paths = localeKeys[file][lang];
+        const missingLangs = LANG_LIST.filter((lang) => {
+          const isMissing = !Object.keys(files).includes(lang);
+          if (isMissing) {
+            console.error(`[${lang}] ${colors.cyan(file)} is missing`);
+          }
+          return isMissing;
+        });
+
         paths.forEach((path) => {
-          Object.keys(files).forEach((lang) => {
+          LANG_LIST.forEach((lang) => {
             const langPaths = files[lang];
-            if (
-              ignorePaths.some((pattern) => {
-                return (
-                  pattern.path === path && pattern.file === file && (pattern.lang === lang || pattern.lang === null)
-                );
-              })
-            ) {
+            const isIgnored = ignorePaths.some((pattern) => {
+              return pattern.path === path && pattern.file === file && (pattern.lang === lang || pattern.lang === null);
+            });
+            if (isIgnored || missingLangs.includes(lang)) {
               return;
-            }
-            if (typeof langPaths === 'undefined') {
-              console.error(`[${lang}] ${colors.cyan(file)} is not found`);
             }
             if (!langPaths.includes(path)) {
               console.error(`[${lang}] ${colors.cyan(file)} -> ${colors.green(path)} is not found`);
