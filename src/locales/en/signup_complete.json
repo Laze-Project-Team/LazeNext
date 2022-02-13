@@ -3,7 +3,7 @@
   "description": "",
   "prompt": "Please enter your email address to complete your account registration",
   "processing": {
-    "title": "アカウント登録を完了しています。ページを閉じずにしばらくお待ちください。",
+    "title": "You have completed your account registration. Please wait a moment without closing the page.",
     "message": "If the account registration is not completed after a while, please try [Account Registration](/signup) again."
   },
   "require_email": {
