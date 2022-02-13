@@ -3,9 +3,9 @@
     "Editor": "Editor",
     "Docs": "Documentation",
     "drawer": "Sitemap",
-    "SignUp": "!!! translation value has not been set !!!",
-    "Profile": "!!! translation value has not been set !!!",
-    "Logout": "!!! translation value has not been set !!!"
+    "SignUp": "Sign Up / Login",
+    "Profile": "My Profile",
+    "Logout": "Log-Out"
   },
   "changeLanguage": "Change Language",
   "footer": {

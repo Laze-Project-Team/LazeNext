@@ -1,42 +1,42 @@
 {
   "title": "",
   "description": "",
-  "or": "!!! translation value has not been set !!!",
+  "or": "or",
   "auth": {
-    "google": "!!! translation value has not been set !!!",
-    "twitter": "!!! translation value has not been set !!!",
-    "github": "!!! translation value has not been set !!!"
+    "google": "Sign up with Google",
+    "twitter": "Sign up with Twitter",
+    "github": "Sign up with GitHub"
   },
   "form": {
     "label": {
-      "email": "!!! translation value has not been set !!!",
-      "password": "!!! translation value has not been set !!!",
-      "agreement": "!!! translation value has not been set !!!",
-      "agreement_text": "!!! translation value has not been set !!!",
-      "submit": "!!! translation value has not been set !!!"
+      "email": "Email address",
+      "password": "Password",
+      "agreement": "I agree to the [Terms of Use](/terms) and [Privacy Policy](/privacy).",
+      "agreement_text": "By creating an account, you agree to the [Terms of Use](/terms) and [Privacy Policy](/privacy)",
+      "submit": "Send confirmation email"
     },
     "message": {
       "email": {
-        "required": "!!! translation value has not been set !!!",
-        "invalid": "!!! translation value has not been set !!!"
+        "required": "Email address is required.",
+        "invalid": "Email address is invalid."
       },
       "password": {
-        "required": "!!! translation value has not been set !!!",
-        "minLength": "!!! translation value has not been set !!!",
-        "pattern": "!!! translation value has not been set !!!"
+        "required": "Password is required.",
+        "minLength": "Password must be at least 8 characters.",
+        "pattern": "Only single-byte alphanumeric characters and underscores are allowed in the password."
       }
     }
   },
-  "footer": "!!! translation value has not been set !!!",
+  "footer": "Click here to [login](/login)",
   "success": {
-    "title": "!!! translation value has not been set !!!",
-    "message": "!!! translation value has not been set !!!"
+    "title": "Successfully sent confirmation email!",
+    "message": "Please access the URL in the email to activate your account."
   },
   "error": {
-    "email-already-in-use": "!!! translation value has not been set !!!",
-    "account-exists-with-different-credential": "!!! translation value has not been set !!!",
-    "user-not-found": "!!! translation value has not been set !!!",
-    "authwith-unknown": "!!! translation value has not been set !!!",
-    "unknown": "!!! translation value has not been set !!!"
+    "email-already-in-use": "This email address is already registered. If you have already created an account, please [login](/login).",
+    "account-exists-with-different-credential": "This account has been registered with a different authentication method. Please try to log in with the correct authentication method from [login](/login).",
+    "user-not-found": "Your email address or password is incorrect.",
+    "authwith-unknown": "Account registration has failed. Give it some time and try again, but please try another method of registration.",
+    "unknown": "Failed to send confirmation email. Please try again after a while."
   }
 }

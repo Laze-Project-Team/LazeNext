@@ -1,27 +1,27 @@
 {
   "title": "{{name}}",
   "description": "",
-  "loading": "!!! translation value has not been set !!!",
+  "loading": "Loading",
   "profile": {
     "avatar": {
-      "title": "!!! translation value has not been set !!!",
+      "title": "Avatar image",
       "edit": {
-        "title": "!!! translation value has not been set !!!",
-        "invalid": "!!! translation value has not been set !!!",
-        "success": "!!! translation value has not been set !!!",
-        "error": "!!! translation value has not been set !!!"
+        "title": "Upload new avatar image",
+        "invalid": "The avatar image must be a JPEG or PNG format file.",
+        "success": "New avatar image has been updated successfully.",
+        "error": "Failed to upload new avatar image."
       }
     },
     "displayName": {
-      "label": "!!! translation value has not been set !!!",
-      "undefined": "!!! translation value has not been set !!!",
-      "edit": "!!! translation value has not been set !!!",
-      "submit": "!!! translation value has not been set !!!",
-      "placeholder": "!!! translation value has not been set !!!",
+      "label": "Username",
+      "undefined": "Noname",
+      "edit": "Edit your username",
+      "submit": "Update your username",
+      "placeholder": "Enter new username",
       "validation": {
-        "max": "!!! translation value has not been set !!!"
+        "max": "Username must be less than 32 characters"
       },
-      "error": "!!! translation value has not been set !!!"
+      "error": "Failed to update your username."
     }
   }
 }
