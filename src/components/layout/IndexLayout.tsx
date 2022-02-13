@@ -4,7 +4,7 @@ import type { FC, ReactNode, VFC } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IconContext } from 'react-icons';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineLogin, AiOutlineLogout, AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
@@ -33,7 +33,7 @@ const AccountLink = ({ href, children }: { href: string; children: ReactNode }) 
   return (
     <Button
       type="text"
-      className="inline-flex h-[2rem] items-center rounded-sm !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
+      className="inline-flex h-8 items-center rounded-sm !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
     >
       <StyledLink href={href} className="!transition-none">
         {children}
@@ -42,13 +42,29 @@ const AccountLink = ({ href, children }: { href: string; children: ReactNode }) 
   );
 };
 
-const QUERY_SM_DOWN = '(max-width: 576px)' as const;
-const QUERY_MD_UP = '(min-width: 577px)' as const;
+const AccountButton = ({ href, children, title }: { href: string; children: ReactNode; title: string }) => {
+  return (
+    <Button
+      type="text"
+      className="inline-flex h-8 w-8 items-center justify-center rounded-sm !p-1 !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
+      title={title}
+    >
+      <StyledLink href={href} className="flex justify-center !transition-none">
+        {children}
+      </StyledLink>
+    </Button>
+  );
+};
+
+const QUERY_XS_DOWN = '(max-width: 400px)';
+const QUERY_SM_DOWN = '(max-width: 568px)';
+const QUERY_MD_DOWN = '(max-width: 767px)';
+const QUERY_MD_UP = '(min-width: 768px)';
 
 const IndexHeader: VFC = () => {
   const [t] = useTranslation(['layout', 'common']);
   const { user } = useAuthContext();
-  const media = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP]);
+  const media = useMediaQuery([QUERY_XS_DOWN, QUERY_SM_DOWN, QUERY_MD_DOWN, QUERY_MD_UP]);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const onClick = () => {
@@ -61,7 +77,7 @@ const IndexHeader: VFC = () => {
   return (
     <>
       <div className="mx-auto flex max-w-[58rem] items-center">
-        <div className="inline-flex cursor-pointer px-4 py-4 transition-colors duration-200 hover:bg-white/10">
+        <div className="flex cursor-pointer px-4 py-4 transition-colors duration-200 hover:bg-white/10">
           <Link href="/" passHref>
             <div className="inline-flex">
               <LazeLogo size={32} />
@@ -69,28 +85,36 @@ const IndexHeader: VFC = () => {
             </div>
           </Link>
         </div>
-        {media && media === QUERY_SM_DOWN ? (
-          <div className="ml-auto flex items-center">
-            <ChangeLanguage />
-            <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
-              <AiOutlineMenu size="1.4rem" />
-            </Button>
-            <Drawer title={t('header.drawer')} placement="right" onClose={onClose} visible={isDrawerOpen}>
-              <Menu>
-                <Menu.Item>
-                  <Link href="/editor">{t('header.Editor')}</Link>
-                </Menu.Item>
-                <Menu.Item>
-                  <Link href="/docs">{t('header.Docs')}</Link>
-                </Menu.Item>
-              </Menu>
-            </Drawer>
-          </div>
-        ) : (
-          <div className="flex flex-1">
-            <NavLink href="/editor">{t('header.Editor')}</NavLink>
-            <NavLink href="/docs">{t('header.Docs')}</NavLink>
-            <div className="ml-auto">
+        {media === QUERY_MD_UP && (
+          <>
+            <div className="flex flex-1">
+              <NavLink href="/editor">{t('header.Editor')}</NavLink>
+              <NavLink href="/docs">{t('header.Docs')}</NavLink>
+            </div>
+          </>
+        )}
+        <div className="ml-auto flex items-center">
+          {media && [QUERY_SM_DOWN, QUERY_XS_DOWN].includes(media) ? (
+            <IconContext.Provider value={{ size: '1.2rem' }}>
+              {user ? (
+                <>
+                  <AccountButton href="/profile" title={t('header.Profile')}>
+                    <AiOutlineUser />
+                  </AccountButton>
+                  <AccountButton href="/logout" title={t('header.Logout')}>
+                    <AiOutlineLogout />
+                  </AccountButton>
+                </>
+              ) : (
+                <>
+                  <AccountButton href="/login" title={t('header.Signup')}>
+                    <AiOutlineLogin />
+                  </AccountButton>
+                </>
+              )}
+            </IconContext.Provider>
+          ) : (
+            <>
               {user ? (
                 <>
                   <AccountLink href="/profile">{t('header.Profile')}</AccountLink>
@@ -101,10 +125,27 @@ const IndexHeader: VFC = () => {
                   <AccountLink href="/login">{t('header.SignUp')}</AccountLink>
                 </>
               )}
-              <ChangeLanguage />
-            </div>
-          </div>
-        )}
+            </>
+          )}
+          <ChangeLanguage isText={media !== QUERY_XS_DOWN} />
+          {media !== QUERY_MD_UP && (
+            <>
+              <Button type="text" className="!text-gray-400 hover:!text-gray-200" onClick={onClick}>
+                <AiOutlineMenu size="1.4rem" />
+              </Button>
+              <Drawer title={t('header.drawer')} placement="right" onClose={onClose} visible={isDrawerOpen}>
+                <Menu>
+                  <Menu.Item>
+                    <Link href="/editor">{t('header.Editor')}</Link>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Link href="/docs">{t('header.Docs')}</Link>
+                  </Menu.Item>
+                </Menu>
+              </Drawer>
+            </>
+          )}
+        </div>
       </div>
     </>
   );

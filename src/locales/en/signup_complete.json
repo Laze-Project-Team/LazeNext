@@ -1,0 +1,32 @@
+{
+  "title": "Complete your account registration",
+  "description": "",
+  "prompt": "Please enter your email address to complete your account registration",
+  "processing": {
+    "title": "You have completed your account registration. Please wait a moment without closing the page.",
+    "message": "If the account registration is not completed after a while, please try [Account Registration](/signup) again."
+  },
+  "require_email": {
+    "title": "Enter your email address",
+    "email": {
+      "label": "Email address",
+      "required": "Email address is required",
+      "invalid": "Email address is not valid"
+    },
+    "submit": "Submit"
+  },
+  "require_password": {
+    "title": "Enter your password",
+    "password": {
+      "label": "Password",
+      "required": "Password is required",
+      "min": "Password must be at least 8 characters"
+    },
+    "submit": "Submit"
+  },
+  "success": {
+    "title": "Account registration has been completed.",
+    "message": "You may close this page if you wish. You can also check [your profile](/profile)"
+  },
+  "error": "Account registration failed. Please try [Account Registration](/signup) again."
+}

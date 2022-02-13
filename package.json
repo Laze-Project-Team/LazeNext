@@ -14,6 +14,7 @@
     "lint:prettier": "prettier --check .",
     "test": "jest",
     "test:docs": "ts-node -r tsconfig-paths/register --project tsconfig.server.json test/docs.ts",
+    "test:locale": "ts-node -r tsconfig-paths/register --project tsconfig.server.json test/locale.ts",
     "analyze": "ANALYZE=true next build",
     "prepare": "husky install"
   },
@@ -31,6 +32,7 @@
     "antd": "^4.18.4",
     "antd-img-crop": "^4.1.0",
     "applicationinsights": "^2.2.1",
+    "colors": "^1.4.0",
     "compression": "^1.7.4",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",

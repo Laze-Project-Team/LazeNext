@@ -5,12 +5,9 @@
     "SignUp": "アカウント登録 / ログイン",
     "Profile": "プロフィール",
     "Logout": "ログアウト",
-
     "drawer": "サイトマップ"
   },
-
   "changeLanguage": "言語を変更",
-
   "footer": {
     "Guides": "ガイドとヘルプ",
     "guides": {
@@ -18,7 +15,6 @@
       "Guideline": "ガイドライン",
       "Privacy": "プライバシーポリシー"
     },
-
     "Sitemap": "サイトマップ",
     "sitemap": {
       "Home": "ホーム",

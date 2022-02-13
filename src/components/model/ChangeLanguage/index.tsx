@@ -27,7 +27,11 @@ const LanguageMenu: VFC = () => {
   );
 };
 
-export const ChangeLanguage: FC = () => {
+type ChangeLanguageProps = {
+  isText: boolean;
+};
+
+export const ChangeLanguage: FC<ChangeLanguageProps> = ({ isText }) => {
   const [t] = useTranslation(['layout']);
 
   return (
@@ -38,10 +42,14 @@ export const ChangeLanguage: FC = () => {
           onClick={(e) => {
             return e.preventDefault();
           }}
-          className="inline-flex items-center !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
+          className={cx(
+            'inline-flex items-center !text-gray-400 hover:!bg-white/5 hover:!text-gray-200',
+            isText || 'h-8 w-8 justify-center !p-1'
+          )}
+          title={isText ? undefined : t('changeLanguage')}
         >
           <IoLanguageOutline className="inline text-xl" />
-          <span className="">{t('changeLanguage')}</span>
+          {isText && <span className="">{t('changeLanguage')}</span>}
         </Button>
       </Dropdown>
     </>

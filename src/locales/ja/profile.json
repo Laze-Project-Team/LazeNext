@@ -1,7 +1,6 @@
 {
   "loading": "ユーザープロフィール",
   "description": "",
-
   "profile": {
     "avatar": {
       "title": "アバター画像",
@@ -23,7 +22,5 @@
       },
       "error": "ユーザー名の変更に失敗しました"
     }
-  },
-
-  "undefined": {}
+  }
 }

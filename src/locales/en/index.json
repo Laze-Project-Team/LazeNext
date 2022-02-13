@@ -1,10 +1,8 @@
 {
   "title": "Home Page for Laze Programming Language",
   "description": "Laze is a programming language that has been developed with the goal of making programming easy for everyone. You can start programming right now in your browser, so let's jump into the world of Laze.",
-
   "Try Laze": "Try Laze now!",
   "requests": "Requests, Bugs, and Feedback",
-
   "Laze Features": "Why Laze? : Laze Features",
   "features": {
     "1": {
@@ -20,14 +18,12 @@
       "description": "You can start right now, right in your browser. Everything you need for Laze is right there in the Playground. You don't need to go through the hassle of setting up your own environment anymore."
     }
   },
-
   "Laze Production": "What can you do with Laze?",
   "productions": {
     "1": {
       "title": "2D Games",
       "description": "Using the standard library, 2D drawing can be done with very simple code."
     },
-
     "2": {
       "title": "3D Games",
       "description": "It uses WebGL, which means that it can perform as well in 3D as it does in 2D. It comes with a standard library to make it easy to get started."
@@ -37,7 +33,6 @@
       "description": "You will be able to easily create GUI applications as good as GUI using HTML and CSS. (In preparation)"
     }
   },
-
   "Join Laze": "Join Laze!",
   "activities": {
     "1": {

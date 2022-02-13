@@ -2,12 +2,12 @@
   "header": {
     "Editor": "Editor",
     "Docs": "Documentation",
-
-    "drawer": "Sitemap"
+    "drawer": "Sitemap",
+    "SignUp": "Sign Up / Login",
+    "Profile": "My Profile",
+    "Logout": "Log-Out"
   },
-
   "changeLanguage": "Change Language",
-
   "footer": {
     "Guides": "Guide & Help",
     "guides": {
@@ -15,7 +15,6 @@
       "Guideline": "Guideline",
       "Privacy": "Privacy Policy"
     },
-
     "Sitemap": "Sitemap",
     "sitemap": {
       "Home": "Home",

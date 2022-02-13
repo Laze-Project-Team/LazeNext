@@ -1,4 +1,27 @@
 {
   "title": "{{name}}",
-  "description": ""
+  "description": "",
+  "loading": "Loading",
+  "profile": {
+    "avatar": {
+      "title": "Avatar image",
+      "edit": {
+        "title": "Upload new avatar image",
+        "invalid": "The avatar image must be a JPEG or PNG format file.",
+        "success": "New avatar image has been updated successfully.",
+        "error": "Failed to upload new avatar image."
+      }
+    },
+    "displayName": {
+      "label": "Username",
+      "undefined": "Noname",
+      "edit": "Edit your username",
+      "submit": "Update your username",
+      "placeholder": "Enter new username",
+      "validation": {
+        "max": "Username must be less than 32 characters"
+      },
+      "error": "Failed to update your username."
+    }
+  }
 }
