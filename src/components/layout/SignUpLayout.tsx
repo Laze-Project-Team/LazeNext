@@ -1,6 +1,9 @@
 import { Divider } from 'antd';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { FC, ReactNode } from 'react';
+
+import { WithLink } from '@/components/ui/WithLink';
 
 type SignUpLayoutProps = {
   title: ReactNode;
@@ -10,6 +13,7 @@ type SignUpLayoutProps = {
 };
 
 export const SignUpLayout: FC<SignUpLayoutProps> = ({ title, authWith, form, footer }) => {
+  const { locale } = useRouter();
   const [t] = useTranslation('signup');
 
   return (
@@ -25,6 +29,8 @@ export const SignUpLayout: FC<SignUpLayoutProps> = ({ title, authWith, form, foo
         <div className="mt-8 flex w-full !max-w-[20rem] justify-center">
           <div className="sm:ml-auto">{footer}</div>
         </div>
+
+        <p className="mt-8 text-gray-500">{locale !== 'ja' && <WithLink title={t('common:DeepL')} />}</p>
       </div>
     </div>
   );

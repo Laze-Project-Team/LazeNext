@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { SignupCompleteScreen } from '@/components/model/SignUpCompleteScreen';
+import { WithLink } from '@/components/ui/WithLink';
 
 const SignupComplete: NextPage = () => {
   const { locale } = useRouter();
@@ -29,6 +30,8 @@ const SignupComplete: NextPage = () => {
 
       <div className="mx-auto flex max-w-[30rem] flex-col items-center justify-center space-y-4 px-4 pt-8">
         <SignupCompleteScreen />
+
+        <p className="!mt-8 text-gray-500">{locale !== 'ja' && <WithLink title={t('common:DeepL')} />}</p>
       </div>
     </>
   );
