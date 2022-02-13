@@ -1,0 +1,31 @@
+{
+  "title": "Login",
+  "description": "",
+  "auth": {
+    "google": "Login with Google",
+    "twitter": "Login with Twitter",
+    "github": "Login with GitHub"
+  },
+  "form": {
+    "label": {
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Login"
+    },
+    "message": {
+      "email": {
+        "required": "Email address is required",
+        "invalid": "Email address is not valid"
+      },
+      "password": "Enter your password"
+    }
+  },
+  "footer": "Click here to [register an account](/signup)",
+  "error": {
+    "account-exists-with-different-credential": "The account has been registered using a different method. Please select a different authentication method.",
+    "user-not-found": "Your email address or password is incorrect.",
+    "wrong-password": "Your email address or password is incorrect.",
+    "too-many-requests": "Your request has been restricted. Please wait for a while and try again.",
+    "unknown": "Login failed. Please give it some time and try again, or try another way to log in."
+  }
+}
