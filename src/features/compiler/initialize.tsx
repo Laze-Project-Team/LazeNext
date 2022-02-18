@@ -21,6 +21,7 @@ import { getHash } from '@/features/utils/hash';
 import type { compileResponse, compilerType, convertRequest, convertResponse } from '@/typings/compiler';
 
 import { explorerSlice } from '../redux/explorer';
+import { updateScroll } from './initialize/updatePosition';
 
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
   keyControlInitialize();
@@ -65,7 +66,8 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           initShaderProgram(gl, vs2DTextureSource, fs2DTextureSource),
           initShaderProgram(gl, vs2DNoTextureSource, fs2DNoTextureSource)
         );
-
+        canvas.removeEventListener('wheel', updateScroll, false);
+        canvas.addEventListener('wheel', updateScroll, false);
         const memorySizeFunc = instance.exports.memorySize as CallableFunction;
         const mainFunc = instance.exports.main as CallableFunction;
         const loopFunc = instance.exports.loop as CallableFunction;
@@ -84,6 +86,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         mainFunc();
 
         const draw = () => {
+          gl.lineWidth(2.0);
           gl.viewport(0, 0, canvas.width, canvas.height);
           loopFunc();
         };

@@ -3,7 +3,7 @@ import type { Dispatch } from 'redux';
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
 import { strToMem } from '@/features/compiler/initialize/strToMem';
 import { updatePosition } from '@/features/compiler/initialize/updatePosition';
-import { cow, fox, mountains, teapot, teddybear } from '@/features/compiler/source/model';
+import { cow, fox, mountains, robot, teapot, teddybear } from '@/features/compiler/source/model';
 import { consoleSlice } from '@/features/redux/console';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
@@ -19,6 +19,12 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
     },
     js: {
       mem: memory,
+      asin: Math.asin,
+      acos: Math.acos,
+      atan: Math.atan,
+      log: Math.log,
+      exp: Math.pow,
+      ePow: Math.exp,
       checkKeyPress: (keyCode: number) => {
         return BigInt(variables.keyControl.pressedKeys[keyCode]);
       },
@@ -36,6 +42,11 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       checkAbsoluteMouseY: () => {
         return variables.keyControl.absoluteMouseY;
+      },
+      checkScrollY: () => {
+        const temp = variables.keyControl.scrollY;
+        variables.keyControl.scrollY = 0;
+        return temp;
       },
       rand: () => {
         return Math.random();
@@ -62,6 +73,9 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       getFox: () => {
         return strToMem(fox);
+      },
+      getRobot: () => {
+        return strToMem(robot);
       },
       lockPointer: () => {
         const requestPointerLock = () => {
