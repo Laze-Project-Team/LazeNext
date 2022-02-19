@@ -3,9 +3,9 @@ import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 export const completionItemProvider: monaco.languages.CompletionItemProvider = {
   provideCompletionItems: (model, pos) => {
     const range: monaco.IRange = {
-      startColumn: 1,
+      startColumn: pos.column,
       startLineNumber: pos.lineNumber,
-      endColumn: 1,
+      endColumn: pos.column,
       endLineNumber: pos.lineNumber,
     };
 
