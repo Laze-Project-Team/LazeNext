@@ -15,8 +15,8 @@ type FooterNavigationProps = {
 
 const FooterNavigation: FC<FooterNavigationProps> = ({ href, children, title }) => {
   return (
-    <div className="hover:bg-white/5 px-2 transition-colors duration-200">
-      <StyledLink href={href} className="h-full flex items-center text-gray-100 hover:text-gray-100" title={title}>
+    <div className="px-2 transition-colors duration-200 hover:bg-white/5">
+      <StyledLink href={href} className="flex h-full items-center text-gray-100 hover:text-gray-100" title={title}>
         <IconContext.Provider value={{ size: '1.2rem' }}>{children}</IconContext.Provider>
       </StyledLink>
     </div>
@@ -27,9 +27,9 @@ export const EditorFooter: VFC = () => {
   const [t] = useTranslation(['editor']);
 
   return (
-    <div className="h-6 flex bg-primary-400 dark:bg-primary-600 text-gray-100">
+    <div className="flex h-6 bg-primary-400 text-gray-100 dark:bg-primary-600">
       <div className="px-4">{version}</div>
-      <div className="px-4 hidden xs:block">{t('footer.acknowledgement')}</div>
+      <div className="hidden px-4 xs:block">{t('footer.acknowledgement')}</div>
       <div className="ml-auto flex">
         <FooterNavigation href="/" title={t('footer.home')}>
           <VscHome />

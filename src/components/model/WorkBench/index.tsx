@@ -18,7 +18,7 @@ export const WorkBench: VFC = () => {
 
   return (
     <>
-      <div className="dark:bg-editor h-full">
+      <div className="h-full dark:bg-editor">
         <SwitchPane panes={workBenchPanes} initialPane="output" />
       </div>
     </>

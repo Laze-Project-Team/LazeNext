@@ -39,7 +39,7 @@ const IndexListTree: VFC<IndexListTreeProps> = ({ dir, active }) => {
         <div key={`leaf-${dir.path}`} className={cx('indexlist-item', activeClass)}>
           <StyledLink
             href={`/docs${dir.path}`}
-            className="inline-block w-full h-full text-gray-700 hover:text-gray-700"
+            className="inline-block h-full w-full text-gray-700 hover:text-gray-700"
           >
             {dir.name}
           </StyledLink>
@@ -71,7 +71,7 @@ type IndexListProps = {
 
 export const IndexList: VFC<IndexListProps> = ({ indexList, active }) => {
   return (
-    <div className="flex flex-col select-none indexlist">
+    <div className="indexlist flex select-none flex-col">
       {indexList.map((dir) => {
         return <IndexListTree dir={dir} active={active} key={dir.path} />;
       })}

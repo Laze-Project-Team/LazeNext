@@ -36,9 +36,34 @@ export const completionItemProvider: monaco.languages.CompletionItemProvider = {
         ].join('\n'),
       },
       {
+        label: '簡易版からまで',
+        insertText: [
+          '(${1:カウンタ})を(${2:初期値})から(${3:ここまで})まで(${4:値})ずつ増やし繰り返す{',
+          '\t$0',
+          '}',
+        ].join('\n'),
+        documentation: [
+          '繰り返し処理',
+          '',
+          '(${1:カウンタ})を(${2:初期値})から(${3:ここまで})まで(${4:値})ずつ増やし繰り返す{',
+          '\t$0',
+          '}',
+        ].join('\n'),
+      },
+      {
         label: '回繰り返す',
         insertText: ['(${1:回数}) 回繰り返す {', '\t$0', '}'].join('\n'),
         documentation: ['(回数) 回繰り返す {', '\t$0', '}'].join('\n'),
+      },
+      {
+        label: 'まで',
+        insertText: ['(${1:回数}) まで {', '\t$0', '}'].join('\n'),
+        documentation: ['(回数) まで {', '\t$0', '}'].join('\n'),
+      },
+      {
+        label: 'の間',
+        insertText: ['(${1:回数}) の間 {', '\t$0', '}'].join('\n'),
+        documentation: ['(回数) の間 {', '\t$0', '}'].join('\n'),
       },
       {
         label: '関数',

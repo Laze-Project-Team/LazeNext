@@ -38,5 +38,5 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   env: {
     GTM_ID: process.env.GTM_ID,
-  }
+  },
 });
