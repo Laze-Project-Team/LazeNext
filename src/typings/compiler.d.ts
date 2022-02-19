@@ -22,6 +22,7 @@ export type importObject = {
     checkRelativeMouseY: () => number;
     checkAbsoluteMouseX: () => number;
     checkAbsoluteMouseY: () => number;
+    checkScrollY: () => number;
     rand: () => number;
     getTeapot: () => number;
     getMountains: () => number;

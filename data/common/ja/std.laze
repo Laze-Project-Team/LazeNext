@@ -1153,7 +1153,7 @@
 		up.ベクトル3D(0.0, 1.0, 0.0);
 		yaw = 90.0;
 		pitch = 0.0;
-		感度 = 0.001;
+		感度 = 1.0;
 	}
 	関数: ${"ja":"感度設定", "natja":"感度設定", "en":"setSensitivity", "naten":"setSensitivity"}$(実数: s) => (){
 		感度 = s;
@@ -1181,8 +1181,8 @@
 			座標.z = 座標.z - elapsedTime * sin(ラジアンへ(yaw)) * 5.0;
 			座標.x = 座標.x - elapsedTime * cos(ラジアンへ(yaw)) * 5.0;
 		}
-		yaw = yaw - xOffset * 感度;
-		pitch = pitch - yOffset * 感度;
+		yaw = yaw - xOffset * 感度 * elapsedTime;
+		pitch = pitch - yOffset * 感度 * elapsedTime;
 		もし(pitch < 0 - 89.0)ならば{
 			pitch = 0 - 89.0;
 		}
