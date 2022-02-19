@@ -6,7 +6,7 @@ import { cx } from '@/features/utils/cx';
 import styles from '@/styles/pre.module.css';
 
 export const H1: Components['h1'] = ({ children }) => {
-  return <h1 className="text-4xl mb-8">{children}</h1>;
+  return <h1 className="mb-8 text-4xl">{children}</h1>;
 };
 
 export const H2: Components['h2'] = ({ node, children }) => {
@@ -17,7 +17,7 @@ export const H2: Components['h2'] = ({ node, children }) => {
   })?.value;
 
   return (
-    <h2 className="text-2xl border-b-2 mt-8 mb-4" id={id}>
+    <h2 className="mt-8 mb-4 border-b-2 text-2xl" id={id}>
       {children}
     </h2>
   );
@@ -55,17 +55,17 @@ export const anchorLink: Components['h2'] = ({ node, children }) => {
     // @ts-ignore
   })?.value;
 
-  return <Anchor.Link href={`#${id}`} className="text-gray-400 text-xs" title={children} />;
+  return <Anchor.Link href={`#${id}`} className="text-xs text-gray-400" title={children} />;
 };
 
 export const Pre: Components['pre'] = ({ children }) => {
   return (
-    <pre className={cx('bg-editor px-4 py-2 rounded-md text-[#ccc]', styles.pre, styles.scrollable)}>{children}</pre>
+    <pre className={cx('rounded-md bg-editor px-4 py-2 text-[#ccc]', styles.pre, styles.scrollable)}>{children}</pre>
   );
 };
 
 export const Code: Components['code'] = ({ children }) => {
-  return <code className="bg-gray-200 px-1 py-[.1rem] mx-1 font-editor">{children}</code>;
+  return <code className="mx-1 bg-gray-200 px-1 py-[.1rem] font-editor">{children}</code>;
 };
 
 export const Table: Components['table'] = ({ children }) => {
@@ -98,7 +98,7 @@ export const Td: Components['td'] = ({ children, node }) => {
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    <td className="px-2 py-1 border-b-[1px] border-gray-200" style={{ textAlign: node.properties?.align }}>
+    <td className="border-b-[1px] border-gray-200 px-2 py-1" style={{ textAlign: node.properties?.align }}>
       {children}
     </td>
   );

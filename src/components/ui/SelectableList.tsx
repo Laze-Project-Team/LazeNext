@@ -14,7 +14,7 @@ export const SelectableList: VFC<SelectableListProps> = ({ id, items, selectedIt
 
   return (
     <>
-      <div className={cx('space-y-1 max-h-[30vh] pr-4 overflow-y-scroll editor-scrollable scrollable-normal')}>
+      <div className={cx('editor-scrollable scrollable-normal max-h-[30vh] space-y-1 overflow-y-scroll pr-4')}>
         {Object.keys(items).map((key) => {
           return (
             <div key={key}>
@@ -34,7 +34,7 @@ export const SelectableList: VFC<SelectableListProps> = ({ id, items, selectedIt
               />
               <label
                 htmlFor={`${id}-${key}`}
-                className="inline-block px-4 py-1 w-full h-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors duration-200 rounded-sm peer-checked:bg-black/5 dark:peer-checked:bg-white/10 peer-checked:hover:bg-black/10 peer-checked:dark:hover:bg-white/20 cursor-pointer"
+                className="inline-block h-full w-full cursor-pointer rounded-sm px-4 py-1 transition-colors duration-200 hover:bg-black/5 peer-checked:bg-black/5 peer-checked:hover:bg-black/10 dark:hover:bg-white/10 dark:peer-checked:bg-white/10 peer-checked:dark:hover:bg-white/20"
               >
                 {items[key as keyof typeof items]}
               </label>

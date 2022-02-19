@@ -14,11 +14,11 @@ const UnconnectedConsole: VFC<Omit<consoleState, 'scrolled'>> = ({ console, acti
   const consoleRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="h-full flex">
-      <div className={'flex-1 h-full overflow-y-scroll editor-scrollable scrollable-thin'} ref={consoleRef}>
+    <div className="flex h-full">
+      <div className={'editor-scrollable scrollable-thin h-full flex-1 overflow-y-scroll'} ref={consoleRef}>
         <ConsoleLogs consoleRef={consoleRef} />
       </div>
-      <div className="w-28 ml-1 border-l-[1px] border-gray-300 dark:border-gray-700 editor-scrollable scrollable-thin overflow-x-hidden overflow-y-auto">
+      <div className="editor-scrollable scrollable-thin ml-1 w-28 overflow-y-auto overflow-x-hidden border-l-[1px] border-gray-300 dark:border-gray-700">
         {Object.keys(console).map((key) => {
           return (
             <ConsolePanelListItem

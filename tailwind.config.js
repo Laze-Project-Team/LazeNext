@@ -41,15 +41,15 @@ module.exports = {
       editor: '#1e1e1e',
     },
     screens: {
-      'xs': '480px',
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
+      xs: '480px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
       '2xl': '1536px',
     },
     fontFamily: {
-      editor: ['Consolas', 'Droid Sans Mono', 'Courier New', 'ui-monospace', 'Droid Sans Fallback']
+      editor: ['Consolas', 'Droid Sans Mono', 'Courier New', 'ui-monospace', 'Droid Sans Fallback'],
     },
     extend: {},
   },

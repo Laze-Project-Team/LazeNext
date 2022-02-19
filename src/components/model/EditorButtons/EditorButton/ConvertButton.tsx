@@ -95,7 +95,7 @@ export const ConvertButton: VFC = () => {
     <>
       <div className="flex">
         <EditorButton name={t('buttons.convert')} onClick={onClick} Icon={<VscArrowSwap />} />
-        <div className="inline-flex items-center opacity-80 px-2">{langList[lang]}</div>
+        <div className="inline-flex items-center px-2 opacity-80">{langList[lang]}</div>
       </div>
       <Modal
         title={t('buttons.convert')}
@@ -106,11 +106,11 @@ export const ConvertButton: VFC = () => {
             {t('convert.cancel')}
           </Button>,
           <Button type="primary" key="change" onClick={change}>
-            <VscRefresh className="inline text-[1.1rem] mr-2" />
+            <VscRefresh className="mr-2 inline text-[1.1rem]" />
             {t('convert.change')}
           </Button>,
           <Button type="primary" key="convert" onClick={convert}>
-            <VscArrowSwap className="inline text-[1.1rem] mr-2" />
+            <VscArrowSwap className="mr-2 inline text-[1.1rem]" />
             {t('convert.convert')}
           </Button>,
         ]}
@@ -120,8 +120,8 @@ export const ConvertButton: VFC = () => {
 
       <div
         className={cx(
-          'fixed top-0 right-0 bottom-0 left-0 bg-black/60 z-10 flex justify-center items-center',
-          isConverting ? 'opacity-100 visible' : 'opacity-0 invisible'
+          'fixed top-0 right-0 bottom-0 left-0 z-10 flex items-center justify-center bg-black/60',
+          isConverting ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >
         <div className={styles.loader} />

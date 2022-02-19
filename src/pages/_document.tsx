@@ -46,7 +46,7 @@ class Document extends NextDocument<WithNonceProp> {
         <body>
           <noscript>
             <iframe
-              className="hidden invisible"
+              className="invisible hidden"
               src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
               height="0"
               width="0"

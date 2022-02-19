@@ -22,8 +22,8 @@ export const Explorer: VFC = () => {
 
   return (
     <>
-      <div className="w-full h-full z-10 flex flex-col">
-        <div className="flex flex-row items-center h-7 dark:bg-primary-default bg-primary-400">
+      <div className="z-10 flex h-full w-full flex-col">
+        <div className="flex h-7 flex-row items-center bg-primary-400 dark:bg-primary-default">
           <div />
           <div className="ml-auto">
             <ExplorerButton onClick={newFile} title={t('buttons.newFile')}>
