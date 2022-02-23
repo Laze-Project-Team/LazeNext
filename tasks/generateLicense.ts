@@ -20,10 +20,11 @@ export type licenseType = Record<string, license>;
 
 export type renderLicenseType = Record<string, Omit<license, 'path' | 'licenseFile'>>;
 
-const filePath = path.join(DATA_DIR, 'etc', 'license.json');
+const fileDir = path.join(DATA_DIR, 'etc');
+const filePath = path.join(fileDir, 'license.json');
 
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+if (!fs.existsSync(fileDir)) {
+  fs.mkdirSync(fileDir, { recursive: true });
 }
 
 exec(`license-checker --production --json > ${filePath}`);
