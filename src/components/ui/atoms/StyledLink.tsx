@@ -9,9 +9,10 @@ export type StyledLinkProps = {
   className?: string;
   title?: string;
   onClick?: () => void;
+  iconDisabled?: boolean;
 };
 
-export const StyledLink: FC<StyledLinkProps> = ({ children, onClick, href, className, title }) => {
+export const StyledLink: FC<StyledLinkProps> = ({ children, onClick, href, className, title, iconDisabled }) => {
   const isInternal = href.startsWith('/') || href.startsWith('#');
   return (
     <Link href={href} passHref>
@@ -24,7 +25,7 @@ export const StyledLink: FC<StyledLinkProps> = ({ children, onClick, href, class
         title={title}
       >
         {children}
-        {isInternal || <BiLinkExternal className="ml-1 inline" />}
+        {!iconDisabled && (isInternal || <BiLinkExternal className="ml-1 inline" />)}
       </a>
     </Link>
   );

@@ -1,13 +1,15 @@
 {
   "name": "laze-web",
   "version": "0.1.1",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "dev:server": "ts-node -r tsconfig-paths/register --project tsconfig.server.json server/index.ts",
     "dev": "next dev",
     "build:next": "next build",
     "build:server": "tsc --project tsconfig.server.json && tsc-alias -p tsconfig.server.json",
-    "build": "yarn build:server & yarn build:next",
+    "build:license": "tsc --project tsconfig.tasks.json && tsc-alias -p tsconfig.tasks.json && node ./dist/tasks/generateLicense.js",
+    "build": "yarn build:license && yarn build:next & yarn build:server",
     "start": "node ./dist/server/index.js",
     "lint": "next lint",
     "lint:eslint": "eslint --cache .",
@@ -27,12 +29,15 @@
     "@codingame/monaco-jsonrpc": "^0.3.1",
     "@codingame/monaco-languageclient": "^0.17.3",
     "@monaco-editor/react": "^4.3.1",
+    "@next/bundle-analyzer": "^12.0.8",
     "@reduxjs/toolkit": "^1.7.1",
     "antd": "^4.18.4",
     "applicationinsights": "^2.2.0",
+    "compare-versions": "^4.1.3",
     "compression": "^1.7.4",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
+    "license-checker": "^25.0.1",
     "monaco-editor": "^0.31.1",
     "next": "12.0.9",
     "next-i18next": "^10.0.1",
@@ -51,8 +56,7 @@
     "remark-gfm": "^3.0.1",
     "sharp": "^0.29.3",
     "ts-node": "^10.4.0",
-    "tsc-alias": "^1.5.0",
-    "@next/bundle-analyzer": "^12.0.8"
+    "tsc-alias": "^1.5.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.16.1",
