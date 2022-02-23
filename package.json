@@ -9,7 +9,7 @@
     "build:next": "next build",
     "build:server": "tsc --project tsconfig.server.json && tsc-alias -p tsconfig.server.json",
     "build:license": "tsc --project tsconfig.tasks.json && tsc-alias -p tsconfig.tasks.json && node ./dist/tasks/generateLicense.js",
-    "build": "yarn build:license && yarn build:server & yarn build:next",
+    "build": "yarn build:license && yarn build:next & yarn build:server",
     "start": "node ./dist/server/index.js",
     "lint": "next lint",
     "lint:eslint": "eslint --cache .",
