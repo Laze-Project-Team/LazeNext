@@ -49,3 +49,6 @@ certs/
 # gitkeep
 cache/.gitkeep
 dist/.gitkeep
+
+# license.json
+data/etc/license.json
