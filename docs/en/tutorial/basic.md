@@ -1,10 +1,10 @@
-# Basic Tutorials
+# Basics
 
-Let's learn the basic usage of Laze.
+Now let's learn how to use Laze in a basic way.
 
-This section is written assuming you are a beginner in programming, so intermediate and advanced users may understand many parts.
+💡 The following programming descriptions are intended for beginners in programming, so intermediate and advanced users may understand many parts of the information.
 
-## First steps
+## The First Steps
 
 Let's start by writing this program.
 
@@ -14,15 +14,15 @@ function: main () => () {
 }
 ```
 
-Once written, let's run it. In the output screen below, you should see "Welcome to Laze! in the output screen below. Let's take a closer look at how this program works.
+As soon as it is written, it will be executed. On the screen in the output below, "Welcome to Laze!" should appear on the display. We will now explain in detail how this.
 
-Let's take a look at how the first program works, breaking it down one by one.
+How does the first program work? We will look at them one by one, breaking them down.
 
-## Functions
+## Function
 
-The keyword "function" at the very beginning indicates that we are declaring a function. A function is something that performs an action or process.
+The very first keyword 'function' indicates that a function is to be declared. A function is something that performs some action or process,
 
-It is declared as
+which can be indicated by (the one below)
 
 ```
 function: <function name> ( <argument> ) => ( <return value> ) {
@@ -30,19 +30,18 @@ function: <function name> ( <argument> ) => ( <return value> ) {
 }
 ```
 
-and is called as
+and called by (like the one below)
 
 ```
 <function name>( <argument> );
 ```
+The "arguments" and "return values" are explained in [Function](/func/function).
 
-Arguments and return values are explained in [Function](/func/function).
+This means that in the first program you defined a function named "main". The function named "main" is a special function, a system in which this function is executed first when the program is executed.
 
-In other words, in your first program, you have defined a function named "main". The function named "main" is a special function, and it is executed first when the program is executed.
+## Scope
 
-## scope
-
-Next, let's look at the part enclosed in `{}`. The `{}` forms a "scope", which simply means that you can access the outside from the inside of the scope, but not the inside from the outside.
+Next, let's look at the areas enclosed by `{}`. The `{}` forms a "scope", which simply means that you can access the inside of a scope from the outside, but not the inside from the outside.
 
 ![scope image picture](/img/docs/en/scope.jpg)
 
@@ -52,15 +51,15 @@ Next, let's look at the part enclosed in `{}`. The `{}` forms a "scope", which s
 print("Welcome to Laze!");
 ```
 
-Let's take a look at the above program. The `print()` means to execute a function named print. Show is a standard function, see [print](/func/functions/print) for details.
+Let's look at the above form. 'print()' means to execute a function named print. For more information on the function 'print', which is a type of standard function, please see [print](/func/functions/print).
 
-## string
+## String
 
-`""` is a double quotation mark, and the part enclosed by two double quotation marks is called a "string". `''` (single quotation marks), it is not a "string" but a "character". See [character](/func/char) and [stirng](/func/string) for more information here.
+`""` is a double quotation mark and the area enclosed by two double quotation marks is called a 'string'. You cannot use `''` (single quotation marks) because it is not a 'string' but a 'character'. For more information on this, see [character](/func/char) and [stirng](/func/string).
 
 ## Semicolon
 
-Did you notice that there is a `;` at the end of the line? A semicolon, usually written at the end of a line, indicates that a single process is about to end. It does not necessarily have to be at the end of the line, and in extreme cases, it is possible to write the first program on a single line. （In extreme cases, it is possible to write the first program on a single line, although it is usually better to start a new line for better readability.)
+Did you notice the `;` at the end of the line? This is called a semi-colon and is written at the end of a line to indicate the end of one process. However, it does not necessarily have to be at the end of a line, and extreme cases it is possible to write the first program on a single line. (By convention, a line break is used for readability).
 
 ## Variables
 
