@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -7,15 +8,16 @@ import { getProps } from '@/features/compiler/initialize/getProps';
 
 export const useCompiler = (): void => {
   const dispacher = useDispatch();
+  const { locale } = useRouter();
   const [t] = useTranslation('editor');
 
   useEffect(() => {
     window.laze = window.laze || {};
     if (window.laze?.props === undefined) {
-      window.laze.props = getProps(dispacher);
+      window.laze.props = getProps(dispacher, locale ?? 'en');
     }
     if (window.laze?.compiler === undefined) {
       window.laze.compiler = initialize(dispacher, t);
     }
-  }, [dispacher, t]);
+  }, [dispacher, locale, t]);
 };
