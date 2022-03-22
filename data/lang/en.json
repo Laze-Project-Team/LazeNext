@@ -151,7 +151,6 @@
             "else":"else stm"
         },
         "ifelselist":{
-            "null":"",
             "if":"if ( exp ) stm",
             "ifelse":"ifelse",
             "ififelselist":"if ( exp ) stm ifelse",
