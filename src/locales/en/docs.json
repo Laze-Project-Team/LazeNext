@@ -2,5 +2,6 @@
   "title": "Laze Documentation",
   "description": "Documentation for the Laze programming language, from basic Laze usage to function references.",
 
-  "contents": "Contents"
+  "contents": "Contents",
+  "acknowledgement": "This documentation has been translated through the efforts of volunteers. Click here to learn more about the Laze community and become a member!"
 }

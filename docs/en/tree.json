@@ -1,6 +1,7 @@
 {
   "id": "root",
   "name": "root",
+  "acknowledgement": true,
   "children": [
     {
       "id": "first",

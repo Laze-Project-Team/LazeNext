@@ -18,6 +18,10 @@ export type TreeType = {
   children?: TreeType[];
 };
 
+export type TreeFileType = TreeType & {
+  acknowledgement?: boolean;
+};
+
 const getNameFromPath = (tree: TreeType, path: string[]): string | null => {
   if (path.length === 0) {
     return tree.name;
@@ -73,13 +77,14 @@ const getIndexList = (tree: TreeType, subpath = '/'): directoryObject[] => {
   return [];
 };
 
-type docsProps = {
+export type docsProps = {
   breadcrumbs: breadcrumb[];
   indexList: directoryObject[];
+  acknowledgement: boolean;
 };
 
 export const getDocsProps = (dir: string, path: string[]): docsProps => {
-  const tree = JSON.parse(fs.readFileSync(`${dir}/tree.json`, { encoding: 'utf-8', flag: 'r' })) as TreeType;
+  const tree = JSON.parse(fs.readFileSync(`${dir}/tree.json`, { encoding: 'utf-8', flag: 'r' })) as TreeFileType;
   if (!tree.children) {
     throw new Error('tree.json is not valid');
   }
@@ -87,6 +92,7 @@ export const getDocsProps = (dir: string, path: string[]): docsProps => {
   const props: docsProps = {
     breadcrumbs: getBreadcrumbs(tree, path),
     indexList: getIndexList(tree),
+    acknowledgement: tree.acknowledgement ?? false,
   };
 
   return props;

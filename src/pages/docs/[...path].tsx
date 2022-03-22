@@ -7,13 +7,14 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useRef, useState } from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiFillInfoCircle, AiOutlineMenu } from 'react-icons/ai';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { IndexList } from '@/components/model/IndexList';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
+import { StyledLink } from '@/components/ui/atoms/StyledLink';
 import {
   a,
   anchorLink,
@@ -34,7 +35,7 @@ import {
   Tr,
 } from '@/components/ui/Markdown';
 import { DOCS_DIR } from '@/const/dir';
-import type { breadcrumb, directoryObject } from '@/features/docs/getProps';
+import type { docsProps } from '@/features/docs/getProps';
 import { getDocsProps } from '@/features/docs/getProps';
 import { cx } from '@/features/utils/cx';
 
@@ -42,13 +43,11 @@ const QUERY_SM_DOWN = '(max-width: 600px)' as const;
 const QUERY_MD_UP = '(min-width: 601px) and (max-width: 960px)' as const;
 const QUERY_LG_UP = '(min-width: 961px)' as const;
 
-type DocsProps = {
+type DocsProps = docsProps & {
   content: string;
-  breadcrumbs: breadcrumb[];
-  indexList: directoryObject[];
 };
 
-const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
+const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList, acknowledgement }) => {
   const router = useRouter();
   const media = useMediaQuery([QUERY_SM_DOWN, QUERY_MD_UP, QUERY_LG_UP]);
   const { path } = router.query as { path: string[] };
@@ -147,6 +146,16 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList }) => {
                 })}
               </Breadcrumb>
             </div>
+
+            {acknowledgement && (
+              <div className="my-4 flex space-x-4 rounded-md border-l-4 border-blue-600 bg-blue-100 p-4">
+                <AiFillInfoCircle className="flex-shrink-0 text-xl text-blue-600" />
+                <StyledLink href="/docs/first" className="!text-gray-900 transition-opacity hover:opacity-70">
+                  {t('acknowledgement')}
+                </StyledLink>
+              </div>
+            )}
+
             <Markdown
               components={{
                 h1: H1,
@@ -243,13 +252,12 @@ export const getStaticProps = async (context: contextType) => {
     flag: 'r',
   });
 
-  const { indexList, breadcrumbs } = getDocsProps(`${DOCS_DIR}/${context.locale}`, context.params.path);
+  const props = getDocsProps(`${DOCS_DIR}/${context.locale}`, context.params.path);
 
   return {
     props: {
       content,
-      breadcrumbs,
-      indexList,
+      ...props,
       ...(await serverSideTranslations(context.locale, ['common', 'docs'])),
     },
   };
