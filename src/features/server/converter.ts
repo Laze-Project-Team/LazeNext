@@ -38,6 +38,7 @@ export const convertCode = async (code: string, option: convertRequest['option']
 
   await fs.promises.mkdir(`${CACHE_DIR}/${id}`, { recursive: true });
   await fs.promises.writeFile(`${CACHE_DIR}/${id}/${option.label}`, code, { encoding: 'utf8', flag: 'w' });
+  // console.log(commands.convert(id, option));
   const { stderr } = await exec(commands.convert(id, option), execOption);
 
   if (stderr) {

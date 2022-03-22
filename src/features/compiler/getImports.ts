@@ -2,7 +2,7 @@ import type { Dispatch } from 'redux';
 
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
 import { strToMem } from '@/features/compiler/initialize/strToMem';
-import { updatePosition } from '@/features/compiler/initialize/updatePosition';
+import { updateAbsolutePosition } from '@/features/compiler/initialize/updatePosition';
 import { cow, fox, mountains, robot, teapot, teddybear } from '@/features/compiler/source/model';
 import { consoleSlice } from '@/features/redux/console';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
@@ -84,15 +84,11 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         canvas.removeEventListener('click', requestPointerLock, false);
         canvas.addEventListener('click', requestPointerLock, false);
 
-        const handleMouseMove = (e: MouseEvent) => {
-          return updatePosition(e, canvas);
-        };
-
         const lockChangeAlert = () => {
           if (document.pointerLockElement === canvas) {
-            document.addEventListener('mousemove', handleMouseMove, false);
+            document.addEventListener('mousemove', updateAbsolutePosition, false);
           } else {
-            document.removeEventListener('mousemove', handleMouseMove, false);
+            document.removeEventListener('mousemove', updateAbsolutePosition, false);
           }
         };
 
@@ -352,7 +348,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
               const receiveText = splitData[i];
               if (receiveText.length) {
                 const input = parseInt(receiveText.substring(2));
-                console.log(receiveText);
+                // console.log(receiveText);
                 switch (receiveText[0]) {
                   case 'D':
                     arduinoObjects.digitalInput[parseInt(receiveText[1])] = input;

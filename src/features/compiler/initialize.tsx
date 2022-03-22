@@ -21,7 +21,7 @@ import { getHash } from '@/features/utils/hash';
 import type { compileResponse, compilerType, convertRequest, convertResponse } from '@/typings/compiler';
 
 import { explorerSlice } from '../redux/explorer';
-import { updateScroll } from './initialize/updatePosition';
+import { updatePosition, updateScroll } from './initialize/updatePosition';
 
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
   keyControlInitialize();
@@ -66,8 +66,16 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           initShaderProgram(gl, vs2DTextureSource, fs2DTextureSource),
           initShaderProgram(gl, vs2DNoTextureSource, fs2DNoTextureSource)
         );
+
+        const handleMouseMove = (e: MouseEvent) => {
+          // console.log(e.clientY);
+          return updatePosition(e, canvas);
+        };
+
         canvas.removeEventListener('wheel', updateScroll, false);
         canvas.addEventListener('wheel', updateScroll, false);
+        // canvas.removeEventListener('wheel', updateScroll, false);
+        canvas.addEventListener('mousemove', handleMouseMove, false);
         const memorySizeFunc = instance.exports.memorySize as CallableFunction;
         const mainFunc = instance.exports.main as CallableFunction;
         const loopFunc = instance.exports.loop as CallableFunction;

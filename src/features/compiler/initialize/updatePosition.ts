@@ -5,6 +5,8 @@ export const updatePosition = (e: MouseEvent, canvas: HTMLCanvasElement): void =
     (e.clientY - canvas.getBoundingClientRect().top - canvas.clientHeight / 2) /
     (canvas.clientHeight / 2)
   );
+};
+export const updateAbsolutePosition = (e: MouseEvent): void => {
   window.laze.props.variables.keyControl.absoluteMouseX += e.movementX;
   window.laze.props.variables.keyControl.absoluteMouseY += e.movementY;
 };

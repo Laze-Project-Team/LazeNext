@@ -19,7 +19,7 @@ const initializeSample = async (): Promise<void> => {
     const langs = Object.keys(langList);
     for (let j = 0; j < langs.length; j++) {
       const lang = langs[j];
-      console.log(`converting ${sample} to ${lang}`);
+      // console.log(`converting ${sample} to ${lang}`);
 
       const convertResult = await convertCode(content, { from: 'ja', to: lang, label: 'main.laze' });
       if (convertResult.success) {

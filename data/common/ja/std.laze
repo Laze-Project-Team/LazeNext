@@ -1659,7 +1659,7 @@
 		もし(zoom < 8.0)ならば{
 			zoom = 8.0;
 		}
-		デバッグ表示(zoom);
+		// デバッグ表示(zoom);
 		now = 時間計測() / 1000.0;
 		elapsedTime = now - last;
 		last = now;
@@ -1742,11 +1742,38 @@
 		}
 		id = 多角形追加(points, 座標, 色, zIndex);
 	}
+	関数: ${"ja":"線追加", "natja":"線追加", "en":"addLine", "naten":"addLine"}$(ベクトル2D:start, ベクトル2D:end, ベクトル3D:色, 実数:zIndex) => (整数:id){
+		配列<実数>: points();
+		points.追加(start.x);
+		points.追加(start.y);
+		points.追加(-zIndex * 0.001);
+		points.追加(end.x);
+		points.追加(end.y);
+		points.追加(-zIndex * 0.001);
+
+		*スプライト: sprite = メモリ確保(バイト数(*sprite));
+		sprite->スプライト(points.content, points.長さ()/3, メモリ確保(0), 0, 色, ベクトル2D(0.0, 0.0), 4, 1, zIndex);
+		スプライト配列.追加(sprite);
+		id = スプライト配列.長さ() - 1;
+	}
 	関数: ${"ja":"線追加", "natja":"線追加", "en":"addLine", "naten":"addLine"}$(関数:c(実数:a) => (実数:b), 実数: dx, 実数:start, 実数:end, ベクトル2D: 座標, ベクトル3D:色, 実数:zIndex) => (整数:id){
 		配列<実数>: points();
 		(実数:x = start;)から(x >= end)まで(x += dx;){
 			points.追加(x);
 			points.追加(c(x));
+			points.追加(-zIndex * 0.001);
+		}
+		*スプライト: sprite = メモリ確保(バイト数(*sprite));
+		sprite->スプライト(points.content, points.長さ()/3, メモリ確保(0), 0, 色, 座標, 4, 1, zIndex);
+		スプライト配列.追加(sprite);
+		id = スプライト配列.長さ() - 1;
+	}
+	関数: ${"ja":"媒介変数表示線追加", "natja":"媒介変数表示線追加", "en":"addLine", "naten":"addLine"}$(関数:c(実数:theta) => (ベクトル2D:pos), 実数: dx, 実数:start, 実数:end, ベクトル2D: 座標, ベクトル3D:色, 実数:zIndex) => (整数:id){
+		配列<実数>: points();
+		(実数:x = start;)から(x >= end)まで(x += dx;){
+			ベクトル2D:temp = c(x);
+			points.追加(temp.x);
+			points.追加(temp.y);
 			points.追加(-zIndex * 0.001);
 		}
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
