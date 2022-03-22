@@ -65,7 +65,7 @@
     "@testing-library/user-event": "13.5.0",
     "@types/compression": "^1.7.2",
     "@types/express": "^4.17.13",
-    "@types/jest": "27.0.3",
+    "@types/jest": "27.4.1",
     "@types/node": "16.11.12",
     "@types/nprogress": "0.2.0",
     "@types/react": "17.0.39",
