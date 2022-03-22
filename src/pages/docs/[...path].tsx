@@ -67,6 +67,12 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList, acknowledg
 
   useEffect(() => {
     setIsDrawerVisible(false);
+    if (path.join('/') === 'first') {
+      const element = document.querySelector('#document h2:nth-of-type(3)');
+      if (element) {
+        element.scrollIntoView();
+      }
+    }
   }, [path]);
 
   return (
@@ -126,6 +132,7 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList, acknowledg
           )}
           <div
             ref={documentRef}
+            id="document"
             className={cx(
               'absolute top-16 w-[calc(100vw-18px)] break-normal',
               media && media === QUERY_LG_UP ? 'pr-44' : 'pr-8',
@@ -150,7 +157,10 @@ const Docs: NextPage<DocsProps> = ({ content, breadcrumbs, indexList, acknowledg
             {acknowledgement && (
               <div className="my-4 flex space-x-4 rounded-md border-l-4 border-blue-600 bg-blue-100 p-4">
                 <AiFillInfoCircle className="flex-shrink-0 text-xl text-blue-600" />
-                <StyledLink href="/docs/first" className="!text-gray-900 transition-opacity hover:opacity-70">
+                <StyledLink
+                  href="/docs/first#contribute"
+                  className="!text-gray-900 transition-opacity hover:opacity-70"
+                >
                   {t('acknowledgement')}
                 </StyledLink>
               </div>
