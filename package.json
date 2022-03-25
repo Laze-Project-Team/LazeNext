@@ -39,7 +39,7 @@
     "firebase": "^9.6.5",
     "monaco-editor": "^0.31.1",
     "next": "12.1.0",
-    "next-i18next": "^10.0.1",
+    "next-i18next": "^10.5.0",
     "nprogress": "0.2.0",
     "react": "17.0.2",
     "react-complex-tree": "^1.1.3",
