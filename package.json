@@ -56,7 +56,7 @@
     "remark-gfm": "^3.0.1",
     "sharp": "^0.30.3",
     "ts-node": "^10.7.0",
-    "tsc-alias": "^1.5.0"
+    "tsc-alias": "^1.6.5"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.1.2",
