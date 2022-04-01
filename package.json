@@ -31,7 +31,7 @@
     "@reduxjs/toolkit": "^1.8.0",
     "antd": "^4.19.3",
     "antd-img-crop": "^4.2.0",
-    "applicationinsights": "^2.2.2",
+    "applicationinsights": "^2.3.0",
     "colors": "^1.4.0",
     "compression": "^1.7.4",
     "dotenv": "^16.0.0",
