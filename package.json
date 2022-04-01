@@ -48,7 +48,7 @@
     "react-error-boundary": "3.1.4",
     "react-icons": "^4.3.1",
     "react-jdenticon": "^1.0.0",
-    "react-markdown": "^8.0.1",
+    "react-markdown": "^8.0.2",
     "react-redux": "^7.2.7",
     "react-split-pane": "^0.1.92",
     "reconnecting-websocket": "^4.4.0",
