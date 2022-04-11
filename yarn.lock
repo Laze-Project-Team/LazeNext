@@ -5205,10 +5205,10 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
-redux-localstorage-simple@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/redux-localstorage-simple/-/redux-localstorage-simple-2.4.1.tgz#b838991de3642977cc6458b277122f7fd8543c0e"
-  integrity sha512-Oij3OAPukQVNqHwakfOXWGAcv254HvFtePIyZQY3tfomG8ruz4BV5FL4WytO4Pz8Ja7i3r9cCTEXvnzgv1xCJg==
+redux-localstorage-simple@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/redux-localstorage-simple/-/redux-localstorage-simple-2.5.0.tgz#6efd5b6e71be08be12a4552eb973e3045ece8ac9"
+  integrity sha512-zscDnt6kWiOJ7m+eNQvMT2VPNoBRbyCUedO2hM/tyOmVueG1K8o9eiuhEMRRyblGqqcwal/zBFLNV+RQdVLP8w==
   dependencies:
     merge "2.1.1"
 
