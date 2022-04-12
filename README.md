@@ -3,12 +3,12 @@
 Laze is the programming language which doesn't require any preparation and can be written in your own native language.
 [Try it now!](http://laze.ddns.net)
 
-## 目次
+## Table of contents
 
-- [Laze features](#Laze features)
-- [Join Laze](#Join Laze)
-- [Contribute to Laze](#Contribute to Laze)
-- [For developers](#For developers)
+- [Laze features](#laze-features)
+- [Join Laze](#join-laze)
+- [Contribute to Laze](#contribute-to-laze)
+- [For developers](#for-developers)
 
 ## Laze features
 
