@@ -1,101 +1,101 @@
 # Laze
 
-Lazeは環境構築不要かつ母国語でできるプログラミング言語です
-[今すぐLazeでプログラミングを始める](http://laze.ddns.net)
+Laze is the programming language which doesn't require any preparation and can be written in your own native language.
+[Try it now!](http://laze.ddns.net)
 
 ## 目次
 
-- [Lazeの特徴](#Lazeの特徴)
-- [Lazeに参加する](#Lazeに参加する)
-- [開発に寄与する](#開発に寄与する)
-- [開発者向け情報](#開発者向け情報)
+- [Laze features](#Laze features)
+- [Join Laze](#Join Laze)
+- [Contribute to Laze](#Contribute to Laze)
+- [For developers](#For developers)
 
-## Lazeの特徴
+## Laze features
 
-Lazeは大きく分けて2つの特徴があります。
+Laze has two main features.
 
-### 母国語プログラミング
+### Native Language Programming
 
-Lazeは母国語でプログラミングできるように設計されていて、英語以外の言語でプログラミングできるほか、異なる言語間の変換も行うことができます。
+It is a feature that allows users to write programs in multiple languages such as Japanese and English, not programming languages.
 
-### 環境構築不要
+Furthermore, it is our goal to make it possible for anyone to write programs in their native language by implementing functions in the library that can easily support multiple languages
 
-Lazeはブラウザ上で実行できる言語のため、環境構築を全くすることなくプログラミングを始めることができます。
+### Without Environment Construction
 
-* [公式ウェブサイト](http://laze.ddns.net)
-* [オンラインエディタ](https://laze.ddns.net/editor)
-* [オンラインドキュメンテーション](https://laze.ddns.net/docs)
+We are currently developing an editor that functions in a browser. We are trying to further create extensions for offline editors like Visual Studio Code to create an environment where users can develop offline.
 
-## Lazeに参加する
+We are aming to reduce complicated steps and make the environment quick and easy to build.
 
-### コミュニティに参加する
+* [Official Laze Website](http://laze.ddns.net)
+* [Online Editor](https://laze.ddns.net/editor)
+* [Online Documentation](https://laze.ddns.net/docs)
 
-Lazeの[公式Discordサーバー](https://discord.gg/K3prMrmS7e)に参加してみましょう！Lazeについて詳しくなれるかもしれません。
+## Join Laze
 
-## 開発に寄与する
+### Join Laze community
 
-Lazeの開発をお手伝いしたいですか？
+Let's ask and answer questions in [the discord community](https://discord.gg/K3prMrmS7e) to keep the community engaged. A thriving community leads to a thriving language itself.
 
-報告・要望・提案などはIssueや[Twitter](https://twitter.com/LazeProjectTeam)、[公式Discordサーバー](https://discord.gg/K3prMrmS7e)で受け付けています。PR(プルリクエスト)も大歓迎です。
+## Contribute to Laze
 
-### バグ報告
+There are many things you can do, such as writing Laze standard libraries, reporting bugs, suggesting improvements, etc. Laze is still a developing language, so let's make Laze even better with your help.
 
-バグが起きる状況をご自身の環境と合わせて**できるだけ詳しく**書いて下さい。できるだけ早急に対処したいと思います。
+We are welcomeing any reports, requests, suggestions through issue, [Twitter](https://twitter.com/LazeProjectTeam), [Laze comunity](https://discord.gg/K3prMrmS7e).
 
-### 要望
+### Bug report
 
-コンパイラでもウェブサイトでもエディタでも機能の追加・修正の要望があれば遠慮なく送ってください。送る際は「なぜ機能(修正)が必要なのか」も添えてもらえると嬉しいです。
+Please explain a situation that causes the bug with your environment as detailed as possible. (e.g. Operating System) We are going to solve it as soon as possible.
 
-### PR(Pull Request)
+### Request
 
-機能の追加・修正をPRとして送ってもらうのも大歓迎です。
+We are welcoming any requests or suggestions about the compiler or website or editor. Please send with why you want it.
 
-## 開発者向け情報
+## For developers
 
-### 使用している技術(ライブラリ)
+### Technology stack (libraries)
 
-- ウェブサイト
-  - Next.js(メインフレームワーク)
-  - Ant Design(UIフレームワーク)
-  - next-i18next(多言語対応)
-  - monaco-editor(エディタ)
-- 開発
-  - TypeScript(メイン言語)
-  - Prettier(フォーマッタ)
-  - ESLint(コードのチェック)
-  - Tailwind CSS(スタイル)
+- website
+  - Next.js (main framework)
+  - Ant Design (UI framework)
+  - next-i18next (i18n)
+  - monaco-editor (editor)
+- dev
+  - TypeScript (main programming language)
+  - Prettier (code formatter)
+  - ESLint (code checker)
+  - Tailwind CSS (styling)
 
-※このリポジトリは[s-kawabe/next-ts-template](https://github.com/s-kawabe/next-ts-template)をベースにして作られています
+※this repository is based on [s-kawabe/next-ts-template](https://github.com/s-kawabe/next-ts-template)
 
-### 開発者クイックスタート
+### Quick start for developers
 
-前提として[Node.js](https://nodejs.org/ja/)、[Git](https://git-scm.com/)
+You have to install [Node.js](https://nodejs.org/ja/) and [Git](https://git-scm.com/) to set up the environment.
 
-このリポジトリをcloneする
+Clone this repository.
 
 ```bash
 git clone ~~~
 cd ~~~
 ```
 
-Yarnのインストール(Yarnを既に入れている場合は省略可)
+Install yarn (if you have not installed it yet)
 
 ```bash
 npm i --global yarn
 ```
 
-必要なパッケージをインストールする
+Install necessary libraries
 
 ```bash
 yarn
 ```
 
-コンパイラを入手してその絶対パスを`.env`(`.env.template`をコピーして作成する)内の`COMPILER_PATH`に書く。
+Get Laze compiler and write its absolute path to `COMPILER_PATH` in `.env` (copy `.env.template`).
 
-**各コマンドの解説**
+**commands**
 
-`yarn dev`で開発サーバーを建てます
+`yarn dev` to run development server
 
-`yarn build`でビルドを行います
+`yarn build` to build project
 
-`yarn start`でサーバーを実行します(要ビルド)
+`yarn start` to start production server (require build)
