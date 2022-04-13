@@ -27,7 +27,7 @@
   "dependencies": {
     "@codingame/monaco-jsonrpc": "^0.3.1",
     "@codingame/monaco-languageclient": "^0.17.4",
-    "@monaco-editor/react": "^4.4.1",
+    "@monaco-editor/react": "^4.4.2",
     "@reduxjs/toolkit": "^1.8.1",
     "antd": "^4.19.5",
     "antd-img-crop": "^4.2.0",
