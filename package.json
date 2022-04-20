@@ -52,7 +52,7 @@
     "react-redux": "^7.2.8",
     "react-split-pane": "^0.1.92",
     "reconnecting-websocket": "^4.4.0",
-    "redux-localstorage-simple": "^2.5.0",
+    "redux-localstorage-simple": "^2.5.1",
     "remark-gfm": "^3.0.1",
     "sharp": "^0.30.4",
     "ts-node": "^10.7.0",
