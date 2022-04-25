@@ -4411,6 +4411,13 @@ pidtree@^0.5.0:
   resolved "https://registry.yarnpkg.com/pidtree/-/pidtree-0.5.0.tgz#ad5fbc1de78b8a5f99d6fbdd4f6e4eee21d1aca1"
   integrity sha512-9nxspIM7OpZuhBxPg73Zvyq7j1QMPMPsGKTqRc2XOaFQauDvoNz9fM1Wdkjmeo7l9GXOZiRs97sPkuayl39wjA==
 
+plimit-lit@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/plimit-lit/-/plimit-lit-1.2.6.tgz#8c1336f26a042b6e9f1acc665be5eee4c2a55fb3"
+  integrity sha512-EuVnKyDeFgr58aidKf2G7DI41r23bxphlvBKAZ8e8dT9of0Ez2g9w6JbJGUP1YBNC2yG9+ZCCbjLj4yS1P5Gzw==
+  dependencies:
+    queue-lit "^1.2.7"
+
 postcss-js@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/postcss-js/-/postcss-js-4.0.0.tgz#31db79889531b80dc7bc9b0ad283e418dce0ac00"
@@ -4585,6 +4592,11 @@ qs@6.9.7:
   version "6.9.7"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.7.tgz#4610846871485e1e048f44ae3b94033f0e675afe"
   integrity sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==
+
+queue-lit@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/queue-lit/-/queue-lit-1.2.7.tgz#69081656c9e7b81f09770bb2de6aa007f1a90763"
+  integrity sha512-K/rTdggORRcmf3+c89ijPlgJ/ldGP4oBj6Sm7VcTup4B2clf03Jo8QaXTnMst4EEQwkUbOZFN4frKocq2I85gw==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
@@ -5877,16 +5889,17 @@ ts-node@^10.7.0:
     v8-compile-cache-lib "^3.0.0"
     yn "3.1.1"
 
-tsc-alias@^1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/tsc-alias/-/tsc-alias-1.6.6.tgz#1bdda705efa6251b9a62593e8ed4b0285c20803b"
-  integrity sha512-wQuIKleaPuQKpTwrzFb1gTOd3ZsB5GqIK+aPyh1okOLfYYNsMyxIypIYctQnSxiJ243iRxLdvNlboZOTEdK1MQ==
+tsc-alias@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/tsc-alias/-/tsc-alias-1.6.7.tgz#354840d6444db79dd13fcc4f9ec37574ff9d5120"
+  integrity sha512-GRbZx/zTee01JtrHB7hkddgxn+aQqYDmRaFv/MTYIqBbk/L8Zf0nA/T60wXOr/Q7002YXppUFXsqsu5ViWB4vQ==
   dependencies:
     chokidar "^3.5.3"
     commander "^9.0.0"
     globby "^11.0.4"
     mylas "^2.1.9"
     normalize-path "^3.0.0"
+    plimit-lit "^1.2.6"
 
 tsconfig-paths@^3.11.0, tsconfig-paths@^3.14.1, tsconfig-paths@^3.9.0:
   version "3.14.1"
