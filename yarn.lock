@@ -1420,10 +1420,10 @@ anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-applicationinsights@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-2.3.1.tgz#b6908ea2da67bf3dc781da9b0994e1e042ca8b91"
-  integrity sha512-lhKd8EgmLKdDDhzB0jx8lcnbTAzedT63AH5DosnK4GQO3HgjRCC7AlUr86+aEwJEWfmfg0CxEdXDb9Rug/5XpQ==
+applicationinsights@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/applicationinsights/-/applicationinsights-2.3.2.tgz#143236003a0fb453f01a114d1b0e836a2a07a46f"
+  integrity sha512-A64CF5VQbVMZ0+5Yyw7kWxswYbAMCs4jJlhKxtvBeBVmUy/jh6peSoSbkyc6jNs1gGRP8nfjhCjzRcc/G1UcCg==
   dependencies:
     "@azure/core-http" "^2.2.3"
     "@opentelemetry/api" "^1.0.4"
