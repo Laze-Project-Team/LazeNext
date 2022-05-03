@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { FC, ReactNode } from 'react';
 import { AiOutlineApi, AiOutlineCloud, AiOutlineTeam } from 'react-icons/ai';
+import { FaDiscord } from 'react-icons/fa';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { Card, CardContainer } from '@/components/ui/atoms/Card';
@@ -62,15 +63,26 @@ const Home: NextPage = () => {
         <h1 className="hidden">{t('title')}</h1>
         <Typography.Text className="block !text-8xl font-semibold">Laze</Typography.Text>
         <Typography.Text className="mt-4 block text-xl">{t('common:motto')}</Typography.Text>
-        <Button type="primary" size="large" className="mt-8 ml-4 mb-4">
-          <Link href="/editor">{t('Try Laze')}</Link>
-        </Button>
-        <StyledLink
-          className="ml-4 mb-8 inline-block text-lg"
-          href={locale === 'en' ? 'https://forms.gle/FH4XYbnvgSMTEyX66' : 'https://forms.gle/arQwxAY8NuuT1zfi8'}
-        >
-          {t('requests')}
-        </StyledLink>
+        <div className="mt-4 mb-12 flex flex-wrap items-center space-x-4">
+          <Button type="primary" size="large" className="mt-4">
+            <Link href="/editor">{t('Try Laze')}</Link>
+          </Button>
+          <StyledLink
+            className="mt-4 text-lg"
+            href={locale === 'en' ? 'https://forms.gle/FH4XYbnvgSMTEyX66' : 'https://forms.gle/arQwxAY8NuuT1zfi8'}
+          >
+            {t('requests')}
+          </StyledLink>
+
+          <Button type="primary" size="large" className="!ml-auto !mr-4 !mt-4">
+            <StyledLink href="https://discord.gg/K3prMrmS7e">
+              <>
+                <FaDiscord className="relative -top-[2px] mr-2 inline text-xl" />
+                <span>{t('discord')}</span>
+              </>
+            </StyledLink>
+          </Button>
+        </div>
 
         <SectionContainer className="bg-[#2b5b84]">
           <SectionTitle className="border-[#1e405e] !text-whitesmoke">{t('Laze Features')}</SectionTitle>
