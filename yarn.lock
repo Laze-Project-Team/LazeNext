@@ -128,12 +128,12 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@codingame/monaco-jsonrpc@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@codingame/monaco-jsonrpc/-/monaco-jsonrpc-0.3.1.tgz#f28dc2e27fbfe9276d2faaf40c9a572272cf3ffd"
-  integrity sha512-Zxilei5fGV89uGJcFKDQFfZfUbWdP8/NGympXQUX/XRle4CYUabfvEOdY0Diq0NruttlRH3RdWVZ7Nw6f4TClQ==
+"@codingame/monaco-jsonrpc@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@codingame/monaco-jsonrpc/-/monaco-jsonrpc-0.4.0.tgz#3ccaa74593da1cf622b02e0d1aa012f00d9ef2bf"
+  integrity sha512-5IQkYvFMyWQWutFhK77Tk5q1VIQoFySElqpAI1fUWXIIAepiYD7xJRawzMgJqhIzER7t44FbBN4uVvoXLRmJ6g==
   dependencies:
-    vscode-jsonrpc "^6.0.0"
+    vscode-jsonrpc "^8.0.1"
 
 "@codingame/monaco-languageclient@^0.17.4":
   version "0.17.4"
@@ -6119,10 +6119,15 @@ void-elements@3.1.0:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
 
-vscode-jsonrpc@6.0.0, vscode-jsonrpc@^6.0.0:
+vscode-jsonrpc@6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-6.0.0.tgz#108bdb09b4400705176b957ceca9e0880e9b6d4e"
   integrity sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==
+
+vscode-jsonrpc@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-8.0.1.tgz#f30b0625ebafa0fb3bc53e934ca47b706445e57e"
+  integrity sha512-N/WKvghIajmEvXpatSzvTvOIz61ZSmOSa4BRA4pTLi+1+jozquQKP/MkaylP9iB68k73Oua1feLQvH3xQuigiQ==
 
 vscode-languageclient@7.0.0:
   version "7.0.0"
