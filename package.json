@@ -54,7 +54,7 @@
     "reconnecting-websocket": "^4.4.0",
     "redux-localstorage-simple": "^2.5.1",
     "remark-gfm": "^3.0.1",
-    "sharp": "^0.30.4",
+    "sharp": "^0.30.5",
     "ts-node": "^10.8.0",
     "tsc-alias": "^1.6.7"
   },
