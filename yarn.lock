@@ -1137,6 +1137,11 @@ axobject-query@^2.2.0:
   resolved "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz"
   integrity sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==
 
+babel-plugin-transform-require-ignore@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-require-ignore/-/babel-plugin-transform-require-ignore-0.1.1.tgz#1abb0f803cc29646dd0057f538fdb4a98d6cb8b2"
+  integrity sha512-A7EmlVd3ZYWJI3eg3dklAXn1yfq8Y5omHMQgAUo0FwGLYRuL5daLR6+LtCVHi4f9+fStr7HuPkW9rmKtcmY67w==
+
 bail@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/bail/-/bail-2.0.2.tgz#d26f5cd8fe5d6f832a31517b9f7c356040ba6d5d"
@@ -1826,6 +1831,14 @@ end-of-stream@^1.1.0, end-of-stream@^1.4.1:
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
+
+enhanced-resolve@^5.7.0:
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.9.3.tgz#44a342c012cbc473254af5cc6ae20ebd0aae5d88"
+  integrity sha512-Bq9VSor+kjvW3f9/MiiR4eE3XYgOl7/rS8lnSxbRbF3kS0B2r+Y9w5krBWxZgDxASVZbdYrn5wT4j/Wb0J9qow==
+  dependencies:
+    graceful-fs "^4.2.4"
+    tapable "^2.2.0"
 
 enquirer@^2.3.5, enquirer@^2.3.6:
   version "2.3.6"
@@ -3642,6 +3655,11 @@ moment@^2.24.0, moment@^2.25.3:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
   integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
+monaco-editor-core@^0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor-core/-/monaco-editor-core-0.33.0.tgz#1a6631932f5239c9ccdb26b437d333cf9bb85d31"
+  integrity sha512-Kzxak8jnMS8vI08DcseBuOfeQlcVPpGXO210D8M+QnaNR92s4IYzgUeiow/Hld9Gi5pGvjDbPsdUXkPewoTA5g==
+
 monaco-editor@^0.31.1:
   version "0.31.1"
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.31.1.tgz#67f597b3e45679d1f551237e12a3a42c4438b97b"
@@ -3709,6 +3727,14 @@ next-i18next@^10.0.1:
     i18next "^21.5.3"
     i18next-fs-backend "^1.0.7"
     react-i18next "^11.8.13"
+
+next-transpile-modules@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-9.0.0.tgz#133b1742af082e61cc76b02a0f12ffd40ce2bf90"
+  integrity sha512-VCNFOazIAnXn1hvgYYSTYMnoWgKgwlYh4lm1pKbSfiB3kj5ZYLcKVhfh3jkPOg1cnd9DP+pte9yCUocdPEUBTQ==
+  dependencies:
+    enhanced-resolve "^5.7.0"
+    escalade "^3.1.1"
 
 next@12.1.0:
   version "12.1.0"
@@ -5434,6 +5460,11 @@ tailwindcss@^3.0.15, tailwindcss@^3.0.7:
     postcss-value-parser "^4.2.0"
     quick-lru "^5.1.1"
     resolve "^1.21.0"
+
+tapable@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
+  integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
 tar-fs@^2.0.0, tar-fs@^2.1.1:
   version "2.1.1"
