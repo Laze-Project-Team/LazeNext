@@ -245,6 +245,7 @@ const IndexFooter: VFC = () => {
             <FooterLink href="/terms">{t('footer.guides.Terms')}</FooterLink>
             <FooterLink href="/guideline">{t('footer.guides.Guideline')}</FooterLink>
             <FooterLink href="/privacy">{t('footer.guides.Privacy')}</FooterLink>
+            <FooterLink href="/license">{t('footer.guides.License')}</FooterLink>
           </ContentsList>
           <ContentsList title={t('footer.Sitemap')}>
             <FooterLink href="/">{t('footer.sitemap.Home')}</FooterLink>

@@ -13,7 +13,7 @@ if (!process.env.COMPILER_PATH) {
 }
 
 // 定数
-const execOption = { shell: '/bin/bash', windowsHide: true };
+const execOption = { shell: '/bin/bash', windowsHide: true, timeout: 5000 };
 
 // execされるコマンド
 const commands = {

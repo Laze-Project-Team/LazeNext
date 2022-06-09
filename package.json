@@ -1,13 +1,15 @@
 {
   "name": "laze-web",
   "version": "0.1.1",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "dev:server": "ts-node -r tsconfig-paths/register --project tsconfig.server.json server/index.ts",
     "dev": "next dev",
     "build:next": "next build",
     "build:server": "tsc --project tsconfig.server.json && tsc-alias -p tsconfig.server.json",
-    "build": "yarn build:server & yarn build:next",
+    "build:license": "tsc --project tsconfig.tasks.json && tsc-alias -p tsconfig.tasks.json && node ./dist/tasks/generateLicense.js",
+    "build": "yarn build:license && yarn build:next & yarn build:server",
     "start": "node ./dist/server/index.js",
     "lint": "next lint",
     "lint:eslint": "eslint --cache .",
