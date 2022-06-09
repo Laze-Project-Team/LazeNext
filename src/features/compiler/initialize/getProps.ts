@@ -4,7 +4,7 @@ import { getImports } from '@/features/compiler/getImports';
 import { initialKeyControl } from '@/features/compiler/keycontrol';
 import type { compilerProps, getImportsProps } from '@/typings/compiler';
 
-export const getProps = (dispatcher: Dispatch): compilerProps => {
+export const getProps = (dispatcher: Dispatch, locale: string): compilerProps => {
   const canvas = <HTMLCanvasElement>document.getElementById('output-canvas');
 
   if (!canvas) {
@@ -31,7 +31,7 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
       memorySize: 0,
       wasm: '',
       id: '',
-      lang: 'ja',
+      lang: locale,
       keyControl: initialKeyControl,
       compiled: false,
       interval: null,

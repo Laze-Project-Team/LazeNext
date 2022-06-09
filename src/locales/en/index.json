@@ -42,12 +42,12 @@
     },
     "2": {
       "title": "Join the community",
-      "description": "Ask and answer questions in the community, and make the community more active. The revitalization of the community will lead to the revitalization of the language itself.",
+      "description": "Let's ask and answer questions in the community to keep the community engaged. A thriving community leads to a thriving language itself.",
       "action": "Laze Community"
     },
     "3": {
       "title": "Contribute to Laze",
-      "description": "There are many things you can do, such as writing the standard Laze library, reporting bugs, suggesting improvements, etc. Laze is still a developing language, so let's make it better with your hands.",
+      "description": "There are many things you can do, such as writing Laze standard libraries, reporting bugs, suggesting improvements, etc. Laze is still a developing language, so let's make Laze even better with your help.",
       "action": "GitHub Repository of Laze"
     }
   }
