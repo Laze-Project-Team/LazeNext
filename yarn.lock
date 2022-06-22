@@ -128,10 +128,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@codingame/monaco-jsonrpc@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@codingame/monaco-jsonrpc/-/monaco-jsonrpc-0.4.0.tgz#3ccaa74593da1cf622b02e0d1aa012f00d9ef2bf"
-  integrity sha512-5IQkYvFMyWQWutFhK77Tk5q1VIQoFySElqpAI1fUWXIIAepiYD7xJRawzMgJqhIzER7t44FbBN4uVvoXLRmJ6g==
+"@codingame/monaco-jsonrpc@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@codingame/monaco-jsonrpc/-/monaco-jsonrpc-0.4.1.tgz#59c1394f8c9d4764d382db7df176deafa1545bbe"
+  integrity sha512-G4Ukz9/MvrgfQ2We5CT09N7SuhZ0Bd4w5haUdiXY5HL/ugU9BcHgTyzolzXxquXqQ0K/tz1O1QcPLo24T/WYag==
   dependencies:
     vscode-jsonrpc "^8.0.1"
 
