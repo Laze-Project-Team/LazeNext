@@ -10,14 +10,13 @@ import { Language } from '@/features/monaco/register';
 import { semanticTokenProvider } from '@/features/monaco/semanticTokenProvider/ja';
 import { lazeTheme } from '@/features/monaco/theme';
 
+import { InlineCompletionsProvider, separator } from './InlineCompletionsProvider';
+
 declare global {
   interface Window {
     editorPlaceholders: Record<string, string>;
   }
 }
-
-// eslint-disable-next-line no-irregular-whitespace
-const separator = `()（）[]［］{}｛｝'’"”「」&＆|｜=＝-ー+＋*＊/%％,.:：;； 　`;
 
 const options: monaco.editor.IEditorConstructionOptions & { 'semanticHighlighting.enabled': boolean } = {
   fontFamily: "'Consolas', 'Droid Sans Mono', 'Courier New', ui-monospace, 'Droid Sans Fallback'",
@@ -31,6 +30,7 @@ const options: monaco.editor.IEditorConstructionOptions & { 'semanticHighlightin
   unicodeHighlight: {
     ambiguousCharacters: false,
   },
+  autoClosingBrackets: 'always',
   'semanticHighlighting.enabled': true,
 };
 
@@ -65,48 +65,7 @@ export const Editor: FC<EditorProps> = ({ placeholder, initialValue, cursor }) =
       monaco.editor.defineTheme('laze', lazeTheme);
       monaco.languages.registerDocumentSemanticTokensProvider('laze', semanticTokenProvider);
 
-      monaco.languages.registerInlineCompletionsProvider('laze', {
-        provideInlineCompletions: (model, position) => {
-          const val = model.getValue();
-          const placeholder = window.editorPlaceholders[model.id];
-
-          const suggestText = placeholder
-            .split('\n')
-            .map((line, i) => {
-              if (i === position.lineNumber - 1) {
-                let currentWord = '';
-                if (position.column > 1) {
-                  for (let j = position.column - 2; j >= 0; j--) {
-                    const char = line[j];
-                    if (char === undefined || separator.includes(char)) {
-                      break;
-                    }
-                    currentWord = char + currentWord;
-                  }
-                }
-                return currentWord + line.substring(position.column - 1);
-              } else {
-                const currentLine = val.split('\n')[position.lineNumber - 1];
-                if (line.startsWith(currentLine)) {
-                  return line.substring(currentLine.length);
-                } else {
-                  return '';
-                }
-              }
-            })
-            .filter((line, i) => {
-              return i >= position.lineNumber - 1 && line;
-            })
-            .join('\n');
-
-          return {
-            items: [{ text: suggestText }],
-          };
-        },
-        freeInlineCompletions: () => {
-          return void 0;
-        },
-      });
+      monaco.languages.registerInlineCompletionsProvider('laze', InlineCompletionsProvider);
     }
   };
 
