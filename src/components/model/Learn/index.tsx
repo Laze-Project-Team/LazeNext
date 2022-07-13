@@ -10,6 +10,8 @@ export const LearnPage: FC = () => {
 
   return (
     <>
+      <canvas id="output-canvas" className="hidden" />
+
       <Header />
 
       <main className="px-4">
@@ -18,8 +20,8 @@ export const LearnPage: FC = () => {
         <p>{t('description')}</p>
 
         <Editor
-          initialValue={'関数: 実行 () => {\n    //この下の行に書いてみよう\n    \n}'}
-          placeholder={'関数: 実行 () => {\n    //この下の行に書いてみよう\n    表示("ようこそ、Lazeへ！");\n}'}
+          initialValue={'関数:実行 () => (){\n    //この下の行に書いてみよう\n    \n}'}
+          placeholder={'関数:実行 () => (){\n    //この下の行に書いてみよう\n    表示("ようこそ、Lazeへ！");\n}'}
           cursor={{ lineNumber: 2, column: 5 }}
         />
         <Editor placeholder="this is second placeholder" initialValue="this is initial value" />
