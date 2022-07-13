@@ -8,13 +8,17 @@ export type OutputProps = {
 
 export const Output: FC<OutputProps> = ({ logs }) => {
   return (
-    <>
-      {logs.map((log, i) => {
+    <div className="border-[1px] border-t-0">
+      {logs.map((log) => {
         if (log.type === 'separator') {
-          return <hr key={i} />;
+          return <></>;
         }
-        return <div key={log.timestamp}>{log.content}</div>;
+        return (
+          <div className="px-4 py-[.1rem] font-editor" key={log.timestamp}>
+            {log.content}
+          </div>
+        );
       })}
-    </>
+    </div>
   );
 };
