@@ -108,7 +108,10 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
     window.laze.props.variables.id = '';
     window.laze.props.variables.wasm = '';
 
-    const body = JSON.stringify({ code, option: { lang: window.laze.props.variables.lang, label } });
+    const body = JSON.stringify({
+      code,
+      option: { lang: window.laze.props.variables.lang, label: label.replaceAll('$', '') },
+    });
 
     try {
       const res = await fetch(`/api/editor/compile`, {
