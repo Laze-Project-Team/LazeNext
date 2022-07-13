@@ -99,9 +99,9 @@ const tokenPatterns = {
     block: new RegExp('/\\*|\\*/', 'g'),
   },
   string: {
-    char: new RegExp("\\'.*\\'", 'g'),
-    charInvalid: new RegExp("\\'[^\\']*?\\n", 'g'),
-    string: new RegExp('\\"', 'g'),
+    char: new RegExp("[\\'’].*[\\'’]", 'g'),
+    charInvalid: new RegExp("[\\'’][^\\'’]*?\\n", 'g'),
+    string: new RegExp('[\\"”]', 'g'),
     japanese: new RegExp('[「」]', 'g'),
   },
 };
