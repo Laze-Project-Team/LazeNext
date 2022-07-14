@@ -9,4 +9,8 @@ declare global {
   interface Window {
     laze: lazeObject;
   }
+  declare module '*.md' {
+    const content: string;
+    export = content;
+  }
 }
