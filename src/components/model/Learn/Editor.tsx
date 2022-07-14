@@ -1,5 +1,5 @@
 import type { BeforeMount, OnChange, OnMount } from '@monaco-editor/react';
-import MonacoEditor, { useMonaco } from '@monaco-editor/react';
+import MonacoEditor from '@monaco-editor/react';
 import { Button, notification } from 'antd';
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useTranslation } from 'next-i18next';
@@ -46,19 +46,14 @@ const options: monaco.editor.IEditorConstructionOptions & { 'semanticHighlightin
 export type EditorProps = {
   placeholder?: string;
   initialValue?: string;
-  cursor?: {
-    lineNumber: number;
-    column: number;
-  };
   consoleState: consoleState['console'];
 };
 
-export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, cursor, consoleState }) => {
+export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, consoleState }) => {
   const [t] = useTranslation('learn');
   const [value, setValue] = useState(initialValue);
   const [isCompiling, setIsCompiling] = useState(false);
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
-  const monaco = useMonaco();
 
   const dispacher = useDispatch();
   const { removePanel } = consoleSlice.actions;
@@ -90,11 +85,6 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
     editor.updateOptions({
       theme: 'laze',
     });
-    if (monaco) {
-      if (cursor) {
-        editor.setPosition(new monaco.Position(cursor.lineNumber, cursor.column));
-      }
-    }
 
     editor.onDidChangeCursorSelection(() => {
       editor.getAction('editor.action.inlineSuggest.trigger').run();
