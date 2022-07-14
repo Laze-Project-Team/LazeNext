@@ -6,7 +6,7 @@ import { Fragment } from 'react';
 import type { consoleLog } from '@/features/redux/console';
 import { colorModeContext } from '@/pages/_app';
 
-const logColors: Record<consoleLog['level'], string> = {
+export const logColors: Record<consoleLog['level'], string> = {
   log: '#333',
   info: '#1f74ad',
   warn: '#c18a0b',
