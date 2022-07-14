@@ -138,7 +138,7 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
 
   return (
     <>
-      <div className="my-4 p-4">
+      <div className="my-4">
         <div>
           <Button onClick={onClick} loading={isCompiling} icon={<VscRunAll className="mr-2 inline" />}>
             {t('run')}

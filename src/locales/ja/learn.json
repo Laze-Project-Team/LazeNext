@@ -1,6 +1,6 @@
 {
   "title": "Lazeで学ぼう",
-  "description": "",
+  "description": "Lazeを使ってプログラミングの基礎を学びましょう",
 
   "run": "実行",
   "compile_error": "コンパイルに失敗しました",
