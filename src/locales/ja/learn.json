@@ -2,6 +2,8 @@
   "title": "Lazeで学ぼう",
   "description": "Lazeを使ってプログラミングの基礎を学びましょう",
 
+  "table_of_contents": "目次",
+
   "run": "実行",
   "compile_error": "コンパイルに失敗しました",
   "compile_error_description": "間違いがちなエラーの一覧を参考にして下さい"

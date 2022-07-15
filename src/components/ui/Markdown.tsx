@@ -1,6 +1,7 @@
 import { Anchor, Image } from 'antd';
 import type { Components } from 'react-markdown';
 
+import { getIdFromChildren } from '@/components/model/Learn/LearnMarkdown';
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
 import { cx } from '@/features/utils/cx';
 import styles from '@/styles/pre.module.css';
@@ -10,23 +11,19 @@ export const H1: Components['h1'] = ({ children }) => {
 };
 
 export const H2: Components['h2'] = ({ node, children }) => {
-  const id = node.children
-    .find((child) => {
-      return child.type === 'text';
-    })
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    ?.value.replace(/\s/g, '_');
-
   return (
-    <h2 className="mt-8 mb-4 border-b-2 text-2xl" id={id}>
+    <h2 className="mt-8 mb-4 border-b-2 text-2xl" id={getIdFromChildren(node)}>
       {children}
     </h2>
   );
 };
 
-export const H3: Components['h3'] = ({ children }) => {
-  return <h3 className="text-lg font-bold">{children}</h3>;
+export const H3: Components['h3'] = ({ node, children }) => {
+  return (
+    <h3 className="text-lg font-bold" id={getIdFromChildren(node)}>
+      {children}
+    </h3>
+  );
 };
 
 export const H4: Components['h4'] = ({ children }) => {
