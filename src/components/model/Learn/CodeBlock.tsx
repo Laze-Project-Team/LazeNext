@@ -18,7 +18,7 @@ export const Pre: Components['pre'] = ({ children }) => {
   return (
     <>
       <pre className="my-8 flex rounded-sm bg-gray-100 font-editor">
-        <code className="bg-gray-200 px-2 py-2">
+        <code className="select-none bg-gray-200 px-2 py-2">
           {codeValue
             .join('')
             .split('\n')
