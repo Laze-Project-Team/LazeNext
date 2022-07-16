@@ -51,37 +51,23 @@ const getJapaneseCompatibleCompletions = (
 export const InlineCompletionsProvider: monaco.languages.InlineCompletionsProvider<monaco.languages.InlineCompletions> =
   {
     provideInlineCompletions: (model, position) => {
-      const val = model.getValue();
       const placeholder = window.editorPlaceholders[model.id];
 
-      const suggestText = placeholder
-        .split('\n')
-        .map((line, i) => {
-          if (i === position.lineNumber - 1) {
-            let currentWord = '';
-            if (position.column > 1) {
-              for (let j = position.column - 2; j >= 0; j--) {
-                const char = line[j];
-                if (char === undefined || separator.includes(char)) {
-                  break;
-                }
-                currentWord = char + currentWord;
-              }
+      const suggestText = (() => {
+        const line = placeholder.split('\n')[position.lineNumber - 1];
+
+        let currentWord = '';
+        if (position.column > 1) {
+          for (let j = position.column - 2; j >= 0; j--) {
+            const char = line[j];
+            if (char === undefined || separator.includes(char)) {
+              break;
             }
-            return currentWord + line.substring(position.column - 1);
-          } else {
-            const currentLine = val.split('\n')[position.lineNumber - 1];
-            if (line.startsWith(currentLine)) {
-              return line.substring(currentLine.length);
-            } else {
-              return '';
-            }
+            currentWord = char + currentWord;
           }
-        })
-        .filter((line, i) => {
-          return i >= position.lineNumber - 1 && line;
-        })
-        .join('\n');
+        }
+        return currentWord + line.substring(position.column - 1);
+      })();
 
       return getJapaneseCompatibleCompletions(suggestText);
     },
