@@ -4,14 +4,12 @@ import type { Components } from 'react-markdown';
 
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
 
-export const Info: Components['b'] = ({ children }) => {
-  return typeof children === 'string' ? (
-    <div className="my-8 flex space-x-2 bg-[hsl(110,80%,95%)] p-4">
+export const Info: Components['i'] = ({ children }) => {
+  return (
+    <p className="my-8 flex space-x-2 bg-[hsl(110,80%,95%)] p-4">
       <BsCheckCircleFill className="text-xl text-[hsl(110,80%,40%)]" />
       <span className="min-w-0 flex-1">{children}</span>
-    </div>
-  ) : (
-    <>{children}</>
+    </p>
   );
 };
 

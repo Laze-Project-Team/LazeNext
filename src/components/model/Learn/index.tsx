@@ -71,7 +71,7 @@ export const LearnPage: FC = () => {
                   th: Th,
                   td: Td,
                   img: Img,
-                  b: Info,
+                  i: Info,
                 }}
                 skipHtml={false}
                 remarkPlugins={[remarkGfm]}
