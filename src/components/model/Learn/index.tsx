@@ -40,7 +40,7 @@ export const LearnPage: FC = () => {
 
         <div className="flex flex-1">
           <nav className="w-60 space-y-1 overflow-y-auto border-r p-2">
-            <p className="px-2 text-lg font-bold text-gray-700">{t('table_of_contents')}</p>
+            <p className="m-0 py-2 px-4 text-lg font-bold text-gray-700">{t('table_of_contents')}</p>
             <Markdown
               components={{
                 h2: NavH2,
