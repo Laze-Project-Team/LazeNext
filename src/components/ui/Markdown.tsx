@@ -31,7 +31,21 @@ export const H4: Components['h4'] = ({ children }) => {
 };
 
 export const Paragraph: Components['p'] = ({ children }) => {
-  return <p className="leading-6">{children}</p>;
+  if (Array.isArray(children)) {
+    if (
+      children.some((child) => {
+        return typeof child === 'string';
+      })
+    ) {
+      return <p className="leading-6">{children}</p>;
+    } else {
+      return <>{children}</>;
+    }
+  } else if (typeof children === 'string') {
+    return <p className="leading-6">{children}</p>;
+  } else {
+    return children;
+  }
 };
 
 export const HR: Components['hr'] = () => {
