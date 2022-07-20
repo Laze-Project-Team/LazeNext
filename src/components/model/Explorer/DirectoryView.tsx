@@ -133,6 +133,8 @@ const UnconnectedDirectoryView: VFC<DirectoryViewProps> = ({ directory, director
                         className="flex-1"
                       >
                         <InteractiveComponent
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
                           {...(context.interactiveElementProps as unknown)}
                           className={cx(
                             'min-w-0',
