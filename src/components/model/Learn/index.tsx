@@ -11,7 +11,7 @@ import { Pre } from '@/components/model/Learn/CodeBlock';
 import { Footer } from '@/components/model/Learn/Footer';
 import { Header } from '@/components/model/Learn/Header';
 import content from '@/components/model/Learn/learn.md';
-import { Info, NavH2, NavH3 } from '@/components/model/Learn/LearnMarkdown';
+import { Info, NavH2, NavH3, Quote } from '@/components/model/Learn/LearnMarkdown';
 import { a, Code, H1, H2, H3, H4, HR, Img, Paragraph, Table, Tbody, Td, Th, Thead, Tr } from '@/components/ui/Markdown';
 
 export const LearnPage: FC = () => {
@@ -72,6 +72,7 @@ export const LearnPage: FC = () => {
                   td: Td,
                   img: Img,
                   i: Info,
+                  blockquote: Quote,
                 }}
                 skipHtml={false}
                 remarkPlugins={[remarkGfm]}

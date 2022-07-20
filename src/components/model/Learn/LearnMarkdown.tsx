@@ -48,3 +48,11 @@ export const NavH3: Components['h3'] = ({ node, children }) => {
     </StyledLink>
   );
 };
+
+export const Quote: Components['blockquote'] = ({ children }) => {
+  return (
+    <blockquote className="my-8">
+      <p className="border-l-4 pl-4 text-gray-700">{children}</p>
+    </blockquote>
+  );
+};
