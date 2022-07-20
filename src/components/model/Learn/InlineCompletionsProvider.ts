@@ -53,23 +53,25 @@ export const InlineCompletionsProvider: monaco.languages.InlineCompletionsProvid
     provideInlineCompletions: (model, position) => {
       const placeholder = window.editorPlaceholders[model.id];
 
-      const suggestText = (() => {
-        const line = placeholder.split('\n')[position.lineNumber - 1];
+      if (placeholder !== undefined) {
+        const suggestText = (() => {
+          const line = placeholder.split('\n')[position.lineNumber - 1];
 
-        let currentWord = '';
-        if (position.column > 1) {
-          for (let j = position.column - 2; j >= 0; j--) {
-            const char = line[j];
-            if (char === undefined || separator.includes(char)) {
-              break;
+          let currentWord = '';
+          if (position.column > 1) {
+            for (let j = position.column - 2; j >= 0; j--) {
+              const char = line[j];
+              if (char === undefined || separator.includes(char)) {
+                break;
+              }
+              currentWord = char + currentWord;
             }
-            currentWord = char + currentWord;
           }
-        }
-        return currentWord + line.substring(position.column - 1);
-      })();
+          return currentWord + line.substring(position.column - 1);
+        })();
 
-      return getJapaneseCompatibleCompletions(suggestText);
+        return getJapaneseCompatibleCompletions(suggestText);
+      }
     },
     freeInlineCompletions: () => {
       return void 0;
