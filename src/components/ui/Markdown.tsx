@@ -20,14 +20,14 @@ export const H2: Components['h2'] = ({ node, children }) => {
 
 export const H3: Components['h3'] = ({ node, children }) => {
   return (
-    <h3 className="text-lg font-bold" id={getIdFromChildren(node)}>
+    <h3 className="mt-8 text-lg font-bold" id={getIdFromChildren(node)}>
       {children}
     </h3>
   );
 };
 
 export const H4: Components['h4'] = ({ children }) => {
-  return <h4 className="text font-bold text-gray-600">{children}</h4>;
+  return <h4 className="text mt-4 font-bold text-gray-600">{children}</h4>;
 };
 
 export const Paragraph: Components['p'] = ({ children }) => {
