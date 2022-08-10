@@ -4959,10 +4959,10 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-complex-tree@^1.1.9:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/react-complex-tree/-/react-complex-tree-1.1.9.tgz#493f1a08ae640bcad7be0e4d3a62b9d0367ba5a7"
-  integrity sha512-2Z0MlCOF1vBimH+f7nx66QrL6B78gqDD5K6gZ2wixGZl+5JmvKWtTN1jfA+I/0uOcBtOu3+2pAqUYgRYcJmywg==
+react-complex-tree@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/react-complex-tree/-/react-complex-tree-1.1.11.tgz#430520d12908b033a4b278be0dfd8d0aa6654a85"
+  integrity sha512-hAkm2ZRH2lwZd7NEzZMQI8db/jI5T2fJsbwHX8oNPrG/WPdakc3eNpm2A4gLk2SBa88HeU6mnauVXg6Q6fJLow==
 
 react-contexify@^5.0.0:
   version "5.0.0"
