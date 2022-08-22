@@ -22,6 +22,17 @@ import type { compileResponse, compilerType, convertRequest, convertResponse } f
 
 import { explorerSlice } from '../redux/explorer';
 
+const getLangFile = (lang: string) => {
+  if (!lang.startsWith('custom-')) return;
+
+  const storage = localStorage.getItem('custom_lang');
+  if (storage === null) return;
+
+  const storageObj: Record<string, { name: string; content: string }> = JSON.parse(storage);
+
+  return storageObj[lang].content;
+};
+
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
   keyControlInitialize();
   const { addLog, createPanel, addSeparator, setActive } = consoleSlice.actions;
@@ -108,10 +119,23 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
     window.laze.props.variables.id = '';
     window.laze.props.variables.wasm = '';
 
+    const lang = window.laze.props.variables.lang;
+    const langFile = getLangFile(lang);
+
     const body = JSON.stringify({
       code,
-      option: { lang: window.laze.props.variables.lang, label: label.replaceAll('$', '') },
+      option: { lang, label: label.replaceAll('$', ''), ...(langFile ? { langFile } : {}) },
     });
+
+    if (body === undefined) {
+      notification.open({
+        message: t('errors.CompileProgramFailed.title'),
+        description: t('errors.CompileProgramFailed.message'),
+        type: 'error',
+        placement: 'bottomRight',
+        duration: 5,
+      });
+    }
 
     try {
       const res = await fetch(`/api/editor/compile`, {
@@ -162,7 +186,18 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
     newLang: string,
     label: string
   ) => {
-    const bodyJson: convertRequest = { code, option: { label, from: lang, to: newLang } };
+    const fromLangFile = getLangFile(lang);
+    const toLangFile = getLangFile(newLang);
+    const bodyJson: convertRequest = {
+      code,
+      option: {
+        label,
+        from: lang,
+        to: newLang,
+        ...(fromLangFile ? { fromLangFile } : {}),
+        ...(toLangFile ? { toLangFile } : {}),
+      },
+    };
     const body = JSON.stringify(bodyJson);
 
     const res = await fetch(`/api/editor/convert`, {

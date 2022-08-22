@@ -8,8 +8,10 @@ import { useTranslation } from 'react-i18next';
 import { VscArrowSwap, VscRefresh } from 'react-icons/vsc';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
+import { UploadNewLanguage } from '@/components/model/EditorButtons/EditorButton/UploadNewLanguage';
+import type { SelectableListItem } from '@/components/ui/SelectableList';
 import { SelectableList } from '@/components/ui/SelectableList';
-import { langList } from '@/const/lang';
+import { langList as rawLangList } from '@/const/lang';
 import { useCompiler } from '@/features/compiler';
 import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
@@ -28,6 +30,39 @@ export const ConvertButton: VFC = () => {
   const newLang = useRef(defaultLang);
   const [lang, setLang] = useState(defaultLang);
   const [isConverting, setIsConverting] = useState(false);
+
+  const concatItem = (acc: Record<string, SelectableListItem>, cur: SelectableListItem) => {
+    acc[cur.id] = cur;
+    return acc;
+  };
+  const [langList, setLangList] = useState(
+    Object.keys(rawLangList)
+      .map((key) => {
+        return {
+          id: key,
+          name: rawLangList[key],
+          deletable: false,
+        };
+      })
+      .reduce(concatItem, {})
+  );
+
+  const onDelete = (id: string) => {
+    setLangList(
+      Object.values(langList)
+        .filter((item) => {
+          return item.id !== id;
+        })
+        .reduce(concatItem, {})
+    );
+
+    const storage = localStorage.getItem('custom_lang');
+    if (storage) {
+      const langs: Record<string, { name: string; content: string }> = JSON.parse(storage);
+      delete langs[id];
+      localStorage.setItem('custom_lang', JSON.stringify(langs));
+    }
+  };
 
   const FileIsNotOpened = () => {
     notification.open({
@@ -84,6 +119,17 @@ export const ConvertButton: VFC = () => {
     setIsOpened(false);
   };
 
+  const addCustomLanguage = (id: string, name: string) => {
+    setLangList({
+      ...langList,
+      [id]: {
+        id,
+        name,
+        deletable: true,
+      },
+    });
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const lang = localStorage.getItem('compile_lang');
@@ -98,7 +144,7 @@ export const ConvertButton: VFC = () => {
     <>
       <div className="flex">
         <EditorButton name={t('buttons.convert')} onClick={onClick} Icon={<VscArrowSwap />} />
-        <div className="inline-flex items-center px-2 opacity-80">{langList[lang]}</div>
+        <div className="inline-flex items-center px-2 opacity-80">{langList[lang].name}</div>
       </div>
       <Modal
         title={t('buttons.convert')}
@@ -118,7 +164,10 @@ export const ConvertButton: VFC = () => {
           </Button>,
         ]}
       >
-        <SelectableList id="convert-lang" items={langList} selectedItem={newLang} />
+        <SelectableList id="convert-lang" items={langList} selectedItem={newLang} onDelete={onDelete} />
+        <div className="mt-4 flex justify-center">
+          <UploadNewLanguage addCustomLanguage={addCustomLanguage} />
+        </div>
       </Modal>
 
       <div

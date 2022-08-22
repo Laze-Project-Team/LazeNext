@@ -47,7 +47,13 @@
     "error": {
       "title": "Conversion failed",
       "message": "Something went wrong while changing your language ({{from}} → {{to}})"
-    }
+    },
+    "upload": {
+      "title": "Add language file",
+      "error_validation": "{{file}} is not language file",
+      "error_upload": "Something went wrong while uploading {{file}}"
+    },
+    "delete": "削除"
   },
   "workbench": {
     "output": "Output",

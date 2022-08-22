@@ -47,7 +47,13 @@
     "error": {
       "title": "変換に失敗しました",
       "message": "言語の変更中に何かしらのエラーが発生しました ({{from}} → {{to}})"
-    }
+    },
+    "upload": {
+      "title": "言語ファイルを追加",
+      "error_validation": "{{file}}は言語ファイルではありません",
+      "error_upload": "{{file}}のアップロード中に何かしらのエラーが発生しました"
+    },
+    "delete": "削除"
   },
   "workbench": {
     "output": "出力",
