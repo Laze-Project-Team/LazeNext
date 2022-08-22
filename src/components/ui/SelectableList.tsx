@@ -16,7 +16,7 @@ type SelectableListProps = {
   id: string;
   items: Record<string, SelectableListItem>;
   selectedItem: MutableRefObject<string | null>;
-  onDelete: (id: string) => void;
+  onDelete?: (id: string) => void;
 };
 
 const Item: VFC<{
@@ -34,7 +34,7 @@ const Item: VFC<{
             className="inline text-[1rem] transition-opacity hover:opacity-50"
             title={t('convert.delete')}
             onClick={() => {
-              onDelete(item.id);
+              onDelete?.(item.id);
             }}
           />
         )}
