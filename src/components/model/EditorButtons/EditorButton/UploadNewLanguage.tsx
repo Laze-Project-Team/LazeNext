@@ -68,7 +68,7 @@ export const UploadNewLanguage: FC<props> = ({ addCustomLanguage }) => {
           className="dark:border-gray-[#ddd] dark:!bg-transparent dark:text-[#ddd] dark:hover:border-primary-100 dark:hover:text-primary-100"
           icon={<AiOutlineUpload className="inline" />}
         >
-          {t('convert.upload')}
+          {t('convert.upload.title')}
         </Button>
       </Upload>
     </>
