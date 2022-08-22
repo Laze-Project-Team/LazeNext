@@ -23,7 +23,9 @@ const commands = {
       option.label,
       `-c ${CACHE_DIR}/${id}`,
       '--mode compile',
-      `--parse-json ${LANG_DIR}/${option.lang}.json`,
+      option.langFile === undefined
+        ? `--parse-json ${LANG_DIR}/${option.lang}.json`
+        : `--parse-json ${CACHE_DIR}/${id}/lang.json`,
       `--parser-opt ${PARSER_DIR}/${option.lang}.parser`,
       `--link ${COMMON_DIR}/${option.lang}/std.laze`,
     ].join(' ');
@@ -50,6 +52,9 @@ export const compileCode = async (code: string, option: compileRequest['option']
 
   await fs.promises.mkdir(`${CACHE_DIR}/${id}`);
   await fs.promises.writeFile(`${CACHE_DIR}/${id}/${option.label}`, code, { encoding: 'utf8', flag: 'w' });
+  if (option.langFile !== undefined) {
+    await fs.promises.writeFile(`${CACHE_DIR}/${id}/lang.json`, option.langFile, { encoding: 'utf8', flag: 'w' });
+  }
   const { stdout, stderr } = await exec(commands.compile(id, option), execOption);
 
   if (stderr) {

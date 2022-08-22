@@ -23,8 +23,12 @@ const commands = {
       option.label,
       `-c ${CACHE_DIR}/${id}`,
       '--mode convert',
-      `--parse-json ${LANG_DIR}/${option.from}.json`,
-      `--convert-json ${LANG_DIR}/${option.to}.json`,
+      option.fromLangFile === undefined
+        ? `--parse-json ${LANG_DIR}/${option.from}.json`
+        : `--parse-json ${CACHE_DIR}/${id}/fromLang.json`,
+      option.fromLangFile === undefined
+        ? `--convert-json ${LANG_DIR}/${option.to}.json`
+        : `--convert-json ${CACHE_DIR}/${id}/toLang.json`,
       `--convert-output ${option.label}-dist`,
       `--parser-opt ${PARSER_DIR}/${option.from}.parser`,
       `--convert-link std.laze`,
@@ -38,6 +42,15 @@ export const convertCode = async (code: string, option: convertRequest['option']
 
   await fs.promises.mkdir(`${CACHE_DIR}/${id}`, { recursive: true });
   await fs.promises.writeFile(`${CACHE_DIR}/${id}/${option.label}`, code, { encoding: 'utf8', flag: 'w' });
+  if (option.fromLangFile !== undefined) {
+    await fs.promises.writeFile(`${CACHE_DIR}/${id}/fromLang.json`, option.fromLangFile, {
+      encoding: 'utf8',
+      flag: 'w',
+    });
+  }
+  if (option.toLangFile !== undefined) {
+    await fs.promises.writeFile(`${CACHE_DIR}/${id}/toLang.json`, option.toLangFile, { encoding: 'utf8', flag: 'w' });
+  }
   const { stderr } = await exec(commands.convert(id, option), execOption);
 
   if (stderr) {
