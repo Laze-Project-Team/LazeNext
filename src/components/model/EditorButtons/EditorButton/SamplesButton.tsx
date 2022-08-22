@@ -141,7 +141,7 @@ export const SamplesButton: FC = () => {
 
           const sampleListItems = Object.keys(sampleList)
             .map((key) => {
-              return { [key]: sampleList[key].name };
+              return { [key]: { id: key, name: sampleList[key].name, deletable: false } };
             })
             .reduce((acc, curr) => {
               return { ...acc, ...curr };
