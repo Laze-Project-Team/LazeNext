@@ -4,12 +4,11 @@ import type { FC, ReactNode, VFC } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IconContext } from 'react-icons';
-import { AiOutlineLogin, AiOutlineLogout, AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa';
 
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { ChangeLanguage } from '@/components/model/ChangeLanguage';
-import { useAuthContext } from '@/components/model/Context/AuthContext';
 import { QiitaIcon } from '@/components/ui/atoms/icons/QiitaIcon';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
 import { StyledLink } from '@/components/ui/atoms/StyledLink';
@@ -29,32 +28,32 @@ const NavLink = ({ href, children }: { href: string; children: ReactNode }) => {
   );
 };
 
-const AccountLink = ({ href, children }: { href: string; children: ReactNode }) => {
-  return (
-    <Button
-      type="text"
-      className="inline-flex h-8 items-center rounded-sm !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
-    >
-      <StyledLink href={href} className="!transition-none">
-        {children}
-      </StyledLink>
-    </Button>
-  );
-};
+// const AccountLink = ({ href, children }: { href: string; children: ReactNode }) => {
+//   return (
+//     <Button
+//       type="text"
+//       className="inline-flex h-8 items-center rounded-sm !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
+//     >
+//       <StyledLink href={href} className="!transition-none">
+//         {children}
+//       </StyledLink>
+//     </Button>
+//   );
+// };
 
-const AccountButton = ({ href, children, title }: { href: string; children: ReactNode; title: string }) => {
-  return (
-    <Button
-      type="text"
-      className="inline-flex h-8 w-8 items-center justify-center rounded-sm !p-1 !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
-      title={title}
-    >
-      <StyledLink href={href} className="flex justify-center !transition-none">
-        {children}
-      </StyledLink>
-    </Button>
-  );
-};
+// const AccountButton = ({ href, children, title }: { href: string; children: ReactNode; title: string }) => {
+//   return (
+//     <Button
+//       type="text"
+//       className="inline-flex h-8 w-8 items-center justify-center rounded-sm !p-1 !text-gray-400 hover:!bg-white/5 hover:!text-gray-200"
+//       title={title}
+//     >
+//       <StyledLink href={href} className="flex justify-center !transition-none">
+//         {children}
+//       </StyledLink>
+//     </Button>
+//   );
+// };
 
 const QUERY_XS_DOWN = '(max-width: 400px)';
 const QUERY_SM_DOWN = '(max-width: 568px)';
@@ -63,7 +62,7 @@ const QUERY_MD_UP = '(min-width: 768px)';
 
 const IndexHeader: VFC = () => {
   const [t] = useTranslation(['layout', 'common']);
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
   const media = useMediaQuery([QUERY_XS_DOWN, QUERY_SM_DOWN, QUERY_MD_DOWN, QUERY_MD_UP]);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -94,7 +93,7 @@ const IndexHeader: VFC = () => {
           </>
         )}
         <div className="ml-auto flex items-center">
-          {media && [QUERY_SM_DOWN, QUERY_XS_DOWN].includes(media) ? (
+          {/* {media && [QUERY_SM_DOWN, QUERY_XS_DOWN].includes(media) ? (
             <IconContext.Provider value={{ size: '1.2rem' }}>
               {user ? (
                 <>
@@ -126,7 +125,7 @@ const IndexHeader: VFC = () => {
                 </>
               )}
             </>
-          )}
+          )} */}
           <ChangeLanguage isText={media !== QUERY_XS_DOWN} />
           {media !== QUERY_MD_UP && (
             <>
