@@ -137,6 +137,7 @@ export type compileRequest = {
   option: {
     lang: string;
     label: string;
+    langFile?: string;
   };
 };
 
@@ -146,6 +147,8 @@ export type convertRequest = {
     label: string;
     from: string;
     to: string;
+    fromLangFile?: string;
+    toLangFile?: string;
   };
 };
 
