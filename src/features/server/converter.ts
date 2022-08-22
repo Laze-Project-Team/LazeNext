@@ -26,7 +26,7 @@ const commands = {
       option.fromLangFile === undefined
         ? `--parse-json ${LANG_DIR}/${option.from}.json`
         : `--parse-json ${CACHE_DIR}/${id}/fromLang.json`,
-      option.fromLangFile === undefined
+      option.toLangFile === undefined
         ? `--convert-json ${LANG_DIR}/${option.to}.json`
         : `--convert-json ${CACHE_DIR}/${id}/toLang.json`,
       `--convert-output ${option.label}-dist`,
