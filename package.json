@@ -18,8 +18,7 @@
     "test:docs": "ts-node -r tsconfig-paths/register --project tsconfig.server.json test/docs.ts",
     "test:locale": "ts-node -r tsconfig-paths/register --project tsconfig.server.json test/locale.ts",
     "analyze": "ANALYZE=true next build",
-    "prepare": "husky install",
-    "postinstall": "patch-package"
+    "prepare": "husky install"
   },
   "prettier": {
     "trailingComma": "es5",
@@ -88,7 +87,6 @@
     "eslint-plugin-tailwindcss": "^3.5.0",
     "husky": "^8.0.1",
     "lint-staged": "13.0.0",
-    "patch-package": "^6.4.7",
     "postcss": "^8.4.14",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "2.6.2",
