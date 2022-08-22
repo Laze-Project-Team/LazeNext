@@ -24,6 +24,8 @@ const SignupComplete: NextPage = () => {
         <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}signup_complete`} />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'en'} />
+
+        <meta name="robots" content="noindex" />
       </Head>
 
       <h1 className="hidden">{t('title')}</h1>
