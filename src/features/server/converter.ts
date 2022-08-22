@@ -30,9 +30,19 @@ const commands = {
         ? `--convert-json ${LANG_DIR}/${option.to}.json`
         : `--convert-json ${CACHE_DIR}/${id}/toLang.json`,
       `--convert-output ${option.label}-dist`,
-      `--parser-opt ${PARSER_DIR}/${option.from}.parser`,
+      option.fromLangFile === undefined
+        ? `--parser-opt ${PARSER_DIR}/${option.from}.parser`
+        : `--parser-opt ${CACHE_DIR}/parsers/${option.from}.parser`,
       `--convert-link std.laze`,
       `--convert-dir ${COMMON_DIR}/${option.from}/`,
+    ].join(' ');
+  },
+  parser: (id: string, option: convertRequest['option']) => {
+    return [
+      process.env.COMPILER_PATH,
+      '--mode parserload',
+      `--parse-json ${CACHE_DIR}/${id}/fromLang.json`,
+      `--parser-output ${CACHE_DIR}/parsers/${option.from}.parser`,
     ].join(' ');
   },
 };
@@ -47,6 +57,14 @@ export const convertCode = async (code: string, option: convertRequest['option']
       encoding: 'utf8',
       flag: 'w',
     });
+
+    if (!fs.existsSync(`${CACHE_DIR}/parsers/${option.from}.parser`)) {
+      if (!fs.existsSync(`${CACHE_DIR}/parsers`)) {
+        await fs.promises.mkdir(`${CACHE_DIR}/parsers`);
+      }
+
+      await exec(commands.parser(id, option), execOption);
+    }
   }
   if (option.toLangFile !== undefined) {
     await fs.promises.writeFile(`${CACHE_DIR}/${id}/toLang.json`, option.toLangFile, { encoding: 'utf8', flag: 'w' });

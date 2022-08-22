@@ -26,7 +26,9 @@ const commands = {
       option.langFile === undefined
         ? `--parse-json ${LANG_DIR}/${option.lang}.json`
         : `--parse-json ${CACHE_DIR}/${id}/lang.json`,
-      `--parser-opt ${PARSER_DIR}/${option.lang}.parser`,
+      option.langFile === undefined
+        ? `--parser-opt ${PARSER_DIR}/${option.lang}.parser`
+        : `--parser-opt ${CACHE_DIR}/parsers/${option.lang}.parser`,
       `--link ${COMMON_DIR}/${option.lang}/std.laze`,
     ].join(' ');
   },
@@ -36,6 +38,14 @@ const commands = {
       `${CACHE_DIR}/${id}/.${option.label}.wat`,
       `-o ${CACHE_DIR}/${id}.wasm`,
       '--enable-bulk-memory',
+    ].join(' ');
+  },
+  parser: (id: string, option: compileRequest['option']) => {
+    return [
+      process.env.COMPILER_PATH,
+      '--mode parserload',
+      `--parse-json ${CACHE_DIR}/${id}/lang.json`,
+      `--parser-output ${CACHE_DIR}/parsers/${option.lang}.parser`,
     ].join(' ');
   },
 };
@@ -54,6 +64,14 @@ export const compileCode = async (code: string, option: compileRequest['option']
   await fs.promises.writeFile(`${CACHE_DIR}/${id}/${option.label}`, code, { encoding: 'utf8', flag: 'w' });
   if (option.langFile !== undefined) {
     await fs.promises.writeFile(`${CACHE_DIR}/${id}/lang.json`, option.langFile, { encoding: 'utf8', flag: 'w' });
+
+    if (!fs.existsSync(`${CACHE_DIR}/parsers/${option.lang}.parser`)) {
+      if (!fs.existsSync(`${CACHE_DIR}/parsers`)) {
+        await fs.promises.mkdir(`${CACHE_DIR}/parsers`);
+      }
+
+      await exec(commands.parser(id, option), { shell: '/bin/bash', windowsHide: true });
+    }
   }
   const { stdout, stderr } = await exec(commands.compile(id, option), execOption);
 
