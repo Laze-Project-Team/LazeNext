@@ -46,7 +46,7 @@ export const UploadNewLanguage: FC<props> = ({ addCustomLanguage }) => {
 
               const storage = localStorage.getItem('custom_lang');
               const lang = {
-                [id]: { name, content },
+                [id]: { name, content: text },
               };
 
               addCustomLanguage(id, name);
