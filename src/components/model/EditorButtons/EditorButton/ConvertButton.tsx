@@ -147,7 +147,7 @@ export const ConvertButton: VFC = () => {
     <>
       <div className="flex">
         <EditorButton name={t('buttons.convert')} onClick={onClick} Icon={<VscArrowSwap />} />
-        <div className="inline-flex items-center px-2 opacity-80">{langList[lang].name}</div>
+        <div className="inline-flex items-center px-2 opacity-80">{langList[lang]?.name ?? ''}</div>
       </div>
       <Modal
         title={t('buttons.convert')}
