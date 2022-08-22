@@ -1,6 +1,7 @@
 import { Button, Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { VFC } from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
@@ -119,16 +120,18 @@ export const ConvertButton: VFC = () => {
     setIsOpened(false);
   };
 
-  const addCustomLanguage = (id: string, name: string) => {
-    setLangList({
-      ...langList,
-      [id]: {
-        id,
-        name,
-        deletable: true,
-      },
+  const addCustomLanguage = useCallback((id: string, name: string) => {
+    setLangList((langList) => {
+      return {
+        ...langList,
+        [id]: {
+          id,
+          name,
+          deletable: true,
+        },
+      };
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
