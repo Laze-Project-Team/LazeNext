@@ -2,7 +2,7 @@
   "header": {
     "Editor": "Editor",
     "Docs": "Documentation",
-
+    "Compete": "Compete",
     "drawer": "Sitemap"
   },
 
@@ -21,7 +21,8 @@
     "sitemap": {
       "Home": "Home",
       "Editor": "Editor",
-      "Docs": "Documentation"
+      "Docs": "Documentation",
+      "Compete": "Compete"
     }
   }
 }

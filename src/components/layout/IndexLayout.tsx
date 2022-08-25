@@ -68,6 +68,9 @@ const IndexHeader: VFC = () => {
                 <Menu.Item>
                   <Link href="/docs">{t('header.Docs')}</Link>
                 </Menu.Item>
+                <Menu.Item>
+                  <Link href="/compete">{t('header.Compete')}</Link>
+                </Menu.Item>
               </Menu>
             </Drawer>
           </div>
@@ -75,6 +78,7 @@ const IndexHeader: VFC = () => {
           <div className="flex flex-1">
             <NavLink href="/editor">{t('header.Editor')}</NavLink>
             <NavLink href="/docs">{t('header.Docs')}</NavLink>
+            <NavLink href="/compete">{t('header.Compete')}</NavLink>
             <div className="ml-auto">
               <ChangeLanguage />
             </div>
