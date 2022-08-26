@@ -1,27 +1,12 @@
 import { Tabs } from 'antd';
 import type { VFC } from 'react';
 
-import type { Competitor } from '@/components/ui/LeaderboardList';
 import { LeaderboardList } from '@/components/ui/LeaderboardList';
+import type { CompetitionUIProps } from '@/typings/compete';
 
 import { H1 } from './IndexLayout';
 
 const { TabPane } = Tabs;
-
-export type CompetitionByLevel = {
-  level?: string;
-  players: Competitor[];
-};
-
-export type Competition = {
-  name: string;
-  leaderboardList: CompetitionByLevel[];
-  levels?: string[];
-};
-
-type CompetitionUIProps = {
-  competition: Competition;
-};
 
 export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
   return (

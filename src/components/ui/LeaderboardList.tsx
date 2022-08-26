@@ -2,20 +2,9 @@ import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { VFC } from 'react';
 
+import type { Competitor, LeaderboardListProps } from '@/typings/compete';
+
 import { H2 } from './IndexLayout';
-
-export type Competitor = {
-  id: string;
-  rankingData: number;
-  programUrl: string;
-  ranking: number;
-};
-
-type LeaderboardListProps = {
-  competitorList: Competitor[] | null;
-  sortOrder: 'Ascending' | 'Descending';
-  rankingDataName: string;
-};
 
 export const LeaderboardList: VFC<LeaderboardListProps> = ({ competitorList, sortOrder, rankingDataName }) => {
   const dataSource = ((competitorList ?? []) as Competitor[])

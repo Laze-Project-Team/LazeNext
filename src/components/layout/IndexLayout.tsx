@@ -199,11 +199,11 @@ const IndexFooter: VFC = () => {
 const IndexLayout: FC<IndexLayoutProps> = ({ children }) => {
   return (
     <>
-      <Layout className="overflow-x-hidden">
+      <Layout className="flex !min-h-screen flex-col overflow-x-hidden">
         <Layout.Header className="z-[1] w-full !px-2">
           <IndexHeader />
         </Layout.Header>
-        <Layout.Content className="mx-auto w-[60rem] max-w-full px-4 pt-4">{children}</Layout.Content>
+        <Layout.Content className="mx-auto w-[60rem] max-w-full flex-1 px-4 pt-4">{children}</Layout.Content>
         <Layout.Footer className="!bg-[#333344]">
           <IndexFooter />
         </Layout.Footer>
