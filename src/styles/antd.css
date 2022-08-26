@@ -79,3 +79,15 @@ html.dark {
 .ant-drawer-content-wrapper {
   max-width: 100vw;
 }
+
+/* body .ant-list-split.ant-list-something-after-last-item .ant-spin-container>.ant-list-items>.ant-list-item {
+  border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+body .ant-list-split.ant-list-something-after-last-item .ant-spin-container>.ant-list-items>.ant-list-item:last-child {
+  border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+body .ant-list-split.ant-list-something-after-last-item .ant-list-header {
+  border-bottom-color: rgba(0, 0, 0, 0.05);
+} */
