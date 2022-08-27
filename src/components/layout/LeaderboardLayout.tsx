@@ -55,7 +55,7 @@ const LeaderboardLayout: VFC<LeaderboardLayoutProps> = ({ sider, children }) => 
           collapsed={collapsed}
           className="drop-shadow-lg"
         >
-          {competitor ? sider : <></>}
+          {competitor && competitor.ranking !== 0 ? sider : <></>}
         </Layout.Sider>
       </Layout>
     </>

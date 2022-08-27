@@ -7,4 +7,4 @@ renovate.json
 .eslintrc.js
 src/locales/**/
 cache/*
-data/competition/*
+competitions/*

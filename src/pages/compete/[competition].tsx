@@ -54,7 +54,7 @@ type contextType = {
 };
 
 export const getStaticProps = async (context: contextType) => {
-  const competitionData = getCompetitionData(context.params.competition);
+  const competitionData = await getCompetitionData(context.params.competition);
   return {
     props: {
       competitionData,

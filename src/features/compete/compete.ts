@@ -7,6 +7,7 @@ import type { Competition, CompetitionByLevel, CompetitionJson, Competitor } fro
 export const getAllCompetitions = async (): Promise<string[]> => {
   const competitions = await fs.promises.readdir(COMPETITION_DIR);
   return competitions.filter((value) => {
+    console.log(value);
     return value !== '.gitignore';
   });
 };

@@ -26,12 +26,12 @@ export const compileSuccessful = (): void => {
   sendEvent('compile_successful');
 };
 
-// コンパイル成功時に実行
+// コンパイル失敗時に実行
 export const compileFailed = (): void => {
   sendEvent('compile_failed');
 };
 
-// コンパイル成功時に実行
+// サンプルロード時に実行
 export const sampleLoad = (loaded_sample: string): void => {
   sendEvent('sample_load', { loaded_sample });
 };
