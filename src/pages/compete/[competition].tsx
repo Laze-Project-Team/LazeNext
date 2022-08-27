@@ -25,7 +25,6 @@ const Compete: NextPage<CompeteProps> = ({ competitionData }) => {
         <H4>
           <Link href="/compete">&lt; BACK TO COMPETE</Link>
         </H4>
-        {/* <H1>Leaderboard</H1> */}
         <CompetitionUI competition={competitionData} />
       </LeaderboardLayout>
     </>
@@ -33,7 +32,7 @@ const Compete: NextPage<CompeteProps> = ({ competitionData }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const files = getAllCompetitions();
+  const files = await getAllCompetitions();
   const paths = files.map((fileName) => {
     return {
       params: {

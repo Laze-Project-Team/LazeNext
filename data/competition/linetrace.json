@@ -2,8 +2,8 @@
   "id": "linetrace",
   "name": "Linetrace",
   "levels": [
-    "Easy",
-    "Medium",
-    "Hard"
+    "easy",
+    "medium",
+    "hard"
   ]
 }

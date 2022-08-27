@@ -1,5 +1,5 @@
 export type CompetitionByLevel = {
-  level?: string;
+  level: string;
   players: Competitor[];
 };
 
@@ -31,4 +31,9 @@ export type LeaderboardListProps = {
   competitorList: Competitor[] | null;
   sortOrder: 'Ascending' | 'Descending';
   rankingDataName: string;
+};
+
+export type GetcompetitorRequest = {
+  name: string;
+  level?: string;
 };

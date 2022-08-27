@@ -2,47 +2,68 @@ import fs from 'fs';
 import path from 'path';
 
 import { COMPETITION_DIR } from '@/const/dir';
-import type { Competition, CompetitionJson, Competitor } from '@/typings/compete';
+import type { Competition, CompetitionByLevel, CompetitionJson, Competitor } from '@/typings/compete';
 
-export const getAllCompetitions = (): string[] => {
-  return fs.readdirSync(COMPETITION_DIR);
+export const getAllCompetitions = async (): Promise<string[]> => {
+  const competitions = await fs.promises.readdir(COMPETITION_DIR);
+  return competitions.filter((value) => {
+    return value !== '.gitignore';
+  });
 };
 
-const competitors: Competitor[] = [
-  {
-    id: 'Soma',
-    ranking: 0,
-    rankingData: 15.07,
-    programUrl: '/program/Soma',
-  },
-  { id: 'NGT', ranking: 0, rankingData: 3.14, programUrl: '/program/Soma' },
-  { id: 'Tak', ranking: 0, rankingData: 50.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-  { id: 'Uei', ranking: 0, rankingData: 80.87, programUrl: '/program/Soma' },
-];
-
-export const getCompetitionData = (id: string): Competition => {
-  const fullPath = path.join(COMPETITION_DIR, id + '.json');
-  const competitionJson: CompetitionJson = JSON.parse(
-    fs.readFileSync(fullPath).toString() ?? JSON.stringify({ id: '', name: '' })
+//Get leaderboard list
+const getLeaderboardList = async (
+  levels: string[] | undefined,
+  competitionPath: string
+): Promise<CompetitionByLevel[]> => {
+  //Get leaderboard for each level
+  const levelsData: (CompetitionByLevel | null)[] = await Promise.all(
+    (levels ?? []).map(async (level) => {
+      const levelPath = path.join(competitionPath, level);
+      // Check if the level exists
+      if (fs.existsSync(levelPath)) {
+        const competitorNames = await fs.promises.readdir(levelPath);
+        const competitors: Competitor[] = competitorNames.map((name) => {
+          const competitor: Competitor = {
+            id: name,
+            ranking: 0,
+            rankingData: 3.14,
+            programUrl: path.join(levelPath, name, 'main.laze'),
+          };
+          return competitor;
+        });
+        const levelData: CompetitionByLevel = {
+          level: level,
+          players: competitors,
+        };
+        return levelData;
+      } else {
+        return null;
+      }
+    })
   );
-  const competition: Competition = {
-    ...competitionJson,
-    leaderboardList: [
-      { level: 'Easy', players: competitors },
-      { level: 'Medium', players: competitors },
-      { level: 'Hard', players: [] },
-    ],
-  };
-  return competition;
+  const finalLevelsData: CompetitionByLevel[] = levelsData.filter((value) => {
+    return value != null;
+  }) as CompetitionByLevel[];
+  return finalLevelsData;
+};
+
+export const getCompetitionData = async (id: string): Promise<Competition | null> => {
+  const competitionPath = path.join(COMPETITION_DIR, id);
+  const jsonPath = path.join(competitionPath, id + '.json');
+  if (fs.existsSync(jsonPath)) {
+    const competitionJsonStr = await fs.promises.readFile(jsonPath);
+    const competitionJson: CompetitionJson = JSON.parse(
+      competitionJsonStr.toString() ?? JSON.stringify({ id: '', name: '' })
+    );
+    const leaderboardList = await getLeaderboardList(competitionJson.levels, competitionPath);
+
+    const competition: Competition = {
+      ...competitionJson,
+      leaderboardList: leaderboardList,
+    };
+    return competition;
+  } else {
+    return null;
+  }
 };

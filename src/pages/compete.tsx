@@ -41,13 +41,18 @@ type contextType = {
 };
 
 export const getStaticProps = async (context: contextType) => {
-  const files = getAllCompetitions();
-  const competitions = files.map((name) => {
-    return getCompetitionData(name.replace(/\.json$/, ''));
-  });
+  const files = await getAllCompetitions();
+  const competitions: (Competition | null)[] = await Promise.all(
+    files.map(async (name) => {
+      return await getCompetitionData(name.replace(/\.json$/, ''));
+    })
+  );
+
   return {
     props: {
-      competitions,
+      competitions: competitions.filter((value) => {
+        return value != null;
+      }),
       ...(await serverSideTranslations(context.locale, ['common', 'layout', 'compete'])),
     },
   };

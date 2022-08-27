@@ -36,7 +36,7 @@ export const SiderUI: VFC = () => {
           <div className="h-12 w-12 bg-laze-primary pt-2 text-center text-xl font-normal">
             <span>#{competitor.ranking}</span>
           </div>
-          <div className="h-12 w-60 bg-gray-100 pt-2 text-center text-xl font-normal">
+          <div className="h-12 w-60 bg-gray-100 pt-2 pl-4 text-left text-xl font-normal">
             <span>{competitor.id}</span>
           </div>
         </div>
