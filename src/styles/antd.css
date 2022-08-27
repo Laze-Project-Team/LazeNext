@@ -80,6 +80,15 @@ html.dark {
   max-width: 100vw;
 }
 
+/* .ant-table-thead>tr>th {
+  background-color: #ddd;
+} */
+
+.ant-table-tbody>tr.ant-table-row:hover>td, .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+  background: #ddd;
+  cursor: pointer;
+}
+
 /* body .ant-list-split.ant-list-something-after-last-item .ant-spin-container>.ant-list-items>.ant-list-item {
   border-bottom-color: rgba(0, 0, 0, 0.05);
 }

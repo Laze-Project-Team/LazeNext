@@ -34,7 +34,7 @@ const competitors: Competitor[] = [
 export const getCompetitionData = (id: string): Competition => {
   const fullPath = path.join(COMPETITION_DIR, id + '.json');
   const competitionJson: CompetitionJson = JSON.parse(
-    fs.readFileSync(fullPath).toString() ?? JSON.stringify({ name: '' })
+    fs.readFileSync(fullPath).toString() ?? JSON.stringify({ id: '', name: '' })
   );
   const competition: Competition = {
     ...competitionJson,

@@ -1,9 +1,12 @@
 import type { GetStaticPaths, NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { IndexLayout } from '@/components/layout/IndexLayout';
+import { LeaderboardLayout } from '@/components/layout/LeaderboardLayout';
 import { CompetitionUI } from '@/components/ui/CompetitionUI';
+import { H4 } from '@/components/ui/IndexLayout';
+import { SiderUI } from '@/components/ui/SiderUI';
 import { getAllCompetitions, getCompetitionData } from '@/features/compete/compete';
 import type { Competition } from '@/typings/compete';
 
@@ -18,10 +21,13 @@ const Compete: NextPage<CompeteProps> = ({ competitionData }) => {
       <Head>
         <title>Compete</title>
       </Head>
-      <IndexLayout>
+      <LeaderboardLayout sider={<SiderUI />}>
+        <H4>
+          <Link href="/compete">&lt; BACK TO COMPETE</Link>
+        </H4>
         {/* <H1>Leaderboard</H1> */}
         <CompetitionUI competition={competitionData} />
-      </IndexLayout>
+      </LeaderboardLayout>
     </>
   );
 };

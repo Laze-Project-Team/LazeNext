@@ -212,4 +212,4 @@ const IndexLayout: FC<IndexLayoutProps> = ({ children }) => {
   );
 };
 
-export { IndexLayout };
+export { IndexFooter, IndexHeader, IndexLayout };

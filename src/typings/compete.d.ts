@@ -4,12 +4,14 @@ export type CompetitionByLevel = {
 };
 
 export type Competition = {
+  id: string;
   name: string;
   leaderboardList: CompetitionByLevel[];
   levels?: string[];
 };
 
 export type CompetitionJson = {
+  id: string;
   name: string;
   levels?: string[];
 };
