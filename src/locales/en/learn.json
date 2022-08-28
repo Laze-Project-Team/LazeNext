@@ -1,0 +1,8 @@
+{
+  "title": "Learn with Laze",
+  "description": "Learn the basis of programming using Laze",
+  "table_of_contents": "Table of contents",
+  "run": "Run",
+  "compile_error": "Failed to compile",
+  "compile_error_description": "Please refer error list"
+}
