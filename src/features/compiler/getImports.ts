@@ -172,6 +172,7 @@ export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCo
         if (location) {
           webglUniformLoc.push(location);
         } else {
+          console.log(webglPrograms, i, string);
           throw new Error('Failed to get the uniform location');
         }
 

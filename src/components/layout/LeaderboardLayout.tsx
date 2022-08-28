@@ -52,8 +52,14 @@ const LeaderboardLayout: VFC<LeaderboardLayoutProps> = ({ sider, children }) => 
           collapsible
           collapsedWidth={0}
           reverseArrow
+          trigger={null}
           collapsed={collapsed}
           className="drop-shadow-lg"
+          onCollapse={() => {
+            if (window.laze?.props?.variables?.interval) {
+              clearInterval(window.laze.props.variables.interval);
+            }
+          }}
         >
           {competitor && competitor.ranking !== 0 ? sider : <></>}
         </Layout.Sider>

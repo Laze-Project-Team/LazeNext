@@ -80,50 +80,56 @@ export const getCompetitionData = async (id: string): Promise<Competition | null
   }
 };
 
-export const executeWasm = async (wasm: ArrayBuffer): Promise<void> => {
-  const { canvas, gl, importObject, variables } = window.laze.props;
+export const executeWasm = async (wasm: ArrayBuffer): Promise<boolean> => {
+  try {
+    const { canvas, gl, importObject, variables } = window.laze.props;
 
-  window.laze.props.webglObjects = {
-    webglBuffers: [],
-    webglPrograms: [],
-    webglTextures: [],
-    webglUniformLoc: [],
-  };
-  const executable = await WebAssembly.instantiate(wasm, importObject(variables.id));
-  if (variables.interval) {
-    clearInterval(variables.interval);
-  }
-  const { instance } = executable;
-  window.laze.props.webglObjects.webglPrograms.push(
-    initShaderProgram(gl, vsSource, fsSource),
-    initShaderProgram(gl, vsSource, lightFsSource),
-    initShaderProgram(gl, pointVsSource, pointFsSource),
-    initShaderProgram(gl, vs2DTextureSource, fs2DTextureSource),
-    initShaderProgram(gl, vs2DNoTextureSource, fs2DNoTextureSource)
-  );
+    window.laze.props.webglObjects = {
+      webglBuffers: [],
+      webglPrograms: [],
+      webglTextures: [],
+      webglUniformLoc: [],
+    };
+    const executable = await WebAssembly.instantiate(wasm, importObject(variables.id));
+    if (variables.interval) {
+      clearInterval(variables.interval);
+    }
+    const { instance } = executable;
+    window.laze.props.webglObjects.webglPrograms.push(
+      initShaderProgram(gl, vsSource, fsSource),
+      initShaderProgram(gl, vsSource, lightFsSource),
+      initShaderProgram(gl, pointVsSource, pointFsSource),
+      initShaderProgram(gl, vs2DTextureSource, fs2DTextureSource),
+      initShaderProgram(gl, vs2DNoTextureSource, fs2DNoTextureSource)
+    );
 
-  const memorySizeFunc = instance.exports.memorySize as CallableFunction;
-  const mainFunc = instance.exports.main as CallableFunction;
-  const loopFunc = instance.exports.loop as CallableFunction;
-  const stringLiterals = instance.exports.__stringLiterals as CallableFunction;
-  const clearMemory = instance.exports.clearMemory as CallableFunction;
+    const memorySizeFunc = instance.exports.memorySize as CallableFunction;
+    const mainFunc = instance.exports.main as CallableFunction;
+    const loopFunc = instance.exports.loop as CallableFunction;
+    const stringLiterals = instance.exports.__stringLiterals as CallableFunction;
+    const clearMemory = instance.exports.clearMemory as CallableFunction;
 
-  if (instance.exports.jsCallListenerNoParam) {
-    window.laze.props.variables.lazeCallNoParam = instance.exports.jsCallListenerNoParam as CallableFunction | null;
-  }
+    if (instance.exports.jsCallListenerNoParam) {
+      window.laze.props.variables.lazeCallNoParam = instance.exports.jsCallListenerNoParam as CallableFunction | null;
+    }
 
-  clearMemory();
-  stringLiterals();
+    clearMemory();
+    stringLiterals();
 
-  window.laze.props.variables.memorySize = memorySizeFunc();
-  mainFunc();
+    window.laze.props.variables.memorySize = memorySizeFunc();
+    mainFunc();
 
-  const draw = () => {
-    gl.viewport(0, 0, canvas.width, canvas.height);
-    loopFunc();
-  };
+    const draw = () => {
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      loopFunc();
+    };
 
-  if (instance.exports.loop) {
-    variables.interval = setInterval(draw, 1000 / 60);
+    if (instance.exports.loop) {
+      variables.interval = setInterval(draw, 1000 / 60);
+    }
+    return true;
+  } catch (e) {
+    console.error(e);
+    return false;
   }
 };

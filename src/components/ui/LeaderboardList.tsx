@@ -52,6 +52,7 @@ export const LeaderboardList: VFC<LeaderboardListProps> = ({ competitorList, sor
       align: 'left',
     },
   ];
+
   const renderTable = () => {
     if (dataSource.length === 0) {
       return <H2 className="text-center">We do not have players yet.</H2>;

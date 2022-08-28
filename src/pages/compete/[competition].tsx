@@ -25,7 +25,13 @@ const Compete: NextPage<CompeteProps> = ({ competitionData }) => {
   });
   useEffect(() => {
     window.laze = window.laze || {};
-    window.laze.props = getProps();
+    if (window.laze.props) {
+      window.laze.props = getProps(window.laze?.props?.variables?.interval);
+    } else {
+      window.laze.props = getProps(null);
+    }
+
+    // dispatch(collapse());
   });
   return (
     <>

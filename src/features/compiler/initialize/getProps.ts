@@ -4,7 +4,11 @@ import { getImports } from '@/features/compiler/getImports';
 import { initialKeyControl } from '@/features/compiler/keycontrol';
 import type { compilerProps, getImportsProps } from '@/typings/compiler';
 
-export const getProps = (dispatcher?: Dispatch, canvasId = 'output-canvas'): compilerProps => {
+export const getProps = (
+  interval: NodeJS.Timer | null,
+  dispatcher?: Dispatch,
+  canvasId = 'output-canvas'
+): compilerProps => {
   const canvas = <HTMLCanvasElement>document.getElementById(canvasId);
 
   if (!canvas) {
@@ -34,7 +38,7 @@ export const getProps = (dispatcher?: Dispatch, canvasId = 'output-canvas'): com
       lang: 'ja',
       keyControl: initialKeyControl,
       compiled: false,
-      interval: null,
+      interval: interval,
       lazeCallNoParam: null,
     },
     arduinoObjects: {

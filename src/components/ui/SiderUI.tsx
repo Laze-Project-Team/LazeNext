@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { VscEdit, VscFoldUp, VscRunAll } from 'react-icons/vsc';
 import { useQuery } from 'react-query';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 import { executeWasm } from '@/features/compete/compete';
+import type { CompeteState } from '@/features/redux/compete';
 import { competeSlice } from '@/features/redux/compete';
 import type { RootState } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
@@ -15,7 +16,11 @@ import type { Competitor } from '@/typings/compete';
 
 import { Editor as SiderEditor } from '../model/MonacoEditor/SiderEditor';
 
-export const SiderUI: VFC = () => {
+type SiderUIProps = {
+  state: CompeteState;
+};
+
+const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
   const collapsed = useSelector<RootState, boolean>((state) => {
     return state.compete.collapsed;
   });
@@ -30,10 +35,13 @@ export const SiderUI: VFC = () => {
     const body = new Blob([JSON.stringify({ url: competitor.programUrl })]);
     const res = await fetch('/api/compete/getcode', {
       method: 'PUT',
-      body: body,
+      body,
     });
     return res.text();
   };
+
+  const code = useQuery('code', fetchCode);
+
   const fetchWasm = async () => {
     const body = new Blob([JSON.stringify({ url: competitor.wasmUrl })]);
     const res = await fetch('/api/compete/getwasm', {
@@ -42,14 +50,19 @@ export const SiderUI: VFC = () => {
     });
     return res.arrayBuffer();
   };
-  const code = useQuery('code', fetchCode);
   const wasm = useQuery('wasm', fetchWasm);
 
   useEffect(() => {
-    if (wasm.data) {
-      executeWasm(wasm.data);
+    if (!state.collapsed) {
+      if (wasm.data) {
+        executeWasm(wasm.data) || executeWasm(wasm.data);
+      }
+    } else {
+      if (window.laze?.props?.variables?.interval) {
+        clearInterval(window.laze.props.variables.interval);
+      }
     }
-  });
+  }, [wasm, state]);
 
   return (
     <>
@@ -97,3 +110,11 @@ export const SiderUI: VFC = () => {
     </>
   );
 };
+
+const mapStateToProps = (state: RootState) => {
+  return {
+    state: state.compete,
+  };
+};
+
+export const SiderUI = connect(mapStateToProps)(UnconnectedSiderUI);

@@ -20,12 +20,12 @@ export const competeSlice = createSlice({
       if (state.competitor.ranking === action.payload.ranking) {
         return {
           ...state,
-          collapsed: !state.collapsed,
+          collapsed: false,
         };
       } else {
         return {
           ...state,
-          collapsed: !state.collapsed,
+          collapsed: false,
           competitor: action.payload,
         };
       }
