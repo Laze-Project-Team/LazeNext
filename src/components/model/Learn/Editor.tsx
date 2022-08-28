@@ -1,12 +1,12 @@
 import type { BeforeMount, OnChange, OnMount } from '@monaco-editor/react';
 import MonacoEditor from '@monaco-editor/react';
-import { Button, notification } from 'antd';
+import { Button, message, notification } from 'antd';
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useTranslation } from 'next-i18next';
 import type { FC, MouseEventHandler } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { VscRunAll } from 'react-icons/vsc';
+import { VscCopy, VscRunAll } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
 
 import { useCompiler } from '@/features/compiler';
@@ -126,13 +126,25 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
     }
   };
 
+  const onCopy: MouseEventHandler<HTMLElement> = () => {
+    if (placeholder !== undefined) {
+      setValue(placeholder);
+      message.success(t('copied'));
+    }
+  };
+
   return (
     <>
-      <div className="my-4">
+      <div className="my-4 space-x-4">
         <div>
           <Button onClick={onClick} loading={isCompiling} icon={<VscRunAll className="mr-2 inline" />}>
             {t('run')}
           </Button>
+          {placeholder && (
+            <Button onClick={onCopy} icon={<VscCopy className="mr-2 inline" />}>
+              {t('copy')}
+            </Button>
+          )}
         </div>
         <div className="h-40 border-[1px]">
           <MonacoEditor

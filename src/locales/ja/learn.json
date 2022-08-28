@@ -5,6 +5,8 @@
   "table_of_contents": "目次",
 
   "run": "実行",
+  "copy": "コピー",
+  "copied": "お手本をコピーしました",
   "compile_error": "コンパイルに失敗しました",
   "compile_error_description": "間違いがちなエラーの一覧を参考にして下さい"
 }

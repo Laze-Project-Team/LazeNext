@@ -3,6 +3,8 @@
   "description": "Learn the basis of programming using Laze",
   "table_of_contents": "Table of contents",
   "run": "Run",
+  "copy": "Copy",
+  "copied": "Copied",
   "compile_error": "Failed to compile",
   "compile_error_description": "Please refer error list"
 }
