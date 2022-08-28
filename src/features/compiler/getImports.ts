@@ -5,7 +5,7 @@ import { updatePosition } from '@/features/compiler/initialize/updatePosition';
 import { consoleSlice } from '@/features/redux/console';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
-export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCompleteImportsFunction => {
+export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCompleteImportsFunction => {
   const { canvas, gl, variables } = props;
   const { memory } = variables;
 
@@ -352,15 +352,18 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
 
   return (id: string): importObject => {
     const { addLog } = consoleSlice.actions;
-    const logConsole = (content: string) => {
-      dispatcher(
-        addLog({
-          console: id,
-          content,
-          level: 'log',
-        })
-      );
-    };
+    const logConsole = dispatcher
+      ? (content: string) => {
+          dispatcher(
+            addLog({
+              console: id,
+              content,
+              level: 'log',
+            })
+          );
+        }
+      : // eslint-disable-next-line no-console
+        console.log;
 
     return {
       console: {

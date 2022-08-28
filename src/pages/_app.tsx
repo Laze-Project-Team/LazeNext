@@ -18,6 +18,7 @@ import { appWithTranslation } from 'next-i18next';
 import nprogress from 'nprogress';
 import type { Dispatch, SetStateAction } from 'react';
 import { createContext, useEffect, useState } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 
 import type { GoogleTagManagerId } from '@/components/functional/GoogleTagManager';
@@ -56,16 +57,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     }
   }, [colorMode]);
 
+  const queryClient = new QueryClient();
+
   return (
     <>
       {googleTagManagerId && <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />}
-      <colorModeContext.Provider value={[colorMode, setColorMode]}>
-        <ColorMode colorMode={colorMode}>
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
-        </ColorMode>
-      </colorModeContext.Provider>
+      <QueryClientProvider client={queryClient}>
+        <colorModeContext.Provider value={[colorMode, setColorMode]}>
+          <ColorMode colorMode={colorMode}>
+            <Provider store={store}>
+              <Component {...pageProps} />
+            </Provider>
+          </ColorMode>
+        </colorModeContext.Provider>
+      </QueryClientProvider>
     </>
   );
 };

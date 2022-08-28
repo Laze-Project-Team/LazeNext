@@ -1,9 +1,8 @@
 import type { BeforeMount, OnMount } from '@monaco-editor/react';
-import MonacoEditor, { useMonaco } from '@monaco-editor/react';
+import MonacoEditor from '@monaco-editor/react';
 import type { VFC } from 'react';
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 import { useContext } from 'react';
-import { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import { Loading } from '@/components/model/MonacoEditor/Loading';
@@ -17,24 +16,6 @@ type EditorProps = {
 };
 
 const SiderEditor: VFC<EditorProps> = ({ code }) => {
-  const monaco = useMonaco();
-
-  const setValue = useCallback(
-    (content: string) => {
-      const model = monaco?.editor.getModels()[0];
-      if (model) {
-        model.setValue(content);
-      }
-    },
-    [monaco?.editor]
-  );
-
-  useEffect(() => {
-    if (code !== null) {
-      setValue(code);
-    }
-  }, [code, setValue]);
-
   const onMount: OnMount = (editor) => {
     editor.focus();
     editor.addAction({
@@ -66,6 +47,7 @@ const SiderEditor: VFC<EditorProps> = ({ code }) => {
   return (
     <>
       <MonacoEditor
+        value={code}
         language="laze"
         options={options}
         beforeMount={beforeMount}
@@ -80,7 +62,7 @@ const SiderEditor: VFC<EditorProps> = ({ code }) => {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    state: state.explorer,
+    state: state.compete,
   };
 };
 

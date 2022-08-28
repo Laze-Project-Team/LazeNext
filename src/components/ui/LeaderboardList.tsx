@@ -64,7 +64,13 @@ export const LeaderboardList: VFC<LeaderboardListProps> = ({ competitorList, sor
             return {
               onClick: (e) => {
                 e.stopPropagation();
-                const checkedCompetitor = competitor ?? { id: '', ranking: 0, rankingData: 0, programUrl: '' };
+                const checkedCompetitor = competitor ?? {
+                  id: '',
+                  ranking: 0,
+                  rankingData: 0,
+                  programUrl: '',
+                  wasmUrl: '',
+                };
                 if (!collapsed && checkedCompetitor.ranking === record.ranking) {
                   return dispatch(collapse());
                 } else if (!collapsed && checkedCompetitor.ranking !== record.ranking) {

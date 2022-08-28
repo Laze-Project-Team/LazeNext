@@ -4,8 +4,8 @@ import { getImports } from '@/features/compiler/getImports';
 import { initialKeyControl } from '@/features/compiler/keycontrol';
 import type { compilerProps, getImportsProps } from '@/typings/compiler';
 
-export const getProps = (dispatcher: Dispatch): compilerProps => {
-  const canvas = <HTMLCanvasElement>document.getElementById('output-canvas');
+export const getProps = (dispatcher?: Dispatch, canvasId = 'output-canvas'): compilerProps => {
+  const canvas = <HTMLCanvasElement>document.getElementById(canvasId);
 
   if (!canvas) {
     throw new Error('Canvas not found');
@@ -52,7 +52,7 @@ export const getProps = (dispatcher: Dispatch): compilerProps => {
   };
 
   return {
-    importObject: getImports(dispatcher, props),
+    importObject: getImports(props, dispatcher),
     ...props,
   };
 };

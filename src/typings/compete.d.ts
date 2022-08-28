@@ -25,6 +25,7 @@ export type Competitor = {
   rankingData: number;
   programUrl: string;
   ranking: number;
+  wasmUrl: string;
 };
 
 export type LeaderboardListProps = {

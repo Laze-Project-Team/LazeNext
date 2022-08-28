@@ -2,12 +2,22 @@ import fs from 'fs';
 import path from 'path';
 
 import { COMPETITION_DIR } from '@/const/dir';
+import { fs as fsSource } from '@/features/compiler/source/fs';
+import { fs2DNoTexture as fs2DNoTextureSource } from '@/features/compiler/source/fs2DNoTexture';
+import { fs2DTexture as fs2DTextureSource } from '@/features/compiler/source/fs2DTexture';
+import { lightFs as lightFsSource } from '@/features/compiler/source/lightFs';
+import { pointFs as pointFsSource } from '@/features/compiler/source/pointFs';
+import { pointVs as pointVsSource } from '@/features/compiler/source/pointVs';
+import { vs as vsSource } from '@/features/compiler/source/vs';
+import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source/vs2DNoTexture';
+import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
 import type { Competition, CompetitionByLevel, CompetitionJson, Competitor } from '@/typings/compete';
+
+import { initShaderProgram } from '../compiler/initialize/initShaderProgram';
 
 export const getAllCompetitions = async (): Promise<string[]> => {
   const competitions = await fs.promises.readdir(COMPETITION_DIR);
   return competitions.filter((value) => {
-    console.log(value);
     return value !== '.gitignore';
   });
 };
@@ -29,6 +39,7 @@ const getLeaderboardList = async (
             id: name,
             ranking: 0,
             rankingData: 3.14,
+            wasmUrl: path.join(levelPath, name, 'main.wasm'),
             programUrl: path.join(levelPath, name, 'main.laze'),
           };
           return competitor;
@@ -66,5 +77,53 @@ export const getCompetitionData = async (id: string): Promise<Competition | null
     return competition;
   } else {
     return null;
+  }
+};
+
+export const executeWasm = async (wasm: ArrayBuffer): Promise<void> => {
+  const { canvas, gl, importObject, variables } = window.laze.props;
+
+  window.laze.props.webglObjects = {
+    webglBuffers: [],
+    webglPrograms: [],
+    webglTextures: [],
+    webglUniformLoc: [],
+  };
+  const executable = await WebAssembly.instantiate(wasm, importObject(variables.id));
+  if (variables.interval) {
+    clearInterval(variables.interval);
+  }
+  const { instance } = executable;
+  window.laze.props.webglObjects.webglPrograms.push(
+    initShaderProgram(gl, vsSource, fsSource),
+    initShaderProgram(gl, vsSource, lightFsSource),
+    initShaderProgram(gl, pointVsSource, pointFsSource),
+    initShaderProgram(gl, vs2DTextureSource, fs2DTextureSource),
+    initShaderProgram(gl, vs2DNoTextureSource, fs2DNoTextureSource)
+  );
+
+  const memorySizeFunc = instance.exports.memorySize as CallableFunction;
+  const mainFunc = instance.exports.main as CallableFunction;
+  const loopFunc = instance.exports.loop as CallableFunction;
+  const stringLiterals = instance.exports.__stringLiterals as CallableFunction;
+  const clearMemory = instance.exports.clearMemory as CallableFunction;
+
+  if (instance.exports.jsCallListenerNoParam) {
+    window.laze.props.variables.lazeCallNoParam = instance.exports.jsCallListenerNoParam as CallableFunction | null;
+  }
+
+  clearMemory();
+  stringLiterals();
+
+  window.laze.props.variables.memorySize = memorySizeFunc();
+  mainFunc();
+
+  const draw = () => {
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    loopFunc();
+  };
+
+  if (instance.exports.loop) {
+    variables.interval = setInterval(draw, 1000 / 60);
   }
 };

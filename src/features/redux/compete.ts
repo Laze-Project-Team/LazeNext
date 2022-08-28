@@ -9,7 +9,7 @@ export type CompeteState = {
 };
 const initialState: CompeteState = {
   collapsed: true,
-  competitor: { id: '', ranking: 0, rankingData: 0, programUrl: '' },
+  competitor: { id: '', ranking: 0, rankingData: 0, programUrl: '', wasmUrl: '' },
 };
 
 export const competeSlice = createSlice({

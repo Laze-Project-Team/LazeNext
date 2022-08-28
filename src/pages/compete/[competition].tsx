@@ -2,13 +2,17 @@ import type { GetStaticPaths, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { LeaderboardLayout } from '@/components/layout/LeaderboardLayout';
 import { CompetitionUI } from '@/components/ui/CompetitionUI';
 import { H4 } from '@/components/ui/IndexLayout';
 import { SiderUI } from '@/components/ui/SiderUI';
 import { getAllCompetitions, getCompetitionData } from '@/features/compete/compete';
-import type { Competition } from '@/typings/compete';
+import { getProps } from '@/features/compiler/initialize/getProps';
+import type { RootState } from '@/features/redux/root';
+import type { Competition, Competitor } from '@/typings/compete';
 
 type CompeteProps = {
   competitionData: Competition;
@@ -16,12 +20,19 @@ type CompeteProps = {
 };
 
 const Compete: NextPage<CompeteProps> = ({ competitionData }) => {
+  const competitor = useSelector<RootState, Competitor>((state) => {
+    return state.compete.competitor;
+  });
+  useEffect(() => {
+    window.laze = window.laze || {};
+    window.laze.props = getProps();
+  });
   return (
     <>
       <Head>
         <title>Compete</title>
       </Head>
-      <LeaderboardLayout sider={<SiderUI />}>
+      <LeaderboardLayout sider={<SiderUI key={competitor.id} />}>
         <H4>
           <Link href="/compete">&lt; BACK TO COMPETE</Link>
         </H4>

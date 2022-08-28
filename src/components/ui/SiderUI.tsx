@@ -1,8 +1,11 @@
 import type { VFC } from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { VscEdit, VscFoldUp, VscRunAll } from 'react-icons/vsc';
+import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { executeWasm } from '@/features/compete/compete';
 import { competeSlice } from '@/features/redux/compete';
 import type { RootState } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
@@ -22,6 +25,31 @@ export const SiderUI: VFC = () => {
   const dispatch = useDispatch();
   const { collapse } = competeSlice.actions;
   const ratioRef = useContext(ratioRefContext);
+
+  const fetchCode = async () => {
+    const body = new Blob([JSON.stringify({ url: competitor.programUrl })]);
+    const res = await fetch('/api/compete/getcode', {
+      method: 'PUT',
+      body: body,
+    });
+    return res.text();
+  };
+  const fetchWasm = async () => {
+    const body = new Blob([JSON.stringify({ url: competitor.wasmUrl })]);
+    const res = await fetch('/api/compete/getwasm', {
+      method: 'PUT',
+      body: body,
+    });
+    return res.arrayBuffer();
+  };
+  const code = useQuery('code', fetchCode);
+  const wasm = useQuery('wasm', fetchWasm);
+
+  useEffect(() => {
+    if (wasm.data) {
+      executeWasm(wasm.data);
+    }
+  });
 
   return (
     <>
@@ -64,7 +92,7 @@ export const SiderUI: VFC = () => {
         </button>
       </div>
       <div className="h-[51%] w-full bg-background pl-4 pr-4 pb-4">
-        <SiderEditor code={`hello`} />
+        <SiderEditor code={code.data ?? ''} key={competitor.id} />
       </div>
     </>
   );
