@@ -53,7 +53,7 @@ const getLeaderboardList = async (
   return finalLevelsData;
 };
 
-export const handler: NextApiHandler = async (req, res): Promise<void> => {
+const handler: NextApiHandler = async (req, res): Promise<void> => {
   const id: string = req.query.id as string;
   const competitionPath = path.join(COMPETITION_DIR, id);
   const jsonPath = path.join(competitionPath, id + '.json');
@@ -73,3 +73,5 @@ export const handler: NextApiHandler = async (req, res): Promise<void> => {
     res.status(404);
   }
 };
+
+export default handler;
