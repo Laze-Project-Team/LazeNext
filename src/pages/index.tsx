@@ -65,6 +65,9 @@ const Home: NextPage = () => {
         <Button type="primary" size="large" className="mt-8 ml-4 mb-4">
           <Link href="/editor">{t('Try Laze')}</Link>
         </Button>
+        <Button type="primary" size="large" className="mt-8 ml-4 mb-4">
+          <Link href="/learn">{t('Learn with Laze')}</Link>
+        </Button>
         <StyledLink
           className="ml-4 mb-8 inline-block text-lg"
           href={locale === 'en' ? 'https://forms.gle/FH4XYbnvgSMTEyX66' : 'https://forms.gle/arQwxAY8NuuT1zfi8'}
