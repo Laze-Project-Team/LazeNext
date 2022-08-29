@@ -1,9 +1,11 @@
 {
   "title": "プログラミング言語Lazeのホームページ",
   "description": "Lazeは「全ての人に快適なプログラミングを」という目標で開発されているプログラミング言語です。ブラウザ上で今すぐプログラミングを開始できます。Lazeの世界に飛び出しましょう。",
+
   "Try Laze": "今すぐLazeを始める",
-  "Learn with Laze": "チュートリアル",
   "requests": "ご意見・ご要望",
+  "discord": "Discordコミュニティに参加する",
+
   "Laze Features": "なぜLazeなのか？",
   "features": {
     "1": {
@@ -19,12 +21,14 @@
       "description": "あなたのブラウザ上で今すぐに始められます。プレイグラウンドにLazeに必要なものは全て揃っています。面倒な環境構築の手間はもう必要ありません。"
     }
   },
+
   "Laze Production": "Lazeでできること",
   "productions": {
     "1": {
       "title": "2Dゲーム",
       "description": "標準ライブラリを使えば2Dの描画を非常にシンプルなコードで行うことができます。"
     },
+
     "2": {
       "title": "3Dゲーム",
       "description": "WebGLを使用しており、3Dでも2Dに劣ることのないパフォーマンスを発揮できます。標準ライブラリも備わっているので簡単に始められます。"
@@ -34,6 +38,7 @@
       "description": "HTMLとCSSを使用したGUIに劣らないGUIアプリケーションが簡単に作れます。（準備中）"
     }
   },
+
   "Join Laze": "Lazeに参加する",
   "activities": {
     "1": {

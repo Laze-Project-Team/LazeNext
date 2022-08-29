@@ -1,21 +1,25 @@
 {
   "title": "プライバシーポリシー",
   "description": "プログラミング言語Lazeのウェブサイトのプライバシーポリシーです。",
+
   "Administrator": {
-    "1": "利用者から収集した個人情報はLaze Project Teamが責任を持って管理します。",
-    "title": "管理者"
+    "title": "管理者",
+    "1": "利用者から収集した個人情報はLaze Project Teamが責任を持って管理します。"
   },
+
   "CollectingInfomation": {
-    "1": "サーバーログに利用者のIPアドレスが一定期間保管されます。",
-    "title": "収集する個人情報"
+    "title": "収集する個人情報",
+    "1": "サーバーログに利用者のIPアドレスが一定期間保管されます。"
   },
+
   "WhatToUse": {
-    "1": "収集した個人情報は不正アクセス対策に使用し、第三者に一部または全部を渡すことはありません。",
-    "title": "個人情報の扱い"
+    "title": "個人情報の扱い",
+    "1": "収集した個人情報は不正アクセス対策に使用し、第三者に一部または全部を渡すことはありません。"
   },
+
   "GoogleAnalytics": {
+    "title": "Google Analytics",
     "1": "当サイト上のいくつかのページにおいて、訪問状況把握のためにGoogle Analyticsを使用していますが、Google Analyticsによって収集される情報には個人を識別できる情報は含まれていません。また、それらの情報はGoogle社によって同社のプライバシーポリシーに基づいて管理されます。",
-    "2": "Google Analyticsの説明などについて、詳しくは[Google Analyticsの利用規約](http://www.google.com/analytics/terms/jp.html)または[Google社のプライバシーポリシー](http://www.google.com/intl/ja/policies/privacy/)をご覧下さい。",
-    "title": "Google Analytics"
+    "2": "Google Analyticsの説明などについて、詳しくは[Google Analyticsの利用規約](http://www.google.com/analytics/terms/jp.html)または[Google社のプライバシーポリシー](http://www.google.com/intl/ja/policies/privacy/)をご覧下さい。"
   }
 }

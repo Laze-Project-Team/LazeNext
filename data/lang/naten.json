@@ -195,7 +195,6 @@
             "else":"Otherwise execute code stm"
         },
         "ifelselist":{
-            "null":"",
             "if":"If exp then execute code stm",
             "ifelse":"ifelse",
             "ififelselist":"If exp then execute code stm ifelse",

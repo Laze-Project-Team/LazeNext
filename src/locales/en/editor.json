@@ -1,11 +1,13 @@
 {
   "title": "Laze Editor",
   "description": "",
+
   "footer": {
     "acknowledgement": "Made with Monaco Editor",
     "home": "Home",
     "docs": "Documentation"
   },
+
   "contextmenus": {
     "newFile": "New File",
     "newFolder": "New Folder",
@@ -13,10 +15,12 @@
     "rename": "Rename",
     "delete": "Delete"
   },
+
   "panellist": {
     "master": "Master",
     "close": "Close"
   },
+
   "buttons": {
     "menu": "Menu",
     "newFile": "New File",
@@ -26,20 +30,24 @@
     "convert": "Language Conversion(Change)",
     "settings": "Settings"
   },
+
   "settings": {
     "darkmode": "Enable dark mode",
     "close": "Close"
   },
+
   "samples": {
     "title": "Loading sample selection",
     "error": "Somehing went wrong while loading sample list",
     "load": "Load",
     "cancel": "Cancel"
   },
+
   "convert": {
     "change": "Change",
     "convert": "Convert",
     "cancel": "Cancel",
+
     "success": {
       "title": "Conversion completed",
       "message": "Your language has been changed successfully ({{from}} → {{to}})"
@@ -49,16 +57,18 @@
       "message": "Something went wrong while changing your language ({{from}} → {{to}})"
     },
     "upload": {
-      "title": "Add language file",
-      "error_validation": "{{file}} is not language file",
+      "title": "Add Language File",
+      "error_validation": "{{file}} is not a language file",
       "error_upload": "Something went wrong while uploading {{file}}"
     },
     "delete": "削除"
   },
+
   "workbench": {
     "output": "Output",
     "canvas": "Canvas Area"
   },
+
   "messages": {
     "FileIsNotOpened": {
       "1": "File is not opened",
@@ -68,6 +78,7 @@
     "FileAlreadyExists": "A file or folder with that name already exists. Please choose a different name.",
     "NotValidName": "This name is not valid as a file or folder name. Please choose a different name."
   },
+
   "errors": {
     "FileIsNotOpened": {
       "title": "Compile error",
