@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { VscCopy, VscRunAll } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
 
+import { formatChar } from '@/components/model/Learn/formatChar';
 import { useCompiler } from '@/features/compiler';
 import { Config } from '@/features/monaco/config';
 import { Language } from '@/features/monaco/register';
@@ -60,10 +61,8 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
 
   useCompiler();
 
-  const onChange: OnChange = (val) => {
-    if (val) {
-      setValue(val);
-    }
+  const onChange: OnChange = () => {
+    // onChange
   };
 
   const beforeMount: BeforeMount = (monaco) => {
@@ -97,6 +96,16 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
     if (id !== undefined && placeholder !== undefined) {
       window.editorPlaceholders[id] = placeholder;
     }
+
+    editor.onDidCompositionEnd(() => {
+      const model = editor.getModel();
+      const pos = editor.getPosition();
+      if (model && pos) {
+        const value = formatChar(model.getValue());
+        model.setValue(value);
+        editor.setPosition(pos);
+      }
+    });
   };
 
   const onClick: MouseEventHandler<HTMLElement> = () => {

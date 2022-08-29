@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { useEffect, useMemo } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
+import { formatChar } from '@/components/model/Learn/formatChar';
 import { Loading } from '@/components/model/MonacoEditor/Loading';
 import { LazeLogo } from '@/components/ui/atoms/LazeLogo';
 import { initializeMonaco } from '@/features/monaco';
@@ -76,6 +77,16 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
       run: () => {
         return void 0;
       },
+    });
+
+    editor.onDidCompositionEnd(() => {
+      const model = editor.getModel();
+      const pos = editor.getPosition();
+      if (model && pos) {
+        const value = formatChar(model.getValue());
+        model.setValue(value);
+        editor.setPosition(pos);
+      }
     });
   };
 
