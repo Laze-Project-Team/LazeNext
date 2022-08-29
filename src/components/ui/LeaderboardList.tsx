@@ -1,5 +1,6 @@
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,7 +10,9 @@ import type { Competitor, LeaderboardListProps } from '@/typings/compete';
 
 import { H2 } from './IndexLayout';
 
-export const LeaderboardList: VFC<LeaderboardListProps> = ({ competitorList, sortOrder, rankingDataName }) => {
+export const LeaderboardList: VFC<LeaderboardListProps> = ({ competitorList, sortOrder }) => {
+  const [t] = useTranslation('compete');
+
   const dispatch = useDispatch();
   const { collapse, differentCompetitor, toggleCollapse } = competeSlice.actions;
   const competitor = useSelector<RootState, Competitor>((state) => {
@@ -31,21 +34,21 @@ export const LeaderboardList: VFC<LeaderboardListProps> = ({ competitorList, sor
     });
   const columns: ColumnsType<Competitor> = [
     {
-      title: 'Ranking',
+      title: t('ranking'),
       dataIndex: 'ranking',
       key: 'ranking',
-      width: '5%',
+      width: '10%',
       align: 'center',
     },
     {
-      title: 'Name',
+      title: t('name'),
       dataIndex: 'id',
       key: 'id',
-      width: '65%',
+      width: '55%',
       align: 'left',
     },
     {
-      title: rankingDataName,
+      title: t('time'),
       dataIndex: 'rankingData',
       key: 'rankingData',
       width: '30%',

@@ -1,6 +1,6 @@
 import type { VFC } from 'react';
 import { useEffect } from 'react';
-import { VscEdit, VscFoldUp, VscRunAll } from 'react-icons/vsc';
+import { VscFoldUp } from 'react-icons/vsc';
 import { useQuery } from 'react-query';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
@@ -91,15 +91,15 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
           />
         </div>
       </div>
-      <div className="min-w-fit bg-background pl-4 !text-[#cccccc]">
-        <button className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400">
+      <div className="h-6 min-w-fit bg-background pl-4 !text-[#cccccc]">
+        {/* <button className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400">
           <VscRunAll />
           <span> Run </span>
         </button>
         <button className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400">
           <VscEdit />
           <span>Edit in the Editor</span>
-        </button>
+        </button> */}
       </div>
       <div className="h-[51%] w-full bg-background pl-4 pr-4 pb-4">
         <SiderEditor code={code.data ?? ''} key={competitor.id} />

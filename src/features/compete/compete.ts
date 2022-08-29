@@ -19,6 +19,7 @@ import type {
   CompetitorInfoJson,
 } from '@/typings/compete';
 
+import { getProps } from '../compiler/initialize/getProps';
 import { initShaderProgram } from '../compiler/initialize/initShaderProgram';
 
 export const getAllCompetitions = async (): Promise<string[]> => {
@@ -93,6 +94,11 @@ export const getCompetitionData = async (id: string): Promise<Competition | null
 
 export const executeWasm = async (wasm: ArrayBuffer): Promise<boolean> => {
   try {
+    if (window.laze.props) {
+      window.laze.props = getProps(window.laze?.props?.variables?.interval);
+    } else {
+      window.laze.props = getProps(null);
+    }
     const { canvas, gl, importObject, variables } = window.laze.props;
 
     window.laze.props.webglObjects = {

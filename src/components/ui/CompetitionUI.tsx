@@ -1,12 +1,11 @@
 import { Button, Tabs } from 'antd';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { LeaderboardList } from '@/components/ui/LeaderboardList';
-import { linetraceTemplate } from '@/const/linetraceSample';
 import { competeSlice } from '@/features/redux/compete';
-import { explorerSlice } from '@/features/redux/explorer';
 import type { CompetitionUIProps } from '@/typings/compete';
 
 import { H1 } from './IndexLayout';
@@ -14,9 +13,10 @@ import { H1 } from './IndexLayout';
 const { TabPane } = Tabs;
 
 export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
+  const [t] = useTranslation('compete');
+
   const dispatch = useDispatch();
   const { collapse } = competeSlice.actions;
-  const { setDirectory } = explorerSlice.actions;
   const renderCompetition = () => {
     if (competition.levels) {
       return (
@@ -33,26 +33,8 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
               <TabPane tab={element.level} key={element.level}>
                 <div className="flex w-full justify-center">
                   <Link href="/compete/editor" passHref>
-                    <Button
-                      type="primary"
-                      onClick={() => {
-                        dispatch(
-                          setDirectory({
-                            projectName: '',
-                            directory: {
-                              '/main.laze': {
-                                type: 'file',
-                                content: linetraceTemplate,
-                                isRenaming: false,
-                              },
-                            },
-                          })
-                        );
-                      }}
-                    >
-                      <p>
-                        Join {competition.name} Level {element.level}
-                      </p>
+                    <Button type="primary">
+                      <p>{t('join', { competition: competition.name, level: element.level })}</p>
                     </Button>
                   </Link>
                 </div>

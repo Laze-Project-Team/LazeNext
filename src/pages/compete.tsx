@@ -1,6 +1,7 @@
 import { Col, Row } from 'antd';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { IndexLayout } from '@/components/layout/IndexLayout';
@@ -15,13 +16,15 @@ type CompeteHomeProps = {
 };
 
 const CompeteHome: NextPage<CompeteHomeProps> = ({ competitions }) => {
+  const [t] = useTranslation('compete');
+
   return (
     <>
       <Head>
-        <title>Compete</title>
+        <title>{t('compete')}</title>
       </Head>
       <IndexLayout>
-        <H1>Compete</H1>
+        <H1>{t('compete')}</H1>
         <Row gutter={[24, 24]}>
           {competitions.map((competition) => {
             return (
@@ -42,6 +45,7 @@ type contextType = {
 
 export const getStaticProps = async (context: contextType) => {
   const files = await getAllCompetitions();
+
   const competitions: (Competition | null)[] = await Promise.all(
     files.map(async (name) => {
       return await getCompetitionData(name.replace(/\.json$/, ''));

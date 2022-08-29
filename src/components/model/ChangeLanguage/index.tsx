@@ -9,13 +9,13 @@ import { i18nLangList } from '@/const/lang';
 import { cx } from '@/features/utils/cx';
 
 const LanguageMenu: VFC = () => {
-  const { pathname, locale } = useRouter();
+  const { pathname, locale, asPath } = useRouter();
   return (
     <Menu className="!bg-white/80">
       {Object.keys(i18nLangList).map((key) => {
         return (
           <Menu.Item key={key} className="!bg-transparent" disabled={locale === key}>
-            <Link href={pathname} locale={key}>
+            <Link href={pathname} locale={key} as={asPath}>
               <a className={cx('text-gray-400 hover:text-gray-300', locale === key && 'text-primary-default')}>
                 {i18nLangList[key]}
               </a>

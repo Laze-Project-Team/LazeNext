@@ -23,14 +23,16 @@ const handler: NextApiHandler = async (req, res) => {
   const levelPath = path.join(COMPETITION_DIR, request.competition, request.level);
   if (fs.existsSync(levelPath)) {
     const competitorPath = path.join(levelPath, request.name);
-    await fs.promises.mkdir(competitorPath);
-    await fs.promises.copyFile(request.programUrl, path.join(competitorPath, 'main.laze'));
-    await fs.promises.copyFile(request.wasmUrl, path.join(competitorPath, 'main.wasm'));
+    if (!fs.existsSync(competitorPath)) {
+      await fs.promises.mkdir(competitorPath);
+    }
     const infoJson: CompetitorInfoJson = {
       id: request.name,
       time: Number(request.time.toFixed(2)),
     };
     await fs.promises.writeFile(path.join(competitorPath, 'info.json'), JSON.stringify(infoJson));
+    await fs.promises.copyFile(request.programUrl, path.join(competitorPath, 'main.laze'));
+    await fs.promises.copyFile(request.wasmUrl, path.join(competitorPath, 'main.wasm'));
     res.json({ success: true });
   } else {
     res.status(404);

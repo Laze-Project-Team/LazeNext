@@ -1,0 +1,11 @@
+{
+  "compete": "Compete",
+  "clickToJoin": "CLICK TO JOIN",
+  "backToCompete": "BACK TO COMPETE",
+  "ranking": "Ranking",
+  "name": "Name",
+  "time": "Time",
+  "join": "Join {{competition}} Level {{level}}",
+  "level": "Level",
+  "competition": "Competition"
+}

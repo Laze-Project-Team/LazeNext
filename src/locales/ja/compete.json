@@ -1,0 +1,9 @@
+{
+  "compete": "大会",
+  "clickToJoin": "クリックして参加",
+  "backToCompete": "大会ホームに戻る",
+  "ranking": "順位",
+  "name": "ユーザーネーム",
+  "time": "タイム",
+  "join": "{{competition}} の {{level}} レベルに参加する"
+}
