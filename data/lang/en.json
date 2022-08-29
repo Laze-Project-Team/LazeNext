@@ -11,6 +11,7 @@
             {"name":"else", "value":"else"},
             {"name":"from", "value":"from"},
             {"name":"to", "value":"to"},
+            {"name":"while", "value":"while"},
             {"name":"break", "value":"break"},
             {"name":"continue", "value":"continue"},
             {"name":"function", "value":"function"},
@@ -35,7 +36,10 @@
             {"name":"protected", "value":"protected"},
             {"name":"repeat", "value":"repeat"},
             {"name":"operator", "value":"operator"},
-            {"name":"typeComp", "value":"typeComp"}
+            {"name":"typeComp", "value":"typeComp"},
+            {"name":"elif", "value": "elif"},
+            {"name": "increase", "value": "increase"},
+            {"name": "by", "value": "by"}
         ],
         "int":"[0-9]",
         "hex":"0x[0-9A-F]+",
@@ -130,7 +134,7 @@
                 "decrement":"var - - ;"
             },
             "if":"ifelselist",
-            "while":"( exp ) to stm",
+            "until":"( exp ) to stm",
             "dec": "dec(stm)",
             "for":"( stm(init) ) from ( exp ) to ( stm(incr) ) stm",
             "return":{
@@ -138,13 +142,16 @@
                 "exp":"return ( exp ) ;"
             },
             "call":{
-                "normal":"exp ( explist ) ;"
+                "normal":"exp ( explist ) ;",
+                "noexp":"exp ( ) ;"
             },
             "loop":"loop stm",
             "break":"break ;",
             "continue":"continue ;",
             "compound":"{ stmlist }",
-            "repeat":"repeat ( exp ) stm"
+            "repeat":"repeat ( exp ) stm",
+            "forloop":"increase id by exp(incr) from exp(init) to exp(until) stm",
+            "while":"while ( exp ) stm"
         },
         "ifelse":{
             "ifelse":"else if ( exp ) stm",

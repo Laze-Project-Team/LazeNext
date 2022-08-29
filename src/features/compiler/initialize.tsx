@@ -151,6 +151,8 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       window.laze.props.variables.id = id;
       window.laze.props.variables.wasm = resJson.success ? resJson.wasm : '';
       window.laze.props.variables.compiled = resJson.success;
+      window.laze.props.variables.programUrl = resJson.success ? resJson.programUrl : '';
+      window.laze.props.variables.wasmUrl = resJson.success ? resJson.wasmUrl : '';
 
       dispatcher(createPanel({ id, label, active: true }));
 

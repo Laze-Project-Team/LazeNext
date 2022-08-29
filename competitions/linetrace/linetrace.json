@@ -1,0 +1,9 @@
+{
+  "id": "linetrace",
+  "name": "Linetrace",
+  "levels": [
+    "Easy",
+    "Medium",
+    "Hard"
+  ]
+}

@@ -14,7 +14,7 @@ export const useCompiler = (): void => {
   useEffect(() => {
     window.laze = window.laze || {};
     if (window.laze?.props === undefined) {
-      window.laze.props = getProps(dispacher, locale ?? 'en');
+      window.laze.props = getProps(null, locale ?? 'en', dispacher);
     }
     if (window.laze?.compiler === undefined) {
       window.laze.compiler = initialize(dispacher, t);

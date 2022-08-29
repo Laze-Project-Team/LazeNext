@@ -1,4 +1,5 @@
 関数: ${"ja":"実数表示", "natja":"実数表示", "en":"printDouble", "naten":"printDouble"}$(実数: x) => () = js読み込み("console", "log");
+関数: ${"ja":"デバッグ表示", "natja":"デバッグ表示", "en":"debug", "naten":"debug"}$(実数: x) => () = js読み込み("console", "debug");
 関数: ${"ja":"行列表示", "natja":"行列表示", "en":"printMatrix", "naten":"printMatrix"}$(実数: offset[4][4]) => () = js読み込み("console", "logMatrix");
 関数: ${"ja":"アドレス表示", "natja":"アドレス表示", "en":"printAddress", "naten":"printAddress"}$(*無: x) => () = js読み込み("console", "log");
 関数: ${"ja":"_文字列表示", "natja":"_文字列表示", "en":"_printString", "naten":"_printString"}$(*文字: x, 整数: 長さ) => () = js読み込み("console", "logstring");
@@ -47,6 +48,7 @@
 関数: ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$() => (実数: x) = js読み込み("js", "checkRelativeMouseY");
 関数: ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$() => (実数: x) = js読み込み("js", "checkAbsoluteMouseX");
 関数: ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$() => (実数: x) = js読み込み("js", "checkAbsoluteMouseY");
+関数: ${"ja":"スクロール座標", "natja":"スクロール座標", "en":"checkScroll", "naten":"checkScroll"}$() => (実数: x) = js読み込み("js", "checkScrollY");
 関数: ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$() => (実数: x) = js読み込み("js", "rand");
 関数: ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$(整数32: size) => (*無: p) = js読み込み("js", "alloc");
 関数: ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$(*文字: offset, 整数32: length) => (整数32: a) = js読み込み("webgl", "loadTexture");
@@ -59,6 +61,20 @@
 関数:${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "analogRead");
 関数:${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "digitalRead");
 関数:${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "distanceRead");
+関数:getTeapot() => (*無:s) = js読み込み("js", "getTeapot");
+関数:getMountains() => (*無:s) = js読み込み("js", "getMountains");
+関数:getTeddybear() => (*無:s) = js読み込み("js", "getTeddybear");
+関数:getCow() => (*無:s) = js読み込み("js", "getCow");
+関数:getFox() => (*無:s) = js読み込み("js", "getFox");
+関数:getRobot() => (*無:s) = js読み込み("js", "getRobot");
+関数:jsArcSin(実数:x) => (実数:r) = js読み込み("js", "asin");
+関数:jsArcCos(実数:x) => (実数:r) = js読み込み("js", "acos");
+関数:jsArcTan(実数:x) => (実数:r) = js読み込み("js", "atan");
+関数:jsLog(実数:x) => (実数:r) = js読み込み("js", "log");
+関数:jsEPow(実数:x) => (実数:r) = js読み込み("js", "ePow");
+関数:jsPow(実数:x, 実数:y) => (実数:r) = js読み込み("js", "exp");
+関数:updateLinetraceTime(実数: x) => () = js読み込み("js", "updateLinetraceTime");
+
 
 関数: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(実数: input) => (実数: 結果){
 	実数: PI = 3.14159265358979312;
@@ -145,6 +161,14 @@
 		y = 0.5 * (y + (x / y));
 	}
 }
+関数: ${"ja":"線分当たり判定", "natja":"線分当たり判定", "en":"checkLineCross", "naten":"checkLineCross"}$(実数: ax, 実数: ay, 実数: bx, 実数: byp, 実数: cx, 実数: cy, 実数: dx, 実数: dy) => (真偽: b){
+	実数:ta = (cx - dx) * (ay - cy) + (cy - dy) * (cx - ax);
+  実数:tb = (cx - dx) * (byp - cy) + (cy - dy) * (cx - bx);
+  実数:tc = (ax - bx) * (cy - ay) + (ay - byp) * (ax - cx);
+  実数:td = (ax - bx) * (dy - ay) + (ay - byp) * (ax - dx);
+
+  b = ((tc * td) < 0) && ((ta * tb) < 0);
+}
 型<T>: クラス: ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}${
 公開: 	*T: content;
 	整数: size;
@@ -157,12 +181,13 @@
 	関数: ${"ja":"取得", "natja":"取得", "en":"get", "naten":"get"}$(整数: index) => (T: result){
 		終了(content[index]);
 	}
+	// 85
 	関数: ${"ja":"追加", "natja":"追加", "en":"push", "naten":"push"}$(T: new) => (){
 		もし(size == allocated)ならば{
 			allocated = allocated * 2;
 			*T: temp = content;
 			content = メモリ確保(バイト数(*content) * allocated);
-			(整数: i = 0;)から(i == (allocated - 1))まで(i = i + 1;){
+			(整数: i = 0;)から(i == (allocated/2))まで(i = i + 1;){
 				content[i] = temp[i];
 			}
 		}
@@ -371,7 +396,39 @@
 		終了(size);
 	}
 }
-
+関数:${"ja":"整数文字変換", "natja":"整数文字変換", "en":"intToChar", "naten":"intToChar"}$(整数:a) => (文字:b){
+	a %= 10;
+	もし(a == 0)ならば{
+		b = '0';
+	}
+	でなければ、もし(a == 1)ならば{
+		b = '1';
+	}
+	でなければ、もし(a == 2)ならば{
+		b = '2';
+	}
+	でなければ、もし(a == 3)ならば{
+		b = '3';
+	}
+	でなければ、もし(a == 4)ならば{
+		b = '4';
+	}
+	でなければ、もし(a == 5)ならば{
+		b = '5';
+	}
+	でなければ、もし(a == 6)ならば{
+		b = '6';
+	}
+	でなければ、もし(a == 7)ならば{
+		b = '7';
+	}
+	でなければ、もし(a == 8)ならば{
+		b = '8';
+	}
+	でなければ、もし(a == 9)ならば{
+		b = '9';
+	}
+}
 クラス: ${"ja":"文字列", "natja":"文字列", "en":"string", "naten":"string"}${
 公開: 	*文字: content;
 	整数: 長さ;
@@ -390,9 +447,16 @@
 	関数:演算子 = (文字列:a) => (){
 		content = メモリ確保(バイト数(*content) * (a.長さ));
 		長さ = a.長さ;
+		// アドレス表示(a.content);
+		// _文字列表示(a.content, a.長さ);
 		(長さ)回繰り返す{
 			content[カウンタ] = a.content[カウンタ];
 		}
+	}
+	関数:演算子 = (文字:a) => (){
+		content = メモリ確保(バイト数(*content));
+		長さ = 1;
+		content[0] = a;
 	}
 	関数: 演算子 + (文字:a) => (文字列:b){
 		b.content = メモリ確保(バイト数(*content) * (長さ + 1));
@@ -421,6 +485,53 @@
 			b.content[長さ + カウンタ] = a.content[カウンタ];
 		}
 		b.長さ = 長さ + a.長さ;
+	}
+	関数: 演算子 + (整数:a) => (文字列:b){
+		文字列:str = 整数文字変換(a);
+		もし(絶対値(a) >= 10)ならば{
+    		(a <= 10)まで{
+    		    a /= 10;
+    		    文字列:temp = 整数文字変換(a);
+    		    str = temp + str;
+    		}
+		}
+		b.content = メモリ確保(バイト数(*content) * 長さ);
+		(長さ)回繰り返す{
+			b.content[カウンタ] = content[カウンタ];
+		}
+		b.長さ = 長さ;
+		b += str;
+	}
+	関数: 演算子 + (整数32:a) => (文字列:b){
+		文字列:str = 整数文字変換(a);
+    	(a <= 10)まで{
+    	    a /= 10;
+    	    文字列:temp = 整数文字変換(a);
+    	    str = temp + str;
+    	}
+		b.content = メモリ確保(バイト数(*content) * 長さ);
+		(長さ)回繰り返す{
+			b.content[カウンタ] = content[カウンタ];
+		}
+		b.長さ = 長さ;
+		b += str;
+	}
+	関数: 演算子 + (実数:a) => (文字列:b){
+		整数:inta = a;
+    	実数:reala = a - inta;
+    	文字列:str = "";
+    	str += inta;
+    	str += ".";
+    	(6)回繰り返す{
+    	    reala *= 10.0;
+    	    str += 整数文字変換(reala);
+    	}
+		b.content = メモリ確保(バイト数(*content) * 長さ);
+		(長さ)回繰り返す{
+			b.content[カウンタ] = content[カウンタ];
+		}
+		b.長さ = 長さ;
+		b += str;
 	}
 	関数: 演算子 == (文字列:a) => (真偽:b){
 		b = 真;
@@ -497,7 +608,8 @@
 		整数:開始 = 0;
 		(長さ)回繰り返す{
 			もし(content[カウンタ] == a)ならば{
-				結果.追加(切り取り(開始, カウンタ));
+				文字列:temp = 切り取り(開始, カウンタ);
+				結果.追加(temp);
 				開始 = カウンタ + 1;
 			}
 		}
@@ -545,16 +657,22 @@
 	}
 	関数:${"ja":"実数変換", "natja":"実数変換", "en":"toDouble", "naten":"toDouble"}$() => (実数:a){
 		a = 0;
-		配列<文字列>:b = 分割('.');
-		もし(b.長さ() != 2)ならば{
-			終了(0.0);
+		もし(content[0] == '-')ならば{
+			文字列:str = 範囲切り取り(1, 長さ);
+			a = str.実数変換() * -1.0;
 		}
-		a += b.content[0].整数変換();
-		実数:temp = b.content[1].整数変換();
-		(b.content[1].長さ)回繰り返す{
-			temp *= 0.1;
+		でなければ{
+			配列<文字列>:b = 分割('.');
+			もし(b.長さ() != 2)ならば{
+				終了(0.0);
+			}
+			a += b.content[0].整数変換();
+			実数:temp = b.content[1].整数変換();
+			(b.content[1].長さ)回繰り返す{
+				temp *= 0.1;
+			}
+			a += temp;
 		}
-		a += temp;
 	}
 	関数:${"ja":"置換", "natja":"置換", "en":"replace", "naten":"replace"}$(文字列:a, 文字列:b) => (文字列:c){
 		文字列:結果();
@@ -591,6 +709,28 @@
 関数: ${"ja":"glGetUniformLocation", "natja":"glGetUniformLocation", "en":"glGetUniformLocation", "naten":"glGetUniformLocation"}$(整数32: i, 文字列: a) => (整数32: loc){
 	loc = _glGetUniformLocation(i, a.content, a.長さ);
 }
+関数: ${"ja":"サンプルモデルロード", "natja":"サンプルモデルロード", "en":"loadSampleModel", "naten":"loadSampleModel"}$(文字列: a) => (文字列:b){
+	*文字列:data = "";
+	もし(a == "teapot")ならば{
+		data = getTeapot();
+	}
+	もし(a == "mountains")ならば{
+		data = getMountains();
+	}
+	もし(a == "teddybear")ならば{
+		data = getTeddybear();
+	}
+	もし(a == "cow")ならば{
+		data = getCow();
+	}
+	もし(a == "fox")ならば{
+		data = getFox();
+	}
+	もし(a == "robot")ならば{
+		data = getRobot();
+	}
+	b = *data;
+}
 クラス: ${"ja":"ベクトル3D", "natja":"ベクトル3D", "en":"Vector3D", "naten":"Vector3D"}${
 公開:
 	実数: x;
@@ -616,9 +756,9 @@
 		b.z = a.z + z;
 	}
 	関数: 演算子 - (ベクトル3D: a) => (ベクトル3D: b){
-		b.x = a.x - x;
-		b.y = a.y - y;
-		b.z = a.z - z;
+		b.x = x - a.x;
+		b.y = y - a.y;
+		b.z = z - a.z;
 	}
 	関数: 演算子 * (実数: k) => (ベクトル3D: b){
 		b.x = x * k;
@@ -806,13 +946,83 @@
 	out.matrix[14] = b.matrix[12] * a.matrix[2] + b.matrix[13] * a.matrix[6] + b.matrix[14] * a.matrix[10] + b.matrix[15] * a.matrix[14];
 	out.matrix[15] = b.matrix[12] * a.matrix[3] + b.matrix[13] * a.matrix[7] + b.matrix[14] * a.matrix[11] + b.matrix[15] * a.matrix[15];
 }
+クラス: ${"ja":"光源クラス", "natja":"光源クラス", "en":"LightClass", "naten":"LightClass"}${
+	ベクトル3D: ${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}$;
+	実数:半径;
+	ベクトル3D: ambient;
+	ベクトル3D: diffuse;
+	ベクトル3D: specular;
+	整数32:posLoc;
+	整数32:radiusLoc;
+	整数32:ambientLoc;
+	整数32:diffuseLoc;
+	整数32:specularLoc;
+	関数:光源クラス(ベクトル3D:p, 実数:r, ベクトル3D:a, ベクトル3D:d, ベクトル3D:s, 整数: id) => (){
+		座標 = p;
+		半径 = r;
+		ambient = a;
+		diffuse = d;
+		specular = s;
+		文字列:temp = "pointLights[";
+		temp += id;
+		temp += "]";
+		文字列:posStr = temp + ".position";
+		posLoc = glGetUniformLocation(0, posStr);
+		文字列:radiusStr = temp + ".radius";
+		radiusLoc = glGetUniformLocation(0, radiusStr);
+		文字列:ambientStr = temp + ".ambient";
+		ambientLoc = glGetUniformLocation(0, ambientStr);
+		文字列:diffuseStr = temp + ".diffuse";
+		diffuseLoc = glGetUniformLocation(0, diffuseStr);
+		文字列:specularStr = temp + ".specular";
+		specularLoc = glGetUniformLocation(0, specularStr);
+	}
+	関数: ${"ja":"座標設定", "natja":"座標設定", "en":"setPos", "naten":"setPos"}$(ベクトル3D: coord) => (){
+		座標 = coord;
+	}
+}
 クラス: ${"ja":"モデル", "natja":"モデル", "en":"Model", "naten":"Model"}${
 公開:
     ベクトル3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
 	ベクトル3D: ${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}$;
+	整数:lightID;
+	ベクトル3D:scale;
 	関数: モデル(*実数: data, 整数: num, ベクトル3D: c, ベクトル3D: p, 整数: s) => (){
+		scale.ベクトル3D(1.0, 1.0, 1.0);
 		vertices = data;
-		vertexNum = num;
+		pointNum = num;
+		色 = c;
+		座標 = p;
+		shaderID = s;
+		lightID = -1;
+		modelMat.単位化();
+		transMat.単位化();
+		scaleMat.単位化();
+		rotateMat.単位化();
+		defaultRotateMat.単位化();
+		もし(shaderID == 0)ならば{
+			viewPosUniLoc = glGetUniformLocation(0, "viewPos");
+			objectColorUniLoc = glGetUniformLocation(0, "objectColor");
+			dirLightDirUniLoc = glGetUniformLocation(0, "dirLight.direction");
+			dirLightAmbientUniLoc = glGetUniformLocation(0, "dirLight.ambient");
+			dirLightDiffuseUniLoc = glGetUniformLocation(0, "dirLight.diffuse");
+			dirLightSpecularUniLoc = glGetUniformLocation(0, "dirLight.specular");
+		}
+		もし(shaderID == 1)ならば{
+			lightColorUniLoc = glGetUniformLocation(1, "lightColor");
+		}
+		projMatUniformLoc = glGetUniformLocation(shaderID, "uProjMat");
+		viewMatUniformLoc = glGetUniformLocation(shaderID, "uViewMat");
+		modelMatUniformLoc = glGetUniformLocation(shaderID, "uModelMat");
+		buffer = glCreateBuffer();
+		glBindBuffer(34962, buffer);
+		glBufferData(34962, vertices, num * 6, 35044);
+	}
+	関数: モデル(*実数: data, 整数: num, ベクトル3D: c, ベクトル3D: p, 整数: s, 整数:l) => (){
+		scale.ベクトル3D(1.0, 1.0, 1.0);
+		lightID = l;
+		vertices = data;
+		pointNum = num;
 		色 = c;
 		座標 = p;
 		shaderID = s;
@@ -820,11 +1030,17 @@
 		transMat.単位化();
 		scaleMat.単位化();
 		rotateMat.単位化();
+		defaultRotateMat.単位化();
 		もし(shaderID == 0)ならば{
 			viewPosUniLoc = glGetUniformLocation(0, "viewPos");
-			lightPosUniLoc = glGetUniformLocation(0, "lightPos");
-			lightColorUniLoc = glGetUniformLocation(0, "lightColor");
 			objectColorUniLoc = glGetUniformLocation(0, "objectColor");
+			dirLightDirUniLoc = glGetUniformLocation(0, "dirLight.direction");
+			dirLightAmbientUniLoc = glGetUniformLocation(0, "dirLight.ambient");
+			dirLightDiffuseUniLoc = glGetUniformLocation(0, "dirLight.diffuse");
+			dirLightSpecularUniLoc = glGetUniformLocation(0, "dirLight.specular");
+		}
+		もし(shaderID == 1)ならば{
+			lightColorUniLoc = glGetUniformLocation(1, "lightColor");
 		}
 		projMatUniformLoc = glGetUniformLocation(shaderID, "uProjMat");
 		viewMatUniformLoc = glGetUniformLocation(shaderID, "uViewMat");
@@ -839,11 +1055,19 @@
 	関数: ${"ja":"移動", "natja":"移動", "en":"translate", "naten":"translate"}$(ベクトル3D: offset) => (){
 		座標 = ベクトル3Dの和(座標, offset);
 	}
+	関数: ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"setScale", "naten":"setScale"}$(実数: x, 実数: y, 実数: z) => (){
+		scale.x = x;
+		scale.y = y;
+		scale.z = z;
+	}
 	関数: ${"ja":"拡大縮小", "natja":"拡大縮小", "en":"scale", "naten":"scale"}$(実数: x, 実数: y, 実数: z) => (){
-		行列4x4: temp();
-		temp.単位化();
-		temp.拡大縮小(x, y, z);
-		scaleMat = 行列4x4の積(temp, scaleMat);
+		scale.x *= x;
+		scale.y *= y;
+		scale.z *= z;
+	}
+	関数: ${"ja":"回転設定", "natja":"回転設定", "en":"setRotate", "naten":"setRotate"}$(ベクトル3D: axis, 実数: t) => (){
+		defaultRotateMat.単位化();
+		defaultRotateMat.回転(axis, t);
 	}
 	関数: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(ベクトル3D: axis, 実数: t) => (){
 		行列4x4: temp();
@@ -851,11 +1075,23 @@
 		temp.回転(axis, t);
 		rotateMat = 行列4x4の積(temp, rotateMat);
 	}
-	関数: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(行列4x4: projMat, 行列4x4: viewMat, ベクトル3D: camera) => (){
+	関数: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(ベクトル3D: axis, 実数: t, ベクトル3D: offcenter) => (){
+		行列4x4: temp();
+		temp.単位化();
+		temp.移動(offcenter);
+		rotateMat = 行列4x4の積(temp, rotateMat);
+		temp.単位化();
+		temp.回転(axis, t);
+		rotateMat = 行列4x4の積(temp, rotateMat);
+	}
+	関数: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(行列4x4: projMat, 行列4x4: viewMat, ベクトル3D: camera, 配列<*光源クラス>:lights, 光源クラス: dirLight) => (){
 		実数: PI = 3.14159265358979312;
+		scaleMat.単位化();
+		scaleMat.拡大縮小(scale.x, scale.y, scale.z);
 		transMat.移動(座標);
 		modelMat.単位化();
 		modelMat = 行列4x4の積(scaleMat, modelMat);
+		modelMat = 行列4x4の積(defaultRotateMat, modelMat);
 		modelMat = 行列4x4の積(rotateMat, modelMat);
 		modelMat = 行列4x4の積(transMat, modelMat);
 		glBindBuffer(34962, buffer);
@@ -865,31 +1101,52 @@
 		glVertexAttribPointer(1, 3, 5126, 0, 6 * 4, 3 * 4);
 		glUseProgram(shaderID);
 		もし(shaderID == 0)ならば{
-			glUniform3f(lightPosUniLoc, 5.0, 5.0, 5.0);
-			glUniform3f(lightColorUniLoc, 1.0, 1.0, 1.0);
 			glUniform3f(objectColorUniLoc, 色.x, 色.y, 色.z);
 			glUniform3f(viewPosUniLoc, camera.x, camera.y, camera.z);
+			glUniform3f(dirLightDirUniLoc, dirLight.座標.x, dirLight.座標.y, dirLight.座標.z);
+			glUniform3f(dirLightAmbientUniLoc, dirLight.ambient.x, dirLight.ambient.y, dirLight.ambient.z);
+			glUniform3f(dirLightDiffuseUniLoc, dirLight.diffuse.x, dirLight.diffuse.y, dirLight.diffuse.z);
+			glUniform3f(dirLightSpecularUniLoc, dirLight.specular.x, dirLight.specular.y, dirLight.specular.z);
+			(lights.長さ())回繰り返す{
+				*光源クラス:lightPtr = lights.取得(カウンタ);
+				glUniform3f(lightPtr -> posLoc, lightPtr -> 座標.x, lightPtr -> 座標.y, lightPtr -> 座標.z);
+				glUniform3f(lightPtr -> ambientLoc, lightPtr -> ambient.x, lightPtr -> ambient.y, lightPtr -> ambient.z);
+				glUniform3f(lightPtr -> diffuseLoc, lightPtr -> diffuse.x, lightPtr -> diffuse.y, lightPtr -> diffuse.z);
+				glUniform3f(lightPtr -> specularLoc, lightPtr -> specular.x, lightPtr -> specular.y, lightPtr -> specular.z);
+				glUniform1f(lightPtr -> radiusLoc, lightPtr -> 半径);
+			}
+		}
+		もし(shaderID == 1)ならば{
+			glUniform3f(lightColorUniLoc, 色.x, 色.y, 色.z);
 		}
 		glUniformMatrix4fv(projMatUniformLoc, 0, projMat.matrix);
 		glUniformMatrix4fv(viewMatUniformLoc, 0, viewMat.matrix);
 		glUniformMatrix4fv(modelMatUniformLoc, 0, modelMat.matrix);
-		glDrawArrays(4, 0, 36);
+		
+		glBindBuffer(34962, buffer);
+		glDrawArrays(4, 0, pointNum);
 		rotateMat.単位化();
 		transMat.単位化();
 		scaleMat.単位化();
 	}
-非公開: 	*実数: vertices;
-	整数: vertexNum;
+非公開: 	
+	*実数: vertices;
+	整数: pointNum;
 	整数32: buffer;
 	行列4x4: modelMat;
 	行列4x4: transMat;
 	行列4x4: scaleMat;
 	行列4x4: rotateMat;
+	行列4x4: defaultRotateMat;
 	整数: shaderID;
 	整数32: viewPosUniLoc;
 	整数32: lightPosUniLoc;
 	整数32: lightColorUniLoc;
 	整数32: objectColorUniLoc;
+	整数32: dirLightDirUniLoc;
+	整数32: dirLightAmbientUniLoc;
+	整数32: dirLightDiffuseUniLoc;
+	整数32: dirLightSpecularUniLoc;
 	整数32: projMatUniformLoc;
 	整数32: viewMatUniformLoc;
 	整数32: modelMatUniformLoc;
@@ -905,7 +1162,14 @@
 		up.ベクトル3D(0.0, 1.0, 0.0);
 		yaw = 90.0;
 		pitch = 0.0;
-		感度 = 0.100000000000000006;
+		感度 = 1.0;
+	}
+	関数: ${"ja":"座標設定", "natja":"座標設定", "en":"setPos", "naten":"setPos"}$(ベクトル3D: p) => (){
+		座標 = p;
+	}
+	関数: ${"ja":"視点角度設定", "natja":"視点角度設定", "en":"setAngle", "naten":"setAngle"}$(実数:y, 実数:p) => (){
+		yaw = y;
+		pitch = p;
 	}
 	関数: ${"ja":"感度設定", "natja":"感度設定", "en":"setSensitivity", "naten":"setSensitivity"}$(実数: s) => (){
 		感度 = s;
@@ -933,8 +1197,8 @@
 			座標.z = 座標.z - elapsedTime * sin(ラジアンへ(yaw)) * 5.0;
 			座標.x = 座標.x - elapsedTime * cos(ラジアンへ(yaw)) * 5.0;
 		}
-		yaw = yaw - xOffset * 感度;
-		pitch = pitch - yOffset * 感度;
+		yaw = yaw - xOffset * 感度 * elapsedTime;
+		pitch = pitch - yOffset * 感度 * elapsedTime;
 		もし(pitch < 0 - 89.0)ならば{
 			pitch = 0 - 89.0;
 		}
@@ -958,7 +1222,9 @@
 クラス: ${"ja":"シーン", "natja":"シーン", "en":"Scene", "naten":"Scene"}${
 公開:
     配列<*モデル>: ${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$;
-	カメラ: ${"ja":"目", "natja":"目", "en":"camera", "naten":"camera"}$; 	
+	配列<*光源クラス>: ${"ja":"光源配列", "natja":"光源配列", "en":"lights", "naten":"lights"}$;
+	カメラ: ${"ja":"目", "natja":"目", "en":"camera", "naten":"camera"}$;
+	光源クラス: 平行光源;
     関数: シーン() => (){
 		last = 時間計測() / 1000.0;
 		now = 0.0;
@@ -971,6 +1237,7 @@
 		ベクトル3D: temp(0.0, 0.0, 0 - 4.0);
 		目.カメラ(temp);
 		スプライト配列.配列();
+		光源配列.配列();
 	}
 	関数: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$() => (){
 		now = 時間計測() / 1000.0;
@@ -987,8 +1254,13 @@
 		lastY = マウス絶対座標Y();
 		viewMat.単位化();
 		viewMat = 目.アップデート(xOffset, yOffset, elapsedTime);
+		(スプライト配列.長さ())回繰り返す{
+			もし(スプライト配列.取得(カウンタ) -> lightID >= 0)ならば{
+				光源配列.取得(スプライト配列.取得(カウンタ) -> lightID) -> 座標設定(スプライト配列.取得(カウンタ) -> 座標);
+			}
+		}
 		(整数: i = 0;)から(i == スプライト配列.size)まで(i = i + 1;){
-			スプライト配列.取得(i)->描画(projMat, viewMat, 目.座標);
+			スプライト配列.取得(i)->描画(projMat, viewMat, 目.座標, 光源配列, 平行光源);
 		}
 	}
 	関数: ${"ja":"キューブ追加", "natja":"キューブ追加", "en":"addCube", "naten":"addCube"}$(実数: size, ベクトル3D: 色, ベクトル3D: 座標) => (整数: id){
@@ -998,12 +1270,96 @@
 		スプライト配列.追加(cube);
 		id = スプライト配列.長さ() - 1;
 	}
-	関数: ${"ja":"ライト追加", "natja":"ライト追加", "en":"addLight", "naten":"addLight"}$(実数: size, ベクトル3D: 色, ベクトル3D: 座標) => (整数: id){
+	関数: ${"ja":"直方体追加", "natja":"直方体追加", "en":"addCuboid", "naten":"addCuboid"}$(実数: width, 実数: height, 実数:depth, ベクトル3D: 色, ベクトル3D: 座標) => (整数: id){
+		id = キューブ追加(1.0, 色, 座標);
+		スプライト配列.取得(id) -> 拡大縮小(width, height, depth);
+	}
+	関数: ${"ja":"ライト追加", "natja":"ライト追加", "en":"addLight", "naten":"addLight"}$(実数: size, ベクトル3D: 色, ベクトル3D: 座標, 実数:強さ) => (整数: id){
 		実数: vertices[12][3][6] = [[[0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [0 - size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0]], [[0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0], [size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0.0, 0 - 1.0]], [[size / 2, 0 - size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, size / 2, 1.0, 0.0, 0.0]], [[size / 2, 0 - size / 2, 0 - size / 2, 1.0, 0.0, 0.0], [size / 2, size / 2, size / 2, 1.0, 0.0, 0.0], [size / 2, 0 - size / 2, size / 2, 1.0, 0.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0], [size / 2, size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, size / 2, size / 2, 0.0, 0.0, 1.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, size / 2, size / 2, 0.0, 0.0, 1.0], [0 - size / 2, 0 - size / 2, size / 2, 0.0, 0.0, 1.0]], [[0 - size / 2, 0 - size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0]], [[0 - size / 2, 0 - size / 2, size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0 - 1.0, 0.0, 0.0]], [[0 - size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0], [0 - size / 2, size / 2, size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, size / 2, 0.0, 1.0, 0.0]], [[0 - size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, size / 2, 0.0, 1.0, 0.0], [size / 2, size / 2, 0 - size / 2, 0.0, 1.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0]], [[size / 2, 0 - size / 2, size / 2, 0.0, 0 - 1.0, 0.0], [0 - size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0], [size / 2, 0 - size / 2, 0 - size / 2, 0.0, 0 - 1.0, 0.0]]];
 		*モデル: light = メモリ確保(バイト数(*light));
-		light->モデル(&vertices, 36, 色, 座標, 1);
+		light->モデル(&vertices, 36, 色, 座標, 1, 光源配列.長さ());
+		*光源クラス: lightObject = メモリ確保(バイト数(*lightObject));
+		lightObject -> 光源クラス(座標, 強さ, 色 * 0.5, 色 * 0.5, 色 * 0.2, 光源配列.長さ());
 		スプライト配列.追加(light);
+		光源配列.追加(lightObject);
 		id = スプライト配列.長さ() - 1;
+	}
+	関数: ${"ja":"平行光源設定", "natja":"平行光源設定", "en":"setDirectionalLight", "naten":"setDirectionalLight"}$(ベクトル3D:方向, ベクトル3D:色, 実数:ambient, 実数:diffuse, 実数:specular) => (){
+		平行光源.座標 = 方向;
+		平行光源.ambient = 色 * ambient;
+		平行光源.diffuse = 色 * diffuse;
+		平行光源.specular = 色 * specular;
+	}
+	関数: ${"ja":"_モデル追加", "natja":"_モデル追加", "en":"_addModel", "naten":"_addModel"}$(配列<ベクトル3D>: data, 配列<ベクトル3D>:normals, 配列<整数32>:vertexIndices, 配列<整数32>: normalIndices, ベクトル3D: 色, ベクトル3D: 座標) => (整数: id){
+		配列<実数>:vertices();
+		もし(normals.長さ() > 0)ならば{
+			(vertexIndices.長さ())回繰り返す{
+				vertices.追加(data.取得(vertexIndices.取得(カウンタ) - 1).x);
+				vertices.追加(data.取得(vertexIndices.取得(カウンタ) - 1).y);
+				vertices.追加(data.取得(vertexIndices.取得(カウンタ) - 1).z);
+				vertices.追加(normals.取得(normalIndices.取得(カウンタ) - 1).x);
+				vertices.追加(normals.取得(normalIndices.取得(カウンタ) - 1).y);
+				vertices.追加(normals.取得(normalIndices.取得(カウンタ) - 1).z);
+			}
+		}
+		でなければ{
+			配列<ベクトル3D>:三角形();
+			(vertexIndices.長さ())回繰り返す{
+				三角形.追加(data.取得(vertexIndices.取得(カウンタ) - 1));
+				もし((カウンタ % 3) == 2)ならば{
+					ベクトル3D:辺1 = 三角形.取得(1) - 三角形.取得(0);
+					ベクトル3D:辺2 = 三角形.取得(2) - 三角形.取得(0);
+					ベクトル3D:normal = ベクトル3Dの外積(辺1, 辺2);
+					normal.正規化();
+					(三角形.長さ())回繰り返す{
+						vertices.追加(三角形.取得(カウンタ).x);
+						vertices.追加(三角形.取得(カウンタ).y);
+						vertices.追加(三角形.取得(カウンタ).z);
+						vertices.追加(normal.x);
+						vertices.追加(normal.y);
+						vertices.追加(normal.z);
+					}
+					三角形 = 三角形.範囲削除(0, 3);
+				}
+			}
+		}
+		*モデル: model = メモリ確保(バイト数(*model));
+		model->モデル(vertices.content, vertexIndices.長さ(), 色, 座標, 0);
+		スプライト配列.追加(model);
+		id = スプライト配列.長さ() - 1;
+	}
+	関数: ${"ja":"モデル追加", "natja":"モデル追加", "en":"addModel", "naten":"addModel"}$(文字列:data, ベクトル3D: 色, ベクトル3D: 座標) => (整数: id){
+		配列<ベクトル3D>:vertices();
+		配列<文字列>:lines = data.分割('\n');
+		配列<整数32>:vertexIndices();
+		配列<整数32>:normalIndices();
+		配列<整数32>:uvIndices();
+		配列<ベクトル3D>:normals();
+		(lines.長さ())回繰り返す{
+			文字列:line = lines.取得(カウンタ);
+			配列<文字列>:words = line.分割(' ');
+			もし(words.取得(0) == "v")ならば{
+				ベクトル3D:temp(words.取得(1).実数変換(), words.取得(2).実数変換(), words.取得(3).実数変換());
+				vertices.追加(temp);
+			}
+			もし(words.取得(0) == "f")ならば{
+				(words.長さ())回繰り返す{
+					もし(カウンタ != 0)ならば{
+						配列<文字列>:faceData = words.取得(カウンタ).分割('/');
+						vertexIndices.追加(faceData.取得(0).整数変換());
+						もし(faceData.長さ() == 3)ならば{
+							uvIndices.追加(faceData.取得(1).整数変換());
+							normalIndices.追加(faceData.取得(2).整数変換());
+						}
+					}
+				}
+			}
+			もし(words.取得(0) == "vn")ならば{
+				ベクトル3D:temp(words.取得(1).実数変換(), words.取得(2).実数変換(), words.取得(3).実数変換());
+				normals.追加(temp);
+			}
+		}
+		id = _モデル追加(vertices, normals, vertexIndices, normalIndices, 色, 座標);
 	}
 非公開: 	行列4x4: projMat;
 	行列4x4: viewMat;
@@ -1027,6 +1383,22 @@
 		実数: l = 平方根(x * x + y * y);
 		x = x / l;
 		y = y / l;
+	}
+	関数: 演算子 + (ベクトル2D: a) => (ベクトル2D: b){
+		b.x = a.x + x;
+		b.y = a.y + y;
+	}
+	関数: 演算子 - (ベクトル2D: a) => (ベクトル2D: b){
+		b.x = x - a.x;
+		b.y = y - a.y;
+	}
+	関数: 演算子 * (実数: k) => (ベクトル2D: b){
+		b.x = x * k;
+		b.y = y * k;
+	}
+	関数: 演算子 / (実数: k) => (ベクトル2D: b){
+		b.x = x / k;
+		b.y = y / k;
 	}
 	関数: 演算子 == (ベクトル2D:a) => (真偽: b){
 		b = ((a.x == x) && (a.y == y));
@@ -1086,13 +1458,14 @@
 クラス: ${"ja":"スプライト", "natja":"スプライト", "en":"Sprite", "naten":"Sprite"}${
 公開: 	ベクトル3D: 色;
 	ベクトル2D: 座標;
-	関数: スプライト(*実数: data, 整数: pnum, *整数32: indicesData, 整数: vnum, ベクトル3D: c, ベクトル2D: p, 整数: s, 実数: zI) => (){
+	関数: スプライト(*実数: data, 整数: pnum, *整数32: indicesData, 整数: vnum, ベクトル3D: c, ベクトル2D: p, 整数: s, 整数: st, 実数: zI) => (){
 		vertices = data;
 		pointNum = pnum;
 		indices = indicesData;
 		vertexNum = vnum;
 		zIndex = zI;
 		透明度 = 1.0;
+		spriteType = st;
 		色 = c;
 		座標 = p;
 		scaleX = 1.0;
@@ -1104,24 +1477,14 @@
 		transMat.単位化();
 		scaleMat.単位化();
 		rotateMat.単位化();
-		文字: _objectColorUniform[11] = "objectColor";
-		文字: _projUniform[10] = "projection";
-		文字: _modelUniform[5] = "model";
-		文字: _samplerUniform[8] = "uSampler";
-		文字: _transparencyUniform[12] = "transparency";
-		文字列: objectColorUniform(&_objectColorUniform, 11);
-		文字列: projUniform(&_projUniform, 10);
-		文字列: modelUniform(&_modelUniform, 5);
-		文字列: samplerUniform(&_samplerUniform, 8);
-		文字列: transparencyUniform(&_transparencyUniform, 12);
-		projMatUniformLoc = glGetUniformLocation(shaderID, projUniform);
-		modelMatUniformLoc = glGetUniformLocation(shaderID, modelUniform);
+		projMatUniformLoc = glGetUniformLocation(shaderID, "projection");
+		modelMatUniformLoc = glGetUniformLocation(shaderID, "model");
 		もし(shaderID == 4)ならば{
-			transparencyUniLoc = glGetUniformLocation(shaderID, transparencyUniform);
-			objectColorUniLoc = glGetUniformLocation(shaderID, objectColorUniform);
+			transparencyUniLoc = glGetUniformLocation(shaderID, "transparency");
+			objectColorUniLoc = glGetUniformLocation(shaderID, "objectColor");
 		}
 		もし(shaderID == 3)ならば{
-			samplerUniformLoc = glGetUniformLocation(shaderID, samplerUniform);
+			samplerUniformLoc = glGetUniformLocation(shaderID, "uSampler");
 		}
 		buffer = glCreateBuffer();
 		glBindBuffer(34962, buffer);
@@ -1159,10 +1522,14 @@
 		scaleX = scaleX * x;
 		scaleY = scaleY * y;
 	}
+	関数: ${"ja":"拡大縮小設定", "natja":"拡大縮小設定", "en":"setScale", "naten":"setScale"}$(実数: x, 実数: y) => (){
+		scaleX = x;
+		scaleY = y;
+	}
 	関数: ${"ja":"回転", "natja":"回転", "en":"rotate", "naten":"rotate"}$(実数: t) => (){
 		theta = theta + t;
 	}
-	関数: ${"ja":"角度設定", "natja":"角度設定", "en":"setAngle", "naten":"setAngle"}$(実数: t) => (){
+	関数: ${"ja":"角度設定", "natja":"角度設定", "en":"setRotation", "naten":"setRotation"}$(実数: t) => (){
 		theta = t;
 	}
 	関数: ${"ja":"重なり順設定", "natja":"重なり順設定", "en":"setZIndex", "naten":"setZIndex"}$(実数: x) => (){
@@ -1223,13 +1590,19 @@
 		}
 		glUniformMatrix4fv(projMatUniformLoc, 0, projMat.matrix);
 		glUniformMatrix4fv(modelMatUniformLoc, 0, modelMat.matrix);
-		もし(vertexNum > 0)ならば{
-			glBindBuffer(34963, elementBuffer);
-			glDrawElements(4, vertexNum, 5123, 0);
-		}
-		もし((vertexNum == 0) && (shaderID == 4))ならば{
+		もし(spriteType == 1)ならば{
 			glBindBuffer(34962, buffer);
-			glDrawArrays(5, 0, pointNum);
+			glDrawArrays(3, 0, pointNum);
+		}
+		でなければ{
+			もし(vertexNum > 0)ならば{
+				glBindBuffer(34963, elementBuffer);
+				glDrawElements(4, vertexNum, 5123, 0);
+			}
+			もし((vertexNum == 0) && (shaderID == 4))ならば{
+				glBindBuffer(34962, buffer);
+				glDrawArrays(5, 0, pointNum);
+			}
 		}
 		rotateMat.単位化();
 		transMat.単位化();
@@ -1272,13 +1645,16 @@
 	実数: scaleX;
 	実数: scaleY;
 	実数: theta;
+	整数: spriteType;
 }
 クラス: ${"ja":"シーン2D", "natja":"シーン2D", "en":"Scene2D", "naten":"Scene2D"}${
 公開:
     配列<*スプライト>: ${"ja":"スプライト配列", "natja":"スプライト配列", "en":"sprites", "naten":"sprites"}$;
 	ベクトル3D: ${"ja":"背景色", "natja":"背景色", "en":"backgroundColor", "naten":"backgroundColor"}$;
-	実数: ${"ja":"背景透明度", "natja":"背景透明度", "en":"backgroundTransparency", "naten":"backgroundTransparency"}$; 	
+	実数: ${"ja":"背景透明度", "natja":"背景透明度", "en":"backgroundTransparency", "naten":"backgroundTransparency"}$;
+	実数:zoom;
     関数: シーン2D(実数: 高さ, ベクトル3D: 色) => (){
+		zoom = 100.0;
 		last = 時間計測() / 1000.0;
 		now = 0.0;
 		elapsedTime = 0.0;
@@ -1292,6 +1668,14 @@
 		背景透明度 = a;
 	}
 	関数: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$() => (){
+		zoom += スクロール座標();
+		もし(zoom > 400.0)ならば{
+			zoom = 400.0;
+		}
+		もし(zoom < 8.0)ならば{
+			zoom = 8.0;
+		}
+		// デバッグ表示(zoom);
 		now = 時間計測() / 1000.0;
 		elapsedTime = now - last;
 		last = now;
@@ -1303,6 +1687,7 @@
 		glBlendFunc(770, 771);
 		glClear(16640);
 		(整数: i = 0;)から(i == スプライト配列.size)まで(i = i + 1;){
+			スプライト配列.取得(i) -> 拡大縮小設定(1.0/(zoom * 0.01), 1.0/(zoom * 0.01));
 			スプライト配列.取得(i)->描画(projMat);
 		}
 	}
@@ -1311,7 +1696,7 @@
 		実数: texCoords[4][2] = [[1.0, 0.0], [1.0, 1.0], [0.0, 1.0], [0.0, 0.0]];
 		整数32: indices[6] = [0, 1, 3, 1, 2, 3];
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
-		sprite->スプライト(&vertices, 4, &indices, 6, 色, 座標, 4, zIndex);
+		sprite->スプライト(&vertices, 4, &indices, 6, 色, 座標, 4, 0, zIndex);
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
 	}
@@ -1321,7 +1706,7 @@
 		整数32: indices[6] = [0, 1, 3, 1, 2, 3];
 		ベクトル3D: 色(0.0, 0.0, 0.0);
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
-		sprite->スプライト(&vertices, 4, &indices, 6, 色, 座標, 3, zIndex);
+		sprite->スプライト(&vertices, 4, &indices, 6, 色, 座標, 3, 0, zIndex);
 		sprite->テクスチャ設定(&texCoords, url);
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
@@ -1332,7 +1717,7 @@
 		整数32: indices[6] = [0, 1, 3, 1, 2, 3];
 		ベクトル3D: 色(0.0, 0.0, 0.0);
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
-		sprite->スプライト(&vertices, 4, &indices, 6, 色, 座標, 3, zIndex);
+		sprite->スプライト(&vertices, 4, &indices, 6, 色, 座標, 3, 0, zIndex);
 		sprite->リピートテクスチャ設定(&texCoords, texture);
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
@@ -1340,7 +1725,7 @@
 	関数: ${"ja":"四角形追加", "natja":"四角形追加", "en":"addRectangle", "naten":"addRectangle"}$(実数: width, 実数: height, ベクトル2D: 座標, ベクトル3D: 色, 実数: zIndex) => (整数: id){
 		実数: vertices[4][3] = [[width / 2, height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, height / 2, 0 - zIndex * 0.00100000000000000002], [width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002], [0 - width / 2, 0 - height / 2, 0 - zIndex * 0.00100000000000000002]];
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
-		sprite->スプライト(&vertices, 4, メモリ確保(0), 0, 色, 座標, 4, zIndex);
+		sprite->スプライト(&vertices, 4, メモリ確保(0), 0, 色, 座標, 4, 0, zIndex);
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
 	}
@@ -1352,7 +1737,7 @@
 			temp.追加( -zIndex * 0.001);
 		}
 		*スプライト: sprite = メモリ確保(バイト数(*sprite));
-		sprite->スプライト(temp.content, temp.長さ()/3, メモリ確保(0), 0, 色, 座標, 4, zIndex);
+		sprite->スプライト(temp.content, temp.長さ()/3, メモリ確保(0), 0, 色, 座標, 4, 0, zIndex);
 		スプライト配列.追加(sprite);
 		id = スプライト配列.長さ() - 1;
 	}
@@ -1372,6 +1757,45 @@
 			points.追加(temp);
 		}
 		id = 多角形追加(points, 座標, 色, zIndex);
+	}
+	関数: ${"ja":"線追加", "natja":"線追加", "en":"addLine", "naten":"addLine"}$(ベクトル2D:start, ベクトル2D:end, ベクトル3D:色, 実数:zIndex) => (整数:id){
+		配列<実数>: points();
+		points.追加(start.x);
+		points.追加(start.y);
+		points.追加(-zIndex * 0.001);
+		points.追加(end.x);
+		points.追加(end.y);
+		points.追加(-zIndex * 0.001);
+
+		*スプライト: sprite = メモリ確保(バイト数(*sprite));
+		sprite->スプライト(points.content, points.長さ()/3, メモリ確保(0), 0, 色, ベクトル2D(0.0, 0.0), 4, 1, zIndex);
+		スプライト配列.追加(sprite);
+		id = スプライト配列.長さ() - 1;
+	}
+	関数: ${"ja":"線追加", "natja":"線追加", "en":"addLine", "naten":"addLine"}$(関数:c(実数:a) => (実数:b), 実数: dx, 実数:start, 実数:end, ベクトル2D: 座標, ベクトル3D:色, 実数:zIndex) => (整数:id){
+		配列<実数>: points();
+		(実数:x = start;)から(x >= end)まで(x += dx;){
+			points.追加(x);
+			points.追加(c(x));
+			points.追加(-zIndex * 0.001);
+		}
+		*スプライト: sprite = メモリ確保(バイト数(*sprite));
+		sprite->スプライト(points.content, points.長さ()/3, メモリ確保(0), 0, 色, 座標, 4, 1, zIndex);
+		スプライト配列.追加(sprite);
+		id = スプライト配列.長さ() - 1;
+	}
+	関数: ${"ja":"媒介変数表示線追加", "natja":"媒介変数表示線追加", "en":"addLine", "naten":"addLine"}$(関数:c(実数:theta) => (ベクトル2D:pos), 実数: dx, 実数:start, 実数:end, ベクトル2D: 座標, ベクトル3D:色, 実数:zIndex) => (整数:id){
+		配列<実数>: points();
+		(実数:x = start;)から(x >= end)まで(x += dx;){
+			ベクトル2D:temp = c(x);
+			points.追加(temp.x);
+			points.追加(temp.y);
+			points.追加(-zIndex * 0.001);
+		}
+		*スプライト: sprite = メモリ確保(バイト数(*sprite));
+		sprite->スプライト(points.content, points.長さ()/3, メモリ確保(0), 0, 色, 座標, 4, 1, zIndex);
+		スプライト配列.追加(sprite);
+		id = スプライト配列.長さ() - 1;
 	}
 非公開: 	行列4x4: projMat;
 	実数: last;
@@ -1435,6 +1859,8 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	実数:${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$;
 	実数:${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$;
 	実数:${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$;
+	実数: ${"ja":"ロボット", "natja":"ロボット", "en":"robot", "naten":"robot"}$;
+	実数: ${"ja":"コース", "natja":"コース", "en":"course", "naten":"course"}$;
 }
 クラス:ArduinoClass{
 	文字:${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$;
@@ -1464,4 +1890,179 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 }
 関数:${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$(整数:ピン番号) => (){
     Arduinoコマンド送信('T', ピン番号);
+}
+クラス:${"ja":"ライントレースシミュレーション", "natja":"ライントレースシミュレーション", "en":"linetraceSimulation", "naten":"linetraceSimulation"}${
+	公開:
+	シーン:ワールド;
+	配列<ベクトル2D>:直線データ;
+	実数:${"ja":"センサー値", "natja":"センサー値", "en":"sensorValue", "naten":"sensorValue"}$[2];
+	整数:${"ja":"左モーターON", "natja":"左モーターON", "en":"leftMotorON", "naten":"leftMotorON"}$;
+	整数:${"ja":"右モーターON", "natja":"右モーターON", "en":"rightMotorON", "naten":"rightMotorON"}$;
+	整数:${"ja":"左モーター向き", "natja":"左モーター向き", "en":"leftMotorSequence", "naten":"leftMotorSequence"}$;
+	整数:${"ja":"右モーター向き", "natja":"右モーター向き", "en":"rightMotorSequence", "naten":"rightMotorSequence"}$;
+	実数:${"ja":"左モーター速度", "natja":"左モーター速度", "en":"leftMotorSpeed", "naten":"leftMotorSpeed"}$;
+	実数:${"ja":"右モーター速度", "natja":"右モーター速度", "en":"rightMotorSpeed", "naten":"rightMotorSpeed"}$;
+	実数:スタートタイム;
+	実数:エンドタイム;
+	関数:ライントレースシミュレーション(配列<実数>:points, ベクトル2D:firstPos, 実数:ax, 実数:ay, 実数:bx, 実数:byp) => (){
+		直線データ.配列();
+		ワールド.シーン();
+		ロボット移動方向.ベクトル2D(0.0, 1.0);
+		スタートマーク[0] = ax;
+		スタートマーク[1] = ay;
+		スタートマーク[2] = bx;
+		スタートマーク[3] = byp;
+		左モーター速度 = 3;
+		右モーター速度 = 3;
+		左モーター向き = 1;
+		右モーター向き = 1;
+		左モーターON = 0;
+		右モーターON = 0;
+		スタートタイム = 時間計測();
+		ロボット速度 = 1.0;
+		ロボット座標 = firstPos;
+		ベクトル3D:灰色(0.8, 0.8, 0.8);
+		ベクトル3D:白(1.0, 1.0, 1.0);
+		ベクトル3D:黒(0.0, 0.0, 0.0);
+		ベクトル3D:初期位置1(firstPos.x, 0.0, firstPos.y);
+		ベクトル3D:初期位置2(5.0, 5.0, 5.0);
+		ベクトル3D:初期位置3(0.0, -0.5, 0.0);
+		ベクトル3D:初期位置4(firstPos.x, 10.0, firstPos.y);
+		ベクトル3D:回転軸(0.0, 1.0, 0.0);
+		points.追加(points.取得(0));
+		points.追加(points.取得(1));
+    	ワールド.平行光源設定(初期位置3, 白, 0.05, 0.05, 0.0);
+		ワールド.目.感度設定(5.0);
+		ワールド.目.座標設定(初期位置4);
+		ワールド.目.視点角度設定(90.0, -90.0);
+    	ロボットID = ワールド.モデル追加(サンプルモデルロード("robot"), 灰色, 初期位置1);
+		ワールド.スプライト配列.取得(ロボットID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(180));
+    	ライトID = ワールド.ライト追加(1.0, 白, 初期位置2, 1000.0);
+		センサー1ID = ワールド.キューブ追加(0.2, ベクトル3D(0.0, 0.0, 0.0), ベクトル3D(0.0, 0.0, 0.0));
+		センサー2ID = ワールド.キューブ追加(0.2, ベクトル3D(0.0, 0.0, 0.0), ベクトル3D(0.0, 0.0, 0.0));
+    	ワールド.直方体追加(100.0, 1.0, 100.0, 白, 初期位置3);
+		(整数:カウンタ = 0;)から(カウンタ == (points.長さ() - 2))まで(カウンタ += 2;){
+			ベクトル2D:A(points.取得(カウンタ), points.取得(カウンタ + 1));
+			ベクトル2D:B(points.取得(カウンタ + 2), points.取得(カウンタ + 3));
+			もし(A != B)ならば{
+				ベクトル2D:差 = B - A;
+				ベクトル2D:和 = A + B;
+				実数:傾き = (A.y - B.y)/(A.x - B.x);
+				直線データ.追加(A);
+				実数:長さ = 差.長さ();
+				ベクトル2D:temp座標 = 和 * 0.5;
+				ベクトル3D:temp3D座標(temp座標.x, 0.0, temp座標.y);
+				整数:tempID = ワールド.直方体追加(長さ, 0.25, 0.25, 黒, temp3D座標);
+				ワールド.スプライト配列.取得(tempID) -> 回転設定(回転軸, -jsArcTan(傾き));
+			}
+		}
+		直線データ.追加(ベクトル2D(points.取得(0), points.取得(1)));
+	}
+	関数:移動() => (){
+		実数: PI = 3.14159265358979312;
+		実数:左モーター距離 = 左モーター速度 * 左モーターON * 左モーター向き * 0.016;
+		実数:右モーター距離 = 右モーター速度 * 右モーターON * 右モーター向き * 0.016;
+		実数:基本距離 = 右モーター距離;
+		実数:a = 1.0;
+		もし(右モーター距離 >= 左モーター距離)ならば{
+			基本距離 = 左モーター距離;
+			a = -1.0;
+		}
+		実数:b = -1.0;
+		実数:theta = 180.0 * jsArcTan(右モーター距離 - 左モーター距離)/PI;
+		もし(右モーター距離 == 左モーター距離)ならば{
+			theta = 0;
+			a = 0.0;
+			b = 0.0;
+		}
+		a *= -1.0;
+		b *= -1.0;
+		ロボット角度 += theta;
+    ロボット移動方向.x = cos(ラジアンへ(ロボット角度 + 90.0));
+    ロボット移動方向.y = sin(ラジアンへ(ロボット角度 + 90.0));
+		// ロボットoffset.x = (cos(ラジアンへ(45.0 + ロボット角度)) - cos(ラジアンへ(45.0))) * (平方根(2));
+		ロボット座標.x += a * cos(ラジアンへ(ロボット角度)) - b * sin(ラジアンへ(ロボット角度)) - a;
+		ロボット座標.x -= a * cos(ラジアンへ(ロボット角度 - theta)) - b * sin(ラジアンへ(ロボット角度 - theta)) - a;
+		// ロボットoffset.y = (sin(ラジアンへ(45.0 + ロボット角度)) - sin(ラジアンへ(45.0))) * (平方根(2));
+		ロボット座標.y += a * sin(ラジアンへ(ロボット角度)) + b * cos(ラジアンへ(ロボット角度)) - b;
+		ロボット座標.y -= a * sin(ラジアンへ(ロボット角度 - theta)) + b * cos(ラジアンへ(ロボット角度 - theta)) - b;
+		// デバッグ表示(ロボットoffset.x);
+		ワールド.スプライト配列.取得(ロボットID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(-ロボット角度 + 180));
+        ロボット座標 += (ロボット移動方向 * 基本距離);
+	}
+	関数:アップデート() => (){
+		ベクトル2D:センサー座標[2] = ロボット座標;
+		もし((!おわり) && 線分当たり判定(センサー座標[0].x, センサー座標[0].y, センサー座標[1].x, センサー座標[1].y, スタートマーク[0], スタートマーク[1], スタートマーク[2], スタートマーク[3]))ならば{
+			おわり = 真;
+			エンドタイム = 時間計測();
+			updateLinetraceTime((エンドタイム - スタートタイム)/1000);
+		}
+		もし(!おわり)ならば{
+			移動();
+			センサー座標[0].x = 1.75 * cos(ラジアンへ(ロボット角度 + 79.0)) + ロボット座標.x;
+			センサー座標[0].y = 1.75 * sin(ラジアンへ(ロボット角度 + 79.0)) + ロボット座標.y;
+			センサー座標[1].x = 1.75 * cos(ラジアンへ(ロボット角度 + 101.0)) + ロボット座標.x;
+			センサー座標[1].y = 1.75 * sin(ラジアンへ(ロボット角度 + 101.0)) + ロボット座標.y;
+			ワールド.スプライト配列.取得(センサー1ID) -> 座標設定(ベクトル3D(センサー座標[0].x, 0.4, センサー座標[0].y));
+			ワールド.スプライト配列.取得(センサー2ID) -> 座標設定(ベクトル3D(センサー座標[1].x, 0.4, センサー座標[1].y));
+			ワールド.スプライト配列.取得(センサー1ID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(-ロボット角度 + 180));
+			ワールド.スプライト配列.取得(センサー2ID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(-ロボット角度 + 180));
+			実数:センサー距離[2] = [10000.0, 10000.0];
+			整数:センサー数 = 2;
+			(センサー数)回繰り返す{
+				(整数:i = 0;)から(i == (直線データ.長さ() - 1))まで(i += 1;){
+					ベクトル2D:A = 直線データ.取得(i);
+					ベクトル2D:B = 直線データ.取得(i + 1);
+					ベクトル2D:AB = B - A;
+					ベクトル2D:Aセンサー座標 = センサー座標[カウンタ] - A;
+					ベクトル2D:Bセンサー座標 = センサー座標[カウンタ] - B;
+					もし((ベクトル2Dの内積(AB, Aセンサー座標) >= 0) && (ベクトル2Dの内積(AB * -1.0, Bセンサー座標) >= 0))ならば{
+						実数:傾き = (A.y - B.y)/(A.x - B.x);
+						実数:y切片 = A.y - (傾き * A.x);
+						実数:距離 = 絶対値(傾き * センサー座標[カウンタ].x - センサー座標[カウンタ].y + y切片) / 平方根(1.0 + 傾き * 傾き);
+						もし(絶対値(傾き) > 10000.0)ならば{
+							距離 = 絶対値(A.x - センサー座標[カウンタ].x);
+						}
+						もし(センサー距離[カウンタ] > 距離)ならば{
+							センサー距離[カウンタ] = 距離;
+						}
+					}
+					でなければ{
+						もし(センサー距離[カウンタ] > Aセンサー座標.長さ())ならば{
+							センサー距離[カウンタ] = Aセンサー座標.長さ();
+						}
+						もし(センサー距離[カウンタ] > Bセンサー座標.長さ())ならば{
+							センサー距離[カウンタ] = Bセンサー座標.長さ();
+						}
+					}
+				}
+			}
+			センサー値[0] = センサー距離[0] * 768.0;
+			センサー値[1] = センサー距離[1] * 768.0;
+			もし(センサー値[0] > 255)ならば{
+				センサー値[0] = 255.0;
+			}
+			もし(センサー値[1] > 255)ならば{
+				センサー値[1] = 255.0;
+			}
+			ベクトル3D:ロボット座標3D(ロボット座標.x, 0.0, ロボット座標.y);
+			ベクトル3D:ライト座標3D(ロボット座標.x + 5.0, 5.0, ロボット座標.y + 5.0);
+    	    ワールド.スプライト配列.取得(ロボットID) -> 座標設定(ロボット座標3D);
+    	    ワールド.スプライト配列.取得(ライトID) -> 座標設定(ライト座標3D);
+		}
+    ワールド.描画();
+	}
+	非公開:
+	整数:ロボットID;
+	整数:ライトID;
+	実数:ロボット角度;
+	ベクトル2D:ロボット移動方向;
+	実数:ロボット速度;
+	ベクトル2D:ロボット座標;
+	ベクトル2D:ロボット初期位置;
+	整数:センサー1ID;
+	整数:センサー2ID;
+	ベクトル2D:ロボットoffset;
+	真偽:おわり;
+	実数:スタートマーク[4];
 }

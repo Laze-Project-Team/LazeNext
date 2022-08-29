@@ -4,8 +4,13 @@ import { getImports } from '@/features/compiler/getImports';
 import { initialKeyControl } from '@/features/compiler/keycontrol';
 import type { compilerProps, getImportsProps } from '@/typings/compiler';
 
-export const getProps = (dispatcher: Dispatch, locale: string): compilerProps => {
-  const canvas = <HTMLCanvasElement>document.getElementById('output-canvas');
+export const getProps = (
+  interval: NodeJS.Timer | null,
+  locale: string,
+  dispatcher?: Dispatch,
+  canvasId = 'output-canvas'
+): compilerProps => {
+  const canvas = <HTMLCanvasElement>document.getElementById(canvasId);
 
   if (!canvas) {
     throw new Error('Canvas not found');
@@ -34,8 +39,11 @@ export const getProps = (dispatcher: Dispatch, locale: string): compilerProps =>
       lang: locale,
       keyControl: initialKeyControl,
       compiled: false,
-      interval: null,
+      interval: interval,
       lazeCallNoParam: null,
+      linetraceTime: null,
+      programUrl: '',
+      wasmUrl: '',
     },
     arduinoObjects: {
       port: null,
@@ -52,7 +60,7 @@ export const getProps = (dispatcher: Dispatch, locale: string): compilerProps =>
   };
 
   return {
-    importObject: getImports(dispatcher, props),
+    importObject: getImports(props, dispatcher),
     ...props,
   };
 };

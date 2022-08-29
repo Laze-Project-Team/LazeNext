@@ -10,19 +10,28 @@ export type importObject = {
   };
   js: {
     mem: WebAssembly.Memory;
+    asin: (arg: number) => number;
+    acos: (arg: number) => number;
+    atan: (arg: number) => number;
+    log: (arg: number) => number;
+    exp: (arg: number, arg2: number) => number;
+    ePow: (arg: number) => number;
     checkKeyPress: (keyCode: number) => bigint;
     checkMousePress: () => bigint;
     checkRelativeMouseX: () => number;
     checkRelativeMouseY: () => number;
     checkAbsoluteMouseX: () => number;
     checkAbsoluteMouseY: () => number;
+    checkScrollY: () => number;
     rand: () => number;
     getTeapot: () => number;
     getMountains: () => number;
     getTeddybear: () => number;
     getCow: () => number;
+    getRobot: () => number;
     alloc: (size: number) => number;
     lockPointer: () => void;
+    updateLinetraceTime: (number) => void;
   };
   webgl: {
     clearColor: (r: number, g: number, b: number, a: number) => void;
@@ -105,6 +114,7 @@ type keyControlType = {
   absoluteMouseY: number;
   mousePressed: boolean;
   pressedKeys: boolean[];
+  scrollY: number;
 };
 
 export type compilerProps = getImportsProps & {
@@ -122,6 +132,9 @@ export type compilerVariable = {
   compiled: boolean;
   interval: NodeJS.Timer | null;
   lazeCallNoParam: CallableFunction | null;
+  linetraceTime: number | null;
+  programUrl: string;
+  wasmUrl: string;
 };
 
 export type getImportsProps = {
@@ -156,6 +169,8 @@ export type compileResponse = {
   success: boolean;
   message: string;
   wasm: string;
+  programUrl: string;
+  wasmUrl: string;
 };
 
 export type successConvertResponse = {
@@ -174,6 +189,8 @@ export type successedCompilerResult = {
   success: true;
   message: string;
   wasm: string;
+  programUrl: string;
+  wasmUrl: string;
 };
 
 export type failedCompilerResult = {

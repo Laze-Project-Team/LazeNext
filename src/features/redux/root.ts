@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { load, save } from 'redux-localstorage-simple';
 
+import { competeSlice } from '@/features/redux/compete';
 import { consoleSlice } from '@/features/redux/console';
 import { explorerSlice } from '@/features/redux/explorer';
 
 const rootReducer = combineReducers({
   explorer: explorerSlice.reducer,
   console: consoleSlice.reducer,
+  compete: competeSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

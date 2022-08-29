@@ -1,8 +1,8 @@
 import type { BeforeMount, OnMount } from '@monaco-editor/react';
-import MonacoEditor, { useMonaco } from '@monaco-editor/react';
+import MonacoEditor from '@monaco-editor/react';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
-import { useCallback } from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect, useMemo } from 'react';
 import { connect, useDispatch } from 'react-redux';
@@ -24,18 +24,7 @@ type EditorProps = {
 
 const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
   const [t] = useTranslation('editor');
-
-  const monaco = useMonaco();
-
-  const setValue = useCallback(
-    (content: string) => {
-      const model = monaco?.editor.getModels()[0];
-      if (model) {
-        model.setValue(content);
-      }
-    },
-    [monaco?.editor]
-  );
+  const [value, setValue] = useState('');
 
   const { current } = state;
   useEffect(() => {
@@ -115,6 +104,7 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
         theme={currentTheme}
         onChange={onChange}
         loading={<Loading />}
+        value={value}
         wrapperProps={{ className: current ? '' : '!hidden' }}
       />
       {current ? (
@@ -137,3 +127,4 @@ const mapStateToProps = (state: RootState) => {
 };
 
 export const Editor = connect(mapStateToProps)(UnconnectedEditor);
+export { UnconnectedEditor };

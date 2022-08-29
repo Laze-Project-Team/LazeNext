@@ -2,12 +2,12 @@ import type { Dispatch } from 'redux';
 
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
 import { strToMem } from '@/features/compiler/initialize/strToMem';
-import { updatePosition } from '@/features/compiler/initialize/updatePosition';
-import { cow, fox, mountains, teapot, teddybear } from '@/features/compiler/source/model';
+import { updateAbsolutePosition } from '@/features/compiler/initialize/updatePosition';
+import { cow, fox, mountains, robot, teapot, teddybear } from '@/features/compiler/source/model';
 import { consoleSlice } from '@/features/redux/console';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
 
-export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCompleteImportsFunction => {
+export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCompleteImportsFunction => {
   const { canvas, gl, variables } = props;
   const { memory } = variables;
 
@@ -19,6 +19,12 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
     },
     js: {
       mem: memory,
+      asin: Math.asin,
+      acos: Math.acos,
+      atan: Math.atan,
+      log: Math.log,
+      exp: Math.pow,
+      ePow: Math.exp,
       checkKeyPress: (keyCode: number) => {
         return BigInt(variables.keyControl.pressedKeys[keyCode]);
       },
@@ -36,6 +42,11 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
       checkAbsoluteMouseY: () => {
         return variables.keyControl.absoluteMouseY;
+      },
+      checkScrollY: () => {
+        const temp = variables.keyControl.scrollY;
+        variables.keyControl.scrollY = 0;
+        return temp;
       },
       rand: () => {
         return Math.random();
@@ -63,6 +74,13 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       getFox: () => {
         return strToMem(fox);
       },
+      getRobot: () => {
+        return strToMem(robot);
+      },
+      updateLinetraceTime: (time: number) => {
+        time.toPrecision(4);
+        window.laze.props.variables.linetraceTime = time;
+      },
       lockPointer: () => {
         const requestPointerLock = () => {
           return canvas.requestPointerLock();
@@ -70,15 +88,11 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
         canvas.removeEventListener('click', requestPointerLock, false);
         canvas.addEventListener('click', requestPointerLock, false);
 
-        const handleMouseMove = (e: MouseEvent) => {
-          return updatePosition(e, canvas);
-        };
-
         const lockChangeAlert = () => {
           if (document.pointerLockElement === canvas) {
-            document.addEventListener('mousemove', handleMouseMove, false);
+            document.addEventListener('mousemove', updateAbsolutePosition, false);
           } else {
-            document.removeEventListener('mousemove', handleMouseMove, false);
+            document.removeEventListener('mousemove', updateAbsolutePosition, false);
           }
         };
 
@@ -283,7 +297,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
       },
     },
     arduino: {
-      setUp: async (vendorId: BigInt, index: number) => {
+      setUp: async (vendorId: bigint, index: number) => {
         const executeCallback = () => {
           if (window.laze.props.variables.lazeCallNoParam) {
             window.laze.props.variables.lazeCallNoParam(index);
@@ -338,7 +352,6 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
               const receiveText = splitData[i];
               if (receiveText.length) {
                 const input = parseInt(receiveText.substring(2));
-                console.log(receiveText);
                 switch (receiveText[0]) {
                   case 'D':
                     arduinoObjects.digitalInput[parseInt(receiveText[1])] = input;
@@ -357,13 +370,13 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
           }
         }
       },
-      analogRead: (pinNumber: BigInt) => {
+      analogRead: (pinNumber: bigint) => {
         return window.laze.props.arduinoObjects.analogInput[Number(pinNumber)];
       },
-      digitalRead: (pinNumber: BigInt) => {
+      digitalRead: (pinNumber: bigint) => {
         return window.laze.props.arduinoObjects.digitalInput[Number(pinNumber)];
       },
-      distanceRead: (pinNumber: BigInt) => {
+      distanceRead: (pinNumber: bigint) => {
         return window.laze.props.arduinoObjects.pulseInput[Number(pinNumber)];
       },
     },
@@ -371,15 +384,18 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
 
   return (id: string): importObject => {
     const { addLog } = consoleSlice.actions;
-    const logConsole = (content: string) => {
-      dispatcher(
-        addLog({
-          console: id,
-          content,
-          level: 'log',
-        })
-      );
-    };
+    const logConsole = dispatcher
+      ? (content: string) => {
+          dispatcher(
+            addLog({
+              console: id,
+              content,
+              level: 'log',
+            })
+          );
+        }
+      : // eslint-disable-next-line no-console
+        console.log;
 
     return {
       console: {
@@ -387,6 +403,7 @@ export const getImports = (dispatcher: Dispatch, props: getImportsProps): getCom
           logConsole(`${arg}`);
         },
         debug: (arg: number) => {
+          // eslint-disable-next-line no-console
           console.log(`${arg}`);
         },
         logstring: (offset: number, length: number) => {

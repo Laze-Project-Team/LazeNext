@@ -21,6 +21,8 @@ const handler: NextApiHandler = (req, res) => {
       const response: compileResponse = {
         success: result.success,
         message: result.message.replace(/^\n+|\n+$/g, ''),
+        programUrl: result.success ? result.programUrl : '',
+        wasmUrl: result.success ? result.wasmUrl : '',
         wasm: result.success ? result.wasm : '',
       };
       res.json(response);

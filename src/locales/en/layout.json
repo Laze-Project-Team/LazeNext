@@ -7,7 +7,9 @@
     "Profile": "My Profile",
     "Logout": "Log-Out"
   },
+
   "changeLanguage": "Change Language",
+
   "footer": {
     "Guides": "Guide & Help",
     "guides": {
@@ -16,11 +18,13 @@
       "Privacy": "Privacy Policy",
       "License": "License Information"
     },
+
     "Sitemap": "Sitemap",
     "sitemap": {
       "Home": "Home",
       "Editor": "Editor",
-      "Docs": "Documentation"
+      "Docs": "Documentation",
+      "Compete": "Compete"
     }
   }
 }

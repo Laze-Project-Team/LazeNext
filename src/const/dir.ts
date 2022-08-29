@@ -6,6 +6,7 @@ export const ROOT_DIR =
 export const SAMPLE_DIR = ROOT_DIR + '/data/samples';
 export const CACHE_DIR = ROOT_DIR + '/cache';
 export const DATA_DIR = ROOT_DIR + '/data';
+export const COMPETITION_DIR = ROOT_DIR + '/competitions';
 export const COMMON_DIR = ROOT_DIR + '/data/common';
 export const LANG_DIR = ROOT_DIR + '/data/lang';
 export const PARSER_DIR = ROOT_DIR + '/data/parser';
