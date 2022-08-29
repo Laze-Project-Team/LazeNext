@@ -7,7 +7,7 @@ import type { RefObject } from 'react';
 import { createContext, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
-import { EditorButtons } from '@/components/model/EditorButtons';
+import { CompeteButtons } from '@/components/model/EditorButtons/compete';
 import { EditorFooter } from '@/components/model/EditorFooter';
 // import { Explorer } from '@/components/model/Explorer';
 import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
@@ -20,6 +20,7 @@ const Editor: NextPage = () => {
   const [t] = useTranslation(['editor', 'common']);
 
   const title = `${t('title')} | Laze`;
+
   const splitPaneRef = useRef<SplitPane>(null);
 
   return (
@@ -58,7 +59,7 @@ const Editor: NextPage = () => {
                   </div> */}
             <div className="flex h-full flex-1 flex-col">
               <div className="h-7">
-                <EditorButtons />
+                <CompeteButtons />
               </div>
               <div className="flex-1">
                 <MonacoEditor />

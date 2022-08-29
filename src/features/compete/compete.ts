@@ -11,7 +11,13 @@ import { pointVs as pointVsSource } from '@/features/compiler/source/pointVs';
 import { vs as vsSource } from '@/features/compiler/source/vs';
 import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source/vs2DNoTexture';
 import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
-import type { Competition, CompetitionByLevel, CompetitionJson, Competitor } from '@/typings/compete';
+import type {
+  Competition,
+  CompetitionByLevel,
+  CompetitionJson,
+  Competitor,
+  CompetitorInfoJson,
+} from '@/typings/compete';
 
 import { initShaderProgram } from '../compiler/initialize/initShaderProgram';
 
@@ -34,16 +40,21 @@ const getLeaderboardList = async (
       // Check if the level exists
       if (fs.existsSync(levelPath)) {
         const competitorNames = await fs.promises.readdir(levelPath);
-        const competitors: Competitor[] = competitorNames.map((name) => {
-          const competitor: Competitor = {
-            id: name,
-            ranking: 0,
-            rankingData: 3.14,
-            wasmUrl: path.join(levelPath, name, 'main.wasm'),
-            programUrl: path.join(levelPath, name, 'main.laze'),
-          };
-          return competitor;
-        });
+        const competitors: Competitor[] = await Promise.all(
+          competitorNames.map(async (name) => {
+            const competitorPath = path.join(levelPath, name);
+            const infoBuffer = await fs.promises.readFile(path.join(competitorPath, 'info.json'));
+            const infoJson: CompetitorInfoJson = JSON.parse(infoBuffer.toString());
+            const competitor: Competitor = {
+              id: name,
+              ranking: 0,
+              rankingData: infoJson.time,
+              wasmUrl: path.join(levelPath, name, 'main.wasm'),
+              programUrl: path.join(levelPath, name, 'main.laze'),
+            };
+            return competitor;
+          })
+        );
         const levelData: CompetitionByLevel = {
           level: level,
           players: competitors,

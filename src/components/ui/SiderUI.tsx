@@ -1,6 +1,5 @@
 import type { VFC } from 'react';
 import { useEffect } from 'react';
-import { useContext } from 'react';
 import { VscEdit, VscFoldUp, VscRunAll } from 'react-icons/vsc';
 import { useQuery } from 'react-query';
 import { connect, useDispatch, useSelector } from 'react-redux';
@@ -10,7 +9,6 @@ import type { CompeteState } from '@/features/redux/compete';
 import { competeSlice } from '@/features/redux/compete';
 import type { RootState } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
-import { ratioRefContext } from '@/pages/editor';
 import styles from '@/styles/canvas.module.css';
 import type { Competitor } from '@/typings/compete';
 
@@ -29,7 +27,6 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
   });
   const dispatch = useDispatch();
   const { collapse } = competeSlice.actions;
-  const ratioRef = useContext(ratioRefContext);
 
   const fetchCode = async () => {
     const body = new Blob([JSON.stringify({ url: competitor.programUrl })]);
@@ -85,7 +82,7 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
         </div>
       </div>
       <div className="w-[450px] items-center pl-4 pr-4 pt-4">
-        <div ref={ratioRef} className="mx-auto aspect-video">
+        <div className="mx-auto aspect-video">
           <canvas
             id="output-canvas"
             width="1280"

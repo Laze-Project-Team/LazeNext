@@ -31,6 +31,7 @@ export type importObject = {
     getRobot: () => number;
     alloc: (size: number) => number;
     lockPointer: () => void;
+    updateLinetraceTime: (number) => void;
   };
   webgl: {
     clearColor: (r: number, g: number, b: number, a: number) => void;
@@ -131,6 +132,9 @@ export type compilerVariable = {
   compiled: boolean;
   interval: NodeJS.Timer | null;
   lazeCallNoParam: CallableFunction | null;
+  linetraceTime: number | null;
+  programUrl: string;
+  wasmUrl: string;
 };
 
 export type getImportsProps = {
@@ -162,6 +166,8 @@ export type compileResponse = {
   success: boolean;
   message: string;
   wasm: string;
+  programUrl: string;
+  wasmUrl: string;
 };
 
 export type successConvertResponse = {
@@ -180,6 +186,8 @@ export type successedCompilerResult = {
   success: true;
   message: string;
   wasm: string;
+  programUrl: string;
+  wasmUrl: string;
 };
 
 export type failedCompilerResult = {

@@ -12,7 +12,7 @@ export const useCompiler = (): void => {
   useEffect(() => {
     window.laze = window.laze || {};
     if (window.laze?.props === undefined) {
-      window.laze.props = getProps(dispacher);
+      window.laze.props = getProps(null, dispacher);
     }
     if (window.laze?.compiler === undefined) {
       window.laze.compiler = initialize(dispacher, t);

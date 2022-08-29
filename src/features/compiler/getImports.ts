@@ -78,6 +78,10 @@ export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCo
       getRobot: () => {
         return strToMem(robot);
       },
+      updateLinetraceTime: (time: number) => {
+        time.toPrecision(4);
+        window.laze.props.variables.linetraceTime = time;
+      },
       lockPointer: () => {
         const requestPointerLock = () => {
           return canvas.requestPointerLock();

@@ -63,6 +63,8 @@ export const compileCode = async (code: string, option: compileRequest['option']
       success: true,
       message: stdout,
       wasm: `/api/editor/getwasm/${id}`,
+      programUrl: `${CACHE_DIR}/${id}/${option.label}`,
+      wasmUrl: `${CACHE_DIR}/${id}.wasm`,
     };
   }
 };

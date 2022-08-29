@@ -1,8 +1,7 @@
 import type { VFC } from 'react';
-import { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { cx } from '@/features/utils/cx';
-import { ratioAdjustContext } from '@/pages/editor';
 
 export type SwitchPaneObject = {
   label: string;
@@ -16,13 +15,6 @@ type EnhancedSwitchPanesProps = {
 
 export const SwitchPane: VFC<EnhancedSwitchPanesProps> = ({ panes, initialPane }) => {
   const [activePane, setActivePane] = useState<string>(initialPane);
-  const ratioAdjust = useContext(ratioAdjustContext);
-
-  useEffect(() => {
-    if (activePane === 'canvas') {
-      ratioAdjust();
-    }
-  }, [activePane, ratioAdjust]);
 
   return (
     <>

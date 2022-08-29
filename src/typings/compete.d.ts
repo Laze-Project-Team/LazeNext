@@ -38,3 +38,8 @@ export type GetcompetitorRequest = {
   name: string;
   level?: string;
 };
+
+export type CompetitorInfoJson = {
+  id: string;
+  time: number;
+};

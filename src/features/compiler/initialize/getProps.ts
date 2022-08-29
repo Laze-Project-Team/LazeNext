@@ -40,6 +40,9 @@ export const getProps = (
       compiled: false,
       interval: interval,
       lazeCallNoParam: null,
+      linetraceTime: null,
+      programUrl: '',
+      wasmUrl: '',
     },
     arduinoObjects: {
       port: null,
