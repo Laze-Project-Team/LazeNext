@@ -9,7 +9,7 @@ import { i18nLangList } from '@/const/lang';
 import { cx } from '@/features/utils/cx';
 
 const LanguageMenu: VFC = () => {
-  const { pathname, locale } = useRouter();
+  const { pathname, locale, asPath } = useRouter();
   return (
     <ul className="bg-white/80 py-2">
       {Object.keys(i18nLangList).map((key) => {
@@ -20,7 +20,7 @@ const LanguageMenu: VFC = () => {
                 {i18nLangList[key]}
               </button>
             ) : (
-              <Link href={pathname} locale={key}>
+              <Link href={pathname} locale={key} as={asPath}>
                 <a className="inline-block w-full text-gray-700 hover:text-primary-100">{i18nLangList[key]}</a>
               </Link>
             )}
