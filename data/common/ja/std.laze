@@ -161,11 +161,11 @@
 		y = 0.5 * (y + (x / y));
 	}
 }
-関数: ${"ja":"線分当たり判定", "natja":"線分当たり判定", "en":"checkLineCross", "naten":"checkLineCross"}$(実数: ax, 実数: ay, 実数: bx, 実数: by, 実数: cx, 実数: cy, 実数: dx, 実数: dy) => (真偽: b){
+関数: ${"ja":"線分当たり判定", "natja":"線分当たり判定", "en":"checkLineCross", "naten":"checkLineCross"}$(実数: ax, 実数: ay, 実数: bx, 実数: byp, 実数: cx, 実数: cy, 実数: dx, 実数: dy) => (真偽: b){
 	実数:ta = (cx - dx) * (ay - cy) + (cy - dy) * (cx - ax);
-  実数:tb = (cx - dx) * (by - cy) + (cy - dy) * (cx - bx);
-  実数:tc = (ax - bx) * (cy - ay) + (ay - by) * (ax - cx);
-  実数:td = (ax - bx) * (dy - ay) + (ay - by) * (ax - dx);
+  実数:tb = (cx - dx) * (byp - cy) + (cy - dy) * (cx - bx);
+  実数:tc = (ax - bx) * (cy - ay) + (ay - byp) * (ax - cx);
+  実数:td = (ax - bx) * (dy - ay) + (ay - byp) * (ax - dx);
 
   b = ((tc * td) < 0) && ((ta * tb) < 0);
 }
@@ -401,31 +401,31 @@
 	もし(a == 0)ならば{
 		b = '0';
 	}
-	でなければ もし(a == 1)ならば{
+	でなければ、もし(a == 1)ならば{
 		b = '1';
 	}
-	でなければ もし(a == 2)ならば{
+	でなければ、もし(a == 2)ならば{
 		b = '2';
 	}
-	でなければ もし(a == 3)ならば{
+	でなければ、もし(a == 3)ならば{
 		b = '3';
 	}
-	でなければ もし(a == 4)ならば{
+	でなければ、もし(a == 4)ならば{
 		b = '4';
 	}
-	でなければ もし(a == 5)ならば{
+	でなければ、もし(a == 5)ならば{
 		b = '5';
 	}
-	でなければ もし(a == 6)ならば{
+	でなければ、もし(a == 6)ならば{
 		b = '6';
 	}
-	でなければ もし(a == 7)ならば{
+	でなければ、もし(a == 7)ならば{
 		b = '7';
 	}
-	でなければ もし(a == 8)ならば{
+	でなければ、もし(a == 8)ならば{
 		b = '8';
 	}
-	でなければ もし(a == 9)ならば{
+	でなければ、もし(a == 9)ならば{
 		b = '9';
 	}
 }
@@ -947,7 +947,7 @@
 	out.matrix[15] = b.matrix[12] * a.matrix[3] + b.matrix[13] * a.matrix[7] + b.matrix[14] * a.matrix[11] + b.matrix[15] * a.matrix[15];
 }
 クラス: ${"ja":"光源クラス", "natja":"光源クラス", "en":"LightClass", "naten":"LightClass"}${
-	ベクトル3D: 座標;
+	ベクトル3D: ${"ja":"座標", "natja":"座標", "en":"pos", "naten":"pos"}$;
 	実数:半径;
 	ベクトル3D: ambient;
 	ベクトル3D: diffuse;
@@ -1859,6 +1859,8 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	実数:${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$;
 	実数:${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$;
 	実数:${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$;
+	実数: ${"ja":"ロボット", "natja":"ロボット", "en":"robot", "naten":"robot"}$;
+	実数: ${"ja":"コース", "natja":"コース", "en":"course", "naten":"course"}$;
 }
 クラス:ArduinoClass{
 	文字:${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$;
@@ -1893,23 +1895,23 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	公開:
 	シーン:ワールド;
 	配列<ベクトル2D>:直線データ;
-	実数:センサー値[2];
-	整数:左モーターON;
-	整数:右モーターON;
-	整数:左モーター向き;
-	整数:右モーター向き;
-	実数:左モーター速度;
-	実数:右モーター速度;
+	実数:${"ja":"センサー値", "natja":"センサー値", "en":"sensorValue", "naten":"sensorValue"}$[2];
+	整数:${"ja":"左モーターON", "natja":"左モーターON", "en":"leftMotorON", "naten":"leftMotorON"}$;
+	整数:${"ja":"右モーターON", "natja":"右モーターON", "en":"rightMotorON", "naten":"rightMotorON"}$;
+	整数:${"ja":"左モーター向き", "natja":"左モーター向き", "en":"leftMotorSequence", "naten":"leftMotorSequence"}$;
+	整数:${"ja":"右モーター向き", "natja":"右モーター向き", "en":"rightMotorSequence", "naten":"rightMotorSequence"}$;
+	実数:${"ja":"左モーター速度", "natja":"左モーター速度", "en":"leftMotorSpeed", "naten":"leftMotorSpeed"}$;
+	実数:${"ja":"右モーター速度", "natja":"右モーター速度", "en":"rightMotorSpeed", "naten":"rightMotorSpeed"}$;
 	実数:スタートタイム;
 	実数:エンドタイム;
-	関数:ライントレースシミュレーション(配列<実数>:points, ベクトル2D:firstPos, 実数:ax, 実数:ay, 実数:bx, 実数:by) => (){
+	関数:ライントレースシミュレーション(配列<実数>:points, ベクトル2D:firstPos, 実数:ax, 実数:ay, 実数:bx, 実数:byp) => (){
 		直線データ.配列();
 		ワールド.シーン();
 		ロボット移動方向.ベクトル2D(0.0, 1.0);
 		スタートマーク[0] = ax;
 		スタートマーク[1] = ay;
 		スタートマーク[2] = bx;
-		スタートマーク[3] = by;
+		スタートマーク[3] = byp;
 		左モーター速度 = 3;
 		右モーター速度 = 3;
 		左モーター向き = 1;
