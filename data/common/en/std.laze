@@ -398,7 +398,8 @@ function: ${"ja":"整数文字変換", "natja":"整数文字変換", "en":"intTo
 		b = '0';
 	}else if(a == 1){
 		b = '1';
-	}else if(a == 2){
+	}
+	else if(a == 2){
 		b = '2';
 	}else if(a == 3){
 		b = '3';
@@ -644,7 +645,7 @@ public: 	*char: content;
 		a = 0;
 		if(content[0] == '-'){
 			string: str = substrRange(1, length);
-			a = str.toDouble() * (0 - (1.0));
+			a = str.toDouble() * 0 - (1.0);
 		}else{
 			Array<string>: b = separate('.');
 			if(b.length() != 2){
@@ -1216,6 +1217,15 @@ public: 	Array<*Model>: ${"ja":"スプライト配列", "natja":"スプライト
 		camera.Camera(temp);
 		sprites.Array();
 		lights.Array();
+		Vector3D: 方向(0 - (1.0), 0 - (1.0), 0 - (1.0));
+		Vector3D: 白(1.0, 1.0, 1.0);
+		平行光源.pos = 方向;
+		平行光源.ambient = 白 * 0.5;
+		平行光源.diffuse = 白 * 0.5;
+		平行光源.specular = 白 * 0.0;
+	}
+	function: ${"ja":"感度設定", "natja":"感度設定", "en":"setSensitivity", "naten":"setSensitivity"}$(double: sensitivity) => (){
+		camera.setSensitivity(sensitivity);
 	}
 	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$() => (){
 		now = getTime() / 1000.0;
@@ -1984,7 +1994,7 @@ public: 	Scene: world;
 					Vector2D: AB = B - A;
 					Vector2D: Aセンサー座標 = センサー座標[counter] - A;
 					Vector2D: Bセンサー座標 = センサー座標[counter] - B;
-					if((dotVector2D(AB, Aセンサー座標) >= 0) && (dotVector2D(AB * (0 - (1.0)), Bセンサー座標) >= 0)){
+					if((dotVector2D(AB, Aセンサー座標) >= 0) && (dotVector2D(AB * 0 - (1.0), Bセンサー座標) >= 0)){
 						double: 傾き = (A.y - B.y) / (A.x - B.x);
 						double: y切片 = A.y - (傾き * A.x);
 						double: 距離 = abs(傾き * センサー座標[counter].x - センサー座標[counter].y + y切片) / root(1.0 + 傾き * 傾き);

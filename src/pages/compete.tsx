@@ -22,6 +22,8 @@ const CompeteHome: NextPage<CompeteHomeProps> = ({ competitions }) => {
     <>
       <Head>
         <title>{t('compete')}</title>
+
+        <meta name="robots" content="noindex" />
       </Head>
       <IndexLayout>
         <H1>{t('compete')}</H1>

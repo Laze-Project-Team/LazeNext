@@ -57,6 +57,8 @@ const Editor: NextPage = () => {
         <meta property="og:url" content={`https://laze.ddns.net/${locale + '/' ?? ''}editor`} />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'en'} />
+
+        <meta name="robots" content="noindex" />
       </Head>
 
       <div className="flex h-screen w-screen flex-col overflow-hidden text-[0.9rem] dark:bg-background dark:text-[#ccc]">

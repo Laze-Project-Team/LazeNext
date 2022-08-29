@@ -59,7 +59,7 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
   const dispacher = useDispatch();
   const { removePanel } = consoleSlice.actions;
 
-  useCompiler();
+  useCompiler('ja');
 
   const onChange: OnChange = () => {
     // onChange
@@ -144,8 +144,8 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
 
   return (
     <>
-      <div className="my-4 space-x-4">
-        <div>
+      <div className="my-4">
+        <div className=" space-x-4">
           <Button onClick={onClick} loading={isCompiling} icon={<VscRunAll className="mr-2 inline" />}>
             {t('run')}
           </Button>

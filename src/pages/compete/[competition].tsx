@@ -32,6 +32,8 @@ const Compete: NextPage<CompeteProps> = ({ competitionData }) => {
     <>
       <Head>
         <title>{t('compete')}</title>
+
+        <meta name="robots" content="noindex" />
       </Head>
       <LeaderboardLayout sider={<SiderUI key={competitor.id} />}>
         <H4>
