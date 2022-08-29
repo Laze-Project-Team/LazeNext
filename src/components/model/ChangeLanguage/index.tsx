@@ -1,4 +1,4 @@
-import { Button, Dropdown, Menu } from 'antd';
+import { Button, Dropdown } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -11,19 +11,23 @@ import { cx } from '@/features/utils/cx';
 const LanguageMenu: VFC = () => {
   const { pathname, locale } = useRouter();
   return (
-    <Menu className="!bg-white/80">
+    <ul className="bg-white/80 py-2">
       {Object.keys(i18nLangList).map((key) => {
         return (
-          <Menu.Item key={key} className="!bg-transparent" disabled={locale === key}>
-            <Link href={pathname} locale={key}>
-              <a className={cx('text-gray-400 hover:text-gray-300', locale === key && 'text-primary-default')}>
+          <li key={key} className="!bg-transparent px-4 py-2">
+            {locale === key ? (
+              <button className="text-gray-300" disabled>
                 {i18nLangList[key]}
-              </a>
-            </Link>
-          </Menu.Item>
+              </button>
+            ) : (
+              <Link href={pathname} locale={key}>
+                <a className="inline-block w-full text-gray-700 hover:text-primary-100">{i18nLangList[key]}</a>
+              </Link>
+            )}
+          </li>
         );
       })}
-    </Menu>
+    </ul>
   );
 };
 
