@@ -46,4 +46,5 @@ export const initialKeyControl = {
   absoluteMouseY: 0.0,
   mousePressed: false,
   pressedKeys: new Array(256).fill(false),
+  scrollY: 0,
 };

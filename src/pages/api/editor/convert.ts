@@ -17,6 +17,9 @@ const handler: NextApiHandler = (req, res) => {
   }
 
   convertCode(code, option).then((result) => {
+    if (!result.success) {
+      console.error(result);
+    }
     return res.json(result);
   });
 };

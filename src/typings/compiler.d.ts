@@ -1,6 +1,7 @@
 export type importObject = {
   console: {
     log: (arg: number) => void;
+    debug: (arg: number) => void;
     logstring: (offset: number, length: number) => void;
     logMatrix: (offset: number) => void;
   };
@@ -9,13 +10,25 @@ export type importObject = {
   };
   js: {
     mem: WebAssembly.Memory;
+    asin: (arg: number) => number;
+    acos: (arg: number) => number;
+    atan: (arg: number) => number;
+    log: (arg: number) => number;
+    exp: (arg: number, arg2: number) => number;
+    ePow: (arg: number) => number;
     checkKeyPress: (keyCode: number) => bigint;
     checkMousePress: () => bigint;
     checkRelativeMouseX: () => number;
     checkRelativeMouseY: () => number;
     checkAbsoluteMouseX: () => number;
     checkAbsoluteMouseY: () => number;
+    checkScrollY: () => number;
     rand: () => number;
+    getTeapot: () => number;
+    getMountains: () => number;
+    getTeddybear: () => number;
+    getCow: () => number;
+    getRobot: () => number;
     alloc: (size: number) => number;
     lockPointer: () => void;
   };
@@ -100,6 +113,7 @@ type keyControlType = {
   absoluteMouseY: number;
   mousePressed: boolean;
   pressedKeys: boolean[];
+  scrollY: number;
 };
 
 export type compilerProps = getImportsProps & {

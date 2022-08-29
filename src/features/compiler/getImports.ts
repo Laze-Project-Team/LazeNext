@@ -1,9 +1,12 @@
 import type { Dispatch } from 'redux';
 
 import { loadTexture } from '@/features/compiler/initialize/loadStructure';
-import { updatePosition } from '@/features/compiler/initialize/updatePosition';
+import { updateAbsolutePosition } from '@/features/compiler/initialize/updatePosition';
 import { consoleSlice } from '@/features/redux/console';
 import type { getCompleteImportsFunction, getImportsProps, importObject } from '@/typings/compiler';
+
+import { strToMem } from './initialize/strToMem';
+import { cow, fox, mountains, robot, teapot, teddybear } from './source/model';
 
 export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCompleteImportsFunction => {
   const { canvas, gl, variables } = props;
@@ -17,6 +20,12 @@ export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCo
     },
     js: {
       mem: memory,
+      asin: Math.asin,
+      acos: Math.acos,
+      atan: Math.atan,
+      log: Math.log,
+      exp: Math.pow,
+      ePow: Math.exp,
       checkKeyPress: (keyCode: number) => {
         return BigInt(variables.keyControl.pressedKeys[keyCode]);
       },
@@ -35,14 +44,39 @@ export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCo
       checkAbsoluteMouseY: () => {
         return variables.keyControl.absoluteMouseY;
       },
+      checkScrollY: () => {
+        const temp = variables.keyControl.scrollY;
+        variables.keyControl.scrollY = 0;
+        return temp;
+      },
       rand: () => {
         return Math.random();
       },
       alloc: (size: number) => {
         const oldMemorySize = variables.memorySize;
+        if (variables.memorySize + size >= variables.memory.buffer.byteLength) {
+          variables.memory.grow(1);
+        }
         variables.memorySize += size;
-
         return oldMemorySize;
+      },
+      getTeapot: () => {
+        return strToMem(teapot);
+      },
+      getMountains: () => {
+        return strToMem(mountains);
+      },
+      getTeddybear: () => {
+        return strToMem(teddybear);
+      },
+      getCow: () => {
+        return strToMem(cow);
+      },
+      getFox: () => {
+        return strToMem(fox);
+      },
+      getRobot: () => {
+        return strToMem(robot);
       },
       lockPointer: () => {
         const requestPointerLock = () => {
@@ -51,15 +85,11 @@ export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCo
         canvas.removeEventListener('click', requestPointerLock, false);
         canvas.addEventListener('click', requestPointerLock, false);
 
-        const handleMouseMove = (e: MouseEvent) => {
-          return updatePosition(e, canvas);
-        };
-
         const lockChangeAlert = () => {
           if (document.pointerLockElement === canvas) {
-            document.addEventListener('mousemove', handleMouseMove, false);
+            document.addEventListener('mousemove', updateAbsolutePosition, false);
           } else {
-            document.removeEventListener('mousemove', handleMouseMove, false);
+            document.removeEventListener('mousemove', updateAbsolutePosition, false);
           }
         };
 
@@ -370,6 +400,9 @@ export const getImports = (props: getImportsProps, dispatcher?: Dispatch): getCo
       console: {
         log: (arg: number) => {
           logConsole(`${arg}`);
+        },
+        debug: (arg: number) => {
+          console.log(`${arg}`);
         },
         logstring: (offset: number, length: number) => {
           let bytes = new Uint8Array(memory.buffer, offset, Number(length) * 4);
