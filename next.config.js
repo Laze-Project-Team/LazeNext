@@ -32,6 +32,26 @@ module.exports = withBundleAnalyzer({
         destination: '/docs/first',
         permanent: true,
       },
+      {
+        source: '/signup',
+        destination: '/',
+        permament: true,
+      },
+      {
+        source: '/login',
+        destination: '/',
+        permament: true,
+      },
+      {
+        source: '/signup_complete',
+        destination: '/',
+        permament: true,
+      },
+      {
+        source: '/logout',
+        destination: '/',
+        permament: true,
+      },
     ];
   },
 
