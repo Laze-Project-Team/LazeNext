@@ -35,22 +35,22 @@ module.exports = withBundleAnalyzer({
       {
         source: '/signup',
         destination: '/',
-        permament: true,
+        permanent: true,
       },
       {
         source: '/login',
         destination: '/',
-        permament: true,
+        permanent: true,
       },
       {
         source: '/signup_complete',
         destination: '/',
-        permament: true,
+        permanent: true,
       },
       {
         source: '/logout',
         destination: '/',
-        permament: true,
+        permanent: true,
       },
     ];
   },
