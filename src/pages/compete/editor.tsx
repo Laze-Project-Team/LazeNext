@@ -30,6 +30,9 @@ const Editor: NextPage = () => {
   const dispatch = useDispatch();
   const { setDirectory } = explorerSlice.actions;
 
+  const { query } = useRouter();
+  const difficulty = (query.difficulty ?? 'Easy') as string;
+
   useEffect(() => {
     dispatch(
       setDirectory({
@@ -37,13 +40,13 @@ const Editor: NextPage = () => {
         directory: {
           '/main.laze': {
             type: 'file',
-            content: linetraceTemplate,
+            content: linetraceTemplate[difficulty],
             isRenaming: false,
           },
         },
       })
     );
-  }, [dispatch, setDirectory]);
+  }, [difficulty, dispatch, setDirectory]);
 
   return (
     <>

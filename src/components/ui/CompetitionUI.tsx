@@ -32,7 +32,7 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
             return (
               <TabPane tab={element.level} key={element.level}>
                 <div className="flex w-full justify-center">
-                  <Link href="/compete/editor" passHref>
+                  <Link href={`/compete/editor?difficulty=${element.level}`} passHref>
                     <Button type="primary">
                       <p>{t('join', { competition: competition.name, level: element.level })}</p>
                     </Button>

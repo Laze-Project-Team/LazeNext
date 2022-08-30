@@ -1,5 +1,6 @@
 import type { ButtonProps } from 'antd';
 import { Input, Modal } from 'antd';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useState } from 'react';
@@ -11,6 +12,9 @@ import { EditorButton } from './EditorButton';
 
 export const SubmitButton: VFC = () => {
   const [t] = useTranslation('editor');
+
+  const { query } = useRouter();
+  const difficulty = (query.difficulty ?? 'Easy') as string;
 
   const [isSubmitOpen, setSelectOpen] = useState(false);
   const [linetraceTime, setLinetraceTime] = useState(0);
@@ -27,7 +31,7 @@ export const SubmitButton: VFC = () => {
     // hardcode
     const data: SubmitRequest = {
       competition: 'linetrace',
-      level: 'Easy',
+      level: difficulty,
       time: window.laze?.props?.variables?.linetraceTime ?? 0,
       programUrl: window.laze?.props?.variables?.programUrl,
       wasmUrl: window.laze?.props?.variables?.wasmUrl,
