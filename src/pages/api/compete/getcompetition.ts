@@ -21,22 +21,27 @@ const getLeaderboardList = async (
       const levelPath = path.join(competitionPath, level);
       // Check if the level exists
       if (fs.existsSync(levelPath)) {
-        const competitorNames = await fs.promises.readdir(levelPath);
-        const competitors: Competitor[] = await Promise.all(
-          competitorNames.map(async (name) => {
-            const competitorPath = path.join(levelPath, name);
-            const infoBuffer = await fs.promises.readFile(path.join(competitorPath, 'info.json'));
-            const infoJson: CompetitorInfoJson = JSON.parse(infoBuffer.toString());
-            const competitor: Competitor = {
-              id: name,
-              ranking: 0,
-              rankingData: infoJson.time,
-              wasmUrl: path.join(levelPath, name, 'main.wasm'),
-              programUrl: path.join(levelPath, name, 'main.laze'),
-            };
-            return competitor;
-          })
-        );
+        const competitorDirents = await fs.promises.readdir(levelPath, { withFileTypes: true });
+        const competitors: Competitor[] = (
+          await Promise.all(
+            competitorDirents.map(async (dirent) => {
+              if (!dirent.isDirectory()) return;
+
+              const name = dirent.name;
+              const competitorPath = path.join(levelPath, name);
+              const infoBuffer = await fs.promises.readFile(path.join(competitorPath, 'info.json'));
+              const infoJson: CompetitorInfoJson = JSON.parse(infoBuffer.toString());
+              const competitor: Competitor = {
+                id: name,
+                ranking: 0,
+                rankingData: infoJson.time,
+                wasmUrl: path.join(levelPath, name, 'main.wasm'),
+                programUrl: path.join(levelPath, name, 'main.laze'),
+              };
+              return competitor;
+            })
+          )
+        ).filter(Boolean) as Competitor[];
         const levelData: CompetitionByLevel = {
           level: level,
           players: competitors,
