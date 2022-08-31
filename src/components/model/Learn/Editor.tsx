@@ -101,9 +101,12 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
       const model = editor.getModel();
       const pos = editor.getPosition();
       if (model && pos) {
-        const value = formatChar(model.getValue());
-        model.setValue(value);
-        editor.setPosition(pos);
+        const previousValue = model.getValue();
+        const value = formatChar(previousValue);
+        if (previousValue !== value) {
+          model.setValue(value);
+          editor.setPosition(pos);
+        }
       }
     });
   };
