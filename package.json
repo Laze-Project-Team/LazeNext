@@ -61,7 +61,7 @@
     "redux-localstorage-simple": "^2.5.1",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
-    "sharp": "^0.29.3",
+    "sharp": "^0.30.5",
     "ts-node": "^10.4.0",
     "tsc-alias": "^1.5.0"
   },
