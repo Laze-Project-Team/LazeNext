@@ -102,7 +102,11 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
         </button> */}
       </div>
       <div className="h-[51%] w-full bg-background pl-4 pr-4 pb-4">
-        <SiderEditor code={code.data ?? ''} key={competitor.id} />
+        {code.isFetched && code.data !== undefined ? (
+          <SiderEditor code={code.isFetched ? code.data : ''} key={competitor.id} />
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </>
   );
