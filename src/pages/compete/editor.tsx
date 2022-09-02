@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { RefObject } from 'react';
-import { useEffect } from 'react';
 import { createContext, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import SplitPane from 'react-split-pane';
 
 import { CompeteButtons } from '@/components/model/EditorButtons/compete';
@@ -14,8 +12,6 @@ import { EditorFooter } from '@/components/model/EditorFooter';
 // import { Explorer } from '@/components/model/Explorer';
 import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
-import { linetraceTemplate } from '@/const/linetraceSample';
-import { explorerSlice } from '@/features/redux/explorer';
 
 export const splitPaneRefContext = createContext<RefObject<SplitPane> | null>(null);
 
@@ -26,27 +22,6 @@ const Editor: NextPage = () => {
   const title = `${t('title')} | Laze`;
 
   const splitPaneRef = useRef<SplitPane>(null);
-
-  const dispatch = useDispatch();
-  const { setDirectory } = explorerSlice.actions;
-
-  const { query } = useRouter();
-  const difficulty = (query.difficulty ?? 'Easy') as string;
-
-  useEffect(() => {
-    dispatch(
-      setDirectory({
-        projectName: '',
-        directory: {
-          '/main.laze': {
-            type: 'file',
-            content: linetraceTemplate[difficulty],
-            isRenaming: false,
-          },
-        },
-      })
-    );
-  }, [difficulty, dispatch, setDirectory]);
 
   return (
     <>

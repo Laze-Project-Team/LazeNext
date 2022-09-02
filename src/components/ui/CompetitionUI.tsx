@@ -5,8 +5,10 @@ import type { VFC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { LeaderboardList } from '@/components/ui/LeaderboardList';
+import { linetraceTemplate } from '@/const/linetraceSample';
 import { competeSlice } from '@/features/redux/compete';
-import type { CompetitionUIProps } from '@/typings/compete';
+import { explorerSlice } from '@/features/redux/explorer';
+import type { CompetitionByLevel, CompetitionUIProps } from '@/typings/compete';
 
 import { H1 } from './IndexLayout';
 
@@ -16,7 +18,24 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
   const [t] = useTranslation('compete');
 
   const dispatch = useDispatch();
-  const { collapse } = competeSlice.actions;
+  const { collapse, updateCompetition } = competeSlice.actions;
+  const { setDirectory } = explorerSlice.actions;
+
+  const onEditorLink = (level: string) => {
+    dispatch(
+      setDirectory({
+        projectName: '',
+        directory: {
+          '/main.laze': {
+            type: 'file',
+            content: linetraceTemplate[level],
+            isRenaming: false,
+          },
+        },
+      })
+    );
+  };
+
   const renderCompetition = () => {
     if (competition.levels) {
       return (
@@ -24,16 +43,28 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
           size="large"
           tabBarGutter={20}
           centered
-          onChange={() => {
+          onChange={(activeKey) => {
             dispatch(collapse());
+            if (competition.leaderboardList.length > 0) {
+              const competitionData: CompetitionByLevel = { ...competition.leaderboardList[0], level: activeKey };
+              dispatch(updateCompetition(competitionData));
+            }
           }}
         >
           {competition.leaderboardList.map((element) => {
             return (
               <TabPane tab={element.level} key={element.level}>
                 <div className="flex w-full justify-center">
-                  <Link href={`/compete/editor?difficulty=${element.level}`} passHref>
-                    <Button type="primary">
+                  <Link
+                    href={`/compete/editor?id=${competition.id}&name=${competition.name}&level=${element.level}`}
+                    passHref
+                  >
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        onEditorLink(element.level);
+                      }}
+                    >
                       <p>{t('join', { competition: competition.name, level: element.level })}</p>
                     </Button>
                   </Link>

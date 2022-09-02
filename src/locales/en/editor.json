@@ -28,7 +28,9 @@
     "compile": "Compile & Run",
     "samples": "Sample List",
     "convert": "Language Conversion(Change)",
-    "settings": "Settings"
+    "settings": "Settings",
+    "level": "Level",
+    "competition": "Competition"
   },
 
   "settings": {

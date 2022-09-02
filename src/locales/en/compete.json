@@ -7,5 +7,11 @@
   "time": "Time",
   "join": "Join {{competition}} Level {{level}}",
   "level": "Level",
-  "competition": "Competition"
+  "competition": "Competition",
+  "fetch code error": "Fetching Code Failed",
+  "fetch code error message": "The server could not find code for the user {{user}}.",
+  "fetch wasm error": "Fetching WASM Failed",
+  "fetch wasm error message": "The server could not find wasm for the user {{user}}.",
+  "fetch compData error": "Fetching Competition Data Failed",
+  "fetch compData error message": "The server could not find competition data."
 }

@@ -1,16 +1,21 @@
+import { notification } from 'antd';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { VFC } from 'react';
 import { useEffect } from 'react';
-import { VscFoldUp } from 'react-icons/vsc';
+import { VscEdit, VscFoldUp, VscRunAll } from 'react-icons/vsc';
 import { useQuery } from 'react-query';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 import { executeWasm } from '@/features/compete/compete';
 import type { CompeteState } from '@/features/redux/compete';
 import { competeSlice } from '@/features/redux/compete';
+import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
 import styles from '@/styles/canvas.module.css';
-import type { Competitor } from '@/typings/compete';
+import type { CompetitionByLevel, Competitor } from '@/typings/compete';
 
 import { Editor as SiderEditor } from '../model/MonacoEditor/SiderEditor';
 
@@ -19,33 +24,51 @@ type SiderUIProps = {
 };
 
 const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
+  const [t] = useTranslation('compete');
+
   const collapsed = useSelector<RootState, boolean>((state) => {
     return state.compete.collapsed;
   });
   const competitor = useSelector<RootState, Competitor>((state) => {
     return state.compete.competitor;
   });
+  const competition = useSelector<RootState, CompetitionByLevel>((state) => {
+    return state.compete.competition;
+  });
   const dispatch = useDispatch();
   const { collapse } = competeSlice.actions;
 
-  const fetchCode = async () => {
-    const body = new Blob([JSON.stringify({ url: competitor.programUrl })]);
-    const res = await fetch('/api/compete/getcode', {
-      method: 'PUT',
-      body,
+  const openFetchError = (errorItem: string) => {
+    notification.open({
+      message: t(`fetch ${errorItem} error`),
+      description: t(`fetch ${errorItem} error message`, { user: competitor.id }),
     });
-    return res.text();
+  };
+
+  const fetchCode = async () => {
+    const url = encodeURI(`/api/compete/getcode?url=${competitor.programUrl}`);
+    const res = await fetch(url, {
+      method: 'GET',
+    });
+    if (res.ok) {
+      return res.text();
+    } else {
+      openFetchError('code');
+    }
   };
 
   const code = useQuery('code', fetchCode);
 
   const fetchWasm = async () => {
-    const body = new Blob([JSON.stringify({ url: competitor.wasmUrl })]);
-    const res = await fetch('/api/compete/getwasm', {
-      method: 'PUT',
-      body: body,
+    const url = encodeURI(`/api/compete/getwasm?url=${competitor.wasmUrl}`);
+    const res = await fetch(url, {
+      method: 'GET',
     });
-    return res.arrayBuffer();
+    if (res.ok) {
+      return res.arrayBuffer();
+    } else {
+      openFetchError('wasm');
+    }
   };
   const wasm = useQuery('wasm', fetchWasm);
 
@@ -60,6 +83,25 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
       }
     }
   }, [wasm, state]);
+
+  const { setDirectory } = explorerSlice.actions;
+
+  const onEditorLink = () => {
+    if (code.isFetched && code.data) {
+      dispatch(
+        setDirectory({
+          projectName: '',
+          directory: {
+            '/main.laze': {
+              type: 'file',
+              content: code.data,
+              isRenaming: false,
+            },
+          },
+        })
+      );
+    }
+  };
 
   return (
     <>
@@ -92,20 +134,41 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
         </div>
       </div>
       <div className="h-6 min-w-fit bg-background pl-4 !text-[#cccccc]">
-        {/* <button className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400">
+        <button
+          className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400"
+          onClick={() => {
+            if (wasm.isFetched && wasm.data) {
+              executeWasm(wasm.data) || executeWasm(wasm.data);
+            }
+          }}
+        >
           <VscRunAll />
           <span> Run </span>
         </button>
-        <button className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400">
-          <VscEdit />
-          <span>Edit in the Editor</span>
-        </button> */}
+        <Link
+          href={`/compete/editor?id=${competition?.id ?? ''}&name=${competition?.name ?? ''}&level=${
+            competition?.level ?? ''
+          }`}
+          passHref
+        >
+          <button
+            className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400"
+            onClick={() => {
+              onEditorLink();
+            }}
+          >
+            <VscEdit />
+            <span>Edit in the Editor</span>
+          </button>
+        </Link>
       </div>
       <div className="h-[51%] w-full bg-background pl-4 pr-4 pb-4">
         {code.isFetched && code.data !== undefined ? (
           <SiderEditor code={code.isFetched ? code.data : ''} key={competitor.id} />
         ) : (
-          <p>Loading...</p>
+          <>
+            <p>Loading...</p>
+          </>
         )}
       </div>
     </>
@@ -115,6 +178,17 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
 const mapStateToProps = (state: RootState) => {
   return {
     state: state.compete,
+  };
+};
+
+type contextType = {
+  locale: string;
+};
+export const getStaticProps = async (context: contextType) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(context.locale, ['common', 'editor', 'compete'])),
+    },
   };
 };
 

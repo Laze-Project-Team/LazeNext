@@ -1,4 +1,6 @@
 export type CompetitionByLevel = {
+  id: string;
+  name: string;
   level: string;
   players: Competitor[];
 };

@@ -1,9 +1,17 @@
 {
-  "compete": "大会",
+  "compete": "コンテスト",
   "clickToJoin": "クリックして参加",
-  "backToCompete": "大会ホームに戻る",
+  "backToCompete": "コンテストホームに戻る",
   "ranking": "順位",
   "name": "ユーザーネーム",
   "time": "タイム",
-  "join": "{{competition}} の {{level}} レベルに参加する"
+  "join": "{{competition}} の {{level}} レベルに参加する",
+  "level": "レベル",
+  "competition": "コンテスト",
+  "fetch code error": "プログラム取得失敗",
+  "fetch code error message": "サーバーは{{user}}のプログラムを見つけることができませんでした。",
+  "fetch wasm error": "WASM取得失敗",
+  "fetch wasm error message": "サーバーは{{user}}のWASMを見つけることができませんでした。",
+  "fetch compData error": "コンテストデータ取得失敗",
+  "fetch compData error message": "サーバーはコンテストデータを見つけることができませんでした。"
 }
