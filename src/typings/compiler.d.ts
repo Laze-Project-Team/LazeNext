@@ -129,7 +129,6 @@ export type compilerVariable = {
   id: string;
   lang: string;
   keyControl: keyControlType;
-  compiled: boolean;
   interval: NodeJS.Timer | null;
   lazeCallNoParam: CallableFunction | null;
   linetraceTime: number | null;
@@ -201,7 +200,7 @@ export type failedCompilerResult = {
 export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
-  compile: (code: string, label: string) => void | Promise<void>;
+  compile: (code: string, label: string) => Promise<boolean>;
   convert: (path: string, code: string, lang: string, newLang: string, label: string) => Promise<boolean>;
   run: () => void | Promise<void>;
 };

@@ -115,7 +115,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       });
   };
 
-  const compile: compilerType['compile'] = async (code: string, label: string) => {
+  const compile: compilerType['compile'] = async (code: string, label: string): Promise<boolean> => {
     window.laze.props.variables.id = '';
     window.laze.props.variables.wasm = '';
 
@@ -135,6 +135,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         placement: 'bottomRight',
         duration: 5,
       });
+      return false;
     }
 
     try {
@@ -150,7 +151,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
 
       window.laze.props.variables.id = id;
       window.laze.props.variables.wasm = resJson.success ? resJson.wasm : '';
-      window.laze.props.variables.compiled = resJson.success;
+      // window.laze.props.variables.compiled = resJson.success;
       window.laze.props.variables.programUrl = resJson.success ? resJson.programUrl : '';
       window.laze.props.variables.wasmUrl = resJson.success ? resJson.wasmUrl : '';
 
@@ -163,13 +164,13 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           level: resJson.success ? 'log' : 'error',
         })
       );
-
       if (resJson.success) {
         compileSuccessful();
         run();
       } else {
         compileFailed();
       }
+      return resJson.success;
     } catch {
       notification.open({
         message: t('errors.CompileProgramFailed.title'),
@@ -178,6 +179,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
         placement: 'bottomRight',
         duration: 5,
       });
+      return false;
     }
   };
 

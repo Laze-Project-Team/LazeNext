@@ -17,6 +17,7 @@ import { semanticTokenProvider } from '@/features/monaco/semanticTokenProvider/j
 import { lazeTheme } from '@/features/monaco/theme';
 import type { consoleState } from '@/features/redux/console';
 import { consoleSlice } from '@/features/redux/console';
+import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
 
 import { InlineCompletionsProvider, separator } from './InlineCompletionsProvider';
@@ -56,8 +57,9 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
   const [isCompiling, setIsCompiling] = useState(false);
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
 
-  const dispacher = useDispatch();
+  const dispatch = useDispatch();
   const { removePanel } = consoleSlice.actions;
+  const { setCompiled } = explorerSlice.actions;
 
   useCompiler('ja');
 
@@ -120,20 +122,21 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
             return consoleState[panelId].label === id;
           })
           .forEach((panelId) => {
-            dispacher(removePanel(panelId));
+            dispatch(removePanel(panelId));
           });
         const result = window.laze.compiler.compile(value, id);
-        if (result) {
-          setIsCompiling(true);
-          result.then(() => {
+        setIsCompiling(true);
+        result.then((success) => {
+          if (success) {
             setIsCompiling(false);
-          });
-        } else {
-          notification.error({
-            message: t('compile_error'),
-            description: t('compile_error_description'),
-          });
-        }
+            dispatch(setCompiled(true));
+          } else {
+            notification.error({
+              message: t('compile_error'),
+              description: t('compile_error_description'),
+            });
+          }
+        });
       }
     }
   };

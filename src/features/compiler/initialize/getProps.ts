@@ -38,7 +38,6 @@ export const getProps = (
       id: '',
       lang: locale,
       keyControl: initialKeyControl,
-      compiled: false,
       interval: interval,
       lazeCallNoParam: null,
       linetraceTime: null,

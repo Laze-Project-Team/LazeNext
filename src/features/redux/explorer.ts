@@ -13,12 +13,14 @@ export type ExplorerState = {
   updated: boolean;
   projectName: string | null;
   directory: Record<string, explorerDirent>;
+  compiled: boolean;
 };
 
 const initialState: ExplorerState = {
   current: '/main.laze',
   updated: false,
   projectName: null,
+  compiled: false,
   directory: {
     '/main.laze': {
       type: 'file',
@@ -66,7 +68,8 @@ export const explorerSlice = createSlice({
     },
     openFile: (state, action: PayloadAction<direntPayload>) => {
       state.current = action.payload.path;
-      window.laze.props.variables.compiled = false;
+      state.compiled = false;
+      // window.laze.props.variables.compiled = false;
     },
     closeFile: (state) => {
       state.current = null;
@@ -77,11 +80,13 @@ export const explorerSlice = createSlice({
         state.directory[file].content = action.payload.content;
 
         if (!action.payload.path) {
-          window.laze.props.variables.compiled = false;
+          state.compiled = false;
+          // window.laze.props.variables.compiled = false;
         }
 
         if (state.current === action.payload.path) {
-          window.laze.props.variables.compiled = false;
+          state.compiled = false;
+          // window.laze.props.variables.compiled = false;
           state.updated = true;
         }
       }
@@ -137,7 +142,10 @@ export const explorerSlice = createSlice({
       state.directory = action.payload.directory;
       state.updated = true;
       state.projectName = action.payload.projectName;
-      window.laze.props.variables.compiled = false;
+      state.compiled = false;
+    },
+    setCompiled: (state, action: PayloadAction<boolean>) => {
+      state.compiled = action.payload;
     },
   },
 });

@@ -3,20 +3,30 @@ import type { VFC } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VscLoading, VscRunAll } from 'react-icons/vsc';
+import { connect, useDispatch } from 'react-redux';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { Spin } from '@/components/ui/Spin';
 import { useCompiler } from '@/features/compiler';
 import { compileFailed } from '@/features/gtm';
+import { explorerSlice } from '@/features/redux/explorer';
+import type { RootState } from '@/features/redux/root';
 import { getCurrentCode, getCurrentFile, store } from '@/features/redux/root';
 import { getName } from '@/features/utils/path';
 
-export const CompileButton: VFC = () => {
+type CompileButtonProps = {
+  compiled: boolean;
+};
+
+const UnconnectedCompileButton: VFC<CompileButtonProps> = ({ compiled }) => {
   const [t] = useTranslation('editor');
 
   useCompiler();
 
-  const [isCompiling, setIsCompiiling] = useState(false);
+  const dispatch = useDispatch();
+
+  const [isCompiling, setIsCompiling] = useState(false);
+  const { setCompiled } = explorerSlice.actions;
 
   const onClick = () => {
     const code = getCurrentCode();
@@ -34,20 +44,21 @@ export const CompileButton: VFC = () => {
     }
 
     if (
-      window.laze.props.variables.compiled &&
+      compiled &&
       Object.prototype.hasOwnProperty.call(store.getState().console.console, window.laze.props.variables.id)
     ) {
       window.laze.compiler.run();
     } else {
       const result = window.laze.compiler.compile(code, getName(file));
-      if (result) {
-        setIsCompiiling(true);
-        result.then(() => {
-          setIsCompiiling(false);
-        });
-      } else {
-        compileFailed();
-      }
+      setIsCompiling(true);
+      result.then((success) => {
+        if (success) {
+          setIsCompiling(false);
+          dispatch(setCompiled(true));
+        } else {
+          compileFailed();
+        }
+      });
     }
   };
 
@@ -70,3 +81,9 @@ export const CompileButton: VFC = () => {
     </>
   );
 };
+
+export const CompileButton = connect((state: RootState) => {
+  return {
+    compiled: state.explorer.compiled,
+  };
+})(UnconnectedCompileButton);
