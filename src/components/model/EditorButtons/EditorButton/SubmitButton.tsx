@@ -15,10 +15,9 @@ export const SubmitButton: VFC = () => {
   const [t] = useTranslation('editor');
 
   const { query } = useRouter();
-  // hardcode
-  const level = (query.level ?? 'Easy') as string;
-  const id = (query.id ?? 'linetrace') as string;
-  const name = (query.name ?? 'Linetrace') as string;
+  const level = (query.level ?? '') as string;
+  const id = (query.id ?? '') as string;
+  const name = (query.name ?? '') as string;
 
   const [isSubmitOpen, setSelectOpen] = useState(false);
   const [linetraceTime, setLinetraceTime] = useState(0);
