@@ -2,7 +2,6 @@ import type { ButtonProps } from 'antd';
 import { Input, Modal } from 'antd';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { VFC } from 'react';
 import { useState } from 'react';
 import { VscArchive } from 'react-icons/vsc';
@@ -104,15 +103,4 @@ export const SubmitButton: VFC = () => {
       <EditorButton name={`Submit`} onClick={onClick} Icon={<VscArchive />} />
     </>
   );
-};
-
-type contextType = {
-  locale: string;
-};
-export const getStaticProps = async (context: contextType) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(context.locale, ['common', 'editor', 'compete'])),
-    },
-  };
 };

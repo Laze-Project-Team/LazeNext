@@ -14,6 +14,7 @@ import '@/styles/flexfix.css';
 import '@/styles/editor-scrollable.css';
 
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import { appWithTranslation } from 'next-i18next';
 import nprogress from 'nprogress';
 import type { Dispatch, SetStateAction } from 'react';
@@ -40,6 +41,8 @@ const validateColorMode = (colorMode: string): colorModeType => {
 };
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+
   if (process.browser) {
     nprogress.start();
   }
@@ -47,6 +50,24 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     nprogress.done();
   });
+
+  // clearInterval when changing pages
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (window.laze?.props?.variables?.interval) {
+        clearInterval(window.laze.props.variables.interval);
+      }
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method:
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const initialColorMode = typeof window !== 'undefined' ? localStorage.getItem('colorMode') ?? 'light' : 'light';
   const [colorMode, setColorMode] = useState<colorModeType>(validateColorMode(initialColorMode));
