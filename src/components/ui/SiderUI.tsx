@@ -1,7 +1,6 @@
 import { notification } from 'antd';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { VFC } from 'react';
 import { useEffect } from 'react';
 import { VscEdit, VscFoldUp, VscRunAll } from 'react-icons/vsc';
@@ -178,17 +177,6 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
 const mapStateToProps = (state: RootState) => {
   return {
     state: state.compete,
-  };
-};
-
-type contextType = {
-  locale: string;
-};
-export const getStaticProps = async (context: contextType) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(context.locale, ['common', 'editor', 'compete'])),
-    },
   };
 };
 
