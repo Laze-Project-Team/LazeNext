@@ -28,7 +28,7 @@ const handler: NextApiHandler = async (req, res): Promise<void> => {
       res.status(404).send('');
     }
   } else {
-    console.error(`${jsonPath} does not exist.`);
+    console.error(`${req.url}: ${jsonPath} does not exist.`);
     res.status(404).send('');
   }
 };

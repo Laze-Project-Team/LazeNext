@@ -44,7 +44,7 @@ const handler: NextApiHandler = async (req, res) => {
       res.status(404).json({ success: false });
     }
   } else {
-    console.error(`${levelPath} does not exist.`);
+    console.error(`${req.url}: ${levelPath} does not exist.`);
     res.status(404).json({ success: false });
   }
 };

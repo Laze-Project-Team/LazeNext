@@ -64,6 +64,9 @@ export const LeaderboardList: VFC<LeaderboardListProps> = ({ competitorList, sor
         <Table
           dataSource={dataSource}
           columns={columns}
+          rowKey={(rowData) => {
+            return rowData.id;
+          }}
           onRow={(record) => {
             return {
               onClick: (e) => {

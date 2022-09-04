@@ -12,7 +12,7 @@ const handler: NextApiHandler = async (req, res) => {
       res.status(404).send('');
     }
   } else {
-    console.error(`${path} does not exist.`);
+    console.error(`${req.url}: ${path} does not exist.`);
     res.status(404).send('');
   }
 };
