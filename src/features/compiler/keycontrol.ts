@@ -1,11 +1,13 @@
-export const keyControlInitialize = (): void => {
+import type { keyControlType } from '@/typings/compiler';
+
+export const keyControlInitialize = (keyControl: keyControlType): void => {
   let lastDownTarget: EventTarget | null;
 
   const canvas = <HTMLCanvasElement>document.getElementById('output-canvas');
   document.addEventListener(
     'mousedown',
     (e) => {
-      window.laze.props.variables.keyControl.mousePressed = true;
+      keyControl.mousePressed = true;
       lastDownTarget = e.target;
     },
     false
@@ -14,7 +16,7 @@ export const keyControlInitialize = (): void => {
     'mouseup',
     (e) => {
       if (e.target === canvas) {
-        window.laze.props.variables.keyControl.mousePressed = false;
+        keyControl.mousePressed = false;
       }
     },
     false
@@ -23,7 +25,7 @@ export const keyControlInitialize = (): void => {
     'keydown',
     (e) => {
       if (lastDownTarget === canvas) {
-        window.laze.props.variables.keyControl.pressedKeys[e.keyCode] = true;
+        keyControl.pressedKeys[e.keyCode] = true;
       }
     },
     false
@@ -32,7 +34,7 @@ export const keyControlInitialize = (): void => {
     'keyup',
     (e) => {
       if (lastDownTarget === canvas) {
-        window.laze.props.variables.keyControl.pressedKeys[e.keyCode] = false;
+        keyControl.pressedKeys[e.keyCode] = false;
       }
     },
     false

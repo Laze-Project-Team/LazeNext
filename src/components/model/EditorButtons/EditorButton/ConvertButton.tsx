@@ -1,6 +1,7 @@
 import { Button, Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { VFC } from 'react';
+import { useContext } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -17,6 +18,7 @@ import { useCompiler } from '@/features/compiler';
 import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
 import { getName } from '@/features/utils/path';
+import { programLangContext } from '@/pages/compete/editor';
 import styles from '@/styles/loading.module.css';
 
 export const ConvertButton: VFC = () => {
@@ -31,6 +33,8 @@ export const ConvertButton: VFC = () => {
   const newLang = useRef(defaultLang);
   const [lang, setLang] = useState(defaultLang);
   const [isConverting, setIsConverting] = useState(false);
+
+  const langContext = useContext(programLangContext);
 
   const concatItem = (acc: Record<string, SelectableListItem>, cur: SelectableListItem) => {
     acc[cur.id] = cur;
@@ -88,7 +92,9 @@ export const ConvertButton: VFC = () => {
 
   const change = () => {
     setLang(newLang.current);
-    window.laze.props.variables.lang = newLang.current;
+    if (langContext?.current) {
+      langContext.current = newLang.current;
+    }
     localStorage.setItem('compile_lang', newLang.current);
     setIsOpened(false);
   };
@@ -103,11 +109,13 @@ export const ConvertButton: VFC = () => {
     setIsOpened(false);
     setIsConverting(true);
     window.laze.compiler
-      .convert(file, code, window.laze.props.variables.lang, newLang.current, getName(file))
+      .convert(file, code, langContext?.current ?? 'en', newLang.current, getName(file))
       .then((success) => {
         if (success) {
           setIsConverting(false);
-          window.laze.props.variables.lang = newLang.current;
+          if (langContext?.current) {
+            langContext.current = newLang.current;
+          }
           setLang(newLang.current);
           localStorage.setItem('compile_lang', newLang.current);
         } else {
@@ -137,7 +145,9 @@ export const ConvertButton: VFC = () => {
     if (typeof window !== 'undefined') {
       const lang = localStorage.getItem('compile_lang');
       if (lang) {
-        window.laze.props.variables.lang = lang;
+        if (langContext?.current) {
+          langContext.current = lang;
+        }
         setLang(lang);
       }
     }

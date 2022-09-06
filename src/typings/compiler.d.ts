@@ -144,6 +144,14 @@ export type getImportsProps = {
   variables: compilerVariable;
 };
 
+export type WasmImportProps = {
+  canvas: HTMLCanvasElement | null;
+  gl: WebGLRenderingContext | null;
+  webglObjects: webglObjects;
+  arduinoObjects: arduinoObjects;
+  variables: compilerVariable;
+};
+
 export type compileRequest = {
   code: string;
   option: {
@@ -200,7 +208,7 @@ export type failedCompilerResult = {
 export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
-  compile: (code: string, label: string) => Promise<boolean>;
+  compile: (code: string, label: string, lang: string) => Promise<boolean>;
   convert: (path: string, code: string, lang: string, newLang: string, label: string) => Promise<boolean>;
   run: () => void | Promise<void>;
 };

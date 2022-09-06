@@ -60,11 +60,6 @@ const LeaderboardLayout: VFC<LeaderboardLayoutProps> = ({ children }) => {
           trigger={null}
           collapsed={collapsed}
           className="drop-shadow-lg"
-          onCollapse={() => {
-            if (window.laze?.props?.variables?.interval) {
-              clearInterval(window.laze.props.variables.interval);
-            }
-          }}
         >
           {!collapsed ? <SiderUI key={competitor.id} /> : <></>}
         </Layout.Sider>

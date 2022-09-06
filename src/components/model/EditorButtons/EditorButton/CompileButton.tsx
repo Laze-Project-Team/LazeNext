@@ -1,5 +1,6 @@
 import { notification } from 'antd';
 import type { VFC } from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VscLoading, VscRunAll } from 'react-icons/vsc';
@@ -13,6 +14,7 @@ import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
 import { getCurrentCode, getCurrentFile, store } from '@/features/redux/root';
 import { getName } from '@/features/utils/path';
+import { programLangContext } from '@/pages/compete/editor';
 
 type CompileButtonProps = {
   compiled: boolean;
@@ -28,6 +30,8 @@ const UnconnectedCompileButton: VFC<CompileButtonProps> = ({ compiled }) => {
   const [isCompiling, setIsCompiling] = useState(false);
   const { setCompiled } = explorerSlice.actions;
 
+  const lang = useContext(programLangContext);
+
   const onClick = () => {
     const code = getCurrentCode();
     const file = getCurrentFile();
@@ -42,14 +46,13 @@ const UnconnectedCompileButton: VFC<CompileButtonProps> = ({ compiled }) => {
 
       return;
     }
-
     if (
       compiled &&
       Object.prototype.hasOwnProperty.call(store.getState().console.console, window.laze.props.variables.id)
     ) {
       window.laze.compiler.run();
     } else {
-      const result = window.laze.compiler.compile(code, getName(file));
+      const result = window.laze.compiler.compile(code, getName(file), lang?.current ?? 'en');
       setIsCompiling(true);
       result.then((success) => {
         if (success) {

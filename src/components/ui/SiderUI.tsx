@@ -2,28 +2,23 @@ import { notification } from 'antd';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { VscEdit, VscFoldUp, VscRunAll } from 'react-icons/vsc';
 import { useQuery } from 'react-query';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { executeWasm } from '@/features/compete/compete';
-import type { CompeteState } from '@/features/redux/compete';
 import { competeSlice } from '@/features/redux/compete';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
-import { cx } from '@/features/utils/cx';
-import styles from '@/styles/canvas.module.css';
 import type { CompetitionByLevel, Competitor } from '@/typings/compete';
 
 import { Editor as SiderEditor } from '../model/MonacoEditor/SiderEditor';
+import { WasmCanvas } from '../model/WasmCanvas';
 
-type SiderUIProps = {
-  state: CompeteState;
-};
-
-const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
+export const SiderUI: VFC = () => {
   const [t] = useTranslation('compete');
+
+  const [key, setKey] = useState(0);
 
   const collapsed = useSelector<RootState, boolean>((state) => {
     return state.compete.collapsed;
@@ -57,31 +52,6 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
   };
 
   const code = useQuery('code', fetchCode);
-
-  const fetchWasm = async () => {
-    const url = encodeURI(`/api/compete/getwasm?url=${competitor.wasmUrl}`);
-    const res = await fetch(url, {
-      method: 'GET',
-    });
-    if (res.ok) {
-      return res.arrayBuffer();
-    } else {
-      openFetchError('wasm');
-    }
-  };
-  const wasm = useQuery('wasm', fetchWasm);
-
-  useEffect(() => {
-    if (!state.collapsed) {
-      if (wasm.data) {
-        executeWasm(wasm.data) || executeWasm(wasm.data);
-      }
-    } else {
-      if (window.laze?.props?.variables?.interval) {
-        clearInterval(window.laze.props.variables.interval);
-      }
-    }
-  }, [wasm, state]);
 
   const { setDirectory } = explorerSlice.actions;
 
@@ -124,11 +94,10 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
       </div>
       <div className="w-[450px] items-center pl-4 pr-4 pt-4">
         <div className="mx-auto aspect-video">
-          <canvas
-            id="output-canvas"
-            width="1280"
-            height="720"
-            className={cx('h-full w-full bg-white', styles.canvas)}
+          <WasmCanvas
+            wasmUrl={`/api/compete/getwasm?url=${competitor.wasmUrl}`}
+            dependencies={['std', 'console', 'webgl', 'arduino']}
+            key={key.toString()}
           />
         </div>
       </div>
@@ -136,9 +105,7 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
         <button
           className="relative inline-flex h-full items-center space-x-1 border-b-2 border-transparent px-3 transition-all ease-linear hover:border-primary-400 hover:text-primary-400 disabled:!text-gray-500 disabled:hover:!border-transparent dark:hover:border-primary-100 dark:hover:text-primary-100 disabled:dark:!text-gray-400"
           onClick={() => {
-            if (wasm.isFetched && wasm.data) {
-              executeWasm(wasm.data) || executeWasm(wasm.data);
-            }
+            setKey(key + 1);
           }}
         >
           <VscRunAll />
@@ -173,11 +140,3 @@ const UnconnectedSiderUI: VFC<SiderUIProps> = ({ state }) => {
     </>
   );
 };
-
-const mapStateToProps = (state: RootState) => {
-  return {
-    state: state.compete,
-  };
-};
-
-export const SiderUI = connect(mapStateToProps)(UnconnectedSiderUI);

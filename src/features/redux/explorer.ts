@@ -69,7 +69,6 @@ export const explorerSlice = createSlice({
     openFile: (state, action: PayloadAction<direntPayload>) => {
       state.current = action.payload.path;
       state.compiled = false;
-      // window.laze.props.variables.compiled = false;
     },
     closeFile: (state) => {
       state.current = null;
@@ -81,12 +80,10 @@ export const explorerSlice = createSlice({
 
         if (!action.payload.path) {
           state.compiled = false;
-          // window.laze.props.variables.compiled = false;
         }
 
         if (state.current === action.payload.path) {
           state.compiled = false;
-          // window.laze.props.variables.compiled = false;
           state.updated = true;
         }
       }

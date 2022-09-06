@@ -34,7 +34,6 @@ const getLangFile = (lang: string) => {
 };
 
 export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
-  keyControlInitialize();
   const { addLog, createPanel, addSeparator, setActive } = consoleSlice.actions;
   const { saveFile } = explorerSlice.actions;
 
@@ -42,6 +41,7 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
     runProgram();
 
     const { canvas, gl, importObject, variables } = window.laze.props;
+    keyControlInitialize(variables.keyControl);
 
     if (variables.wasm === '' || variables.id === '') {
       console.error('Cannot run program. Please compile first.');
@@ -115,11 +115,10 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       });
   };
 
-  const compile: compilerType['compile'] = async (code: string, label: string): Promise<boolean> => {
+  const compile: compilerType['compile'] = async (code: string, label: string, lang: string): Promise<boolean> => {
     window.laze.props.variables.id = '';
     window.laze.props.variables.wasm = '';
 
-    const lang = window.laze.props.variables.lang;
     const langFile = getLangFile(lang);
 
     const body = JSON.stringify({
