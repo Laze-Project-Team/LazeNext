@@ -4,18 +4,17 @@ export type importConsoleProps = {
   memory: WebAssembly.Memory;
 };
 
-const checkImportConsoleProps = (arg: unknown): boolean => {
+const checkImportConsoleProps = (arg: unknown): arg is importConsoleProps => {
   const props = arg as importConsoleProps;
 
   return typeof props?.memory === 'object';
 };
 
-const importConsole = (p: unknown): WebAssembly.Imports => {
-  if (!checkImportConsoleProps(p)) {
+const importConsole = (props: unknown): WebAssembly.Imports => {
+  if (!checkImportConsoleProps(props)) {
     throw new Error('The props in importConsole is not of type importConsoleProps.');
   }
 
-  const props = p as importConsoleProps;
   const { memory } = props;
 
   return {
@@ -48,11 +47,10 @@ const importConsole = (p: unknown): WebAssembly.Imports => {
   };
 };
 
-const initializeConsoleProps = (p: unknown): Laze.Props => {
-  if (!checkImportConsoleProps(p)) {
+const initializeConsoleProps = (props: unknown): Laze.Props => {
+  if (!checkImportConsoleProps(props)) {
     throw new Error('The props in initializeStdProps does not include type importConsoleProps.');
   }
-  const props = p as importConsoleProps;
   props.memory = new WebAssembly.Memory({ initial: 1000 });
   return props;
 };

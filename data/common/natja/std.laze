@@ -3,76 +3,77 @@
 ( offset [ 4 ] [ 4 ] という 実数 ) を  とり ${"ja":"行列表示", "natja":"行列表示", "en":"printMatrix", "naten":"printMatrix"}$ という  関数  を ( "console", "logMatrix") から  読み込む  。 
 ( x という * 無 ) を  とり ${"ja":"アドレス表示", "natja":"アドレス表示", "en":"printAddress", "naten":"printAddress"}$ という  関数  を ( "console", "log") から  読み込む  。 
 ( x という * 文字 , 長さ という 整数 ) を  とり ${"ja":"_文字列表示", "natja":"_文字列表示", "en":"_printString", "naten":"_printString"}$ という  関数  を ( "console", "logstring") から  読み込む  。 
-( 時間 という 実数 ) を  返す ${"ja":"時間計測", "natja":"時間計測", "en":"getTime", "naten":"getTime"}$ という  関数  を ( "performance", "now") から  読み込む  。 
-( i という 整数32 ) を  とり ${"ja":"glClearDepth", "natja":"glClearDepth", "en":"glClearDepth", "naten":"glClearDepth"}$ という  関数  を ( "webgl", "clearDepth") から  読み込む  。 
-( i という 整数32 ) を  とり ${"ja":"glDepthFunc", "natja":"glDepthFunc", "en":"glDepthFunc", "naten":"glDepthFunc"}$ という  関数  を ( "webgl", "depthFunc") から  読み込む  。 
-( i という 整数32 ) を  とり ${"ja":"glEnable", "natja":"glEnable", "en":"glEnable", "naten":"glEnable"}$ という  関数  を ( "webgl", "enable") から  読み込む  。 
-( i という 整数32 ) を  とり ${"ja":"glDisable", "natja":"glDisable", "en":"glDisable", "naten":"glDisable"}$ という  関数  を ( "webgl", "disable") から  読み込む  。 
-( prog という 整数32 ) を  返す ${"ja":"glCreateProgram", "natja":"glCreateProgram", "en":"glCreateProgram", "naten":"glCreateProgram"}$ という  関数  を ( "webgl", "createProgram") から  読み込む  。 
-( buffer という 整数32 ) を  返す ${"ja":"glCreateBuffer", "natja":"glCreateBuffer", "en":"glCreateBuffer", "naten":"glCreateBuffer"}$ という  関数  を ( "webgl", "createBuffer") から  読み込む  。 
-( i という 整数32 , j という 整数32 ) を  とり ${"ja":"glBindBuffer", "natja":"glBindBuffer", "en":"glBindBuffer", "naten":"glBindBuffer"}$ という  関数  を ( "webgl", "bindBuffer") から  読み込む  。 
-( i という 整数32 , offset という * 実数 , size という 整数32 , j という 整数32 ) を  とり ${"ja":"glBufferData", "natja":"glBufferData", "en":"glBufferData", "naten":"glBufferData"}$ という  関数  を ( "webgl", "bufferData") から  読み込む  。 
-( i という 整数32 , offset という * 整数32 , size という 整数32 , j という 整数32 ) を  とり ${"ja":"glElementBufferData", "natja":"glElementBufferData", "en":"glElementBufferData", "naten":"glElementBufferData"}$ という  関数  を ( "webgl", "elementBufferData") から  読み込む  。 
-( i という 整数32 ) を  とり ${"ja":"glUseProgram", "natja":"glUseProgram", "en":"glUseProgram", "naten":"glUseProgram"}$ という  関数  を ( "webgl", "useProgram") から  読み込む  。 
-( i という 整数32 , offset という * 文字 , size という 整数32 ) を  とり ( loc という 整数32 ) を  返す ${"ja":"glGetAttribLocation", "natja":"glGetAttribLocation", "en":"glGetAttribLocation", "naten":"glGetAttribLocation"}$ という  関数  を ( "webgl", "getAttribLocation") から  読み込む  。 
-( index という 整数32 , size という 整数32 , ty という 整数32 , normalized という 整数32 , stride という 整数32 , offset という 整数32 ) を  とり ${"ja":"glVertexAttribPointer", "natja":"glVertexAttribPointer", "en":"glVertexAttribPointer", "naten":"glVertexAttribPointer"}$ という  関数  を ( "webgl", "vertexAttribPointer") から  読み込む  。 
-( index という 整数32 ) を  とり ${"ja":"glEnableVertexAttribArray", "natja":"glEnableVertexAttribArray", "en":"glEnableVertexAttribArray", "naten":"glEnableVertexAttribArray"}$ という  関数  を ( "webgl", "enableVertexAttribArray") から  読み込む  。 
-( i という 整数32 , first という 整数32 , count という 整数32 ) を  とり ${"ja":"glDrawArrays", "natja":"glDrawArrays", "en":"glDrawArrays", "naten":"glDrawArrays"}$ という  関数  を ( "webgl", "drawArrays") から  読み込む  。 
-( i という 整数32 , offset という * 文字 , size という 整数32 ) を  とり ( loc という 整数32 ) を  返す ${"ja":"_glGetUniformLocation", "natja":"_glGetUniformLocation", "en":"_glGetUniformLocation", "naten":"_glGetUniformLocation"}$ という  関数  を ( "webgl", "getUniformLocation") から  読み込む  。 
-( loc という 整数32 , trans という 整数32 , offset という * 実数 ) を  とり ${"ja":"glUniformMatrix2fv", "natja":"glUniformMatrix2fv", "en":"glUniformMatrix2fv", "naten":"glUniformMatrix2fv"}$ という  関数  を ( "webgl", "uniformMatrix2fv") から  読み込む  。 
-( loc という 整数32 , trans という 整数32 , offset という * 実数 ) を  とり ${"ja":"glUniformMatrix3fv", "natja":"glUniformMatrix3fv", "en":"glUniformMatrix3fv", "naten":"glUniformMatrix3fv"}$ という  関数  を ( "webgl", "uniformMatrix3fv") から  読み込む  。 
-( loc という 整数32 , trans という 整数32 , offset [ 16 ] という 実数 ) を  とり ${"ja":"glUniformMatrix4fv", "natja":"glUniformMatrix4fv", "en":"glUniformMatrix4fv", "naten":"glUniformMatrix4fv"}$ という  関数  を ( "webgl", "uniformMatrix4fv") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 ) を  とり ${"ja":"glUniform1f", "natja":"glUniform1f", "en":"glUniform1f", "naten":"glUniform1f"}$ という  関数  を ( "webgl", "uniform1f") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 ) を  とり ${"ja":"glUniform1fv", "natja":"glUniform1fv", "en":"glUniform1fv", "naten":"glUniform1fv"}$ という  関数  を ( "webgl", "uniform1fv") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 ) を  とり ${"ja":"glUniform1i", "natja":"glUniform1i", "en":"glUniform1i", "naten":"glUniform1i"}$ という  関数  を ( "webgl", "uniform1i") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 ) を  とり ${"ja":"glUniform1iv", "natja":"glUniform1iv", "en":"glUniform1iv", "naten":"glUniform1iv"}$ という  関数  を ( "webgl", "uniform1iv") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 , v1 という 実数 ) を  とり ${"ja":"glUniform2f", "natja":"glUniform2f", "en":"glUniform2f", "naten":"glUniform2f"}$ という  関数  を ( "webgl", "uniform2f") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 , v1 という 実数 ) を  とり ${"ja":"glUniform2fv", "natja":"glUniform2fv", "en":"glUniform2fv", "naten":"glUniform2fv"}$ という  関数  を ( "webgl", "uniform2fv") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 , v1 という 整数32 ) を  とり ${"ja":"glUniform2i", "natja":"glUniform2i", "en":"glUniform2i", "naten":"glUniform2i"}$ という  関数  を ( "webgl", "uniform2i") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 , v1 という 整数32 ) を  とり ${"ja":"glUniform2iv", "natja":"glUniform2iv", "en":"glUniform2iv", "naten":"glUniform2iv"}$ という  関数  を ( "webgl", "uniform2iv") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 ) を  とり ${"ja":"glUniform3f", "natja":"glUniform3f", "en":"glUniform3f", "naten":"glUniform3f"}$ という  関数  を ( "webgl", "uniform3f") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 ) を  とり ${"ja":"glUniform3fv", "natja":"glUniform3fv", "en":"glUniform3fv", "naten":"glUniform3fv"}$ という  関数  を ( "webgl", "uniform3fv") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 ) を  とり ${"ja":"glUniform3i", "natja":"glUniform3i", "en":"glUniform3i", "naten":"glUniform3i"}$ という  関数  を ( "webgl", "uniform3i") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 ) を  とり ${"ja":"glUniform3iv", "natja":"glUniform3iv", "en":"glUniform3iv", "naten":"glUniform3iv"}$ という  関数  を ( "webgl", "uniform3iv") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 , v3 という 実数 ) を  とり ${"ja":"glUniform4f", "natja":"glUniform4f", "en":"glUniform4f", "naten":"glUniform4f"}$ という  関数  を ( "webgl", "uniform4f") から  読み込む  。 
-( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 , v3 という 実数 ) を  とり ${"ja":"glUniform4fv", "natja":"glUniform4fv", "en":"glUniform4fv", "naten":"glUniform4fv"}$ という  関数  を ( "webgl", "uniform4fv") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 , v3 という 整数32 ) を  とり ${"ja":"glUniform4i", "natja":"glUniform4i", "en":"glUniform4i", "naten":"glUniform4i"}$ という  関数  を ( "webgl", "uniform4i") から  読み込む  。 
-( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 , v3 という 整数32 ) を  とり ${"ja":"glUniform4iv", "natja":"glUniform4iv", "en":"glUniform4iv", "naten":"glUniform4iv"}$ という  関数  を ( "webgl", "uniform4iv") から  読み込む  。 
-( r という 実数 , g という 実数 , b という 実数 , a という 実数 ) を  とり ${"ja":"glClearColor", "natja":"glClearColor", "en":"glClearColor", "naten":"glClearColor"}$ という  関数  を ( "webgl", "clearColor") から  読み込む  。 
-( color という 整数32 ) を  とり ${"ja":"glClear", "natja":"glClear", "en":"glClear", "naten":"glClear"}$ という  関数  を ( "webgl", "clear") から  読み込む  。 
-( i という 整数32 , count という 整数32 , ty という 整数32 , offset という 整数32 ) を  とり ${"ja":"glDrawElements", "natja":"glDrawElements", "en":"glDrawElements", "naten":"glDrawElements"}$ という  関数  を ( "webgl", "drawElements") から  読み込む  。 
-( i という 整数32 , j という 整数32 ) を  とり ${"ja":"glBlendFunc", "natja":"glBlendFunc", "en":"glBlendFunc", "naten":"glBlendFunc"}$ という  関数  を ( "webgl", "blendFunc") から  読み込む  。 
-( keyCode という 整数32 ) を  とり ( pressed という 整数 ) を  返す ${"ja":"キーチェック", "natja":"キーチェック", "en":"checkKeyPress", "naten":"checkKeyPress"}$ という  関数  を ( "js", "checkKeyPress") から  読み込む  。 
-( pressed という 整数 ) を  返す ${"ja":"マウスチェック", "natja":"マウスチェック", "en":"checkMousePress", "naten":"checkMousePress"}$ という  関数  を ( "js", "checkMousePress") から  読み込む  。 
-( x という 実数 ) を  返す ${"ja":"マウス相対座標X", "natja":"マウス相対座標X", "en":"checkRelativeMouseX", "naten":"checkRelativeMouseX"}$ という  関数  を ( "js", "checkRelativeMouseX") から  読み込む  。 
-( x という 実数 ) を  返す ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$ という  関数  を ( "js", "checkRelativeMouseY") から  読み込む  。 
-( x という 実数 ) を  返す ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$ という  関数  を ( "js", "checkAbsoluteMouseX") から  読み込む  。 
-( x という 実数 ) を  返す ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$ という  関数  を ( "js", "checkAbsoluteMouseY") から  読み込む  。 
-( x という 実数 ) を  返す ${"ja":"スクロール座標", "natja":"スクロール座標", "en":"checkScroll", "naten":"checkScroll"}$ という  関数  を ( "js", "checkScrollY") から  読み込む  。 
-( x という 実数 ) を  返す ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$ という  関数  を ( "js", "rand") から  読み込む  。 
-( size という 整数32 ) を  とり ( p という * 無 ) を  返す ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$ という  関数  を ( "js", "alloc") から  読み込む  。 
-( offset という * 文字 , length という 整数32 ) を  とり ( a という 整数32 ) を  返す ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$ という  関数  を ( "webgl", "loadTexture") から  読み込む  。 
-( i という 整数32 ) を  とり ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$ という  関数  を ( "webgl", "activeTexture") から  読み込む  。 
-( i という 整数32 , j という 整数32 ) を  とり ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$ という  関数  を ( "webgl", "bindTexture") から  読み込む  。 
-関数 ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$ を ( "js", "lockPointer") から  読み込む  。 
+( 時間 という 実数 ) を  返す ${"ja":"時間計測", "natja":"時間計測", "en":"getTime", "naten":"getTime"}$ という  関数  を ( "std", "performanceNow") から  読み込む  。 
+( i という 整数32 ) を  とり ${"ja":"glClearDepth", "natja":"glClearDepth", "en":"glClearDepth", "naten":"glClearDepth"}$ という  関数  を ( "graphics", "clearDepth") から  読み込む  。 
+( i という 整数32 ) を  とり ${"ja":"glDepthFunc", "natja":"glDepthFunc", "en":"glDepthFunc", "naten":"glDepthFunc"}$ という  関数  を ( "graphics", "depthFunc") から  読み込む  。 
+( i という 整数32 ) を  とり ${"ja":"glEnable", "natja":"glEnable", "en":"glEnable", "naten":"glEnable"}$ という  関数  を ( "graphics", "enable") から  読み込む  。 
+( i という 整数32 ) を  とり ${"ja":"glDisable", "natja":"glDisable", "en":"glDisable", "naten":"glDisable"}$ という  関数  を ( "graphics", "disable") から  読み込む  。 
+( prog という 整数32 ) を  返す ${"ja":"glCreateProgram", "natja":"glCreateProgram", "en":"glCreateProgram", "naten":"glCreateProgram"}$ という  関数  を ( "graphics", "createProgram") から  読み込む  。 
+( buffer という 整数32 ) を  返す ${"ja":"glCreateBuffer", "natja":"glCreateBuffer", "en":"glCreateBuffer", "naten":"glCreateBuffer"}$ という  関数  を ( "graphics", "createBuffer") から  読み込む  。 
+( i という 整数32 , j という 整数32 ) を  とり ${"ja":"glBindBuffer", "natja":"glBindBuffer", "en":"glBindBuffer", "naten":"glBindBuffer"}$ という  関数  を ( "graphics", "bindBuffer") から  読み込む  。 
+( i という 整数32 , offset という * 実数 , size という 整数32 , j という 整数32 ) を  とり ${"ja":"glBufferData", "natja":"glBufferData", "en":"glBufferData", "naten":"glBufferData"}$ という  関数  を ( "graphics", "bufferData") から  読み込む  。 
+( i という 整数32 , offset という * 整数32 , size という 整数32 , j という 整数32 ) を  とり ${"ja":"glElementBufferData", "natja":"glElementBufferData", "en":"glElementBufferData", "naten":"glElementBufferData"}$ という  関数  を ( "graphics", "elementBufferData") から  読み込む  。 
+( i という 整数32 ) を  とり ${"ja":"glUseProgram", "natja":"glUseProgram", "en":"glUseProgram", "naten":"glUseProgram"}$ という  関数  を ( "graphics", "useProgram") から  読み込む  。 
+( i という 整数32 , offset という * 文字 , size という 整数32 ) を  とり ( loc という 整数32 ) を  返す ${"ja":"glGetAttribLocation", "natja":"glGetAttribLocation", "en":"glGetAttribLocation", "naten":"glGetAttribLocation"}$ という  関数  を ( "graphics", "getAttribLocation") から  読み込む  。 
+( index という 整数32 , size という 整数32 , ty という 整数32 , normalized という 整数32 , stride という 整数32 , offset という 整数32 ) を  とり ${"ja":"glVertexAttribPointer", "natja":"glVertexAttribPointer", "en":"glVertexAttribPointer", "naten":"glVertexAttribPointer"}$ という  関数  を ( "graphics", "vertexAttribPointer") から  読み込む  。 
+( index という 整数32 ) を  とり ${"ja":"glEnableVertexAttribArray", "natja":"glEnableVertexAttribArray", "en":"glEnableVertexAttribArray", "naten":"glEnableVertexAttribArray"}$ という  関数  を ( "graphics", "enableVertexAttribArray") から  読み込む  。 
+( i という 整数32 , first という 整数32 , count という 整数32 ) を  とり ${"ja":"glDrawArrays", "natja":"glDrawArrays", "en":"glDrawArrays", "naten":"glDrawArrays"}$ という  関数  を ( "graphics", "drawArrays") から  読み込む  。 
+( i という 整数32 , offset という * 文字 , size という 整数32 ) を  とり ( loc という 整数32 ) を  返す ${"ja":"_glGetUniformLocation", "natja":"_glGetUniformLocation", "en":"_glGetUniformLocation", "naten":"_glGetUniformLocation"}$ という  関数  を ( "graphics", "getUniformLocation") から  読み込む  。 
+( loc という 整数32 , trans という 整数32 , offset という * 実数 ) を  とり ${"ja":"glUniformMatrix2fv", "natja":"glUniformMatrix2fv", "en":"glUniformMatrix2fv", "naten":"glUniformMatrix2fv"}$ という  関数  を ( "graphics", "uniformMatrix2fv") から  読み込む  。 
+( loc という 整数32 , trans という 整数32 , offset という * 実数 ) を  とり ${"ja":"glUniformMatrix3fv", "natja":"glUniformMatrix3fv", "en":"glUniformMatrix3fv", "naten":"glUniformMatrix3fv"}$ という  関数  を ( "graphics", "uniformMatrix3fv") から  読み込む  。 
+( loc という 整数32 , trans という 整数32 , offset [ 16 ] という 実数 ) を  とり ${"ja":"glUniformMatrix4fv", "natja":"glUniformMatrix4fv", "en":"glUniformMatrix4fv", "naten":"glUniformMatrix4fv"}$ という  関数  を ( "graphics", "uniformMatrix4fv") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 ) を  とり ${"ja":"glUniform1f", "natja":"glUniform1f", "en":"glUniform1f", "naten":"glUniform1f"}$ という  関数  を ( "graphics", "uniform1f") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 ) を  とり ${"ja":"glUniform1fv", "natja":"glUniform1fv", "en":"glUniform1fv", "naten":"glUniform1fv"}$ という  関数  を ( "graphics", "uniform1fv") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 ) を  とり ${"ja":"glUniform1i", "natja":"glUniform1i", "en":"glUniform1i", "naten":"glUniform1i"}$ という  関数  を ( "graphics", "uniform1i") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 ) を  とり ${"ja":"glUniform1iv", "natja":"glUniform1iv", "en":"glUniform1iv", "naten":"glUniform1iv"}$ という  関数  を ( "graphics", "uniform1iv") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 , v1 という 実数 ) を  とり ${"ja":"glUniform2f", "natja":"glUniform2f", "en":"glUniform2f", "naten":"glUniform2f"}$ という  関数  を ( "graphics", "uniform2f") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 , v1 という 実数 ) を  とり ${"ja":"glUniform2fv", "natja":"glUniform2fv", "en":"glUniform2fv", "naten":"glUniform2fv"}$ という  関数  を ( "graphics", "uniform2fv") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 , v1 という 整数32 ) を  とり ${"ja":"glUniform2i", "natja":"glUniform2i", "en":"glUniform2i", "naten":"glUniform2i"}$ という  関数  を ( "graphics", "uniform2i") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 , v1 という 整数32 ) を  とり ${"ja":"glUniform2iv", "natja":"glUniform2iv", "en":"glUniform2iv", "naten":"glUniform2iv"}$ という  関数  を ( "graphics", "uniform2iv") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 ) を  とり ${"ja":"glUniform3f", "natja":"glUniform3f", "en":"glUniform3f", "naten":"glUniform3f"}$ という  関数  を ( "graphics", "uniform3f") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 ) を  とり ${"ja":"glUniform3fv", "natja":"glUniform3fv", "en":"glUniform3fv", "naten":"glUniform3fv"}$ という  関数  を ( "graphics", "uniform3fv") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 ) を  とり ${"ja":"glUniform3i", "natja":"glUniform3i", "en":"glUniform3i", "naten":"glUniform3i"}$ という  関数  を ( "graphics", "uniform3i") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 ) を  とり ${"ja":"glUniform3iv", "natja":"glUniform3iv", "en":"glUniform3iv", "naten":"glUniform3iv"}$ という  関数  を ( "graphics", "uniform3iv") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 , v3 という 実数 ) を  とり ${"ja":"glUniform4f", "natja":"glUniform4f", "en":"glUniform4f", "naten":"glUniform4f"}$ という  関数  を ( "graphics", "uniform4f") から  読み込む  。 
+( loc という 整数32 , v0 という 実数 , v1 という 実数 , v2 という 実数 , v3 という 実数 ) を  とり ${"ja":"glUniform4fv", "natja":"glUniform4fv", "en":"glUniform4fv", "naten":"glUniform4fv"}$ という  関数  を ( "graphics", "uniform4fv") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 , v3 という 整数32 ) を  とり ${"ja":"glUniform4i", "natja":"glUniform4i", "en":"glUniform4i", "naten":"glUniform4i"}$ という  関数  を ( "graphics", "uniform4i") から  読み込む  。 
+( loc という 整数32 , v0 という 整数32 , v1 という 整数32 , v2 という 整数32 , v3 という 整数32 ) を  とり ${"ja":"glUniform4iv", "natja":"glUniform4iv", "en":"glUniform4iv", "naten":"glUniform4iv"}$ という  関数  を ( "graphics", "uniform4iv") から  読み込む  。 
+( r という 実数 , g という 実数 , b という 実数 , a という 実数 ) を  とり ${"ja":"glClearColor", "natja":"glClearColor", "en":"glClearColor", "naten":"glClearColor"}$ という  関数  を ( "graphics", "clearColor") から  読み込む  。 
+( color という 整数32 ) を  とり ${"ja":"glClear", "natja":"glClear", "en":"glClear", "naten":"glClear"}$ という  関数  を ( "graphics", "clear") から  読み込む  。 
+( i という 整数32 , count という 整数32 , ty という 整数32 , offset という 整数32 ) を  とり ${"ja":"glDrawElements", "natja":"glDrawElements", "en":"glDrawElements", "naten":"glDrawElements"}$ という  関数  を ( "graphics", "drawElements") から  読み込む  。 
+( i という 整数32 , j という 整数32 ) を  とり ${"ja":"glBlendFunc", "natja":"glBlendFunc", "en":"glBlendFunc", "naten":"glBlendFunc"}$ という  関数  を ( "graphics", "blendFunc") から  読み込む  。 
+( keyCode という 整数32 ) を  とり ( pressed という 整数 ) を  返す ${"ja":"キーチェック", "natja":"キーチェック", "en":"checkKeyPress", "naten":"checkKeyPress"}$ という  関数  を ( "std", "checkKeyPress") から  読み込む  。 
+( pressed という 整数 ) を  返す ${"ja":"マウスチェック", "natja":"マウスチェック", "en":"checkMousePress", "naten":"checkMousePress"}$ という  関数  を ( "std", "checkMousePress") から  読み込む  。 
+( x という 実数 ) を  返す ${"ja":"マウス相対座標X", "natja":"マウス相対座標X", "en":"checkRelativeMouseX", "naten":"checkRelativeMouseX"}$ という  関数  を ( "std", "checkRelativeMouseX") から  読み込む  。 
+( x という 実数 ) を  返す ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$ という  関数  を ( "std", "checkRelativeMouseY") から  読み込む  。 
+( x という 実数 ) を  返す ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$ という  関数  を ( "std", "checkAbsoluteMouseX") から  読み込む  。 
+( x という 実数 ) を  返す ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$ という  関数  を ( "std", "checkAbsoluteMouseY") から  読み込む  。 
+( x という 実数 ) を  返す ${"ja":"スクロール座標", "natja":"スクロール座標", "en":"checkScroll", "naten":"checkScroll"}$ という  関数  を ( "std", "checkScrollY") から  読み込む  。 
+( x という 実数 ) を  返す ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$ という  関数  を ( "std", "rand") から  読み込む  。 
+( size という 整数32 ) を  とり ( p という * 無 ) を  返す ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$ という  関数  を ( "std", "alloc") から  読み込む  。 
+( offset という * 文字 , length という 整数32 ) を  とり ( a という 整数32 ) を  返す ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$ という  関数  を ( "graphics", "loadTexture") から  読み込む  。 
+( i という 整数32 ) を  とり ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$ という  関数  を ( "graphics", "activeTexture") から  読み込む  。 
+( i という 整数32 , j という 整数32 ) を  とり ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$ という  関数  を ( "graphics", "bindTexture") から  読み込む  。 
+関数 ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$ を ( "graphics", "lockPointer") から  読み込む  。 
 ( vendorId という 整数 , c という 関数 : ( ) => ( ) ) を  とり ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$ という  関数  を ( "arduino", "setUp") から  読み込む  。 
 ( コマンド という 文字 , data という 整数32 ) を  とり ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$ という  関数  を ( "arduino", "sendCommand") から  読み込む  。 
 関数 ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$ を ( "arduino", "checkInput") から  読み込む  。 
 ( ピン番号 という 整数 ) を  とり ( データ という 整数32 ) を  返す ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$ という  関数  を ( "arduino", "analogRead") から  読み込む  。 
 ( ピン番号 という 整数 ) を  とり ( データ という 整数32 ) を  返す ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$ という  関数  を ( "arduino", "digitalRead") から  読み込む  。 
 ( ピン番号 という 整数 ) を  とり ( データ という 整数32 ) を  返す ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$ という  関数  を ( "arduino", "distanceRead") から  読み込む  。 
-( s という * 無 ) を  返す getTeapot という  関数  を ( "js", "getTeapot") から  読み込む  。 
-( s という * 無 ) を  返す getMountains という  関数  を ( "js", "getMountains") から  読み込む  。 
-( s という * 無 ) を  返す getTeddybear という  関数  を ( "js", "getTeddybear") から  読み込む  。 
-( s という * 無 ) を  返す getCow という  関数  を ( "js", "getCow") から  読み込む  。 
-( s という * 無 ) を  返す getFox という  関数  を ( "js", "getFox") から  読み込む  。 
-( s という * 無 ) を  返す getRobot という  関数  を ( "js", "getRobot") から  読み込む  。 
-( x という 実数 ) を  とり ( r という 実数 ) を  返す jsArcSin という  関数  を ( "js", "asin") から  読み込む  。 
-( x という 実数 ) を  とり ( r という 実数 ) を  返す jsArcCos という  関数  を ( "js", "acos") から  読み込む  。 
-( x という 実数 ) を  とり ( r という 実数 ) を  返す jsArcTan という  関数  を ( "js", "atan") から  読み込む  。 
-( x という 実数 ) を  とり ( r という 実数 ) を  返す jsLog という  関数  を ( "js", "log") から  読み込む  。 
-( x という 実数 ) を  とり ( r という 実数 ) を  返す jsEPow という  関数  を ( "js", "ePow") から  読み込む  。 
-( x という 実数 , y という 実数 ) を  とり ( r という 実数 ) を  返す jsPow という  関数  を ( "js", "exp") から  読み込む  。 
+( s という * 無 ) を  返す getTeapot という  関数  を ( "graphics", "getTeapot") から  読み込む  。 
+( s という * 無 ) を  返す getMountains という  関数  を ( "graphics", "getMountains") から  読み込む  。 
+( s という * 無 ) を  返す getTeddybear という  関数  を ( "graphics", "getTeddybear") から  読み込む  。 
+( s という * 無 ) を  返す getCow という  関数  を ( "graphics", "getCow") から  読み込む  。 
+( s という * 無 ) を  返す getFox という  関数  を ( "graphics", "getFox") から  読み込む  。 
+( s という * 無 ) を  返す getRobot という  関数  を ( "graphics", "getRobot") から  読み込む  。 
+( x という 実数 ) を  とり ( r という 実数 ) を  返す jsArcSin という  関数  を ( "std", "asin") から  読み込む  。 
+( x という 実数 ) を  とり ( r という 実数 ) を  返す jsArcCos という  関数  を ( "std", "acos") から  読み込む  。 
+( x という 実数 ) を  とり ( r という 実数 ) を  返す jsArcTan という  関数  を ( "std", "atan") から  読み込む  。 
+( x という 実数 ) を  とり ( r という 実数 ) を  返す jsLog という  関数  を ( "std", "log") から  読み込む  。 
+( x という 実数 ) を  とり ( r という 実数 ) を  返す jsEPow という  関数  を ( "std", "ePow") から  読み込む  。 
+( x という 実数 , y という 実数 ) を  とり ( r という 実数 ) を  返す jsPow という  関数  を ( "std", "exp") から  読み込む  。 
+( x という 実数 ) を  とり updateLinetraceTime という  関数  を ( "linetrace", "updateLinetraceTime") から  読み込む  。 
 ( input という 実数 ) を  とり ( 結果 という 実数 ) を  返す ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$ という  関数  を  おく  。 ここから
 	PI という 実数 を 3.14159265358979312 で  初期化  。 
 	temp という 整数 を input  / ( 2.0  * PI ) で  初期化  。 
@@ -145,7 +146,7 @@
 	もし a  >= 0 ならば ここから
 		b に a を  代入する  。 
 	ここまで実行 でなければ ここから
-		b に 0  - ( a ) を  代入する  。 
+		b に ( 0  - ( a ) ) を  代入する  。 
 	ここまで実行 
 ここまで実行 
 ( deg という 実数 ) を  とり ( rad という 実数 ) を  返す ${"ja":"ラジアンへ", "natja":"ラジアンへ", "en":"toRad", "naten":"toRad"}$ という  関数  を  おく  。 ここから
@@ -157,6 +158,13 @@
 	( i という 整数 を 0 で  初期化  。 ) から ( i  は 20 ) まで ( i に i  + 1 を  代入する  。 ) 繰り返し ここから
 		y に 0.5  * ( y  + ( x  / y ) ) を  代入する  。 
 	ここまで実行 
+ここまで実行 
+( ax という 実数 , ay という 実数 , bx という 実数 , byp という 実数 , cx という 実数 , cy という 実数 , dx という 実数 , dy という 実数 ) を  とり ( b という 真偽 ) を  返す ${"ja":"線分当たり判定", "natja":"線分当たり判定", "en":"checkLineCross", "naten":"checkLineCross"}$ という  関数  を  おく  。 ここから
+	ta という 実数 を ( cx  - dx )  * ( ay  - cy )  + ( cy  - dy )  * ( cx  - ax ) で  初期化  。 
+	tb という 実数 を ( cx  - dx )  * ( byp  - cy )  + ( cy  - dy )  * ( cx  - bx ) で  初期化  。 
+	tc という 実数 を ( ax  - bx )  * ( cy  - ay )  + ( ay  - byp )  * ( ax  - cx ) で  初期化  。 
+	td という 実数 を ( ax  - bx )  * ( dy  - ay )  + ( ay  - byp )  * ( ax  - dx ) で  初期化  。 
+	b に ( ( tc  * td )  < 0 )  && ( ( ta  * tb )  < 0 ) を  代入する  。 
 ここまで実行 
 型 < T > : クラス : ${"ja":"配列", "natja":"配列", "en":"Array", "naten":"Array"}$ {
 公開 : 	content という * T を  おく  。 
@@ -324,7 +332,7 @@
 	( i という 整数 , r という 整数 ) を  とり ( b という 配列 < T > ) を  返す ${"ja":"範囲削除", "natja":"範囲削除", "en":"removeRange", "naten":"removeRange"}$ という  関数  を  おく  。 ここから
 		結果 という 配列 < T > を  おく  。 
 		size 回繰り返す ここから
-			もし ( カウンタ  < i )  || ( カウンタ  >= i  + r ) ならば ここから
+			もし ( カウンタ  < i )  || ( カウンタ  >= ( i  + r ) ) ならば ここから
 				content [ カウンタ ] 結果 の 追加 する  。 
 			ここまで実行 
 		ここまで実行 
@@ -969,7 +977,7 @@
 		色 に c を  代入する  。 
 		座標 に p を  代入する  。 
 		shaderID に s を  代入する  。 
-		lightID に 0  - ( 1 ) を  代入する  。 
+		lightID に ( 0  - ( 1 ) ) を  代入する  。 
 		modelMat の 単位化 する  。 
 		transMat の 単位化 する  。 
 		scaleMat の 単位化 する  。 
@@ -1136,6 +1144,13 @@
 		pitch に 0.0 を  代入する  。 
 		感度 に 1.0 を  代入する  。 
 	ここまで実行 
+	( p という ベクトル3D ) を  とり ${"ja":"座標設定", "natja":"座標設定", "en":"setPos", "naten":"setPos"}$ という  関数  を  おく  。 ここから
+		座標 に p を  代入する  。 
+	ここまで実行 
+	( y という 実数 , p という 実数 ) を  とり ${"ja":"視点角度設定", "natja":"視点角度設定", "en":"setAngle", "naten":"setAngle"}$ という  関数  を  おく  。 ここから
+		yaw に y を  代入する  。 
+		pitch に p を  代入する  。 
+	ここまで実行 
 	( s という 実数 ) を  とり ${"ja":"感度設定", "natja":"感度設定", "en":"setSensitivity", "naten":"setSensitivity"}$ という  関数  を  おく  。 ここから
 		感度 に s を  代入する  。 
 	ここまで実行 
@@ -1202,6 +1217,15 @@
 		temp 目 の カメラ する  。 
 		スプライト配列 の 配列 する  。 
 		光源配列 の 配列 する  。 
+		方向 という ベクトル3D の  オブジェクト  を ( 0  - ( 1.0 ) ) , ( 0  - ( 1.0 ) ) , ( 0  - ( 1.0 ) ) で  初期化  。 
+		白 という ベクトル3D の  オブジェクト  を 1.0 , 1.0 , 1.0 で  初期化  。 
+		平行光源 の 座標 に 方向 を  代入する  。 
+		平行光源 の ambient に 白  * 0.5 を  代入する  。 
+		平行光源 の diffuse に 白  * 0.5 を  代入する  。 
+		平行光源 の specular に 白  * 0.0 を  代入する  。 
+	ここまで実行 
+	( 感度 という 実数 ) を  とり ${"ja":"感度設定", "natja":"感度設定", "en":"setSensitivity", "naten":"setSensitivity"}$ という  関数  を  おく  。 ここから
+		感度 目 の 感度設定 する  。 
 	ここまで実行 
 	関数 ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$ を  おく  。 ここから
 		now に 時間計測 ( )  / 1000.0 を  代入する  。 
@@ -1620,7 +1644,7 @@
 		now に 0.0 を  代入する  。 
 		elapsedTime に 0.0 を  代入する  。 
 		projMat の 単位化 する  。 
-		projMat に 視点行列2D ( projMat , ( 0  - ( 高さ ) )  * ( 16.0  / 9.0 ) , ( 高さ )  * ( 16.0  / 9.0 ) , 0  - ( 高さ ) , 高さ , 0.0  - 5.0 , 5.0 ) を  代入する  。 
+		projMat に 視点行列2D ( projMat , ( ( 0  - ( 高さ ) ) )  * ( 16.0  / 9.0 ) , ( 高さ )  * ( 16.0  / 9.0 ) , ( 0  - ( 高さ ) ) , 高さ , 0.0  - 5.0 , 5.0 ) を  代入する  。 
 		スプライト配列 の 配列 する  。 
 		背景色 に 色 を  代入する  。 
 		背景透明度 に 1.0 を  代入する  。 
@@ -1694,7 +1718,7 @@
 		points の 長さ ( ) 回繰り返す ここから
 			points の content [ カウンタ ] の x temp の 追加 する  。 
 			points の content [ カウンタ ] の y temp の 追加 する  。 
-			0  - ( zIndex  * 0.00100000000000000002 ) temp の 追加 する  。 
+			( 0  - ( zIndex  * 0.00100000000000000002 ) ) temp の 追加 する  。 
 		ここまで実行 
 		sprite という * スプライト を メモリ確保 ( バイト数 ( sprite に  ある  オブジェクト ) ) で  初期化  。 
 		temp の content , temp の 長さ ( )  / 3 , メモリ確保 ( 0 ) , 0 , 色 , 座標 , 4 , 0 , zIndex sprite -> スプライト する  。 
@@ -1722,10 +1746,10 @@
 		points という 配列 < 実数 > を  おく  。 
 		start の x points の 追加 する  。 
 		start の y points の 追加 する  。 
-		0  - ( zIndex  * 0.00100000000000000002 ) points の 追加 する  。 
+		( 0  - ( zIndex  * 0.00100000000000000002 ) ) points の 追加 する  。 
 		end の x points の 追加 する  。 
 		end の y points の 追加 する  。 
-		0  - ( zIndex  * 0.00100000000000000002 ) points の 追加 する  。 
+		( 0  - ( zIndex  * 0.00100000000000000002 ) ) points の 追加 する  。 
 		sprite という * スプライト を メモリ確保 ( バイト数 ( sprite に  ある  オブジェクト ) ) で  初期化  。 
 		points の content , points の 長さ ( )  / 3 , メモリ確保 ( 0 ) , 0 , 色 , ベクトル2D ( 0.0 , 0.0 ) , 4 , 1 , zIndex sprite -> スプライト する  。 
 		sprite スプライト配列 の 追加 する  。 
@@ -1736,7 +1760,7 @@
 		( x という 実数 を start で  初期化  。 ) から ( x  >= end ) まで ( x に x  + dx を  代入する  。 ) 繰り返し ここから
 			x points の 追加 する  。 
 			c ( x ) points の 追加 する  。 
-			0  - ( zIndex  * 0.00100000000000000002 ) points の 追加 する  。 
+			( 0  - ( zIndex  * 0.00100000000000000002 ) ) points の 追加 する  。 
 		ここまで実行 
 		sprite という * スプライト を メモリ確保 ( バイト数 ( sprite に  ある  オブジェクト ) ) で  初期化  。 
 		points の content , points の 長さ ( )  / 3 , メモリ確保 ( 0 ) , 0 , 色 , 座標 , 4 , 1 , zIndex sprite -> スプライト する  。 
@@ -1749,7 +1773,7 @@
 			temp という ベクトル2D を c ( x ) で  初期化  。 
 			temp の x points の 追加 する  。 
 			temp の y points の 追加 する  。 
-			0  - ( zIndex  * 0.00100000000000000002 ) points の 追加 する  。 
+			( 0  - ( zIndex  * 0.00100000000000000002 ) ) points の 追加 する  。 
 		ここまで実行 
 		sprite という * スプライト を メモリ確保 ( バイト数 ( sprite に  ある  オブジェクト ) ) で  初期化  。 
 		points の content , points の 長さ ( )  / 3 , メモリ確保 ( 0 ) , 0 , 色 , 座標 , 4 , 1 , zIndex sprite -> スプライト する  。 
@@ -1818,6 +1842,8 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 	${"ja":"変数7", "natja":"変数7", "en":"variable7", "naten":"variable7"}$ という 実数 を  おく  。 
 	${"ja":"変数8", "natja":"変数8", "en":"variable8", "naten":"variable8"}$ という 実数 を  おく  。 
 	${"ja":"変数9", "natja":"変数9", "en":"variable9", "naten":"variable9"}$ という 実数 を  おく  。 
+	${"ja":"ロボット", "natja":"ロボット", "en":"robot", "naten":"robot"}$ という 実数 を  おく  。 
+	${"ja":"コース", "natja":"コース", "en":"course", "naten":"course"}$ という 実数 を  おく  。 
 ここまで実行 
 クラス : ArduinoClass {
 公開 : 	${"ja":"出力ピン", "natja":"出力ピン", "en":"OUTPUT", "naten":"OUTPUT"}$ という 文字 を  おく  。 
@@ -1850,23 +1876,30 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 クラス : ${"ja":"ライントレースシミュレーション", "natja":"ライントレースシミュレーション", "en":"linetraceSimulation", "naten":"linetraceSimulation"}$ {
 公開 : 	ワールド という シーン を  おく  。 
 	直線データ という 配列 < ベクトル2D > を  おく  。 
-	センサー値 [ 2 ] という 実数 を  おく  。 
-	左モーターON という 整数 を  おく  。 
-	右モーターON という 整数 を  おく  。 
-	左モーター向き という 整数 を  おく  。 
-	右モーター向き という 整数 を  おく  。 
-	左モーター速度 という 実数 を  おく  。 
-	右モーター速度 という 実数 を  おく  。 
-	( points という 配列 < 実数 > , firstPos という ベクトル2D ) を  とり ライントレースシミュレーション という  関数  を  おく  。 ここから
+	${"ja":"センサー値", "natja":"センサー値", "en":"sensorValue", "naten":"sensorValue"}$ [ 2 ] という 実数 を  おく  。 
+	${"ja":"左モーターON", "natja":"左モーターON", "en":"leftMotorON", "naten":"leftMotorON"}$ という 整数 を  おく  。 
+	${"ja":"右モーターON", "natja":"右モーターON", "en":"rightMotorON", "naten":"rightMotorON"}$ という 整数 を  おく  。 
+	${"ja":"左モーター向き", "natja":"左モーター向き", "en":"leftMotorSequence", "naten":"leftMotorSequence"}$ という 整数 を  おく  。 
+	${"ja":"右モーター向き", "natja":"右モーター向き", "en":"rightMotorSequence", "naten":"rightMotorSequence"}$ という 整数 を  おく  。 
+	${"ja":"左モーター速度", "natja":"左モーター速度", "en":"leftMotorSpeed", "naten":"leftMotorSpeed"}$ という 実数 を  おく  。 
+	${"ja":"右モーター速度", "natja":"右モーター速度", "en":"rightMotorSpeed", "naten":"rightMotorSpeed"}$ という 実数 を  おく  。 
+	スタートタイム という 実数 を  おく  。 
+	エンドタイム という 実数 を  おく  。 
+	( points という 配列 < 実数 > , firstPos という ベクトル2D , ax という 実数 , ay という 実数 , bx という 実数 , byp という 実数 ) を  とり ライントレースシミュレーション という  関数  を  おく  。 ここから
 		直線データ の 配列 する  。 
 		ワールド の シーン する  。 
 		0.0 , 1.0 ロボット移動方向 の ベクトル2D する  。 
+		スタートマーク [ 0 ] に ax を  代入する  。 
+		スタートマーク [ 1 ] に ay を  代入する  。 
+		スタートマーク [ 2 ] に bx を  代入する  。 
+		スタートマーク [ 3 ] に byp を  代入する  。 
 		左モーター速度 に 3 を  代入する  。 
 		右モーター速度 に 3 を  代入する  。 
 		左モーター向き に 1 を  代入する  。 
 		右モーター向き に 1 を  代入する  。 
 		左モーターON に 0 を  代入する  。 
 		右モーターON に 0 を  代入する  。 
+		スタートタイム に 時間計測 ( ) を  代入する  。 
 		ロボット速度 に 1.0 を  代入する  。 
 		ロボット座標 に firstPos を  代入する  。 
 		灰色 という ベクトル3D の  オブジェクト  を 0.800000000000000044 , 0.800000000000000044 , 0.800000000000000044 で  初期化  。 
@@ -1874,11 +1907,15 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 		黒 という ベクトル3D の  オブジェクト  を 0.0 , 0.0 , 0.0 で  初期化  。 
 		初期位置1 という ベクトル3D の  オブジェクト  を firstPos の x , 0.0 , firstPos の y で  初期化  。 
 		初期位置2 という ベクトル3D の  オブジェクト  を 5.0 , 5.0 , 5.0 で  初期化  。 
-		初期位置3 という ベクトル3D の  オブジェクト  を 0.0 , 0  - ( 0.5 ) , 0.0 で  初期化  。 
+		初期位置3 という ベクトル3D の  オブジェクト  を 0.0 , ( 0  - ( 0.5 ) ) , 0.0 で  初期化  。 
+		初期位置4 という ベクトル3D の  オブジェクト  を firstPos の x , 10.0 , firstPos の y で  初期化  。 
 		回転軸 という ベクトル3D の  オブジェクト  を 0.0 , 1.0 , 0.0 で  初期化  。 
 		points の 取得 ( 0 ) points の 追加 する  。 
 		points の 取得 ( 1 ) points の 追加 する  。 
 		初期位置3 , 白 , 0.0500000000000000028 , 0.0500000000000000028 , 0.0 ワールド の 平行光源設定 する  。 
+		5.0 ワールド の 目 の 感度設定 する  。 
+		初期位置4 ワールド の 目 の 座標設定 する  。 
+		90.0 , ( 0  - ( 90.0 ) ) ワールド の 目 の 視点角度設定 する  。 
 		ロボットID に ワールド の モデル追加 ( サンプルモデルロード ( "robot") , 灰色 , 初期位置1 ) を  代入する  。 
 		ベクトル3D ( 0.0 , 1.0 , 0.0 ) , ラジアンへ ( 180 ) ワールド の スプライト配列 の 取得 ( ロボットID ) -> 回転設定 する  。 
 		ライトID に ワールド の ライト追加 ( 1.0 , 白 , 初期位置2 , 1000.0 ) を  代入する  。 
@@ -1897,7 +1934,7 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 				temp座標 という ベクトル2D を 和  * 0.5 で  初期化  。 
 				temp3D座標 という ベクトル3D の  オブジェクト  を temp座標 の x , 0.0 , temp座標 の y で  初期化  。 
 				tempID という 整数 を ワールド の 直方体追加 ( 長さ , 0.25 , 0.25 , 黒 , temp3D座標 ) で  初期化  。 
-				回転軸 , 0  - ( jsArcTan ( 傾き ) ) ワールド の スプライト配列 の 取得 ( tempID ) -> 回転設定 する  。 
+				回転軸 , ( 0  - ( jsArcTan ( 傾き ) ) ) ワールド の スプライト配列 の 取得 ( tempID ) -> 回転設定 する  。 
 			ここまで実行 
 		ここまで実行 
 		ベクトル2D ( points の 取得 ( 0 ) , points の 取得 ( 1 ) ) 直線データ の 追加 する  。 
@@ -1910,9 +1947,9 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 		a という 実数 を 1.0 で  初期化  。 
 		もし 右モーター距離  >= 左モーター距離 ならば ここから
 			基本距離 に 左モーター距離 を  代入する  。 
-			a に 0  - ( 1.0 ) を  代入する  。 
+			a に ( 0  - ( 1.0 ) ) を  代入する  。 
 		ここまで実行 
-		b という 実数 を 0  - ( 1.0 ) で  初期化  。 
+		b という 実数 を ( 0  - ( 1.0 ) ) で  初期化  。 
 		theta という 実数 を 180.0  * jsArcTan ( 右モーター距離  - 左モーター距離 )  / PI で  初期化  。 
 		もし 右モーター距離  は 左モーター距離 ならば ここから
 			theta に 0 を  代入する  。 
@@ -1928,61 +1965,68 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 		ロボット座標 の x に ロボット座標 の x  - ( a  * cos ( ラジアンへ ( ロボット角度  - theta ) )  - b  * sin ( ラジアンへ ( ロボット角度  - theta ) )  - a ) を  代入する  。 
 		ロボット座標 の y に ロボット座標 の y  + a  * sin ( ラジアンへ ( ロボット角度 ) )  + b  * cos ( ラジアンへ ( ロボット角度 ) )  - b を  代入する  。 
 		ロボット座標 の y に ロボット座標 の y  - ( a  * sin ( ラジアンへ ( ロボット角度  - theta ) )  + b  * cos ( ラジアンへ ( ロボット角度  - theta ) )  - b ) を  代入する  。 
-		ベクトル3D ( 0.0 , 1.0 , 0.0 ) , ラジアンへ ( 0  - ( ロボット角度  + 180 ) ) ワールド の スプライト配列 の 取得 ( ロボットID ) -> 回転設定 する  。 
+		ベクトル3D ( 0.0 , 1.0 , 0.0 ) , ラジアンへ ( ( 0  - ( ロボット角度  + 180 ) ) ) ワールド の スプライト配列 の 取得 ( ロボットID ) -> 回転設定 する  。 
 		ロボット座標 に ロボット座標  + ( ロボット移動方向  * 基本距離 ) を  代入する  。 
 	ここまで実行 
 	関数 アップデート を  おく  。 ここから
-		移動 する  。 
 		センサー座標 [ 2 ] という ベクトル2D を ロボット座標 で  初期化  。 
-		センサー座標 [ 0 ] の x に 1.75  * cos ( ラジアンへ ( ロボット角度  + 79.0 ) )  + ロボット座標 の x を  代入する  。 
-		センサー座標 [ 0 ] の y に 1.75  * sin ( ラジアンへ ( ロボット角度  + 79.0 ) )  + ロボット座標 の y を  代入する  。 
-		センサー座標 [ 1 ] の x に 1.75  * cos ( ラジアンへ ( ロボット角度  + 101.0 ) )  + ロボット座標 の x を  代入する  。 
-		センサー座標 [ 1 ] の y に 1.75  * sin ( ラジアンへ ( ロボット角度  + 101.0 ) )  + ロボット座標 の y を  代入する  。 
-		ベクトル3D ( センサー座標 [ 0 ] の x , 0.400000000000000022 , センサー座標 [ 0 ] の y ) ワールド の スプライト配列 の 取得 ( センサー1ID ) -> 座標設定 する  。 
-		ベクトル3D ( センサー座標 [ 1 ] の x , 0.400000000000000022 , センサー座標 [ 1 ] の y ) ワールド の スプライト配列 の 取得 ( センサー2ID ) -> 座標設定 する  。 
-		ベクトル3D ( 0.0 , 1.0 , 0.0 ) , ラジアンへ ( 0  - ( ロボット角度  + 180 ) ) ワールド の スプライト配列 の 取得 ( センサー1ID ) -> 回転設定 する  。 
-		ベクトル3D ( 0.0 , 1.0 , 0.0 ) , ラジアンへ ( 0  - ( ロボット角度  + 180 ) ) ワールド の スプライト配列 の 取得 ( センサー2ID ) -> 回転設定 する  。 
-		センサー距離 [ 2 ] という 実数 を [ 10000.0 , 10000.0 ] で  初期化  。 
-		センサー数 という 整数 を 2 で  初期化  。 
-		センサー数 回繰り返す ここから
-			( i という 整数 を 0 で  初期化  。 ) から ( i  は ( 直線データ の 長さ ( )  - 1 ) ) まで ( i に i  + 1 を  代入する  。 ) 繰り返し ここから
-				A という ベクトル2D を 直線データ の 取得 ( i ) で  初期化  。 
-				B という ベクトル2D を 直線データ の 取得 ( i  + 1 ) で  初期化  。 
-				AB という ベクトル2D を B  - A で  初期化  。 
-				Aセンサー座標 という ベクトル2D を センサー座標 [ カウンタ ]  - A で  初期化  。 
-				Bセンサー座標 という ベクトル2D を センサー座標 [ カウンタ ]  - B で  初期化  。 
-				もし ( ベクトル2Dの内積 ( AB , Aセンサー座標 )  >= 0 )  && ( ベクトル2Dの内積 ( AB  * ( 0  - ( 1.0 ) ) , Bセンサー座標 )  >= 0 ) ならば ここから
-					傾き という 実数 を ( A の y  - B の y )  / ( A の x  - B の x ) で  初期化  。 
-					y切片 という 実数 を A の y  - ( 傾き  * A の x ) で  初期化  。 
-					距離 という 実数 を 絶対値 ( 傾き  * センサー座標 [ カウンタ ] の x  - センサー座標 [ カウンタ ] の y  + y切片 )  / 平方根 ( 1.0  + 傾き  * 傾き ) で  初期化  。 
-					もし 絶対値 ( 傾き )  > 10000.0 ならば ここから
-						距離 に 絶対値 ( A の x  - センサー座標 [ カウンタ ] の x ) を  代入する  。 
-					ここまで実行 
-					もし センサー距離 [ カウンタ ]  > 距離 ならば ここから
-						センサー距離 [ カウンタ ] に 距離 を  代入する  。 
-					ここまで実行 
-				ここまで実行 でなければ ここから
-					もし センサー距離 [ カウンタ ]  > Aセンサー座標 の 長さ ( ) ならば ここから
-						センサー距離 [ カウンタ ] に Aセンサー座標 の 長さ ( ) を  代入する  。 
-					ここまで実行 
-					もし センサー距離 [ カウンタ ]  > Bセンサー座標 の 長さ ( ) ならば ここから
-						センサー距離 [ カウンタ ] に Bセンサー座標 の 長さ ( ) を  代入する  。 
+		もし ( ! おわり )  && 線分当たり判定 ( センサー座標 [ 0 ] の x , センサー座標 [ 0 ] の y , センサー座標 [ 1 ] の x , センサー座標 [ 1 ] の y , スタートマーク [ 0 ] , スタートマーク [ 1 ] , スタートマーク [ 2 ] , スタートマーク [ 3 ] ) ならば ここから
+			おわり に 真 を  代入する  。 
+			エンドタイム に 時間計測 ( ) を  代入する  。 
+			( エンドタイム  - スタートタイム )  / 1000 updateLinetraceTime する  。 
+		ここまで実行 
+		もし ! おわり ならば ここから
+			移動 する  。 
+			センサー座標 [ 0 ] の x に 1.75  * cos ( ラジアンへ ( ロボット角度  + 79.0 ) )  + ロボット座標 の x を  代入する  。 
+			センサー座標 [ 0 ] の y に 1.75  * sin ( ラジアンへ ( ロボット角度  + 79.0 ) )  + ロボット座標 の y を  代入する  。 
+			センサー座標 [ 1 ] の x に 1.75  * cos ( ラジアンへ ( ロボット角度  + 101.0 ) )  + ロボット座標 の x を  代入する  。 
+			センサー座標 [ 1 ] の y に 1.75  * sin ( ラジアンへ ( ロボット角度  + 101.0 ) )  + ロボット座標 の y を  代入する  。 
+			ベクトル3D ( センサー座標 [ 0 ] の x , 0.400000000000000022 , センサー座標 [ 0 ] の y ) ワールド の スプライト配列 の 取得 ( センサー1ID ) -> 座標設定 する  。 
+			ベクトル3D ( センサー座標 [ 1 ] の x , 0.400000000000000022 , センサー座標 [ 1 ] の y ) ワールド の スプライト配列 の 取得 ( センサー2ID ) -> 座標設定 する  。 
+			ベクトル3D ( 0.0 , 1.0 , 0.0 ) , ラジアンへ ( ( 0  - ( ロボット角度  + 180 ) ) ) ワールド の スプライト配列 の 取得 ( センサー1ID ) -> 回転設定 する  。 
+			ベクトル3D ( 0.0 , 1.0 , 0.0 ) , ラジアンへ ( ( 0  - ( ロボット角度  + 180 ) ) ) ワールド の スプライト配列 の 取得 ( センサー2ID ) -> 回転設定 する  。 
+			センサー距離 [ 2 ] という 実数 を [ 10000.0 , 10000.0 ] で  初期化  。 
+			センサー数 という 整数 を 2 で  初期化  。 
+			センサー数 回繰り返す ここから
+				( i という 整数 を 0 で  初期化  。 ) から ( i  は ( 直線データ の 長さ ( )  - 1 ) ) まで ( i に i  + 1 を  代入する  。 ) 繰り返し ここから
+					A という ベクトル2D を 直線データ の 取得 ( i ) で  初期化  。 
+					B という ベクトル2D を 直線データ の 取得 ( i  + 1 ) で  初期化  。 
+					AB という ベクトル2D を B  - A で  初期化  。 
+					Aセンサー座標 という ベクトル2D を センサー座標 [ カウンタ ]  - A で  初期化  。 
+					Bセンサー座標 という ベクトル2D を センサー座標 [ カウンタ ]  - B で  初期化  。 
+					もし ( ベクトル2Dの内積 ( AB , Aセンサー座標 )  >= 0 )  && ( ベクトル2Dの内積 ( AB  * ( 0  - ( 1.0 ) ) , Bセンサー座標 )  >= 0 ) ならば ここから
+						傾き という 実数 を ( A の y  - B の y )  / ( A の x  - B の x ) で  初期化  。 
+						y切片 という 実数 を A の y  - ( 傾き  * A の x ) で  初期化  。 
+						距離 という 実数 を 絶対値 ( 傾き  * センサー座標 [ カウンタ ] の x  - センサー座標 [ カウンタ ] の y  + y切片 )  / 平方根 ( 1.0  + 傾き  * 傾き ) で  初期化  。 
+						もし 絶対値 ( 傾き )  > 10000.0 ならば ここから
+							距離 に 絶対値 ( A の x  - センサー座標 [ カウンタ ] の x ) を  代入する  。 
+						ここまで実行 
+						もし センサー距離 [ カウンタ ]  > 距離 ならば ここから
+							センサー距離 [ カウンタ ] に 距離 を  代入する  。 
+						ここまで実行 
+					ここまで実行 でなければ ここから
+						もし センサー距離 [ カウンタ ]  > Aセンサー座標 の 長さ ( ) ならば ここから
+							センサー距離 [ カウンタ ] に Aセンサー座標 の 長さ ( ) を  代入する  。 
+						ここまで実行 
+						もし センサー距離 [ カウンタ ]  > Bセンサー座標 の 長さ ( ) ならば ここから
+							センサー距離 [ カウンタ ] に Bセンサー座標 の 長さ ( ) を  代入する  。 
+						ここまで実行 
 					ここまで実行 
 				ここまで実行 
 			ここまで実行 
+			センサー値 [ 0 ] に センサー距離 [ 0 ]  * 768.0 を  代入する  。 
+			センサー値 [ 1 ] に センサー距離 [ 1 ]  * 768.0 を  代入する  。 
+			もし センサー値 [ 0 ]  > 255 ならば ここから
+				センサー値 [ 0 ] に 255.0 を  代入する  。 
+			ここまで実行 
+			もし センサー値 [ 1 ]  > 255 ならば ここから
+				センサー値 [ 1 ] に 255.0 を  代入する  。 
+			ここまで実行 
+			ロボット座標3D という ベクトル3D の  オブジェクト  を ロボット座標 の x , 0.0 , ロボット座標 の y で  初期化  。 
+			ライト座標3D という ベクトル3D の  オブジェクト  を ロボット座標 の x  + 5.0 , 5.0 , ロボット座標 の y  + 5.0 で  初期化  。 
+			ロボット座標3D ワールド の スプライト配列 の 取得 ( ロボットID ) -> 座標設定 する  。 
+			ライト座標3D ワールド の スプライト配列 の 取得 ( ライトID ) -> 座標設定 する  。 
 		ここまで実行 
-		センサー値 [ 0 ] に センサー距離 [ 0 ]  * 768.0 を  代入する  。 
-		センサー値 [ 1 ] に センサー距離 [ 1 ]  * 768.0 を  代入する  。 
-		もし センサー値 [ 0 ]  > 255 ならば ここから
-			センサー値 [ 0 ] に 255.0 を  代入する  。 
-		ここまで実行 
-		もし センサー値 [ 1 ]  > 255 ならば ここから
-			センサー値 [ 1 ] に 255.0 を  代入する  。 
-		ここまで実行 
-		ロボット座標3D という ベクトル3D の  オブジェクト  を ロボット座標 の x , 0.0 , ロボット座標 の y で  初期化  。 
-		ライト座標3D という ベクトル3D の  オブジェクト  を ロボット座標 の x  + 5.0 , 5.0 , ロボット座標 の y  + 5.0 で  初期化  。 
-		ロボット座標3D ワールド の スプライト配列 の 取得 ( ロボットID ) -> 座標設定 する  。 
-		ライト座標3D ワールド の スプライト配列 の 取得 ( ライトID ) -> 座標設定 する  。 
 		ワールド の 描画 する  。 
 	ここまで実行 
 非公開 : 	ロボットID という 整数 を  おく  。 
@@ -1991,7 +2035,10 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 	ロボット移動方向 という ベクトル2D を  おく  。 
 	ロボット速度 という 実数 を  おく  。 
 	ロボット座標 という ベクトル2D を  おく  。 
+	ロボット初期位置 という ベクトル2D を  おく  。 
 	センサー1ID という 整数 を  おく  。 
 	センサー2ID という 整数 を  おく  。 
 	ロボットoffset という ベクトル2D を  おく  。 
+	おわり という 真偽 を  おく  。 
+	スタートマーク [ 4 ] という 実数 を  おく  。 
 } 

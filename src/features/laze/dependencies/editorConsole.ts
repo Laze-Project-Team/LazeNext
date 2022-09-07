@@ -9,17 +9,16 @@ export type importEditorConsoleProps = {
   id: string;
 };
 
-const checkImportEditorConsoleProps = (arg: unknown): boolean => {
+const checkImportEditorConsoleProps = (arg: unknown): arg is importEditorConsoleProps => {
   const props = arg as importEditorConsoleProps;
   return typeof props?.memory === 'object' && typeof props?.dispatcher === 'function' && typeof props?.id === 'string';
 };
 
-const importEditorConsole = (p: unknown): WebAssembly.Imports => {
-  if (!checkImportEditorConsoleProps(p)) {
+const importEditorConsole = (props: unknown): WebAssembly.Imports => {
+  if (!checkImportEditorConsoleProps(props)) {
     throw new Error('The props in importEditorConsole is not of type importEditorConsoleProps.');
   }
 
-  const props = p as importEditorConsoleProps;
   const { memory, dispatcher, id } = props;
 
   const { addLog } = consoleSlice.actions;
@@ -68,11 +67,10 @@ const importEditorConsole = (p: unknown): WebAssembly.Imports => {
   };
 };
 
-const initializeEditorConsoleProps = (p: unknown): Laze.Props => {
-  if (!checkImportEditorConsoleProps(p)) {
+const initializeEditorConsoleProps = (props: unknown): Laze.Props => {
+  if (!checkImportEditorConsoleProps(props)) {
     throw new Error('The props in initializeStdProps does not include type importEditorConsoleProps.');
   }
-  const props = p as importEditorConsoleProps;
   props.memory = new WebAssembly.Memory({ initial: 1000 });
   return props;
 };

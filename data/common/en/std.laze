@@ -3,77 +3,77 @@ function: ${"ja":"デバッグ表示", "natja":"デバッグ表示", "en":"debug
 function: ${"ja":"行列表示", "natja":"行列表示", "en":"printMatrix", "naten":"printMatrix"}$(double: offset[4][4]) => () = jsload("console", "logMatrix");
 function: ${"ja":"アドレス表示", "natja":"アドレス表示", "en":"printAddress", "naten":"printAddress"}$(*void: x) => () = jsload("console", "log");
 function: ${"ja":"_文字列表示", "natja":"_文字列表示", "en":"_printString", "naten":"_printString"}$(*char: x, int: 長さ) => () = jsload("console", "logstring");
-function: ${"ja":"時間計測", "natja":"時間計測", "en":"getTime", "naten":"getTime"}$() => (double: 時間) = jsload("performance", "now");
-function: ${"ja":"glClearDepth", "natja":"glClearDepth", "en":"glClearDepth", "naten":"glClearDepth"}$(short: i) => () = jsload("webgl", "clearDepth");
-function: ${"ja":"glDepthFunc", "natja":"glDepthFunc", "en":"glDepthFunc", "naten":"glDepthFunc"}$(short: i) => () = jsload("webgl", "depthFunc");
-function: ${"ja":"glEnable", "natja":"glEnable", "en":"glEnable", "naten":"glEnable"}$(short: i) => () = jsload("webgl", "enable");
-function: ${"ja":"glDisable", "natja":"glDisable", "en":"glDisable", "naten":"glDisable"}$(short: i) => () = jsload("webgl", "disable");
-function: ${"ja":"glCreateProgram", "natja":"glCreateProgram", "en":"glCreateProgram", "naten":"glCreateProgram"}$() => (short: prog) = jsload("webgl", "createProgram");
-function: ${"ja":"glCreateBuffer", "natja":"glCreateBuffer", "en":"glCreateBuffer", "naten":"glCreateBuffer"}$() => (short: buffer) = jsload("webgl", "createBuffer");
-function: ${"ja":"glBindBuffer", "natja":"glBindBuffer", "en":"glBindBuffer", "naten":"glBindBuffer"}$(short: i, short: j) => () = jsload("webgl", "bindBuffer");
-function: ${"ja":"glBufferData", "natja":"glBufferData", "en":"glBufferData", "naten":"glBufferData"}$(short: i, *double: offset, short: size, short: j) => () = jsload("webgl", "bufferData");
-function: ${"ja":"glElementBufferData", "natja":"glElementBufferData", "en":"glElementBufferData", "naten":"glElementBufferData"}$(short: i, *short: offset, short: size, short: j) => () = jsload("webgl", "elementBufferData");
-function: ${"ja":"glUseProgram", "natja":"glUseProgram", "en":"glUseProgram", "naten":"glUseProgram"}$(short: i) => () = jsload("webgl", "useProgram");
-function: ${"ja":"glGetAttribLocation", "natja":"glGetAttribLocation", "en":"glGetAttribLocation", "naten":"glGetAttribLocation"}$(short: i, *char: offset, short: size) => (short: loc) = jsload("webgl", "getAttribLocation");
-function: ${"ja":"glVertexAttribPointer", "natja":"glVertexAttribPointer", "en":"glVertexAttribPointer", "naten":"glVertexAttribPointer"}$(short: index, short: size, short: ty, short: normalized, short: stride, short: offset) => () = jsload("webgl", "vertexAttribPointer");
-function: ${"ja":"glEnableVertexAttribArray", "natja":"glEnableVertexAttribArray", "en":"glEnableVertexAttribArray", "naten":"glEnableVertexAttribArray"}$(short: index) => () = jsload("webgl", "enableVertexAttribArray");
-function: ${"ja":"glDrawArrays", "natja":"glDrawArrays", "en":"glDrawArrays", "naten":"glDrawArrays"}$(short: i, short: first, short: count) => () = jsload("webgl", "drawArrays");
-function: ${"ja":"_glGetUniformLocation", "natja":"_glGetUniformLocation", "en":"_glGetUniformLocation", "naten":"_glGetUniformLocation"}$(short: i, *char: offset, short: size) => (short: loc) = jsload("webgl", "getUniformLocation");
-function: ${"ja":"glUniformMatrix2fv", "natja":"glUniformMatrix2fv", "en":"glUniformMatrix2fv", "naten":"glUniformMatrix2fv"}$(short: loc, short: trans, *double: offset) => () = jsload("webgl", "uniformMatrix2fv");
-function: ${"ja":"glUniformMatrix3fv", "natja":"glUniformMatrix3fv", "en":"glUniformMatrix3fv", "naten":"glUniformMatrix3fv"}$(short: loc, short: trans, *double: offset) => () = jsload("webgl", "uniformMatrix3fv");
-function: ${"ja":"glUniformMatrix4fv", "natja":"glUniformMatrix4fv", "en":"glUniformMatrix4fv", "naten":"glUniformMatrix4fv"}$(short: loc, short: trans, double: offset[16]) => () = jsload("webgl", "uniformMatrix4fv");
-function: ${"ja":"glUniform1f", "natja":"glUniform1f", "en":"glUniform1f", "naten":"glUniform1f"}$(short: loc, double: v0) => () = jsload("webgl", "uniform1f");
-function: ${"ja":"glUniform1fv", "natja":"glUniform1fv", "en":"glUniform1fv", "naten":"glUniform1fv"}$(short: loc, double: v0) => () = jsload("webgl", "uniform1fv");
-function: ${"ja":"glUniform1i", "natja":"glUniform1i", "en":"glUniform1i", "naten":"glUniform1i"}$(short: loc, short: v0) => () = jsload("webgl", "uniform1i");
-function: ${"ja":"glUniform1iv", "natja":"glUniform1iv", "en":"glUniform1iv", "naten":"glUniform1iv"}$(short: loc, short: v0) => () = jsload("webgl", "uniform1iv");
-function: ${"ja":"glUniform2f", "natja":"glUniform2f", "en":"glUniform2f", "naten":"glUniform2f"}$(short: loc, double: v0, double: v1) => () = jsload("webgl", "uniform2f");
-function: ${"ja":"glUniform2fv", "natja":"glUniform2fv", "en":"glUniform2fv", "naten":"glUniform2fv"}$(short: loc, double: v0, double: v1) => () = jsload("webgl", "uniform2fv");
-function: ${"ja":"glUniform2i", "natja":"glUniform2i", "en":"glUniform2i", "naten":"glUniform2i"}$(short: loc, short: v0, short: v1) => () = jsload("webgl", "uniform2i");
-function: ${"ja":"glUniform2iv", "natja":"glUniform2iv", "en":"glUniform2iv", "naten":"glUniform2iv"}$(short: loc, short: v0, short: v1) => () = jsload("webgl", "uniform2iv");
-function: ${"ja":"glUniform3f", "natja":"glUniform3f", "en":"glUniform3f", "naten":"glUniform3f"}$(short: loc, double: v0, double: v1, double: v2) => () = jsload("webgl", "uniform3f");
-function: ${"ja":"glUniform3fv", "natja":"glUniform3fv", "en":"glUniform3fv", "naten":"glUniform3fv"}$(short: loc, double: v0, double: v1, double: v2) => () = jsload("webgl", "uniform3fv");
-function: ${"ja":"glUniform3i", "natja":"glUniform3i", "en":"glUniform3i", "naten":"glUniform3i"}$(short: loc, short: v0, short: v1, short: v2) => () = jsload("webgl", "uniform3i");
-function: ${"ja":"glUniform3iv", "natja":"glUniform3iv", "en":"glUniform3iv", "naten":"glUniform3iv"}$(short: loc, short: v0, short: v1, short: v2) => () = jsload("webgl", "uniform3iv");
-function: ${"ja":"glUniform4f", "natja":"glUniform4f", "en":"glUniform4f", "naten":"glUniform4f"}$(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("webgl", "uniform4f");
-function: ${"ja":"glUniform4fv", "natja":"glUniform4fv", "en":"glUniform4fv", "naten":"glUniform4fv"}$(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("webgl", "uniform4fv");
-function: ${"ja":"glUniform4i", "natja":"glUniform4i", "en":"glUniform4i", "naten":"glUniform4i"}$(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("webgl", "uniform4i");
-function: ${"ja":"glUniform4iv", "natja":"glUniform4iv", "en":"glUniform4iv", "naten":"glUniform4iv"}$(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("webgl", "uniform4iv");
-function: ${"ja":"glClearColor", "natja":"glClearColor", "en":"glClearColor", "naten":"glClearColor"}$(double: r, double: g, double: b, double: a) => () = jsload("webgl", "clearColor");
-function: ${"ja":"glClear", "natja":"glClear", "en":"glClear", "naten":"glClear"}$(short: color) => () = jsload("webgl", "clear");
-function: ${"ja":"glDrawElements", "natja":"glDrawElements", "en":"glDrawElements", "naten":"glDrawElements"}$(short: i, short: count, short: ty, short: offset) => () = jsload("webgl", "drawElements");
-function: ${"ja":"glBlendFunc", "natja":"glBlendFunc", "en":"glBlendFunc", "naten":"glBlendFunc"}$(short: i, short: j) => () = jsload("webgl", "blendFunc");
-function: ${"ja":"キーチェック", "natja":"キーチェック", "en":"checkKeyPress", "naten":"checkKeyPress"}$(short: keyCode) => (int: pressed) = jsload("js", "checkKeyPress");
-function: ${"ja":"マウスチェック", "natja":"マウスチェック", "en":"checkMousePress", "naten":"checkMousePress"}$() => (int: pressed) = jsload("js", "checkMousePress");
-function: ${"ja":"マウス相対座標X", "natja":"マウス相対座標X", "en":"checkRelativeMouseX", "naten":"checkRelativeMouseX"}$() => (double: x) = jsload("js", "checkRelativeMouseX");
-function: ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$() => (double: x) = jsload("js", "checkRelativeMouseY");
-function: ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$() => (double: x) = jsload("js", "checkAbsoluteMouseX");
-function: ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$() => (double: x) = jsload("js", "checkAbsoluteMouseY");
-function: ${"ja":"スクロール座標", "natja":"スクロール座標", "en":"checkScroll", "naten":"checkScroll"}$() => (double: x) = jsload("js", "checkScrollY");
-function: ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$() => (double: x) = jsload("js", "rand");
-function: ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$(short: size) => (*void: p) = jsload("js", "alloc");
-function: ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$(*char: offset, short: length) => (short: a) = jsload("webgl", "loadTexture");
-function: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(short: i) => () = jsload("webgl", "activeTexture");
-function: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(short: i, short: j) => () = jsload("webgl", "bindTexture");
-function: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = jsload("js", "lockPointer");
+function: ${"ja":"時間計測", "natja":"時間計測", "en":"getTime", "naten":"getTime"}$() => (double: 時間) = jsload("std", "performanceNow");
+function: ${"ja":"glClearDepth", "natja":"glClearDepth", "en":"glClearDepth", "naten":"glClearDepth"}$(short: i) => () = jsload("graphics", "clearDepth");
+function: ${"ja":"glDepthFunc", "natja":"glDepthFunc", "en":"glDepthFunc", "naten":"glDepthFunc"}$(short: i) => () = jsload("graphics", "depthFunc");
+function: ${"ja":"glEnable", "natja":"glEnable", "en":"glEnable", "naten":"glEnable"}$(short: i) => () = jsload("graphics", "enable");
+function: ${"ja":"glDisable", "natja":"glDisable", "en":"glDisable", "naten":"glDisable"}$(short: i) => () = jsload("graphics", "disable");
+function: ${"ja":"glCreateProgram", "natja":"glCreateProgram", "en":"glCreateProgram", "naten":"glCreateProgram"}$() => (short: prog) = jsload("graphics", "createProgram");
+function: ${"ja":"glCreateBuffer", "natja":"glCreateBuffer", "en":"glCreateBuffer", "naten":"glCreateBuffer"}$() => (short: buffer) = jsload("graphics", "createBuffer");
+function: ${"ja":"glBindBuffer", "natja":"glBindBuffer", "en":"glBindBuffer", "naten":"glBindBuffer"}$(short: i, short: j) => () = jsload("graphics", "bindBuffer");
+function: ${"ja":"glBufferData", "natja":"glBufferData", "en":"glBufferData", "naten":"glBufferData"}$(short: i, *double: offset, short: size, short: j) => () = jsload("graphics", "bufferData");
+function: ${"ja":"glElementBufferData", "natja":"glElementBufferData", "en":"glElementBufferData", "naten":"glElementBufferData"}$(short: i, *short: offset, short: size, short: j) => () = jsload("graphics", "elementBufferData");
+function: ${"ja":"glUseProgram", "natja":"glUseProgram", "en":"glUseProgram", "naten":"glUseProgram"}$(short: i) => () = jsload("graphics", "useProgram");
+function: ${"ja":"glGetAttribLocation", "natja":"glGetAttribLocation", "en":"glGetAttribLocation", "naten":"glGetAttribLocation"}$(short: i, *char: offset, short: size) => (short: loc) = jsload("graphics", "getAttribLocation");
+function: ${"ja":"glVertexAttribPointer", "natja":"glVertexAttribPointer", "en":"glVertexAttribPointer", "naten":"glVertexAttribPointer"}$(short: index, short: size, short: ty, short: normalized, short: stride, short: offset) => () = jsload("graphics", "vertexAttribPointer");
+function: ${"ja":"glEnableVertexAttribArray", "natja":"glEnableVertexAttribArray", "en":"glEnableVertexAttribArray", "naten":"glEnableVertexAttribArray"}$(short: index) => () = jsload("graphics", "enableVertexAttribArray");
+function: ${"ja":"glDrawArrays", "natja":"glDrawArrays", "en":"glDrawArrays", "naten":"glDrawArrays"}$(short: i, short: first, short: count) => () = jsload("graphics", "drawArrays");
+function: ${"ja":"_glGetUniformLocation", "natja":"_glGetUniformLocation", "en":"_glGetUniformLocation", "naten":"_glGetUniformLocation"}$(short: i, *char: offset, short: size) => (short: loc) = jsload("graphics", "getUniformLocation");
+function: ${"ja":"glUniformMatrix2fv", "natja":"glUniformMatrix2fv", "en":"glUniformMatrix2fv", "naten":"glUniformMatrix2fv"}$(short: loc, short: trans, *double: offset) => () = jsload("graphics", "uniformMatrix2fv");
+function: ${"ja":"glUniformMatrix3fv", "natja":"glUniformMatrix3fv", "en":"glUniformMatrix3fv", "naten":"glUniformMatrix3fv"}$(short: loc, short: trans, *double: offset) => () = jsload("graphics", "uniformMatrix3fv");
+function: ${"ja":"glUniformMatrix4fv", "natja":"glUniformMatrix4fv", "en":"glUniformMatrix4fv", "naten":"glUniformMatrix4fv"}$(short: loc, short: trans, double: offset[16]) => () = jsload("graphics", "uniformMatrix4fv");
+function: ${"ja":"glUniform1f", "natja":"glUniform1f", "en":"glUniform1f", "naten":"glUniform1f"}$(short: loc, double: v0) => () = jsload("graphics", "uniform1f");
+function: ${"ja":"glUniform1fv", "natja":"glUniform1fv", "en":"glUniform1fv", "naten":"glUniform1fv"}$(short: loc, double: v0) => () = jsload("graphics", "uniform1fv");
+function: ${"ja":"glUniform1i", "natja":"glUniform1i", "en":"glUniform1i", "naten":"glUniform1i"}$(short: loc, short: v0) => () = jsload("graphics", "uniform1i");
+function: ${"ja":"glUniform1iv", "natja":"glUniform1iv", "en":"glUniform1iv", "naten":"glUniform1iv"}$(short: loc, short: v0) => () = jsload("graphics", "uniform1iv");
+function: ${"ja":"glUniform2f", "natja":"glUniform2f", "en":"glUniform2f", "naten":"glUniform2f"}$(short: loc, double: v0, double: v1) => () = jsload("graphics", "uniform2f");
+function: ${"ja":"glUniform2fv", "natja":"glUniform2fv", "en":"glUniform2fv", "naten":"glUniform2fv"}$(short: loc, double: v0, double: v1) => () = jsload("graphics", "uniform2fv");
+function: ${"ja":"glUniform2i", "natja":"glUniform2i", "en":"glUniform2i", "naten":"glUniform2i"}$(short: loc, short: v0, short: v1) => () = jsload("graphics", "uniform2i");
+function: ${"ja":"glUniform2iv", "natja":"glUniform2iv", "en":"glUniform2iv", "naten":"glUniform2iv"}$(short: loc, short: v0, short: v1) => () = jsload("graphics", "uniform2iv");
+function: ${"ja":"glUniform3f", "natja":"glUniform3f", "en":"glUniform3f", "naten":"glUniform3f"}$(short: loc, double: v0, double: v1, double: v2) => () = jsload("graphics", "uniform3f");
+function: ${"ja":"glUniform3fv", "natja":"glUniform3fv", "en":"glUniform3fv", "naten":"glUniform3fv"}$(short: loc, double: v0, double: v1, double: v2) => () = jsload("graphics", "uniform3fv");
+function: ${"ja":"glUniform3i", "natja":"glUniform3i", "en":"glUniform3i", "naten":"glUniform3i"}$(short: loc, short: v0, short: v1, short: v2) => () = jsload("graphics", "uniform3i");
+function: ${"ja":"glUniform3iv", "natja":"glUniform3iv", "en":"glUniform3iv", "naten":"glUniform3iv"}$(short: loc, short: v0, short: v1, short: v2) => () = jsload("graphics", "uniform3iv");
+function: ${"ja":"glUniform4f", "natja":"glUniform4f", "en":"glUniform4f", "naten":"glUniform4f"}$(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("graphics", "uniform4f");
+function: ${"ja":"glUniform4fv", "natja":"glUniform4fv", "en":"glUniform4fv", "naten":"glUniform4fv"}$(short: loc, double: v0, double: v1, double: v2, double: v3) => () = jsload("graphics", "uniform4fv");
+function: ${"ja":"glUniform4i", "natja":"glUniform4i", "en":"glUniform4i", "naten":"glUniform4i"}$(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("graphics", "uniform4i");
+function: ${"ja":"glUniform4iv", "natja":"glUniform4iv", "en":"glUniform4iv", "naten":"glUniform4iv"}$(short: loc, short: v0, short: v1, short: v2, short: v3) => () = jsload("graphics", "uniform4iv");
+function: ${"ja":"glClearColor", "natja":"glClearColor", "en":"glClearColor", "naten":"glClearColor"}$(double: r, double: g, double: b, double: a) => () = jsload("graphics", "clearColor");
+function: ${"ja":"glClear", "natja":"glClear", "en":"glClear", "naten":"glClear"}$(short: color) => () = jsload("graphics", "clear");
+function: ${"ja":"glDrawElements", "natja":"glDrawElements", "en":"glDrawElements", "naten":"glDrawElements"}$(short: i, short: count, short: ty, short: offset) => () = jsload("graphics", "drawElements");
+function: ${"ja":"glBlendFunc", "natja":"glBlendFunc", "en":"glBlendFunc", "naten":"glBlendFunc"}$(short: i, short: j) => () = jsload("graphics", "blendFunc");
+function: ${"ja":"キーチェック", "natja":"キーチェック", "en":"checkKeyPress", "naten":"checkKeyPress"}$(short: keyCode) => (int: pressed) = jsload("std", "checkKeyPress");
+function: ${"ja":"マウスチェック", "natja":"マウスチェック", "en":"checkMousePress", "naten":"checkMousePress"}$() => (int: pressed) = jsload("std", "checkMousePress");
+function: ${"ja":"マウス相対座標X", "natja":"マウス相対座標X", "en":"checkRelativeMouseX", "naten":"checkRelativeMouseX"}$() => (double: x) = jsload("std", "checkRelativeMouseX");
+function: ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$() => (double: x) = jsload("std", "checkRelativeMouseY");
+function: ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$() => (double: x) = jsload("std", "checkAbsoluteMouseX");
+function: ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$() => (double: x) = jsload("std", "checkAbsoluteMouseY");
+function: ${"ja":"スクロール座標", "natja":"スクロール座標", "en":"checkScroll", "naten":"checkScroll"}$() => (double: x) = jsload("std", "checkScrollY");
+function: ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$() => (double: x) = jsload("std", "rand");
+function: ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$(short: size) => (*void: p) = jsload("std", "alloc");
+function: ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$(*char: offset, short: length) => (short: a) = jsload("graphics", "loadTexture");
+function: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(short: i) => () = jsload("graphics", "activeTexture");
+function: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(short: i, short: j) => () = jsload("graphics", "bindTexture");
+function: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = jsload("graphics", "lockPointer");
 function: ${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$(int: vendorId, function: () => (): c) => () = jsload("arduino", "setUp");
 function: ${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$(char: コマンド, short: data) => () = jsload("arduino", "sendCommand");
 function: ${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$() => () = jsload("arduino", "checkInput");
 function: ${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "analogRead");
 function: ${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "digitalRead");
 function: ${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$(int: ピン番号) => (short: データ) = jsload("arduino", "distanceRead");
-function: getTeapot() => (*void: s) = jsload("js", "getTeapot");
-function: getMountains() => (*void: s) = jsload("js", "getMountains");
-function: getTeddybear() => (*void: s) = jsload("js", "getTeddybear");
-function: getCow() => (*void: s) = jsload("js", "getCow");
-function: getFox() => (*void: s) = jsload("js", "getFox");
-function: getRobot() => (*void: s) = jsload("js", "getRobot");
-function: jsArcSin(double: x) => (double: r) = jsload("js", "asin");
-function: jsArcCos(double: x) => (double: r) = jsload("js", "acos");
-function: jsArcTan(double: x) => (double: r) = jsload("js", "atan");
-function: jsLog(double: x) => (double: r) = jsload("js", "log");
-function: jsEPow(double: x) => (double: r) = jsload("js", "ePow");
-function: jsPow(double: x, double: y) => (double: r) = jsload("js", "exp");
-function: updateLinetraceTime(double: x) => () = jsload("js", "updateLinetraceTime");
+function: getTeapot() => (*void: s) = jsload("graphics", "getTeapot");
+function: getMountains() => (*void: s) = jsload("graphics", "getMountains");
+function: getTeddybear() => (*void: s) = jsload("graphics", "getTeddybear");
+function: getCow() => (*void: s) = jsload("graphics", "getCow");
+function: getFox() => (*void: s) = jsload("graphics", "getFox");
+function: getRobot() => (*void: s) = jsload("graphics", "getRobot");
+function: jsArcSin(double: x) => (double: r) = jsload("std", "asin");
+function: jsArcCos(double: x) => (double: r) = jsload("std", "acos");
+function: jsArcTan(double: x) => (double: r) = jsload("std", "atan");
+function: jsLog(double: x) => (double: r) = jsload("std", "log");
+function: jsEPow(double: x) => (double: r) = jsload("std", "ePow");
+function: jsPow(double: x, double: y) => (double: r) = jsload("std", "exp");
+function: updateLinetraceTime(double: x) => () = jsload("linetrace", "updateLinetraceTime");
 function: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(double: input) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	int: temp = input / (2.0 * PI);
@@ -146,7 +146,7 @@ function: ${"ja":"絶対値", "natja":"絶対値", "en":"abs", "naten":"abs"}$(d
 	if(a >= 0){
 		b = a;
 	}else{
-		b = 0 - (a);
+		b = (0 - (a));
 	}
 }
 function: ${"ja":"ラジアンへ", "natja":"ラジアンへ", "en":"toRad", "naten":"toRad"}$(double: deg) => (double: rad){
@@ -638,14 +638,14 @@ public: 	*char: content;
 			}
 		}
 		if(content[0] == '-'){
-			a = a * (0 - (1.0));
+			a = a * ((0 - (1.0)));
 		}
 	}
 	function: ${"ja":"実数変換", "natja":"実数変換", "en":"toDouble", "naten":"toDouble"}$() => (double: a){
 		a = 0;
 		if(content[0] == '-'){
 			string: str = substrRange(1, length);
-			a = str.toDouble() * 0 - (1.0);
+			a = str.toDouble() * (0 - (1.0));
 		}else{
 			Array<string>: b = separate('.');
 			if(b.length() != 2){
@@ -977,7 +977,7 @@ public: 	Vector3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
 		color = c;
 		pos = p;
 		shaderID = s;
-		lightID = 0 - (1);
+		lightID = (0 - (1));
 		modelMat.identity();
 		transMat.identity();
 		scaleMat.identity();
@@ -1217,7 +1217,7 @@ public: 	Array<*Model>: ${"ja":"スプライト配列", "natja":"スプライト
 		camera.Camera(temp);
 		sprites.Array();
 		lights.Array();
-		Vector3D: 方向(0 - (1.0), 0 - (1.0), 0 - (1.0));
+		Vector3D: 方向((0 - (1.0)), (0 - (1.0)), (0 - (1.0)));
 		Vector3D: 白(1.0, 1.0, 1.0);
 		平行光源.pos = 方向;
 		平行光源.ambient = 白 * 0.5;
@@ -1644,7 +1644,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		now = 0.0;
 		elapsedTime = 0.0;
 		projMat.identity();
-		projMat = perspectiveMat2D(projMat, (0 - (高さ)) * (16.0 / 9.0), (高さ) * (16.0 / 9.0), 0 - (高さ), 高さ, 0.0 - 5.0, 5.0);
+		projMat = perspectiveMat2D(projMat, ((0 - (高さ))) * (16.0 / 9.0), (高さ) * (16.0 / 9.0), (0 - (高さ)), 高さ, 0.0 - 5.0, 5.0);
 		sprites.Array();
 		backgroundColor = color;
 		backgroundTransparency = 1.0;
@@ -1718,7 +1718,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		repeat(points.length()){
 			temp.push(points.content[counter].x);
 			temp.push(points.content[counter].y);
-			temp.push(0 - (zIndex * 0.00100000000000000002));
+			temp.push((0 - (zIndex * 0.00100000000000000002)));
 		}
 		*Sprite: sprite = allocMemory(sizeof(*sprite));
 		sprite->Sprite(temp.content, temp.length() / 3, allocMemory(0), 0, color, pos, 4, 0, zIndex);
@@ -1746,10 +1746,10 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		Array<double>: points;
 		points.push(start.x);
 		points.push(start.y);
-		points.push(0 - (zIndex * 0.00100000000000000002));
+		points.push((0 - (zIndex * 0.00100000000000000002)));
 		points.push(end.x);
 		points.push(end.y);
-		points.push(0 - (zIndex * 0.00100000000000000002));
+		points.push((0 - (zIndex * 0.00100000000000000002)));
 		*Sprite: sprite = allocMemory(sizeof(*sprite));
 		sprite->Sprite(points.content, points.length() / 3, allocMemory(0), 0, color, Vector2D(0.0, 0.0), 4, 1, zIndex);
 		sprites.push(sprite);
@@ -1760,7 +1760,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		(double: x = start;)from(x >= end)to(x = x + dx;){
 			points.push(x);
 			points.push(c(x));
-			points.push(0 - (zIndex * 0.00100000000000000002));
+			points.push((0 - (zIndex * 0.00100000000000000002)));
 		}
 		*Sprite: sprite = allocMemory(sizeof(*sprite));
 		sprite->Sprite(points.content, points.length() / 3, allocMemory(0), 0, color, pos, 4, 1, zIndex);
@@ -1773,7 +1773,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 			Vector2D: temp = c(x);
 			points.push(temp.x);
 			points.push(temp.y);
-			points.push(0 - (zIndex * 0.00100000000000000002));
+			points.push((0 - (zIndex * 0.00100000000000000002)));
 		}
 		*Sprite: sprite = allocMemory(sizeof(*sprite));
 		sprite->Sprite(points.content, points.length() / 3, allocMemory(0), 0, color, pos, 4, 1, zIndex);
@@ -1907,7 +1907,7 @@ public: 	Scene: world;
 		Vector3D: 黒(0.0, 0.0, 0.0);
 		Vector3D: 初期位置1(firstPos.x, 0.0, firstPos.y);
 		Vector3D: 初期位置2(5.0, 5.0, 5.0);
-		Vector3D: 初期位置3(0.0, 0 - (0.5), 0.0);
+		Vector3D: 初期位置3(0.0, (0 - (0.5)), 0.0);
 		Vector3D: 初期位置4(firstPos.x, 10.0, firstPos.y);
 		Vector3D: axis(0.0, 1.0, 0.0);
 		points.push(points.get(0));
@@ -1915,7 +1915,7 @@ public: 	Scene: world;
 		world.setDirectionalLight(初期位置3, 白, 0.0500000000000000028, 0.0500000000000000028, 0.0);
 		world.camera.setSensitivity(5.0);
 		world.camera.setPos(初期位置4);
-		world.camera.setAngle(90.0, 0 - (90.0));
+		world.camera.setAngle(90.0, (0 - (90.0)));
 		ロボットID = world.addModel(loadSampleModel("robot"), 灰色, 初期位置1);
 		world.sprites.get(ロボットID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad(180));
 		ライトID = world.addLight(1.0, 白, 初期位置2, 1000.0);
@@ -1934,7 +1934,7 @@ public: 	Scene: world;
 				Vector2D: temp座標 = 和 * 0.5;
 				Vector3D: temp3D座標(temp座標.x, 0.0, temp座標.y);
 				int: tempID = world.addCuboid(length, 0.25, 0.25, 黒, temp3D座標);
-				world.sprites.get(tempID)->setRotate(axis, 0 - (jsArcTan(傾き)));
+				world.sprites.get(tempID)->setRotate(axis, (0 - (jsArcTan(傾き))));
 			}
 		}
 		直線データ.push(Vector2D(points.get(0), points.get(1)));
@@ -1947,17 +1947,17 @@ public: 	Scene: world;
 		double: a = 1.0;
 		if(右モーター距離 >= 左モーター距離){
 			基本距離 = 左モーター距離;
-			a = 0 - (1.0);
+			a = (0 - (1.0));
 		}
-		double: b = 0 - (1.0);
+		double: b = (0 - (1.0));
 		double: theta = 180.0 * jsArcTan(右モーター距離 - 左モーター距離) / PI;
 		if(右モーター距離 == 左モーター距離){
 			theta = 0;
 			a = 0.0;
 			b = 0.0;
 		}
-		a = a * (0 - (1.0));
-		b = b * (0 - (1.0));
+		a = a * ((0 - (1.0)));
+		b = b * ((0 - (1.0)));
 		ロボット角度 = ロボット角度 + theta;
 		ロボット移動方向.x = cos(toRad(ロボット角度 + 90.0));
 		ロボット移動方向.y = sin(toRad(ロボット角度 + 90.0));
@@ -1965,7 +1965,7 @@ public: 	Scene: world;
 		ロボット座標.x = ロボット座標.x - (a * cos(toRad(ロボット角度 - theta)) - b * sin(toRad(ロボット角度 - theta)) - a);
 		ロボット座標.y = ロボット座標.y + a * sin(toRad(ロボット角度)) + b * cos(toRad(ロボット角度)) - b;
 		ロボット座標.y = ロボット座標.y - (a * sin(toRad(ロボット角度 - theta)) + b * cos(toRad(ロボット角度 - theta)) - b);
-		world.sprites.get(ロボットID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad(0 - (ロボット角度 + 180)));
+		world.sprites.get(ロボットID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad((0 - (ロボット角度 + 180))));
 		ロボット座標 = ロボット座標 + (ロボット移動方向 * 基本距離);
 	}
 	function: update() => (){
@@ -1983,8 +1983,8 @@ public: 	Scene: world;
 			センサー座標[1].y = 1.75 * sin(toRad(ロボット角度 + 101.0)) + ロボット座標.y;
 			world.sprites.get(センサー1ID)->setPos(Vector3D(センサー座標[0].x, 0.400000000000000022, センサー座標[0].y));
 			world.sprites.get(センサー2ID)->setPos(Vector3D(センサー座標[1].x, 0.400000000000000022, センサー座標[1].y));
-			world.sprites.get(センサー1ID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad(0 - (ロボット角度 + 180)));
-			world.sprites.get(センサー2ID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad(0 - (ロボット角度 + 180)));
+			world.sprites.get(センサー1ID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad((0 - (ロボット角度 + 180))));
+			world.sprites.get(センサー2ID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad((0 - (ロボット角度 + 180))));
 			double: センサー距離[2] = [10000.0, 10000.0];
 			int: センサー数 = 2;
 			repeat(センサー数){
@@ -1994,7 +1994,7 @@ public: 	Scene: world;
 					Vector2D: AB = B - A;
 					Vector2D: Aセンサー座標 = センサー座標[counter] - A;
 					Vector2D: Bセンサー座標 = センサー座標[counter] - B;
-					if((dotVector2D(AB, Aセンサー座標) >= 0) && (dotVector2D(AB * 0 - (1.0), Bセンサー座標) >= 0)){
+					if((dotVector2D(AB, Aセンサー座標) >= 0) && (dotVector2D(AB * (0 - (1.0)), Bセンサー座標) >= 0)){
 						double: 傾き = (A.y - B.y) / (A.x - B.x);
 						double: y切片 = A.y - (傾き * A.x);
 						double: 距離 = abs(傾き * センサー座標[counter].x - センサー座標[counter].y + y切片) / root(1.0 + 傾き * 傾き);

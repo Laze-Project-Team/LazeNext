@@ -18,7 +18,7 @@ export type importArduinoProps = {
   lazeCallNoParam: CallableFunction;
 };
 
-const checkImportArduinoProps = (arg: unknown): boolean => {
+const checkImportArduinoProps = (arg: unknown): arg is importArduinoProps => {
   const props = arg as importArduinoProps;
 
   return typeof props?.arduinoObjects === 'object' && typeof props?.lazeCallNoParam === ('function' || 'null');
@@ -37,12 +37,10 @@ const initialArduinoObjects: arduinoObjects = {
   pulseInput: new Array(100).fill(0),
 };
 
-const importArduino = (p: unknown): WebAssembly.Imports => {
-  if (!checkImportArduinoProps(p)) {
+const importArduino = (props: unknown): WebAssembly.Imports => {
+  if (!checkImportArduinoProps(props)) {
     throw new Error('The props in importArduino is not of type importArduinoProps.');
   }
-
-  const props = p as importArduinoProps;
 
   return {
     arduino: {
@@ -132,11 +130,10 @@ const importArduino = (p: unknown): WebAssembly.Imports => {
   };
 };
 
-const initializeArduinoProps = (p: unknown): Laze.Props => {
-  if (!checkImportArduinoProps(p)) {
+const initializeArduinoProps = (props: unknown): Laze.Props => {
+  if (!checkImportArduinoProps(props)) {
     throw new Error('The props in initializeArduinoProps does not include type importArduinoProps.');
   }
-  const props = p as importArduinoProps;
   props.lazeCallNoParam = () => {
     return;
   };

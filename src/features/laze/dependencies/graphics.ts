@@ -67,7 +67,7 @@ export type importGraphicsProps = {
   keyControl: keyControlType;
 };
 
-const checkImportGraphicsProps = (arg: unknown): boolean => {
+const checkImportGraphicsProps = (arg: unknown): arg is importGraphicsProps => {
   const props = arg as importGraphicsProps;
 
   return (
@@ -87,12 +87,10 @@ const initialWebglObjects: webglObjects = {
   webglUniformLoc: [],
 };
 
-const importGraphics = (p: unknown): WebAssembly.Imports => {
-  if (!checkImportGraphicsProps(p)) {
+const importGraphics = (props: unknown): WebAssembly.Imports => {
+  if (!checkImportGraphicsProps(props)) {
     throw new Error('The props in importGraphics is not of type importGraphicsProps.');
   }
-
-  const props = p as importGraphicsProps;
 
   const { gl, memory, canvas } = props;
   if (!gl) {
@@ -339,12 +337,14 @@ const importGraphics = (p: unknown): WebAssembly.Imports => {
   };
 };
 
-const initializeGraphicsProps = (p: unknown): Laze.Props => {
-  if (!checkImportGraphicsProps(p)) {
+const initializeGraphicsProps = (props: unknown): Laze.Props => {
+  if (!checkImportGraphicsProps(props)) {
     throw new Error('The props in initializeStdProps does not include type importGraphicsProps.');
   }
-  const props = p as importGraphicsProps;
-  props.webglObjects = initialWebglObjects;
+  props.webglObjects.webglBuffers = [];
+  props.webglObjects.webglPrograms = [];
+  props.webglObjects.webglTextures = [];
+  props.webglObjects.webglUniformLoc = [];
   props.memory = new WebAssembly.Memory({ initial: 1000 });
   props.keyControl = initialKeyControl;
   props.memorySize = 0;
@@ -353,7 +353,7 @@ const initializeGraphicsProps = (p: unknown): Laze.Props => {
 
 export const graphicsModule: Laze.Module = {
   props: {
-    webglObjects: initialWebglObjects,
+    webglObjects: { ...initialWebglObjects },
     canvas: null,
     gl: null,
     memory: new WebAssembly.Memory({ initial: 1000 }),

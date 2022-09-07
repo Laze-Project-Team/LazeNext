@@ -16,7 +16,7 @@ export type importStdProps = {
   memorySize: number;
 };
 
-const checkImportStdProps = (arg: unknown): boolean => {
+const checkImportStdProps = (arg: unknown): arg is importStdProps => {
   const props = arg as importStdProps;
 
   return (
@@ -34,12 +34,10 @@ const initialKeyControl: keyControlType = {
   scrollY: 0,
 };
 
-const importStd = (p: unknown): WebAssembly.Imports => {
-  if (!checkImportStdProps(p)) {
+const importStd = (props: unknown): WebAssembly.Imports => {
+  if (!checkImportStdProps(props)) {
     throw new Error('The props in importStd is not of type importStdProps.');
   }
-
-  const props = p as importStdProps;
 
   return {
     std: {
@@ -91,11 +89,10 @@ const importStd = (p: unknown): WebAssembly.Imports => {
   };
 };
 
-const initializeStdProps = (p: unknown): Laze.Props => {
-  if (!checkImportStdProps(p)) {
+const initializeStdProps = (props: unknown): Laze.Props => {
+  if (!checkImportStdProps(props)) {
     throw new Error('The props in initializeStdProps does not include type importStdProps.');
   }
-  const props = p as importStdProps;
   props.memory = new WebAssembly.Memory({ initial: 1000 });
   props.keyControl = initialKeyControl;
   props.memorySize = 0;

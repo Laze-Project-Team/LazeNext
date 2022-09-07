@@ -10,6 +10,7 @@ import { VscCopy, VscRunAll } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
 
 import { formatChar } from '@/components/model/Learn/formatChar';
+import { useCompiler } from '@/features/compiler';
 import type { ExecuteParam } from '@/features/laze/executeLaze';
 import { Config } from '@/features/monaco/config';
 import { Language } from '@/features/monaco/register';
@@ -60,6 +61,8 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
   const dispatch = useDispatch();
   const { removePanel } = consoleSlice.actions;
   const { setCompiled } = explorerSlice.actions;
+
+  useCompiler('ja');
 
   const onChange: OnChange = () => {
     // onChange
