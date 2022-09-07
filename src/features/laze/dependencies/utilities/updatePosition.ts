@@ -1,14 +1,16 @@
+import type { keyControlType } from '@/typings/compiler';
+
 import type { importGraphicsProps } from '../graphics';
 
-export const updatePosition = (e: MouseEvent, canvas: HTMLCanvasElement): void => {
-  window.laze.props.variables.keyControl.relativeMouseX =
+export const updatePosition = (keyControl: keyControlType, e: MouseEvent, canvas: HTMLCanvasElement): void => {
+  keyControl.relativeMouseX =
     (e.clientX - canvas.getBoundingClientRect().left - canvas.clientWidth / 2) / (canvas.clientWidth / 2);
-  window.laze.props.variables.keyControl.relativeMouseY = -(
+  keyControl.relativeMouseY = -(
     (e.clientY - canvas.getBoundingClientRect().top - canvas.clientHeight / 2) /
     (canvas.clientHeight / 2)
   );
-  window.laze.props.variables.keyControl.absoluteMouseX += e.movementX;
-  window.laze.props.variables.keyControl.absoluteMouseY += e.movementY;
+  keyControl.absoluteMouseX += e.movementX;
+  keyControl.absoluteMouseY += e.movementY;
 };
 export const updateAbsolutePosition = (props: importGraphicsProps) => {
   return (e: MouseEvent): void => {
@@ -16,7 +18,9 @@ export const updateAbsolutePosition = (props: importGraphicsProps) => {
     props.keyControl.absoluteMouseY += e.movementY;
   };
 };
-export const updateScroll = (e: WheelEvent): void => {
-  e.preventDefault();
-  window.laze.props.variables.keyControl.scrollY = e.deltaY;
+export const updateScroll = (keyControl: keyControlType) => {
+  return (e: WheelEvent): void => {
+    e.preventDefault();
+    keyControl.scrollY = e.deltaY;
+  };
 };

@@ -42,7 +42,6 @@ const Compete: NextPage = () => {
   const { updateCompetition } = competeSlice.actions;
 
   useEffect(() => {
-    window.laze = window.laze || {};
     if (competitionData.isFetched && competitionData.data) {
       const data = competitionData.data as Competition;
       if (data.leaderboardList.length > 0) {

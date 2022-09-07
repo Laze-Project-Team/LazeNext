@@ -211,6 +211,13 @@ export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
   compile: (code: string, label: string, lang: string, param: ExecuteParam | undefined) => Promise<boolean>;
-  convert: (path: string, code: string, lang: string, newLang: string, label: string) => Promise<boolean>;
+  convert: (
+    path: string,
+    code: string,
+    lang: string,
+    newLang: string,
+    label: string,
+    param: ExecuteParam | undefined
+  ) => Promise<boolean>;
   run: (param: ExecuteParam | undefined) => void | Promise<void>;
 };

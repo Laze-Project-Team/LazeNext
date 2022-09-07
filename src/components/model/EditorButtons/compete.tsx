@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { MutableRefObject, VFC } from 'react';
@@ -42,10 +43,23 @@ export const CompeteButtons: VFC = () => {
 
   const { locale } = useRouter();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const error = (err: any) => {
+    console.error(err);
+    notification.open({
+      message: t('errors.LaunchProgramFailed.title'),
+      description: t('errors.LaunchProgramFailed.message'),
+      type: 'error',
+      placement: 'bottomRight',
+      duration: 5,
+    });
+  };
+
   const param = useRef<ExecuteParam>({
     interval: null,
     id: '',
     dispatcher: dispatch,
+    error,
     getWasmApi: '',
     wasmUrl: '',
     programUrl: '',

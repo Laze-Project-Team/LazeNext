@@ -1,3 +1,4 @@
+import type { TFunction } from 'next-i18next';
 import type { Dispatch } from 'redux';
 
 import type { LinetraceData } from './dependencies/linetrace';
@@ -11,18 +12,15 @@ export type ExecuteParam = {
   wasmUrl: string;
   programUrl: string;
   lang: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error: (err: any) => void | PromiseLike<void>;
   linetraceTime?: LinetraceData | undefined;
   dispatcher?: Dispatch;
+  t?: TFunction;
   canvasId?: string;
 };
 
-export const executeLaze = (
-  wasmUrl: string,
-  dependencies: Libraries[],
-  param: ExecuteParam,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  errorFunc: (reason: any) => void | PromiseLike<void>
-): Promise<void> => {
+export const executeLaze = (wasmUrl: string, dependencies: Libraries[], param: ExecuteParam): Promise<void> => {
   return fetch(wasmUrl)
     .then((res) => {
       return res.arrayBuffer();
@@ -39,5 +37,5 @@ export const executeLaze = (
         param.interval = setInterval(draw, 1000 / 60);
       }
     })
-    .catch(errorFunc);
+    .catch(param.error);
 };

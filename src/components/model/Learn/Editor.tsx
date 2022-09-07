@@ -10,7 +10,7 @@ import { VscCopy, VscRunAll } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
 
 import { formatChar } from '@/components/model/Learn/formatChar';
-import { useCompiler } from '@/features/compiler';
+import { compileLaze } from '@/features/compiler/initialize';
 import type { ExecuteParam } from '@/features/laze/executeLaze';
 import { Config } from '@/features/monaco/config';
 import { Language } from '@/features/monaco/register';
@@ -61,8 +61,6 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
   const dispatch = useDispatch();
   const { removePanel } = consoleSlice.actions;
   const { setCompiled } = explorerSlice.actions;
-
-  useCompiler('ja');
 
   const onChange: OnChange = () => {
     // onChange
@@ -125,16 +123,29 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
           .forEach((panelId) => {
             dispatch(removePanel(panelId));
           });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const error = (err: any) => {
+          console.error(err);
+          notification.open({
+            message: t('errors.LaunchProgramFailed.title'),
+            description: t('errors.LaunchProgramFailed.message'),
+            type: 'error',
+            placement: 'bottomRight',
+            duration: 5,
+          });
+        };
         const param: ExecuteParam = {
           id,
           interval: null,
           dispatcher: dispatch,
+          error,
           getWasmApi: '',
           wasmUrl: '',
           programUrl: '',
           lang: 'ja',
+          t,
         };
-        const result = window.laze.compiler.compile(value, id, 'ja', param);
+        const result = compileLaze(value, id, 'ja', param);
         setIsCompiling(true);
         result.then((success) => {
           if (success) {

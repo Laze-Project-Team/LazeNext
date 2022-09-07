@@ -9,7 +9,7 @@ import { connect, useDispatch } from 'react-redux';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { Spin } from '@/components/ui/Spin';
-import { useCompiler } from '@/features/compiler';
+import { compileLaze, runLaze } from '@/features/compiler/initialize';
 import { compileFailed } from '@/features/gtm';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
@@ -27,8 +27,6 @@ type CompileButtonProps = {
 
 const UnconnectedCompileButton: VFC<CompileButtonProps> = ({ compiled }) => {
   const [t] = useTranslation('editor');
-
-  useCompiler();
 
   const dispatch = useDispatch();
 
@@ -61,12 +59,12 @@ const UnconnectedCompileButton: VFC<CompileButtonProps> = ({ compiled }) => {
       if (param?.current.interval) {
         clearInterval(param?.current.interval);
       }
-      window.laze.compiler.run(param?.current);
+      runLaze(param?.current);
     } else {
       if (param?.current.interval) {
         clearInterval(param.current.interval);
       }
-      const result = window.laze.compiler.compile(code, getName(file), lang?.current ?? 'en', param?.current);
+      const result = compileLaze(code, getName(file), lang?.current ?? 'en', param?.current);
       setIsCompiling(true);
       result.then((success) => {
         if (success) {

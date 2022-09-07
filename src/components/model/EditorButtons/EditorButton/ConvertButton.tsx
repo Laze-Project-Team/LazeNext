@@ -14,7 +14,7 @@ import { UploadNewLanguage } from '@/components/model/EditorButtons/EditorButton
 import type { SelectableListItem } from '@/components/ui/SelectableList';
 import { SelectableList } from '@/components/ui/SelectableList';
 import { langList as rawLangList } from '@/const/lang';
-import { useCompiler } from '@/features/compiler';
+import { convertLaze } from '@/features/compiler/initialize';
 import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
 import { getName } from '@/features/utils/path';
@@ -23,13 +23,12 @@ import { programLangContext } from '@/pages/editor';
 import styles from '@/styles/loading.module.css';
 
 import { editorExecuteParamContext } from '..';
+import { competeEditorExecuteParamContext } from '../compete';
 
 export const ConvertButton: VFC = () => {
   const { locale } = useRouter();
   const [t] = useTranslation('editor');
   const [isOpened, setIsOpened] = useState(false);
-
-  useCompiler();
 
   const paramContext = useContext(editorExecuteParamContext);
   const defaultLang = typeof window !== 'undefined' ? paramContext?.current.lang ?? locale ?? 'en' : locale ?? 'en';
@@ -40,6 +39,10 @@ export const ConvertButton: VFC = () => {
   const competeLang = useContext(competeProgramLangContext);
   const editorLang = useContext(programLangContext);
   const langContext = editorLang || competeLang;
+  const competeEditorParam = useContext(competeEditorExecuteParamContext);
+  const editorParam = useContext(editorExecuteParamContext);
+  const param = editorParam || competeEditorParam;
+
   const concatItem = (acc: Record<string, SelectableListItem>, cur: SelectableListItem) => {
     acc[cur.id] = cur;
     return acc;
@@ -112,9 +115,8 @@ export const ConvertButton: VFC = () => {
     }
     setIsOpened(false);
     setIsConverting(true);
-    window.laze.compiler
-      .convert(file, code, langContext?.current ?? 'en', newLang.current, getName(file))
-      .then((success) => {
+    convertLaze(file, code, langContext?.current ?? 'en', newLang.current, getName(file), param?.current).then(
+      (success) => {
         if (success) {
           setIsConverting(false);
           if (langContext?.current) {
@@ -125,7 +127,8 @@ export const ConvertButton: VFC = () => {
         } else {
           setIsConverting(false);
         }
-      });
+      }
+    );
   };
 
   const abort = () => {

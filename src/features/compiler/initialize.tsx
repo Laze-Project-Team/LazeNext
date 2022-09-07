@@ -1,7 +1,5 @@
 import { notification } from 'antd';
-import type { TFunction } from 'i18next';
 import moment from 'moment';
-import type { Dispatch } from 'redux';
 
 import { langList } from '@/const/lang';
 import { compileFailed, compileSuccessful, runProgram } from '@/features/gtm';
@@ -24,178 +22,165 @@ const getLangFile = (lang: string) => {
   return storageObj[lang].content;
 };
 
-export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
-  const { addLog, createPanel, addSeparator, setActive } = consoleSlice.actions;
-  const { saveFile } = explorerSlice.actions;
+export const runLaze: compilerType['run'] = (param: ExecuteParam | undefined) => {
+  const { addSeparator } = consoleSlice.actions;
+  if (!param) {
+    throw new Error('run: param is undefined.');
+  }
 
-  const run: compilerType['run'] = (param: ExecuteParam | undefined) => {
-    if (!param) {
-      throw new Error('run: param is undefined.');
-    }
+  runProgram();
 
-    runProgram();
+  if (param.getWasmApi === '' || param.id === '') {
+    console.error('Cannot run program. Please compile first.');
 
-    if (param.getWasmApi === '' || param.id === '') {
-      console.error('Cannot run program. Please compile first.');
+    return;
+  }
 
-      return;
-    }
+  if (param.dispatcher) {
+    param.dispatcher(addSeparator(param.id));
+  } else {
+    throw new Error('dispatcher is not in param.');
+  }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const error = (err: any) => {
-      console.error(err);
-      notification.open({
-        message: t('errors.LaunchProgramFailed.title'),
-        description: t('errors.LaunchProgramFailed.message'),
-        type: 'error',
-        placement: 'bottomRight',
-        duration: 5,
-      });
-    };
+  return executeLaze(param.getWasmApi, ['std', 'editorConsole', 'graphics', 'arduino', 'linetrace'], param);
+};
 
-    dispatcher(addSeparator(param.id));
+export const compileLaze: compilerType['compile'] = async (
+  code: string,
+  label: string,
+  lang: string,
+  param: ExecuteParam | undefined
+): Promise<boolean> => {
+  const { createPanel, addLog } = consoleSlice.actions;
 
-    return executeLaze(param.getWasmApi, ['std', 'editorConsole', 'graphics', 'arduino', 'linetrace'], param, error);
-  };
+  if (!param) {
+    throw new Error('compile: param is undefined.');
+  }
 
-  const compile: compilerType['compile'] = async (
-    code: string,
-    label: string,
-    lang: string,
-    param: ExecuteParam | undefined
-  ): Promise<boolean> => {
-    if (!param) {
-      throw new Error('compile: param is undefined.');
-    }
+  const langFile = getLangFile(lang);
 
-    const langFile = getLangFile(lang);
+  const body = JSON.stringify({
+    code,
+    option: { lang, label: label.replaceAll('$', ''), ...(langFile ? { langFile } : {}) },
+  });
 
-    const body = JSON.stringify({
-      code,
-      option: { lang, label: label.replaceAll('$', ''), ...(langFile ? { langFile } : {}) },
-    });
+  if (body === undefined) {
+    param.error('');
+    return false;
+  }
 
-    if (body === undefined) {
-      notification.open({
-        message: t('errors.CompileProgramFailed.title'),
-        description: t('errors.CompileProgramFailed.message'),
-        type: 'error',
-        placement: 'bottomRight',
-        duration: 5,
-      });
-      return false;
-    }
-
-    try {
-      const res = await fetch(`/api/editor/compile`, {
-        method: 'POST',
-        body,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const resJson = (await res.json()) as compileResponse;
-      const id = moment().unix().toString(36) + getHash(4);
-
-      param.id = id;
-      param.dispatcher = dispatcher;
-      param.getWasmApi = resJson.success ? resJson.wasm : '';
-      // window.laze.props.variables.compiled = resJson.success;
-      param.programUrl = resJson.success ? resJson.programUrl : '';
-      param.wasmUrl = resJson.success ? resJson.wasmUrl : '';
-
-      dispatcher(createPanel({ id, label, active: true }));
-
-      dispatcher(
-        addLog({
-          console: id,
-          content: resJson.message,
-          level: resJson.success ? 'log' : 'error',
-        })
-      );
-
-      if (resJson.success) {
-        compileSuccessful();
-        run(param);
-      } else {
-        compileFailed();
-      }
-      return resJson.success;
-    } catch (err) {
-      console.error(err);
-      notification.open({
-        message: t('errors.CompileProgramFailed.title'),
-        description: t('errors.CompileProgramFailed.message'),
-        type: 'error',
-        placement: 'bottomRight',
-        duration: 5,
-      });
-      return false;
-    }
-  };
-
-  const convert: compilerType['convert'] = async (
-    path: string,
-    code: string,
-    lang: string,
-    newLang: string,
-    label: string
-  ) => {
-    const fromLangFile = getLangFile(lang);
-    const toLangFile = getLangFile(newLang);
-    const bodyJson: convertRequest = {
-      code,
-      option: {
-        label,
-        from: lang,
-        to: newLang,
-        ...(fromLangFile ? { fromLangFile } : {}),
-        ...(toLangFile ? { toLangFile } : {}),
-      },
-    };
-    const body = JSON.stringify(bodyJson);
-
-    const res = await fetch(`/api/editor/convert`, {
+  try {
+    const res = await fetch(`/api/editor/compile`, {
       method: 'POST',
       body,
       headers: {
         'Content-Type': 'application/json',
       },
     });
+    const resJson = (await res.json()) as compileResponse;
+    const id = moment().unix().toString(36) + getHash(4);
 
-    const resJson = (await res.json()) as convertResponse;
+    param.id = id;
+    param.getWasmApi = resJson.success ? resJson.wasm : '';
+    param.programUrl = resJson.success ? resJson.programUrl : '';
+    param.wasmUrl = resJson.success ? resJson.wasmUrl : '';
+
+    if (param.dispatcher) {
+      param.dispatcher(createPanel({ id, label, active: true }));
+
+      param.dispatcher(
+        addLog({
+          console: id,
+          content: resJson.message,
+          level: resJson.success ? 'log' : 'error',
+        })
+      );
+    }
 
     if (resJson.success) {
-      notification.open({
-        message: t('convert.success.title'),
-        description: t('convert.success.message', { from: langList[lang], to: langList[newLang] }),
-        type: 'success',
-        placement: 'bottomRight',
-        duration: 5,
-      });
-      dispatcher(saveFile({ path, content: resJson.code }));
+      compileSuccessful();
+      runLaze(param);
     } else {
-      dispatcher(
+      compileFailed();
+    }
+    return resJson.success;
+  } catch (err) {
+    param.error(err);
+    return false;
+  }
+};
+
+export const convertLaze: compilerType['convert'] = async (
+  path: string,
+  code: string,
+  lang: string,
+  newLang: string,
+  label: string,
+  param: ExecuteParam | undefined
+) => {
+  const { addLog, addSeparator, setActive } = consoleSlice.actions;
+  const { saveFile } = explorerSlice.actions;
+
+  const fromLangFile = getLangFile(lang);
+  const toLangFile = getLangFile(newLang);
+  const bodyJson: convertRequest = {
+    code,
+    option: {
+      label,
+      from: lang,
+      to: newLang,
+      ...(fromLangFile ? { fromLangFile } : {}),
+      ...(toLangFile ? { toLangFile } : {}),
+    },
+  };
+  const body = JSON.stringify(bodyJson);
+
+  const res = await fetch(`/api/editor/convert`, {
+    method: 'POST',
+    body,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const resJson = (await res.json()) as convertResponse;
+
+  if (resJson.success) {
+    notification.open({
+      message: param?.t ? param.t('convert.success.title') : 'Convert success.',
+      description: param?.t
+        ? param.t('convert.success.message', { from: langList[lang], to: langList[newLang] })
+        : `Convert succeeded from ${langList[lang]} to ${langList[newLang]}.`,
+      type: 'success',
+      placement: 'bottomRight',
+      duration: 5,
+    });
+    if (param?.dispatcher) {
+      param.dispatcher(saveFile({ path, content: resJson.code }));
+    }
+  } else {
+    if (param?.dispatcher) {
+      param.dispatcher(
         addLog({
           console: 'master',
           content: resJson.message,
           level: 'error',
         })
       );
-      dispatcher(addSeparator('master'));
-      dispatcher(setActive('master'));
-
-      notification.open({
-        message: t('convert.error.title'),
-        description: t('convert.error.message', { from: langList[lang], to: langList[newLang] }),
-        type: 'error',
-        placement: 'bottomRight',
-        duration: 5,
-      });
+      param.dispatcher(addSeparator('master'));
+      param.dispatcher(setActive('master'));
     }
 
-    return resJson.success;
-  };
+    notification.open({
+      message: param?.t ? param.t('convert.error.title') : 'Convert error.',
+      description: param?.t
+        ? param.t('convert.error.message', { from: langList[lang], to: langList[newLang] })
+        : `Failed to convert from ${langList[lang]} to ${langList[newLang]}.`,
+      type: 'error',
+      placement: 'bottomRight',
+      duration: 5,
+    });
+  }
 
-  return { compile, run, convert };
+  return resJson.success;
 };

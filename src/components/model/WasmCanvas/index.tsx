@@ -36,13 +36,15 @@ export const WasmCanvas: VFC<WasmCanvasProps> = ({ wasmUrl, dependencies }) => {
       interval: null,
       id: '',
       dispatcher: dispatch,
+      error,
       getWasmApi: '',
       wasmUrl: '',
       programUrl: '',
       lang: locale ?? 'en',
       linetraceTime: { time: 0 },
+      t,
     };
-    executeLaze(wasmUrl, dependencies, param, error);
+    executeLaze(wasmUrl, dependencies, param);
     return () => {
       if (param.interval) {
         clearInterval(param.interval);

@@ -1,4 +1,3 @@
-import { initShaderProgram } from '@/features/compiler/initialize/initShaderProgram';
 import { fs as fsSource } from '@/features/compiler/source/fs';
 import { fs2DNoTexture as fs2DNoTextureSource } from '@/features/compiler/source/fs2DNoTexture';
 import { fs2DTexture as fs2DTextureSource } from '@/features/compiler/source/fs2DTexture';
@@ -10,6 +9,8 @@ import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source
 import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
 
 import { keyControlInitialize } from '../compiler/keycontrol';
+import { initShaderProgram } from './dependencies/utilities/initShaderProgram';
+import { updatePosition, updateScroll } from './dependencies/utilities/updatePosition';
 import type { ExecuteParam } from './executeLaze';
 import type { Libraries } from './getWasmImports';
 import { getWasmImports } from './getWasmImports';
@@ -36,6 +37,20 @@ export const executeWasm = async (
         initShaderProgram(props.gl, vs2DTextureSource, fs2DTextureSource),
         initShaderProgram(props.gl, vs2DNoTextureSource, fs2DNoTextureSource)
       );
+    }
+
+    if (props.canvas && props.keyControl) {
+      const handleMouseMove = (e: MouseEvent) => {
+        // console.log(e.clientY);
+        if (props.canvas && props.keyControl) {
+          return updatePosition(props.keyControl, e, props.canvas);
+        }
+      };
+
+      props.canvas.removeEventListener('wheel', updateScroll(props.keyControl), false);
+      props.canvas.addEventListener('wheel', updateScroll(props.keyControl), false);
+      // canvas.removeEventListener('wheel', updateScroll, false);
+      props.canvas.addEventListener('mousemove', handleMouseMove, false);
     }
 
     const memorySizeFunc = instance.exports.memorySize as CallableFunction;
