@@ -9,8 +9,8 @@ export const updatePosition = (keyControl: keyControlType, e: MouseEvent, canvas
     (e.clientY - canvas.getBoundingClientRect().top - canvas.clientHeight / 2) /
     (canvas.clientHeight / 2)
   );
-  keyControl.absoluteMouseX += e.movementX;
-  keyControl.absoluteMouseY += e.movementY;
+  // keyControl.absoluteMouseX += e.movementX;
+  // keyControl.absoluteMouseY += e.movementY;
 };
 export const updateAbsolutePosition = (props: importGraphicsProps) => {
   return (e: MouseEvent): void => {
