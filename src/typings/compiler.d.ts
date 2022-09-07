@@ -1,3 +1,5 @@
+import type { ExecuteParam } from '@/features/laze/executeLaze';
+
 export type importObject = {
   console: {
     log: (arg: number) => void;
@@ -208,7 +210,7 @@ export type failedCompilerResult = {
 export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
-  compile: (code: string, label: string, lang: string) => Promise<boolean>;
+  compile: (code: string, label: string, lang: string, param: ExecuteParam | undefined) => Promise<boolean>;
   convert: (path: string, code: string, lang: string, newLang: string, label: string) => Promise<boolean>;
-  run: () => void | Promise<void>;
+  run: (param: ExecuteParam | undefined) => void | Promise<void>;
 };

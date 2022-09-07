@@ -3,11 +3,13 @@ import { Input, Modal } from 'antd';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { VscArchive } from 'react-icons/vsc';
 
 import type { SubmitRequest } from '@/pages/api/compete/submit';
 
+import { competeEditorExecuteParamContext } from '../compete';
 import { EditorButton } from './EditorButton';
 
 export const SubmitButton: VFC = () => {
@@ -18,6 +20,8 @@ export const SubmitButton: VFC = () => {
   const id = (query.id ?? '') as string;
   const name = (query.name ?? '') as string;
 
+  const param = useContext(competeEditorExecuteParamContext);
+
   const [isSubmitOpen, setSelectOpen] = useState(false);
   const [linetraceTime, setLinetraceTime] = useState(0);
   const [competitorName, setCompetitorName] = useState('');
@@ -26,8 +30,8 @@ export const SubmitButton: VFC = () => {
   const onClick = () => {
     setSelectOpen(true);
     setSubmitButtonProps({ disabled: true });
-    if (window.laze?.props?.variables?.linetraceTime) {
-      setLinetraceTime(window.laze.props.variables.linetraceTime);
+    if (param?.current.linetraceTime) {
+      setLinetraceTime(param.current.linetraceTime.time);
       setSubmitButtonProps({});
     }
   };
@@ -36,9 +40,9 @@ export const SubmitButton: VFC = () => {
     const data: SubmitRequest = {
       competition: id,
       level: level,
-      time: window.laze?.props?.variables?.linetraceTime ?? 0,
-      programUrl: window.laze?.props?.variables?.programUrl,
-      wasmUrl: window.laze?.props?.variables?.wasmUrl,
+      time: param?.current.linetraceTime?.time ?? 0,
+      programUrl: param?.current.programUrl ?? '',
+      wasmUrl: param?.current.wasmUrl ?? '',
       name: competitorName,
     };
     const body = new Blob([JSON.stringify(data)]);

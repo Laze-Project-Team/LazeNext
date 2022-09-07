@@ -4,22 +4,13 @@ import moment from 'moment';
 import type { Dispatch } from 'redux';
 
 import { langList } from '@/const/lang';
-import { initShaderProgram } from '@/features/compiler/initialize/initShaderProgram';
-import { keyControlInitialize } from '@/features/compiler/keycontrol';
-import { fs as fsSource } from '@/features/compiler/source/fs';
-import { fs2DNoTexture as fs2DNoTextureSource } from '@/features/compiler/source/fs2DNoTexture';
-import { fs2DTexture as fs2DTextureSource } from '@/features/compiler/source/fs2DTexture';
-import { lightFs as lightFsSource } from '@/features/compiler/source/lightFs';
-import { pointFs as pointFsSource } from '@/features/compiler/source/pointFs';
-import { pointVs as pointVsSource } from '@/features/compiler/source/pointVs';
-import { vs as vsSource } from '@/features/compiler/source/vs';
-import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source/vs2DNoTexture';
-import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
 import { compileFailed, compileSuccessful, runProgram } from '@/features/gtm';
 import { consoleSlice } from '@/features/redux/console';
 import { getHash } from '@/features/utils/hash';
 import type { compileResponse, compilerType, convertRequest, convertResponse } from '@/typings/compiler';
 
+import type { ExecuteParam } from '../laze/executeLaze';
+import { executeLaze } from '../laze/executeLaze';
 import { explorerSlice } from '../redux/explorer';
 
 const getLangFile = (lang: string) => {
@@ -37,87 +28,45 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
   const { addLog, createPanel, addSeparator, setActive } = consoleSlice.actions;
   const { saveFile } = explorerSlice.actions;
 
-  const run: compilerType['run'] = () => {
+  const run: compilerType['run'] = (param: ExecuteParam | undefined) => {
+    if (!param) {
+      throw new Error('run: param is undefined.');
+    }
+
     runProgram();
 
-    const { canvas, gl, importObject, variables } = window.laze.props;
-    keyControlInitialize(variables.keyControl);
-
-    if (variables.wasm === '' || variables.id === '') {
+    if (param.getWasmApi === '' || param.id === '') {
       console.error('Cannot run program. Please compile first.');
 
       return;
     }
 
-    dispatcher(addSeparator(variables.id));
-
-    return fetch(variables.wasm)
-      .then((res) => {
-        window.laze.props.webglObjects = {
-          webglBuffers: [],
-          webglPrograms: [],
-          webglTextures: [],
-          webglUniformLoc: [],
-        };
-        return res.arrayBuffer();
-      })
-      .then((bytes) => {
-        return WebAssembly.instantiate(bytes, importObject(variables.id));
-      })
-      .then((results) => {
-        if (variables.interval) {
-          clearInterval(variables.interval);
-        }
-        const { instance } = results;
-        window.laze.props.webglObjects.webglPrograms.push(
-          initShaderProgram(gl, vsSource, fsSource),
-          initShaderProgram(gl, vsSource, lightFsSource),
-          initShaderProgram(gl, pointVsSource, pointFsSource),
-          initShaderProgram(gl, vs2DTextureSource, fs2DTextureSource),
-          initShaderProgram(gl, vs2DNoTextureSource, fs2DNoTextureSource)
-        );
-
-        const memorySizeFunc = instance.exports.memorySize as CallableFunction;
-        const mainFunc = instance.exports.main as CallableFunction;
-        const loopFunc = instance.exports.loop as CallableFunction;
-        const stringLiterals = instance.exports.__stringLiterals as CallableFunction;
-        const clearMemory = instance.exports.clearMemory as CallableFunction;
-
-        if (instance.exports.jsCallListenerNoParam) {
-          window.laze.props.variables.lazeCallNoParam = instance.exports
-            .jsCallListenerNoParam as CallableFunction | null;
-        }
-
-        clearMemory();
-        stringLiterals();
-
-        window.laze.props.variables.memorySize = memorySizeFunc();
-        mainFunc();
-
-        const draw = () => {
-          gl.viewport(0, 0, canvas.width, canvas.height);
-          loopFunc();
-        };
-
-        if (instance.exports.loop) {
-          variables.interval = setInterval(draw, 1000 / 60);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        notification.open({
-          message: t('errors.LaunchProgramFailed.title'),
-          description: t('errors.LaunchProgramFailed.message'),
-          type: 'error',
-          placement: 'bottomRight',
-          duration: 5,
-        });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const error = (err: any) => {
+      console.error(err);
+      notification.open({
+        message: t('errors.LaunchProgramFailed.title'),
+        description: t('errors.LaunchProgramFailed.message'),
+        type: 'error',
+        placement: 'bottomRight',
+        duration: 5,
       });
+    };
+
+    dispatcher(addSeparator(param.id));
+
+    return executeLaze(param.getWasmApi, ['std', 'editorConsole', 'graphics', 'arduino', 'linetrace'], param, error);
   };
 
-  const compile: compilerType['compile'] = async (code: string, label: string, lang: string): Promise<boolean> => {
-    window.laze.props.variables.id = '';
-    window.laze.props.variables.wasm = '';
+  const compile: compilerType['compile'] = async (
+    code: string,
+    label: string,
+    lang: string,
+    param: ExecuteParam | undefined
+  ): Promise<boolean> => {
+    if (!param) {
+      throw new Error('compile: param is undefined.');
+    }
 
     const langFile = getLangFile(lang);
 
@@ -148,11 +97,12 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
       const resJson = (await res.json()) as compileResponse;
       const id = moment().unix().toString(36) + getHash(4);
 
-      window.laze.props.variables.id = id;
-      window.laze.props.variables.wasm = resJson.success ? resJson.wasm : '';
+      param.id = id;
+      param.dispatcher = dispatcher;
+      param.getWasmApi = resJson.success ? resJson.wasm : '';
       // window.laze.props.variables.compiled = resJson.success;
-      window.laze.props.variables.programUrl = resJson.success ? resJson.programUrl : '';
-      window.laze.props.variables.wasmUrl = resJson.success ? resJson.wasmUrl : '';
+      param.programUrl = resJson.success ? resJson.programUrl : '';
+      param.wasmUrl = resJson.success ? resJson.wasmUrl : '';
 
       dispatcher(createPanel({ id, label, active: true }));
 
@@ -163,14 +113,16 @@ export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => 
           level: resJson.success ? 'log' : 'error',
         })
       );
+
       if (resJson.success) {
         compileSuccessful();
-        run();
+        run(param);
       } else {
         compileFailed();
       }
       return resJson.success;
-    } catch {
+    } catch (err) {
+      console.error(err);
       notification.open({
         message: t('errors.CompileProgramFailed.title'),
         description: t('errors.CompileProgramFailed.message'),

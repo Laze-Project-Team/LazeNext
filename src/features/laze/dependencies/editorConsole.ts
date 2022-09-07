@@ -11,8 +11,7 @@ export type importEditorConsoleProps = {
 
 const checkImportEditorConsoleProps = (arg: unknown): boolean => {
   const props = arg as importEditorConsoleProps;
-
-  return typeof props?.memory === 'object' && typeof props?.dispatcher === 'object' && typeof props?.id === 'string';
+  return typeof props?.memory === 'object' && typeof props?.dispatcher === 'function' && typeof props?.id === 'string';
 };
 
 const importEditorConsole = (p: unknown): WebAssembly.Imports => {
@@ -34,6 +33,8 @@ const importEditorConsole = (p: unknown): WebAssembly.Imports => {
           level: 'log',
         })
       );
+    } else {
+      throw new Error('No dispatcher.');
     }
   };
 
@@ -67,11 +68,21 @@ const importEditorConsole = (p: unknown): WebAssembly.Imports => {
   };
 };
 
+const initializeEditorConsoleProps = (p: unknown): Laze.Props => {
+  if (!checkImportEditorConsoleProps(p)) {
+    throw new Error('The props in initializeStdProps does not include type importEditorConsoleProps.');
+  }
+  const props = p as importEditorConsoleProps;
+  props.memory = new WebAssembly.Memory({ initial: 1000 });
+  return props;
+};
+
 export const editorConsoleModule: Laze.Module = {
   props: {
     memory: new WebAssembly.Memory({ initial: 1000 }),
     id: '',
-    dipatcher: null,
+    dispatcher: null,
   },
   importFunc: importEditorConsole,
+  initFunc: initializeEditorConsoleProps,
 };

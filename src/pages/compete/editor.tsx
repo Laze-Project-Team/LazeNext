@@ -14,7 +14,7 @@ import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
 
 export const splitPaneRefContext = createContext<RefObject<SplitPane> | null>(null);
-export const programLangContext = createContext<MutableRefObject<string> | null>(null);
+export const competeProgramLangContext = createContext<MutableRefObject<string> | null>(null);
 
 const Editor: NextPage = () => {
   const { locale } = useRouter();
@@ -28,7 +28,7 @@ const Editor: NextPage = () => {
 
   return (
     <>
-      <programLangContext.Provider value={programLangRef}>
+      <competeProgramLangContext.Provider value={programLangRef}>
         <Head>
           <title>{title}</title>
 
@@ -80,7 +80,7 @@ const Editor: NextPage = () => {
           </div>
           <EditorFooter />
         </div>
-      </programLangContext.Provider>
+      </competeProgramLangContext.Provider>
     </>
   );
 };

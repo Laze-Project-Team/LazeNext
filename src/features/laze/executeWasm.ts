@@ -17,11 +17,10 @@ import { getWasmImports } from './getWasmImports';
 export const executeWasm = async (
   wasm: ArrayBuffer,
   dependencies: Libraries[],
-  param: ExecuteParam,
-  canvasId = 'output-canvas'
+  param: ExecuteParam
 ): Promise<null | (() => void)> => {
   try {
-    const [props, importObject] = getWasmImports(dependencies, param, canvasId);
+    const [props, importObject] = getWasmImports(dependencies, param);
     if (props.keyControl) {
       keyControlInitialize(props.keyControl);
     }
@@ -29,7 +28,7 @@ export const executeWasm = async (
     const executable = await WebAssembly.instantiate(wasm, importObject);
 
     const { instance } = executable;
-    if ('webgl' in dependencies && props.gl && props.webglObjects) {
+    if (dependencies.includes('graphics') && props.gl && props.webglObjects) {
       props.webglObjects.webglPrograms.push(
         initShaderProgram(props.gl, vsSource, fsSource),
         initShaderProgram(props.gl, vsSource, lightFsSource),

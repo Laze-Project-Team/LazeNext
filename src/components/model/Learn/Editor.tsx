@@ -4,14 +4,13 @@ import { Button, message, notification } from 'antd';
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useTranslation } from 'next-i18next';
 import type { FC, MouseEventHandler } from 'react';
-import { useContext } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { VscCopy, VscRunAll } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
 
 import { formatChar } from '@/components/model/Learn/formatChar';
-import { useCompiler } from '@/features/compiler';
+import type { ExecuteParam } from '@/features/laze/executeLaze';
 import { Config } from '@/features/monaco/config';
 import { Language } from '@/features/monaco/register';
 import { semanticTokenProvider } from '@/features/monaco/semanticTokenProvider/ja';
@@ -20,7 +19,6 @@ import type { consoleState } from '@/features/redux/console';
 import { consoleSlice } from '@/features/redux/console';
 import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
-import { programLangContext } from '@/pages/compete/editor';
 
 import { InlineCompletionsProvider, separator } from './InlineCompletionsProvider';
 import { Output } from './Output';
@@ -62,10 +60,6 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
   const dispatch = useDispatch();
   const { removePanel } = consoleSlice.actions;
   const { setCompiled } = explorerSlice.actions;
-
-  useCompiler('ja');
-
-  const lang = useContext(programLangContext);
 
   const onChange: OnChange = () => {
     // onChange
@@ -128,7 +122,16 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
           .forEach((panelId) => {
             dispatch(removePanel(panelId));
           });
-        const result = window.laze.compiler.compile(value, id, lang?.current ?? 'en');
+        const param: ExecuteParam = {
+          id,
+          interval: null,
+          dispatcher: dispatch,
+          getWasmApi: '',
+          wasmUrl: '',
+          programUrl: '',
+          lang: 'ja',
+        };
+        const result = window.laze.compiler.compile(value, id, 'ja', param);
         setIsCompiling(true);
         result.then((success) => {
           if (success) {

@@ -1,14 +1,14 @@
 import { notification } from 'antd';
-import moment from 'moment';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import type { ExecuteParam } from '@/features/laze/executeLaze';
 import { executeLaze } from '@/features/laze/executeLaze';
 import type { Libraries } from '@/features/laze/getWasmImports';
 import { cx } from '@/features/utils/cx';
-import { getHash } from '@/features/utils/hash';
 import styles from '@/styles/canvas.module.css';
 
 export type WasmCanvasProps = {
@@ -29,10 +29,18 @@ export const WasmCanvas: VFC<WasmCanvasProps> = ({ wasmUrl, dependencies }) => {
       duration: 5,
     });
   };
+  const dispatch = useDispatch();
+  const { locale } = useRouter();
   useEffect(() => {
     const param: ExecuteParam = {
       interval: null,
-      id: moment().unix().toString(36) + getHash(4),
+      id: '',
+      dispatcher: dispatch,
+      getWasmApi: '',
+      wasmUrl: '',
+      programUrl: '',
+      lang: locale ?? 'en',
+      linetraceTime: { time: 0 },
     };
     executeLaze(wasmUrl, dependencies, param, error);
     return () => {

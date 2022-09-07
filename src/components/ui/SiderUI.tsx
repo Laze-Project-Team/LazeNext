@@ -96,7 +96,7 @@ export const SiderUI: VFC = () => {
         <div className="mx-auto aspect-video">
           <WasmCanvas
             wasmUrl={`/api/compete/getwasm?url=${competitor.wasmUrl}`}
-            dependencies={['std', 'console', 'webgl', 'arduino']}
+            dependencies={['std', 'console', 'graphics', 'arduino', 'linetrace']}
             key={key.toString()}
           />
         </div>

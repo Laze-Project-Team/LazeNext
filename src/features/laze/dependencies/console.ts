@@ -48,9 +48,19 @@ const importConsole = (p: unknown): WebAssembly.Imports => {
   };
 };
 
+const initializeConsoleProps = (p: unknown): Laze.Props => {
+  if (!checkImportConsoleProps(p)) {
+    throw new Error('The props in initializeStdProps does not include type importConsoleProps.');
+  }
+  const props = p as importConsoleProps;
+  props.memory = new WebAssembly.Memory({ initial: 1000 });
+  return props;
+};
+
 export const consoleModule: Laze.Module = {
   props: {
     memory: new WebAssembly.Memory({ initial: 1000 }),
   },
   importFunc: importConsole,
+  initFunc: initializeConsoleProps,
 };

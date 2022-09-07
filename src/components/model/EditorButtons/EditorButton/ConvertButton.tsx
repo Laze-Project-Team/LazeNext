@@ -18,8 +18,11 @@ import { useCompiler } from '@/features/compiler';
 import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
 import { getName } from '@/features/utils/path';
-import { programLangContext } from '@/pages/compete/editor';
+import { competeProgramLangContext } from '@/pages/compete/editor';
+import { programLangContext } from '@/pages/editor';
 import styles from '@/styles/loading.module.css';
+
+import { editorExecuteParamContext } from '..';
 
 export const ConvertButton: VFC = () => {
   const { locale } = useRouter();
@@ -28,14 +31,15 @@ export const ConvertButton: VFC = () => {
 
   useCompiler();
 
-  const defaultLang =
-    typeof window !== 'undefined' ? window?.laze?.props?.variables?.lang ?? locale ?? 'en' : locale ?? 'en';
+  const paramContext = useContext(editorExecuteParamContext);
+  const defaultLang = typeof window !== 'undefined' ? paramContext?.current.lang ?? locale ?? 'en' : locale ?? 'en';
   const newLang = useRef(defaultLang);
   const [lang, setLang] = useState(defaultLang);
   const [isConverting, setIsConverting] = useState(false);
 
-  const langContext = useContext(programLangContext);
-
+  const competeLang = useContext(competeProgramLangContext);
+  const editorLang = useContext(programLangContext);
+  const langContext = editorLang || competeLang;
   const concatItem = (acc: Record<string, SelectableListItem>, cur: SelectableListItem) => {
     acc[cur.id] = cur;
     return acc;
@@ -151,6 +155,7 @@ export const ConvertButton: VFC = () => {
         setLang(lang);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

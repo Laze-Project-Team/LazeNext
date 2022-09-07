@@ -50,7 +50,7 @@ const importStd = (p: unknown): WebAssembly.Imports => {
       log: Math.log,
       exp: Math.pow,
       ePow: Math.exp,
-      performaneNow: (): number => {
+      performanceNow: (): number => {
         return performance.now();
       },
       checkKeyPress: (keyCode: number) => {
@@ -91,6 +91,17 @@ const importStd = (p: unknown): WebAssembly.Imports => {
   };
 };
 
+const initializeStdProps = (p: unknown): Laze.Props => {
+  if (!checkImportStdProps(p)) {
+    throw new Error('The props in initializeStdProps does not include type importStdProps.');
+  }
+  const props = p as importStdProps;
+  props.memory = new WebAssembly.Memory({ initial: 1000 });
+  props.keyControl = initialKeyControl;
+  props.memorySize = 0;
+  return props;
+};
+
 export const stdModule: Laze.Module = {
   props: {
     memory: new WebAssembly.Memory({ initial: 1000 }),
@@ -98,4 +109,5 @@ export const stdModule: Laze.Module = {
     memorySize: 0,
   },
   importFunc: importStd,
+  initFunc: initializeStdProps,
 };

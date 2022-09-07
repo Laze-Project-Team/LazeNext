@@ -1,4 +1,10 @@
+import { initialKeyControl } from '@/features/compiler/keycontrol';
+import { cow, fox, mountains, robot, teapot, teddybear } from '@/features/compiler/source/model';
+import { strToMem } from '@/features/laze/dependencies/utilities/strToMem';
+import type { keyControlType } from '@/typings/compiler';
 import type { Laze } from '@/typings/laze';
+
+import { updateAbsolutePosition } from './utilities/updatePosition';
 
 // eslint-disable-next-line no-bitwise
 const isPowerOf2 = (value: number) => {
@@ -52,21 +58,25 @@ type webglObjects = {
   webglTextures: WebGLTexture[];
 };
 
-export type importWebglProps = {
+export type importGraphicsProps = {
   canvas: HTMLCanvasElement | null;
   gl: WebGLRenderingContext | null;
   webglObjects: webglObjects;
   memory: WebAssembly.Memory;
+  memorySize: number;
+  keyControl: keyControlType;
 };
 
-const checkImportWebglProps = (arg: unknown): boolean => {
-  const props = arg as importWebglProps;
+const checkImportGraphicsProps = (arg: unknown): boolean => {
+  const props = arg as importGraphicsProps;
 
   return (
     typeof props?.canvas === 'object' &&
     typeof props?.gl === 'object' &&
     typeof props?.webglObjects === 'object' &&
-    typeof props?.memory === 'object'
+    typeof props?.memory === 'object' &&
+    typeof props?.memorySize === 'number' &&
+    typeof props?.keyControl === 'object'
   );
 };
 
@@ -77,20 +87,23 @@ const initialWebglObjects: webglObjects = {
   webglUniformLoc: [],
 };
 
-const importWebgl = (p: unknown): WebAssembly.Imports => {
-  if (!checkImportWebglProps(p)) {
-    throw new Error('The props in importWebgl is not of type importWebglProps.');
+const importGraphics = (p: unknown): WebAssembly.Imports => {
+  if (!checkImportGraphicsProps(p)) {
+    throw new Error('The props in importGraphics is not of type importGraphicsProps.');
   }
 
-  const props = p as importWebglProps;
+  const props = p as importGraphicsProps;
 
-  const { gl, memory } = props;
+  const { gl, memory, canvas } = props;
   if (!gl) {
     throw new Error('Could not find webgl context.');
   }
+  if (!canvas) {
+    throw new Error('Could not find canvas.');
+  }
 
   return {
-    webgl: {
+    graphics: {
       clearColor: (r: number, g: number, b: number, a: number) => {
         gl.clearColor(r, g, b, a);
       },
@@ -285,16 +298,68 @@ const importWebgl = (p: unknown): WebAssembly.Imports => {
       bindTexture: (i: number, j: number) => {
         gl.bindTexture(i, props.webglObjects.webglTextures[j]);
       },
+      getTeapot: () => {
+        return strToMem(props, teapot);
+      },
+      getMountains: () => {
+        return strToMem(props, mountains);
+      },
+      getTeddybear: () => {
+        return strToMem(props, teddybear);
+      },
+      getCow: () => {
+        return strToMem(props, cow);
+      },
+      getFox: () => {
+        return strToMem(props, fox);
+      },
+      getRobot: () => {
+        return strToMem(props, robot);
+      },
+      lockPointer: () => {
+        const requestPointerLock = () => {
+          return canvas.requestPointerLock();
+        };
+        canvas.removeEventListener('click', requestPointerLock, false);
+        canvas.addEventListener('click', requestPointerLock, false);
+        const update = updateAbsolutePosition(props);
+
+        const lockChangeAlert = () => {
+          if (document.pointerLockElement === canvas) {
+            document.addEventListener('mousemove', update, false);
+          } else {
+            document.removeEventListener('mousemove', update, false);
+          }
+        };
+
+        document.removeEventListener('pointerlockchange', lockChangeAlert, false);
+        document.addEventListener('pointerlockchange', lockChangeAlert, false);
+      },
     },
   };
 };
 
-export const webglModule: Laze.Module = {
+const initializeGraphicsProps = (p: unknown): Laze.Props => {
+  if (!checkImportGraphicsProps(p)) {
+    throw new Error('The props in initializeStdProps does not include type importGraphicsProps.');
+  }
+  const props = p as importGraphicsProps;
+  props.webglObjects = initialWebglObjects;
+  props.memory = new WebAssembly.Memory({ initial: 1000 });
+  props.keyControl = initialKeyControl;
+  props.memorySize = 0;
+  return props;
+};
+
+export const graphicsModule: Laze.Module = {
   props: {
     webglObjects: initialWebglObjects,
     canvas: null,
     gl: null,
     memory: new WebAssembly.Memory({ initial: 1000 }),
+    memorySize: 0,
+    keyControl: initialKeyControl,
   },
-  importFunc: importWebgl,
+  importFunc: importGraphics,
+  initFunc: initializeGraphicsProps,
 };
