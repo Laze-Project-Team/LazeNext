@@ -4,6 +4,8 @@ import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { AiOutlineDoubleRight } from 'react-icons/ai';
+import { BsQuestion } from 'react-icons/bs';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -31,6 +33,7 @@ import {
 
 export const CompeteEditorLayout: VFC = () => {
   const [t] = useTranslation('compete');
+  const [isSiderbarCollapsed, setIsSiderbarCollapsed] = useState(true);
 
   const { locale, query } = useRouter();
   const level = (query.level ?? '') as string;
@@ -68,12 +71,27 @@ export const CompeteEditorLayout: VFC = () => {
       <Layout.Content>
         <MonacoEditor />
       </Layout.Content>
-      <div className="absolute right-0 bottom-0 flex flex-col pb-4 pr-4">
-        <Tooltip title={t('')}>
-          <Button shape="circle" icon={<></>}></Button>
+      <div className="absolute right-0 bottom-0 z-10 flex flex-col pb-4 pr-4">
+        <Tooltip title={isSiderbarCollapsed ? t('help') : t('close_help')}>
+          <Button
+            type="primary"
+            shape="circle"
+            icon={
+              isSiderbarCollapsed ? (
+                <BsQuestion className="relative top-[-2px] inline h-full w-full" />
+              ) : (
+                <AiOutlineDoubleRight className="relative top-[-2px] inline h-full w-full" />
+              )
+            }
+            onClick={() => {
+              setIsSiderbarCollapsed((isSiderbarCollapsed) => {
+                return !isSiderbarCollapsed;
+              });
+            }}
+          />
         </Tooltip>
       </div>
-      <Layout.Sider width="35%">
+      <Layout.Sider width="35%" collapsed={isSiderbarCollapsed} collapsible trigger={null} collapsedWidth="0">
         <div className="editor-scrollable scrollable-normal h-full overflow-y-scroll border-l-[1px] border-b-[1px] !border-[#cccccc] bg-white p-4 pt-0 dark:!border-[#3e3e3e] dark:!bg-[#1e1e1e]">
           <Markdown
             components={{

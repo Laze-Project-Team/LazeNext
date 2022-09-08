@@ -8,6 +8,8 @@
   "join": "Join {{competition}} Level {{level}}",
   "level": "Level",
   "competition": "Competition",
+  "help": "Help",
+  "close_help": "Close",
   "fetch code error": "Fetching Code Failed",
   "fetch code error message": "The server could not find code for the user {{user}}.",
   "fetch wasm error": "Fetching WASM Failed",
