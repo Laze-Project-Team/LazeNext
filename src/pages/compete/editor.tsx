@@ -7,10 +7,10 @@ import type { MutableRefObject, RefObject } from 'react';
 import { createContext, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
+import { CompeteEditorLayout } from '@/components/layout/CompeteEditorLayout';
 import { CompeteButtons } from '@/components/model/EditorButtons/compete';
 import { EditorFooter } from '@/components/model/EditorFooter';
 // import { Explorer } from '@/components/model/Explorer';
-import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
 
 export const splitPaneRefContext = createContext<RefObject<SplitPane> | null>(null);
@@ -67,8 +67,8 @@ const Editor: NextPage = () => {
                 <div className="h-7">
                   <CompeteButtons />
                 </div>
-                <div className="flex-1">
-                  <MonacoEditor />
+                <div className="flex h-full flex-1">
+                  <CompeteEditorLayout />
                 </div>
               </div>
               {/* </SplitPane> */}

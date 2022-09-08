@@ -1877,6 +1877,8 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 公開 : 	ワールド という シーン を  おく  。 
 	直線データ という 配列 < ベクトル2D > を  おく  。 
 	${"ja":"センサー値", "natja":"センサー値", "en":"sensorValue", "naten":"sensorValue"}$ [ 2 ] という 実数 を  おく  。 
+	${"ja":"左センサー値", "natja":"左センサー値", "en":"leftSensorValue", "naten":"leftSensorValue"}$ という 実数 を  おく  。 
+	${"ja":"右センサー値", "natja":"右センサー値", "en":"rightSensorValue", "naten":"rightSensorValue"}$ という 実数 を  おく  。 
 	${"ja":"左モーターON", "natja":"左モーターON", "en":"leftMotorON", "naten":"leftMotorON"}$ という 整数 を  おく  。 
 	${"ja":"右モーターON", "natja":"右モーターON", "en":"rightMotorON", "naten":"rightMotorON"}$ という 整数 を  おく  。 
 	${"ja":"左モーター向き", "natja":"左モーター向き", "en":"leftMotorSequence", "naten":"leftMotorSequence"}$ という 整数 を  おく  。 
@@ -2022,6 +2024,8 @@ js書き出し ( 引数なしjsリスナー呼び出し , "jsCallListenerNoParam
 			もし センサー値 [ 1 ]  > 255 ならば ここから
 				センサー値 [ 1 ] に 255.0 を  代入する  。 
 			ここまで実行 
+			右センサー値 に センサー値 [ 0 ] を  代入する  。 
+			左センサー値 に センサー値 [ 1 ] を  代入する  。 
 			ロボット座標3D という ベクトル3D の  オブジェクト  を ロボット座標 の x , 0.0 , ロボット座標 の y で  初期化  。 
 			ライト座標3D という ベクトル3D の  オブジェクト  を ロボット座標 の x  + 5.0 , 5.0 , ロボット座標 の y  + 5.0 で  初期化  。 
 			ロボット座標3D ワールド の スプライト配列 の 取得 ( ロボットID ) -> 座標設定 する  。 

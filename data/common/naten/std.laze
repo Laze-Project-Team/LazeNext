@@ -1326,14 +1326,14 @@ public : 	Declare  variable ${"ja":"スプライト配列", "natja":"スプラ�
 			Initialize  variable line as string with get of lines ( counter ) . 
 			Initialize  variable words as Array < string > with separate of line ( ' ') . 
 			If get of words ( 0 )  == "v"then  execute  code starting here
-				Initialize  object temp as Vector3D with (toDouble of (get of words ( 1 ))) ( ) , (toDouble of (get of words ( 2 )) )( ) , (toDouble of (get of words ( 3 ))) ( ) . 
+				Initialize  object temp as Vector3D with (toDouble of (get of words ( 1 ))) ( ) , (toDouble of (get of words ( 2 ))) ( ) , (toDouble of (get of words ( 3 ))) ( ) . 
 				Call push of vertices with  value temp . 
 			ending here 
 			If get of words ( 0 )  == "f"then  execute  code starting here
 				repeat length of words ( ) times starting here
 					If counter  != 0 then  execute  code starting here
 						Initialize  variable faceData as Array < string > with (separate of (get of words ( counter ))) ( '/') . 
-						Call push of vertexIndices with  value (toInteger of (get of faceData ( 0 ) ))( ) . 
+						Call push of vertexIndices with  value (toInteger of (get of faceData ( 0 ))) ( ) . 
 						If length of faceData ( )  == 3 then  execute  code starting here
 							Call push of uvIndices with  value (toInteger of (get of faceData ( 1 ))) ( ) . 
 							Call push of normalIndices with  value (toInteger of (get of faceData ( 2 ))) ( ) . 
@@ -1342,7 +1342,7 @@ public : 	Declare  variable ${"ja":"スプライト配列", "natja":"スプラ�
 				ending here 
 			ending here 
 			If get of words ( 0 )  == "vn"then  execute  code starting here
-				Initialize  object temp as Vector3D with( toDouble of (get of words ( 1 ))) ( ) , (toDouble of (get of words ( 2 ))) ( ) , (toDouble of (get of words ( 3 ))) ( ) . 
+				Initialize  object temp as Vector3D with (toDouble of (get of words ( 1 ))) ( ) , (toDouble of (get of words ( 2 ))) ( ) , (toDouble of (get of words ( 3 ))) ( ) . 
 				Call push of normals with  value temp . 
 			ending here 
 		ending here 
@@ -1877,6 +1877,8 @@ Declare  class ${"ja":"ライントレースシミュレーション", "natja":"
 public : 	Declare  variable world as Scene . 
 	Declare  variable 直線データ as Array < Vector2D > . 
 	Declare  variable element 2 in ${"ja":"センサー値", "natja":"センサー値", "en":"sensorValue", "naten":"sensorValue"}$ as double . 
+	Declare  variable ${"ja":"左センサー値", "natja":"左センサー値", "en":"leftSensorValue", "naten":"leftSensorValue"}$ as double . 
+	Declare  variable ${"ja":"右センサー値", "natja":"右センサー値", "en":"rightSensorValue", "naten":"rightSensorValue"}$ as double . 
 	Declare  variable ${"ja":"左モーターON", "natja":"左モーターON", "en":"leftMotorON", "naten":"leftMotorON"}$ as int . 
 	Declare  variable ${"ja":"右モーターON", "natja":"右モーターON", "en":"rightMotorON", "naten":"rightMotorON"}$ as int . 
 	Declare  variable ${"ja":"左モーター向き", "natja":"左モーター向き", "en":"leftMotorSequence", "naten":"leftMotorSequence"}$ as int . 
@@ -2022,6 +2024,8 @@ public : 	Declare  variable world as Scene .
 			If element 1 in sensorValue  > 255 then  execute  code starting here
 				Assign 255.0 to element 1 in sensorValue . 
 			ending here 
+			Assign element 0 in sensorValue to rightSensorValue . 
+			Assign element 1 in sensorValue to leftSensorValue . 
 			Initialize  object ロボット座標3D as Vector3D with x of ロボット座標 , 0.0 , y of ロボット座標 . 
 			Initialize  object ライト座標3D as Vector3D with x of ロボット座標  + 5.0 , 5.0 , y of ロボット座標  + 5.0 . 
 			Call get of sprites of world ( ロボットID ) -> setPos with  value ロボット座標3D . 

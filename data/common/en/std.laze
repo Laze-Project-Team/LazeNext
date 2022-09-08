@@ -1877,6 +1877,8 @@ class: ${"ja":"ライントレースシミュレーション", "natja":"ライ�
 public: 	Scene: world;
 	Array<Vector2D>: 直線データ;
 	double: ${"ja":"センサー値", "natja":"センサー値", "en":"sensorValue", "naten":"sensorValue"}$[2];
+	double: ${"ja":"左センサー値", "natja":"左センサー値", "en":"leftSensorValue", "naten":"leftSensorValue"}$;
+	double: ${"ja":"右センサー値", "natja":"右センサー値", "en":"rightSensorValue", "naten":"rightSensorValue"}$;
 	int: ${"ja":"左モーターON", "natja":"左モーターON", "en":"leftMotorON", "naten":"leftMotorON"}$;
 	int: ${"ja":"右モーターON", "natja":"右モーターON", "en":"rightMotorON", "naten":"rightMotorON"}$;
 	int: ${"ja":"左モーター向き", "natja":"左モーター向き", "en":"leftMotorSequence", "naten":"leftMotorSequence"}$;
@@ -2022,6 +2024,8 @@ public: 	Scene: world;
 			if(sensorValue[1] > 255){
 				sensorValue[1] = 255.0;
 			}
+			rightSensorValue = sensorValue[0];
+			leftSensorValue = sensorValue[1];
 			Vector3D: ロボット座標3D(ロボット座標.x, 0.0, ロボット座標.y);
 			Vector3D: ライト座標3D(ロボット座標.x + 5.0, 5.0, ロボット座標.y + 5.0);
 			world.sprites.get(ロボットID)->setPos(ロボット座標3D);
