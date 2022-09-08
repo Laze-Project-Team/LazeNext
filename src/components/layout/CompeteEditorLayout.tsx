@@ -2,8 +2,9 @@ import { Button, Layout, notification, Tooltip } from 'antd';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import Markdown from 'react-markdown';
-import { useQuery } from 'react-query';
 import remarkGfm from 'remark-gfm';
 
 import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
@@ -35,32 +36,32 @@ export const CompeteEditorLayout: VFC = () => {
   const level = (query.level ?? '') as string;
   const id = (query.id ?? '') as string;
 
-  const openFetchError = (errorItem: string) => {
-    notification.open({
-      message: t(`fetch ${errorItem} error`),
-      description: t(`fetch ${errorItem} error message`, { level, id }),
-    });
-  };
+  const [content, setContent] = useState('');
 
-  const fetchExplanation = async () => {
-    if (query.level && query.id) {
-      const url = `/api/compete/getexplanation?id=${id}&level=${level}&lang=${locale}`;
-      const res = await fetch(url, {
-        method: 'GET',
+  useEffect(() => {
+    const openFetchError = (errorItem: string) => {
+      notification.open({
+        message: t(`fetch ${errorItem} error`),
+        description: t(`fetch ${errorItem} error message`, { level, id }),
       });
-      if (res.ok) {
-        const text = res.text();
-
-        return text;
-      } else {
-        openFetchError('explanation');
-      }
+    };
+    if (query.id && query.level) {
+      const url = `/api/compete/getexplanation?id=${query.id}&level=${query.level}&lang=${locale}`;
+      fetch(url, {
+        method: 'GET',
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.text();
+          } else {
+            openFetchError('explanation');
+          }
+        })
+        .then((text) => {
+          setContent(text ?? '');
+        });
     }
-  };
-
-  const content = useQuery('explanation', fetchExplanation, {
-    retry: 2,
-  });
+  }, [query, content, id, level, locale, t]);
 
   return (
     <Layout className="relative flex h-full flex-1">
@@ -96,7 +97,7 @@ export const CompeteEditorLayout: VFC = () => {
             }}
             remarkPlugins={[remarkGfm]}
           >
-            {content.isFetched ? content.data ?? '' : ''}
+            {content ?? ''}
           </Markdown>
         </div>
       </Layout.Sider>
