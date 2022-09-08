@@ -8,6 +8,8 @@
   "join": "{{competition}} の {{level}} レベルに参加する",
   "level": "レベル",
   "competition": "コンテスト",
+  "help": "ヘルプ",
+  "close_help": "閉じる",
   "fetch code error": "プログラム取得失敗",
   "fetch code error message": "サーバーは{{user}}のプログラムを見つけることができませんでした。",
   "fetch wasm error": "WASM取得失敗",
