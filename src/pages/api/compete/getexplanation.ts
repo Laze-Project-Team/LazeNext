@@ -8,7 +8,7 @@ const handler: NextApiHandler = async (req, res) => {
   const level: string = req.query.level as string;
   const id: string = req.query.id as string;
   const lang: string = req.query.lang as string;
-  const explanationPath = path.join(COMPETITION_DIR, id, level, `${lang}.md`);
+  const explanationPath = path.join(COMPETITION_DIR, id, 'explanations', level, `${lang}.md`);
 
   if (fs.existsSync(explanationPath)) {
     try {

@@ -14,6 +14,6 @@
   "fetch wasm error message": "The server could not find wasm for the user {{user}}.",
   "fetch compData error": "Fetching Competition Data Failed",
   "fetch compData error message": "The server could not find competition data.",
-  "fetch explanation error": "Fetching Explanation Data Failed",
+  "fetch explanation error": "Fetching Explanation Failed",
   "fetch explanation error message": "The server could not find explanation for {{id}} level {{level}}."
 }
