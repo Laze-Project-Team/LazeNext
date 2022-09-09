@@ -1941,6 +1941,88 @@ public : 	Declare  variable world as Scene .
 		ending here 
 		Call push of 直線データ with  value Vector2D ( get of points ( 0 ) , get of points ( 1 ) ) . 
 	ending here 
+	Declare  function linetraceSimulation that  takes level as int with  code starting here
+		Declare  variable points as Array < double > . 
+		Initialize  object firstPos as Vector2D with 0.0 , 0.0 . 
+		If level  == 0 then  execute  code starting here
+			Initialize  variable number as int with 12 . 
+			repeat 12 times starting here
+				Call push of points with  value 10.0  * cos ( toRad ( ( 360.0  / number )  * counter ) )  + 10.0 . 
+				Call push of points with  value 10.0  * sin ( toRad ( ( 360.0  / number )  * counter ) )  + 10.0 . 
+			ending here 
+			Assign 0.0 to x of firstPos . 
+			Assign 10.0 to y of firstPos . 
+			Assign ( 0  - ( 1.0 ) ) to element 0 in スタートマーク . 
+			Assign 10.0 to element 1 in スタートマーク . 
+			Assign 1.0 to element 2 in スタートマーク . 
+			Assign 10.0 to element 3 in スタートマーク . 
+		ending here 
+		If level  == 1 then  execute  code starting here
+			Initialize  variable number as int with 12 . 
+			repeat 6 times starting here
+				Call push of points with  value 10.0  * cos ( toRad ( ( 360.0  / number )  * ( counter  + 1 ) ) ) . 
+				Call push of points with  value 10.0  * sin ( toRad ( ( 360.0  / number )  * ( counter  + 1 ) ) )  + 10.0 . 
+			ending here 
+			repeat 6 times starting here
+				Call push of points with  value 10.0  * cos ( toRad ( ( 360.0  / number )  * ( counter  + 7 ) ) ) . 
+				Call push of points with  value 10.0  * sin ( toRad ( ( 360.0  / number )  * ( counter  + 7 ) ) )  - 10.0 . 
+			ending here 
+			Assign 9.0 to x of firstPos . 
+			Assign 1.0 to y of firstPos . 
+			Assign 8.0 to element 0 in スタートマーク . 
+			Assign ( 0  - ( 1.0 ) ) to element 1 in スタートマーク . 
+			Assign 10.0 to element 2 in スタートマーク . 
+			Assign 0.0 to element 3 in スタートマーク . 
+		ending here 
+		Call Array of 直線データ . 
+		Call Scene of world . 
+		Call Vector2D of ロボット移動方向 with  value 0.0 , 1.0 . 
+		Assign 3 to leftMotorSpeed . 
+		Assign 3 to rightMotorSpeed . 
+		Assign 1 to leftMotorSequence . 
+		Assign 1 to rightMotorSequence . 
+		Assign 0 to leftMotorON . 
+		Assign 0 to rightMotorON . 
+		Assign getTime ( ) to スタートタイム . 
+		Assign 1.0 to ロボット速度 . 
+		Assign firstPos to ロボット座標 . 
+		Initialize  object 灰色 as Vector3D with 0.800000000000000044 , 0.800000000000000044 , 0.800000000000000044 . 
+		Initialize  object 白 as Vector3D with 1.0 , 1.0 , 1.0 . 
+		Initialize  object 黒 as Vector3D with 0.0 , 0.0 , 0.0 . 
+		Initialize  object 初期位置1 as Vector3D with x of firstPos , 0.0 , y of firstPos . 
+		Initialize  object 初期位置2 as Vector3D with 5.0 , 5.0 , 5.0 . 
+		Initialize  object 初期位置3 as Vector3D with 0.0 , ( 0  - ( 0.5 ) ) , 0.0 . 
+		Initialize  object 初期位置4 as Vector3D with x of firstPos , 10.0 , y of firstPos . 
+		Initialize  object axis as Vector3D with 0.0 , 1.0 , 0.0 . 
+		Call push of points with  value get of points ( 0 ) . 
+		Call push of points with  value get of points ( 1 ) . 
+		Call setDirectionalLight of world with  value 初期位置3 , 白 , 0.0500000000000000028 , 0.0500000000000000028 , 0.0 . 
+		Call setSensitivity of camera of world with  value 5.0 . 
+		Call setPos of camera of world with  value 初期位置4 . 
+		Call setAngle of camera of world with  value 90.0 , ( 0  - ( 90.0 ) ) . 
+		Assign addModel of world ( loadSampleModel ( "robot") , 灰色 , 初期位置1 ) to ロボットID . 
+		Call get of sprites of world ( ロボットID ) -> setRotate with  value Vector3D ( 0.0 , 1.0 , 0.0 ) , toRad ( 180 ) . 
+		Assign addLight of world ( 1.0 , 白 , 初期位置2 , 1000.0 ) to ライトID . 
+		Assign addCube of world ( 0.200000000000000011 , Vector3D ( 0.0 , 0.0 , 0.0 ) , Vector3D ( 0.0 , 0.0 , 0.0 ) ) to センサー1ID . 
+		Assign addCube of world ( 0.200000000000000011 , Vector3D ( 0.0 , 0.0 , 0.0 ) , Vector3D ( 0.0 , 0.0 , 0.0 ) ) to センサー2ID . 
+		Call addCuboid of world with  value 100.0 , 1.0 , 100.0 , 白 , 初期位置3 . 
+		( Initialize  variable counter as int with 0 . ) from ( counter  == ( length of points ( )  - 2 ) ) to ( Assign counter  + 2 to counter . ) starting here
+			Initialize  object A as Vector2D with get of points ( counter ) , get of points ( counter  + 1 ) . 
+			Initialize  object B as Vector2D with get of points ( counter  + 2 ) , get of points ( counter  + 3 ) . 
+			If A  != B then  execute  code starting here
+				Initialize  variable 差 as Vector2D with B  - A . 
+				Initialize  variable 和 as Vector2D with A  + B . 
+				Initialize  variable 傾き as double with ( y of A  - y of B )  / ( x of A  - x of B ) . 
+				Call push of 直線データ with  value A . 
+				Initialize  variable length as double with length of 差 ( ) . 
+				Initialize  variable temp座標 as Vector2D with 和  * 0.5 . 
+				Initialize  object temp3D座標 as Vector3D with x of temp座標 , 0.0 , y of temp座標 . 
+				Initialize  variable tempID as int with addCuboid of world ( length , 0.25 , 0.25 , 黒 , temp3D座標 ) . 
+				Call get of sprites of world ( tempID ) -> setRotate with  value axis , ( 0  - ( jsArcTan ( 傾き ) ) ) . 
+			ending here 
+		ending here 
+		Call push of 直線データ with  value Vector2D ( get of points ( 0 ) , get of points ( 1 ) ) . 
+	ending here 
 	Declare  function translate with  code starting here
 		Initialize  variable PI as double with 3.14159265358979312 . 
 		Initialize  variable 左モーター距離 as double with leftMotorSpeed  * leftMotorON  * leftMotorSequence  * 0.0160000000000000003 . 

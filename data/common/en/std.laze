@@ -1941,6 +1941,88 @@ public: 	Scene: world;
 		}
 		直線データ.push(Vector2D(points.get(0), points.get(1)));
 	}
+	function: linetraceSimulation(int: level) => (){
+		Array<double>: points;
+		Vector2D: firstPos(0.0, 0.0);
+		if(level == 0){
+			int: number = 12;
+			repeat(12){
+				points.push(10.0 * cos(toRad((360.0 / number) * counter)) + 10.0);
+				points.push(10.0 * sin(toRad((360.0 / number) * counter)) + 10.0);
+			}
+			firstPos.x = 0.0;
+			firstPos.y = 10.0;
+			スタートマーク[0] = (0 - (1.0));
+			スタートマーク[1] = 10.0;
+			スタートマーク[2] = 1.0;
+			スタートマーク[3] = 10.0;
+		}
+		if(level == 1){
+			int: number = 12;
+			repeat(6){
+				points.push(10.0 * cos(toRad((360.0 / number) * (counter + 1))));
+				points.push(10.0 * sin(toRad((360.0 / number) * (counter + 1))) + 10.0);
+			}
+			repeat(6){
+				points.push(10.0 * cos(toRad((360.0 / number) * (counter + 7))));
+				points.push(10.0 * sin(toRad((360.0 / number) * (counter + 7))) - 10.0);
+			}
+			firstPos.x = 9.0;
+			firstPos.y = 1.0;
+			スタートマーク[0] = 8.0;
+			スタートマーク[1] = (0 - (1.0));
+			スタートマーク[2] = 10.0;
+			スタートマーク[3] = 0.0;
+		}
+		直線データ.Array();
+		world.Scene();
+		ロボット移動方向.Vector2D(0.0, 1.0);
+		leftMotorSpeed = 3;
+		rightMotorSpeed = 3;
+		leftMotorSequence = 1;
+		rightMotorSequence = 1;
+		leftMotorON = 0;
+		rightMotorON = 0;
+		スタートタイム = getTime();
+		ロボット速度 = 1.0;
+		ロボット座標 = firstPos;
+		Vector3D: 灰色(0.800000000000000044, 0.800000000000000044, 0.800000000000000044);
+		Vector3D: 白(1.0, 1.0, 1.0);
+		Vector3D: 黒(0.0, 0.0, 0.0);
+		Vector3D: 初期位置1(firstPos.x, 0.0, firstPos.y);
+		Vector3D: 初期位置2(5.0, 5.0, 5.0);
+		Vector3D: 初期位置3(0.0, (0 - (0.5)), 0.0);
+		Vector3D: 初期位置4(firstPos.x, 10.0, firstPos.y);
+		Vector3D: axis(0.0, 1.0, 0.0);
+		points.push(points.get(0));
+		points.push(points.get(1));
+		world.setDirectionalLight(初期位置3, 白, 0.0500000000000000028, 0.0500000000000000028, 0.0);
+		world.camera.setSensitivity(5.0);
+		world.camera.setPos(初期位置4);
+		world.camera.setAngle(90.0, (0 - (90.0)));
+		ロボットID = world.addModel(loadSampleModel("robot"), 灰色, 初期位置1);
+		world.sprites.get(ロボットID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad(180));
+		ライトID = world.addLight(1.0, 白, 初期位置2, 1000.0);
+		センサー1ID = world.addCube(0.200000000000000011, Vector3D(0.0, 0.0, 0.0), Vector3D(0.0, 0.0, 0.0));
+		センサー2ID = world.addCube(0.200000000000000011, Vector3D(0.0, 0.0, 0.0), Vector3D(0.0, 0.0, 0.0));
+		world.addCuboid(100.0, 1.0, 100.0, 白, 初期位置3);
+		(int: counter = 0;)from(counter == (points.length() - 2))to(counter = counter + 2;){
+			Vector2D: A(points.get(counter), points.get(counter + 1));
+			Vector2D: B(points.get(counter + 2), points.get(counter + 3));
+			if(A != B){
+				Vector2D: 差 = B - A;
+				Vector2D: 和 = A + B;
+				double: 傾き = (A.y - B.y) / (A.x - B.x);
+				直線データ.push(A);
+				double: length = 差.length();
+				Vector2D: temp座標 = 和 * 0.5;
+				Vector3D: temp3D座標(temp座標.x, 0.0, temp座標.y);
+				int: tempID = world.addCuboid(length, 0.25, 0.25, 黒, temp3D座標);
+				world.sprites.get(tempID)->setRotate(axis, (0 - (jsArcTan(傾き))));
+			}
+		}
+		直線データ.push(Vector2D(points.get(0), points.get(1)));
+	}
 	function: translate() => (){
 		double: PI = 3.14159265358979312;
 		double: 左モーター距離 = leftMotorSpeed * leftMotorON * leftMotorSequence * 0.0160000000000000003;
