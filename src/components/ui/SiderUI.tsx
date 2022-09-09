@@ -129,12 +129,16 @@ export const SiderUI: VFC = () => {
         </Link>
       </div>
       <div className="h-[51%] w-full bg-background pl-4 pr-4 pb-4">
-        {code.isFetched && code.data !== undefined ? (
-          <SiderEditor code={code.isFetched ? code.data : ''} key={competitor.id} />
+        {competitor.publish ? (
+          code.isFetched && code.data !== undefined ? (
+            <SiderEditor code={code.isFetched ? code.data : ''} key={competitor.id} />
+          ) : (
+            <>
+              <p>Loading...</p>
+            </>
+          )
         ) : (
-          <>
-            <p>Loading...</p>
-          </>
+          <span className="text-gray-300">{t('not_published')}</span>
         )}
       </div>
     </>

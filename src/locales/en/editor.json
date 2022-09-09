@@ -30,7 +30,14 @@
     "convert": "Language Conversion(Change)",
     "settings": "Settings",
     "level": "Level",
-    "competition": "Competition"
+    "competition": "Competition",
+    "reset": "Reset Code",
+    "run_your_linetrace": "Run your linetrace simulation to submit a score.",
+    "name": "Name",
+    "enter_name": "Enter Name",
+    "submit": "Submit",
+    "submit_to_competition": "Submit to Competition",
+    "no_inappropriate_terms": "Please do not write inappropriate terms in your name."
   },
 
   "settings": {
@@ -78,7 +85,11 @@
     },
     "NameMustBeProvided": "A file or folder name must be provided.",
     "FileAlreadyExists": "A file or folder with that name already exists. Please choose a different name.",
-    "NotValidName": "This name is not valid as a file or folder name. Please choose a different name."
+    "NotValidName": "This name is not valid as a file or folder name. Please choose a different name.",
+    "SubmitSuccess": {
+      "title": "Program Submitted Successfully",
+      "message": "{{user}}'s program was submitted successfully with the time {{time}}."
+    }
   },
 
   "errors": {
@@ -97,6 +108,11 @@
     "CompileProgramFailed": {
       "title": "Failed to compile program",
       "message": "Please check your network connection"
+    },
+    "SubmitFailed": {
+      "title": "Failed to submit program",
+      "message": "Please try a different username"
     }
-  }
+  },
+  "publish_source_code_check": "Do you want to make this program public? When public, other people can look at, and use your code."
 }

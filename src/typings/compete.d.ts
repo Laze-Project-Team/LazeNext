@@ -35,6 +35,7 @@ export type Competitor = {
   programUrl: string;
   ranking: number;
   wasmUrl: string;
+  publish: boolean;
 };
 
 export type LeaderboardListProps = {
@@ -51,4 +52,5 @@ export type GetcompetitorRequest = {
 export type CompetitorInfoJson = {
   id: string;
   time: number;
+  publish: boolean;
 };

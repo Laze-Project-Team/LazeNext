@@ -12,13 +12,23 @@ export type SubmitRequest = {
   programUrl: string;
   wasmUrl: string;
   time: number;
+  publish: boolean;
 };
 
 // error handling needed
 
 const handler: NextApiHandler = async (req, res) => {
   const request = JSON.parse(
-    req.body ?? JSON.stringify({ competition: '', level: '', name: '', time: 100000, programUrl: '', wasmUrl: '' })
+    req.body ??
+      JSON.stringify({
+        competition: '',
+        level: '',
+        name: '',
+        time: 100000,
+        programUrl: '',
+        wasmUrl: '',
+        publish: false,
+      })
   ) as SubmitRequest;
   const levelPath = path.join(COMPETITION_DIR, request.competition, request.level);
   if (fs.existsSync(levelPath)) {
@@ -33,19 +43,20 @@ const handler: NextApiHandler = async (req, res) => {
     const infoJson: CompetitorInfoJson = {
       id: request.name,
       time: Number(request.time.toFixed(2)),
+      publish: request.publish,
     };
     try {
       await fs.promises.writeFile(path.join(competitorPath, 'info.json'), JSON.stringify(infoJson));
       await fs.promises.copyFile(request.programUrl, path.join(competitorPath, 'main.laze'));
       await fs.promises.copyFile(request.wasmUrl, path.join(competitorPath, 'main.wasm'));
-      res.json({ success: true });
+      res.json({ success: true, publish: request.publish });
     } catch (e) {
       console.error(e);
-      res.status(404).json({ success: false });
+      res.status(404).json({ success: false, publish: false });
     }
   } else {
     console.error(`${req.url}: ${levelPath} does not exist.`);
-    res.status(404).json({ success: false });
+    res.status(404).json({ success: false, publish: false });
   }
 };
 

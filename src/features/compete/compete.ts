@@ -44,6 +44,7 @@ export const getLeaderboardList = async (
                 rankingData: infoJson.time,
                 wasmUrl: path.join(levelPath, name, 'main.wasm'),
                 programUrl: path.join(levelPath, name, 'main.laze'),
+                publish: infoJson.publish,
               };
               return competitor;
             })
@@ -94,6 +95,7 @@ export const getCompetitionData = async (id: string, lang: string): Promise<Comp
         name: competitionJson.name[lang],
         id: competitionJson.id,
         leaderboardList: leaderboardList,
+        explanation: competitionJson.explanations[lang],
       };
       return competition;
     } catch (e) {

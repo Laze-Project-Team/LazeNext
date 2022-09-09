@@ -26,7 +26,14 @@
     "convert": "言語の変換（変更）",
     "settings": "設定",
     "level": "レベル",
-    "competition": "コンテスト"
+    "competition": "コンテスト",
+    "reset": "コードをリセット",
+    "run_your_linetrace": "ライントレースシミュレーションを実行して、ロボットのタイムを測ってください。",
+    "name": "名前",
+    "enter_name": "名前を入力してください",
+    "submit": "提出",
+    "submit_to_competition": "コンテストに提出",
+    "no_inappropriate_terms": "不適切な言葉などをユーザーネームに含めないでください。"
   },
   "settings": {
     "darkmode": "ダークモードを有効にする",
@@ -68,7 +75,11 @@
     },
     "NameMustBeProvided": "ファイルまたはフォルダの名前を指定する必要があります",
     "FileAlreadyExists": "この名前のファイルまたはフォルダは既にこの場所に存在します。別の名前を指定してください。",
-    "NotValidName": "この名前はファイルまたはフォルダ名として無効です。別の名前を指定してください。"
+    "NotValidName": "この名前はファイルまたはフォルダ名として無効です。別の名前を指定してください。",
+    "SubmitSuccess": {
+      "title": "プログラムの提出に成功しました",
+      "message": "{{name}} のプログラムは {{time}} のタイムで提出されました。"
+    }
   },
   "errors": {
     "FileIsNotOpened": {
@@ -86,6 +97,11 @@
     "CompileProgramFailed": {
       "title": "プログラムのコンパイルに失敗しました",
       "message": "ネットワーク接続を確認してください"
+    },
+    "SubmitFailed": {
+      "title": "プログラムの提出に失敗しました",
+      "message": "違うユーザーネームを試してみてください"
     }
-  }
+  },
+  "publish_source_code_check": "このプログラムを公開しますか。公開すると、他の人があなたのプログラムを見て、使うことができます。"
 }

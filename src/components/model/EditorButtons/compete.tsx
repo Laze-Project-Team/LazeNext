@@ -11,11 +11,11 @@ import { useDispatch } from 'react-redux';
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { CompileButton } from '@/components/model/EditorButtons/EditorButton/CompileButton';
 import { ConvertButton } from '@/components/model/EditorButtons/EditorButton/ConvertButton';
-import { SamplesButton } from '@/components/model/EditorButtons/EditorButton/SamplesButton';
 import { SettingsButton } from '@/components/model/EditorButtons/EditorButton/SettingsButton';
 import type { ExecuteParam } from '@/features/laze/executeLaze';
 import { cx } from '@/features/utils/cx';
 
+import { ResetButton } from './EditorButton/ResetButton';
 import { SubmitButton } from './EditorButton/SubmitButton';
 
 const QUERY_SM_DOWN = '(max-width: 800px)' as const;
@@ -88,7 +88,7 @@ export const CompeteButtons: VFC = () => {
                   <CompileButton />
                 </div>
                 <div>
-                  <SamplesButton />
+                  <ResetButton />
                 </div>
                 <div>
                   <ConvertButton />
@@ -98,7 +98,7 @@ export const CompeteButtons: VFC = () => {
           ) : (
             <>
               <CompileButton />
-              <SamplesButton />
+              <ResetButton />
               <ConvertButton />
             </>
           )}
