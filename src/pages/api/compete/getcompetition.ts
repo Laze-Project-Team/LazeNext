@@ -8,6 +8,7 @@ import type { Competition, CompetitionJson } from '@/typings/compete';
 
 const handler: NextApiHandler = async (req, res): Promise<void> => {
   const id: string = req.query.id as string;
+  const lang: string = req.query.lang as string;
   const competitionPath = path.join(COMPETITION_DIR, id);
   const jsonPath = path.join(competitionPath, id + '.json');
   if (fs.existsSync(jsonPath)) {
@@ -16,11 +17,23 @@ const handler: NextApiHandler = async (req, res): Promise<void> => {
       const competitionJson: CompetitionJson = JSON.parse(
         competitionJsonStr.toString() ?? JSON.stringify({ id: '', name: '' })
       );
-      const leaderboardList = await getLeaderboardList(competitionJson.levels, id, competitionJson.name);
+      // type guard
+      const levels = competitionJson.levels ?? {};
+      const leaderboardList = await getLeaderboardList(
+        competitionJson.id,
+        competitionJson.name[lang],
+        competitionJson.levelIDs ?? [],
+        levels[lang]
+      );
 
       const competition: Competition = {
-        ...competitionJson,
+        levels: levels[lang],
+        levelIDs: competitionJson.levelIDs,
+        name: competitionJson.name[lang],
+        id: competitionJson.id,
         leaderboardList: leaderboardList,
+        explanation: competitionJson.explanations[lang] ?? '',
+        imageForLevels: competitionJson.imageForLevels,
       };
       res.json(competition);
     } catch (e) {

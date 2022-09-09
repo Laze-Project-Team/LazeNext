@@ -19,14 +19,15 @@ export const getAllCompetitions = async (): Promise<string[]> => {
 
 //Get leaderboard list
 export const getLeaderboardList = async (
-  levels: string[] | undefined,
   competitionId: string,
-  competitionName: string
+  competitionName: string,
+  levelIDs: string[] | undefined,
+  levels: string[] | undefined
 ): Promise<CompetitionByLevel[]> => {
   const competitionPath = path.join(COMPETITION_DIR, competitionId);
   //Get leaderboard for each level
   const levelsData: (CompetitionByLevel | null)[] = await Promise.all(
-    (levels ?? []).map(async (level) => {
+    (levelIDs ?? []).map(async (level, index) => {
       const levelPath = path.join(competitionPath, level);
       // Check if the level exists
       if (fs.existsSync(levelPath)) {
@@ -50,7 +51,8 @@ export const getLeaderboardList = async (
           const levelData: CompetitionByLevel = {
             id: competitionId,
             name: competitionName,
-            level: level,
+            level: levels?.at(index) ?? '',
+            levelID: level,
             players: competitors,
           };
           return levelData;
@@ -69,7 +71,7 @@ export const getLeaderboardList = async (
   return finalLevelsData;
 };
 
-export const getCompetitionData = async (id: string): Promise<Competition | null> => {
+export const getCompetitionData = async (id: string, lang: string): Promise<Competition | null> => {
   const competitionPath = path.join(COMPETITION_DIR, id);
   const jsonPath = path.join(competitionPath, id + '.json');
   if (fs.existsSync(jsonPath)) {
@@ -78,14 +80,19 @@ export const getCompetitionData = async (id: string): Promise<Competition | null
       const competitionJson: CompetitionJson = JSON.parse(
         competitionJsonStr.toString() ?? JSON.stringify({ id: '', name: '' })
       );
+      const levels = competitionJson.levels ?? {};
       const leaderboardList = await getLeaderboardList(
-        competitionJson.levels,
         competitionJson.id,
-        competitionJson.name
+        competitionJson.name[lang],
+        competitionJson.levelIDs ?? [],
+        levels[lang]
       );
 
       const competition: Competition = {
-        ...competitionJson,
+        levels: levels[lang],
+        levelIDs: competitionJson.levelIDs,
+        name: competitionJson.name[lang],
+        id: competitionJson.id,
         leaderboardList: leaderboardList,
       };
       return competition;

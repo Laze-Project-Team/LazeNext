@@ -1,4 +1,5 @@
 import { Button, Tabs } from 'antd';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
@@ -21,14 +22,14 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
   const { collapse, updateCompetition } = competeSlice.actions;
   const { setDirectory } = explorerSlice.actions;
 
-  const onEditorLink = (level: string) => {
+  const onEditorLink = (levelID: string) => {
     dispatch(
       setDirectory({
         projectName: '',
         directory: {
           '/main.laze': {
             type: 'file',
-            content: linetraceTemplate[level],
+            content: linetraceTemplate[levelID],
             isRenaming: false,
           },
         },
@@ -45,24 +46,46 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
           centered
           onChange={(activeKey) => {
             dispatch(collapse());
+            const level =
+              competition.leaderboardList.find((element) => {
+                return element.levelID === activeKey;
+              })?.level ?? '';
             if (competition.leaderboardList.length > 0) {
-              const competitionData: CompetitionByLevel = { ...competition.leaderboardList[0], level: activeKey };
+              const competitionData: CompetitionByLevel = {
+                ...competition.leaderboardList[0],
+                levelID: activeKey,
+                level,
+              };
               dispatch(updateCompetition(competitionData));
             }
           }}
         >
           {competition.leaderboardList.map((element) => {
             return (
-              <TabPane tab={element.level} key={element.level}>
+              <TabPane tab={element.level} key={element.levelID}>
+                {competition.imageForLevels && competition.imageForLevels[element.levelID] ? (
+                  <div className="mx-auto w-4/12 p-4">
+                    <Image
+                      src={competition.imageForLevels[element.levelID]}
+                      alt="linetrace"
+                      layout="responsive"
+                      width="640"
+                      height="360"
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )}
+
                 <div className="flex w-full justify-center">
                   <Link
-                    href={`/compete/editor?id=${competition.id}&name=${competition.name}&level=${element.level}`}
+                    href={`/compete/editor?id=${competition.id}&name=${competition.name}&level=${element.level}&levelID=${element.levelID}`}
                     passHref
                   >
                     <Button
                       type="primary"
                       onClick={() => {
-                        onEditorLink(element.level);
+                        onEditorLink(element.levelID);
                       }}
                     >
                       <p>{t('join', { competition: competition.name, level: element.level })}</p>
@@ -93,6 +116,9 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
   return (
     <>
       <H1>{competition.name}</H1>
+      <span>{competition.explanation}</span>
+      <br></br>
+      <span>{t('leaderboard_explanation')}</span>
       {renderCompetition()}
     </>
   );

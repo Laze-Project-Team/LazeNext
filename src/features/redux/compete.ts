@@ -11,7 +11,7 @@ export type CompeteState = {
 const initialState: CompeteState = {
   collapsed: true,
   competitor: { id: '', ranking: 0, rankingData: 0, programUrl: '', wasmUrl: '' },
-  competition: { id: '', name: '', level: '', players: [] },
+  competition: { id: '', name: '', level: '', players: [], levelID: '' },
 };
 
 export const competeSlice = createSlice({

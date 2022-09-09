@@ -50,7 +50,7 @@ export const getStaticProps = async (context: contextType) => {
 
   const competitions: (Competition | null)[] = await Promise.all(
     files.map(async (name) => {
-      return await getCompetitionData(name.replace(/\.json$/, ''));
+      return await getCompetitionData(name.replace(/\.json$/, ''), context.locale);
     })
   );
 

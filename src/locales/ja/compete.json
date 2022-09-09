@@ -17,5 +17,6 @@
   "fetch compData error": "コンテストデータ取得失敗",
   "fetch compData error message": "サーバーはコンテストデータを見つけることができませんでした。",
   "fetch explanation error": "仕様説明取得失敗",
-  "fetch explanation error message": "サーバーは仕様説明を見つけることができませんでした。"
+  "fetch explanation error message": "サーバーは仕様説明を見つけることができませんでした。",
+  "leaderboard_explanation": "リーダーボードのプレイヤーをクリックするとそのプレイヤーのプログラムと実行結果が見えます。"
 }

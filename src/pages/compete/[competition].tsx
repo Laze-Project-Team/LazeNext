@@ -18,7 +18,7 @@ import type { Competition } from '@/typings/compete';
 
 const Compete: NextPage = () => {
   const [t] = useTranslation('compete');
-  const { query } = useRouter();
+  const { locale, query } = useRouter();
   const competitionName = query.competition as string;
 
   const openFetchError = (errorItem: string) => {
@@ -29,7 +29,7 @@ const Compete: NextPage = () => {
   };
 
   const fetchCompetitionData = async () => {
-    const res = await fetch(`/api/compete/getcompetition?id=${competitionName}`);
+    const res = await fetch(`/api/compete/getcompetition?id=${competitionName}&lang=${locale}`);
     if (res.ok) {
       return res.json();
     } else {
@@ -95,7 +95,7 @@ type contextType = {
 };
 
 export const getStaticProps = async (context: contextType) => {
-  const competitionData = await getCompetitionData(context.params.competition);
+  const competitionData = await getCompetitionData(context.params.competition, context.locale);
   return {
     props: {
       competitionData,

@@ -1,4 +1,5 @@
 import { Button, Layout, notification, Tooltip } from 'antd';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
@@ -6,6 +7,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { AiOutlineDoubleRight } from 'react-icons/ai';
 import { BsQuestion } from 'react-icons/bs';
+import { MdLeaderboard } from 'react-icons/md';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -33,11 +35,12 @@ import {
 
 export const CompeteEditorLayout: VFC = () => {
   const [t] = useTranslation('compete');
-  const [isSiderbarCollapsed, setIsSiderbarCollapsed] = useState(true);
+  const [isSiderbarCollapsed, setIsSiderbarCollapsed] = useState(false);
 
   const { locale, query } = useRouter();
   const level = (query.level ?? '') as string;
   const id = (query.id ?? '') as string;
+  const name = (query.name ?? '') as string;
 
   const [content, setContent] = useState('');
 
@@ -45,11 +48,11 @@ export const CompeteEditorLayout: VFC = () => {
     const openFetchError = (errorItem: string) => {
       notification.open({
         message: t(`fetch ${errorItem} error`),
-        description: t(`fetch ${errorItem} error message`, { level, id }),
+        description: t(`fetch ${errorItem} error message`, { level, id: name }),
       });
     };
-    if (query.id && query.level) {
-      const url = `/api/compete/getexplanation?id=${query.id}&level=${query.level}&lang=${locale}`;
+    if (query.id && query.levelID) {
+      const url = `/api/compete/getexplanation?id=${query.id}&level=${query.levelID}&lang=${locale}`;
       fetch(url, {
         method: 'GET',
       })
@@ -64,14 +67,23 @@ export const CompeteEditorLayout: VFC = () => {
           setContent(text ?? '');
         });
     }
-  }, [query, content, id, level, locale, t]);
+  }, [query, content, id, level, name, locale, t]);
 
   return (
     <Layout className="relative flex h-full flex-1">
       <Layout.Content>
         <MonacoEditor />
       </Layout.Content>
-      <div className="absolute right-0 bottom-0 z-10 flex flex-col pb-4 pr-4">
+      <div className="absolute right-0 bottom-0 z-10 flex flex-col space-y-2 pb-4 pr-4">
+        <Link href={`/compete/${query.id ?? ''}`}>
+          <Tooltip title={t('goToLeaderboard')}>
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<MdLeaderboard className="relative top-[-2px] inline h-full w-full" />}
+            />
+          </Tooltip>
+        </Link>
         <Tooltip title={isSiderbarCollapsed ? t('help') : t('close_help')}>
           <Button
             type="primary"
