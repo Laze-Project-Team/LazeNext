@@ -102,6 +102,7 @@ export const compileLaze: compilerType['compile'] = async (
       runLaze(param);
     } else {
       compileFailed();
+      param.compileError();
     }
     return resJson.success;
   } catch (err) {

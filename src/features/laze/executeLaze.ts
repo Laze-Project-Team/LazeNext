@@ -14,6 +14,7 @@ export type ExecuteParam = {
   lang: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: (err: any) => void | PromiseLike<void>;
+  compileError: () => void | PromiseLike<void>;
   linetraceTime?: LinetraceData | undefined;
   dispatcher?: Dispatch;
   t?: TFunction;

@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { VscMenu } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
 
+import { compileErrorContext } from '@/components/functional/CompileErrorProvider';
 import { useMediaQuery } from '@/components/functional/useMediaQuery';
 import { CompileButton } from '@/components/model/EditorButtons/EditorButton/CompileButton';
 import { ConvertButton } from '@/components/model/EditorButtons/EditorButton/ConvertButton';
@@ -42,6 +43,8 @@ export const EditorButtons: VFC = () => {
 
   const lang = useContext(programLangContext);
 
+  const CompileErrorContext = useContext(compileErrorContext);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const error = (err: any) => {
     console.error(err);
@@ -54,11 +57,16 @@ export const EditorButtons: VFC = () => {
     });
   };
 
+  const compileError = () => {
+    CompileErrorContext?.current?.();
+  };
+
   const param = useRef<ExecuteParam>({
     interval: null,
     id: '',
     dispatcher: dispatch,
     error,
+    compileError,
     getWasmApi: '',
     wasmUrl: '',
     programUrl: '',
