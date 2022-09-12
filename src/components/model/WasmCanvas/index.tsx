@@ -2,9 +2,11 @@ import { notification } from 'antd';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
+import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { compileErrorContext } from '@/components/functional/CompileErrorProvider';
 import type { ExecuteParam } from '@/features/laze/executeLaze';
 import { executeLaze } from '@/features/laze/executeLaze';
 import type { Libraries } from '@/features/laze/getWasmImports';
@@ -31,12 +33,19 @@ export const WasmCanvas: VFC<WasmCanvasProps> = ({ wasmUrl, dependencies }) => {
   };
   const dispatch = useDispatch();
   const { locale } = useRouter();
+  const CompileErrorContext = useContext(compileErrorContext);
+
+  const compileError = () => {
+    CompileErrorContext?.current?.();
+  };
+
   useEffect(() => {
     const param: ExecuteParam = {
       interval: null,
       id: '',
       dispatcher: dispatch,
       error,
+      compileError,
       getWasmApi: '',
       wasmUrl: '',
       programUrl: '',

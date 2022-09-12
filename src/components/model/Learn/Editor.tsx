@@ -4,11 +4,13 @@ import { Button, message, notification } from 'antd';
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useTranslation } from 'next-i18next';
 import type { FC, MouseEventHandler } from 'react';
+import { useContext } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { VscCopy, VscRunAll } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
 
+import { compileErrorContext } from '@/components/functional/CompileErrorProvider';
 import { formatChar } from '@/components/model/Learn/formatChar';
 import { compileLaze } from '@/features/compiler/initialize';
 import type { ExecuteParam } from '@/features/laze/executeLaze';
@@ -61,6 +63,8 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
   const dispatch = useDispatch();
   const { removePanel } = consoleSlice.actions;
   const { setCompiled } = explorerSlice.actions;
+
+  const CompileErrorContext = useContext(compileErrorContext);
 
   const onChange: OnChange = () => {
     // onChange
@@ -134,11 +138,16 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
             duration: 5,
           });
         };
+
+        const compileError = () => {
+          CompileErrorContext?.current?.();
+        };
         const param: ExecuteParam = {
           id,
           interval: null,
           dispatcher: dispatch,
           error,
+          compileError,
           getWasmApi: '',
           wasmUrl: '',
           programUrl: '',
