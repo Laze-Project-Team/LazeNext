@@ -1,7 +1,7 @@
 export const linetraceTemplate: Record<string, string> = {
   Easy: `関数: 実行() => (){
 	マウスキャプチャ();
-	ライントレースシミュレーション: ロボット(0);
+	ライントレースシミュレーション: ロボット("Easy");
 	ロボット.左モーターON = 1;
 	ロボット.右モーターON = 1;
 	ロボット.左モーター向き = 1; 
@@ -33,7 +33,7 @@ export const linetraceTemplate: Record<string, string> = {
 `,
   Medium: `関数: 実行() => (){
 	マウスキャプチャ();
-	ライントレースシミュレーション: ロボット(1);
+	ライントレースシミュレーション: ロボット("Medium");
 	ロボット.左モーターON = 1;
 	ロボット.右モーターON = 1;
 	ロボット.左モーター向き = 1;
@@ -49,7 +49,7 @@ export const linetraceTemplate: Record<string, string> = {
 `,
   Hard: `関数: 実行() => (){
 	マウスキャプチャ();
-	ライントレースシミュレーション: ロボット(2);
+	ライントレースシミュレーション: ロボット("Hard");
 	ロボット.左モーターON = 1;
 	ロボット.右モーターON = 1;
 	ロボット.左モーター向き = 1;
