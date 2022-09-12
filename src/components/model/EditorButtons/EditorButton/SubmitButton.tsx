@@ -75,16 +75,32 @@ export const SubmitButton: VFC = () => {
     fetch('/api/compete/submit', {
       method: 'PUT',
       body,
-    }).then((res) => {
-      if (res.status === 404) {
-        notification.open({
-          message: t('errors.SubmitFailed.title'),
-          description: t('errors.SubmitFailed.message'),
-          type: 'error',
-          duration: 5,
-          placement: 'bottomRight',
-        });
-      } else {
+    })
+      .then((res) => {
+        if (res.status === 404) {
+          notification.open({
+            message: t('errors.SubmitFailed.title'),
+            description: t('errors.SubmitFailed.message'),
+            type: 'error',
+            duration: 5,
+            placement: 'bottomRight',
+          });
+        } else {
+          notification.open({
+            message: t('messages.SubmitSuccess.title'),
+            description: t('messages.SubmitSuccess.message', {
+              name: competitorName,
+              time: Number(linetraceTime.toFixed(2)),
+            }),
+            type: 'success',
+            placement: 'bottomRight',
+            duration: 5,
+          });
+        }
+        setSelectOpen(false);
+      })
+      .catch((err) => {
+        console.error(err);
         notification.open({
           message: t('messages.SubmitSuccess.title'),
           description: t('messages.SubmitSuccess.message', {
@@ -95,9 +111,7 @@ export const SubmitButton: VFC = () => {
           placement: 'bottomRight',
           duration: 5,
         });
-      }
-      setSelectOpen(false);
-    });
+      });
   };
 
   const abort = () => {
