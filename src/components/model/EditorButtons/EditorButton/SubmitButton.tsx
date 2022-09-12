@@ -55,7 +55,9 @@ export const SubmitButton: VFC = () => {
     setSubmitButtonProps({ disabled: true });
     if (param?.current.linetraceTime?.time) {
       setLinetraceTime(param.current.linetraceTime.time);
-      setSubmitButtonProps({});
+      if (param?.current.linetraceTime?.time > 0) {
+        setSubmitButtonProps({});
+      }
     }
   };
 
