@@ -6,6 +6,18 @@ import { COMPETITION_DIR } from '@/const/dir';
 import { getLeaderboardList } from '@/features/compete/compete';
 import type { Competition, CompetitionJson } from '@/typings/compete';
 
+const isCompetitionJson = (arg: unknown): arg is CompetitionJson => {
+  const p = arg as CompetitionJson;
+  return (
+    typeof p.explanations === 'object' &&
+    typeof p.id === 'string' &&
+    typeof p.name === 'object' &&
+    (typeof p.imageForLevels === 'object' || typeof p.imageForLevels === 'undefined') &&
+    (typeof p.levelIDs === 'object' || typeof p.levelIDs === 'undefined') &&
+    (typeof p.levels === 'object' || typeof p.levels === 'undefined')
+  );
+};
+
 const handler: NextApiHandler = async (req, res): Promise<void> => {
   const id: string = req.query.id as string;
   const lang: string = req.query.lang as string;
@@ -14,10 +26,12 @@ const handler: NextApiHandler = async (req, res): Promise<void> => {
   if (fs.existsSync(jsonPath)) {
     try {
       const competitionJsonStr = await fs.promises.readFile(jsonPath);
-      const competitionJson: CompetitionJson = JSON.parse(
+      const competitionJson: unknown = JSON.parse(
         competitionJsonStr.toString() ?? JSON.stringify({ id: '', name: '' })
       );
-      // type guard
+      if (!isCompetitionJson(competitionJson)) {
+        throw new Error(`The information inside ${jsonPath} is not valid.`);
+      }
       const levels = competitionJson.levels ?? {};
       const leaderboardList = await getLeaderboardList(
         competitionJson.id,

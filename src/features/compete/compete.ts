@@ -17,6 +17,11 @@ export const getAllCompetitions = async (): Promise<string[]> => {
   });
 };
 
+const isCompetitorInfoJson = (args: unknown): args is CompetitorInfoJson => {
+  const p = args as CompetitorInfoJson;
+  return typeof p.id === 'string' && typeof p.publish === 'boolean' && typeof p.time === 'number';
+};
+
 //Get leaderboard list
 export const getLeaderboardList = async (
   competitionId: string,
@@ -37,16 +42,28 @@ export const getLeaderboardList = async (
             competitorNames.map(async (name) => {
               const competitorPath = path.join(levelPath, name);
               const infoBuffer = await fs.promises.readFile(path.join(competitorPath, 'info.json'));
-              const infoJson: CompetitorInfoJson = JSON.parse(infoBuffer.toString());
-              const competitor: Competitor = {
-                id: name,
-                ranking: 0,
-                rankingData: infoJson.time,
-                wasmUrl: path.join(levelPath, name, 'main.wasm'),
-                programUrl: path.join(levelPath, name, 'main.laze'),
-                publish: infoJson.publish,
-              };
-              return competitor;
+              const infoJson: unknown = JSON.parse(infoBuffer.toString());
+              if (isCompetitorInfoJson(infoJson)) {
+                const competitor: Competitor = {
+                  id: name,
+                  ranking: 0,
+                  rankingData: infoJson.time,
+                  wasmUrl: path.join(levelPath, name, 'main.wasm'),
+                  programUrl: path.join(levelPath, name, 'main.laze'),
+                  publish: infoJson.publish,
+                };
+                return competitor;
+              } else {
+                const competitor: Competitor = {
+                  id: name,
+                  ranking: 0,
+                  rankingData: 0,
+                  wasmUrl: path.join(levelPath, name, 'main.wasm'),
+                  programUrl: path.join(levelPath, name, 'main.laze'),
+                  publish: false,
+                };
+                return competitor;
+              }
             })
           );
           const levelData: CompetitionByLevel = {
@@ -54,7 +71,9 @@ export const getLeaderboardList = async (
             name: competitionName,
             level: levels?.at(index) ?? '',
             levelID: level,
-            players: competitors,
+            players: competitors.filter((element) => {
+              return element.rankingData !== 0;
+            }),
           };
           return levelData;
         } catch (e) {
