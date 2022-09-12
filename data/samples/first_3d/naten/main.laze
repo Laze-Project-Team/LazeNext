@@ -6,7 +6,6 @@ Declare  function main with  code starting here
 	Initialize  object color as Vector3D with 0.200000000000000011 , 0.5 , 0.699999999999999956 . 
 	Initialize  object position as Vector3D with 0.0 , 0.0 , 0.0 . 
 	Initialize  variable cubeID as int with addCube of world ( 2.0 , color , position ) . 
-	Initialize  variable lightID as int with addLight of world ( 1.0 , color , lightPosition ) . 
 	loop starting here
 		Call get of sprites of world ( cubeID ) -> rotate with  value axis , getTime ( )  / 1000.0 . 
 		Call draw of world . 
