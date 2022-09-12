@@ -36,7 +36,8 @@ const importLinetrace = (p: unknown): WebAssembly.Imports => {
         const string = new TextDecoder('utf-8').decode(bytes);
         time.toPrecision(4);
         notification.open({
-          message: `${Number(time.toFixed(2))}s`,
+          type: 'info',
+          message: `${time.toFixed(2)}s`,
         });
         if (props.levelNow === '' || string === props.levelNow) {
           props.linetraceTime.time = time;
