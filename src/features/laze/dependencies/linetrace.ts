@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 import type { Laze } from '@/typings/laze';
 
 export type LinetraceData = {
@@ -24,7 +26,9 @@ const importLinetrace = (p: unknown): WebAssembly.Imports => {
     linetrace: {
       updateLinetraceTime: (time: number) => {
         time.toPrecision(4);
-        console.log(time);
+        notification.open({
+          message: `${Number(time.toFixed(2))}s`,
+        });
         props.linetraceTime.time = time;
       },
     },

@@ -95,7 +95,7 @@ export const SubmitButton: VFC = () => {
         </>
       );
     } else {
-      return <p>Your time is: {Number(linetraceTime.toFixed(2))}s</p>;
+      return <p>{t(`messages.linetraceTime`, { time: Number(linetraceTime.toFixed(2)) })}</p>;
     }
   };
 

@@ -39,7 +39,7 @@ public: 	Array<*物体>: bodyArray;
 	}
 	function: addBody(double: w, double: h, double: m, Vector3D: color, Vector2D: initPos, Vector2D: initVec, double: initAngle, double: initAngVec) => (){
 		箱: shape(w, h, m);
-		Vector2D: gravity(0.0, 0 - m * gravitationalAccelaration);
+		Vector2D: gravity(0.0, (0 - (m * gravitationalAccelaration)));
 		*物体: body = allocMemory(sizeof(*body));
 		body->物体(initPos, initVec, initAngle, initAngVec, gravity, 0, shape);
 		bodyArray.push(body);
@@ -59,7 +59,7 @@ public: 	Array<*物体>: bodyArray;
 			rigidBody->angularVelocity = rigidBody->angularVelocity + angularAccelaration * timePassed;
 			rigidBody->angle = rigidBody->angle + rigidBody->angularVelocity * timePassed;
 			world.sprites.get(counter)->setPos(rigidBody->pos);
-			world.sprites.get(counter)->setAngle(rigidBody->angle);
+			world.sprites.get(counter)->setRotation(rigidBody->angle);
 		}
 		world.draw();
 	}

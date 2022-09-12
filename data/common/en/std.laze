@@ -67,6 +67,7 @@ function: getTeddybear() => (*void: s) = jsload("graphics", "getTeddybear");
 function: getCow() => (*void: s) = jsload("graphics", "getCow");
 function: getFox() => (*void: s) = jsload("graphics", "getFox");
 function: getRobot() => (*void: s) = jsload("graphics", "getRobot");
+function: getCheckpoint() => (*void: s) = jsload("graphics", "getCheckpoint");
 function: jsArcSin(double: x) => (double: r) = jsload("std", "asin");
 function: jsArcCos(double: x) => (double: r) = jsload("std", "acos");
 function: jsArcTan(double: x) => (double: r) = jsload("std", "atan");
@@ -714,6 +715,9 @@ function: ${"ja":"サンプルモデルロード", "natja":"サンプルモデ�
 	if(a == "robot"){
 		data = getRobot();
 	}
+	if(a == "checkpoint"){
+		data = getCheckpoint();
+	}
 	b = *data;
 }
 class: ${"ja":"ベクトル3D", "natja":"ベクトル3D", "en":"Vector3D", "naten":"Vector3D"}${
@@ -1066,6 +1070,9 @@ public: 	Vector3D: ${"ja":"色", "natja":"色", "en":"color", "naten":"color"}$;
 		temp.identity();
 		temp.rotate(axis, t);
 		rotateMat = mulMatrix4x4(temp, rotateMat);
+	}
+	function: ${"ja":"色設定", "natja":"色設定", "en":"setColor", "naten":"setColor"}$(Vector3D: c) => (){
+		color = c;
 	}
 	function: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(Matrix4x4: projMat, Matrix4x4: viewMat, Vector3D: camera, Array<*LightClass>: lights, LightClass: dirLight) => (){
 		double: PI = 3.14159265358979312;
@@ -1873,6 +1880,24 @@ function: ${"ja":"Arduinoアナログ入力ピン設定", "natja":"Arduinoアナ
 function: ${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$(int: ピン番号) => (){
 	ArduinoSendCommand('T', ピン番号);
 }
+class: ${"ja":"ベクトル4D", "natja":"ベクトル4D", "en":"Vector4D", "naten":"Vector4D"}${
+public: 	double: データ[4];
+	function: Vector4D(double: ax, double: ay, double: bx, double: byp) => (){
+		データ[0] = ax;
+		データ[1] = ay;
+		データ[2] = bx;
+		データ[3] = byp;
+	}
+	function: operator != (Vector4D: a) => (bool: b){
+		b = (データ[0] != a.データ[0] || データ[1] != a.データ[1] || データ[2] != a.データ[2] || データ[3] != a.データ[3]);
+	}
+	function: operator == (Vector4D: a) => (bool: b){
+		b = (データ[0] == a.データ[0] && データ[1] == a.データ[1] && データ[2] == a.データ[2] && データ[3] == a.データ[3]);
+	}
+	function: 交わるか(Vector4D: a) => (bool: b){
+		b = checkLineCross(データ[0], データ[1], データ[2], データ[3], a.データ[0], a.データ[1], a.データ[2], a.データ[3]);
+	}
+}
 class: ${"ja":"ライントレースシミュレーション", "natja":"ライントレースシミュレーション", "en":"linetraceSimulation", "naten":"linetraceSimulation"}${
 public: 	Scene: world;
 	Array<Vector2D>: 直線データ;
@@ -1889,6 +1914,8 @@ public: 	Scene: world;
 	double: エンドタイム;
 	function: linetraceSimulation(Array<double>: points, Vector2D: firstPos, double: ax, double: ay, double: bx, double: byp) => (){
 		直線データ.Array();
+		通過点.Array();
+		通過点ID.Array();
 		world.Scene();
 		ロボット移動方向.Vector2D(0.0, 1.0);
 		スタートマーク[0] = ax;
@@ -1901,6 +1928,7 @@ public: 	Scene: world;
 		rightMotorSequence = 1;
 		leftMotorON = 0;
 		rightMotorON = 0;
+		通過済み = (0 - (1));
 		スタートタイム = getTime();
 		ロボット速度 = 1.0;
 		ロボット座標 = firstPos;
@@ -1942,9 +1970,14 @@ public: 	Scene: world;
 		直線データ.push(Vector2D(points.get(0), points.get(1)));
 	}
 	function: linetraceSimulation(int: level) => (){
+		通過点.Array();
+		通過点ID.Array();
 		Array<double>: points;
+		world.Scene();
 		Vector2D: firstPos(0.0, 0.0);
 		if(level == 0){
+			world.camera.setPos(Vector3D(2.0, 10.0, 3.0));
+			world.camera.setAngle(45.0, (0 - (45.0)));
 			int: number = 12;
 			repeat(12){
 				points.push(10.0 * cos(toRad((360.0 / number) * counter)) + 10.0);
@@ -1952,12 +1985,14 @@ public: 	Scene: world;
 			}
 			firstPos.x = 0.0;
 			firstPos.y = 10.0;
-			スタートマーク[0] = (0 - (1.0));
-			スタートマーク[1] = 10.0;
-			スタートマーク[2] = 1.0;
-			スタートマーク[3] = 10.0;
+			Vector4D: チェックポイント(19.0, 10.5, 21.0, 9.5);
+			通過点.push(チェックポイント);
+			Vector4D: ゴール((0 - (1.0)), 9.5, 1.0, 8.5);
+			通過点.push(ゴール);
 		}
 		if(level == 1){
+			world.camera.setPos(Vector3D((0 - (10.0)), 10.0, (0 - (15.0))));
+			world.camera.setAngle(45.0, (0 - (45.0)));
 			int: number = 12;
 			repeat(6){
 				points.push(10.0 * cos(toRad((360.0 / number) * (counter + 1))));
@@ -1969,13 +2004,44 @@ public: 	Scene: world;
 			}
 			firstPos.x = 9.0;
 			firstPos.y = 1.0;
-			スタートマーク[0] = 8.0;
-			スタートマーク[1] = (0 - (1.0));
-			スタートマーク[2] = 10.0;
-			スタートマーク[3] = 0.0;
+			Vector4D: チェックポイント((0 - (8.0)), (0 - (1.0)), (0 - (10.0)), 0.0);
+			通過点.push(チェックポイント);
+			Vector4D: ゴール(8.0, 0.0, 10.0, (0 - (1.0)));
+			通過点.push(ゴール);
+		}
+		if(level == 2){
+			world.camera.setPos(Vector3D((0 - (10.0)), 10.0, (0 - (15.0))));
+			world.camera.setAngle(45.0, (0 - (45.0)));
+			ロボット角度 = 45.0;
+			int: number = 12;
+			points.push(10.0);
+			points.push(10.0);
+			points.push(10.0);
+			points.push(16.0);
+			repeat(6){
+				points.push(10.0 * cos(toRad((360.0 / number) * (counter + 1))));
+				points.push(10.0 * sin(toRad((360.0 / number) * (counter + 1))) + 16.0);
+			}
+			points.push(10.0 * cos(toRad((360.0 / number) * 6)));
+			points.push(10.0 * sin(toRad((360.0 / number) * 6)) + 10.0);
+			points.push(10.0);
+			points.push((0 - (8.0)));
+			repeat(7){
+				points.push(10.0 * cos(toRad((360.0 / number) * ((0 - (counter))))));
+				points.push(10.0 * sin(toRad((360.0 / number) * ((0 - (counter))))) - 10.0);
+			}
+			points.push((0 - (10.0)));
+			points.push((0 - (8.0)));
+			firstPos.x = 3.0;
+			firstPos.y = (0 - (2.0));
+			Vector4D: チェックポイント1((0 - (1.0)), 24.0, 1.0, 28.0);
+			通過点.push(チェックポイント1);
+			Vector4D: チェックポイント2(2.0, (0 - (16.0)), (0 - (2.0)), (0 - (24.0)));
+			通過点.push(チェックポイント2);
+			Vector4D: ゴール(4.0, 0.0, 4.0, (0 - (4.0)));
+			通過点.push(ゴール);
 		}
 		直線データ.Array();
-		world.Scene();
 		ロボット移動方向.Vector2D(0.0, 1.0);
 		leftMotorSpeed = 3;
 		rightMotorSpeed = 3;
@@ -1983,6 +2049,7 @@ public: 	Scene: world;
 		rightMotorSequence = 1;
 		leftMotorON = 0;
 		rightMotorON = 0;
+		通過済み = (0 - (1));
 		スタートタイム = getTime();
 		ロボット速度 = 1.0;
 		ロボット座標 = firstPos;
@@ -1998,8 +2065,19 @@ public: 	Scene: world;
 		points.push(points.get(1));
 		world.setDirectionalLight(初期位置3, 白, 0.0500000000000000028, 0.0500000000000000028, 0.0);
 		world.camera.setSensitivity(5.0);
-		world.camera.setPos(初期位置4);
-		world.camera.setAngle(90.0, (0 - (90.0)));
+		repeat(通過点.length()){
+			Vector3D: color = 灰色;
+			Vector4D: チェックポイント = 通過点.get(counter);
+			Vector3D: position((チェックポイント.データ[0] + チェックポイント.データ[2]) / 2.0, 0.0, (チェックポイント.データ[1] + チェックポイント.データ[3]) / 2.0);
+			if(counter == (通過済み + 1)){
+				color = Vector3D(0.699999999999999956, 0.299999999999999989, 0.0);
+			}
+			int: id = world.addModel(loadSampleModel("checkpoint"), color, position);
+			通過点ID.push(id);
+			double: PI = 3.14159265358979312;
+			double: angle = jsArcTan((チェックポイント.データ[3] - チェックポイント.データ[1]) / (チェックポイント.データ[2] - チェックポイント.データ[0])) + PI / 6.0;
+			world.sprites.get(id)->setRotate(Vector3D(0.0, 1.0, 0.0), angle);
+		}
 		ロボットID = world.addModel(loadSampleModel("robot"), 灰色, 初期位置1);
 		world.sprites.get(ロボットID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad(180));
 		ライトID = world.addLight(1.0, 白, 初期位置2, 1000.0);
@@ -2054,11 +2132,6 @@ public: 	Scene: world;
 	}
 	function: update() => (){
 		Vector2D: センサー座標[2] = ロボット座標;
-		if((!おわり) && checkLineCross(センサー座標[0].x, センサー座標[0].y, センサー座標[1].x, センサー座標[1].y, スタートマーク[0], スタートマーク[1], スタートマーク[2], スタートマーク[3])){
-			おわり = true;
-			エンドタイム = getTime();
-			updateLinetraceTime((エンドタイム - スタートタイム) / 1000);
-		}
 		if(!おわり){
 			translate();
 			センサー座標[0].x = 1.75 * cos(toRad(ロボット角度 + 79.0)) + ロボット座標.x;
@@ -2069,6 +2142,23 @@ public: 	Scene: world;
 			world.sprites.get(センサー2ID)->setPos(Vector3D(センサー座標[1].x, 0.400000000000000022, センサー座標[1].y));
 			world.sprites.get(センサー1ID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad((0 - (ロボット角度 + 180))));
 			world.sprites.get(センサー2ID)->setRotate(Vector3D(0.0, 1.0, 0.0), toRad((0 - (ロボット角度 + 180))));
+			Vector3D: 緑(0.0, 1.0, 0.0);
+			if(通過点.length() >= 1 && 通過点ID.length() >= 1){
+				Vector4D: チェックポイント = 通過点.get(通過済み + 1);
+				Vector4D: ロボット線分(2.0 * cos(toRad(ロボット角度)) + ロボット座標.x, 2.0 * sin(toRad(ロボット角度)) + ロボット座標.y, 2.0 * cos(toRad(ロボット角度 + 180)) + ロボット座標.x, 2.0 * sin(toRad(ロボット角度 + 180)) + ロボット座標.y);
+				if(チェックポイント.交わるか(ロボット線分)){
+					if((通過済み + 2) == 通過点.length()){
+						world.sprites.get(通過点ID.get(通過済み + 1))->setColor(緑);
+						おわり = true;
+						エンドタイム = getTime();
+						updateLinetraceTime((エンドタイム - スタートタイム) / 1000);
+					}else{
+						通過済み = 通過済み + 1;
+						world.sprites.get(通過点ID.get(通過済み))->setColor(緑);
+						world.sprites.get(通過点ID.get(通過済み + 1))->setColor(Vector3D(0.699999999999999956, 0.299999999999999989, 0.0));
+					}
+				}
+			}
 			double: センサー距離[2] = [10000.0, 10000.0];
 			int: センサー数 = 2;
 			repeat(センサー数){
@@ -2127,4 +2217,7 @@ private: 	int: ロボットID;
 	Vector2D: ロボットoffset;
 	bool: おわり;
 	double: スタートマーク[4];
+	Array<Vector4D>: 通過点;
+	Array<int>: 通過点ID;
+	int: 通過済み;
 }

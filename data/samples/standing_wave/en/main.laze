@@ -34,12 +34,12 @@ function: main() => (){
 			double: 波長 = 1.0;
 			double: t = getTime() / 1000.0;
 			if((counter % 3) == 0){
-				y = sin((t / 周期) - (x / 波長)) + sin((0 - t / 周期) - (x / 波長));
+				y = sin((t / 周期) - (x / 波長)) + sin(((0 - (t / 周期))) - (x / 波長));
 			}else{
 				if((counter % 3) == 1){
 					y = sin((t / 周期) - (x / 波長));
 				}else{
-					y = sin((0 - t / 周期) - (x / 波長));
+					y = sin(((0 - (t / 周期))) - (x / 波長));
 				}
 			}
 			Vector3D: position(x, y, 0.0);

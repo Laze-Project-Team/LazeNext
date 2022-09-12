@@ -1,24 +1,24 @@
-Declare class 箱 with members starting here
-public : 	Declare variable width as double . 
-	Declare variable height as double . 
-	Declare variable mass as double . 
-	Declare variable momentOfInertia as double . 
-	Declare function 箱 that takes w as double , h as double , m as double with code starting here
+Declare  class 箱 with  members starting here
+public : 	Declare  variable width as double . 
+	Declare  variable height as double . 
+	Declare  variable mass as double . 
+	Declare  variable momentOfInertia as double . 
+	Declare  function 箱 that  takes w as double , h as double , m as double with  code starting here
 		Assign w to width . 
 		Assign h to height . 
 		Assign m to mass . 
 		Assign m  * ( w  * w  + h  * h )  / 12 to momentOfInertia . 
 	ending here 
 ending here 
-Declare class 物体 with members starting here
-public : 	Declare variable pos as Vector2D . 
-	Declare variable velocity as Vector2D . 
-	Declare variable angle as double . 
-	Declare variable angularVelocity as double . 
-	Declare variable force as Vector2D . 
-	Declare variable torque as double . 
-	Declare variable shape as 箱 . 
-	Declare function 物体 that takes p as Vector2D , v as Vector2D , a as double , av as double , f as Vector2D , t as double , b as 箱 with code starting here
+Declare  class 物体 with  members starting here
+public : 	Declare  variable pos as Vector2D . 
+	Declare  variable velocity as Vector2D . 
+	Declare  variable angle as double . 
+	Declare  variable angularVelocity as double . 
+	Declare  variable force as Vector2D . 
+	Declare  variable torque as double . 
+	Declare  variable shape as 箱 . 
+	Declare  function 物体 that  takes p as Vector2D , v as Vector2D , a as double , av as double , f as Vector2D , t as double , b as 箱 with  code starting here
 		Assign p to pos . 
 		Assign v to velocity . 
 		Assign a to angle . 
@@ -28,52 +28,52 @@ public : 	Declare variable pos as Vector2D .
 		Assign b to shape . 
 	ending here 
 ending here 
-Declare class physicsWorld2D with members starting here
-public : 	Declare variable bodyArray as Array < pointer of 物体 > . 
-	Declare function physicsWorld2D that takes height as double , g as double with code starting here
+Declare  class physicsWorld2D with  members starting here
+public : 	Declare  variable bodyArray as Array < pointer  of 物体 > . 
+	Declare  function physicsWorld2D that  takes height as double , g as double with  code starting here
 		Assign g to gravitationalAccelaration . 
-		Initialize object backgroundColor as Vector3D with 0.0 , 0.0 , 0.0 . 
-		Call Scene2D of world with value height , backgroundColor . 
+		Initialize  object backgroundColor as Vector3D with 0.0 , 0.0 , 0.0 . 
+		Call Scene2D of world with  value height , backgroundColor . 
 		Call Array of bodyArray . 
 		Assign getTime ( )  / 1000.0 to timeBefore . 
 	ending here 
-	Declare function addBody that takes w as double , h as double , m as double , color as Vector3D , initPos as Vector2D , initVec as Vector2D , initAngle as double , initAngVec as double with code starting here
-		Initialize object shape as 箱 with w , h , m . 
-		Initialize object gravity as Vector2D with 0.0 , 0  - m  * gravitationalAccelaration . 
-		Initialize variable body as pointer of 物体 with allocMemory ( sizeof ( variable at body ) ) . 
-		Call body -> 物体 with value initPos , initVec , initAngle , initAngVec , gravity , 0 , shape . 
-		Call push of bodyArray with value body . 
-		Initialize variable id as int with addRectangle of world ( w , h , initPos , color , 1.0 ) . 
+	Declare  function addBody that  takes w as double , h as double , m as double , color as Vector3D , initPos as Vector2D , initVec as Vector2D , initAngle as double , initAngVec as double with  code starting here
+		Initialize  object shape as 箱 with w , h , m . 
+		Initialize  object gravity as Vector2D with 0.0 , ( 0  - ( m  * gravitationalAccelaration ) ) . 
+		Initialize  variable body as pointer  of 物体 with allocMemory ( sizeof ( variable  at body ) ) . 
+		Call body -> 物体 with  value initPos , initVec , initAngle , initAngVec , gravity , 0 , shape . 
+		Call push of bodyArray with  value body . 
+		Initialize  variable id as int with addRectangle of world ( w , h , initPos , color , 1.0 ) . 
 	ending here 
-	Declare function update with code starting here
-		Initialize variable timePassed as double with getTime ( )  / 1000.0  - timeBefore . 
+	Declare  function update with  code starting here
+		Initialize  variable timePassed as double with getTime ( )  / 1000.0  - timeBefore . 
 		Assign getTime ( )  / 1000.0 to timeBefore . 
 		repeat length of bodyArray ( ) times starting here
-			Initialize variable rigidBody as pointer of 物体 with get of bodyArray ( counter ) . 
-			Initialize object 加速度 as Vector2D with x of rigidBody -> force  / mass of rigidBody -> shape , y of rigidBody -> force  / mass of rigidBody -> shape . 
+			Initialize  variable rigidBody as pointer  of 物体 with get of bodyArray ( counter ) . 
+			Initialize  object 加速度 as Vector2D with x of rigidBody -> force  / mass of rigidBody -> shape , y of rigidBody -> force  / mass of rigidBody -> shape . 
 			Assign x of rigidBody -> velocity  + x of 加速度  * timePassed to x of rigidBody -> velocity . 
 			Assign y of rigidBody -> velocity  + y of 加速度  * timePassed to y of rigidBody -> velocity . 
 			Assign x of rigidBody -> pos  + x of rigidBody -> velocity  * timePassed to x of rigidBody -> pos . 
 			Assign y of rigidBody -> pos  + y of rigidBody -> velocity  * timePassed to y of rigidBody -> pos . 
-			Initialize variable angularAccelaration as double with rigidBody -> torque  / momentOfInertia of rigidBody -> shape . 
+			Initialize  variable angularAccelaration as double with rigidBody -> torque  / momentOfInertia of rigidBody -> shape . 
 			Assign rigidBody -> angularVelocity  + angularAccelaration  * timePassed to rigidBody -> angularVelocity . 
 			Assign rigidBody -> angle  + rigidBody -> angularVelocity  * timePassed to rigidBody -> angle . 
-			Call get of sprites of world ( counter ) -> setPos with value rigidBody -> pos . 
-			Call get of sprites of world ( counter ) -> setAngle with value rigidBody -> angle . 
+			Call get of sprites of world ( counter ) -> setPos with  value rigidBody -> pos . 
+			Call get of sprites of world ( counter ) -> setRotation with  value rigidBody -> angle . 
 		ending here 
 		Call draw of world . 
 	ending here 
-private : 	Declare variable gravitationalAccelaration as double . 
-	Declare variable timeBefore as double . 
-	Declare variable world as Scene2D . 
+private : 	Declare  variable gravitationalAccelaration as double . 
+	Declare  variable timeBefore as double . 
+	Declare  variable world as Scene2D . 
 ending here 
-Declare function main with code starting here
-	Initialize variable PI as double with 3.14159265358979312 . 
-	Initialize object physicsWorld as physicsWorld2D with 1.0 , 9.8100000000000005 . 
-	Initialize object 青 as Vector3D with 0.200000000000000011 , 0.5 , 0.699999999999999956 . 
-	Initialize object initialPosition as Vector2D with 0.0 , 1.0 . 
-	Initialize object initialVelocity as Vector2D with 0.0 , 0.0 . 
-	Call addBody of physicsWorld with value 0.149999999999999994 , 0.149999999999999994 , 1.0 , 青 , initialPosition , initialVelocity , 0.0 , 0.0 . 
+Declare  function main with  code starting here
+	Initialize  variable PI as double with 3.14159265358979312 . 
+	Initialize  object physicsWorld as physicsWorld2D with 1.0 , 9.8100000000000005 . 
+	Initialize  object 青 as Vector3D with 0.200000000000000011 , 0.5 , 0.699999999999999956 . 
+	Initialize  object initialPosition as Vector2D with 0.0 , 1.0 . 
+	Initialize  object initialVelocity as Vector2D with 0.0 , 0.0 . 
+	Call addBody of physicsWorld with  value 0.149999999999999994 , 0.149999999999999994 , 1.0 , 青 , initialPosition , initialVelocity , 0.0 , 0.0 . 
 	loop starting here
 		Call update of physicsWorld . 
 	ending here 

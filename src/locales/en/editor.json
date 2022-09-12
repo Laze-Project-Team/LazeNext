@@ -70,7 +70,7 @@
       "error_validation": "{{file}} is not a language file",
       "error_upload": "Something went wrong while uploading {{file}}"
     },
-    "delete": "削除"
+    "delete": "Delete"
   },
 
   "workbench": {
@@ -89,7 +89,8 @@
     "SubmitSuccess": {
       "title": "Program Submitted Successfully",
       "message": "{{user}}'s program was submitted successfully with the time {{time}}."
-    }
+    },
+    "linetraceTime": "Your time is: {{time}}"
   },
 
   "errors": {

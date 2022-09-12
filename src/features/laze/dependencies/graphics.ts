@@ -1,5 +1,5 @@
 import { initialKeyControl } from '@/features/compiler/keycontrol';
-import { cow, fox, mountains, robot, teapot, teddybear } from '@/features/compiler/source/model';
+import { checkpoint, cow, fox, mountains, robot, teapot, teddybear } from '@/features/compiler/source/model';
 import { strToMem } from '@/features/laze/dependencies/utilities/strToMem';
 import type { keyControlType } from '@/typings/compiler';
 import type { Laze } from '@/typings/laze';
@@ -313,6 +313,9 @@ const importGraphics = (props: unknown): WebAssembly.Imports => {
       },
       getRobot: () => {
         return strToMem(props, robot);
+      },
+      getCheckpoint: () => {
+        return strToMem(props, checkpoint);
       },
       lockPointer: () => {
         const requestPointerLock = () => {

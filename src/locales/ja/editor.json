@@ -79,7 +79,8 @@
     "SubmitSuccess": {
       "title": "プログラムの提出に成功しました",
       "message": "{{name}} のプログラムは {{time}} のタイムで提出されました。"
-    }
+    },
+    "linetraceTime": "あなたのタイム: {{time}}"
   },
   "errors": {
     "FileIsNotOpened": {

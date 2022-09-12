@@ -1,8 +1,8 @@
-Declare function main with code starting here
-	Initialize variable numberBefore as int with 0 . 
-	Initialize variable number as int with 1 . 
+Declare  function main with  code starting here
+	Initialize  variable numberBefore as int with 0 . 
+	Initialize  variable number as int with 1 . 
 	repeat 50 times starting here
-		Call print with value numberBefore . 
+		Call print with  value numberBefore . 
 		Assign number  + numberBefore to number . 
 		Assign number  - numberBefore to numberBefore . 
 	ending here 

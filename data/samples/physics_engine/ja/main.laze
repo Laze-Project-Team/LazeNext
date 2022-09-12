@@ -39,7 +39,7 @@
 	}
 	関数: 物体追加(実数: w, 実数: h, 実数: m, ベクトル3D: 色, ベクトル2D: initPos, ベクトル2D: initVec, 実数: initAngle, 実数: initAngVec) => (){
 		箱: shape(w, h, m);
-		ベクトル2D: 重力(0.0, 0 - m * 重力加速度);
+		ベクトル2D: 重力(0.0, (0 - (m * 重力加速度)));
 		*物体: body = メモリ確保(バイト数(*body));
 		body->物体(initPos, initVec, initAngle, initAngVec, 重力, 0, shape);
 		物体配列.追加(body);

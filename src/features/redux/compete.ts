@@ -10,7 +10,7 @@ export type CompeteState = {
 };
 const initialState: CompeteState = {
   collapsed: true,
-  competitor: { id: '', ranking: 0, rankingData: 0, programUrl: '', wasmUrl: '' },
+  competitor: { id: '', ranking: 0, rankingData: 0, programUrl: '', wasmUrl: '', publish: false },
   competition: { id: '', name: '', level: '', players: [], levelID: '' },
 };
 
