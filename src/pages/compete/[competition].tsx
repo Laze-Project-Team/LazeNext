@@ -63,7 +63,11 @@ const Compete: NextPage = () => {
             <a>&lt; {t('backToCompete')}</a>
           </Link>
         </H4>
-        {competitionData.isFetched ? <CompetitionUI competition={competitionData.data} /> : <p>Loading...</p>}
+        {competitionData.isFetched && competitionData.data ? (
+          <CompetitionUI competition={competitionData.data} />
+        ) : (
+          <p>Loading...</p>
+        )}
       </LeaderboardLayout>
     </>
   );
