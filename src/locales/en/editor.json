@@ -116,5 +116,6 @@
       "message": "Please try a different username"
     }
   },
-  "publish_source_code_check": "Do you want to make this program public? When public, other people can look at, and use your code."
+  "publish_source_code_check": "make this program public",
+  "publish_source_code_check_description": "When you make your program public, others are free to view your program."
 }

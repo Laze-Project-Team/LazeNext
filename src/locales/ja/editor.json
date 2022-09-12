@@ -105,5 +105,6 @@
       "message": "違うユーザーネームを試してみてください"
     }
   },
-  "publish_source_code_check": "このプログラムを公開しますか。公開すると、他の人があなたのプログラムを見て、使うことができます。"
+  "publish_source_code_check": "プログラムを公開する",
+  "publish_source_code_check_description": "プログラムを公開すると、他の人があなたのプログラムを自由に見ることができます。"
 }
