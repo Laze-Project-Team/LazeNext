@@ -91,7 +91,7 @@
       "title": "Program Submitted Successfully",
       "message": "{{user}}'s program was submitted successfully with the time {{time}}."
     },
-    "linetraceTime": "Your time is: {{time}}"
+    "linetraceTime": "Your time"
   },
 
   "errors": {

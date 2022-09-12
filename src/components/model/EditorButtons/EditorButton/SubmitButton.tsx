@@ -119,7 +119,7 @@ export const SubmitButton: VFC = () => {
         </>
       );
     } else {
-      return <p>{t(`messages.linetraceTime`, { time: linetraceTime.toFixed(2) })}</p>;
+      return <ModalTextDisplay title={t('messages.linetraceTime')}>{linetraceTime.toFixed(2)}</ModalTextDisplay>;
     }
   };
 
