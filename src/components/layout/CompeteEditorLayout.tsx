@@ -74,13 +74,14 @@ export const CompeteEditorLayout: VFC = () => {
       <Layout.Content>
         <MonacoEditor />
       </Layout.Content>
-      <div className="absolute right-0 bottom-0 z-10 flex flex-col space-y-2 pb-4 pr-4">
+      <div className="absolute right-0 bottom-0 z-10 flex flex-col space-y-4 pb-4 pr-4">
         <Link href={`/compete/${query.id ?? ''}`}>
           <Tooltip title={t('goToLeaderboard')} placement="left">
             <Button
               type="primary"
               shape="circle"
               className="drop-shadow-xl"
+              size="large"
               icon={<MdLeaderboard className="relative top-[-2px] inline h-full w-full" />}
             />
           </Tooltip>
@@ -90,6 +91,7 @@ export const CompeteEditorLayout: VFC = () => {
             type="primary"
             shape="circle"
             className="drop-shadow-xl"
+            size="large"
             icon={
               isSiderbarCollapsed ? (
                 <BsQuestion className="relative top-[-2px] inline h-full w-full" />
