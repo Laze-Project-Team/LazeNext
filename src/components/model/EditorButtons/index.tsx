@@ -72,6 +72,7 @@ export const EditorButtons: VFC = () => {
     programUrl: '',
     lang: lang?.current ?? 'en',
     linetraceTime: { time: 0 },
+    levelNow: '',
   });
 
   return (

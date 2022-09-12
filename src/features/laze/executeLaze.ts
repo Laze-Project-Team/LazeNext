@@ -16,6 +16,7 @@ export type ExecuteParam = {
   error: (err: any) => void | PromiseLike<void>;
   compileError: () => void | PromiseLike<void>;
   linetraceTime?: LinetraceData | undefined;
+  levelNow?: string;
   dispatcher?: Dispatch;
   t?: TFunction;
   canvasId?: string;

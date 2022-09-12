@@ -8,11 +8,15 @@ export type LinetraceData = {
 
 export type importLinetraceProps = {
   linetraceTime: LinetraceData;
+  memory: WebAssembly.Memory;
+  levelNow: string;
 };
 
 const checkImportLinetraceProps = (arg: unknown): boolean => {
   const props = arg as importLinetraceProps;
-  return typeof props?.linetraceTime === 'object';
+  return (
+    typeof props?.linetraceTime === 'object' && typeof props.levelNow === 'string' && typeof props.memory === 'object'
+  );
 };
 
 const importLinetrace = (p: unknown): WebAssembly.Imports => {
@@ -24,12 +28,21 @@ const importLinetrace = (p: unknown): WebAssembly.Imports => {
 
   return {
     linetrace: {
-      updateLinetraceTime: (time: number) => {
+      updateLinetraceTime: (time: number, offset: number, length: number) => {
+        let bytes = new Uint8Array(props.memory.buffer, offset, Number(length) * 4);
+        bytes = bytes.filter((element) => {
+          return element !== 0;
+        });
+        const string = new TextDecoder('utf-8').decode(bytes);
         time.toPrecision(4);
         notification.open({
           message: `${Number(time.toFixed(2))}s`,
         });
-        props.linetraceTime.time = time;
+        if (props.levelNow === '' || string === props.levelNow) {
+          props.linetraceTime.time = time;
+        } else {
+          props.linetraceTime.time = -1;
+        }
       },
     },
   };
@@ -41,12 +54,15 @@ const initializeLinetraceProps = (p: unknown): Laze.Props => {
   }
   const props = p as importLinetraceProps;
   props.linetraceTime.time = 0;
+  props.memory = new WebAssembly.Memory({ initial: 1000 });
   return props;
 };
 
 export const linetraceModule: Laze.Module = {
   props: {
     linetraceTime: 0,
+    memory: new WebAssembly.Memory({ initial: 1000 }),
+    levelNow: '',
   },
   importFunc: importLinetrace,
   initFunc: initializeLinetraceProps,

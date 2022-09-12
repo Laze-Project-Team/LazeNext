@@ -74,7 +74,7 @@ Load  function jsArcTan from "atan"of "std"that  takes x as double and  returns 
 Load  function jsLog from "log"of "std"that  takes x as double and  returns r as double . 
 Load  function jsEPow from "ePow"of "std"that  takes x as double and  returns r as double . 
 Load  function jsPow from "exp"of "std"that  takes x as double , y as double and  returns r as double . 
-Load  function updateLinetraceTime from "updateLinetraceTime"of "linetrace"that  takes x as double . 
+Load  function _updateLinetraceTime from "updateLinetraceTime"of "linetrace"that  takes x as double , x as pointer  of char , 長さ as int . 
 Declare  function ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$ that  takes input as double and  returns 結果 as double with  code starting here
 	Initialize  variable PI as double with 3.14159265358979312 . 
 	Initialize  variable temp as int with input  / ( 2.0  * PI ) . 
@@ -694,6 +694,9 @@ Declare  function ${"ja":"表示", "natja":"表示", "en":"print", "naten":"prin
 ending here 
 Declare  function ${"ja":"glGetUniformLocation", "natja":"glGetUniformLocation", "en":"glGetUniformLocation", "naten":"glGetUniformLocation"}$ that  takes i as short , a as string and  returns loc as short with  code starting here
 	Assign _glGetUniformLocation ( i , content of a , length of a ) to loc . 
+ending here 
+Declare  function updateLinetraceTime that  takes x as double , y as string with  code starting here
+	Call _updateLinetraceTime with  value x , content of y , length of y . 
 ending here 
 Declare  function ${"ja":"サンプルモデルロード", "natja":"サンプルモデルロード", "en":"loadSampleModel", "naten":"loadSampleModel"}$ that  takes a as string and  returns b as string with  code starting here
 	Initialize  variable data as pointer  of string with "". 
@@ -1969,13 +1972,15 @@ public : 	Declare  variable world as Scene .
 		ending here 
 		Call push of 直線データ with  value Vector2D ( get of points ( 0 ) , get of points ( 1 ) ) . 
 	ending here 
-	Declare  function linetraceSimulation that  takes level as int with  code starting here
+	Declare  function linetraceSimulation that  takes x as string with  code starting here
+		Call string of レベル . 
+		Assign x to レベル . 
 		Call Array of 通過点 . 
 		Call Array of 通過点ID . 
 		Declare  variable points as Array < double > . 
 		Call Scene of world . 
 		Initialize  object firstPos as Vector2D with 0.0 , 0.0 . 
-		If level  == 0 then  execute  code starting here
+		If x  == "Easy"then  execute  code starting here
 			Call setPos of camera of world with  value Vector3D ( 2.0 , 10.0 , 3.0 ) . 
 			Call setAngle of camera of world with  value 45.0 , ( 0  - ( 45.0 ) ) . 
 			Initialize  variable number as int with 12 . 
@@ -1990,7 +1995,7 @@ public : 	Declare  variable world as Scene .
 			Initialize  object ゴール as Vector4D with ( 0  - ( 1.0 ) ) , 9.5 , 1.0 , 8.5 . 
 			Call push of 通過点 with  value ゴール . 
 		ending here 
-		If level  == 1 then  execute  code starting here
+		If x  == "Medium"then  execute  code starting here
 			Call setPos of camera of world with  value Vector3D ( ( 0  - ( 10.0 ) ) , 10.0 , ( 0  - ( 15.0 ) ) ) . 
 			Call setAngle of camera of world with  value 45.0 , ( 0  - ( 45.0 ) ) . 
 			Initialize  variable number as int with 12 . 
@@ -2009,7 +2014,7 @@ public : 	Declare  variable world as Scene .
 			Initialize  object ゴール as Vector4D with 8.0 , 0.0 , 10.0 , ( 0  - ( 1.0 ) ) . 
 			Call push of 通過点 with  value ゴール . 
 		ending here 
-		If level  == 2 then  execute  code starting here
+		If x  == "Hard"then  execute  code starting here
 			Call setPos of camera of world with  value Vector3D ( ( 0  - ( 10.0 ) ) , 10.0 , ( 0  - ( 15.0 ) ) ) . 
 			Call setAngle of camera of world with  value 45.0 , ( 0  - ( 45.0 ) ) . 
 			Assign 45.0 to ロボット角度 . 
@@ -2151,7 +2156,7 @@ public : 	Declare  variable world as Scene .
 						Call get of sprites of world ( get of 通過点ID ( 通過済み  + 1 ) ) -> setColor with  value 緑 . 
 						Assign true to おわり . 
 						Assign getTime ( ) to エンドタイム . 
-						Call updateLinetraceTime with  value ( エンドタイム  - スタートタイム )  / 1000 . 
+						Call updateLinetraceTime with  value ( エンドタイム  - スタートタイム )  / 1000 , レベル . 
 					ending here Otherwise  execute  code starting here
 						Assign 通過済み  + 1 to 通過済み . 
 						Call get of sprites of world ( get of 通過点ID ( 通過済み ) ) -> setColor with  value 緑 . 
@@ -2220,4 +2225,5 @@ private : 	Declare  variable ロボットID as int .
 	Declare  variable 通過点 as Array < Vector4D > . 
 	Declare  variable 通過点ID as Array < int > . 
 	Declare  variable 通過済み as int . 
+	Declare  variable レベル as string . 
 ending here 

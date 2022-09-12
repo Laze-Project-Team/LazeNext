@@ -58,6 +58,7 @@ export const getWasmImports = (dependencies: Libraries[], param: ExecuteParam): 
       }
       if (key === 'linetrace') {
         dependency.props.linetraceTime = param.linetraceTime ?? { time: 0 };
+        dependency.props.levelNow = param.levelNow ?? '';
       }
       return { ...result, ...dependency.initFunc(dependency.props) };
     } else {
