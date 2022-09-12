@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import type { RefObject } from 'react';
+import type { MutableRefObject, RefObject } from 'react';
 import { createContext, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
@@ -14,6 +14,7 @@ import { Editor as MonacoEditor } from '@/components/model/MonacoEditor';
 import { WorkBench } from '@/components/model/WorkBench';
 
 export const splitPaneRefContext = createContext<RefObject<SplitPane> | null>(null);
+export const programLangContext = createContext<MutableRefObject<string> | null>(null);
 
 const Editor: NextPage = () => {
   const { locale } = useRouter();
@@ -22,32 +23,35 @@ const Editor: NextPage = () => {
   const title = `${t('title')} | Laze`;
   const splitPaneRef = useRef<SplitPane>(null);
 
+  const programLangRef = useRef(locale ?? 'en');
+
   return (
     <>
-      <Head>
-        <title>{title}</title>
+      <programLangContext.Provider value={programLangRef}>
+        <Head>
+          <title>{title}</title>
 
-        <meta content={t('description')} name="description" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={t('description')} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}editor`} />
-        <meta property="og:site_name" content={title} />
-        <meta property="og:locale" content={locale ?? 'en'} />
-      </Head>
+          <meta content={t('description')} name="description" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={t('description')} />
+          <meta property="og:type" content="article" />
+          <meta property="og:url" content={`https://laze.ddns.net/${locale ? `${locale}/` : ''}editor`} />
+          <meta property="og:site_name" content={title} />
+          <meta property="og:locale" content={locale ?? 'en'} />
+        </Head>
 
-      <div className="flex h-screen w-screen flex-col overflow-hidden text-[0.9rem] dark:bg-background dark:text-[#ccc]">
-        <div className="min-h-0 flex-1">
-          <SplitPane
-            split="horizontal"
-            primary="second"
-            defaultSize="max(12rem, 20%)"
-            paneStyle={{ minHeight: '0' }}
-            pane2Style={{ maxHeight: 'calc(100% - 3rem)' }}
-            className="!static"
-            ref={splitPaneRef}
-          >
-            {/* <SplitPane
+        <div className="flex h-screen w-screen flex-col overflow-hidden text-[0.9rem] dark:bg-background dark:text-[#ccc]">
+          <div className="min-h-0 flex-1">
+            <SplitPane
+              split="horizontal"
+              primary="second"
+              defaultSize="max(12rem, 20%)"
+              paneStyle={{ minHeight: '0' }}
+              pane2Style={{ maxHeight: 'calc(100% - 3rem)' }}
+              className="!static"
+              ref={splitPaneRef}
+            >
+              {/* <SplitPane
                   split="vertical"
                   primary="first"
                   defaultSize="12rem"
@@ -56,23 +60,24 @@ const Editor: NextPage = () => {
                   <div className="h-full">
                     <Explorer />
                   </div> */}
-            <div className="flex h-full flex-1 flex-col">
-              <div className="h-7">
-                <EditorButtons />
+              <div className="flex h-full flex-1 flex-col">
+                <div className="h-7">
+                  <EditorButtons />
+                </div>
+                <div className="flex-1">
+                  <MonacoEditor />
+                </div>
               </div>
-              <div className="flex-1">
-                <MonacoEditor />
-              </div>
-            </div>
-            {/* </SplitPane> */}
+              {/* </SplitPane> */}
 
-            <div className="h-full w-full">
-              <WorkBench />
-            </div>
-          </SplitPane>
+              <div className="h-full w-full">
+                <WorkBench />
+              </div>
+            </SplitPane>
+          </div>
+          <EditorFooter />
         </div>
-        <EditorFooter />
-      </div>
+      </programLangContext.Provider>
     </>
   );
 };

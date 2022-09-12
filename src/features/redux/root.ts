@@ -23,7 +23,7 @@ export const store = configureStore({
   middleware:
     typeof window !== 'undefined'
       ? (getDefaultMiddleware) => {
-          return getDefaultMiddleware().concat(save());
+          return getDefaultMiddleware().concat(save({ ignoreStates: ['compete'] }));
         }
       : undefined,
   devTools:

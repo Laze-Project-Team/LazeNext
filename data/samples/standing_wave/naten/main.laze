@@ -1,50 +1,50 @@
-Declare function main with code starting here
+Declare  function main with  code starting here
 	Call captureMouse . 
-	Declare variable world as Scene . 
-	Initialize object 左からの波の色 as Vector3D with 1.0 , 0.5 , 0.200000000000000011 . 
-	Initialize object 右からの波の色 as Vector3D with 0.200000000000000011 , 0.5 , 1.0 . 
-	Initialize object 合成波の色 as Vector3D with 1.0 , 1.0 , 1.0 . 
-	Initialize variable PI as double with 3.14159265398979315 . 
-	Declare variable cubeIDlist as Array < int > . 
-	Initialize variable numberOfTimes as int with 300 . 
-	Initialize object initialPosition as Vector3D with 0.0 , 0.0 , 0.0 . 
+	Declare  variable world as Scene . 
+	Initialize  object 左からの波の色 as Vector3D with 1.0 , 0.5 , 0.200000000000000011 . 
+	Initialize  object 右からの波の色 as Vector3D with 0.200000000000000011 , 0.5 , 1.0 . 
+	Initialize  object 合成波の色 as Vector3D with 1.0 , 1.0 , 1.0 . 
+	Initialize  variable PI as double with 3.14159265398979315 . 
+	Declare  variable cubeIDlist as Array < int > . 
+	Initialize  variable numberOfTimes as int with 300 . 
+	Initialize  object initialPosition as Vector3D with 0.0 , 0.0 , 0.0 . 
 	repeat numberOfTimes times starting here
-		Initialize object color as Vector3D with 0.0 , 0.0 , 0.0 . 
-		Declare variable 大きさ as double . 
-		If ( counter  % 3 )  is 0 then execute code starting here
+		Initialize  object color as Vector3D with 0.0 , 0.0 , 0.0 . 
+		Declare  variable 大きさ as double . 
+		If ( counter  % 3 )  == 0 then  execute  code starting here
 			Assign 合成波の色 to color . 
 			Assign 0.149999999999999994 to 大きさ . 
-		ending here Otherwise execute code starting here
+		ending here Otherwise  execute  code starting here
 			Assign 0.100000000000000006 to 大きさ . 
-			If ( counter  % 3 )  is 1 then execute code starting here
+			If ( counter  % 3 )  == 1 then  execute  code starting here
 				Assign 左からの波の色 to color . 
-			ending here Otherwise execute code starting here
+			ending here Otherwise  execute  code starting here
 				Assign 右からの波の色 to color . 
 			ending here 
 		ending here 
-		Initialize variable cubeID as int with addCube of world ( 大きさ , color , initialPosition ) . 
-		Call push of cubeIDlist with value cubeID . 
+		Initialize  variable cubeID as int with addCube of world ( 大きさ , color , initialPosition ) . 
+		Call push of cubeIDlist with  value cubeID . 
 	ending here 
 	loop starting here
-		Initialize variable w as double with 0.100000000000000006 . 
+		Initialize  variable w as double with 0.100000000000000006 . 
 		repeat length of cubeIDlist ( ) times starting here
-			Initialize variable x as double with w  * counter . 
-			Declare variable y as double . 
-			Initialize variable 周期 as double with 0.299999999999999989 . 
-			Initialize variable 波長 as double with 1.0 . 
-			Initialize variable t as double with getTime ( )  / 1000.0 . 
-			If ( counter  % 3 )  is 0 then execute code starting here
-				Assign sin ( ( t  / 周期 )  - ( x  / 波長 ) )  + sin ( ( 0  - t  / 周期 )  - ( x  / 波長 ) ) to y . 
-			ending here Otherwise execute code starting here
-				If ( counter  % 3 )  is 1 then execute code starting here
+			Initialize  variable x as double with w  * counter . 
+			Declare  variable y as double . 
+			Initialize  variable 周期 as double with 0.299999999999999989 . 
+			Initialize  variable 波長 as double with 1.0 . 
+			Initialize  variable t as double with getTime ( )  / 1000.0 . 
+			If ( counter  % 3 )  == 0 then  execute  code starting here
+				Assign sin ( ( t  / 周期 )  - ( x  / 波長 ) )  + sin ( ( ( 0  - ( t  / 周期 ) ) )  - ( x  / 波長 ) ) to y . 
+			ending here Otherwise  execute  code starting here
+				If ( counter  % 3 )  == 1 then  execute  code starting here
 					Assign sin ( ( t  / 周期 )  - ( x  / 波長 ) ) to y . 
-				ending here Otherwise execute code starting here
-					Assign sin ( ( 0  - t  / 周期 )  - ( x  / 波長 ) ) to y . 
+				ending here Otherwise  execute  code starting here
+					Assign sin ( ( ( 0  - ( t  / 周期 ) ) )  - ( x  / 波長 ) ) to y . 
 				ending here 
 			ending here 
-			Initialize object position as Vector3D with x , y , 0.0 . 
-			Initialize variable id as int with get of cubeIDlist ( counter ) . 
-			Call get of sprites of world ( id ) -> setPos with value position . 
+			Initialize  object position as Vector3D with x , y , 0.0 . 
+			Initialize  variable id as int with get of cubeIDlist ( counter ) . 
+			Call get of sprites of world ( id ) -> setPos with  value position . 
 		ending here 
 		Call draw of world . 
 	ending here 

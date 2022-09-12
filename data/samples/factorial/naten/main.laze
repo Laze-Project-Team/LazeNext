@@ -1,10 +1,10 @@
-Declare function main with code starting here
-	Initialize variable number as int with 10 . 
-	Initialize variable numberToMultiply as int with number . 
-	Initialize variable result as int with 1 . 
+Declare  function main with  code starting here
+	Initialize  variable number as int with 10 . 
+	Initialize  variable numberToMultiply as int with number . 
+	Initialize  variable result as int with 1 . 
 	repeat number times starting here
 		Assign numberToMultiply  * result to result . 
 		Assign numberToMultiply  - 1 to numberToMultiply . 
 	ending here 
-	Call print with value result . 
+	Call print with  value result . 
 ending here 

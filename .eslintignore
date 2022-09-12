@@ -8,3 +8,5 @@ renovate.json
 src/locales/**/
 cache/*
 competitions/*
+*.laze
+src/features/compiler/source/model.ts

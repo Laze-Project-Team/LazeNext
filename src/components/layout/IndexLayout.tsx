@@ -89,6 +89,7 @@ const IndexHeader: VFC = () => {
             <div className="flex flex-1">
               <NavLink href="/editor">{t('header.Editor')}</NavLink>
               <NavLink href="/docs">{t('header.Docs')}</NavLink>
+              <NavLink href="/compete">{t('header.Compete')}</NavLink>
             </div>
           </>
         )}
@@ -139,6 +140,9 @@ const IndexHeader: VFC = () => {
                   </Menu.Item>
                   <Menu.Item>
                     <Link href="/docs">{t('header.Docs')}</Link>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Link href="/compete">{t('header.Compete')}</Link>
                   </Menu.Item>
                 </Menu>
               </Drawer>
@@ -250,6 +254,7 @@ const IndexFooter: VFC = () => {
             <FooterLink href="/">{t('footer.sitemap.Home')}</FooterLink>
             <FooterLink href="/editor">{t('footer.sitemap.Editor')}</FooterLink>
             <FooterLink href="/docs">{t('footer.sitemap.Docs')}</FooterLink>
+            <FooterLink href="/compete">{t('footer.sitemap.Compete')}</FooterLink>
           </ContentsList>
         </div>
       </div>

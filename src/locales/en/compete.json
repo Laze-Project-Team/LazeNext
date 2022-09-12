@@ -7,5 +7,19 @@
   "time": "Time",
   "join": "Join {{competition}} Level {{level}}",
   "level": "Level",
-  "competition": "Competition"
+  "competition": "Competition",
+  "help": "Help",
+  "close_help": "Close",
+  "fetch code error": "Fetching Code Failed",
+  "fetch code error message": "The server could not find code for the user {{user}}.",
+  "fetch wasm error": "Fetching WASM Failed",
+  "fetch wasm error message": "The server could not find wasm for the user {{user}}.",
+  "fetch compData error": "Fetching Competition Data Failed",
+  "fetch compData error message": "The server could not find competition data.",
+  "fetch explanation error": "Fetching Explanation Failed",
+  "fetch explanation error message": "The server could not find explanation for {{id}} level {{level}}.",
+  "leaderboard_explanation": "Click on a player on the leaderboard to see their program and their executed result.",
+  "goToLeaderboard": "Go to Leaderboard",
+  "not_published": "The user has not made their program public.",
+  "publish_source_code_check": "Do you want to make this program public? When public, other people can look at, and use your code."
 }

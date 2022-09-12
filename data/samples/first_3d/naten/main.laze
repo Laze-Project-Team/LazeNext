@@ -1,13 +1,13 @@
-Declare function main with code starting here
+Declare  function main with  code starting here
 	Call captureMouse . 
-	Declare variable world as Scene . 
-	Initialize object lightPosition as Vector3D with 5.0 , 5.0 , 5.0 . 
-	Initialize object axis as Vector3D with 0.0 , 1.0 , 0.0 . 
-	Initialize object color as Vector3D with 0.200000000000000011 , 0.5 , 0.699999999999999956 . 
-	Initialize object position as Vector3D with 0.0 , 0.0 , 0.0 . 
-	Initialize variable cubeID as int with addCube of world ( 2.0 , color , position ) . 
+	Declare  variable world as Scene . 
+	Initialize  object lightPosition as Vector3D with 5.0 , 5.0 , 5.0 . 
+	Initialize  object axis as Vector3D with 0.0 , 1.0 , 0.0 . 
+	Initialize  object color as Vector3D with 0.200000000000000011 , 0.5 , 0.699999999999999956 . 
+	Initialize  object position as Vector3D with 0.0 , 0.0 , 0.0 . 
+	Initialize  variable cubeID as int with addCube of world ( 2.0 , color , position ) . 
 	loop starting here
-		Call get of sprites of world ( cubeID ) -> rotate with value axis , getTime ( )  / 1000.0 . 
+		Call get of sprites of world ( cubeID ) -> rotate with  value axis , getTime ( )  / 1000.0 . 
 		Call draw of world . 
 	ending here 
 ending here 

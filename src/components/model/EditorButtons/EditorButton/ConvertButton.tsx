@@ -1,6 +1,7 @@
 import { Button, Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { VFC } from 'react';
+import { useContext } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -13,24 +14,34 @@ import { UploadNewLanguage } from '@/components/model/EditorButtons/EditorButton
 import type { SelectableListItem } from '@/components/ui/SelectableList';
 import { SelectableList } from '@/components/ui/SelectableList';
 import { langList as rawLangList } from '@/const/lang';
-import { useCompiler } from '@/features/compiler';
+import { convertLaze } from '@/features/compiler/initialize';
 import { getCurrentCode, getCurrentFile } from '@/features/redux/root';
 import { cx } from '@/features/utils/cx';
 import { getName } from '@/features/utils/path';
+import { competeProgramLangContext } from '@/pages/compete/editor';
+import { programLangContext } from '@/pages/editor';
 import styles from '@/styles/loading.module.css';
+
+import { editorExecuteParamContext } from '..';
+import { competeEditorExecuteParamContext } from '../compete';
 
 export const ConvertButton: VFC = () => {
   const { locale } = useRouter();
   const [t] = useTranslation('editor');
   const [isOpened, setIsOpened] = useState(false);
 
-  useCompiler();
-
-  const defaultLang =
-    typeof window !== 'undefined' ? window?.laze?.props?.variables?.lang ?? locale ?? 'en' : locale ?? 'en';
+  const paramContext = useContext(editorExecuteParamContext);
+  const defaultLang = typeof window !== 'undefined' ? paramContext?.current.lang ?? locale ?? 'en' : locale ?? 'en';
   const newLang = useRef(defaultLang);
   const [lang, setLang] = useState(defaultLang);
   const [isConverting, setIsConverting] = useState(false);
+
+  const competeLang = useContext(competeProgramLangContext);
+  const editorLang = useContext(programLangContext);
+  const langContext = editorLang || competeLang;
+  const competeEditorParam = useContext(competeEditorExecuteParamContext);
+  const editorParam = useContext(editorExecuteParamContext);
+  const param = editorParam || competeEditorParam;
 
   const concatItem = (acc: Record<string, SelectableListItem>, cur: SelectableListItem) => {
     acc[cur.id] = cur;
@@ -88,7 +99,9 @@ export const ConvertButton: VFC = () => {
 
   const change = () => {
     setLang(newLang.current);
-    window.laze.props.variables.lang = newLang.current;
+    if (langContext?.current) {
+      langContext.current = newLang.current;
+    }
     localStorage.setItem('compile_lang', newLang.current);
     setIsOpened(false);
   };
@@ -102,18 +115,20 @@ export const ConvertButton: VFC = () => {
     }
     setIsOpened(false);
     setIsConverting(true);
-    window.laze.compiler
-      .convert(file, code, window.laze.props.variables.lang, newLang.current, getName(file))
-      .then((success) => {
+    convertLaze(file, code, langContext?.current ?? 'en', newLang.current, getName(file), param?.current).then(
+      (success) => {
         if (success) {
           setIsConverting(false);
-          window.laze.props.variables.lang = newLang.current;
+          if (langContext?.current) {
+            langContext.current = newLang.current;
+          }
           setLang(newLang.current);
           localStorage.setItem('compile_lang', newLang.current);
         } else {
           setIsConverting(false);
         }
-      });
+      }
+    );
   };
 
   const abort = () => {
@@ -137,10 +152,13 @@ export const ConvertButton: VFC = () => {
     if (typeof window !== 'undefined') {
       const lang = localStorage.getItem('compile_lang');
       if (lang) {
-        window.laze.props.variables.lang = lang;
+        if (langContext?.current) {
+          langContext.current = lang;
+        }
         setLang(lang);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

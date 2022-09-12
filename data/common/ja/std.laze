@@ -3,78 +3,78 @@
 関数: ${"ja":"行列表示", "natja":"行列表示", "en":"printMatrix", "naten":"printMatrix"}$(実数: offset[4][4]) => () = js読み込み("console", "logMatrix");
 関数: ${"ja":"アドレス表示", "natja":"アドレス表示", "en":"printAddress", "naten":"printAddress"}$(*無: x) => () = js読み込み("console", "log");
 関数: ${"ja":"_文字列表示", "natja":"_文字列表示", "en":"_printString", "naten":"_printString"}$(*文字: x, 整数: 長さ) => () = js読み込み("console", "logstring");
-関数: ${"ja":"時間計測", "natja":"時間計測", "en":"getTime", "naten":"getTime"}$() => (実数: 時間) = js読み込み("performance", "now");
-関数: ${"ja":"glClearDepth", "natja":"glClearDepth", "en":"glClearDepth", "naten":"glClearDepth"}$(整数32: i) => () = js読み込み("webgl", "clearDepth");
-関数: ${"ja":"glDepthFunc", "natja":"glDepthFunc", "en":"glDepthFunc", "naten":"glDepthFunc"}$(整数32: i) => () = js読み込み("webgl", "depthFunc");
-関数: ${"ja":"glEnable", "natja":"glEnable", "en":"glEnable", "naten":"glEnable"}$(整数32: i) => () = js読み込み("webgl", "enable");
-関数: ${"ja":"glDisable", "natja":"glDisable", "en":"glDisable", "naten":"glDisable"}$(整数32: i) => () = js読み込み("webgl", "disable");
-関数: ${"ja":"glCreateProgram", "natja":"glCreateProgram", "en":"glCreateProgram", "naten":"glCreateProgram"}$() => (整数32: prog) = js読み込み("webgl", "createProgram");
-関数: ${"ja":"glCreateBuffer", "natja":"glCreateBuffer", "en":"glCreateBuffer", "naten":"glCreateBuffer"}$() => (整数32: buffer) = js読み込み("webgl", "createBuffer");
-関数: ${"ja":"glBindBuffer", "natja":"glBindBuffer", "en":"glBindBuffer", "naten":"glBindBuffer"}$(整数32: i, 整数32: j) => () = js読み込み("webgl", "bindBuffer");
-関数: ${"ja":"glBufferData", "natja":"glBufferData", "en":"glBufferData", "naten":"glBufferData"}$(整数32: i, *実数: offset, 整数32: size, 整数32: j) => () = js読み込み("webgl", "bufferData");
-関数: ${"ja":"glElementBufferData", "natja":"glElementBufferData", "en":"glElementBufferData", "naten":"glElementBufferData"}$(整数32: i, *整数32: offset, 整数32: size, 整数32: j) => () = js読み込み("webgl", "elementBufferData");
-関数: ${"ja":"glUseProgram", "natja":"glUseProgram", "en":"glUseProgram", "naten":"glUseProgram"}$(整数32: i) => () = js読み込み("webgl", "useProgram");
-関数: ${"ja":"glGetAttribLocation", "natja":"glGetAttribLocation", "en":"glGetAttribLocation", "naten":"glGetAttribLocation"}$(整数32: i, *文字: offset, 整数32: size) => (整数32: loc) = js読み込み("webgl", "getAttribLocation");
-関数: ${"ja":"glVertexAttribPointer", "natja":"glVertexAttribPointer", "en":"glVertexAttribPointer", "naten":"glVertexAttribPointer"}$(整数32: index, 整数32: size, 整数32: ty, 整数32: normalized, 整数32: stride, 整数32: offset) => () = js読み込み("webgl", "vertexAttribPointer");
-関数: ${"ja":"glEnableVertexAttribArray", "natja":"glEnableVertexAttribArray", "en":"glEnableVertexAttribArray", "naten":"glEnableVertexAttribArray"}$(整数32: index) => () = js読み込み("webgl", "enableVertexAttribArray");
-関数: ${"ja":"glDrawArrays", "natja":"glDrawArrays", "en":"glDrawArrays", "naten":"glDrawArrays"}$(整数32: i, 整数32: first, 整数32: count) => () = js読み込み("webgl", "drawArrays");
-関数: ${"ja":"_glGetUniformLocation", "natja":"_glGetUniformLocation", "en":"_glGetUniformLocation", "naten":"_glGetUniformLocation"}$(整数32: i, *文字: offset, 整数32: size) => (整数32: loc) = js読み込み("webgl", "getUniformLocation");
-関数: ${"ja":"glUniformMatrix2fv", "natja":"glUniformMatrix2fv", "en":"glUniformMatrix2fv", "naten":"glUniformMatrix2fv"}$(整数32: loc, 整数32: trans, *実数: offset) => () = js読み込み("webgl", "uniformMatrix2fv");
-関数: ${"ja":"glUniformMatrix3fv", "natja":"glUniformMatrix3fv", "en":"glUniformMatrix3fv", "naten":"glUniformMatrix3fv"}$(整数32: loc, 整数32: trans, *実数: offset) => () = js読み込み("webgl", "uniformMatrix3fv");
-関数: ${"ja":"glUniformMatrix4fv", "natja":"glUniformMatrix4fv", "en":"glUniformMatrix4fv", "naten":"glUniformMatrix4fv"}$(整数32: loc, 整数32: trans, 実数: offset[16]) => () = js読み込み("webgl", "uniformMatrix4fv");
-関数: ${"ja":"glUniform1f", "natja":"glUniform1f", "en":"glUniform1f", "naten":"glUniform1f"}$(整数32: loc, 実数: v0) => () = js読み込み("webgl", "uniform1f");
-関数: ${"ja":"glUniform1fv", "natja":"glUniform1fv", "en":"glUniform1fv", "naten":"glUniform1fv"}$(整数32: loc, 実数: v0) => () = js読み込み("webgl", "uniform1fv");
-関数: ${"ja":"glUniform1i", "natja":"glUniform1i", "en":"glUniform1i", "naten":"glUniform1i"}$(整数32: loc, 整数32: v0) => () = js読み込み("webgl", "uniform1i");
-関数: ${"ja":"glUniform1iv", "natja":"glUniform1iv", "en":"glUniform1iv", "naten":"glUniform1iv"}$(整数32: loc, 整数32: v0) => () = js読み込み("webgl", "uniform1iv");
-関数: ${"ja":"glUniform2f", "natja":"glUniform2f", "en":"glUniform2f", "naten":"glUniform2f"}$(整数32: loc, 実数: v0, 実数: v1) => () = js読み込み("webgl", "uniform2f");
-関数: ${"ja":"glUniform2fv", "natja":"glUniform2fv", "en":"glUniform2fv", "naten":"glUniform2fv"}$(整数32: loc, 実数: v0, 実数: v1) => () = js読み込み("webgl", "uniform2fv");
-関数: ${"ja":"glUniform2i", "natja":"glUniform2i", "en":"glUniform2i", "naten":"glUniform2i"}$(整数32: loc, 整数32: v0, 整数32: v1) => () = js読み込み("webgl", "uniform2i");
-関数: ${"ja":"glUniform2iv", "natja":"glUniform2iv", "en":"glUniform2iv", "naten":"glUniform2iv"}$(整数32: loc, 整数32: v0, 整数32: v1) => () = js読み込み("webgl", "uniform2iv");
-関数: ${"ja":"glUniform3f", "natja":"glUniform3f", "en":"glUniform3f", "naten":"glUniform3f"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2) => () = js読み込み("webgl", "uniform3f");
-関数: ${"ja":"glUniform3fv", "natja":"glUniform3fv", "en":"glUniform3fv", "naten":"glUniform3fv"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2) => () = js読み込み("webgl", "uniform3fv");
-関数: ${"ja":"glUniform3i", "natja":"glUniform3i", "en":"glUniform3i", "naten":"glUniform3i"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2) => () = js読み込み("webgl", "uniform3i");
-関数: ${"ja":"glUniform3iv", "natja":"glUniform3iv", "en":"glUniform3iv", "naten":"glUniform3iv"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2) => () = js読み込み("webgl", "uniform3iv");
-関数: ${"ja":"glUniform4f", "natja":"glUniform4f", "en":"glUniform4f", "naten":"glUniform4f"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2, 実数: v3) => () = js読み込み("webgl", "uniform4f");
-関数: ${"ja":"glUniform4fv", "natja":"glUniform4fv", "en":"glUniform4fv", "naten":"glUniform4fv"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2, 実数: v3) => () = js読み込み("webgl", "uniform4fv");
-関数: ${"ja":"glUniform4i", "natja":"glUniform4i", "en":"glUniform4i", "naten":"glUniform4i"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2, 整数32: v3) => () = js読み込み("webgl", "uniform4i");
-関数: ${"ja":"glUniform4iv", "natja":"glUniform4iv", "en":"glUniform4iv", "naten":"glUniform4iv"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2, 整数32: v3) => () = js読み込み("webgl", "uniform4iv");
-関数: ${"ja":"glClearColor", "natja":"glClearColor", "en":"glClearColor", "naten":"glClearColor"}$(実数: r, 実数: g, 実数: b, 実数: a) => () = js読み込み("webgl", "clearColor");
-関数: ${"ja":"glClear", "natja":"glClear", "en":"glClear", "naten":"glClear"}$(整数32: color) => () = js読み込み("webgl", "clear");
-関数: ${"ja":"glDrawElements", "natja":"glDrawElements", "en":"glDrawElements", "naten":"glDrawElements"}$(整数32: i, 整数32: count, 整数32: ty, 整数32: offset) => () = js読み込み("webgl", "drawElements");
-関数: ${"ja":"glBlendFunc", "natja":"glBlendFunc", "en":"glBlendFunc", "naten":"glBlendFunc"}$(整数32: i, 整数32: j) => () = js読み込み("webgl", "blendFunc");
-関数: ${"ja":"キーチェック", "natja":"キーチェック", "en":"checkKeyPress", "naten":"checkKeyPress"}$(整数32: keyCode) => (整数: pressed) = js読み込み("js", "checkKeyPress");
-関数: ${"ja":"マウスチェック", "natja":"マウスチェック", "en":"checkMousePress", "naten":"checkMousePress"}$() => (整数: pressed) = js読み込み("js", "checkMousePress");
-関数: ${"ja":"マウス相対座標X", "natja":"マウス相対座標X", "en":"checkRelativeMouseX", "naten":"checkRelativeMouseX"}$() => (実数: x) = js読み込み("js", "checkRelativeMouseX");
-関数: ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$() => (実数: x) = js読み込み("js", "checkRelativeMouseY");
-関数: ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$() => (実数: x) = js読み込み("js", "checkAbsoluteMouseX");
-関数: ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$() => (実数: x) = js読み込み("js", "checkAbsoluteMouseY");
-関数: ${"ja":"スクロール座標", "natja":"スクロール座標", "en":"checkScroll", "naten":"checkScroll"}$() => (実数: x) = js読み込み("js", "checkScrollY");
-関数: ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$() => (実数: x) = js読み込み("js", "rand");
-関数: ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$(整数32: size) => (*無: p) = js読み込み("js", "alloc");
-関数: ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$(*文字: offset, 整数32: length) => (整数32: a) = js読み込み("webgl", "loadTexture");
-関数: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(整数32: i) => () = js読み込み("webgl", "activeTexture");
-関数: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(整数32: i, 整数32: j) => () = js読み込み("webgl", "bindTexture");
-関数: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = js読み込み("js", "lockPointer");
+関数: ${"ja":"時間計測", "natja":"時間計測", "en":"getTime", "naten":"getTime"}$() => (実数: 時間) = js読み込み("std", "performanceNow");
+関数: ${"ja":"glClearDepth", "natja":"glClearDepth", "en":"glClearDepth", "naten":"glClearDepth"}$(整数32: i) => () = js読み込み("graphics", "clearDepth");
+関数: ${"ja":"glDepthFunc", "natja":"glDepthFunc", "en":"glDepthFunc", "naten":"glDepthFunc"}$(整数32: i) => () = js読み込み("graphics", "depthFunc");
+関数: ${"ja":"glEnable", "natja":"glEnable", "en":"glEnable", "naten":"glEnable"}$(整数32: i) => () = js読み込み("graphics", "enable");
+関数: ${"ja":"glDisable", "natja":"glDisable", "en":"glDisable", "naten":"glDisable"}$(整数32: i) => () = js読み込み("graphics", "disable");
+関数: ${"ja":"glCreateProgram", "natja":"glCreateProgram", "en":"glCreateProgram", "naten":"glCreateProgram"}$() => (整数32: prog) = js読み込み("graphics", "createProgram");
+関数: ${"ja":"glCreateBuffer", "natja":"glCreateBuffer", "en":"glCreateBuffer", "naten":"glCreateBuffer"}$() => (整数32: buffer) = js読み込み("graphics", "createBuffer");
+関数: ${"ja":"glBindBuffer", "natja":"glBindBuffer", "en":"glBindBuffer", "naten":"glBindBuffer"}$(整数32: i, 整数32: j) => () = js読み込み("graphics", "bindBuffer");
+関数: ${"ja":"glBufferData", "natja":"glBufferData", "en":"glBufferData", "naten":"glBufferData"}$(整数32: i, *実数: offset, 整数32: size, 整数32: j) => () = js読み込み("graphics", "bufferData");
+関数: ${"ja":"glElementBufferData", "natja":"glElementBufferData", "en":"glElementBufferData", "naten":"glElementBufferData"}$(整数32: i, *整数32: offset, 整数32: size, 整数32: j) => () = js読み込み("graphics", "elementBufferData");
+関数: ${"ja":"glUseProgram", "natja":"glUseProgram", "en":"glUseProgram", "naten":"glUseProgram"}$(整数32: i) => () = js読み込み("graphics", "useProgram");
+関数: ${"ja":"glGetAttribLocation", "natja":"glGetAttribLocation", "en":"glGetAttribLocation", "naten":"glGetAttribLocation"}$(整数32: i, *文字: offset, 整数32: size) => (整数32: loc) = js読み込み("graphics", "getAttribLocation");
+関数: ${"ja":"glVertexAttribPointer", "natja":"glVertexAttribPointer", "en":"glVertexAttribPointer", "naten":"glVertexAttribPointer"}$(整数32: index, 整数32: size, 整数32: ty, 整数32: normalized, 整数32: stride, 整数32: offset) => () = js読み込み("graphics", "vertexAttribPointer");
+関数: ${"ja":"glEnableVertexAttribArray", "natja":"glEnableVertexAttribArray", "en":"glEnableVertexAttribArray", "naten":"glEnableVertexAttribArray"}$(整数32: index) => () = js読み込み("graphics", "enableVertexAttribArray");
+関数: ${"ja":"glDrawArrays", "natja":"glDrawArrays", "en":"glDrawArrays", "naten":"glDrawArrays"}$(整数32: i, 整数32: first, 整数32: count) => () = js読み込み("graphics", "drawArrays");
+関数: ${"ja":"_glGetUniformLocation", "natja":"_glGetUniformLocation", "en":"_glGetUniformLocation", "naten":"_glGetUniformLocation"}$(整数32: i, *文字: offset, 整数32: size) => (整数32: loc) = js読み込み("graphics", "getUniformLocation");
+関数: ${"ja":"glUniformMatrix2fv", "natja":"glUniformMatrix2fv", "en":"glUniformMatrix2fv", "naten":"glUniformMatrix2fv"}$(整数32: loc, 整数32: trans, *実数: offset) => () = js読み込み("graphics", "uniformMatrix2fv");
+関数: ${"ja":"glUniformMatrix3fv", "natja":"glUniformMatrix3fv", "en":"glUniformMatrix3fv", "naten":"glUniformMatrix3fv"}$(整数32: loc, 整数32: trans, *実数: offset) => () = js読み込み("graphics", "uniformMatrix3fv");
+関数: ${"ja":"glUniformMatrix4fv", "natja":"glUniformMatrix4fv", "en":"glUniformMatrix4fv", "naten":"glUniformMatrix4fv"}$(整数32: loc, 整数32: trans, 実数: offset[16]) => () = js読み込み("graphics", "uniformMatrix4fv");
+関数: ${"ja":"glUniform1f", "natja":"glUniform1f", "en":"glUniform1f", "naten":"glUniform1f"}$(整数32: loc, 実数: v0) => () = js読み込み("graphics", "uniform1f");
+関数: ${"ja":"glUniform1fv", "natja":"glUniform1fv", "en":"glUniform1fv", "naten":"glUniform1fv"}$(整数32: loc, 実数: v0) => () = js読み込み("graphics", "uniform1fv");
+関数: ${"ja":"glUniform1i", "natja":"glUniform1i", "en":"glUniform1i", "naten":"glUniform1i"}$(整数32: loc, 整数32: v0) => () = js読み込み("graphics", "uniform1i");
+関数: ${"ja":"glUniform1iv", "natja":"glUniform1iv", "en":"glUniform1iv", "naten":"glUniform1iv"}$(整数32: loc, 整数32: v0) => () = js読み込み("graphics", "uniform1iv");
+関数: ${"ja":"glUniform2f", "natja":"glUniform2f", "en":"glUniform2f", "naten":"glUniform2f"}$(整数32: loc, 実数: v0, 実数: v1) => () = js読み込み("graphics", "uniform2f");
+関数: ${"ja":"glUniform2fv", "natja":"glUniform2fv", "en":"glUniform2fv", "naten":"glUniform2fv"}$(整数32: loc, 実数: v0, 実数: v1) => () = js読み込み("graphics", "uniform2fv");
+関数: ${"ja":"glUniform2i", "natja":"glUniform2i", "en":"glUniform2i", "naten":"glUniform2i"}$(整数32: loc, 整数32: v0, 整数32: v1) => () = js読み込み("graphics", "uniform2i");
+関数: ${"ja":"glUniform2iv", "natja":"glUniform2iv", "en":"glUniform2iv", "naten":"glUniform2iv"}$(整数32: loc, 整数32: v0, 整数32: v1) => () = js読み込み("graphics", "uniform2iv");
+関数: ${"ja":"glUniform3f", "natja":"glUniform3f", "en":"glUniform3f", "naten":"glUniform3f"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2) => () = js読み込み("graphics", "uniform3f");
+関数: ${"ja":"glUniform3fv", "natja":"glUniform3fv", "en":"glUniform3fv", "naten":"glUniform3fv"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2) => () = js読み込み("graphics", "uniform3fv");
+関数: ${"ja":"glUniform3i", "natja":"glUniform3i", "en":"glUniform3i", "naten":"glUniform3i"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2) => () = js読み込み("graphics", "uniform3i");
+関数: ${"ja":"glUniform3iv", "natja":"glUniform3iv", "en":"glUniform3iv", "naten":"glUniform3iv"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2) => () = js読み込み("graphics", "uniform3iv");
+関数: ${"ja":"glUniform4f", "natja":"glUniform4f", "en":"glUniform4f", "naten":"glUniform4f"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2, 実数: v3) => () = js読み込み("graphics", "uniform4f");
+関数: ${"ja":"glUniform4fv", "natja":"glUniform4fv", "en":"glUniform4fv", "naten":"glUniform4fv"}$(整数32: loc, 実数: v0, 実数: v1, 実数: v2, 実数: v3) => () = js読み込み("graphics", "uniform4fv");
+関数: ${"ja":"glUniform4i", "natja":"glUniform4i", "en":"glUniform4i", "naten":"glUniform4i"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2, 整数32: v3) => () = js読み込み("graphics", "uniform4i");
+関数: ${"ja":"glUniform4iv", "natja":"glUniform4iv", "en":"glUniform4iv", "naten":"glUniform4iv"}$(整数32: loc, 整数32: v0, 整数32: v1, 整数32: v2, 整数32: v3) => () = js読み込み("graphics", "uniform4iv");
+関数: ${"ja":"glClearColor", "natja":"glClearColor", "en":"glClearColor", "naten":"glClearColor"}$(実数: r, 実数: g, 実数: b, 実数: a) => () = js読み込み("graphics", "clearColor");
+関数: ${"ja":"glClear", "natja":"glClear", "en":"glClear", "naten":"glClear"}$(整数32: color) => () = js読み込み("graphics", "clear");
+関数: ${"ja":"glDrawElements", "natja":"glDrawElements", "en":"glDrawElements", "naten":"glDrawElements"}$(整数32: i, 整数32: count, 整数32: ty, 整数32: offset) => () = js読み込み("graphics", "drawElements");
+関数: ${"ja":"glBlendFunc", "natja":"glBlendFunc", "en":"glBlendFunc", "naten":"glBlendFunc"}$(整数32: i, 整数32: j) => () = js読み込み("graphics", "blendFunc");
+関数: ${"ja":"キーチェック", "natja":"キーチェック", "en":"checkKeyPress", "naten":"checkKeyPress"}$(整数32: keyCode) => (整数: pressed) = js読み込み("std", "checkKeyPress");
+関数: ${"ja":"マウスチェック", "natja":"マウスチェック", "en":"checkMousePress", "naten":"checkMousePress"}$() => (整数: pressed) = js読み込み("std", "checkMousePress");
+関数: ${"ja":"マウス相対座標X", "natja":"マウス相対座標X", "en":"checkRelativeMouseX", "naten":"checkRelativeMouseX"}$() => (実数: x) = js読み込み("std", "checkRelativeMouseX");
+関数: ${"ja":"マウス相対座標Y", "natja":"マウス相対座標Y", "en":"checkRelativeMouseY", "naten":"checkRelativeMouseY"}$() => (実数: x) = js読み込み("std", "checkRelativeMouseY");
+関数: ${"ja":"マウス絶対座標X", "natja":"マウス絶対座標X", "en":"checkAbsoluteMouseX", "naten":"checkAbsoluteMouseX"}$() => (実数: x) = js読み込み("std", "checkAbsoluteMouseX");
+関数: ${"ja":"マウス絶対座標Y", "natja":"マウス絶対座標Y", "en":"checkAbsoluteMouseY", "naten":"checkAbsoluteMouseY"}$() => (実数: x) = js読み込み("std", "checkAbsoluteMouseY");
+関数: ${"ja":"スクロール座標", "natja":"スクロール座標", "en":"checkScroll", "naten":"checkScroll"}$() => (実数: x) = js読み込み("std", "checkScrollY");
+関数: ${"ja":"ランダム数生成", "natja":"ランダム数生成", "en":"rand", "naten":"rand"}$() => (実数: x) = js読み込み("std", "rand");
+関数: ${"ja":"メモリ確保", "natja":"メモリ確保", "en":"allocMemory", "naten":"allocMemory"}$(整数32: size) => (*無: p) = js読み込み("std", "alloc");
+関数: ${"ja":"テクスチャロード", "natja":"テクスチャロード", "en":"_loadTexture", "naten":"_loadTexture"}$(*文字: offset, 整数32: length) => (整数32: a) = js読み込み("graphics", "loadTexture");
+関数: ${"ja":"glActiveTexture", "natja":"glActiveTexture", "en":"glActiveTexture", "naten":"glActiveTexture"}$(整数32: i) => () = js読み込み("graphics", "activeTexture");
+関数: ${"ja":"glBindTexture", "natja":"glBindTexture", "en":"glBindTexture", "naten":"glBindTexture"}$(整数32: i, 整数32: j) => () = js読み込み("graphics", "bindTexture");
+関数: ${"ja":"マウスキャプチャ", "natja":"マウスキャプチャ", "en":"captureMouse", "naten":"captureMouse"}$() => () = js読み込み("graphics", "lockPointer");
 関数:${"ja":"Arduino設定", "natja":"Arduino設定", "en":"ArduinoSetup", "naten":"ArduinoSetup"}$(整数:vendorId, 関数:c() => ()) => () = js読み込み("arduino", "setUp");
 関数:${"ja":"Arduinoコマンド送信", "natja":"Arduinoコマンド送信", "en":"ArduinoSendCommand", "naten":"ArduinoSendCommand"}$(文字:コマンド, 整数32:data) => () = js読み込み("arduino", "sendCommand");
 関数:${"ja":"Arduinoデータ受信", "natja":"Arduinoデータ受信", "en":"ArduinoReceiveData", "naten":"ArduinoReceiveData"}$() => () = js読み込み("arduino", "checkInput");
 関数:${"ja":"Arduinoアナログ入力", "natja":"Arduinoアナログ入力", "en":"ArduinoAnalogInput", "naten":"ArduinoAnalogInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "analogRead");
 関数:${"ja":"Arduinoデジタル入力", "natja":"Arduinoデジタル入力", "en":"ArduinoDigitalInput", "naten":"ArduinoDigitalInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "digitalRead");
 関数:${"ja":"ArduinoHCSR04距離入力", "natja":"ArduinoHCSR04距離入力", "en":"ArduinoHCSR04DistanceInput", "naten":"ArduinoHCSR04DistanceInput"}$(整数:ピン番号) => (整数32:データ) = js読み込み("arduino", "distanceRead");
-関数:getTeapot() => (*無:s) = js読み込み("js", "getTeapot");
-関数:getMountains() => (*無:s) = js読み込み("js", "getMountains");
-関数:getTeddybear() => (*無:s) = js読み込み("js", "getTeddybear");
-関数:getCow() => (*無:s) = js読み込み("js", "getCow");
-関数:getFox() => (*無:s) = js読み込み("js", "getFox");
-関数:getRobot() => (*無:s) = js読み込み("js", "getRobot");
-関数:jsArcSin(実数:x) => (実数:r) = js読み込み("js", "asin");
-関数:jsArcCos(実数:x) => (実数:r) = js読み込み("js", "acos");
-関数:jsArcTan(実数:x) => (実数:r) = js読み込み("js", "atan");
-関数:jsLog(実数:x) => (実数:r) = js読み込み("js", "log");
-関数:jsEPow(実数:x) => (実数:r) = js読み込み("js", "ePow");
-関数:jsPow(実数:x, 実数:y) => (実数:r) = js読み込み("js", "exp");
-関数:updateLinetraceTime(実数: x) => () = js読み込み("js", "updateLinetraceTime");
-
+関数:getTeapot() => (*無:s) = js読み込み("graphics", "getTeapot");
+関数:getMountains() => (*無:s) = js読み込み("graphics", "getMountains");
+関数:getTeddybear() => (*無:s) = js読み込み("graphics", "getTeddybear");
+関数:getCow() => (*無:s) = js読み込み("graphics", "getCow");
+関数:getFox() => (*無:s) = js読み込み("graphics", "getFox");
+関数:getRobot() => (*無:s) = js読み込み("graphics", "getRobot");
+関数:getCheckpoint() => (*無:s) = js読み込み("graphics", "getCheckpoint");
+関数:jsArcSin(実数:x) => (実数:r) = js読み込み("std", "asin");
+関数:jsArcCos(実数:x) => (実数:r) = js読み込み("std", "acos");
+関数:jsArcTan(実数:x) => (実数:r) = js読み込み("std", "atan");
+関数:jsLog(実数:x) => (実数:r) = js読み込み("std", "log");
+関数:jsEPow(実数:x) => (実数:r) = js読み込み("std", "ePow");
+関数:jsPow(実数:x, 実数:y) => (実数:r) = js読み込み("std", "exp");
+関数:_updateLinetraceTime(実数: x, *文字:x, 整数: 長さ) => () = js読み込み("linetrace", "updateLinetraceTime");
 
 関数: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(実数: input) => (実数: 結果){
 	実数: PI = 3.14159265358979312;
@@ -709,6 +709,10 @@
 関数: ${"ja":"glGetUniformLocation", "natja":"glGetUniformLocation", "en":"glGetUniformLocation", "naten":"glGetUniformLocation"}$(整数32: i, 文字列: a) => (整数32: loc){
 	loc = _glGetUniformLocation(i, a.content, a.長さ);
 }
+関数:updateLinetraceTime(実数: x, 文字列:y) => (){
+	_updateLinetraceTime(x, y.content, y.長さ);
+}
+
 関数: ${"ja":"サンプルモデルロード", "natja":"サンプルモデルロード", "en":"loadSampleModel", "naten":"loadSampleModel"}$(文字列: a) => (文字列:b){
 	*文字列:data = "";
 	もし(a == "teapot")ならば{
@@ -728,6 +732,9 @@
 	}
 	もし(a == "robot")ならば{
 		data = getRobot();
+	}
+	もし(a == "checkpoint")ならば{
+		data = getCheckpoint();
 	}
 	b = *data;
 }
@@ -1083,6 +1090,9 @@
 		temp.単位化();
 		temp.回転(axis, t);
 		rotateMat = 行列4x4の積(temp, rotateMat);
+	}
+	関数: ${"ja":"色設定", "natja":"色設定", "en":"setColor", "naten":"setColor"}$(ベクトル3D: c) => (){
+		色 = c;
 	}
 	関数: ${"ja":"描画", "natja":"描画", "en":"draw", "naten":"draw"}$(行列4x4: projMat, 行列4x4: viewMat, ベクトル3D: camera, 配列<*光源クラス>:lights, 光源クラス: dirLight) => (){
 		実数: PI = 3.14159265358979312;
@@ -1900,11 +1910,32 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 関数:${"ja":"ArduinoHCSR04設定", "natja":"ArduinoHCSR04設定", "en":"ArduinoHCSR04Trigger", "naten":"ArduinoHCSR04Trigger"}$(整数:ピン番号) => (){
     Arduinoコマンド送信('T', ピン番号);
 }
+クラス:${"ja":"ベクトル4D", "natja":"ベクトル4D", "en":"Vector4D", "naten":"Vector4D"}${
+	公開:
+		実数:データ[4];
+		関数:ベクトル4D(実数:ax, 実数:ay, 実数:bx, 実数:byp) => (){
+			データ[0] = ax;
+			データ[1] = ay;
+			データ[2] = bx;
+			データ[3] = byp;
+		}
+		関数: 演算子 != (ベクトル4D: a) => (真偽:b){
+			b = (データ[0] != a.データ[0] || データ[1] != a.データ[1] || データ[2] != a.データ[2] || データ[3] != a.データ[3]);
+		}
+		関数: 演算子 == (ベクトル4D: a) => (真偽:b){
+			b = (データ[0] == a.データ[0] && データ[1] == a.データ[1] && データ[2] == a.データ[2] && データ[3] == a.データ[3]);
+		}
+		関数: 交わるか(ベクトル4D: a) => (真偽:b){
+			b = 線分当たり判定(データ[0], データ[1], データ[2], データ[3], a.データ[0], a.データ[1], a.データ[2], a.データ[3]);
+		}
+}
 クラス:${"ja":"ライントレースシミュレーション", "natja":"ライントレースシミュレーション", "en":"linetraceSimulation", "naten":"linetraceSimulation"}${
 	公開:
 	シーン:ワールド;
 	配列<ベクトル2D>:直線データ;
 	実数:${"ja":"センサー値", "natja":"センサー値", "en":"sensorValue", "naten":"sensorValue"}$[2];
+	実数:${"ja":"左センサー値", "natja":"左センサー値", "en":"leftSensorValue", "naten":"leftSensorValue"}$;
+	実数:${"ja":"右センサー値", "natja":"右センサー値", "en":"rightSensorValue", "naten":"rightSensorValue"}$;
 	整数:${"ja":"左モーターON", "natja":"左モーターON", "en":"leftMotorON", "naten":"leftMotorON"}$;
 	整数:${"ja":"右モーターON", "natja":"右モーターON", "en":"rightMotorON", "naten":"rightMotorON"}$;
 	整数:${"ja":"左モーター向き", "natja":"左モーター向き", "en":"leftMotorSequence", "naten":"leftMotorSequence"}$;
@@ -1915,6 +1946,8 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	実数:エンドタイム;
 	関数:ライントレースシミュレーション(配列<実数>:points, ベクトル2D:firstPos, 実数:ax, 実数:ay, 実数:bx, 実数:byp) => (){
 		直線データ.配列();
+		通過点.配列();
+		通過点ID.配列();
 		ワールド.シーン();
 		ロボット移動方向.ベクトル2D(0.0, 1.0);
 		スタートマーク[0] = ax;
@@ -1927,6 +1960,7 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 		右モーター向き = 1;
 		左モーターON = 0;
 		右モーターON = 0;
+		通過済み = -1;
 		スタートタイム = 時間計測();
 		ロボット速度 = 1.0;
 		ロボット座標 = firstPos;
@@ -1940,10 +1974,144 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 		ベクトル3D:回転軸(0.0, 1.0, 0.0);
 		points.追加(points.取得(0));
 		points.追加(points.取得(1));
-    	ワールド.平行光源設定(初期位置3, 白, 0.05, 0.05, 0.0);
+    ワールド.平行光源設定(初期位置3, 白, 0.05, 0.05, 0.0);
 		ワールド.目.感度設定(5.0);
 		ワールド.目.座標設定(初期位置4);
 		ワールド.目.視点角度設定(90.0, -90.0);
+    	ロボットID = ワールド.モデル追加(サンプルモデルロード("robot"), 灰色, 初期位置1);
+		ワールド.スプライト配列.取得(ロボットID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(180));
+    	ライトID = ワールド.ライト追加(1.0, 白, 初期位置2, 1000.0);
+		センサー1ID = ワールド.キューブ追加(0.2, ベクトル3D(0.0, 0.0, 0.0), ベクトル3D(0.0, 0.0, 0.0));
+		センサー2ID = ワールド.キューブ追加(0.2, ベクトル3D(0.0, 0.0, 0.0), ベクトル3D(0.0, 0.0, 0.0));
+    	ワールド.直方体追加(100.0, 1.0, 100.0, 白, 初期位置3);
+		(整数:カウンタ = 0;)から(カウンタ == (points.長さ() - 2))まで(カウンタ += 2;){
+			ベクトル2D:A(points.取得(カウンタ), points.取得(カウンタ + 1));
+			ベクトル2D:B(points.取得(カウンタ + 2), points.取得(カウンタ + 3));
+			もし(A != B)ならば{
+				ベクトル2D:差 = B - A;
+				ベクトル2D:和 = A + B;
+				実数:傾き = (A.y - B.y)/(A.x - B.x);
+				直線データ.追加(A);
+				実数:長さ = 差.長さ();
+				ベクトル2D:temp座標 = 和 * 0.5;
+				ベクトル3D:temp3D座標(temp座標.x, 0.0, temp座標.y);
+				整数:tempID = ワールド.直方体追加(長さ, 0.25, 0.25, 黒, temp3D座標);
+				ワールド.スプライト配列.取得(tempID) -> 回転設定(回転軸, -jsArcTan(傾き));
+			}
+		}
+		直線データ.追加(ベクトル2D(points.取得(0), points.取得(1)));
+	}
+	関数:ライントレースシミュレーション(文字列:x) => (){
+		レベル.文字列();
+		レベル = x;
+		通過点.配列();
+		通過点ID.配列();
+		配列<実数>: points();
+		ワールド.シーン();
+		ベクトル2D:firstPos(0.0, 0.0);
+		もし(x == "Easy")ならば{
+			ワールド.目.座標設定(ベクトル3D(2.0, 10.0, 3.0));
+			ワールド.目.視点角度設定(45.0, -45.0);
+			整数: 数 = 12;
+			(12)回繰り返す{
+				points.追加(10.0 * cos(ラジアンへ((360.0 / 数) * カウンタ)) + 10.0);
+				points.追加(10.0 * sin(ラジアンへ((360.0 / 数) * カウンタ)) + 10.0);
+			}
+			firstPos.x = 0.0;
+			firstPos.y = 10.0;
+			ベクトル4D: チェックポイント(19.0, 10.5, 21.0, 9.5);
+			通過点.追加(チェックポイント);
+			ベクトル4D: ゴール(-1.0, 9.5, 1.0, 8.5);
+			通過点.追加(ゴール);
+		}
+		もし(x == "Medium")ならば{
+			ワールド.目.座標設定(ベクトル3D(-10.0, 10.0, -15.0));
+			ワールド.目.視点角度設定(45.0, -45.0);
+			整数: 数 = 12;
+			(6)回繰り返す{
+					points.追加(10.0 * cos(ラジアンへ((360.0 / 数) * (カウンタ + 1))));
+					points.追加(10.0 * sin(ラジアンへ((360.0 / 数) * (カウンタ + 1))) + 10.0);
+			}
+			(6)回繰り返す{
+					points.追加(10.0 * cos(ラジアンへ((360.0 / 数) * (カウンタ + 7))));
+					points.追加(10.0 * sin(ラジアンへ((360.0 / 数) * (カウンタ + 7))) - 10.0);
+			}
+			firstPos.x = 9.0;
+			firstPos.y = 1.0;
+			ベクトル4D: チェックポイント(-8.0, -1.0, -10.0, 0.0);
+			通過点.追加(チェックポイント);
+			ベクトル4D: ゴール(8.0, 0.0, 10.0, -1.0);
+			通過点.追加(ゴール);
+		}
+		もし(x == "Hard")ならば{
+			ワールド.目.座標設定(ベクトル3D(-10.0, 10.0, -15.0));
+			ワールド.目.視点角度設定(45.0, -45.0);
+			ロボット角度 = 45.0;
+			整数: 数 = 12;
+			points.追加(10.0);
+			points.追加(10.0);
+			points.追加(10.0);
+			points.追加(16.0);
+			(6)回繰り返す{
+					points.追加(10.0 * cos(ラジアンへ((360.0 / 数) * (カウンタ + 1))));
+					points.追加(10.0 * sin(ラジアンへ((360.0 / 数) * (カウンタ + 1))) + 16.0);
+			}
+			points.追加(10.0 * cos(ラジアンへ((360.0 / 数) * 6)));
+			points.追加(10.0 * sin(ラジアンへ((360.0 / 数) * 6)) + 10.0);
+			points.追加(10.0);
+			points.追加(-8.0);
+			(7)回繰り返す{
+					points.追加(10.0 * cos(ラジアンへ((360.0 / 数) * (-カウンタ))));
+					points.追加(10.0 * sin(ラジアンへ((360.0 / 数) * (-カウンタ))) - 10.0);
+			}
+			points.追加(-10.0);
+			points.追加(-8.0);
+			firstPos.x = 3.0;
+			firstPos.y = -2.0;
+			ベクトル4D: チェックポイント1(-1.0, 24.0, 1.0, 28.0);
+			通過点.追加(チェックポイント1);
+			ベクトル4D: チェックポイント2(2.0, -16.0, -2.0, -24.0);
+			通過点.追加(チェックポイント2);
+			ベクトル4D: ゴール(4.0, 0.0, 4.0, -4.0);
+			通過点.追加(ゴール);
+		}
+		直線データ.配列();
+		ロボット移動方向.ベクトル2D(0.0, 1.0);
+		左モーター速度 = 3;
+		右モーター速度 = 3;
+		左モーター向き = 1;
+		右モーター向き = 1;
+		左モーターON = 0;
+		右モーターON = 0;
+		通過済み = -1;
+		スタートタイム = 時間計測();
+		ロボット速度 = 1.0;
+		ロボット座標 = firstPos;
+		ベクトル3D:灰色(0.8, 0.8, 0.8);
+		ベクトル3D:白(1.0, 1.0, 1.0);
+		ベクトル3D:黒(0.0, 0.0, 0.0);
+		ベクトル3D:初期位置1(firstPos.x, 0.0, firstPos.y);
+		ベクトル3D:初期位置2(5.0, 5.0, 5.0);
+		ベクトル3D:初期位置3(0.0, -0.5, 0.0);
+		ベクトル3D:初期位置4(firstPos.x, 10.0, firstPos.y);
+		ベクトル3D:回転軸(0.0, 1.0, 0.0);
+		points.追加(points.取得(0));
+		points.追加(points.取得(1));
+    ワールド.平行光源設定(初期位置3, 白, 0.05, 0.05, 0.0);
+		ワールド.目.感度設定(5.0);
+		(通過点.長さ())回繰り返す{
+			ベクトル3D:色 = 灰色;
+			ベクトル4D: チェックポイント = 通過点.取得(カウンタ);
+			ベクトル3D:位置((チェックポイント.データ[0] + チェックポイント.データ[2])/2.0, 0.0, (チェックポイント.データ[1] + チェックポイント.データ[3])/2.0);
+			もし(カウンタ == (通過済み + 1))ならば{
+				色 = ベクトル3D(0.7, 0.3, 0.0);
+			}
+    	整数: id = ワールド.モデル追加(サンプルモデルロード("checkpoint"), 色, 位置);
+			通過点ID.追加(id);
+			実数: PI = 3.141592653589793;
+			実数: 角度 = jsArcTan((チェックポイント.データ[3] - チェックポイント.データ[1])/(チェックポイント.データ[2] - チェックポイント.データ[0])) + PI/6.0;
+			ワールド.スプライト配列.取得(id) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), 角度);
+		}
     	ロボットID = ワールド.モデル追加(サンプルモデルロード("robot"), 灰色, 初期位置1);
 		ワールド.スプライト配列.取得(ロボットID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(180));
     	ライトID = ワールド.ライト追加(1.0, 白, 初期位置2, 1000.0);
@@ -2001,11 +2169,6 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	}
 	関数:アップデート() => (){
 		ベクトル2D:センサー座標[2] = ロボット座標;
-		もし((!おわり) && 線分当たり判定(センサー座標[0].x, センサー座標[0].y, センサー座標[1].x, センサー座標[1].y, スタートマーク[0], スタートマーク[1], スタートマーク[2], スタートマーク[3]))ならば{
-			おわり = 真;
-			エンドタイム = 時間計測();
-			updateLinetraceTime((エンドタイム - スタートタイム)/1000);
-		}
 		もし(!おわり)ならば{
 			移動();
 			センサー座標[0].x = 1.75 * cos(ラジアンへ(ロボット角度 + 79.0)) + ロボット座標.x;
@@ -2016,6 +2179,27 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 			ワールド.スプライト配列.取得(センサー2ID) -> 座標設定(ベクトル3D(センサー座標[1].x, 0.4, センサー座標[1].y));
 			ワールド.スプライト配列.取得(センサー1ID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(-ロボット角度 + 180));
 			ワールド.スプライト配列.取得(センサー2ID) -> 回転設定(ベクトル3D(0.0, 1.0, 0.0), ラジアンへ(-ロボット角度 + 180));
+
+			ベクトル3D:緑(0.0, 1.0, 0.0);
+
+			もし(通過点.長さ() >= 1 && 通過点ID.長さ() >= 1)ならば{
+				ベクトル4D: チェックポイント = 通過点.取得(通過済み + 1);
+				ベクトル4D: ロボット線分(2.0 * cos(ラジアンへ(ロボット角度)) + ロボット座標.x, 2.0 * sin(ラジアンへ(ロボット角度)) + ロボット座標.y, 2.0 * cos(ラジアンへ(ロボット角度 + 180)) + ロボット座標.x, 2.0 * sin(ラジアンへ(ロボット角度 + 180)) + ロボット座標.y);
+
+				もし(チェックポイント.交わるか(ロボット線分))ならば{
+					もし((通過済み + 2) == 通過点.長さ())ならば{
+						ワールド.スプライト配列.取得(通過点ID.取得(通過済み + 1)) -> 色設定(緑);
+						おわり = 真;
+						エンドタイム = 時間計測();
+						updateLinetraceTime((エンドタイム - スタートタイム)/1000, レベル);
+					}でなければ{
+						通過済み += 1;
+						ワールド.スプライト配列.取得(通過点ID.取得(通過済み)) -> 色設定(緑);
+						ワールド.スプライト配列.取得(通過点ID.取得(通過済み + 1)) -> 色設定(ベクトル3D(0.7, 0.3, 0.0));
+					}
+				}
+			}
+
 			実数:センサー距離[2] = [10000.0, 10000.0];
 			整数:センサー数 = 2;
 			(センサー数)回繰り返す{
@@ -2054,10 +2238,12 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 			もし(センサー値[1] > 255)ならば{
 				センサー値[1] = 255.0;
 			}
+			右センサー値 = センサー値[0];
+			左センサー値 = センサー値[1];
 			ベクトル3D:ロボット座標3D(ロボット座標.x, 0.0, ロボット座標.y);
 			ベクトル3D:ライト座標3D(ロボット座標.x + 5.0, 5.0, ロボット座標.y + 5.0);
-    	    ワールド.スプライト配列.取得(ロボットID) -> 座標設定(ロボット座標3D);
-    	    ワールド.スプライト配列.取得(ライトID) -> 座標設定(ライト座標3D);
+    	ワールド.スプライト配列.取得(ロボットID) -> 座標設定(ロボット座標3D);
+    	ワールド.スプライト配列.取得(ライトID) -> 座標設定(ライト座標3D);
 		}
     ワールド.描画();
 	}
@@ -2074,4 +2260,8 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	ベクトル2D:ロボットoffset;
 	真偽:おわり;
 	実数:スタートマーク[4];
+	配列<ベクトル4D>: 通過点;
+	配列<整数>: 通過点ID;
+	整数:通過済み;
+	文字列: レベル;
 }

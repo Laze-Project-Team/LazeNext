@@ -4,19 +4,23 @@ import { Button, message, notification } from 'antd';
 import type * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useTranslation } from 'next-i18next';
 import type { FC, MouseEventHandler } from 'react';
+import { useContext } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { VscCopy, VscRunAll } from 'react-icons/vsc';
 import { connect, useDispatch } from 'react-redux';
 
+import { compileErrorContext } from '@/components/functional/CompileErrorProvider';
 import { formatChar } from '@/components/model/Learn/formatChar';
-import { useCompiler } from '@/features/compiler';
+import { compileLaze } from '@/features/compiler/initialize';
+import type { ExecuteParam } from '@/features/laze/executeLaze';
 import { Config } from '@/features/monaco/config';
 import { Language } from '@/features/monaco/register';
 import { semanticTokenProvider } from '@/features/monaco/semanticTokenProvider/ja';
 import { lazeTheme } from '@/features/monaco/theme';
 import type { consoleState } from '@/features/redux/console';
 import { consoleSlice } from '@/features/redux/console';
+import { explorerSlice } from '@/features/redux/explorer';
 import type { RootState } from '@/features/redux/root';
 
 import { InlineCompletionsProvider, separator } from './InlineCompletionsProvider';
@@ -56,10 +60,11 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
   const [isCompiling, setIsCompiling] = useState(false);
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
 
-  const dispacher = useDispatch();
+  const dispatch = useDispatch();
   const { removePanel } = consoleSlice.actions;
+  const { setCompiled } = explorerSlice.actions;
 
-  useCompiler('ja');
+  const CompileErrorContext = useContext(compileErrorContext);
 
   const onChange: OnChange = () => {
     // onChange
@@ -120,20 +125,48 @@ export const UnconnectedEditor: FC<EditorProps> = ({ placeholder, initialValue, 
             return consoleState[panelId].label === id;
           })
           .forEach((panelId) => {
-            dispacher(removePanel(panelId));
+            dispatch(removePanel(panelId));
           });
-        const result = window.laze.compiler.compile(value, id);
-        if (result) {
-          setIsCompiling(true);
-          result.then(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const error = (err: any) => {
+          console.error(err);
+          notification.open({
+            message: t('errors.LaunchProgramFailed.title'),
+            description: t('errors.LaunchProgramFailed.message'),
+            type: 'error',
+            placement: 'bottomRight',
+            duration: 5,
+          });
+        };
+
+        const compileError = () => {
+          CompileErrorContext?.current?.();
+        };
+        const param: ExecuteParam = {
+          id,
+          interval: null,
+          dispatcher: dispatch,
+          error,
+          compileError,
+          getWasmApi: '',
+          wasmUrl: '',
+          programUrl: '',
+          lang: 'ja',
+          t,
+        };
+        const result = compileLaze(value, id, 'ja', param);
+        setIsCompiling(true);
+        result.then((success) => {
+          if (success) {
             setIsCompiling(false);
-          });
-        } else {
-          notification.error({
-            message: t('compile_error'),
-            description: t('compile_error_description'),
-          });
-        }
+            dispatch(setCompiled(true));
+          } else {
+            notification.error({
+              message: t('compile_error'),
+              description: t('compile_error_description'),
+            });
+          }
+        });
       }
     }
   };

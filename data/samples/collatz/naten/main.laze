@@ -1,16 +1,16 @@
-Declare function collatz that takes input as int and returns output as int with code starting here
-	If ( input  % 2 )  is 0 then execute code starting here
+Declare  function collatz that  takes input as int and  returns output as int with  code starting here
+	If ( input  % 2 )  == 0 then  execute  code starting here
 		Assign input  / 2 to output . 
-	ending here Otherwise execute code starting here
+	ending here Otherwise  execute  code starting here
 		Assign input  * 3  + 1 to output . 
 	ending here 
-	Call print with value output . 
-	If output  > 1 then execute code starting here
-		Initialize variable returnValue as int with collatz ( output ) . 
+	Call print with  value output . 
+	If output  > 1 then  execute  code starting here
+		Initialize  variable returnValue as int with collatz ( output ) . 
 	ending here 
 ending here 
-Declare function main with code starting here
-	Initialize variable initialNumber as int with 20 . 
-	Call print with value initialNumber . 
-	Initialize variable returnValue as int with collatz ( initialNumber ) . 
+Declare  function main with  code starting here
+	Initialize  variable initialNumber as int with 20 . 
+	Call print with  value initialNumber . 
+	Initialize  variable returnValue as int with collatz ( initialNumber ) . 
 ending here 

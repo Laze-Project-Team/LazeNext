@@ -1,19 +1,20 @@
 import { Layout } from 'antd';
 import type { ReactNode, VFC } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { competeSlice } from '@/features/redux/compete';
 import type { RootState } from '@/features/redux/root';
 import type { Competitor } from '@/typings/compete';
 
+import { SiderUI } from '../ui/SiderUI';
 import { IndexFooter, IndexHeader } from './IndexLayout';
 
 type LeaderboardLayoutProps = {
-  sider: ReactNode;
   children: ReactNode;
 };
 
-const LeaderboardLayout: VFC<LeaderboardLayoutProps> = ({ sider, children }) => {
+const LeaderboardLayout: VFC<LeaderboardLayoutProps> = ({ children }) => {
   const collapsed = useSelector<RootState, boolean>((state) => {
     return state.compete.collapsed;
   });
@@ -22,6 +23,10 @@ const LeaderboardLayout: VFC<LeaderboardLayoutProps> = ({ sider, children }) => 
   });
   const dispatch = useDispatch();
   const { collapse } = competeSlice.actions;
+
+  useEffect(() => {
+    dispatch(collapse());
+  }, [dispatch, collapse]);
 
   return (
     <>
@@ -55,13 +60,8 @@ const LeaderboardLayout: VFC<LeaderboardLayoutProps> = ({ sider, children }) => 
           trigger={null}
           collapsed={collapsed}
           className="drop-shadow-lg"
-          onCollapse={() => {
-            if (window.laze?.props?.variables?.interval) {
-              clearInterval(window.laze.props.variables.interval);
-            }
-          }}
         >
-          {competitor && competitor.ranking !== 0 ? sider : <></>}
+          {!collapsed ? <SiderUI key={competitor.id} /> : <></>}
         </Layout.Sider>
       </Layout>
     </>

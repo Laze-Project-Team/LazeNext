@@ -1,18 +1,19 @@
 import fs from 'fs';
 import type { NextApiHandler } from 'next';
 
-type GetwasmRequest = {
-  url: string;
-};
-
 const handler: NextApiHandler = async (req, res) => {
-  const request = JSON.parse(req.body ?? JSON.stringify({ url: '' })) as GetwasmRequest;
-  const path = request.url;
+  const path: string = decodeURI(req.query.url as string);
   if (fs.existsSync(path)) {
-    const buffer = await fs.promises.readFile(path);
-    res.send(buffer);
+    try {
+      const buffer = await fs.promises.readFile(path);
+      res.send(buffer);
+    } catch (e) {
+      console.error(e);
+      res.status(404).send('');
+    }
   } else {
-    res.status(404);
+    console.error(`${req.url}: ${path} does not exist.`);
+    res.status(404).send('');
   }
 };
 

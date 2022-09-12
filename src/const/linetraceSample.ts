@@ -1,47 +1,35 @@
-export const linetraceTemplate: Record<string, string> = {
-  Easy: `関数: 実行() => (){
-	マウスキャプチャ();
-	配列<実数>: コース;
-	整数: 数 = 12;
-	(12)回繰り返す{
-		コース.追加(10.0 * cos(ラジアンへ((360.0 / 数) * カウンタ)) + 10.0);
-		コース.追加(10.0 * sin(ラジアンへ((360.0 / 数) * カウンタ)) + 10.0);
-	}
-	ライントレースシミュレーション: ロボット(コース, ベクトル2D(0.0, 10.0), -1.0, 10.0, 1.0, 10.0);
-	ロボット.左モーターON = 1;
-	ロボット.右モーターON = 1;
-	ロボット.左モーター向き = 1; 
-	ロボット.左モーター速度 = 3.0;
-	ロボット.右モーター速度 = 3.0;
-	無限ループ{
-		// ここにライントレースのコードを書こう
-    
-		ロボット.アップデート();
-	}
-}
-`,
-  Medium: `関数: 実行() => (){
-	マウスキャプチャ();
-	配列<実数>: コース;
-	整数: 数 = 12;
-	(6)回繰り返す{
-			コース.追加(10.0 * cos(ラジアンへ((360.0 / 数) * (カウンタ + 1))));
-			コース.追加(10.0 * sin(ラジアンへ((360.0 / 数) * (カウンタ + 1))) + 10.0);
-	}
-	(6)回繰り返す{
-			コース.追加(10.0 * cos(ラジアンへ((360.0 / 数) * (カウンタ + 7))));
-			コース.追加(10.0 * sin(ラジアンへ((360.0 / 数) * (カウンタ + 7))) - 10.0);
-	}
-	ライントレースシミュレーション: ロボット(コース, ベクトル2D(9.0, 1.0), 8.0, -1.0, 10.0, 0.0);
-	ロボット.左モーターON = 1;
-	ロボット.右モーターON = 1;
-	ロボット.左モーター向き = 1; 
-	ロボット.左モーター速度 = 9.0;
-	ロボット.右モーター速度 = 9.0;
-	無限ループ{
-			// ここにライントレースのコードを書こう
+import enEasy from '~/competitions/linetrace/templates/en/Easy.laze';
+import enHard from '~/competitions/linetrace/templates/en/Hard.laze';
+import enMedium from '~/competitions/linetrace/templates/en/Medium.laze';
+import jaEasy from '~/competitions/linetrace/templates/ja/Easy.laze';
+import jaHard from '~/competitions/linetrace/templates/ja/Hard.laze';
+import jaMedium from '~/competitions/linetrace/templates/ja/Medium.laze';
+import natenEasy from '~/competitions/linetrace/templates/naten/Easy.laze';
+import natenHard from '~/competitions/linetrace/templates/naten/Hard.laze';
+import natenMedium from '~/competitions/linetrace/templates/naten/Medium.laze';
+import natjaEasy from '~/competitions/linetrace/templates/natja/Easy.laze';
+import natjaHard from '~/competitions/linetrace/templates/natja/Hard.laze';
+import natjaMedium from '~/competitions/linetrace/templates/natja/Medium.laze';
 
-			ロボット.アップデート();
-	}
-}`,
+export const linetraceTemplate: Record<string, Record<string, string>> = {
+  ja: {
+    Easy: jaEasy,
+    Medium: jaMedium,
+    Hard: jaHard,
+  },
+  natja: {
+    Easy: natjaEasy,
+    Medium: natjaMedium,
+    Hard: natjaHard,
+  },
+  en: {
+    Easy: enEasy,
+    Medium: enMedium,
+    Hard: enHard,
+  },
+  naten: {
+    Easy: natenEasy,
+    Medium: natenMedium,
+    Hard: natenHard,
+  },
 };

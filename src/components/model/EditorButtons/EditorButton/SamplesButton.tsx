@@ -1,6 +1,7 @@
 import { Modal, notification } from 'antd';
 import { useRouter } from 'next/router';
 import type { FC } from 'react';
+import { useContext } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -16,6 +17,8 @@ import { Spin } from '@/components/ui/Spin';
 import { sampleLoad } from '@/features/gtm';
 import { explorerSlice } from '@/features/redux/explorer';
 import { store } from '@/features/redux/root';
+import { competeProgramLangContext } from '@/pages/compete/editor';
+import { programLangContext } from '@/pages/editor';
 import type { direntType } from '@/typings/directory';
 import type { sampleListType } from '@/typings/samplelist';
 
@@ -31,6 +34,10 @@ export const SamplesButton: FC = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatcher = useDispatch();
   const { setDirectory } = explorerSlice.actions;
+
+  const competeLang = useContext(competeProgramLangContext);
+  const editorLang = useContext(programLangContext);
+  const lang = editorLang || competeLang;
 
   const onClick = () => {
     setSelectOpen(true);
@@ -58,7 +65,7 @@ export const SamplesButton: FC = () => {
       sampleLoad(select.current);
       setSelectOpen(false);
       setLoading(true);
-      fetch(`/api/editor/sample/${select.current}?lang=${window.laze.props.variables.lang ?? locale}`)
+      fetch(`/api/editor/sample/${select.current}?lang=${lang?.current ?? locale}`)
         .then((res) => {
           return res.json();
         })
@@ -93,7 +100,7 @@ export const SamplesButton: FC = () => {
           });
         });
     }
-  }, [dispatcher, locale, sampleList, setDirectory, t]);
+  }, [dispatcher, lang, locale, sampleList, setDirectory, t]);
 
   useEffect(() => {
     if (store.getState().explorer.projectName === null) {

@@ -2,14 +2,12 @@ import type { BeforeMount, OnMount } from '@monaco-editor/react';
 import MonacoEditor from '@monaco-editor/react';
 import type { VFC } from 'react';
 import { useMemo } from 'react';
-import { useContext } from 'react';
 import { connect } from 'react-redux';
 
 import { Loading } from '@/components/model/MonacoEditor/Loading';
 import { initializeMonaco } from '@/features/monaco';
 import { options } from '@/features/monaco/option';
 import type { RootState } from '@/features/redux/root';
-import { colorModeContext } from '@/pages/_app';
 
 type EditorProps = {
   code: string;
@@ -30,19 +28,13 @@ const SiderEditor: VFC<EditorProps> = ({ code }) => {
     });
   };
 
-  const colorMode = useContext(colorModeContext);
-
   const beforeMount: BeforeMount = (monaco) => {
     initializeMonaco(monaco);
   };
 
   const currentTheme = useMemo(() => {
-    if (colorMode && colorMode[0] === 'dark') {
-      return 'laze-dark';
-    }
-
-    return 'laze';
-  }, [colorMode]);
+    return 'laze-dark';
+  }, []);
 
   return (
     <>

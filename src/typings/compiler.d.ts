@@ -1,3 +1,5 @@
+import type { ExecuteParam } from '@/features/laze/executeLaze';
+
 export type importObject = {
   console: {
     log: (arg: number) => void;
@@ -129,7 +131,6 @@ export type compilerVariable = {
   id: string;
   lang: string;
   keyControl: keyControlType;
-  compiled: boolean;
   interval: NodeJS.Timer | null;
   lazeCallNoParam: CallableFunction | null;
   linetraceTime: number | null;
@@ -140,6 +141,14 @@ export type compilerVariable = {
 export type getImportsProps = {
   canvas: HTMLCanvasElement;
   gl: WebGLRenderingContext;
+  webglObjects: webglObjects;
+  arduinoObjects: arduinoObjects;
+  variables: compilerVariable;
+};
+
+export type WasmImportProps = {
+  canvas: HTMLCanvasElement | null;
+  gl: WebGLRenderingContext | null;
   webglObjects: webglObjects;
   arduinoObjects: arduinoObjects;
   variables: compilerVariable;
@@ -201,7 +210,14 @@ export type failedCompilerResult = {
 export type compilerResult = successedCompilerResult | failedCompilerResult;
 
 export type compilerType = {
-  compile: (code: string, label: string) => void | Promise<void>;
-  convert: (path: string, code: string, lang: string, newLang: string, label: string) => Promise<boolean>;
-  run: () => void | Promise<void>;
+  compile: (code: string, label: string, lang: string, param: ExecuteParam | undefined) => Promise<boolean>;
+  convert: (
+    path: string,
+    code: string,
+    lang: string,
+    newLang: string,
+    label: string,
+    param: ExecuteParam | undefined
+  ) => Promise<boolean>;
+  run: (param: ExecuteParam | undefined) => void | Promise<void>;
 };

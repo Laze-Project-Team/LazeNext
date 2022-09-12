@@ -1,4 +1,4 @@
-import { loadShader } from '@/features/compiler/initialize/loadShader';
+import { loadShader } from './loadShader';
 
 export const initShaderProgram = (gl: WebGLRenderingContext, vsSource: string, fsSource: string): WebGLProgram => {
   const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);

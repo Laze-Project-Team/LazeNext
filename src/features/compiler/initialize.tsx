@@ -1,25 +1,14 @@
 import { notification } from 'antd';
-import type { TFunction } from 'i18next';
 import moment from 'moment';
-import type { Dispatch } from 'redux';
 
 import { langList } from '@/const/lang';
-import { initShaderProgram } from '@/features/compiler/initialize/initShaderProgram';
-import { keyControlInitialize } from '@/features/compiler/keycontrol';
-import { fs as fsSource } from '@/features/compiler/source/fs';
-import { fs2DNoTexture as fs2DNoTextureSource } from '@/features/compiler/source/fs2DNoTexture';
-import { fs2DTexture as fs2DTextureSource } from '@/features/compiler/source/fs2DTexture';
-import { lightFs as lightFsSource } from '@/features/compiler/source/lightFs';
-import { pointFs as pointFsSource } from '@/features/compiler/source/pointFs';
-import { pointVs as pointVsSource } from '@/features/compiler/source/pointVs';
-import { vs as vsSource } from '@/features/compiler/source/vs';
-import { vs2DNoTexture as vs2DNoTextureSource } from '@/features/compiler/source/vs2DNoTexture';
-import { vs2DTexture as vs2DTextureSource } from '@/features/compiler/source/vs2DTexture';
 import { compileFailed, compileSuccessful, runProgram } from '@/features/gtm';
 import { consoleSlice } from '@/features/redux/console';
 import { getHash } from '@/features/utils/hash';
 import type { compileResponse, compilerType, convertRequest, convertResponse } from '@/typings/compiler';
 
+import type { ExecuteParam } from '../laze/executeLaze';
+import { executeLaze } from '../laze/executeLaze';
 import { explorerSlice } from '../redux/explorer';
 
 const getLangFile = (lang: string) => {
@@ -33,216 +22,166 @@ const getLangFile = (lang: string) => {
   return storageObj[lang].content;
 };
 
-export const initialize = (dispatcher: Dispatch, t: TFunction): compilerType => {
-  keyControlInitialize();
-  const { addLog, createPanel, addSeparator, setActive } = consoleSlice.actions;
-  const { saveFile } = explorerSlice.actions;
+export const runLaze: compilerType['run'] = (param: ExecuteParam | undefined) => {
+  const { addSeparator } = consoleSlice.actions;
+  if (!param) {
+    throw new Error('run: param is undefined.');
+  }
 
-  const run: compilerType['run'] = () => {
-    runProgram();
+  runProgram();
 
-    const { canvas, gl, importObject, variables } = window.laze.props;
+  if (param.getWasmApi === '' || param.id === '') {
+    console.error('Cannot run program. Please compile first.');
 
-    if (variables.wasm === '' || variables.id === '') {
-      console.error('Cannot run program. Please compile first.');
+    return;
+  }
 
-      return;
-    }
+  if (param.dispatcher) {
+    param.dispatcher(addSeparator(param.id));
+  } else {
+    throw new Error('dispatcher is not in param.');
+  }
 
-    dispatcher(addSeparator(variables.id));
+  return executeLaze(param.getWasmApi, ['std', 'editorConsole', 'graphics', 'arduino', 'linetrace'], param);
+};
 
-    return fetch(variables.wasm)
-      .then((res) => {
-        window.laze.props.webglObjects = {
-          webglBuffers: [],
-          webglPrograms: [],
-          webglTextures: [],
-          webglUniformLoc: [],
-        };
-        return res.arrayBuffer();
-      })
-      .then((bytes) => {
-        return WebAssembly.instantiate(bytes, importObject(variables.id));
-      })
-      .then((results) => {
-        if (variables.interval) {
-          clearInterval(variables.interval);
-        }
-        const { instance } = results;
-        window.laze.props.webglObjects.webglPrograms.push(
-          initShaderProgram(gl, vsSource, fsSource),
-          initShaderProgram(gl, vsSource, lightFsSource),
-          initShaderProgram(gl, pointVsSource, pointFsSource),
-          initShaderProgram(gl, vs2DTextureSource, fs2DTextureSource),
-          initShaderProgram(gl, vs2DNoTextureSource, fs2DNoTextureSource)
-        );
+export const compileLaze: compilerType['compile'] = async (
+  code: string,
+  label: string,
+  lang: string,
+  param: ExecuteParam | undefined
+): Promise<boolean> => {
+  const { createPanel, addLog } = consoleSlice.actions;
 
-        const memorySizeFunc = instance.exports.memorySize as CallableFunction;
-        const mainFunc = instance.exports.main as CallableFunction;
-        const loopFunc = instance.exports.loop as CallableFunction;
-        const stringLiterals = instance.exports.__stringLiterals as CallableFunction;
-        const clearMemory = instance.exports.clearMemory as CallableFunction;
+  if (!param) {
+    throw new Error('compile: param is undefined.');
+  }
 
-        if (instance.exports.jsCallListenerNoParam) {
-          window.laze.props.variables.lazeCallNoParam = instance.exports
-            .jsCallListenerNoParam as CallableFunction | null;
-        }
+  const langFile = getLangFile(lang);
 
-        clearMemory();
-        stringLiterals();
+  const body = JSON.stringify({
+    code,
+    option: { lang, label: label.replaceAll('$', ''), ...(langFile ? { langFile } : {}) },
+  });
 
-        window.laze.props.variables.memorySize = memorySizeFunc();
-        mainFunc();
+  if (body === undefined) {
+    param.error('');
+    return false;
+  }
 
-        const draw = () => {
-          gl.viewport(0, 0, canvas.width, canvas.height);
-          loopFunc();
-        };
-
-        if (instance.exports.loop) {
-          variables.interval = setInterval(draw, 1000 / 60);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        notification.open({
-          message: t('errors.LaunchProgramFailed.title'),
-          description: t('errors.LaunchProgramFailed.message'),
-          type: 'error',
-          placement: 'bottomRight',
-          duration: 5,
-        });
-      });
-  };
-
-  const compile: compilerType['compile'] = async (code: string, label: string) => {
-    window.laze.props.variables.id = '';
-    window.laze.props.variables.wasm = '';
-
-    const lang = window.laze.props.variables.lang;
-    const langFile = getLangFile(lang);
-
-    const body = JSON.stringify({
-      code,
-      option: { lang, label: label.replaceAll('$', ''), ...(langFile ? { langFile } : {}) },
-    });
-
-    if (body === undefined) {
-      notification.open({
-        message: t('errors.CompileProgramFailed.title'),
-        description: t('errors.CompileProgramFailed.message'),
-        type: 'error',
-        placement: 'bottomRight',
-        duration: 5,
-      });
-    }
-
-    try {
-      const res = await fetch(`/api/editor/compile`, {
-        method: 'POST',
-        body,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const resJson = (await res.json()) as compileResponse;
-      const id = moment().unix().toString(36) + getHash(4);
-
-      window.laze.props.variables.id = id;
-      window.laze.props.variables.wasm = resJson.success ? resJson.wasm : '';
-      window.laze.props.variables.compiled = resJson.success;
-      window.laze.props.variables.programUrl = resJson.success ? resJson.programUrl : '';
-      window.laze.props.variables.wasmUrl = resJson.success ? resJson.wasmUrl : '';
-
-      dispatcher(createPanel({ id, label, active: true }));
-
-      dispatcher(
-        addLog({
-          console: id,
-          content: resJson.message,
-          level: resJson.success ? 'log' : 'error',
-        })
-      );
-
-      if (resJson.success) {
-        compileSuccessful();
-        run();
-      } else {
-        compileFailed();
-      }
-    } catch {
-      notification.open({
-        message: t('errors.CompileProgramFailed.title'),
-        description: t('errors.CompileProgramFailed.message'),
-        type: 'error',
-        placement: 'bottomRight',
-        duration: 5,
-      });
-    }
-  };
-
-  const convert: compilerType['convert'] = async (
-    path: string,
-    code: string,
-    lang: string,
-    newLang: string,
-    label: string
-  ) => {
-    const fromLangFile = getLangFile(lang);
-    const toLangFile = getLangFile(newLang);
-    const bodyJson: convertRequest = {
-      code,
-      option: {
-        label,
-        from: lang,
-        to: newLang,
-        ...(fromLangFile ? { fromLangFile } : {}),
-        ...(toLangFile ? { toLangFile } : {}),
-      },
-    };
-    const body = JSON.stringify(bodyJson);
-
-    const res = await fetch(`/api/editor/convert`, {
+  try {
+    const res = await fetch(`/api/editor/compile`, {
       method: 'POST',
       body,
       headers: {
         'Content-Type': 'application/json',
       },
     });
+    const resJson = (await res.json()) as compileResponse;
+    const id = moment().unix().toString(36) + getHash(4);
 
-    const resJson = (await res.json()) as convertResponse;
+    param.id = id;
+    param.getWasmApi = resJson.success ? resJson.wasm : '';
+    param.programUrl = resJson.success ? resJson.programUrl : '';
+    param.wasmUrl = resJson.success ? resJson.wasmUrl : '';
+
+    if (param.dispatcher) {
+      param.dispatcher(createPanel({ id, label, active: true }));
+
+      param.dispatcher(
+        addLog({
+          console: id,
+          content: resJson.message,
+          level: resJson.success ? 'log' : 'error',
+        })
+      );
+    }
 
     if (resJson.success) {
-      notification.open({
-        message: t('convert.success.title'),
-        description: t('convert.success.message', { from: langList[lang], to: langList[newLang] }),
-        type: 'success',
-        placement: 'bottomRight',
-        duration: 5,
-      });
-      dispatcher(saveFile({ path, content: resJson.code }));
+      compileSuccessful();
+      runLaze(param);
     } else {
-      dispatcher(
+      compileFailed();
+      param.compileError();
+    }
+    return resJson.success;
+  } catch (err) {
+    param.error(err);
+    return false;
+  }
+};
+
+export const convertLaze: compilerType['convert'] = async (
+  path: string,
+  code: string,
+  lang: string,
+  newLang: string,
+  label: string,
+  param: ExecuteParam | undefined
+) => {
+  const { addLog, addSeparator, setActive } = consoleSlice.actions;
+  const { saveFile } = explorerSlice.actions;
+
+  const fromLangFile = getLangFile(lang);
+  const toLangFile = getLangFile(newLang);
+  const bodyJson: convertRequest = {
+    code,
+    option: {
+      label,
+      from: lang,
+      to: newLang,
+      ...(fromLangFile ? { fromLangFile } : {}),
+      ...(toLangFile ? { toLangFile } : {}),
+    },
+  };
+  const body = JSON.stringify(bodyJson);
+
+  const res = await fetch(`/api/editor/convert`, {
+    method: 'POST',
+    body,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const resJson = (await res.json()) as convertResponse;
+
+  if (resJson.success) {
+    notification.open({
+      message: param?.t ? param.t('convert.success.title') : 'Convert success.',
+      description: param?.t
+        ? param.t('convert.success.message', { from: langList[lang], to: langList[newLang] })
+        : `Convert succeeded from ${langList[lang]} to ${langList[newLang]}.`,
+      type: 'success',
+      placement: 'bottomRight',
+      duration: 5,
+    });
+    if (param?.dispatcher) {
+      param.dispatcher(saveFile({ path, content: resJson.code }));
+    }
+  } else {
+    if (param?.dispatcher) {
+      param.dispatcher(
         addLog({
           console: 'master',
           content: resJson.message,
           level: 'error',
         })
       );
-      dispatcher(addSeparator('master'));
-      dispatcher(setActive('master'));
-
-      notification.open({
-        message: t('convert.error.title'),
-        description: t('convert.error.message', { from: langList[lang], to: langList[newLang] }),
-        type: 'error',
-        placement: 'bottomRight',
-        duration: 5,
-      });
+      param.dispatcher(addSeparator('master'));
+      param.dispatcher(setActive('master'));
     }
 
-    return resJson.success;
-  };
+    notification.open({
+      message: param?.t ? param.t('convert.error.title') : 'Convert error.',
+      description: param?.t
+        ? param.t('convert.error.message', { from: langList[lang], to: langList[newLang] })
+        : `Failed to convert from ${langList[lang]} to ${langList[newLang]}.`,
+      type: 'error',
+      placement: 'bottomRight',
+      duration: 5,
+    });
+  }
 
-  return { compile, run, convert };
+  return resJson.success;
 };

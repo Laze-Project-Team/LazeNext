@@ -1,20 +1,20 @@
-Declare function f that takes x as double and returns y as double with code starting here
+Declare  function f that  takes x as double and  returns y as double with  code starting here
 	Assign 2  * x  * x  - 5  * x  + 2 to y . 
 ending here 
-Declare function main with code starting here
-	Initialize variable variable1 as double with 10 . 
-	Initialize variable variable2 as double with 3.14000000000000012 . 
-	Call print with value variable1  + variable2 . 
-	Call print with value variable1  * variable2  + 3 . 
-	If variable1  > variable2 then execute code starting here
-		Call print with value 1 . 
-	ending here Otherwise execute code starting here
-		Call print with value 0 . 
+Declare  function main with  code starting here
+	Initialize  variable variable1 as double with 10 . 
+	Initialize  variable variable2 as double with 3.14000000000000012 . 
+	Call print with  value variable1  + variable2 . 
+	Call print with  value variable1  * variable2  + 3 . 
+	If variable1  > variable2 then  execute  code starting here
+		Call print with  value 1 . 
+	ending here Otherwise  execute  code starting here
+		Call print with  value 0 . 
 	ending here 
 	repeat 10 times starting here
-		Call print with value counter . 
+		Call print with  value counter . 
 	ending here 
-	Call print with value f ( 0 ) . 
-	Call print with value f ( 1 ) . 
-	Call print with value f ( 2 ) . 
+	Call print with  value f ( 0 ) . 
+	Call print with  value f ( 1 ) . 
+	Call print with  value f ( 2 ) . 
 ending here 

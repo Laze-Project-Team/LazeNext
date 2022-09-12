@@ -1,0 +1,31 @@
+Declare  function main with  code starting here
+	Call captureMouse . 
+	Initialize  object robot as linetraceSimulation with "Easy". 
+	Assign 1 to leftMotorON of robot . 
+	Assign 1 to rightMotorON of robot . 
+	Assign 1 to leftMotorSequence of robot . 
+	Assign 1 to rightMotorSequence of robot . 
+	Assign 3.0 to leftMotorSpeed of robot . 
+	Assign 3.0 to rightMotorSpeed of robot . 
+	loop starting here
+		// Write your program here
+		If rightSensorValue of robot  > 130  && leftSensorValue of robot  > 130 then  execute  code starting here
+			// right=white left=white
+			Assign 1 to leftMotorON of robot . 
+			Assign 1 to rightMotorON of robot . 
+		ending here Otherwise  execute  code If rightSensorValue of robot  > 130  && leftSensorValue of robot  < 130 then  execute  code starting here
+			// right=white left=black
+			Assign 0 to leftMotorON of robot . 
+			Assign 1 to rightMotorON of robot . 
+		ending here Otherwise  execute  code If rightSensorValue of robot  < 130  && leftSensorValue of robot  > 130 then  execute  code starting here
+			// right=black left=white
+			Assign 1 to leftMotorON of robot . 
+			Assign 0 to rightMotorON of robot . 
+		ending here Otherwise  If rightSensorValue of robot  < 130  && leftSensorValue of robot  < 130 then  execute  code starting here
+			// right=black left=black
+			Assign 0 to leftMotorON of robot . 
+			Assign 0 to rightMotorON of robot . 
+		ending here 
+		Call update of robot . 
+	ending here 
+ending here 

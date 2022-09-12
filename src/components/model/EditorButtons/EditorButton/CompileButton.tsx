@@ -1,22 +1,44 @@
 import { notification } from 'antd';
 import type { VFC } from 'react';
+import { useEffect } from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VscLoading, VscRunAll } from 'react-icons/vsc';
+import { connect, useDispatch } from 'react-redux';
 
 import { EditorButton } from '@/components/model/EditorButtons/EditorButton/EditorButton';
 import { Spin } from '@/components/ui/Spin';
-import { useCompiler } from '@/features/compiler';
+import { compileLaze, runLaze } from '@/features/compiler/initialize';
 import { compileFailed } from '@/features/gtm';
+import { explorerSlice } from '@/features/redux/explorer';
+import type { RootState } from '@/features/redux/root';
 import { getCurrentCode, getCurrentFile, store } from '@/features/redux/root';
 import { getName } from '@/features/utils/path';
+import { competeProgramLangContext } from '@/pages/compete/editor';
+import { programLangContext } from '@/pages/editor';
 
-export const CompileButton: VFC = () => {
+import { editorExecuteParamContext } from '..';
+import { competeEditorExecuteParamContext } from '../compete';
+
+type CompileButtonProps = {
+  compiled: boolean;
+};
+
+const UnconnectedCompileButton: VFC<CompileButtonProps> = ({ compiled }) => {
   const [t] = useTranslation('editor');
 
-  useCompiler();
+  const dispatch = useDispatch();
 
-  const [isCompiling, setIsCompiiling] = useState(false);
+  const [isCompiling, setIsCompiling] = useState(false);
+  const { setCompiled } = explorerSlice.actions;
+
+  const competeLang = useContext(competeProgramLangContext);
+  const editorLang = useContext(programLangContext);
+  const lang = editorLang || competeLang;
+  const competeEditorParam = useContext(competeEditorExecuteParamContext);
+  const editorParam = useContext(editorExecuteParamContext);
+  const param = editorParam || competeEditorParam;
 
   const onClick = () => {
     const code = getCurrentCode();
@@ -33,23 +55,33 @@ export const CompileButton: VFC = () => {
       return;
     }
 
-    if (
-      window.laze.props.variables.compiled &&
-      Object.prototype.hasOwnProperty.call(store.getState().console.console, window.laze.props.variables.id)
-    ) {
-      window.laze.compiler.run();
-    } else {
-      const result = window.laze.compiler.compile(code, getName(file));
-      if (result) {
-        setIsCompiiling(true);
-        result.then(() => {
-          setIsCompiiling(false);
-        });
-      } else {
-        compileFailed();
+    if (compiled && Object.prototype.hasOwnProperty.call(store.getState().console.console, param?.current.id ?? '')) {
+      if (param?.current.interval) {
+        clearInterval(param?.current.interval);
       }
+      runLaze(param?.current);
+    } else {
+      if (param?.current.interval) {
+        clearInterval(param.current.interval);
+      }
+      const result = compileLaze(code, getName(file), lang?.current ?? 'en', param?.current);
+      setIsCompiling(true);
+      result.then((success) => {
+        if (success) {
+          setIsCompiling(false);
+          dispatch(setCompiled(true));
+        } else {
+          compileFailed();
+          setIsCompiling(false);
+        }
+      });
     }
   };
+
+  useEffect(() => {
+    dispatch(setCompiled(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -70,3 +102,9 @@ export const CompileButton: VFC = () => {
     </>
   );
 };
+
+export const CompileButton = connect((state: RootState) => {
+  return {
+    compiled: state.explorer.compiled,
+  };
+})(UnconnectedCompileButton);

@@ -1,9 +1,25 @@
 {
-  "compete": "大会",
+  "compete": "コンテスト",
   "clickToJoin": "クリックして参加",
-  "backToCompete": "大会ホームに戻る",
+  "backToCompete": "コンテストホームに戻る",
   "ranking": "順位",
   "name": "ユーザーネーム",
   "time": "タイム",
-  "join": "{{competition}} の {{level}} レベルに参加する"
+  "join": "{{competition}} の {{level}} レベルに参加する",
+  "level": "レベル",
+  "competition": "コンテスト",
+  "help": "ヘルプ",
+  "close_help": "閉じる",
+  "fetch code error": "プログラム取得失敗",
+  "fetch code error message": "サーバーは{{user}}のプログラムを見つけることができませんでした。",
+  "fetch wasm error": "WASM取得失敗",
+  "fetch wasm error message": "サーバーは{{user}}のWASMを見つけることができませんでした。",
+  "fetch compData error": "コンテストデータ取得失敗",
+  "fetch compData error message": "サーバーはコンテストデータを見つけることができませんでした。",
+  "fetch explanation error": "仕様説明取得失敗",
+  "fetch explanation error message": "サーバーは仕様説明を見つけることができませんでした。",
+  "leaderboard_explanation": "リーダーボードのプレイヤーをクリックするとそのプレイヤーのプログラムと実行結果が見えます。",
+  "goToLeaderboard": "リーダーボードへ行く",
+  "not_published": "このユーザーはプログラムを公開していません。",
+  "publish_source_code_check": "このプログラムを公開しますか。公開すると、他の人があなたのプログラムを見て、使うことができます。"
 }

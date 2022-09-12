@@ -1,4 +1,8 @@
-export const strToMem = (str: string): number => {
+import type { importGraphicsProps } from '@/features/laze/dependencies/graphics';
+
+type ImportProps = importGraphicsProps;
+
+export const strToMem = (variables: ImportProps, str: string): number => {
   const resultBytes = new Uint8Array(str.length * 4);
   const bytes = new TextEncoder().encode(str);
   for (let i = 0, j = 0; i < bytes.length; ) {
@@ -17,26 +21,21 @@ export const strToMem = (str: string): number => {
       j += 4;
     }
   }
-  const temp = window.laze.props.variables.memorySize;
-  const memoryBuffer = new Uint8Array(
-    window.laze.props.variables.memory.buffer,
-    window.laze.props.variables.memorySize,
-    12
-  );
-  window.laze.props.variables.memorySize += 12;
+  if (!variables.memory) {
+    throw new Error('Memory is not in this prop.');
+  }
+  const temp = variables.memorySize;
+  const memoryBuffer = new Uint8Array(variables.memory.buffer, variables.memorySize, 12);
+  variables.memorySize += 12;
   const tempBytes = new Uint32Array(1);
-  tempBytes.set([window.laze.props.variables.memorySize]);
+  tempBytes.set([variables.memorySize]);
   memoryBuffer.set(new Uint8Array(tempBytes.buffer), 0);
   tempBytes.set([str.length]);
   memoryBuffer.set(new Uint8Array(tempBytes.buffer), 4);
   memoryBuffer.set([0, 0, 0, 0], 8);
-  const helloBytes = new Uint8Array(
-    window.laze.props.variables.memory.buffer,
-    window.laze.props.variables.memorySize,
-    str.length * 4
-  );
+  const helloBytes = new Uint8Array(variables.memory.buffer, variables.memorySize, str.length * 4);
   helloBytes.set(resultBytes, 0);
-  window.laze.props.variables.memorySize += str.length * 4;
+  variables.memorySize += str.length * 4;
   // console.log(temp);
   return temp;
 };

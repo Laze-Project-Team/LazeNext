@@ -1,5 +1,8 @@
 export type CompetitionByLevel = {
+  id: string;
+  name: string;
   level: string;
+  levelID: string;
   players: Competitor[];
 };
 
@@ -8,12 +11,18 @@ export type Competition = {
   name: string;
   leaderboardList: CompetitionByLevel[];
   levels?: string[];
+  levelIDs?: string[];
+  explanation: string;
+  imageForLevels?: Record<string, string>;
 };
 
 export type CompetitionJson = {
   id: string;
-  name: string;
-  levels?: string[];
+  name: Record<string, string>;
+  explanations: Record<string, string>;
+  imageForLevels?: Record<string, string>;
+  levelIDs?: string[];
+  levels?: Record<string, string[]>;
 };
 
 export type CompetitionUIProps = {
@@ -26,6 +35,7 @@ export type Competitor = {
   programUrl: string;
   ranking: number;
   wasmUrl: string;
+  publish: boolean;
 };
 
 export type LeaderboardListProps = {
@@ -42,4 +52,5 @@ export type GetcompetitorRequest = {
 export type CompetitorInfoJson = {
   id: string;
   time: number;
+  publish: boolean;
 };

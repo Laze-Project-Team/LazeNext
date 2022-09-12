@@ -1,9 +1,21 @@
 {
   "id": "linetrace",
-  "name": "Linetrace",
-  "levels": [
-    "Easy",
-    "Medium",
-    "Hard"
-  ]
+  "name": {
+    "ja": "ライントレース",
+    "en": "Linetrace"
+  },
+  "explanations": {
+    "ja": "ロボットが線をなぞって動き、一周回ったタイムを競う競技です。\n 簡単レベルはもう既にライントレースするコードが書いてあります。",
+    "en": "In this competition, the robot moves by tracing a line and competes for the time it takes to complete one lap. \n Level Easy already has linetrace code written."
+  },
+  "levelIDs": ["Easy", "Medium", "Hard"],
+  "levels": {
+    "ja": ["簡単", "普通", "難しい"],
+    "en": ["Easy", "Medium", "Hard"]
+  },
+  "imageForLevels": {
+    "Easy": "/img/competition/linetrace/Easy.png",
+    "Medium": "/img/competition/linetrace/Medium.png",
+    "Hard": "/img/competition/linetrace/Hard.png"
+  }
 }

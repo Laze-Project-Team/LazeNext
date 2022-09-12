@@ -1,0 +1,15 @@
+Declare  function main with  code starting here
+	Call captureMouse . 
+	Initialize  object robot as linetraceSimulation with "Medium". 
+	Assign 1 to leftMotorON of robot . 
+	Assign 1 to rightMotorON of robot . 
+	Assign 1 to leftMotorSequence of robot . 
+	Assign 1 to rightMotorSequence of robot . 
+	Assign 3.0 to leftMotorSpeed of robot . 
+	Assign 3.0 to rightMotorSpeed of robot . 
+	loop starting here
+		// Write your program here
+    
+		Call update of robot . 
+	ending here 
+ending here 
