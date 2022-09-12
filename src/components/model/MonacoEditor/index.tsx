@@ -1,7 +1,9 @@
 import type { BeforeMount, OnMount } from '@monaco-editor/react';
 import MonacoEditor from '@monaco-editor/react';
+import type { editor } from 'monaco-editor';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
+import { useRef } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect, useMemo } from 'react';
@@ -25,13 +27,19 @@ type EditorProps = {
 const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
   const [t] = useTranslation('editor');
   const [value, setValue] = useState('');
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+
+  const updateEditorValue = (value: string) => {
+    setValue(value);
+    editorRef.current?.getModel()?.setValue(value);
+  };
 
   const { current } = state;
   useEffect(() => {
     if (current) {
       const content = getCurrentCode();
       if (content !== null) {
-        setValue(content);
+        updateEditorValue(content);
       }
     }
   }, [current, setValue]);
@@ -50,7 +58,7 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
       dispatcher(update());
       const code = getCurrentCode();
       if (code) {
-        setValue(code);
+        updateEditorValue(code);
       }
     }
   }, [dispatcher, setValue, state.updated, update]);
@@ -80,6 +88,8 @@ const UnconnectedEditor: VFC<EditorProps> = ({ state }) => {
         }
       }
     });
+
+    editorRef.current = editor;
   };
 
   const colorMode = useContext(colorModeContext);
