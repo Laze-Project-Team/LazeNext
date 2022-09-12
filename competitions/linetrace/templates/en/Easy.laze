@@ -1,0 +1,31 @@
+function: main() => (){
+	captureMouse();
+	linetraceSimulation: robot("Easy");
+	robot.leftMotorON = 1;
+	robot.rightMotorON = 1;
+	robot.leftMotorSequence = 1;
+	robot.rightMotorSequence = 1;
+	robot.leftMotorSpeed = 3.0;
+	robot.rightMotorSpeed = 3.0;
+	loop {
+		// Write your program here
+		if (robot.rightSensorValue > 130 && robot.leftSensorValue > 130) {
+			// right=white left=white
+			robot.leftMotorON = 1;
+			robot.rightMotorON = 1;
+		} else if (robot.rightSensorValue > 130 && robot.leftSensorValue < 130) {
+			// right=white left=black
+			robot.leftMotorON = 0;
+			robot.rightMotorON = 1;
+		} else if (robot.rightSensorValue < 130 && robot.leftSensorValue > 130) {
+			// right=black left=white
+			robot.leftMotorON = 1;
+			robot.rightMotorON = 0;
+		} else if (robot.rightSensorValue < 130 && robot.leftSensorValue < 130) {
+			// right=black left=black
+			robot.leftMotorON = 0;
+			robot.rightMotorON = 0;
+		}
+		robot.update();
+	}
+}

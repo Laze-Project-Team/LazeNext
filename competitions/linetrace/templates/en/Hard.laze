@@ -1,0 +1,15 @@
+function: main() => (){
+	captureMouse();
+	linetraceSimulation: robot("Hard");
+	robot.leftMotorON = 1;
+	robot.rightMotorON = 1;
+	robot.leftMotorSequence = 1;
+	robot.rightMotorSequence = 1;
+	robot.leftMotorSpeed = 3.0;
+	robot.rightMotorSpeed = 3.0;
+	loop {
+		// Write your program here
+		
+		robot.update();
+	}
+}

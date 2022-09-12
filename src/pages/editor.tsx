@@ -23,7 +23,7 @@ const Editor: NextPage = () => {
   const title = `${t('title')} | Laze`;
   const splitPaneRef = useRef<SplitPane>(null);
 
-  const programLangRef = useRef('en');
+  const programLangRef = useRef(locale ?? 'en');
 
   return (
     <>

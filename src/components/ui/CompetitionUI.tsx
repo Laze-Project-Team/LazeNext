@@ -1,10 +1,13 @@
 import { Button, Tabs } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { VFC } from 'react';
+import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { competeEditorExecuteParamContext } from '@/components/model/EditorButtons/compete';
 import { LeaderboardList } from '@/components/ui/LeaderboardList';
 import { linetraceTemplate } from '@/const/linetraceSample';
 import { competeSlice } from '@/features/redux/compete';
@@ -17,10 +20,13 @@ const { TabPane } = Tabs;
 
 export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
   const [t] = useTranslation('compete');
+  const { locale } = useRouter();
 
   const dispatch = useDispatch();
   const { collapse, updateCompetition } = competeSlice.actions;
   const { setDirectory } = explorerSlice.actions;
+
+  const param = useContext(competeEditorExecuteParamContext);
 
   const onEditorLink = (levelID: string) => {
     dispatch(
@@ -29,7 +35,7 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
         directory: {
           '/main.laze': {
             type: 'file',
-            content: linetraceTemplate[levelID],
+            content: linetraceTemplate[param?.current.lang ?? locale ?? 'en'][levelID],
             isRenaming: false,
           },
         },

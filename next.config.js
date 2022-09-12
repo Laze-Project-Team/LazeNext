@@ -17,10 +17,16 @@ module.exports = withBundleAnalyzer({
       })
     );
 
-    config.module.rules.push({
-      test: /\.md/,
-      use: ['raw-loader'],
-    });
+    config.module.rules.push(
+      {
+        test: /\.md/,
+        use: ['raw-loader'],
+      },
+      {
+        test: /\.laze/,
+        use: ['raw-loader'],
+      }
+    );
 
     return config;
   },

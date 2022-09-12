@@ -13,4 +13,8 @@ declare global {
     const content: string;
     export = content;
   }
+  declare module '*.laze' {
+    const content: string;
+    export = content;
+  }
 }
