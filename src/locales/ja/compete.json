@@ -20,5 +20,6 @@
   "fetch explanation error message": "サーバーは仕様説明を見つけることができませんでした。",
   "leaderboard_explanation": "リーダーボードのプレイヤーをクリックするとそのプレイヤーのプログラムと実行結果が見えます。",
   "goToLeaderboard": "リーダーボードへ行く",
-  "not_published": "このユーザーはプログラムを公開していません。"
+  "not_published": "このユーザーはプログラムを公開していません。",
+  "publish_source_code_check": "このプログラムを公開しますか。公開すると、他の人があなたのプログラムを見て、使うことができます。"
 }

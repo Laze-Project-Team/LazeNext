@@ -74,7 +74,7 @@ function: jsArcTan(double: x) => (double: r) = jsload("std", "atan");
 function: jsLog(double: x) => (double: r) = jsload("std", "log");
 function: jsEPow(double: x) => (double: r) = jsload("std", "ePow");
 function: jsPow(double: x, double: y) => (double: r) = jsload("std", "exp");
-function: updateLinetraceTime(double: x) => () = jsload("linetrace", "updateLinetraceTime");
+function: _updateLinetraceTime(double: x, *char: x, int: 長さ) => () = jsload("linetrace", "updateLinetraceTime");
 function: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(double: input) => (double: 結果){
 	double: PI = 3.14159265358979312;
 	int: temp = input / (2.0 * PI);
@@ -694,6 +694,9 @@ function: ${"ja":"表示", "natja":"表示", "en":"print", "naten":"print"}$(str
 }
 function: ${"ja":"glGetUniformLocation", "natja":"glGetUniformLocation", "en":"glGetUniformLocation", "naten":"glGetUniformLocation"}$(short: i, string: a) => (short: loc){
 	loc = _glGetUniformLocation(i, a.content, a.length);
+}
+function: updateLinetraceTime(double: x, string: y) => (){
+	_updateLinetraceTime(x, y.content, y.length);
 }
 function: ${"ja":"サンプルモデルロード", "natja":"サンプルモデルロード", "en":"loadSampleModel", "naten":"loadSampleModel"}$(string: a) => (string: b){
 	*string: data = "";
@@ -1969,13 +1972,15 @@ public: 	Scene: world;
 		}
 		直線データ.push(Vector2D(points.get(0), points.get(1)));
 	}
-	function: linetraceSimulation(int: level) => (){
+	function: linetraceSimulation(string: x) => (){
+		レベル.string();
+		レベル = x;
 		通過点.Array();
 		通過点ID.Array();
 		Array<double>: points;
 		world.Scene();
 		Vector2D: firstPos(0.0, 0.0);
-		if(level == 0){
+		if(x == "Easy"){
 			world.camera.setPos(Vector3D(2.0, 10.0, 3.0));
 			world.camera.setAngle(45.0, (0 - (45.0)));
 			int: number = 12;
@@ -1990,7 +1995,7 @@ public: 	Scene: world;
 			Vector4D: ゴール((0 - (1.0)), 9.5, 1.0, 8.5);
 			通過点.push(ゴール);
 		}
-		if(level == 1){
+		if(x == "Medium"){
 			world.camera.setPos(Vector3D((0 - (10.0)), 10.0, (0 - (15.0))));
 			world.camera.setAngle(45.0, (0 - (45.0)));
 			int: number = 12;
@@ -2009,7 +2014,7 @@ public: 	Scene: world;
 			Vector4D: ゴール(8.0, 0.0, 10.0, (0 - (1.0)));
 			通過点.push(ゴール);
 		}
-		if(level == 2){
+		if(x == "Hard"){
 			world.camera.setPos(Vector3D((0 - (10.0)), 10.0, (0 - (15.0))));
 			world.camera.setAngle(45.0, (0 - (45.0)));
 			ロボット角度 = 45.0;
@@ -2151,7 +2156,7 @@ public: 	Scene: world;
 						world.sprites.get(通過点ID.get(通過済み + 1))->setColor(緑);
 						おわり = true;
 						エンドタイム = getTime();
-						updateLinetraceTime((エンドタイム - スタートタイム) / 1000);
+						updateLinetraceTime((エンドタイム - スタートタイム) / 1000, レベル);
 					}else{
 						通過済み = 通過済み + 1;
 						world.sprites.get(通過点ID.get(通過済み))->setColor(緑);
@@ -2220,4 +2225,5 @@ private: 	int: ロボットID;
 	Array<Vector4D>: 通過点;
 	Array<int>: 通過点ID;
 	int: 通過済み;
+	string: レベル;
 }

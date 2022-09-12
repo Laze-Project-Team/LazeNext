@@ -74,8 +74,7 @@
 関数:jsLog(実数:x) => (実数:r) = js読み込み("std", "log");
 関数:jsEPow(実数:x) => (実数:r) = js読み込み("std", "ePow");
 関数:jsPow(実数:x, 実数:y) => (実数:r) = js読み込み("std", "exp");
-関数:updateLinetraceTime(実数: x) => () = js読み込み("linetrace", "updateLinetraceTime");
-
+関数:_updateLinetraceTime(実数: x, *文字:x, 整数: 長さ) => () = js読み込み("linetrace", "updateLinetraceTime");
 
 関数: ${"ja":"sin", "natja":"sin", "en":"sin", "naten":"sin"}$(実数: input) => (実数: 結果){
 	実数: PI = 3.14159265358979312;
@@ -710,6 +709,10 @@
 関数: ${"ja":"glGetUniformLocation", "natja":"glGetUniformLocation", "en":"glGetUniformLocation", "naten":"glGetUniformLocation"}$(整数32: i, 文字列: a) => (整数32: loc){
 	loc = _glGetUniformLocation(i, a.content, a.長さ);
 }
+関数:updateLinetraceTime(実数: x, 文字列:y) => (){
+	_updateLinetraceTime(x, y.content, y.長さ);
+}
+
 関数: ${"ja":"サンプルモデルロード", "natja":"サンプルモデルロード", "en":"loadSampleModel", "naten":"loadSampleModel"}$(文字列: a) => (文字列:b){
 	*文字列:data = "";
 	もし(a == "teapot")ならば{
@@ -1910,11 +1913,11 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 クラス:${"ja":"ベクトル4D", "natja":"ベクトル4D", "en":"Vector4D", "naten":"Vector4D"}${
 	公開:
 		実数:データ[4];
-		関数:ベクトル4D(実数:ax, 実数:ay, 実数:bx, 実数:by) => (){
+		関数:ベクトル4D(実数:ax, 実数:ay, 実数:bx, 実数:byp) => (){
 			データ[0] = ax;
 			データ[1] = ay;
 			データ[2] = bx;
-			データ[3] = by;
+			データ[3] = byp;
 		}
 		関数: 演算子 != (ベクトル4D: a) => (真偽:b){
 			b = (データ[0] != a.データ[0] || データ[1] != a.データ[1] || データ[2] != a.データ[2] || データ[3] != a.データ[3]);
@@ -1998,13 +2001,15 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 		}
 		直線データ.追加(ベクトル2D(points.取得(0), points.取得(1)));
 	}
-	関数:ライントレースシミュレーション(整数: level) => (){
+	関数:ライントレースシミュレーション(文字列:x) => (){
+		レベル.文字列();
+		レベル = x;
 		通過点.配列();
 		通過点ID.配列();
 		配列<実数>: points();
 		ワールド.シーン();
 		ベクトル2D:firstPos(0.0, 0.0);
-		もし(level == 0)ならば{
+		もし(x == "Easy")ならば{
 			ワールド.目.座標設定(ベクトル3D(2.0, 10.0, 3.0));
 			ワールド.目.視点角度設定(45.0, -45.0);
 			整数: 数 = 12;
@@ -2019,7 +2024,7 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 			ベクトル4D: ゴール(-1.0, 9.5, 1.0, 8.5);
 			通過点.追加(ゴール);
 		}
-		もし(level == 1)ならば{
+		もし(x == "Medium")ならば{
 			ワールド.目.座標設定(ベクトル3D(-10.0, 10.0, -15.0));
 			ワールド.目.視点角度設定(45.0, -45.0);
 			整数: 数 = 12;
@@ -2038,7 +2043,7 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 			ベクトル4D: ゴール(8.0, 0.0, 10.0, -1.0);
 			通過点.追加(ゴール);
 		}
-		もし(level == 2)ならば{
+		もし(x == "Hard")ならば{
 			ワールド.目.座標設定(ベクトル3D(-10.0, 10.0, -15.0));
 			ワールド.目.視点角度設定(45.0, -45.0);
 			ロボット角度 = 45.0;
@@ -2186,7 +2191,7 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 						ワールド.スプライト配列.取得(通過点ID.取得(通過済み + 1)) -> 色設定(緑);
 						おわり = 真;
 						エンドタイム = 時間計測();
-						updateLinetraceTime((エンドタイム - スタートタイム)/1000);
+						updateLinetraceTime((エンドタイム - スタートタイム)/1000, レベル);
 					}でなければ{
 						通過済み += 1;
 						ワールド.スプライト配列.取得(通過点ID.取得(通過済み)) -> 色設定(緑);
@@ -2258,4 +2263,5 @@ js書き出し(引数なしjsリスナー呼び出し, "jsCallListenerNoParam");
 	配列<ベクトル4D>: 通過点;
 	配列<整数>: 通過点ID;
 	整数:通過済み;
+	文字列: レベル;
 }

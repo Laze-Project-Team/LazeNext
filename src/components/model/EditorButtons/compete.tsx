@@ -2,6 +2,7 @@ import { notification } from 'antd';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { MutableRefObject, VFC } from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { createContext } from 'react';
 import { useRef } from 'react';
@@ -27,6 +28,7 @@ export const competeEditorExecuteParamContext = createContext<MutableRefObject<E
 
 export const CompeteButtons: VFC = () => {
   const [t] = useTranslation('editor');
+  const { query } = useRouter();
   const media = useMediaQuery([QUERY_MD_UP, QUERY_SM_DOWN]);
 
   const [isOpened, setIsOpened] = useState(false);
@@ -74,7 +76,14 @@ export const CompeteButtons: VFC = () => {
     programUrl: '',
     lang: locale ?? 'en',
     linetraceTime: { time: 0 },
+    levelNow: typeof query.levelID === 'string' ? query.levelID : '',
   });
+
+  useEffect(() => {
+    if (query.levelID) {
+      param.current.levelNow = typeof query.levelID === 'string' ? query.levelID : '';
+    }
+  }, [query.levelID]);
 
   return (
     <>

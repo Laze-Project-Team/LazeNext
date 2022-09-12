@@ -37,7 +37,8 @@
     "enter_name": "Enter Name",
     "submit": "Submit",
     "submit_to_competition": "Submit to Competition",
-    "no_inappropriate_terms": "Please do not write inappropriate terms in your name."
+    "no_inappropriate_terms": "Please do not write inappropriate terms in your name.",
+    "dont_change_level": "Please do not change the following code: linetraceSimulation: robot(\"{{level}}\");"
   },
 
   "settings": {

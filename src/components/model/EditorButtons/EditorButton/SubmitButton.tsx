@@ -94,6 +94,12 @@ export const SubmitButton: VFC = () => {
           <p className="text-red-500">{t('buttons.run_your_linetrace')}</p>
         </>
       );
+    } else if (linetraceTime === -1) {
+      return (
+        <>
+          <p className="text-red-500">{t('buttons.dont_change_level', { level: levelID })}</p>
+        </>
+      );
     } else {
       return <p>{t(`messages.linetraceTime`, { time: Number(linetraceTime.toFixed(2)) })}</p>;
     }
