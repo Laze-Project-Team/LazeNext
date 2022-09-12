@@ -38,7 +38,7 @@ export const CompetitionUI: VFC<CompetitionUIProps> = ({ competition }) => {
   };
 
   const renderCompetition = () => {
-    if (competition.levels) {
+    if (competition.levels && competition.levelIDs) {
       return (
         <Tabs
           size="large"
