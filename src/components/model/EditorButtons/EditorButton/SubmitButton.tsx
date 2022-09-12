@@ -5,7 +5,7 @@ import { Input, Modal } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import type { VFC } from 'react';
+import type { FC, ReactNode, VFC } from 'react';
 import { useRef } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
@@ -15,6 +15,22 @@ import type { SubmitRequest } from '@/pages/api/compete/submit';
 
 import { competeEditorExecuteParamContext } from '../compete';
 import { EditorButton } from './EditorButton';
+
+type modalTextDisplayProps = {
+  title: ReactNode;
+  children: ReactNode;
+};
+
+const ModalTextDisplay: FC<modalTextDisplayProps> = ({ title, children }) => {
+  return (
+    <>
+      <div>
+        <p className="m-0 text-xs text-gray-600 dark:text-gray-400">{title}</p>
+        <p className="text-lg text-gray-800 dark:text-gray-300">{children}</p>
+      </div>
+    </>
+  );
+};
 
 export const SubmitButton: VFC = () => {
   const [t] = useTranslation('editor');
@@ -95,7 +111,7 @@ export const SubmitButton: VFC = () => {
         </>
       );
     } else {
-      return <p>{t(`messages.linetraceTime`, { time: Number(linetraceTime.toFixed(2)) })}</p>;
+      return <p>{t(`messages.linetraceTime`, { time: linetraceTime.toFixed(2) })}</p>;
     }
   };
 
@@ -115,32 +131,25 @@ export const SubmitButton: VFC = () => {
         cancelText={t('samples.cancel')}
         okText={t('buttons.submit')}
       >
-        <div className="p-2">
-          <span className="text-sm">
-            {t('buttons.competition')}: {name}
-          </span>
-        </div>
-        <div className="p-2 pt-0">
-          <span className="text-sm">
-            {t('buttons.level')}: {level}
-          </span>
+        <div className="grid grid-cols-2 p-2">
+          <ModalTextDisplay title={t('buttons.competition')}>{name}</ModalTextDisplay>
+          <ModalTextDisplay title={t('buttons.level')}>{level}</ModalTextDisplay>
         </div>
         <Input
           className="p-2"
-          addonBefore={`${t('buttons.name')}: `}
-          placeholder={`${t('buttons.enter_name')}`}
+          addonBefore={t('buttons.name')}
+          placeholder={t('buttons.enter_name')}
           value={competitorName}
           onChange={(e) => {
             setCompetitorName(e.target.value);
           }}
         />
-        <div className="p-2 pt-0">
-          <span className="text-sm">{t('buttons.no_inappropriate_terms')}</span>
-        </div>
+        <p className="p-2 pt-0 text-sm text-gray-500 dark:text-gray-300">{t('buttons.no_inappropriate_terms')}</p>
         <div className="p-2">
           <Checkbox onChange={checkboxOnChange} defaultChecked>
-            <span className="text-black dark:text-gray-300">{t('publish_source_code_check')}</span>
+            <span className="text-gray-800 dark:text-gray-200">{t('publish_source_code_check')}</span>
           </Checkbox>
+          <p className="mt-1 text-xs text-gray-600 dark:text-gray-300">{t('publish_source_code_check_description')}</p>
         </div>
         <div className="p-2">{renderSubmitError()}</div>
       </Modal>
