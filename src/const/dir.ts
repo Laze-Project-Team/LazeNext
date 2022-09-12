@@ -1,7 +1,18 @@
 const searchNext = __dirname.search(/\.next/);
 const searchDist = __dirname.search(/dist/);
-export const ROOT_DIR =
-  searchNext > 0 ? __dirname.slice(0, searchNext - 1) : searchDist ? __dirname.slice(0, searchDist - 1) : __dirname;
+const searchSrc = __dirname.search(/src/);
+export const ROOT_DIR = (() => {
+  if (searchNext > 0) {
+    return __dirname.slice(0, searchNext - 1);
+  }
+  if (searchDist > 0) {
+    return __dirname.slice(0, searchDist - 1);
+  }
+  if (searchSrc > 0) {
+    return __dirname.slice(0, searchSrc - 1);
+  }
+  return __dirname;
+})();
 
 export const SAMPLE_DIR = ROOT_DIR + '/data/samples';
 export const CACHE_DIR = ROOT_DIR + '/cache';
