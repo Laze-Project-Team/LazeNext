@@ -31,7 +31,7 @@
     "@codingame/monaco-languageclient": "^0.17.4",
     "@monaco-editor/react": "^4.4.5",
     "@reduxjs/toolkit": "^1.8.3",
-    "antd": "^4.21.7",
+    "antd": "^5.1.4",
     "antd-img-crop": "^4.2.3",
     "applicationinsights": "^2.3.3",
     "colors": "^1.4.0",
