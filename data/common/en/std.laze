@@ -1228,7 +1228,7 @@ public: 	Array<*Model>: ${"ja":"スプライト配列", "natja":"スプライト
 		sprites.Array();
 		lights.Array();
 		Vector3D: 方向((0 - (1.0)), (0 - (1.0)), (0 - (1.0)));
-		Vector3D: 白(1.0, 1.0, 1.0);
+		Vector3D: 白(0.0, 0.0, 0.0);
 		平行光源.pos = 方向;
 		平行光源.ambient = 白 * 0.5;
 		平行光源.diffuse = 白 * 0.5;
@@ -1277,7 +1277,7 @@ public: 	Array<*Model>: ${"ja":"スプライト配列", "natja":"スプライト
 		*Model: light = allocMemory(sizeof(*light));
 		light->Model(&vertices, 36, color, pos, 1, lights.length());
 		*LightClass: lightObject = allocMemory(sizeof(*lightObject));
-		lightObject->LightClass(pos, 強さ, color * 0.5, color * 0.5, color * 0.200000000000000011, lights.length());
+		lightObject->LightClass(pos, 強さ, color * 0.5, color * 0.7, color * 0.5, lights.length());
 		sprites.push(light);
 		lights.push(lightObject);
 		id = sprites.length() - 1;
@@ -1777,7 +1777,7 @@ public: 	Array<*Sprite>: ${"ja":"スプライト配列", "natja":"スプライ�
 		sprites.push(sprite);
 		id = sprites.length() - 1;
 	}
-	function: ${"ja":"媒介変数表示線追加", "natja":"媒介変数表示線追加", "en":"addLine", "naten":"addLine"}$(function: (double: theta) => (Vector2D: pos): c, double: dx, double: start, double: end, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
+	function: ${"ja":"媒介変数表示線追加", "natja":"媒介変数表示線追加", "en":"addParametricLine", "naten":"addParametricLine"}$(function: (double: theta) => (Vector2D: pos): c, double: dx, double: start, double: end, Vector2D: pos, Vector3D: color, double: zIndex) => (int: id){
 		Array<double>: points;
 		(double: x = start;)from(x >= end)to(x = x + dx;){
 			Vector2D: temp = c(x);

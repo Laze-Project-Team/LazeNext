@@ -1,7 +1,6 @@
 import type { BeforeMount, OnMount } from '@monaco-editor/react';
 import MonacoEditor from '@monaco-editor/react';
 import type { VFC } from 'react';
-import { useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import { Loading } from '@/components/model/MonacoEditor/Loading';
@@ -32,10 +31,6 @@ const SiderEditor: VFC<EditorProps> = ({ code }) => {
     initializeMonaco(monaco);
   };
 
-  const currentTheme = useMemo(() => {
-    return 'laze-dark';
-  }, []);
-
   return (
     <>
       <MonacoEditor
@@ -45,7 +40,7 @@ const SiderEditor: VFC<EditorProps> = ({ code }) => {
         beforeMount={beforeMount}
         onMount={onMount}
         keepCurrentModel
-        theme={currentTheme}
+        theme={'laze-dark'}
         loading={<Loading />}
       />
     </>

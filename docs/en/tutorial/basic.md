@@ -1,6 +1,6 @@
 # Basics
 
-Now let's learn how to use Laze in a basic way.
+Now let's learn how to use ⢱⌍⠼⡶ in a basic way.
 
 💡 The following programming descriptions are intended for beginners in programming, so intermediate and advanced users may understand many parts of the information.
 
@@ -9,12 +9,12 @@ Now let's learn how to use Laze in a basic way.
 Let's start by writing this program.
 
 ```
-function: main () => () {
-	print("Welcome to Laze!");
+⟱♆┵◬↥: ∑⤳ⵠ⍭ () => () {
+	⢤⣕⇤‣⣹("ⴤ╢⣓⦙Ɱ⢞⑥⬏ ⫒⟣ ⢱⌍⠼⡶!");
 }
 ```
 
-As soon as it is written, it will be executed. On the screen in the output below, "Welcome to Laze!" should appear on the display. We will now explain in detail how this.
+As soon as it is written, it will be executed. On the screen in the output below, "ⴤ╢⣓⦙Ɱ⢞⑥⬏ ⫒⟣ ⢱⌍⠼⡶!" should appear on the display. We will now explain in detail how this.
 
 How does the first program work? We will look at them one by one, breaking them down.
 
